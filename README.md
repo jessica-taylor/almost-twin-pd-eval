@@ -51,6 +51,31 @@ Pilot defaults are three cumulative reserved calls and US$2 estimated spend. Set
 
 A completed researcher or pair is returned when resumed, never automatically called again. Partial failures preserve responses, commitments, logs and reservations and require deliberate new preparation rather than an automatic retry. Existing pilots cannot be overwritten. Use a new `--out` for a new exploratory trial or changed instructions/settings. [Detailed behavior and audit assumptions](docs/pilot_workflow.md).
 
+## Collect multiple complete trials
+
+After the CDT Wikipedia source is cached as above, prepare five separate essay → prisoner A → prisoner B → judge-if-needed trials, using GPT-5 Nano with low reasoning for both researcher and prisoners. Preparation performs only unbilled metadata checks:
+
+```sh
+python3 -m almost_twin batch prepare \
+  --assignment cdt_wikipedia --model openai/gpt-5-nano \
+  --researcher-effort low --prisoner-effort low \
+  --scenario t4_distinct_leads_001 --count 5 \
+  --max-calls 30 --max-usd 5.00 \
+  --out data/batches/cdt-nano-five
+```
+
+Review `data/batches/cdt-nano-five/plan.md`, its researcher prompt and the existing prisoner/judge templates. The approval here is deliberately **for the template family with future model-generated essays**, not a claim that all dynamic prompts were individually inspected. First run one full sample, then resume the remainder concurrently:
+
+```sh
+python3 -m almost_twin batch run --batch data/batches/cdt-nano-five \
+  --execute --confirm-billable --approve-variable-prompts --limit 1
+python3 -m almost_twin batch run --batch data/batches/cdt-nano-five \
+  --execute --confirm-billable --approve-variable-prompts --jobs 2
+python3 -m almost_twin batch status --batch data/batches/cdt-nano-five
+```
+
+Each sample creates a **fresh essay** and two independent prisoner calls, followed by zero to two judge calls for ambiguous actions. Every API request, raw response, validation result and error is retained. The derived `results.jsonl` and `results.csv` contain one row per sample for later analysis. There are no automatic retries of attempted calls; completed trials are skipped on resume. Judge model/effort, budgets and endpoint are configurable at preparation. See [full batch workflow, artifacts and safeguards](docs/batch_workflow.md).
+
 ## Try it offline
 
 Use Python 3.11+ and PyYAML 6.x. From the repository root:
@@ -205,7 +230,7 @@ python3 -m almost_twin run prisoner --assignment fdt_eq4 \
   --execute --confirm-billable --prompts-approved
 ```
 
-Both billable flags are required. There is no batch command. The default persistent project budget is four calls and US$2 estimated spend; `--max-calls`/`--max-usd` explicitly change those limits. `data/budget.jsonl` reserves the whole stage before calling; failed/unknown transport outcomes remain charged against the reservation. A pair is always preflighted and reserved together. Calls are sequential HTTP requests **with separate one-message contexts**, not continuations; neither request contains the other's output. No automated retries are implemented. Changing the local ledger, directory or cap can bypass local accounting, so retain it as an audit record.
+Both billable flags are required. The lower-level `run` command is for one researcher or prisoner pair; the `pilot` and `batch` commands wrap it for exploratory end-to-end execution. The default persistent project budget for lower-level calls is four calls and US$2 estimated spend; `--max-calls`/`--max-usd` explicitly change those limits. `data/budget.jsonl` reserves the whole stage before calling; failed/unknown transport outcomes remain charged against the reservation. A pair is always preflighted and reserved together. Calls are sequential HTTP requests **with separate one-message contexts**, not continuations; neither request contains the other's output. No automated retries are implemented. Changing the local ledger, directory or cap can bypass local accounting, so retain it as an audit record.
 
 Each live call saves the exact serialized request, exact raw response bytes, transport metadata, output text and append-only start/success/failure JSONL events with source/template/essay hashes, IDs, model, effort, usage, finish reason and route metadata. Transport errors and truncated generations fail. **Empty or refused prisoner answers are retained as `OTHER` responses**, while an empty/refused researcher essay still fails. The researcher `essay.md` is the entire unedited response content, frozen by hash and verified against the raw response before reuse. Only a completed same-model, same-assignment researcher artifact is accepted for execution; a standalone synthetic preview is not a runnable research essay.
 
@@ -237,10 +262,11 @@ python3 -m almost_twin run-judge --run data/runs/PRISONER_RUN_ID \
   --capabilities data/openrouter/judge_capabilities.json
 ```
 
-This is an **offline plan**, requiring no API key. After reading the generated judge messages, actual billable adjudication requires the same command with `--execute --confirm-billable --prompts-approved`. It sends only uncertain prisoner responses, has a separate capped budget (two calls / $1 by default), and saves exact requests, responses, judge labels, and an **annotated outcome** without changing the original game journal. Judge prompts and metadata remain auditable; no judge or prisoner calls have been made by this project yet.
+This is an **offline plan**, requiring no API key. After reading the generated judge messages, actual billable adjudication requires the same command with `--execute --confirm-billable --prompts-approved`. It sends only uncertain prisoner responses, has a separate capped budget (two calls / $1 by default), and saves exact requests, responses, judge labels, and an **annotated outcome** without changing the original game journal. Judge prompts and metadata remain auditable.
 
 ## Scope and remaining decisions
 
-Implemented: exploratory prepare/researcher/prisoners workflow with automatic endpoint pinning, persistent hash-bound approvals and request-aware pricing; source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls with a matching researcher/prisoner model **and provider tag**; role-specific evidence/letters; **simple marker-based command recognition**; separate guarded OpenRouter Sol-judge stage with historical evidence/output integrity checks; blinded-judge prompt exports; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
+Implemented: exploratory single-pilot and **repeated batch** workflows (fresh essay + pair + conditional judge per sample, resumable/concurrent execution, CSV/JSONL exports); automatic endpoint pinning, persistent scope/hash-bound approvals and request-aware pricing; source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls with a matching researcher/prisoner model **and provider tag**; role-specific evidence/letters; **simple marker-based command recognition**; separate guarded OpenRouter Sol-judge stage with historical evidence/output integrity checks; blinded-judge prompt exports; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
 
-Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, batch adjudication, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, or empirical results have occurred. Scaling waits for manual prompt approval.
+Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. The new batch layer has only been tested offline with mocked model responses; no billable batch was run while implementing it. Scaling requires explicit review of the source/template family and batch authorization.
+

@@ -36,7 +36,23 @@ def load_yaml(path):
 def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_bytes(json.dumps(value, ensure_ascii=False, indent=2).encode('utf-8') + b'\n')
+    # A concurrent batch status export must never see half a freshly written
+    # state file. Replace the complete JSON atomically on the same filesystem.
+    import os
+    import tempfile
+    payload = json.dumps(value, ensure_ascii=False, indent=2).encode('utf-8') + b'\n'
+    name = None
+    try:
+        with tempfile.NamedTemporaryFile(prefix=f'.{path.name}.', suffix='.tmp',
+                                         dir=path.parent, delete=False) as stream:
+            name = stream.name
+            stream.write(payload)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(name, path)
+    finally:
+        if name is not None and os.path.exists(name):
+            os.unlink(name)
 
 
 def append_json(path, value):
@@ -47,3 +63,4 @@ def append_json(path, value):
         stream.flush()
         import os
         os.fsync(stream.fileno())
+

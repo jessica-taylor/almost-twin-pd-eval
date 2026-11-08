@@ -293,7 +293,17 @@ def run(root, args):
         raise EvalError('Source revision/text changed since pilot preparation. Prepare a new pilot for the changed source; no generation was sent.')
     authorization = {}
     if live:
-        authorization['prompts'] = approve(root, 'prompts', {'request_hashes': request_hashes}, args.prompts_approved)
+        batch_scope = getattr(args, 'batch_approval_scope', None)
+        if batch_scope is not None:
+            # A batch approval authorizes reviewed *templates* to be instantiated
+            # with different model-generated essays/observations. It must not be
+            # misrepresented as manual approval of each final request's bytes.
+            authorization['batch_dynamic_templates'] = approve(root, 'batch_dynamic_templates', batch_scope)
+            authorization['approval_kind'] = 'reviewed_template_with_variable_essay'
+            authorization['generated_request_hashes'] = request_hashes
+        else:
+            authorization['prompts'] = approve(root, 'prompts', {'request_hashes': request_hashes}, args.prompts_approved)
+            authorization['approval_kind'] = 'exact_requests'
     cfg = load_yaml(root / 'configs/early_test.yaml')
     max_calls = args.max_calls if args.max_calls is not None else cfg['mode']['max_paid_calls']
     max_usd = args.max_usd if args.max_usd is not None else cfg['mode']['max_estimated_spend_usd']
@@ -407,3 +417,4 @@ def run(root, args):
             'needs_review': [i for i, d in enumerate(decisions) if d['needs_review']],
             'fingerprint_check': 'matched' if all(fingerprints) else 'unavailable; weights/version equality not independently verifiable'})
     return folder
+

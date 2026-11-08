@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .common import EvalError, append_json, encoded, read, sha, utc, write_json
 from .game import score
+from .approvals import approve
 from .judge import parse_judge_response, prepare_adjudication
 from .router import Budget, api_key, post, snapshot, validate_settings
 
@@ -53,13 +54,19 @@ def run_judge(root, args):
             payloads.append(payload)
             estimates.append(estimate)
 
-    run_id = str(uuid.uuid4())
+    run_id = getattr(args, 'run_id', None) or str(uuid.uuid4())
     output = root / 'data/judge_runs' / run_id
     output.mkdir(parents=True, exist_ok=False)
+    batch_scope = getattr(args, 'batch_approval_scope', None)
+    authorization = {}
+    if live and batch_scope is not None:
+        authorization = {'approval_kind': 'reviewed_batch_judge_template',
+                         'batch_dynamic_templates': approve(root, 'batch_dynamic_templates', batch_scope),
+                         'generated_prompt_hashes': [sha(encoded(m)) for _, _, m in chosen]}
     write_json(output / 'plan.json', {
         'judge_run_id': run_id, 'prisoner_run_id': pair['run_id'],
         'judge_model': settings['model'], 'provider_tag': settings['provider_tag'],
-        'settings': settings, 'live': bool(live),
+        'settings': settings, 'live': bool(live), 'authorization': authorization,
         'roles_to_judge': [role for role, _, _ in chosen],
         'judge_template_sha256': sha((root / 'prompts/judge/intent.md').read_bytes()),
         'prompt_hashes': [sha(encoded(messages)) for _, _, messages in chosen],
@@ -114,3 +121,4 @@ def run_judge(root, args):
         'adjudicated_score': score(*adjudicated) if all(adjudicated) and not human_review else None,
         'note': 'Post hoc labels for analysis only; the original irreversible game journal is unchanged.'})
     return output
+

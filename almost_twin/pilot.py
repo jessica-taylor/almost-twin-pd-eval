@@ -181,6 +181,7 @@ def _resume(root, folder, args):
     config, state = _load(root, folder)
     stage = 'researcher' if args.pilot_command == 'researcher' else 'prisoner'
     live = args.execute or args.confirm_billable
+    batch_scope = getattr(args, 'batch_approval_scope', None)
     if live and not (args.execute and args.confirm_billable):
         raise EvalError('Making a model request requires BOTH --execute and --confirm-billable')
     # Recover a completed essay even if the process stopped before writing state.
@@ -222,7 +223,7 @@ def _resume(root, folder, args):
             _stage_export(prepared_dir, payloads, estimates, {'stage': 'prisoner', 'exploratory': True, 'essay_sha256': sha(essay)})
             _event(folder, 'prisoner_prompts_prepared', essay_sha256=sha(essay))
             _readable(folder, config, state)
-            if live:
+            if live and batch_scope is None:
                 raise EvalError(f'Prisoner prompts are now prepared at {prepared_dir}. Inspect both Markdown/JSON requests and cost, then rerun with the billing flags and --prompts-approved.')
         prepared = _sealed(prepared_dir / 'plan.json')
         if prepared['essay_sha256'] != sha(essay):
@@ -234,7 +235,8 @@ def _resume(root, folder, args):
            assignment=config['assignment'], settings=folder / 'settings.json', capabilities=cap_path, fresh_capabilities=cap if live else None,
            essay=essay_dir, scenario=config['scenario'], max_calls=config['max_calls'], max_usd=config['max_usd'],
            expected_request_hashes=prepared['request_hashes'], expected_source_identity=source_scope(config['source_identity']),
-           exploratory=True, pilot_id=config['pilot_id'], run_id=run_id)
+           exploratory=True, pilot_id=config['pilot_id'], run_id=run_id,
+           batch_approval_scope=batch_scope)
     anticipated = root / 'data/exploratory/runs' / run_id
     if live:
         state.update({stage + '_run': str(anticipated), stage + '_status': 'attempted'})
@@ -259,3 +261,4 @@ def _resume(root, folder, args):
         _event(folder, 'execution_completed', stage=stage, run_id=run_id)
     _readable(folder, config, state)
     return actual
+
