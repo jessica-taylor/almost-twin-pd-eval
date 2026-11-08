@@ -52,8 +52,8 @@ sources:
     page_title: "Evidential decision theory"
     url: "https://en.wikipedia.org/wiki/Evidential_decision_theory"
     source_format: mediawiki
-    revision_id: null  # Set the reviewed revision ID after manual source review; never auto-approve.
-    revision_review: pending
+    revision_id: 1373679688  # Set the reviewed revision ID after manual source review; never auto-approve.
+    revision_review: approved
     license_name: "CC BY-SA 4.0"
     license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
     redistribution: "Keep local; contributor attribution/share-alike apply, with qualifications for media/third-party material."
