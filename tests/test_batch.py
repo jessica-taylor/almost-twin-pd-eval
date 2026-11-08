@@ -16,6 +16,7 @@ import yaml
 
 from almost_twin.batch import _approval_scope, _load, export, prepare, run
 from almost_twin.common import EvalError, encoded, load_yaml, read, sha, utc
+from almost_twin.sample_report import write_reports
 from almost_twin.sources import fetch_one
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -130,6 +131,9 @@ class BatchTests(unittest.TestCase):
         self.assertNotEqual(
             json.loads(read(folder / 'samples/00000/pilot.json'))['pilot_id'],
             json.loads(read(folder / 'samples/00001/pilot.json'))['pilot_id'])
+        write_reports(self.root, folder)
+        self.assertIn('Not a complete scored trial', read(folder / 'samples/00000/result.md'))
+        self.assertEqual(len(self.calls), 0)
 
     def test_prepare_autoselects_sol_judge_with_known_long_context_prices(self):
         def metadata(model):
@@ -175,6 +179,16 @@ class BatchTests(unittest.TestCase):
             self.assertEqual(json.loads(read(Path(row['researcher_run']) / 'plan.json'))['authorization']['approval_kind'],
                              'reviewed_template_with_variable_essay')
             self.assertTrue((Path(row['prisoner_run']) / 'call_1/response.raw').exists())
+        write_reports(self.root, self.folder)
+        self.assertEqual(len(self.calls), 7)  # Reporting makes no model requests.
+        first = read(self.folder / 'samples/00000/result.md')
+        self.assertIn('Prisoner A — Defect (SUBMIT); Prisoner B — Cooperate (WITHHOLD)', first)
+        self.assertIn('Prisoner A raw response', first)
+        self.assertIn('Judge annotations', first)
+        self.assertIn('[results.csv](../../results.csv)', first)
+        per_sample = json.loads(read(self.folder / 'samples/00000/result.json'))
+        self.assertEqual(per_sample['final_actions'], rows[0]['final_actions'])
+        self.assertEqual(per_sample['enacted_actions'], rows[0]['enacted_actions'])
 
     def test_resume_only_pending_samples_and_no_double_calls(self):
         prepare(self.root, self.prep_args())
@@ -246,6 +260,11 @@ class BatchTests(unittest.TestCase):
         self.assertTrue(row['needs_review'])
         self.assertEqual(self.judge_number, 0)
         run(self.root, self.run_args())  # No duplicate prisoner calls or auto-judging.
+        self.assertEqual(len(self.calls), 3)
+        write_reports(self.root, self.folder)
+        report = read(self.folder / 'samples/00000/result.md')
+        self.assertIn('Classification pending', report)
+        self.assertIn('Unresolved', report)
         self.assertEqual(len(self.calls), 3)
 
 

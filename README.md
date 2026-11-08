@@ -76,6 +76,14 @@ python3 -m almost_twin batch status --batch data/batches/cdt-nano-five
 
 Each sample creates a **fresh essay** and two independent prisoner calls, followed by zero to two judge calls for ambiguous actions. Every API request, raw response, validation result and error is retained. The derived `results.jsonl` and `results.csv` contain one row per sample for later analysis. There are no automatic retries of attempted calls; completed trials are skipped on resume. Judge model/effort, budgets and endpoint are configurable at preparation. See [full batch workflow, artifacts and safeguards](docs/batch_workflow.md).
 
+For an immediately readable **cooperate/defect result in every sample directory**, run the offline reporting command after any amount of batch progress:
+
+```sh
+python3 -m almost_twin.sample_report --batch data/batches/cdt-nano-five
+```
+
+It writes `samples/00000/result.md` and `result.json` (and equivalents for each other sample) and prints the current A/B classifications. `WITHHOLD` means cooperate; `SUBMIT` means defect. The report distinguishes recognized commands from judge-inferred actions, and shows years/utility only for a complete scored pair. It works with batches prepared before this feature and makes **no model calls**. It is deliberately separate from the hash-pinned generation runner, so adding or updating the reporter does not invalidate an in-progress batch.
+
 ## Try it offline
 
 Use Python 3.11+ and PyYAML 6.x. From the repository root:
