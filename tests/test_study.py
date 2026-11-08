@@ -117,6 +117,11 @@ class StudyTests(unittest.TestCase):
         values.update(overrides)
         return SimpleNamespace(**values)
 
+    def test_study_run_concurrency_defaults(self):
+        args = parser().parse_args(['study', 'run', '--study', str(self.study)])
+        self.assertEqual(args.jobs, 5)
+        self.assertEqual(args.provider_jobs, 2)
+
     def test_preflight_and_preparation_are_unbilled(self):
         spec, data = load_spec(self.config)
         self.assertEqual(spec['researcher_max_tokens'], 16000)
