@@ -192,8 +192,10 @@ python3 -m almost_twin study run \
 If its transcript, action classification, reasoning availability and provider
 metadata look right, finish **all remaining scenarios** (including both Gemini
 scenarios) with the same command **minus both `--limit-*` options**. Already
-finished samples are skipped on resume. Using `--jobs 2` runs two scenarios
-concurrently *within each cell*; cells still run sequentially.
+finished samples are skipped on resume. `--jobs 2` runs up to two full scenarios
+concurrently *across all cells*. By default, the study runner uses five global
+workers (`--jobs 5`) and permits two concurrent scenarios per selected provider
+family (`--provider-jobs 2`). These flags can be lowered for cautious pilots.
 
 ```sh
 python3 -m almost_twin study run \
@@ -236,12 +238,19 @@ python3 -m almost_twin study run \
 ```
 
 Then continue with the same command, without the limits. `--jobs` is the
-maximum concurrent **full scenarios within one condition cell**; condition
-cells are processed sequentially. Each batch has its own lock and resumable
-states. Completed or failed generation attempts are **never automatically
-repeated**. A run interrupted after some model calls can be resumed if the
-same code and frozen configuration remain in place. The project-wide budget
-ledgers and per-request revalidation still apply.
+global maximum number of concurrent **full scenarios across the entire study**
+(default 5). The scheduler interleaves model/theory cells and defaults to at
+most two active scenarios per selected provider family (`--provider-jobs 2`).
+For example, seven different models with mostly different providers now overlap
+calls across models without passing any concurrency flags. If 429 errors appear,
+lower `--provider-jobs` to 1; raise it beyond 2 only with provider-specific
+evidence. Researcher, prisoner, and conditional
+judge stages remain sequential within a scenario; a shared judge provider can
+still receive overlapping calls from different scenarios. Each batch has its
+own lock and resumable states. Completed or failed generation attempts are
+**never automatically repeated**. A run interrupted after some model calls
+can be resumed if the same code and frozen configuration remain in place.
+The project-wide budget ledgers and per-request revalidation still apply.
 
 Generation remains deliberately fail-closed: live endpoints are rechecked;
 there is no automatic model/provider fallback. A `max_tokens` limit includes
@@ -271,9 +280,13 @@ OpenRouter requests ask for `usage.include=true`. Only explicit `usage.cost`
 values are included in the displayed provider charges (including judge calls);
 older responses or endpoints without a price are counted as **unknown**, not
 zero. This is distinct from the preflight estimate and budget reservations.
-For operational throughput, `--jobs` controls parallel *full scenarios* within
-one cell (allowed 1–16); stages inside each scenario and the cells themselves
-remain sequential. Too many jobs can exceed provider throughput or rate limits;
+For operational throughput, `--jobs` controls parallel *full scenarios* across
+cells (default 5; allowed 1–16); `--provider-jobs` caps overlapping scenarios
+sharing a selected provider family (default 2; allowed 1–16). Scheduling is round-robin across cells,
+and a busy provider does not occupy a waiting worker. The summary's aggregate
+cell execution time may exceed actual wall-clock duration because cell work
+overlaps; `last_run_wall_seconds` records elapsed time for the most recent
+invocation. Too many jobs can exceed provider throughput or rate limits;
 HTTP 429 failures are recorded, not automatically retried.
 
 The primary descriptive estimand is the mean of the A/B cooperation fraction

@@ -6,6 +6,8 @@ import json
 import os
 import shutil
 import tempfile
+import threading
+import time
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -15,6 +17,7 @@ from urllib.parse import parse_qs, urlparse
 import yaml
 
 from almost_twin.cli import parser
+from almost_twin import batch
 from almost_twin.common import EvalError, GenerationError, encoded, load_yaml, read, sha, utc
 from almost_twin.game import submit_command
 from almost_twin.prompts import cases
@@ -114,6 +117,11 @@ class StudyTests(unittest.TestCase):
         values.update(overrides)
         return SimpleNamespace(**values)
 
+    def test_study_run_concurrency_defaults(self):
+        args = parser().parse_args(['study', 'run', '--study', str(self.study)])
+        self.assertEqual(args.jobs, 5)
+        self.assertEqual(args.provider_jobs, 2)
+
     def test_preflight_and_preparation_are_unbilled(self):
         spec, data = load_spec(self.config)
         self.assertEqual(spec['researcher_max_tokens'], 16000)
@@ -178,6 +186,84 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(usage['unpriced_calls'], 0)
         self.assertGreaterEqual(usage['recorded_execution_seconds'], 0)
         self.assertIn('$0.024', read(self.study / 'summary.md'))
+
+    def test_study_jobs_overlap_distinct_model_providers(self):
+        self.spec.update(count_per_cell=1, prisoner_efforts=['low'], models=[
+            {'id': NANO, 'provider_tag': 'openai'},
+            {'id': 'openai/gpt-5-other', 'provider_tag': 'azure'},
+        ])
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        prepare(self.root, self.prep_args())
+        active = peak = 0
+        mutex = threading.Lock()
+        original = batch._timed_sample_live
+
+        def slow_sample(*args):
+            nonlocal active, peak
+            with mutex:
+                active += 1
+                peak = max(peak, active)
+            try:
+                time.sleep(.05)
+                return original(*args)
+            finally:
+                with mutex:
+                    active -= 1
+
+        def routed_post(payload, key, folder, allow_nonaction=False):
+            response, content = self.fake_post(payload, key, folder,
+                                               allow_nonaction=allow_nonaction)
+            if payload['provider']['only'] == ['azure']:
+                response['provider'] = 'Azure'
+                (folder / 'response.raw').write_bytes(encoded(response))
+            return response, content
+
+        with patch('almost_twin.batch._timed_sample_live', side_effect=slow_sample), \
+                patch('almost_twin.router.post', side_effect=routed_post):
+            run(self.root, self.run_args(jobs=2, provider_jobs=1, limit_per_cell=1))
+        self.assertEqual(peak, 2)
+        summary = json.loads(read(self.study / 'summary.json'))
+        self.assertEqual(summary['total_complete_pairs'], 2)
+        self.assertIsNotNone(summary['provider_usage']['last_run_wall_seconds'])
+        # Scenarios were truly concurrent, not only their reporting.
+        self.assertGreater(summary['provider_usage']['recorded_execution_seconds'],
+                           summary['provider_usage']['last_run_wall_seconds'] * .8)
+
+    def test_study_provider_cap_serializes_shared_provider(self):
+        # Separate study cells sharing the same selected provider must not
+        # bypass the per-provider cap, even when endpoint tags have variants.
+        self.spec.update(count_per_cell=1, prisoner_efforts=['low'], models=[
+            {'id': NANO, 'provider_tag': 'openai'},
+            {'id': 'openai/gpt-5-other', 'provider_tag': 'openai/flex'},
+        ])
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        prepare(self.root, self.prep_args())
+        active = peak = 0
+        mutex = threading.Lock()
+        original = batch._timed_sample_live
+
+        def slow_sample(*args):
+            nonlocal active, peak
+            with mutex:
+                active += 1
+                peak = max(peak, active)
+            try:
+                time.sleep(.03)
+                return original(*args)
+            finally:
+                with mutex:
+                    active -= 1
+
+        with patch('almost_twin.batch._timed_sample_live', side_effect=slow_sample):
+            run(self.root, self.run_args(jobs=2, provider_jobs=1))
+        self.assertEqual(peak, 1)
+        self.assertEqual(json.loads(read(self.study / 'summary.json'))['total_complete_pairs'], 2)
+
+    def test_study_rejects_invalid_provider_concurrency_without_api_calls(self):
+        prepare(self.root, self.prep_args())
+        with self.assertRaisesRegex(EvalError, 'provider-jobs must be 1..16'):
+            run(self.root, self.run_args(provider_jobs=0))
+        self.assertEqual(self.calls, [])
 
     def test_study_reports_judge_resolved_refusals_separately_from_review(self):
         prepare(self.root, self.prep_args())

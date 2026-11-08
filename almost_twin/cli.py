@@ -120,7 +120,10 @@ def parser():
     srun.add_argument('--execute', action='store_true')
     srun.add_argument('--confirm-billable', action='store_true')
     srun.add_argument('--approve-variable-prompts', action='store_true')
-    srun.add_argument('--jobs', type=int, default=1, help='Concurrent complete scenarios within one condition cell')
+    srun.add_argument('--jobs', type=int, default=5,
+                      help='Global maximum concurrent complete scenarios across model cells (default: 5; 1..16)')
+    srun.add_argument('--provider-jobs', type=int, default=2,
+                      help='Maximum concurrent scenarios per provider family (default: 2; 1..16)')
     srun.add_argument('--limit-cells', type=int, help='Process at most this many pending condition cells')
     srun.add_argument('--limit-per-cell', type=int, help='Process at most this many pending scenarios per selected cell')
     sstatus = study_actions.add_parser('report', help='Regenerate study-wide CSV/JSON/Markdown results; no model calls')
@@ -236,7 +239,8 @@ def main(argv=None):
                 print(f"Provider-reported cost: ${usage['reported_provider_usd']} "
                       f"({usage['priced_calls']}/{usage['attempted_calls']} calls priced; "
                       f"{usage['unpriced_calls']} unknown). "
-                      f"Recorded execution: {usage['recorded_execution_seconds']}s; "
+                      f"Aggregate cell execution: {usage['recorded_execution_seconds']}s; "
+                      f"last run wall time: {usage.get('last_run_wall_seconds')}s; "
                       f"HTTP 429 failed scenarios: {usage['rate_limit_failures']}.")
                 print(f"Readable transcripts: {folder / 'batches'}; "
                       f"review dispositions: {folder / 'review_summary.md'}")
