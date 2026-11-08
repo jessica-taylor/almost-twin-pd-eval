@@ -1,6 +1,6 @@
 # Wikipedia source conditions and acquisition review
 
-The original source IDs are unchanged: `cdt` and `edt` refer to SEP, and `fdt` refers to the pinned arXiv paper. `cdt_wikipedia` and `edt_wikipedia` add distinct article/assignment conditions. Their model-visible theory labels are simply **CDT** and **EDT**; source-specific experimental annotations are never injected into the researcher instructions. Researcher and prisoner templates are unchanged.
+CDT and EDT are source-neutral theory labels. Select references explicitly with `cdt_sep` / `cdt_wikipedia` or `edt_sep` / `edt_wikipedia`; bare `cdt` and `edt` are not selectable source IDs or implicit SEP assignments. `fdt` still refers to the pinned arXiv paper. Their model-visible theory labels are simply **CDT** and **EDT**; source-specific experimental annotations are never injected into the researcher instructions. Researcher and prisoner templates are unchanged.
 
 ## SEP versus Wikipedia
 
@@ -42,3 +42,7 @@ A live researcher request still requires the existing source-license-review ackn
 New researcher plans, logs and successful essay metadata explicitly record assignment ID, theory, source ID, revision/timestamp, permanent URL, normalized-source SHA-256 and the exact source-provenance-file SHA-256. Existing settings/template hashes capture model/provider, effort and decoding choices. Prisoner runs inherit source identity from the frozen essay artifact, rather than rebuilding it from mutable assignment config. Legacy essays without new identity fields retain null/unknown metadata rather than a guessed historical revision.
 
 `current.json` now also records a provenance-file hash for newly acquired attempts. `load_source` verifies raw, derived and normalized bytes, revision/HTML consistency and any configured manifest pin. Wikipedia `--reextract` uses a single hash-verified attempt; it rejects altered cache bytes instead of mixing downloads from different attempts or silently falling back to an earlier copy.
+
+## Historical identifiers
+
+The original Sprint 01 acquisition snapshot and local `data/source_cache/cdt/` and `edt/` files remain historical records; their contents and IDs have not been rewritten. The manifest's `legacy_cache_id` fields are used only to read and hash-verify those downloads during offline re-extraction into new `cdt_sep` / `edt_sep` attempts. They are not user-facing aliases or default source choices. Existing model-visible theory labels and prompt text stay unchanged, and historical essay/run assignment IDs are not silently translated.

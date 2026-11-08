@@ -23,13 +23,13 @@ openrouter:
   application_reasoning_efforts: []  # user selects e_A in local settings
 
 assignments:
-  - id: cdt
+  - id: cdt_sep
     theory_label: CDT
-    source_id: cdt
+    source_id: cdt_sep
     researcher_focus_file: null
-  - id: edt
+  - id: edt_sep
     theory_label: EDT
-    source_id: edt
+    source_id: edt_sep
     researcher_focus_file: null
   - id: fdt_eq4
     theory_label: FDT

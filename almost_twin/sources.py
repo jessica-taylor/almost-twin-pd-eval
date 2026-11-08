@@ -304,7 +304,7 @@ def quality(source_id, text, method):
         if len(text) < 400 or len(text.split()) < 60 or '\ufffd' in text:
             raise EvalError('Wikipedia material is empty, truncated or encoding-damaged')
         return {'coverage': 'MediaWiki revision/HTML consistency, sections, formula and citation checks recorded in provenance; manual review required.'}
-    if source_id not in ('cdt', 'edt', 'fdt'):
+    if source_id not in ('cdt_sep', 'edt_sep', 'fdt'):
         raise EvalError(f'Unknown source quality route: {source_id}/{method}')
     if len(text) < 12000 or len(text.split()) < 1500 or '\ufffd' in text:
         raise EvalError('Source is empty, too short, or has encoding replacement characters')
@@ -339,7 +339,7 @@ def quality(source_id, text, method):
             if not all(w in passages['policy_footnote_16'] for w in ('policy', 'maps inputs to actions', 'multi-agent')):
                 raise EvalError('Footnote 16 lost policy selection content')
         return passages
-    required = ['Expected Utility', 'Newcomb', 'Concluding Remarks'] if source_id == 'cdt' else ['3.2', 'Jeffrey', 'desirability', 'Challenges to EU theory']
+    required = ['Expected Utility', 'Newcomb', 'Concluding Remarks'] if source_id == 'cdt_sep' else ['3.2', 'Jeffrey', 'desirability', 'Challenges to EU theory']
     for term in required:
         if term not in text:
             raise EvalError(f'{source_id}: missing required coverage {term!r}')
@@ -351,6 +351,10 @@ def fetch_one(root, source_id, spec, network, reextract=False):
     base.mkdir(parents=True, exist_ok=True)
     # Immutable attempt directories: old approved sources are never overwritten.
     prior = sorted(base.glob('*/provenance.json'), reverse=True)
+    # Reuse original downloads without treating bare theory IDs as source aliases.
+    if reextract and spec.get('legacy_cache_id'):
+        legacy_base = root / 'data/source_cache' / spec['legacy_cache_id']
+        prior += sorted(legacy_base.glob('*/provenance.json'), reverse=True)
     folder = base / utc().replace(':', '').replace('+', '_')
     folder.mkdir()
     provenance = {'source_id': source_id, 'title': spec['title'], 'extractor': VERSION,
@@ -400,7 +404,7 @@ def fetch_one(root, source_id, spec, network, reextract=False):
         if spec.get('source_format') == 'mediawiki':
             from .mediawiki import acquire
             text = acquire(spec, get, provenance, folder)
-        elif source_id in ('cdt', 'edt'):
+        elif source_id in ('cdt_sep', 'edt_sep'):
             html = read(get(spec['url'], 'raw.html'))
             notes = None
             if 'notes.html#note-' in html:
@@ -408,7 +412,7 @@ def fetch_one(root, source_id, spec, network, reextract=False):
             text, revision, stats = sep_extract(html, spec['url'], notes)
             provenance.update(revision=revision, url=spec['url'], method='html', text_statistics=stats,
                               conversion_command='stdlib HTMLParser article + preamble + bibliography + linked notes -> Markdown')
-            if source_id == 'edt':
+            if source_id == 'edt_sep':
                 provenance['warnings'].append('Full Decision Theory entry, especially section 3.2 Jeffrey\'s theory; this is not a dedicated EDT article.')
         elif source_id == 'fdt':
             provenance['url'] = spec['preferred_source_url']
@@ -514,6 +518,9 @@ def fetch_sources(root, selected, network=False, reextract=False):
 def load_source(root, source_id):
     base = root / 'data/source_cache' / source_id
     try:
+        configured_sources = load_yaml(root / 'sources/manifest.yaml')['sources']
+        if source_id not in configured_sources:
+            raise EvalError(f'Unknown source {source_id}; select an explicit source ID from {sorted(configured_sources)}')
         current = json.loads(read(base / 'current.json'))
         folder = base / current['directory']
         if folder.parent != base or not folder.is_dir():

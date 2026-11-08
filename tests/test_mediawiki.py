@@ -14,7 +14,7 @@ from almost_twin.common import EvalError, load_yaml, read, sha, write_json
 from almost_twin.mediawiki import api_json, extract, parsed_data, revision_data, revision_url
 from almost_twin.prompts import assignment, cases, prisoners, render, researcher
 from almost_twin.router import run
-from almost_twin.sources import fetch_one, load_source, quality
+from almost_twin.sources import fetch_one, load_source, quality, sep_extract
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / 'tests/fixtures/mediawiki'
@@ -247,7 +247,7 @@ class MediaWikiTests(unittest.TestCase):
                                            '--settings', str(root / 'configs/openrouter.example.json')])
                 # Change the current assignment source to prove the frozen metadata is used.
                 path = root / 'configs/early_test.yaml'
-                path.write_text(read(path).replace('source_id: ' + source_id, 'source_id: cdt'))
+                path.write_text(read(path).replace('source_id: ' + source_id, 'source_id: cdt_sep'))
                 with patch('socket.socket', side_effect=AssertionError('network forbidden')), patch('almost_twin.router.load_source', side_effect=AssertionError('article must not be loaded for prisoners')):
                     result = run(root, args)
                 plan = json.loads(read(result / 'plan.json'))
@@ -257,14 +257,67 @@ class MediaWikiTests(unittest.TestCase):
                 self.assertIn(essay, read(result / 'messages_0.md'))
                 self.assertNotIn('Wikipedia contributors', read(result / 'messages_0.md'))
 
+    def test_theory_never_implicitly_selects_sep(self):
+        from contextlib import redirect_stderr
+        import io
+        manifest = load_yaml(ROOT / 'sources/manifest.yaml')['sources']
+        names = [item['id'] for item in load_yaml(ROOT / 'configs/early_test.yaml')['assignments']]
+        for theory in ('cdt', 'edt'):
+            self.assertNotIn(theory, manifest)
+            self.assertNotIn(theory, names)
+            for command, option in (('fetch-sources', '--source'), ('render-prompts', '--assignment'), ('run', '--assignment')):
+                args = [command] + (['researcher'] if command == 'run' else []) + [option, theory]
+                with redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+                    parser().parse_args(args)
+            sep = assignment(ROOT, theory + '_sep')
+            wiki = assignment(ROOT, theory + '_wikipedia')
+            self.assertEqual(sep['theory_label'], wiki['theory_label'])
+            # Equal source/attribution input yields exactly equal researcher instructions.
+            common_info = {'title': 'Synthetic reference', 'url': 'urn:fixture'}
+            self.assertEqual(researcher(ROOT, sep, 'Synthetic source.', common_info),
+                             researcher(ROOT, wiki, 'Synthetic source.', common_info))
+            for case in cases(ROOT):
+                self.assertEqual(prisoners(ROOT, sep, 'Synthetic essay.', case),
+                                 prisoners(ROOT, wiki, 'Synthetic essay.', case))
+
+    def test_legacy_sep_cache_reused_without_rewriting_history(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.root(tmp)
+            spec = load_yaml(root / 'sources/manifest.yaml')['sources']['cdt_sep']
+            html = ('<html><h1>Causal Decision Theory</h1><div id="pubinfo">Synthetic revision</div>'
+                    '<div id="main-text"><h2>Expected Utility</h2><p>' +
+                    'This synthetic explanatory paragraph supplies enough article content for source quality checks. ' * 180 +
+                    '</p><h2>Newcomb</h2><p>Synthetic example.</p><h2>Concluding Remarks</h2></div>'
+                    '<div id="bibliography">Synthetic bibliography.</div></html>')
+            article, _, _ = sep_extract(html, spec['url'])
+            old_dir = root / 'data/source_cache/cdt/old-attempt'
+            old_dir.mkdir(parents=True)
+            (old_dir / 'raw.html').write_text(html)
+            (old_dir / 'article.md').write_text(article)
+            record = {'url': spec['url'], 'raw_file': 'raw.html', 'raw_sha256': sha(html),
+                      'retrieved_at_utc': '2026-10-01T00:00:00+00:00', 'bytes': len(html.encode())}
+            write_json(old_dir / 'provenance.json', {'source_id': 'cdt', 'downloads': [record]})
+            write_json(old_dir.parent / 'current.json', {'directory': 'old-attempt', 'normalized_sha256': sha(article)})
+            before = {str(p): sha(p.read_bytes()) for p in old_dir.parent.rglob('*') if p.is_file()}
+            with patch('socket.socket', side_effect=AssertionError('network forbidden')):
+                info, new_dir = fetch_one(root, 'cdt_sep', spec, network=False, reextract=True)
+                text, loaded = load_source(root, 'cdt_sep')
+            self.assertEqual(info['source_id'], 'cdt_sep')
+            self.assertEqual(new_dir.parent.name, 'cdt_sep')
+            self.assertEqual(info['downloads'], [record])
+            self.assertEqual(text, article)
+            self.assertEqual(before, {str(p): sha(p.read_bytes()) for p in old_dir.parent.rglob('*') if p.is_file()})
+            with self.assertRaises(EvalError):
+                load_source(root, 'cdt')
+
     def test_existing_source_routes_unchanged_and_short_wikipedia_allowed(self):
         manifest = load_yaml(ROOT / 'sources/manifest.yaml')['sources']
-        self.assertEqual(manifest['cdt']['url'], 'https://plato.stanford.edu/entries/decision-causal/')
-        self.assertEqual(manifest['edt']['url'], 'https://plato.stanford.edu/entries/decision-theory/')
+        self.assertEqual(manifest['cdt_sep']['url'], 'https://plato.stanford.edu/entries/decision-causal/')
+        self.assertEqual(manifest['edt_sep']['url'], 'https://plato.stanford.edu/entries/decision-theory/')
         self.assertEqual(manifest['fdt']['preferred_source_url'], 'https://arxiv.org/src/1710.05060v2')
         short = 'A synthetic short Wikipedia article about choices. ' * 15
         quality('cdt_wikipedia', short, 'mediawiki')
-        for name in ('cdt', 'edt', 'fdt'):
+        for name in ('cdt_sep', 'edt_sep', 'fdt'):
             with self.assertRaises(EvalError):
                 quality(name, short, 'html')
 

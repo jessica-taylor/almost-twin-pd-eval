@@ -33,7 +33,7 @@ python3 -m almost_twin fetch-sources --network
 python3 -m almost_twin fetch-sources --reextract
 ```
 
-Source acquisition is explicitly network-enabled but never calls a generation API. Without `--network` or `--reextract`, the command fails before networking. `--source` restricts acquisition to `cdt`, `edt`, `fdt`, `cdt_wikipedia`, or `edt_wikipedia`. Each attempt has an immutable directory under `data/source_cache/<source_id>/`; successful automated checks update `current.json`. Failed attempts retain diagnostics and do not overwrite the earlier source. A failed command exits nonzero even if some other sources succeeded.
+Source acquisition is explicitly network-enabled but never calls a generation API. Without `--network` or `--reextract`, the command fails before networking. `--source` requires an explicit article choice: `cdt_sep`, `edt_sep`, `fdt`, `cdt_wikipedia`, or `edt_wikipedia`. Each attempt has an immutable directory under `data/source_cache/<source_id>/`; successful automated checks update `current.json`. Failed attempts retain diagnostics and do not overwrite the earlier source. A failed command exits nonzero even if some other sources succeeded.
 
 Read `data/source_cache/report.md`, then each linked `article.md`, `qa.md`, and `provenance.json`. Raw downloads, retrieval times, resolved URLs, revisions, byte hashes, normalization hashes, extractor identity/code hash, conversion commands, warnings, and text counts are recorded. Local raw and normalized hashes are checked again before prompt use.
 
@@ -47,7 +47,16 @@ All `data/` artifacts are gitignored, including full source text, source excerpt
 
 ## Wikipedia CDT and EDT source variants
 
-`cdt_wikipedia` and `edt_wikipedia` are additional source IDs and assignments. The existing SEP `cdt`/`edt` IDs and pinned FDT source retain their meanings and caches. Model-visible theory labels remain simply CDT/EDT, with unchanged decision-theory prompts.
+Theory and source are separate: **CDT** and **EDT** are theory labels, while every selectable reference names its source explicitly.
+
+| Theory | SEP source / assignment | Wikipedia source / assignment |
+|---|---|---|
+| CDT | `cdt_sep` | `cdt_wikipedia` |
+| EDT | `edt_sep` | `edt_wikipedia` |
+
+Bare `cdt` and `edt` are not source IDs or assignment shortcuts and do not select SEP. Decision-theory instructions and model-visible labels remain simply CDT/EDT. The pinned FDT source is unchanged.
+
+Old cache directories and the original acquisition snapshot retain their historical `cdt`/`edt` identifiers. To reuse their exact downloads offline under the explicit names, run `python3 -m almost_twin fetch-sources --reextract --source cdt_sep --source edt_sep`. This creates new immutable attempts without renaming or changing old bytes/provenance. Historical run/essay assignment IDs are not rewritten or silently aliased.
 
 ```sh
 python3 -m almost_twin fetch-sources --network --source cdt_wikipedia
@@ -85,7 +94,7 @@ Render actual article text with the labeled synthetic essay for **procedure insp
 python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay fixtures/demo_essay.md
 ```
 
-Change `--assignment` to `cdt`, `edt` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T0_identical/a.md`, `b.md` and `pair.diff` show identical requests; `T2_name/` changes only Rowan → Sasha; `T4_distinct_leads/` changes both characters' names, evidence and outgoing letters. `audit.json` records hashes. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
+Change `--assignment` to `cdt_sep`, `edt_sep`, `cdt_wikipedia`, `edt_wikipedia` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T0_identical/a.md`, `b.md` and `pair.diff` show identical requests; `T2_name/` changes only Rowan → Sasha; `T4_distinct_leads/` changes both characters' names, evidence and outgoing letters. `audit.json` records hashes. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
 
 The handoff index at `data/review.md` links the full researcher prompt and both prisoner prompts/diffs for one T0 and one T2, plus all source reports. Prisoner previews currently contain the clearly labeled synthetic fixture because no live researcher essay exists. Before any live prisoner call, render again using the **actual frozen essay**:
 

@@ -41,7 +41,7 @@ def settings():
 
 class PromptTests(unittest.TestCase):
     def test_researcher_uses_only_source_and_focus(self):
-        for name in ('cdt', 'edt', 'fdt_eq4', 'fdt_policy'):
+        for name in ('cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy'):
             item = assignment(ROOT, name)
             msg = researcher(ROOT, item, SOURCE, {'title': 'fixture', 'url': 'urn:fixture'})[0]['content']
             self.assertIn(SOURCE, msg)
@@ -52,7 +52,7 @@ class PromptTests(unittest.TestCase):
                 self.assertNotIn(hidden.lower(), msg.lower())
 
     def test_pairs_verbatim_essay_and_only_private_difference(self):
-        for item_name in ('cdt', 'edt', 'fdt_eq4', 'fdt_policy'):
+        for item_name in ('cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy'):
             for case in cases(ROOT):
                 pair = prisoners(ROOT, assignment(ROOT, item_name), ESSAY, case)
                 a, b = [p[0]['content'] for p in pair]
@@ -249,7 +249,7 @@ class SourceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises(EvalError):
                 load_source(Path(tmp), 'fdt')
-        for name in ('cdt', 'edt', 'fdt'):
+        for name in ('cdt_sep', 'edt_sep', 'fdt'):
             with self.assertRaises(EvalError):
                 quality(name, '', 'tex')
         with self.assertRaises(EvalError):
@@ -333,7 +333,7 @@ class RouterTests(unittest.TestCase):
             for flags in (['--execute'], ['--confirm-billable'], ['--execute', '--confirm-billable'],
                           ['--execute', '--confirm-billable', '--prompts-approved'],
                           ['--execute', '--confirm-billable', '--prompts-approved', '--source-terms-reviewed']):
-                args = parser().parse_args(['run', 'researcher', '--assignment', 'cdt'] + flags)
+                args = parser().parse_args(['run', 'researcher', '--assignment', 'cdt_sep'] + flags)
                 with self.assertRaises(EvalError):
                     run(Path(tmp), args)
 
