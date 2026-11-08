@@ -76,6 +76,35 @@ python3 -m almost_twin batch status --batch data/batches/cdt-nano-five
 
 Each sample creates a **fresh essay** and two independent prisoner calls, followed by zero to two judge calls for ambiguous actions. Every API request, raw response, validation result and error is retained. The derived `results.jsonl` and `results.csv` contain one row per sample for later analysis. There are no automatic retries of attempted calls; completed trials are skipped on resume. Judge model/effort, budgets and endpoint are configurable at preparation. See [full batch workflow, artifacts and safeguards](docs/batch_workflow.md).
 
+### Study-wide model × theory × reasoning-effort matrices
+
+Use `study check` (unbilled) to validate every requested model/provider/effort
+combination and the aggregate budget **before** creating a study. `study
+prepare` freezes a separate batch for each cell; `study run` resumes cells
+sequentially, running multiple full scenarios concurrently within a cell;
+`study report` exports pair-level and prisoner-level results, cooperation
+rates and CC/CD/DC/DD counts without calling models. Example:
+
+```sh
+python3 -m almost_twin study check --config configs/study.smoke.example.yaml
+python3 -m almost_twin study prepare --config configs/study.smoke.example.yaml \
+  --out data/studies/cdt-smoke
+python3 -m almost_twin study run --study data/studies/cdt-smoke \
+  --execute --confirm-billable --approve-variable-prompts --jobs 2
+python3 -m almost_twin study report --study data/studies/cdt-smoke
+```
+
+Only the `study run` line is billable. For the proposed OpenAI, Anthropic,
+Google, DeepSeek, Qwen and GLM matrix, begin with
+`configs/study.example.yaml`; it is a *candidate slate*, not a validated
+promise that every endpoint supports both requested reasoning levels. The
+protective example budget must be reviewed and explicitly adjusted if the
+preflight projection exceeds it. Prisoner A and B continue to receive their
+fixed, different prompts, and the primary cooperation rate weights them
+equally within each complete two-prisoner sample.
+
+See [study workflow and safeguards](docs/study_workflow.md).
+
 For an immediately readable **cooperate/defect result in every sample directory**, run the offline reporting command after any amount of batch progress:
 
 ```sh
