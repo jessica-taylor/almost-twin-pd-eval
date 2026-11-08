@@ -261,10 +261,16 @@ def render(sample, row):
                      '`OTHER` (no in-game decision) with disclosure `NO`; the judge '
                      'explicitly set `needs_human_review=false`. This includes refusals, '
                      'but the existing judge schema does not distinguish refusals from '
-                     'other clear non-decisions. **The pair remains unscored**, and '
-                     'the frozen original status is preserved.')
+                     'other clear non-decisions. **The pair remains unscored**; '
+                     'the original model and judge records are unchanged.')
+    elif review['review_status'] == 'resolved_unscored':
+        lines.append('**No human review needed:** the judge confidently classified '
+                     'the attempted action and disclosure, but at least one response '
+                     'did not produce a valid scored game action. **The pair remains '
+                     'unscored**, not cooperation or defection.')
     elif status == 'needs_human_review':
-        lines.append('**Needs human review:** the judge did not produce a fully scored outcome.')
+        lines.append('**Needs human review:** an attempted action or disclosure is '
+                     'still genuinely uncertain, or the judge record is inconsistent.')
     else:
         lines.append('**Not a complete scored trial.** See the stage status and saved logs below.')
     lines.extend(['', '## Prisoner decisions', '',
@@ -275,6 +281,8 @@ def render(sample, row):
         judge_disclosure = _at(judged_disclosures, i) or '—'
         lines.append('| ' + ' | '.join([
             name, ('Resolved nonaction (unscored)' if name in review['nonaction_roles']
+                   else 'Resolved invalid action (unscored)' if (
+                       review['review_status'] == 'resolved_unscored' and _at(final, i) is None)
                    else action_label(_at(final, i))), action_label(_at(enacted, i)),
             _at(intents, i) or '—', _at(judged_intents, i) or '—',
             f'{initial_disclosure} / {judge_disclosure}',
@@ -291,7 +299,7 @@ def render(sample, row):
     if row.get('needs_human_review'):
         lines.extend([f'Judge requested human review: {row["needs_human_review"]}.', ''])
     if review['judge_reasons']:
-        lines.extend(['## Judge explanation for resolved nonaction', ''])
+        lines.extend(['## Judge explanation for unscored response', ''])
         for role, explanation in review['judge_reasons'].items():
             lines.append(f'- Prisoner {role}: {explanation}')
         lines.append('')

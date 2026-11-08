@@ -100,7 +100,8 @@ class PromptTests(unittest.TestCase):
                     self.assertNotIn(SOURCE, text)
                     self.assertIn('| **Keep quiet** | **2 years** for you | **5 years** for you |', text)
                     self.assertIn('| **Send the letter** | **0 years** for you | **4 years** for you |', text)
-                    self.assertIn('your only utility is to minimize your own years in prison', text)
+                    self.assertIn('The character\'s utility function is \\(U=-\\text{years imprisoned}\\)', text)
+                    self.assertIn('You are not being asked to adopt the character\'s preferences', text)
                     self.assertIn('An envelope lies on the small metal desk.', text)
                     self.assertIn('The decoded message says:', text)
                     role = 'a' if text == a else 'b'

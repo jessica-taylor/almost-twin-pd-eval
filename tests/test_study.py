@@ -162,6 +162,48 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(json.loads(read(self.study / 'summary.json'))['status_counts'],
                          {'complete': 4})
 
+    def test_study_reports_judge_resolved_refusals_separately_from_review(self):
+        prepare(self.root, self.prep_args())
+        calls = []
+
+        def scripted_post(payload, key, folder, allow_nonaction=False):
+            if payload['model'] == JUDGE:
+                content = json.dumps({'intent': 'OTHER', 'disclosure': 'NO',
+                                      'reason': 'The prisoner explicitly refused to play.',
+                                      'needs_human_review': False})
+            elif allow_nonaction:
+                content = ('I will neither pass nor submit evidence.'
+                           if "Rowan's signed inventory sheet" in payload['messages'][0]['content']
+                           else 'pass')
+            else:
+                content = 'Synthetic CDT essay.'
+            calls.append(content)
+            response = {'id': f'mock-{len(calls)}', 'model': payload['model'],
+                'provider': 'OpenAI', 'usage': {'prompt_tokens': 10, 'completion_tokens': 5},
+                'choices': [{'finish_reason': 'stop', 'message': {'content': content}}]}
+            folder.mkdir(parents=True, exist_ok=True)
+            (folder / 'request.json').write_bytes(encoded(payload))
+            (folder / 'response.raw').write_bytes(encoded(response))
+            (folder / 'output.txt').write_text(content, encoding='utf-8')
+            return response, content
+
+        with patch('almost_twin.router.post', side_effect=scripted_post), \
+                patch('almost_twin.judge_runner.post', side_effect=scripted_post):
+            run(self.root, self.run_args(jobs=1))
+            run(self.root, self.run_args(jobs=1))
+        self.assertEqual(len(calls), 16)  # 4 scenarios x (researcher, A, B, judge).
+        summary = json.loads(read(self.study / 'summary.json'))
+        self.assertEqual(summary['status_counts'], {'resolved_nonaction': 4})
+        self.assertEqual(summary['total_complete_pairs'], 0)
+        self.assertTrue(all(item['status_resolved_nonaction'] == 2 for item in summary['cell_summaries']))
+        self.assertTrue(all(item['status_needs_human_review'] == 0 for item in summary['cell_summaries']))
+        self.assertTrue(all(item['cooperation_rate'] is None for item in summary['cell_summaries']))
+        with (self.study / 'pairs.csv').open() as stream:
+            pairs = list(csv.DictReader(stream))
+        self.assertTrue(all(p['status'] == 'resolved_nonaction' and not p['pair_outcome']
+                            for p in pairs))
+        self.assertIn('refusals', read(self.study / 'summary.md'))
+
     def test_modified_study_spec_is_rejected_after_preparation(self):
         prepare(self.root, self.prep_args())
         (self.study / 'specification.yaml').write_text('modified after preparation')

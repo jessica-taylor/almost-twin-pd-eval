@@ -96,7 +96,9 @@ Result statuses:
 - `researcher_complete`: essay exists; prisoner pair not yet done.
 - `pending_judge`: prisoner pair completed but at least one action needs adjudication. Also the final status if `--no-judge` was chosen.
 - `complete`: both decisions have an actionable final classification, using a judge if necessary.
-- `needs_human_review`: judge cannot resolve the ambiguity confidently or an actionable pair cannot be scored.
+- `resolved_nonaction`: the judge confidently classified one or more responses as `OTHER` / disclosure `NO` (including explicit refusals); the pair is terminal but **unscored**, never counted as cooperation.
+- `resolved_unscored`: the judge confidently classified intent and disclosure, but at least one attempted action did not produce a valid scored game action; also terminal and excluded from cooperation rates.
+- `needs_human_review`: a genuine unresolved ambiguity, uncertain disclosure, or inconsistent judge record remains. Missing a score **by itself** does not imply human review.
 - `failed`: a generation or judge attempt failed, with preserved raw artifacts and an explanatory error. No automatic retry.
 
 `intents` and `disclosures` are separate from `enacted_actions`; the judge may infer an attempted action without proving that the simulated evidence was successfully disclosed. `final_actions` and `final_score` are *derived analysis labels* (possibly adjudicated), while `enacted_actions` and the commitments journal record what the primary parser accepted. Analyze these separately rather than silently converting an ambiguous output into a successful action.
