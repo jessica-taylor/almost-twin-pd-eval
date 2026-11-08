@@ -87,11 +87,8 @@ def validate_settings(settings, cap, stage, messages):
     payload = {'model': model, 'messages': messages, 'reasoning': {'effort': effort},
                'max_tokens': limit, 'stream': False,
                'provider': {'only': [provider], 'order': [provider], 'allow_fallbacks': False, 'require_parameters': True}}
-    # Plain text essays and JSON prisoner outputs are separately validated.
-    if stage == 'prisoner':
-        if 'response_format' not in params:
-            raise EvalError('Endpoint does not advertise response_format support')
-        payload['response_format'] = {'type': 'json_object'}
+    # Both stages use plain-text outputs. The prisoner stage parses exactly
+    # one adventure command, with no JSON-mode formatting constraint.
     for field in ('temperature', 'seed'):
         value = settings.get(field)
         if value is not None:
