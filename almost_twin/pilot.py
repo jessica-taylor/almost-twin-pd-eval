@@ -72,6 +72,13 @@ def _readable(folder, config, state):
              '[Researcher prompt](researcher/messages_0.md) · [Exact message JSON](researcher/messages_0.json) · [Exact serialized request](researcher/request_0.json)', '',
              '[Machine plan, effort evidence and price assumptions](plan.json) · [Pinned settings](settings.json) · [Append-only pilot events](events.jsonl)', '',
              'No separate source approval is required. Source hashes and attribution are retained. Model calls require both --execute and --confirm-billable; prompt approval is tied to serialized request hashes.', '']
+    if config['settings'].get('essay'):
+        limits = config['settings']['essay']
+        lines += [f'Essay target: {limits["target_words"]} words; hard maximum '
+                  f'{limits["max_words"]} words / {limits["max_json_bytes"]} serialized bytes. '
+                  f'HTTP timeout: {config["settings"]["api_timeout_seconds"]} seconds. '
+                  f'Output ceilings: researcher {config["settings"]["researcher"]["max_tokens"]}, '
+                  f'prisoner {config["settings"]["prisoner"]["max_tokens"]} tokens (including reasoning).', '']
     if state.get('researcher_run'):
         path = Path(state['researcher_run'])
         if (path / 'essay.json').exists():
@@ -91,17 +98,22 @@ def _readable(folder, config, state):
 
 def prepare(root, args):
     root = Path(root).resolve()
+    from .limits import DEFAULT_API_TIMEOUT_SECONDS, api_timeout, essay_from_args, output_limit
+    essay = essay_from_args(args)
+    researcher_tokens = output_limit('researcher', args.researcher_effort, args.researcher_max_tokens)
+    prisoner_tokens = output_limit('prisoner', args.prisoner_effort, args.prisoner_max_tokens)
     item = assignment(root, args.assignment)
     source, info = load_source(root, item['source_id'])
     identity = source_identity(item['source_id'], source, info)
-    messages = researcher(root, item, source, info)
+    messages = researcher(root, item, source, info, essay)
     scenario = next((c for c in cases(root) if c['case_id'] == args.scenario), None)
     if scenario is None:
         raise EvalError(f'Unknown active observation scenario: {args.scenario}')
     cap = json.loads(read(args.capabilities)) if args.capabilities else snapshot(args.model)
     settings = {'model': args.model, 'provider_tag': args.provider_tag,
-                'researcher': {'effort': args.researcher_effort, 'max_tokens': args.researcher_max_tokens},
-                'prisoner': {'effort': args.prisoner_effort, 'max_tokens': args.prisoner_max_tokens},
+                'researcher': {'effort': args.researcher_effort, 'max_tokens': researcher_tokens},
+                'prisoner': {'effort': args.prisoner_effort, 'max_tokens': prisoner_tokens},
+                'essay': essay, 'api_timeout_seconds': api_timeout(getattr(args, 'api_timeout_seconds', DEFAULT_API_TIMEOUT_SECONDS)),
                 'temperature': args.temperature, 'seed': args.seed}
     if args.allow_unverified_effort:
         settings['reasoning_override'] = {'efforts': sorted({args.researcher_effort, args.prisoner_effort}),
@@ -110,16 +122,14 @@ def prepare(root, args):
     payload, estimate = validate_settings(settings, cap, 'researcher', messages)
     prisoner_payload, prisoner_estimate = validate_settings(settings, cap, 'prisoner', [{'role': 'user', 'content': ''}])
     endpoint = prisoner_estimate['endpoint']
-    prompt_ceiling = prisoner_input_ceiling(root, item, scenario, args.researcher_max_tokens,
-                                             endpoint, args.prisoner_max_tokens)
-    price, assumptions = estimate_price(prisoner_payload, endpoint, cap['model'], prompt_ceiling, args.prisoner_max_tokens)
-    typical_input = expected_prisoner_input_tokens(root, item, scenario, args.researcher_max_tokens,
-                                                   endpoint, args.prisoner_max_tokens)
+    prompt_ceiling = prisoner_input_ceiling(root, item, scenario, essay, endpoint, prisoner_tokens)
+    price, assumptions = estimate_price(prisoner_payload, endpoint, cap['model'], prompt_ceiling, prisoner_tokens)
+    typical_input = expected_prisoner_input_tokens(root, item, scenario, essay, endpoint, prisoner_tokens)
     typical_prisoner, _ = estimate_price(prisoner_payload, endpoint, cap['model'], typical_input,
-                                         min(args.prisoner_max_tokens, EXPECTED_PRISONER_OUTPUT_TOKENS))
+                                         min(prisoner_tokens, EXPECTED_PRISONER_OUTPUT_TOKENS))
     typical_researcher, _ = estimate_price(payload, estimate['endpoint'], cap['model'],
                                            estimate['input_tokens_upper_estimate'],
-                                           min(args.researcher_max_tokens, EXPECTED_RESEARCHER_OUTPUT_TOKENS))
+                                           min(researcher_tokens, EXPECTED_RESEARCHER_OUTPUT_TOKENS))
     typical_three_calls = str(Decimal(typical_researcher) + 2 * Decimal(typical_prisoner))
     projection = {'estimated_max_usd': price, 'pricing_assumptions': assumptions,
                   'input_tokens_upper_estimate': prompt_ceiling, 'reasoning_evidence': prisoner_estimate['reasoning_evidence'],
@@ -144,7 +154,8 @@ def prepare(root, args):
                 'endpoint_selection': selection, 'researcher_estimated_usd': estimate['estimated_max_usd'],
                 'projected_three_call_usd': _total(estimates),
                 'expected_three_call_usd': typical_three_calls,
-                'estimates': estimates, 'budget': budget,
+                'estimates': estimates, 'budget': budget, 'essay': essay,
+                'api_timeout_seconds': settings['api_timeout_seconds'],
                 'source_approval_required': False,
                 'metadata_sha256': sha(encoded(cap))})
     write_json(folder / 'state.json', {})

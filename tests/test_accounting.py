@@ -25,12 +25,12 @@ class AccountingTests(unittest.TestCase):
             self.assertEqual(len(encoded(updated)) - len(encoded(base)),
                              essay_json_bytes(unusual))
         endpoint = {'context_length': 200000, 'max_prompt_tokens': 200000}
-        ceiling = prisoner_input_ceiling(ROOT, item, case, 100, endpoint, 3000)
+        ceiling = prisoner_input_ceiling(ROOT, item, case, {'max_json_bytes': 800}, endpoint, 3000)
         self.assertEqual(ceiling, max(len(encoded(m)) for m in empty) + 512 + 800)
-        self.assertEqual(max_essay_json_bytes(100), 800)
-        require_essay_within_limit('x' * 800, 100)
+        self.assertEqual(max_essay_json_bytes({'max_json_bytes': 800}), 800)
+        require_essay_within_limit('x' * 800, {'max_json_bytes': 800})
         with self.assertRaisesRegex(EvalError, 'essay exceeds hard JSON-encoded size limit'):
-            require_essay_within_limit('x' * 801, 100)
+            require_essay_within_limit('x' * 801, {'max_json_bytes': 800})
 
     def test_usage_tracks_judges_and_never_infers_missing_cost(self):
         with tempfile.TemporaryDirectory() as directory:

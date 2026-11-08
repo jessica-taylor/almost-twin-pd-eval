@@ -109,7 +109,7 @@ Result statuses:
 
 The single-sample `pilot` interface still requires **manual approval of each exact prepared request**. That cannot literally be done for thousands of dynamic prisoner prompts, since the essays do not yet exist. Batch mode therefore introduces an **explicit, distinct authorization**: `--approve-variable-prompts` approves the reviewed source/template family, fixed scenario/settings, and dynamically filled essay/observations/judge inputs. The approval and hashes of *each actual generated request* are saved, but the logs **do not claim those requests were individually inspected**. Both billing flags remain mandatory.
 
-The initial plan bounds three model calls per sample (one essay and two prisoners) using conservative estimates based on the actual template overhead plus an enforced cap of `8 * researcher_max_tokens` JSON-encoded essay bytes, subject to endpoint context limits. This replaces the extremely loose assumption that each essay fills the entire model context. An oversized essay is retained in raw generation files, but not passed to prisoners; new actual requests are still revalidated and reserved. Judging adds zero, one or two requests per sample, and uses its own persistent estimated-cost and call-count caps. Provider-reported costs are tracked separately; a missing amount is unknown, not free. Estimates are not a hard guarantee of OpenRouter charges; use a separate OpenRouter key credit limit when a hard real-money ceiling matters. Unknown/contradictory endpoint, reasoning and pricing metadata block execution. All requests have no automatic API retries.
+The initial plan bounds three model calls per sample (one essay and two prisoners) using conservative estimates based on the actual template overhead plus an enforced cap of `essay.max_json_bytes` JSON-encoded essay bytes (32,000 by default), independent of generation tokens, subject to endpoint context limits. This replaces the extremely loose assumption that each essay fills the entire model context. An oversized essay is retained in raw generation files, but not passed to prisoners; new actual requests are still revalidated and reserved. Judging adds zero, one or two requests per sample, and uses its own persistent estimated-cost and call-count caps. Provider-reported costs are tracked separately; a missing amount is unknown, not free. Estimates are not a hard guarantee of OpenRouter charges; use a separate OpenRouter key credit limit when a hard real-money ceiling matters. Unknown/contradictory endpoint, reasoning and pricing metadata block execution. All requests have no automatic API retries.
 
 The runner writes a separate pilot and locks each sample; the batch run also takes an exclusive lock. You may interrupt an in-progress batch and reissue the same `batch run` command: completed samples are skipped, and failed or uncertain attempts remain visible and are not silently repeated. The script regenerates `results.jsonl`/`results.csv` after each finished sample. It does not run the two prisoner calls in parallel *within* a sample; they are independent request contexts, but sent sequentially to preserve the existing two-call commitment behavior. Samples may be concurrent via `--jobs` (1–16).
 
@@ -120,3 +120,17 @@ The offline test suite uses mocked API responses to check fresh essays, independ
 ```sh
 python3 -m unittest discover -s tests -v
 ```
+
+### Essay and generation limits
+
+New batches choose researcher/prisoner token defaults from the requested effort:
+low uses 16,000 / 6,000 tokens, high uses 32,000 / 12,000. Explicit
+`--researcher-max-tokens` and `--prisoner-max-tokens` override those defaults.
+Use `--essay-target-words 1200 1500`, `--essay-max-words 2500`,
+`--essay-max-json-bytes 32000`, and `--api-timeout-seconds 600` at preparation
+to change the independent defaults. The same flags work for `pilot prepare`.
+The timeout applies to HTTP socket operations; it is not an overall wall-clock
+deadline. Essays above the requested target remain valid within the hard limits,
+with counts and `essay_target_exceeded` in run records, sample reports and CSV.
+No essay is truncated or rewritten to satisfy a size constraint. Existing
+prepared data is preserved; changed settings/templates require a new batch.

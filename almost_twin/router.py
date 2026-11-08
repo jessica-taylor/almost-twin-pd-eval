@@ -12,9 +12,10 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from .common import EvalError, GenerationError, append_json, encoded, load_yaml, read, sha, utc, write_json
-from .accounting import require_essay_within_limit
+from .accounting import essay_metrics, require_essay_within_limit
 from .failures import failure_details, response_failure
 from .game import Game, classify_response, score
+from .limits import DEFAULT_API_TIMEOUT_SECONDS, api_timeout, essay_limits
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
 from .sources import load_source, source_identity
 from .preflight import choose_endpoint, effort_evidence, estimate_price
@@ -83,6 +84,7 @@ def _validate_settings(settings, cap, stage, messages):
         raise EvalError('Selected endpoint is unavailable')
     params = set(endpoint.get('supported_parameters') or [])
     options = settings[stage]
+    api_timeout(settings.get('api_timeout_seconds', DEFAULT_API_TIMEOUT_SECONDS))
     effort, limit = options.get('effort'), options.get('max_tokens')
     if not isinstance(limit, int) or isinstance(limit, bool) or limit < 1:
         raise EvalError('max_tokens must be a positive integer')
@@ -125,7 +127,11 @@ def _validate_settings(settings, cap, stage, messages):
     if not isinstance(context, int) or not isinstance(output_max, int):
         raise EvalError('Endpoint context/output limits unknown; cannot preflight safely')
     if input_bound + limit > context or limit > output_max or input_bound > (endpoint.get('max_prompt_tokens') or context):
-        raise EvalError('Full untruncated input plus requested output exceeds endpoint limits')
+        raise EvalError(f'{model} endpoint={provider}, stage={stage}, effort={effort}: '
+                        f'requested output {limit} tokens (endpoint maximum {output_max}), '
+                        f'input estimate {input_bound}, context {context}. '
+                        'Full untruncated input plus requested output exceeds endpoint limits; '
+                        'reduce the configured allowance or explicitly select a compatible endpoint.')
     estimate, assumptions = estimate_price(payload, endpoint, cap['model'], input_bound, limit)
     return payload, {'input_tokens_upper_estimate': input_bound, 'max_output_tokens_including_reasoning': limit,
                      'estimated_max_usd': estimate, 'endpoint_tag': provider, 'endpoint': endpoint,
@@ -178,13 +184,14 @@ class Budget:
             # Reservations include failures/unknown transport outcomes; never automatically refund/retry.
 
 
-def post(payload, key, folder, allow_nonaction=False):
+def post(payload, key, folder, allow_nonaction=False, timeout_seconds=DEFAULT_API_TIMEOUT_SECONDS):
+    timeout_seconds = api_timeout(timeout_seconds)
     body = encoded(payload)
     (folder / 'request.json').write_bytes(body)
     req = urllib.request.Request(BASE + '/chat/completions', data=body,
           headers={'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'}, method='POST')
     try:
-        with urllib.request.urlopen(req, timeout=180) as response:
+        with urllib.request.urlopen(req, timeout=timeout_seconds) as response:
             raw = response.read()
             metadata = {'status': response.status, 'headers': dict(response.headers)}
     except urllib.error.HTTPError as error:
@@ -238,18 +245,20 @@ def run(root, args):
     if live:
         key = api_key(root)
     settings = json.loads(read(args.settings))
-    allowed = {'model', 'provider_tag', 'researcher', 'prisoner', 'temperature', 'seed', 'provider_effort_review', 'reasoning_override'}
+    allowed = {'model', 'provider_tag', 'researcher', 'prisoner', 'temperature', 'seed', 'provider_effort_review', 'reasoning_override', 'essay', 'api_timeout_seconds'}
     if not isinstance(settings, dict) or set(settings) - allowed:
         raise EvalError('Unknown settings fields; credentials belong only in environment or .env')
     for name in ('researcher', 'prisoner'):
         if not isinstance(settings.get(name), dict) or set(settings[name]) != {'effort', 'max_tokens'}:
             raise EvalError(f'{name} settings must contain exactly effort and max_tokens')
+    settings['essay'] = essay_limits(settings.get('essay'))
+    settings['api_timeout_seconds'] = api_timeout(settings.get('api_timeout_seconds', DEFAULT_API_TIMEOUT_SECONDS))
     item = assignment(root, args.assignment)
     hashes = template_hashes(root, item)
     essay_info, essay_text = None, None
     if stage == 'researcher':
         source, source_info = load_source(root, item['source_id'])
-        message_sets = [researcher(root, item, source, source_info)]
+        message_sets = [researcher(root, item, source, source_info, settings['essay'])]
         source_record = source_identity(item['source_id'], source, source_info)
         source_record['theory'] = item['theory_label']
         source_hash = sha(source)
@@ -263,6 +272,7 @@ def run(root, args):
         if not settings.get('provider_tag'):
             settings['provider_tag'] = essay_info.get('provider_tag')
         essay_text = read(essay_dir / 'essay.md')
+        require_essay_within_limit(essay_text, settings['essay'])
         if (essay_info.get('status') != 'success' or essay_info.get('assignment') != args.assignment or
             essay_info.get('essay_sha256') != sha(essay_text) or essay_info.get('model') != settings['model'] or
             essay_info.get('provider_tag') != settings['provider_tag']):
@@ -367,13 +377,15 @@ def run(root, args):
                   'role': 'researcher' if stage == 'researcher' else ('a', 'b')[i],
                   'template_hashes': hashes, 'source_sha256': source_hash, 'essay_sha256': plan['essay_sha256'],
                   'model': settings['model'], 'effort': settings[stage]['effort'], 'provider_tag': settings['provider_tag'],
+                  'essay_limits': settings['essay'], 'api_timeout_seconds': settings['api_timeout_seconds'],
                   'request_sha256': sha(encoded(payload)), 'status': 'started', 'attempt': 1}
         append_json(log, record)
         try:
             role_name = 'researcher' if stage == 'researcher' else f'prisoner {("A", "B")[i]}'
             with timed_progress(f'{settings["model"]} {role_name} API call '
                                 f'(provider={settings["provider_tag"]})'):
-                response, output = post(payload, key, call_dir, allow_nonaction=(stage == 'prisoner'))
+                response, output = post(payload, key, call_dir, allow_nonaction=(stage == 'prisoner'),
+                                        timeout_seconds=settings['api_timeout_seconds'])
             returned_tag = response.get('provider_tag') or response.get('provider_endpoint_tag')
             if returned_tag and returned_tag != settings['provider_tag']:
                 raise EvalError('Returned endpoint tag differs from the pinned endpoint; no substitution accepted')
@@ -385,8 +397,8 @@ def run(root, args):
                           provider=response.get('provider'), returned_endpoint_tag=returned_tag, response_id=response.get('id'),
                           refusal=response['choices'][0]['message'].get('refusal'))
             if stage == 'researcher':
-                record['essay_words'] = len(output.split())
-                require_essay_within_limit(output, settings['researcher']['max_tokens'])
+                record.update(essay_metrics(output, settings['essay']))
+                require_essay_within_limit(output, settings['essay'])
                 (folder / 'essay.md').write_bytes(output.encode('utf-8'))
                 info = {**record, 'status': 'success', 'assignment': args.assignment, 'essay_sha256': sha(output),
                         'researcher_effort': settings['researcher']['effort']}

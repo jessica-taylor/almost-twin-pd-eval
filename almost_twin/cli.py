@@ -46,8 +46,8 @@ def parser():
     prep.add_argument('--model', required=True)
     prep.add_argument('--researcher-effort', default='low')
     prep.add_argument('--prisoner-effort', default='low')
-    prep.add_argument('--researcher-max-tokens', type=int, default=16000)
-    prep.add_argument('--prisoner-max-tokens', type=int, default=3000)
+    prep.add_argument('--researcher-max-tokens', type=int, help='Override effort-specific default (low 16000, high 32000)')
+    prep.add_argument('--prisoner-max-tokens', type=int, help='Override effort-specific default (low 6000, high 12000)')
     prep.add_argument('--scenario', default='t4_distinct_leads_001',
                       help='Active case_id in prompts/prisoner/observation_cases.yaml')
     prep.add_argument('--provider-tag', help='Override automatic endpoint selection; never silently replaced')
@@ -76,8 +76,8 @@ def parser():
                        help='Active case_id in prompts/prisoner/observation_cases.yaml')
     bprep.add_argument('--researcher-effort', default='low')
     bprep.add_argument('--prisoner-effort', default='low')
-    bprep.add_argument('--researcher-max-tokens', type=int, default=16000)
-    bprep.add_argument('--prisoner-max-tokens', type=int, default=3000)
+    bprep.add_argument('--researcher-max-tokens', type=int, help='Override effort-specific default (low 16000, high 32000)')
+    bprep.add_argument('--prisoner-max-tokens', type=int, help='Override effort-specific default (low 6000, high 12000)')
     bprep.add_argument('--provider-tag')
     bprep.add_argument('--capabilities', type=Path)
     bprep.add_argument('--allow-unverified-effort')
@@ -96,6 +96,13 @@ def parser():
     bprep.add_argument('--judge-max-calls', type=int, default=100, help='Separate persistent judge call cap')
     bprep.add_argument('--judge-max-usd', default='5.00', help='Separate persistent judge estimated USD cap')
     bprep.add_argument('--out', type=Path, help='New batch directory; default data/batches/<uuid>')
+    for preparation in (prep, bprep):
+        preparation.add_argument('--essay-target-words', type=int, nargs=2, metavar=('MIN', 'MAX'),
+                                 help='Requested essay length; default 1200 1500')
+        preparation.add_argument('--essay-max-words', type=int, help='Hard essay limit; default 2500')
+        preparation.add_argument('--essay-max-json-bytes', type=int, help='Independent hard serialized essay limit; default 32000 bytes')
+        preparation.add_argument('--api-timeout-seconds', type=float, default=600,
+                                 help='HTTP generation timeout per call; default 600 seconds; no automatic retries')
     brun = batch_actions.add_parser('run', help='Resume pending samples; explicit billable and template-family authorization required')
     brun.add_argument('--batch', type=Path, required=True)
     brun.add_argument('--execute', action='store_true')

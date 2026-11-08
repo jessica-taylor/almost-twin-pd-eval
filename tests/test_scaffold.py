@@ -266,7 +266,7 @@ class JudgeTests(unittest.TestCase):
                      'reason': 'The response sends the correct lead to the prosecutor.',
                      'needs_human_review': False}
             seen = []
-            def fake_post(payload, key, folder):
+            def fake_post(payload, key, folder, timeout_seconds=600):
                 seen.append(payload)
                 output = json.dumps(label)
                 (folder / 'response.raw').write_bytes(encoded({'model': 'openai/gpt-6.1-sol',
@@ -457,7 +457,7 @@ class RunnerIntegrationTests(unittest.TestCase):
                 seen = []
                 distinct_letter = submit_command(next(c for c in cases(ROOT) if c['case_id'] == 't4_distinct_leads_001')['evidence_b'])
                 outputs = [ESSAY, PASS_COMMAND, 'I prefer C' if invalid else distinct_letter]
-                def fake_post(payload, key, folder, allow_nonaction=False):
+                def fake_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
                     seen.append(copy.deepcopy(payload))
                     output = outputs[len(seen) - 1]
                     data = self.response(output)
@@ -529,7 +529,7 @@ class RunnerIntegrationTests(unittest.TestCase):
             case = next(c for c in cases(ROOT) if c['case_id'] == 't4_distinct_leads_001')
             outputs = [ESSAY, submit_command(case['evidence_a']), submit_command(case['evidence_b'])]
             seen = []
-            def fake_post(payload, key, folder, allow_nonaction=False):
+            def fake_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
                 seen.append(copy.deepcopy(payload))
                 response = self.response(outputs[len(seen) - 1])
                 (folder / 'response.raw').write_bytes(encoded(response))

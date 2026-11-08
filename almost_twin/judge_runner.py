@@ -10,6 +10,7 @@ from .approvals import approve
 from .judge import parse_judge_response, prepare_adjudication
 from .progress_log import progress, timed_progress
 from .router import Budget, api_key, post, snapshot, validate_settings
+from .limits import DEFAULT_API_TIMEOUT_SECONDS, api_timeout
 
 
 def _action(intent, disclosure):
@@ -33,11 +34,13 @@ def run_judge(root, args):
 
     judge_dir = prepare_adjudication(root, prisoner_dir)
     settings = json.loads(read(args.settings))
-    allowed = {'model', 'provider_tag', 'judge', 'temperature', 'seed', 'provider_effort_review', 'reasoning_override'}
+    allowed = {'model', 'provider_tag', 'judge', 'temperature', 'seed', 'provider_effort_review', 'reasoning_override', 'api_timeout_seconds'}
     if (not isinstance(settings, dict) or set(settings) - allowed or
             not isinstance(settings.get('judge'), dict) or
             set(settings['judge']) != {'effort', 'max_tokens'}):
         raise EvalError('Judge settings must specify model/provider and judge effort/max_tokens')
+    timeout = api_timeout(settings.get('api_timeout_seconds', DEFAULT_API_TIMEOUT_SECONDS))
+    settings['api_timeout_seconds'] = timeout
     live = args.execute or args.confirm_billable
     if live and not (args.execute and args.confirm_billable and args.prompts_approved):
         raise EvalError('Live judging requires --execute, --confirm-billable, and --prompts-approved')
@@ -95,7 +98,7 @@ def run_judge(root, args):
         append_json(root / 'data/judge_decisions.jsonl', record)
         try:
             with timed_progress(f'{settings["model"]} judge for prisoner {role.upper()}'):
-                response, raw_label = post(payloads[j], key, call_dir)
+                response, raw_label = post(payloads[j], key, call_dir, timeout_seconds=timeout)
             expected_provider = estimates[j]['endpoint'].get('provider_name')
             if response.get('provider') and expected_provider and response['provider'] != expected_provider:
                 raise EvalError('Returned judge provider differs from the pinned endpoint provider')

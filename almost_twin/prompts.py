@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .common import EvalError, encoded, load_yaml, read, sha, write_json
 from .game import submit_command
+from .limits import essay_limits
 
 SLOT = re.compile(r'\{\{([A-Z_]+)\}\}')
 
@@ -47,12 +48,15 @@ def template_hashes(root, item):
     return {p: sha((root / p).read_bytes()) for p in paths}
 
 
-def researcher(root, item, source, source_info):
+def researcher(root, item, source, source_info, essay=None):
+    limits = essay_limits(essay)
     focus = read(root / item['researcher_focus_file']) if item['researcher_focus_file'] else ''
     text = fill(read(root / 'prompts/researcher/base.md'), {
         'THEORY_NAME': item['theory_label'], 'FOCUS_INSTRUCTION': focus,
         'SOURCE_TITLE': source_info['title'], 'SOURCE_URL': source_info['url'],
-        'SOURCE_TEXT': source})
+        'SOURCE_TEXT': source,
+        'ESSAY_TARGET_MIN_WORDS': f'{limits["target_words"][0]:,}',
+        'ESSAY_TARGET_MAX_WORDS': f'{limits["target_words"][1]:,}'})
     return [{'role': 'user', 'content': text}]
 
 

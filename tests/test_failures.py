@@ -19,9 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class FailureTests(unittest.TestCase):
     def test_word_limit_counts_entire_essay_without_truncating_or_rewriting(self):
-        require_essay_within_limit('word ' * 1800, 16000)
+        require_essay_within_limit('word ' * 2500)
         with self.assertRaises(GenerationError) as raised:
-            require_essay_within_limit('word ' * 1801, 16000)
+            require_essay_within_limit('word ' * 2501)
         self.assertEqual(raised.exception.category, 'essay_size_limit')
 
     def test_uniform_length_prompt_and_16k_cli_defaults(self):
@@ -29,13 +29,13 @@ class FailureTests(unittest.TestCase):
             text = researcher(ROOT, assignment(ROOT, name), 'SYNTHETIC SOURCE',
                               {'title': 'Fixture', 'url': 'https://example.test'})[0]['content']
             self.assertIn('1,200–1,500 words', text)
-            self.assertIn('Do not exceed 1,800 words', text)
+            self.assertNotIn('Do not exceed 1,800 words', text)
             self.assertIn('brief conclusion', text)
             for forbidden in ('almost-twin', 'prisoner', 'SUBMIT', 'PRIVATE_OBSERVATION'):
                 self.assertNotIn(forbidden, text)
         args = parser().parse_args(['pilot', 'prepare', '--assignment', 'cdt_wikipedia',
                                     '--model', 'test/model'])
-        self.assertEqual(args.researcher_max_tokens, 16000)
+        self.assertIsNone(args.researcher_max_tokens)
 
     def test_provider_stops_classified_and_raw_partial_outputs_preserved(self):
         normal = {'model': 'test/model', 'choices': [{'finish_reason': 'stop',

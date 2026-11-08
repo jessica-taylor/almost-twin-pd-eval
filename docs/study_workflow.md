@@ -46,11 +46,11 @@ does not skip or substitute any requested condition. It requires unbilled
 OpenRouter metadata GETs, not credentials or model-generation calls.
 
 The `max_usd` field in the example is a protective project-wide reservation
-ceiling. The default cost projection uses a **new enforced essay-size bound**:
-the researcher's output is limited to at most `8 * researcher_max_tokens`
+ceiling. The default cost projection uses an **independent essay-size bound**:
+the researcher's output is limited to `essay.max_json_bytes` (32,000 by default)
 JSON-encoded essay bytes, and the prisoner projection adds that to the exact
 scenario/template overhead. The large former full-context estimate is still
-shown separately for comparison. The factor of eight is deliberately generous,
+shown separately for comparison. The byte-based estimator is conservative,
 not a claim about the model's tokenizer. Oversized essay responses are preserved
 as failed researcher attempts, without sending prisoner requests; the actual
 assembled requests are always validated independently before billing.
@@ -67,6 +67,10 @@ For the smallest previously validated CDT plumbing experiment, use
 
 ### Long-essay follow-up
 
+This section describes the historical 16K configuration. Its explicit token
+settings are retained. Use the independent settings below for new comparisons;
+existing prepared study directories and their failed attempts remain unchanged.
+
 `configs/study.cdt-provider-smoke-16k.yaml` follows the original
 `cdt-provider-smoke-20261108` with **one scenario per model**, the same seven
 models and explicit original endpoints, CDT Wikipedia source, distinct T4
@@ -74,15 +78,9 @@ leads and low researcher/prisoner efforts. The prisoner and judge limits and
 cumulative project budgets are unchanged. Keep the original study directory;
 never replace its failed attempts with new successes.
 
-All researcher assignments use the same 1,200–1,500-word target, 1,800-word
-maximum, and request for a brief conclusion. The independent hard word check
-counts whitespace-delimited words across the entire visible output, including
-headings, math and references; it is an approximate length convention, not a
-linguistic tokenizer. Shorter essays are accepted. The existing serialized-byte
-ceiling remains an additional bound. No output is cut down or rewritten to fit.
-New pilot/batch/study defaults allow **16,000 total output tokens**, including
-reasoning. Explicit limits in historical configurations remain unchanged.
-There is no automatic budget escalation or retry.
+That run originally enforced 1,800 words and derived the byte ceiling from
+researcher output tokens. New preparations use the independent limits below.
+Reporting an existing study never reclassifies its original failures as successes.
 
 Prepare with unbilled metadata requests only:
 
@@ -133,6 +131,81 @@ therefore retains the exact `reasoning: {effort: low}` setting; it does not
 silently add a token cap or send conflicting effort/budget fields. A future
 provider-specific cap needs evidence of enforcement and its own explicit
 configuration. Compare actual reasoning-token usage after the follow-up.
+
+### Configurable essay and generation limits
+
+New studies can configure the following independent limits:
+
+```yaml
+essay:
+  target_words: [1200, 1500]
+  max_words: 2500
+  max_json_bytes: 32000
+output_tokens:
+  researcher: {low: 16000, high: 32000}
+  prisoner: {low: 6000, high: 12000}
+api_timeout_seconds: 600
+```
+
+These are the defaults. Word counts include all visible whitespace-delimited
+text, including math and references. The requested target is advisory: a
+1,852-, 1,853- or 2,091-word essay is accepted if it fits the hard word and byte
+bounds. The original essay is passed verbatim to both prisoners. Short essays
+are accepted too. Hard-limit failures preserve raw outputs and never trigger
+truncation, rewriting or automatic retries.
+
+`max_json_bytes` is **32,000 bytes**, measured after the same UTF-8 JSON string
+escaping used in requests, without the enclosing string quotes. It bounds
+essay content; the prisoner template, private observations and request framing
+are additional. Increasing researcher reasoning/output tokens never increases
+this ceiling or the prisoner input projection. Endpoint context capacity still
+limits the projection, and actual untruncated requests are revalidated before
+billing. Every selected endpoint must support the resolved output allowance;
+the runner fails with model, endpoint, effort and limit details if it cannot.
+
+`output_tokens` selects a total generation allowance for each requested effort.
+It does not alter `reasoning.effort` or add `reasoning.max_tokens`. Low/high are
+the provided defaults; explicitly add an allowance for other efforts (for
+example `medium: 24000`) before requesting them. Existing top-level
+`researcher_max_tokens` / `prisoner_max_tokens` values remain supported and apply
+to every effort in that stage. Specifying both a scalar and that stage's effort
+map is rejected as ambiguous. Existing explicit 3,000-token prisoner settings
+therefore stay at 3,000 until you choose a new configuration.
+
+The timeout is used for HTTP socket operations on researcher, prisoner and
+judge calls, rather than as a total wall-clock deadline. It defaults to 600
+seconds. Timeout failures remain failed attempts with unknown billing reserved.
+All resolved settings are saved in plans, pinned settings and run records.
+
+Essay records, sample reports and pair CSVs include `essay_words`,
+`essay_json_bytes` and `essay_target_exceeded`; the append-only generation log
+also records the exact target and hard limits. Study summaries count measured
+essays above target independently of cooperation and hard-limit failures.
+Historical records missing these target metrics stay unknown.
+
+For a four-cell low/high configuration using the existing Nano plumbing model,
+review `configs/study.token-limits-smoke.example.yaml` and its model list, then
+check and prepare with **zero model calls**:
+
+```sh
+python3 -m almost_twin study check \
+  --config configs/study.token-limits-smoke.example.yaml \
+  --out data/token-limits-preflight.json
+python3 -m almost_twin study prepare \
+  --config configs/study.token-limits-smoke.example.yaml \
+  --out data/studies/token-limits-smoke
+```
+
+The unit suite runs this kind of low/high matrix against mocked providers,
+including the three reported near-limit essay sizes. No paid high-effort test
+is part of implementation or preparation. Actual execution uses the separate
+billable `study run` workflow after inspection. Keep earlier runs unchanged and
+use a new directory for the new limits.
+
+The same defaults apply to `pilot prepare` and `batch prepare`. Their optional
+flags are `--essay-target-words MIN MAX`, `--essay-max-words`,
+`--essay-max-json-bytes`, `--api-timeout-seconds`, `--researcher-max-tokens`
+and `--prisoner-max-tokens`.
 
 ### Live command progress
 

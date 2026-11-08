@@ -73,7 +73,7 @@ class StudyTests(unittest.TestCase):
             p.start()
             self.addCleanup(p.stop)
 
-        def fake_post(payload, key, folder, allow_nonaction=False):
+        def fake_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             self.calls.append(payload)
             content = ('pass' if allow_nonaction else 'Synthetic CDT explanation, independently generated.')
             response = {'id': f'mock-{len(self.calls)}', 'model': payload['model'],
@@ -124,7 +124,7 @@ class StudyTests(unittest.TestCase):
 
     def test_preflight_and_preparation_are_unbilled(self):
         spec, data = load_spec(self.config)
-        self.assertEqual(spec['researcher_max_tokens'], 16000)
+        self.assertEqual(spec['output_tokens']['researcher']['low'], 16000)
         self.assertEqual(spec['models'][0]['prisoner_efforts'], ['low', 'high'])
         result, _, _ = check(self.root, spec)
         self.assertEqual(result['expected_cells'], 2)
@@ -133,7 +133,7 @@ class StudyTests(unittest.TestCase):
                         float(result['projected_full_context_ceiling_usd']))
         self.assertLess(float(result['expected_researcher_prisoner_usd']),
                         float(result['projected_researcher_prisoner_usd']))
-        self.assertIn('8 x researcher_max_tokens', result['cost_projection_method'])
+        self.assertIn('Independent enforced essay.max_json_bytes', result['cost_projection_method'])
         self.assertFalse(result['failures'])
         self.assertEqual(self.calls, [])
         prepare(self.root, self.prep_args())
@@ -187,6 +187,64 @@ class StudyTests(unittest.TestCase):
         self.assertGreaterEqual(usage['recorded_execution_seconds'], 0)
         self.assertIn('$0.024', read(self.study / 'summary.md'))
 
+    def test_effort_matrix_accepts_target_overshoots_and_preserves_exact_essays(self):
+        self.spec.update(count_per_cell=1, researcher_efforts=['low', 'high'],
+                         prisoner_efforts=['low', 'high'], api_timeout_seconds=420,
+                         essay={'target_words': [1000, 1400], 'max_words': 2500, 'max_json_bytes': 32000})
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        prepare(self.root, self.prep_args())
+        self.assertEqual(self.calls, [])
+        checked = json.loads(read(self.study / 'preflight.json'))['validated_cells']
+        # Larger researcher reasoning budgets cannot increase permitted prisoner input.
+        self.assertEqual(checked[0]['prisoner_input_tokens_upper_estimate'],
+                         checked[2]['prisoner_input_tokens_upper_estimate'])
+        word_counts = iter((1852, 2091, 1853, 1000))
+        original_essays, timeouts = [], []
+
+        def scripted(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
+            timeouts.append(timeout_seconds)
+            response, content = self.fake_post(payload, key, folder, allow_nonaction)
+            if not allow_nonaction:
+                self.assertIn('1,000–1,400 words', payload['messages'][0]['content'])
+                self.assertNotIn('almost-twin', payload['messages'][0]['content'])
+                content = 'w ' * next(word_counts)
+                original_essays.append(content)
+                response['choices'][0]['message']['content'] = content
+                (folder / 'response.raw').write_bytes(encoded(response))
+                (folder / 'output.txt').write_text(content)
+            return response, content
+
+        with patch('almost_twin.router.post', side_effect=scripted):
+            run(self.root, self.run_args(jobs=1, provider_jobs=1))
+        self.assertEqual(timeouts, [420] * 12)
+        for index, (researcher_tokens, prisoner_tokens) in enumerate(
+                ((16000, 6000), (16000, 12000), (32000, 6000), (32000, 12000))):
+            researcher_call, a, b = self.calls[index * 3:index * 3 + 3]
+            self.assertEqual(researcher_call['max_tokens'], researcher_tokens)
+            self.assertEqual([a['max_tokens'], b['max_tokens']], [prisoner_tokens] * 2)
+            self.assertEqual(set(researcher_call['reasoning']), {'effort'})
+            for prisoner in (a, b):
+                self.assertIn(original_essays[index], prisoner['messages'][0]['content'])
+        summary = json.loads(read(self.study / 'summary.json'))
+        self.assertEqual(summary['status_counts'], {'complete': 4})
+        self.assertEqual(sum(c['essays_above_target'] for c in summary['cell_summaries']), 3)
+        self.assertIn('Essay target overshoots: 3 / 4', read(self.study / 'summary.md'))
+
+    def test_endpoint_output_maximum_blocks_high_budget_without_substitution(self):
+        self.spec['researcher_efforts'] = ['high']
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        spec, _ = load_spec(self.config)
+        from almost_twin.router import snapshot
+        cap = snapshot(NANO)
+        for endpoint in cap['endpoints']:
+            endpoint['max_completion_tokens'] = 20000
+        with patch('almost_twin.study.snapshot', return_value=cap):
+            spec['judge']['enabled'] = False
+            result, _, _ = check(self.root, spec)
+        self.assertTrue(result['failures'])
+        self.assertTrue(all('32000' in f['reason'] and '20000' in f['reason'] for f in result['failures']))
+        self.assertEqual(self.calls, [])
+
     def test_study_jobs_overlap_distinct_model_providers(self):
         self.spec.update(count_per_cell=1, prisoner_efforts=['low'], models=[
             {'id': NANO, 'provider_tag': 'openai'},
@@ -210,7 +268,7 @@ class StudyTests(unittest.TestCase):
                 with mutex:
                     active -= 1
 
-        def routed_post(payload, key, folder, allow_nonaction=False):
+        def routed_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             response, content = self.fake_post(payload, key, folder,
                                                allow_nonaction=allow_nonaction)
             if payload['provider']['only'] == ['azure']:
@@ -269,7 +327,7 @@ class StudyTests(unittest.TestCase):
         prepare(self.root, self.prep_args())
         calls = []
 
-        def scripted_post(payload, key, folder, allow_nonaction=False):
+        def scripted_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             if payload['model'] == JUDGE:
                 content = json.dumps({'intent': 'OTHER', 'disclosure': 'NO',
                                       'reason': 'The prisoner explicitly refused to play.',
@@ -316,13 +374,14 @@ class StudyTests(unittest.TestCase):
 
     def test_oversized_essay_is_preserved_but_prisoners_are_not_called(self):
         self.spec['researcher_max_tokens'] = 20
+        self.spec['essay'] = {'max_json_bytes': 160}
         self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
         prepare(self.root, self.prep_args())
         sent = []
 
-        def oversized_post(payload, key, folder, allow_nonaction=False):
+        def oversized_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             sent.append(payload)
-            output = 'x' * 161  # More than 8 x researcher_max_tokens JSON bytes.
+            output = 'x' * 161  # Exceeds the independent 160-byte essay ceiling.
             response = {'id': 'mock-oversize', 'model': payload['model'],
                         'usage': {'prompt_tokens': 10, 'completion_tokens': 5},
                         'choices': [{'finish_reason': 'stop', 'message': {'content': output}}]}
@@ -352,9 +411,9 @@ class StudyTests(unittest.TestCase):
         prepare(self.root, self.prep_args())
         calls = []
 
-        def long_post(payload, key, folder, allow_nonaction=False):
+        def long_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             calls.append(payload)
-            content = 'word ' * 1801
+            content = 'word ' * 2501
             response = {'model': payload['model'], 'usage': {'completion_tokens': 4000, 'cost': '.01'},
                         'choices': [{'finish_reason': 'stop', 'message': {'content': content}}]}
             folder.mkdir(exist_ok=True)
@@ -373,7 +432,7 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(summary['status_counts']['failed'], 2)
         for failure in summary['failed_attempts']:
             self.assertEqual(failure['failure_category'], 'essay_size_limit')
-            self.assertEqual(failure['essay_words'], 1801)
+            self.assertEqual(failure['essay_words'], 2501)
             self.assertEqual(failure['failure_stage'], 'researcher')
         for payload in calls:
             self.assertEqual(payload['max_tokens'], 16000)
@@ -382,7 +441,7 @@ class StudyTests(unittest.TestCase):
         prepare(self.root, self.prep_args())
         sent = []
 
-        def rate_limited(payload, key, folder, allow_nonaction=False):
+        def rate_limited(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             sent.append(payload)
             raise EvalError('OpenRouter HTTP 429; raw error saved; no retry')
 
@@ -400,7 +459,7 @@ class StudyTests(unittest.TestCase):
         prepare(self.root, self.prep_args())
         sent = []
 
-        def truncated(payload, key, folder, allow_nonaction=False):
+        def truncated(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             sent.append(payload)
             text = 'word ' * 5341
             response = {'model': payload['model'],
@@ -444,7 +503,7 @@ class StudyTests(unittest.TestCase):
         evidence = cases(self.root)[0]['evidence_b']
         real_post = self.fake_post
 
-        def mixed_post(payload, key, folder, allow_nonaction=False):
+        def mixed_post(payload, key, folder, allow_nonaction=False, timeout_seconds=600):
             if allow_nonaction and evidence in payload['messages'][0]['content']:
                 # Replace the default mock's A/B-independent pass response.
                 content = submit_command(evidence)
@@ -471,11 +530,13 @@ class StudyTests(unittest.TestCase):
     def test_incompatible_effort_is_reported_before_any_output(self):
         spec, _ = load_spec(self.config)
         spec['models'][0]['prisoner_efforts'] = ['none']
+        spec['output_tokens']['prisoner']['none'] = 6000
         result, _, _ = check(self.root, spec)
         self.assertEqual(len(result['failures']), 1)
         self.assertEqual(result['projected_researcher_prisoner_calls'], 0)
         self.assertEqual(len(self.calls), 0)
         self.spec['prisoner_efforts'] = ['none']
+        self.spec['output_tokens'] = {'prisoner': {'none': 6000}}
         self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
         with self.assertRaisesRegex(EvalError, 'preflight failed'):
             prepare(self.root, self.prep_args())

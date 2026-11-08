@@ -21,6 +21,7 @@ from .common import EvalError, append_json, encoded, read, sha, utc, write_json
 from .failures import sample_failure
 from .judge import judge_messages
 from .judge_runner import run_judge
+from .limits import DEFAULT_API_TIMEOUT_SECONDS, essay_from_args
 from .pilot import prepare as prepare_pilot, resume as resume_pilot
 from .preflight import choose_endpoint
 from .progress_log import progress
@@ -39,6 +40,7 @@ CSV_FIELDS = (
     'researcher_run', 'prisoner_run', 'judge_run', 'error',
     'failure_category', 'failure_stage', 'completion_tokens', 'output_token_limit',
     'reasoning_tokens', 'essay_words',
+    'essay_json_bytes', 'essay_target_exceeded',
 )
 
 CODE_FILES = (
@@ -50,6 +52,7 @@ CODE_FILES = (
     'almost_twin/approvals.py', 'almost_twin/review_disposition.py',
     'almost_twin/accounting.py',
     'almost_twin/failures.py',
+    'almost_twin/limits.py',
 )
 
 
@@ -121,6 +124,7 @@ def _approval_scope(config):
 
 def prepare(root, args):
     root = Path(root).resolve()
+    args.essay = essay_from_args(args)
     if args.count < 1 or args.count > 10000:
         raise EvalError('--count must be between 1 and 10000')
     if args.seed_base is not None and args.seed_base < 0:
@@ -140,6 +144,7 @@ def prepare(root, args):
             'model': args.judge_model, 'provider_tag': args.judge_provider_tag,
             'judge': {'effort': args.judge_effort, 'max_tokens': args.judge_max_tokens},
             'temperature': None, 'seed': None,
+            'api_timeout_seconds': getattr(args, 'api_timeout_seconds', DEFAULT_API_TIMEOUT_SECONDS),
         }
         if args.judge_allow_unverified_effort:
             judge_settings['reasoning_override'] = {'efforts': [args.judge_effort],
@@ -167,6 +172,8 @@ def prepare(root, args):
             assignment=args.assignment, model=args.model,
             researcher_effort=args.researcher_effort, prisoner_effort=args.prisoner_effort,
             researcher_max_tokens=args.researcher_max_tokens, prisoner_max_tokens=args.prisoner_max_tokens,
+            essay=getattr(args, 'essay', None),
+            api_timeout_seconds=getattr(args, 'api_timeout_seconds', DEFAULT_API_TIMEOUT_SECONDS),
             scenario=args.scenario, provider_tag=args.provider_tag, capabilities=folder / 'model_capabilities.json',
             allow_unverified_effort=args.allow_unverified_effort, temperature=args.temperature,
             seed=args.seed_base + i if args.seed_base is not None else None,
@@ -268,6 +275,12 @@ def _read_sample(folder, config, entry):
             result[stage + '_run_id'] = Path(path).name
     if ps.get('researcher_status') == 'success':
         result['status'] = 'researcher_complete'
+    if ps.get('researcher_run'):
+        run_dir = Path(ps['researcher_run'])
+        info_file = run_dir / ('essay.json' if (run_dir / 'essay.json').exists() else 'failure.json')
+        if info_file.exists():
+            info = json.loads(read(info_file))
+            result.update({k: info[k] for k in ('essay_words', 'essay_json_bytes', 'essay_target_exceeded') if k in info})
     if ps.get('prisoner_status') == 'success' and ps.get('prisoner_run'):
         original = json.loads(read(Path(ps['prisoner_run']) / 'outcome.json'))
         result.update(status='complete' if not original['needs_review'] else 'pending_judge',
@@ -296,7 +309,8 @@ def _read_sample(folder, config, entry):
             result.update(status='failed', error=f'Judge attempted; inspect {jdir}; no automatic retry')
     if sample_state.get('error'):
         result.update(status='failed', error=sample_state['error'])
-    result.update(sample_failure(result))
+    result.update({k: v for k, v in sample_failure(result).items()
+                   if k != 'essay_words' or v is not None})
     return result
 
 

@@ -47,7 +47,7 @@ python3 -m almost_twin pilot prisoners --pilot data/pilots/cdt-nano \
 
 The updated `plan.md` links the pair outcome, responses and exact API records. Exploratory runs and append-only essay/decision/commitment logs live under `data/exploratory/`; the pilot's append-only history is `events.jsonl`. The project-wide budget ledger remains `data/budget.jsonl`. All these artifacts, approvals and credentials are gitignored.
 
-Pilot defaults are three cumulative reserved calls and US$2 estimated spend. Set `--max-calls`/`--max-usd` at preparation to change them explicitly; prior project reservations, including failed/unknown transport outcomes, count toward those caps. Preparation now distinguishes a heuristic **expected** cost (assuming 3,000 researcher output tokens, 800 prisoner output tokens and four serialized essay bytes per researcher token) from a conservative cost bound. The bound uses the fixed prisoner template size plus a generous, **enforced** researcher essay size limit of `8 * researcher_max_tokens` JSON-encoded bytes (also subject to endpoint context limits). Oversized essays remain in raw logs but are not passed to prisoners. Exact requests are independently revalidated and reserved after the essay. These are estimated caps, not an account billing guarantee. Use an OpenRouter key credit limit for a hard account limit.
+Pilot defaults are three cumulative reserved calls and US$2 estimated spend. Set `--max-calls`/`--max-usd` at preparation to change them explicitly; prior project reservations, including failed/unknown transport outcomes, count toward those caps. Preparation now distinguishes a heuristic **expected** cost (assuming 3,000 researcher output tokens, 800 prisoner output tokens and four serialized essay bytes per researcher token) from a conservative cost bound. The bound uses the fixed prisoner template size plus a generous, **enforced** researcher essay size limit of `essay.max_json_bytes` JSON-encoded bytes (32,000 by default) (also subject to endpoint context limits). Oversized essays remain in raw logs but are not passed to prisoners. Exact requests are independently revalidated and reserved after the essay. These are estimated caps, not an account billing guarantee. Use an OpenRouter key credit limit for a hard account limit.
 
 A completed researcher or pair is returned when resumed, never automatically called again. Partial failures preserve responses, commitments, logs and reservations and require deliberate new preparation rather than an automatic retry. Existing pilots cannot be overwritten. Use a new `--out` for a new exploratory trial or changed instructions/settings. [Detailed behavior and audit assumptions](docs/pilot_workflow.md).
 
@@ -87,16 +87,26 @@ cooperation rates and CC/CD/DC/DD counts, readable per-sample transcripts,
 offline review dispositions, provider-reported inference charges and execution
 statistics. `study report` can regenerate all of these without calling models.
 Researcher essays now target 1,200–1,500 words, with an enforced maximum of
-1,800 whitespace-delimited words (including math and references). New pilot,
-batch and study defaults allow 16,000 output tokens, including reasoning.
+2,500 whitespace-delimited words (including math and references) and an
+independent 32,000-byte serialized essay limit. Exceeding the requested target
+is recorded separately and accepted within those hard bounds. Defaults are:
+
+| Stage | Low effort | High effort |
+|---|---:|---:|
+| Researcher | 16,000 tokens | 32,000 tokens |
+| Prisoner | 6,000 tokens | 12,000 tokens |
+
+These total generation ceilings include reasoning. Study configurations can set
+`essay`, effort-specific `output_tokens`, and `api_timeout_seconds` (default 600).
+See [the configurable limits](docs/study_workflow.md#configurable-essay-and-generation-limits).
 Overlong or truncated outputs are saved as failed attempts without retries;
 `summary.md` highlights the cause, output budget, reasoning tokens and essay
 word count. `failures.csv` provides the same diagnostics for analysis.
 
-For the seven-model follow-up to the 12K CDT provider smoke test, use
-[`configs/study.cdt-provider-smoke-16k.yaml`](configs/study.cdt-provider-smoke-16k.yaml).
-It requests one T4 scenario per model and preserves the prior endpoints and
-low efforts. See [the follow-up instructions](docs/study_workflow.md#long-essay-follow-up).
+For a small low/high comparison, review
+[`configs/study.token-limits-smoke.example.yaml`](configs/study.token-limits-smoke.example.yaml)
+and its model list. The historical seven-model 16K configuration is preserved
+with its explicit settings; existing runs and failures remain unchanged.
 Example:
 
 ```sh

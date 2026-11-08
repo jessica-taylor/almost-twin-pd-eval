@@ -10,15 +10,11 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from .common import EvalError, GenerationError, encoded, read
+from .limits import essay_limits
 from .prompts import prisoners
 
 
-# Researcher max_tokens includes reasoning, while serialized essays contain only
-# visible text.  Eight JSON-encoded bytes per requested output token is a
-# deliberately generous *additional hard size limit*, not a claim about a
-# provider's tokenizer.  Over-limit essays are preserved but cannot be used.
-ESSAY_JSON_BYTES_PER_OUTPUT_TOKEN = 8
-MAX_ESSAY_WORDS = 1800
+# Essay ceilings are independent of output tokens (which include reasoning).
 EXPECTED_RESEARCHER_OUTPUT_TOKENS = 3000
 EXPECTED_PRISONER_OUTPUT_TOKENS = 800
 EXPECTED_ESSAY_JSON_BYTES_PER_OUTPUT_TOKEN = 4
@@ -29,29 +25,34 @@ def essay_json_bytes(essay):
     return len(encoded(essay)) - 2
 
 
-def max_essay_json_bytes(researcher_max_tokens):
-    if (not isinstance(researcher_max_tokens, int) or isinstance(researcher_max_tokens, bool)
-            or researcher_max_tokens <= 0):
-        raise EvalError('researcher_max_tokens must be a positive integer')
-    return ESSAY_JSON_BYTES_PER_OUTPUT_TOKEN * researcher_max_tokens
+def max_essay_json_bytes(limits=None):
+    return essay_limits(limits)['max_json_bytes']
 
 
-def require_essay_within_limit(essay, researcher_max_tokens):
-    count, maximum = essay_json_bytes(essay), max_essay_json_bytes(researcher_max_tokens)
+def essay_metrics(essay, limits=None):
+    limits = essay_limits(limits)
+    words = len(essay.split())
+    return {'essay_words': words, 'essay_json_bytes': essay_json_bytes(essay),
+            'essay_target_exceeded': words > limits['target_words'][1],
+            'essay_below_target': words < limits['target_words'][0], 'essay_limits': limits}
+
+
+def require_essay_within_limit(essay, limits=None):
+    limits = essay_limits(limits)
+    count, maximum = essay_json_bytes(essay), limits['max_json_bytes']
     if count > maximum:
         raise GenerationError('essay_size_limit', f'Researcher essay exceeds hard JSON-encoded size limit: '
-                        f'{count} bytes > {maximum} bytes (8 x researcher max_tokens). '
+                        f'{count} bytes > {maximum} bytes (independent essay.max_json_bytes). '
                         'Raw generation preserved; no prisoner request is authorized.')
     words = len(essay.split())
-    if words > MAX_ESSAY_WORDS:
+    if words > limits['max_words']:
         raise GenerationError('essay_size_limit',
-                              f'Researcher essay exceeds hard word limit: {words} > {MAX_ESSAY_WORDS} '
+                              f'Researcher essay exceeds hard word limit: {words} > {limits["max_words"]} '
                               '(whitespace-delimited words, including references and math). '
                               'Raw generation preserved; no prisoner request is authorized.')
 
 
-def prisoner_input_ceiling(root, item, scenario, researcher_max_tokens, endpoint,
-                           prisoner_max_tokens):
+def prisoner_input_ceiling(root, item, scenario, limits, endpoint, prisoner_max_tokens):
     """Upper-bound the byte-based input estimator for a valid bounded essay.
 
     `encoded` uses standard JSON string escaping.  Inserting an essay adds
@@ -66,17 +67,18 @@ def prisoner_input_ceiling(root, item, scenario, researcher_max_tokens, endpoint
                    endpoint.get('max_prompt_tokens') or endpoint['context_length'])
     if capacity < baseline:
         raise EvalError('Prisoner scenario prompt does not fit the selected endpoint context')
-    return min(capacity, baseline + max_essay_json_bytes(researcher_max_tokens))
+    return min(capacity, baseline + max_essay_json_bytes(limits))
 
 
-def expected_prisoner_input_tokens(root, item, scenario, researcher_max_tokens,
+def expected_prisoner_input_tokens(root, item, scenario, limits,
                                    endpoint, prisoner_max_tokens):
     """A labeled planning heuristic; never used for safety caps or reservations."""
     base = max(len(encoded(m)) for m in prisoners(root, item, '', scenario)) + 512
-    capacity = prisoner_input_ceiling(root, item, scenario, researcher_max_tokens,
+    capacity = prisoner_input_ceiling(root, item, scenario, limits,
                                      endpoint, prisoner_max_tokens)
-    typical_essay = min(researcher_max_tokens, EXPECTED_RESEARCHER_OUTPUT_TOKENS)
-    return min(capacity, base + EXPECTED_ESSAY_JSON_BYTES_PER_OUTPUT_TOKEN * typical_essay)
+    typical_bytes = min(max_essay_json_bytes(limits),
+                        EXPECTED_ESSAY_JSON_BYTES_PER_OUTPUT_TOKEN * EXPECTED_RESEARCHER_OUTPUT_TOKENS)
+    return min(capacity, base + typical_bytes)
 
 
 def _decimal_cost(value):

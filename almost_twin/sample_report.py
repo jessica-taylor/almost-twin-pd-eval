@@ -251,6 +251,10 @@ def render(sample, row):
     lines = [f'# Sample {row["sample_index"]:05d} — {title_status}', '',
              f'Assignment: `{row["assignment"]}` · model: `{row["model"]}` · scenario: `{row["scenario"]}`', '']
     usage = row.get('provider_usage') or sample_usage(row)
+    if row.get('essay_json_bytes') is not None:
+        lines += [f'Essay: {row["essay_words"]} words; {row["essay_json_bytes"]} serialized bytes. '
+                  f'Above requested word target: {row.get("essay_target_exceeded")}. '
+                  'Target overshoots alone do not fail a scenario.', '']
     if usage['attempted_calls']:
         lines += [f'Provider-reported cost: ${usage["reported_provider_usd"]} '
                   f'({usage["priced_calls"]}/{usage["attempted_calls"]} calls priced; '

@@ -7,9 +7,18 @@
   },
   "prisoner": {
     "effort": null,
-    "max_tokens": 3000
+    "max_tokens": 6000
   },
   "temperature": null,
   "seed": null,
-  "reasoning_override": null
+  "reasoning_override": null,
+  "essay": {
+    "target_words": [
+      1200,
+      1500
+    ],
+    "max_words": 2500,
+    "max_json_bytes": 32000
+  },
+  "api_timeout_seconds": 600
 }

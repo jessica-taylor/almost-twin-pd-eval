@@ -73,7 +73,7 @@ class BatchTests(unittest.TestCase):
         environment.start()
         self.addCleanup(environment.stop)
 
-    def fake_post(self, payload, key, call_dir, allow_nonaction=False):
+    def fake_post(self, payload, key, call_dir, allow_nonaction=False, timeout_seconds=600):
         with self.lock:
             self.calls.append(payload)
             if payload['model'] == JUDGE:
@@ -209,7 +209,7 @@ class BatchTests(unittest.TestCase):
         prepare(self.root, self.prep_args(count=1))
         generated = []
 
-        def scripted_post(payload, key, call_dir, allow_nonaction=False):
+        def scripted_post(payload, key, call_dir, allow_nonaction=False, timeout_seconds=600):
             if payload['model'] == JUDGE:
                 content = json.dumps({'intent': 'OTHER', 'disclosure': 'NO',
                     'reason': 'Explicitly declines both game commands.',
@@ -348,7 +348,7 @@ class BatchTests(unittest.TestCase):
 
     def test_partial_prisoner_failure_preserves_raw_artifacts_without_retry(self):
         prepare(self.root, self.prep_args(count=1))
-        def fail_second_prisoner(payload, key, call_dir, allow_nonaction=False):
+        def fail_second_prisoner(payload, key, call_dir, allow_nonaction=False, timeout_seconds=600):
             if allow_nonaction and self.prisoner_number == 1:
                 call_dir.mkdir(parents=True, exist_ok=True)
                 (call_dir / 'request.json').write_bytes(encoded(payload))

@@ -28,6 +28,7 @@ from .accounting import (EXPECTED_PRISONER_OUTPUT_TOKENS, EXPECTED_RESEARCHER_OU
 from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
 from .failures import sample_failure
 from .judge import judge_messages
+from .limits import DEFAULT_API_TIMEOUT_SECONDS, api_timeout, essay_limits, output_budgets, output_limit
 from .preflight import choose_endpoint, estimate_price
 from .progress_log import progress, timed_progress
 from .prompts import assignment, cases, prisoners, researcher
@@ -39,7 +40,7 @@ THEORIES = {'cdt_wikipedia', 'edt_wikipedia', 'fdt_eq4', 'fdt_policy'}
 SPEC_FIELDS = {'schema_version', 'name', 'exploratory', 'assignments', 'models',
                'researcher_efforts', 'prisoner_efforts', 'count_per_cell', 'scenario',
                'researcher_max_tokens', 'prisoner_max_tokens', 'judge', 'budgets',
-               'temperature', 'seed_base'}
+               'temperature', 'seed_base', 'essay', 'output_tokens', 'api_timeout_seconds'}
 MODEL_FIELDS = {'id', 'provider_tag', 'researcher_efforts', 'prisoner_efforts',
                 'allow_unverified_effort'}
 JUDGE_FIELDS = {'enabled', 'model', 'provider_tag', 'effort', 'max_tokens',
@@ -137,8 +138,15 @@ def load_spec(path):
     count = _positive_integer(spec.get('count_per_cell'), 'count_per_cell')
     if count > 10000:
         raise EvalError('count_per_cell exceeds the batch limit of 10000')
-    for name, default in (('researcher_max_tokens', 16000), ('prisoner_max_tokens', 3000)):
-        spec[name] = _positive_integer(spec.get(name, default), name)
+    spec['essay'] = essay_limits(spec.get('essay'))
+    for stage in ('researcher', 'prisoner'):
+        name = stage + '_max_tokens'
+        if spec.get(name) is not None:
+            _positive_integer(spec[name], name)
+            if isinstance(spec.get('output_tokens'), dict) and stage in spec['output_tokens']:
+                raise EvalError(f'Choose {name} or output_tokens.{stage}, not both')
+    spec['output_tokens'] = output_budgets(spec.get('output_tokens'))
+    spec['api_timeout_seconds'] = api_timeout(spec.get('api_timeout_seconds', DEFAULT_API_TIMEOUT_SECONDS))
     if not isinstance(spec.get('scenario', 't4_distinct_leads_001'), str):
         raise EvalError('scenario must be a case_id')
     if spec.get('seed_base') is not None and (not isinstance(spec['seed_base'], int) or spec['seed_base'] < 0):
@@ -146,6 +154,7 @@ def load_spec(path):
     spec.update(models=models, judge=judge, budgets=budgets,
                 researcher_efforts=researcher_efforts, prisoner_efforts=prisoner_efforts,
                 scenario=spec.get('scenario', 't4_distinct_leads_001'))
+    _cells(spec)  # Require an explicit allowance for every requested effort.
     return spec, raw
 
 
@@ -162,6 +171,10 @@ def _cells(spec):
                                    'provider_tag': model.get('provider_tag'),
                                    'researcher_effort': researcher_effort,
                                    'prisoner_effort': prisoner_effort,
+                                   'researcher_max_tokens': output_limit('researcher', researcher_effort,
+                                       spec.get('researcher_max_tokens'), spec['output_tokens']),
+                                   'prisoner_max_tokens': output_limit('prisoner', prisoner_effort,
+                                       spec.get('prisoner_max_tokens'), spec['output_tokens']),
                                    'allow_unverified_effort': model.get('allow_unverified_effort')})
     return result
 
@@ -179,7 +192,7 @@ def check(root, spec):
     for theory in spec['assignments']:
         item = assignment(root, theory)
         source, info = load_source(root, item['source_id'])
-        sources[theory] = researcher(root, item, source, info)
+        sources[theory] = researcher(root, item, source, info, spec['essay'])
         prisoners(root, item, 'Synthetic preflight essay; no generation occurred.', scenario)
     caps = {}
     failures = []
@@ -206,7 +219,7 @@ def check(root, spec):
     if judge['enabled'] and judge_cap is not None:
         judge_settings = {'model': judge['model'], 'provider_tag': judge.get('provider_tag'),
                           'judge': {'effort': judge['effort'], 'max_tokens': judge['max_tokens']},
-                          'temperature': None, 'seed': None}
+                          'temperature': None, 'seed': None, 'api_timeout_seconds': spec['api_timeout_seconds']}
         if judge.get('allow_unverified_effort'):
             judge_settings['reasoning_override'] = {'efforts': [judge['effort']],
                                                     'reason': judge['allow_unverified_effort']}
@@ -230,9 +243,10 @@ def check(root, spec):
             progress.warning('Cell %d/%d blocked: no model metadata', index, len(cells))
             continue
         settings = {'model': cell['model'], 'provider_tag': cell['provider_tag'],
-                    'researcher': {'effort': cell['researcher_effort'], 'max_tokens': spec['researcher_max_tokens']},
-                    'prisoner': {'effort': cell['prisoner_effort'], 'max_tokens': spec['prisoner_max_tokens']},
-                    'temperature': spec.get('temperature'), 'seed': None}
+                    'researcher': {'effort': cell['researcher_effort'], 'max_tokens': cell['researcher_max_tokens']},
+                    'prisoner': {'effort': cell['prisoner_effort'], 'max_tokens': cell['prisoner_max_tokens']},
+                    'temperature': spec.get('temperature'), 'seed': None,
+                    'essay': spec['essay'], 'api_timeout_seconds': spec['api_timeout_seconds']}
         if cell.get('allow_unverified_effort'):
             settings['reasoning_override'] = {'efforts': sorted({cell['researcher_effort'], cell['prisoner_effort']}),
                                               'reason': cell['allow_unverified_effort']}
@@ -246,26 +260,26 @@ def check(root, spec):
                                                                  [{'role': 'user', 'content': ''}])
             endpoint = prisoner_price['endpoint']
             ceiling = prisoner_input_ceiling(root, assignment(root, cell['assignment']), scenario,
-                                             spec['researcher_max_tokens'], endpoint,
-                                             spec['prisoner_max_tokens'])
+                                             spec['essay'], endpoint,
+                                             cell['prisoner_max_tokens'])
             per_prisoner, _ = estimate_price(prisoner_payload, endpoint, caps[cell['model']]['model'],
-                                            ceiling, spec['prisoner_max_tokens'])
+                                            ceiling, cell['prisoner_max_tokens'])
             expected_input = expected_prisoner_input_tokens(root, assignment(root, cell['assignment']),
-                                                             scenario, spec['researcher_max_tokens'], endpoint,
-                                                             spec['prisoner_max_tokens'])
+                                                             scenario, spec['essay'], endpoint,
+                                                             cell['prisoner_max_tokens'])
             typical_prisoner, _ = estimate_price(prisoner_payload, endpoint, caps[cell['model']]['model'],
                                                  expected_input,
-                                                 min(spec['prisoner_max_tokens'],
+                                                 min(cell['prisoner_max_tokens'],
                                                      EXPECTED_PRISONER_OUTPUT_TOKENS))
             typical_researcher, _ = estimate_price(researcher_payload, researcher_price['endpoint'],
                                                    caps[cell['model']]['model'],
                                                    researcher_price['input_tokens_upper_estimate'],
-                                                   min(spec['researcher_max_tokens'],
+                                                   min(cell['researcher_max_tokens'],
                                                        EXPECTED_RESEARCHER_OUTPUT_TOKENS))
-            full_ceiling = min(endpoint['context_length'] - spec['prisoner_max_tokens'],
+            full_ceiling = min(endpoint['context_length'] - cell['prisoner_max_tokens'],
                                endpoint.get('max_prompt_tokens') or endpoint['context_length'])
             full_per_prisoner, _ = estimate_price(prisoner_payload, endpoint, caps[cell['model']]['model'],
-                                                 full_ceiling, spec['prisoner_max_tokens'])
+                                                 full_ceiling, cell['prisoner_max_tokens'])
             per_sample = Decimal(researcher_price['estimated_max_usd']) + 2 * Decimal(per_prisoner)
             typical_sample = Decimal(typical_researcher) + 2 * Decimal(typical_prisoner)
             full_sample = Decimal(researcher_price['estimated_max_usd']) + 2 * Decimal(full_per_prisoner)
@@ -277,6 +291,7 @@ def check(root, spec):
                               {'estimated_max_usd': per_prisoner},
                               {'estimated_max_usd': per_prisoner}] * spec['count_per_cell'])
             validated_cells.append({**cell, 'selected_provider_tag': settings['provider_tag'],
+                                    'prisoner_input_tokens_upper_estimate': ceiling,
                                     'selection': selection, 'projected_usd': str(per_sample * spec['count_per_cell']),
                                     'expected_usd': str(typical_sample * spec['count_per_cell']),
                                     'full_context_ceiling_usd': str(full_sample * spec['count_per_cell'])})
@@ -301,12 +316,13 @@ def check(root, spec):
                   'conservative projection $%s',
                   len(validated_cells), len(cells), len(failures), expected, projected)
     return {'schema_version': 1, 'checked_at_utc': utc(),
-            'no_billable_requests': True, 'count_per_cell': spec['count_per_cell'],
+            'no_billable_requests': True, 'essay': spec['essay'],
+            'output_tokens': spec['output_tokens'], 'api_timeout_seconds': spec['api_timeout_seconds'], 'count_per_cell': spec['count_per_cell'],
             'expected_cells': len(_cells(spec)), 'validated_cells': validated_cells,
             'projected_researcher_prisoner_usd': str(projected),
             'expected_researcher_prisoner_usd': str(expected),
             'projected_full_context_ceiling_usd': str(full_context_projection),
-            'cost_projection_method': 'Enforced max researcher essay JSON bytes = 8 x researcher_max_tokens; '
+            'cost_projection_method': 'Independent enforced essay.max_json_bytes ceiling; '
                                       'final prisoner prompts revalidated before billing',
             'expected_cost_method': 'Heuristic: up to 3000 researcher output tokens, 800 prisoner output '
                                     'tokens, 4 encoded essay bytes per expected researcher token; '
@@ -377,7 +393,8 @@ def prepare(root, args):
         a = SimpleNamespace(assignment=checked['assignment'], model=checked['model'],
             count=spec['count_per_cell'], scenario=spec['scenario'],
             researcher_effort=checked['researcher_effort'], prisoner_effort=checked['prisoner_effort'],
-            researcher_max_tokens=spec['researcher_max_tokens'], prisoner_max_tokens=spec['prisoner_max_tokens'],
+            researcher_max_tokens=checked['researcher_max_tokens'], prisoner_max_tokens=checked['prisoner_max_tokens'],
+            essay=spec['essay'], api_timeout_seconds=spec['api_timeout_seconds'],
             provider_tag=checked['selected_provider_tag'], capabilities=cap_paths[checked['model']],
             allow_unverified_effort=checked.get('allow_unverified_effort'),
             temperature=spec.get('temperature'),
@@ -407,6 +424,12 @@ def prepare(root, args):
         f'{len(cells)} condition cells × {spec["count_per_cell"]} full paired scenarios; '
         f'{result["projected_researcher_prisoner_calls"]} baseline model calls, '
         f'up to {result["possible_judge_calls"]} judge calls.\n\n'
+        f'Essay target: {spec["essay"]["target_words"]} words; hard ceilings: '
+        f'{spec["essay"]["max_words"]} words and {spec["essay"]["max_json_bytes"]} serialized bytes. '
+        f'HTTP generation timeout: {spec["api_timeout_seconds"]} seconds per call.\n\n'
+        'Resolved output ceilings (researcher / prisoner tokens, including reasoning):\n\n'
+        + '\n'.join(f'- {c["model"]} ({c["researcher_effort"]} / {c["prisoner_effort"]}): '
+                    f'{c["researcher_max_tokens"]} / {c["prisoner_max_tokens"]}' for c in cells) + '\n\n' +
         f'Expected researcher/prisoner cost (heuristic, not a cap): '
         f'${result["expected_researcher_prisoner_usd"]}.\n\n'
         f'Conservative researcher/prisoner cost bound using the enforced essay size limit: '
@@ -521,6 +544,7 @@ def report(root, folder, include_details=True):
                 'prisoner_run': row.get('prisoner_run'), 'judge_run': row.get('judge_run'),
                 'error': row.get('error'),
                 **failure,
+                **{k: row.get(k) for k in ('essay_words', 'essay_json_bytes', 'essay_target_exceeded')},
                 'reported_provider_usd': usage['reported_provider_usd'],
                 'unpriced_calls': usage['unpriced_calls']})
             for role, idx in (('a', 0), ('b', 1)):
@@ -545,6 +569,8 @@ def report(root, folder, include_details=True):
             'researcher_effort': cell['researcher_effort'],
             'prisoner_effort': cell['prisoner_effort'], 'samples_planned': study['count_per_cell'],
             'complete_pairs': len(fractions), 'cooperation_rate': mean,
+            'essays_measured': sum(isinstance(r.get('essay_target_exceeded'), bool) for r in rows),
+            'essays_above_target': sum(r.get('essay_target_exceeded') is True for r in rows),
             'pair_bootstrap_ci_low': ci[0] if ci else None,
             'pair_bootstrap_ci_high': ci[1] if ci else None,
             'reported_provider_usd': str(cell_cost),
@@ -561,7 +587,8 @@ def report(root, folder, include_details=True):
          'pair_outcome', 'final_a', 'final_b', 'essay_sha256', 'researcher_run',
          'prisoner_run', 'judge_run', 'error', 'reported_provider_usd',
          'unpriced_calls', 'failure_category', 'failure_stage', 'completion_tokens',
-         'output_token_limit', 'reasoning_tokens', 'essay_words', 'finish_reason', 'failed_call'), pair_rows)
+         'output_token_limit', 'reasoning_tokens', 'essay_words', 'finish_reason', 'failed_call',
+         'essay_json_bytes', 'essay_target_exceeded'), pair_rows)
     _csv(folder / 'failures.csv', ('model', 'provider_tag', 'sample_id',
          'failure_category', 'failure_stage', 'completion_tokens', 'output_token_limit',
          'reasoning_tokens', 'essay_words', 'finish_reason', 'failed_call', 'error'), failed_attempts)
@@ -570,6 +597,7 @@ def report(root, folder, include_details=True):
          'disclosure', 'enacted_action', 'final_action', 'prisoner_run'), action_rows)
     summary_fields = ('cell_id', 'assignment', 'model', 'provider_tag', 'researcher_effort',
                       'prisoner_effort', 'samples_planned', 'complete_pairs', 'cooperation_rate',
+                      'essays_measured', 'essays_above_target',
                       'pair_bootstrap_ci_low', 'pair_bootstrap_ci_high',
                       'reported_provider_usd', 'priced_calls', 'unpriced_calls',
                       'rate_limit_failures', 'recorded_execution_seconds',
@@ -619,7 +647,11 @@ def report(root, folder, include_details=True):
         lines.append(f'| {item["assignment"]} | {item["model"]} | '
                      f'{item["researcher_effort"]} / {item["prisoner_effort"]} | '
                      f'{item["complete_pairs"]} / {item["samples_planned"]} | {frac} | {outcomes} |')
-    lines += ['', 'Machine-readable: `pairs.csv`, `decisions.csv`, `summary.csv`, `summary.json`.',
+    lines += ['', f'Essay target overshoots: {sum(r["essays_above_target"] for r in summary_rows)} / '
+              f'{sum(r["essays_measured"] for r in summary_rows)} measured completed generations. '
+              'Exceeding the requested target is recorded separately from hard-limit failures; '
+              'historical artifacts without target metrics are not inferred.', '',
+              'Machine-readable: `pairs.csv`, `decisions.csv`, `summary.csv`, `summary.json`.',
               'Readable per-sample results and transcripts are in each batch under `samples/`;',
               'the offline review disposition summary is in `review_summary.md`.',
               'Exact prompts, responses, available reasoning and judge records remain in each batch and its raw runs.', '']
