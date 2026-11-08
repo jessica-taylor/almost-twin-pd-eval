@@ -193,8 +193,9 @@ If its transcript, action classification, reasoning availability and provider
 metadata look right, finish **all remaining scenarios** (including both Gemini
 scenarios) with the same command **minus both `--limit-*` options**. Already
 finished samples are skipped on resume. `--jobs 2` runs up to two full scenarios
-concurrently *across all cells*. The default `--provider-jobs 1` prevents two
-scenarios using the same selected provider family from overlapping.
+concurrently *across all cells*. By default, the study runner uses five global
+workers (`--jobs 5`) and permits two concurrent scenarios per selected provider
+family (`--provider-jobs 2`). These flags can be lowered for cautious pilots.
 
 ```sh
 python3 -m almost_twin study run \
@@ -237,13 +238,13 @@ python3 -m almost_twin study run \
 ```
 
 Then continue with the same command, without the limits. `--jobs` is the
-global maximum number of concurrent **full scenarios across the entire study**.
-The scheduler interleaves model/theory cells and defaults to at most one active
-scenario per selected provider family (`--provider-jobs 1`). For example, seven
-different models with mostly different providers can use
-`--jobs 5 --provider-jobs 1`; even with just one scenario per cell, this now overlaps
-calls across models. Increase `--provider-jobs` only after checking the relevant
-provider's throughput and 429 rate. Researcher, prisoner, and conditional
+global maximum number of concurrent **full scenarios across the entire study**
+(default 5). The scheduler interleaves model/theory cells and defaults to at
+most two active scenarios per selected provider family (`--provider-jobs 2`).
+For example, seven different models with mostly different providers now overlap
+calls across models without passing any concurrency flags. If 429 errors appear,
+lower `--provider-jobs` to 1; raise it beyond 2 only with provider-specific
+evidence. Researcher, prisoner, and conditional
 judge stages remain sequential within a scenario; a shared judge provider can
 still receive overlapping calls from different scenarios. Each batch has its
 own lock and resumable states. Completed or failed generation attempts are
@@ -280,8 +281,8 @@ values are included in the displayed provider charges (including judge calls);
 older responses or endpoints without a price are counted as **unknown**, not
 zero. This is distinct from the preflight estimate and budget reservations.
 For operational throughput, `--jobs` controls parallel *full scenarios* across
-cells (allowed 1–16); `--provider-jobs` caps overlapping scenarios sharing a
-selected provider family (default 1). Scheduling is round-robin across cells,
+cells (default 5; allowed 1–16); `--provider-jobs` caps overlapping scenarios
+sharing a selected provider family (default 2; allowed 1–16). Scheduling is round-robin across cells,
 and a busy provider does not occupy a waiting worker. The summary's aggregate
 cell execution time may exceed actual wall-clock duration because cell work
 overlaps; `last_run_wall_seconds` records elapsed time for the most recent
