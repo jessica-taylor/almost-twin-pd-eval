@@ -87,8 +87,12 @@ def validate_settings(settings, cap, stage, messages):
     payload = {'model': model, 'messages': messages, 'reasoning': {'effort': effort},
                'max_tokens': limit, 'stream': False,
                'provider': {'only': [provider], 'order': [provider], 'allow_fallbacks': False, 'require_parameters': True}}
-    # Both stages use plain-text outputs. The prisoner stage parses exactly
-    # one adventure command, with no JSON-mode formatting constraint.
+    # Researchers and prisoners use free text. Only the separate blinded
+    # classifier asks for a machine-readable judgment.
+    if stage == 'judge':
+        if 'response_format' not in params:
+            raise EvalError('Judge endpoint must advertise JSON response_format')
+        payload['response_format'] = {'type': 'json_object'}
     for field in ('temperature', 'seed'):
         value = settings.get(field)
         if value is not None:
@@ -323,7 +327,8 @@ def run(root, args):
                 write_json(folder / 'essay.json', info)
             else:
                 evidence = scenario[f'evidence_{record["role"]}']
-                decision = classify_response(output, evidence, refused=bool(record['refusal']))
+                decision = classify_response(output, evidence, scenario[f'evidence_markers_{record["role"]}'],
+                                             refused=bool(record['refusal']))
                 if decision['enacted_action'] is not None:
                     game.commit(record['role'], decision['enacted_action'])
                 # Every generation, including an ambiguous/refused *action*,

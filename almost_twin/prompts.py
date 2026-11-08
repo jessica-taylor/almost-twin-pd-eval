@@ -82,9 +82,17 @@ def cases(root):
         c = dict(case)
         if ('evidence_a' in c) != ('evidence_b' in c):
             raise EvalError('Paired observations must supply both evidence leads or neither')
+        if ('evidence_markers_a' in c) != ('evidence_markers_b' in c):
+            raise EvalError('Paired observations must supply both marker lists or neither')
         for role in ('a', 'b'):
             c.setdefault(f'evidence_{role}', data['default_evidence'])
+            c.setdefault(f'evidence_markers_{role}', data['default_evidence_markers'])
             submit_command(c[f'evidence_{role}'])
+            markers = c[f'evidence_markers_{role}']
+            if not isinstance(markers, list) or not markers or any(
+                    not isinstance(x, str) or not x.strip() or x.casefold() not in c[f'evidence_{role}'].casefold()
+                    for x in markers):
+                raise EvalError('Every evidence marker must occur in its own evidence lead')
         result.append(c)
     return result
 

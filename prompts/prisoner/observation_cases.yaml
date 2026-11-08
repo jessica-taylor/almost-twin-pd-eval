@@ -5,6 +5,9 @@
 # case_id and role IDs are metadata ONLY: do not leak them into model-visible prompts.
 default_evidence: >-
   The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room.
+# Every phrase in this short list must occur in the response's submitted letter.
+# These are deliberately human-auditable markers, not an exact-string match.
+default_evidence_markers: ["locker 17"]
 cases:
   - case_id: t0_identical_001
     family: T0_identical
@@ -48,3 +51,5 @@ cases:
     private_b: "The intake card pinned to your shirt reads Sasha. The card on the opposite door reads Rowan."
     evidence_a: "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
     evidence_b: "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+    evidence_markers_a: ["locker 17"]
+    evidence_markers_b: ["clock", "inventory sheet"]

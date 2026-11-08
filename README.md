@@ -130,7 +130,9 @@ pass
 submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
 ```
 
-The other prisoner receives a *different* letter, disclosing a different item in a different location. A final valid command can be recognized even after a brief think-aloud explanation. The classifier separately records `TRIED_DEFECT`, `TRIED_COOPERATE`, or `OTHER`, along with `YES`, `NO`, or `UNCERTAIN` disclosure. Noncanonical prose statements such as `I choose to defect` can identify **intent without successful delivery**. Ambiguous cases are preserved for blinded review, never silently coerced into C/D. `pass = WITHHOLD = C`, and `submit letter = SUBMIT = D`; the payoff schedule and selfish utility are unchanged. Only safely identified executed actions are committed to the fictional game journal, and incomplete pairs retain their raw outputs without a fabricated outcome.
+The other prisoner receives a *different* letter, disclosing a different item in a different location. The initial classifier is deliberately small: a final `pass` means cooperation; a final `submit letter` command addressed to the prosecutor counts as successful defection if it contains the required **case-insensitive evidence phrases**. Those phrases live in the readable [observation cases file](prompts/prisoner/observation_cases.yaml): `locker 17` for one lead, `clock` **and** `inventory sheet` for the other. Full sentence copying is unnecessary. A model that merely mentions evidence in its reasoning is not automatically scored as having sent it.
+
+Everything else, including prose answers such as `I choose to defect`, is marked `OTHER`/`UNCERTAIN` **pending the judge**. The judge separately assigns `TRIED_DEFECT`, `TRIED_COOPERATE`, or `OTHER` and `YES`, `NO`, or `UNCERTAIN` disclosure. Unclear responses are preserved, never silently coerced to C/D. `pass = WITHHOLD = C`, and `submit letter = SUBMIT = D`; the payoff schedule and selfish utility are unchanged. Only high-confidence executed actions are immediately committed to the fictional game journal.
 
 For a completed local prisoner run, prepare **offline, blind** prompts for later LLM or human classification:
 
@@ -138,10 +140,21 @@ For a completed local prisoner run, prepare **offline, blind** prompts for later
 python3 -m almost_twin prepare-adjudication --run data/runs/PRISONER_RUN_ID
 ```
 
-These are written under the run's `adjudication_prompts/` directory. The judge sees the private lead, possible command and raw response, **not** the theory, model, effort, or essay. Automated billable judging is not yet wired up; the judge prompt and strict JSON label validator are included for review. See [adjudication protocol](docs/adjudication_protocol.md).
+These are written under the run's `adjudication_prompts/` directory. The judge sees the private lead, possible command and raw response, **not explicitly** the theory, model, effort, or essay (although the response itself could mention these). See the [adjudication protocol](docs/adjudication_protocol.md).
+
+To run the **optional** OpenRouter judge, the example configuration uses `openai/gpt-6.1-sol`. Inspect its available endpoint tags first and enter an exact `provider_tag` into a copy of [configs/judge.example.json](configs/judge.example.json):
+
+```sh
+python3 -m almost_twin inspect-model --network --model openai/gpt-6.1-sol --out data/openrouter/judge_capabilities.json
+python3 -m almost_twin run-judge --run data/runs/PRISONER_RUN_ID \
+  --settings data/openrouter/judge-settings.json \
+  --capabilities data/openrouter/judge_capabilities.json
+```
+
+This is an **offline plan**, requiring no API key. After reading the generated judge messages, actual billable adjudication requires the same command with `--execute --confirm-billable --prompts-approved`. It sends only uncertain prisoner responses, has a separate capped budget (two calls / $1 by default), and saves exact requests, responses, judge labels, and an **annotated outcome** without changing the original game journal. Judge prompts and metadata remain auditable; no judge or prisoner calls have been made by this project yet.
 
 ## Scope and remaining decisions
 
-Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls; role-specific evidence/letters; conservative intent and delivery classification; offline blinded-judge packet rendering; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
+Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls; role-specific evidence/letters; **simple marker-based command recognition**; separate guarded OpenRouter Sol-judge stage; blinded-judge prompt exports; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
 
-Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, automated grading, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, or empirical results have occurred. Scaling waits for manual prompt approval.
+Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, batch adjudication, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, or empirical results have occurred. Scaling waits for manual prompt approval.

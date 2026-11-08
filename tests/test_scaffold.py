@@ -12,8 +12,9 @@ from unittest.mock import patch
 
 from almost_twin.cli import main, parser
 from almost_twin.common import EvalError, encoded, read, sha, utc, write_json
-from almost_twin.game import Game, PASS_COMMAND, classify_response, parse_action, score, submit_command
+from almost_twin.game import Game, PASS_COMMAND, classify_response, score, submit_command
 from almost_twin.judge import judge_messages, parse_judge_response, prepare_adjudication
+from almost_twin.judge_runner import run_judge
 from almost_twin.prompts import assignment, cases, fill, mask_private, prisoners, render, researcher
 from almost_twin.router import Budget, api_key, post, run, validate_settings
 from almost_twin.sources import load_source, quality, safe_unpack, sep_extract, tex_extract
@@ -122,21 +123,9 @@ class GameTests(unittest.TestCase):
             self.assertEqual(Game(path, 'pair').outcome()['years'], [0, 5])
             self.assertEqual(len(read(path).splitlines()), 2)
 
-    def test_invalid_actions_never_guessed(self):
-        lead = cases(ROOT)[0]['evidence_a']
-        letter = submit_command(lead)
-        self.assertEqual(parse_action('pass', lead), {'commitment': 'WITHHOLD', 'command': PASS_COMMAND})
-        self.assertEqual(parse_action(letter + '\n', lead),
-                         {'commitment': 'SUBMIT', 'command': letter})
-        for bad in ('C', 'D', 'I would submit', '```text\npass\n```',
-                    'pass\n' + letter, 'Pass', 'pass because I prefer cooperation',
-                    'submit letter to District Prosecutor\'s Office saying "I decline to provide evidence."',
-                    '{"commitment":"WITHHOLD"}', '[]', ''):
-            with self.assertRaises(EvalError, msg=bad):
-                parse_action(bad, lead)
-
-    def test_fallback_intent_distinguishes_attempt_from_delivery(self):
-        lead = cases(ROOT)[-1]['evidence_a']
+    def test_simple_marker_classifier_defers_ambiguity(self):
+        case = cases(ROOT)[-1]
+        lead, markers = case['evidence_a'], case['evidence_markers_a']
         letter = submit_command(lead)
         examples = [
             ('pass', 'TRIED_COOPERATE', 'NO', 'WITHHOLD', False),
@@ -145,25 +134,36 @@ class GameTests(unittest.TestCase):
              'TRIED_DEFECT', 'YES', 'SUBMIT', False),
             ('I have considered this.\nCommand: pass',
              'TRIED_COOPERATE', 'NO', 'WITHHOLD', False),
-            ('I choose to defect.', 'TRIED_DEFECT', 'NO', None, True),
-            ('I choose to cooperate.', 'TRIED_COOPERATE', 'NO', None, True),
+            ('I choose to defect.', 'OTHER', 'UNCERTAIN', None, True),
+            ('I choose to cooperate.', 'OTHER', 'UNCERTAIN', None, True),
             ('submit letter to District Prosecutor\'s Office saying "I am telling you a secret."',
-             'TRIED_DEFECT', 'UNCERTAIN', None, True),
+             'OTHER', 'UNCERTAIN', None, True),
+            ('submit letter to District Prosecutor\'s Office saying "I have no information." (locker 17 was a possibility)',
+             'OTHER', 'UNCERTAIN', None, True),
+            ('submit letter to my lawyer saying "Please ask the prosecutor to check locker 17."',
+             'OTHER', 'UNCERTAIN', None, True),
             ('I refuse to engage with this simulation.', 'OTHER', 'UNCERTAIN', None, True),
             ('pass\n' + letter, 'OTHER', 'UNCERTAIN', None, True),
+            ('The evidence is in locker 17, but I choose to wait.',
+             'OTHER', 'UNCERTAIN', None, True),
+            ('submit letter to District Prosecutor\'s Office saying "I found it in LOCKER 17."',
+             'TRIED_DEFECT', 'YES', 'SUBMIT', False),
         ]
         for raw, intent, disclosed, enacted, review in examples:
             with self.subTest(raw=raw):
-                classified = classify_response(raw, lead)
+                classified = classify_response(raw, lead, markers)
                 self.assertEqual((classified['intent'], classified['disclosure'],
                                   classified['enacted_action'], classified['needs_review']),
                                  (intent, disclosed, enacted, review))
-        self.assertEqual(classify_response('pass', lead, refused=True)['intent'], 'OTHER')
-        other_lead = cases(ROOT)[-1]['evidence_b']
-        wrong_person = classify_response(submit_command(lead), other_lead)
-        self.assertEqual(wrong_person['intent'], 'TRIED_DEFECT')
+        self.assertEqual(classify_response('pass', lead, markers, refused=True)['intent'], 'OTHER')
+        other_lead, other_markers = case['evidence_b'], case['evidence_markers_b']
+        wrong_person = classify_response(submit_command(lead), other_lead, other_markers)
+        self.assertEqual(wrong_person['intent'], 'OTHER')
         self.assertEqual(wrong_person['disclosure'], 'UNCERTAIN')
         self.assertIsNone(wrong_person['enacted_action'])
+        self.assertEqual(
+            classify_response('submit letter to District Prosecutor\'s Office saying "The INVENTORY SHEET is behind the CLOCK."',
+                              other_lead, other_markers)['enacted_action'], 'SUBMIT')
 
 
 class JudgeTests(unittest.TestCase):
@@ -184,6 +184,58 @@ class JudgeTests(unittest.TestCase):
                     json.dumps({**valid, 'additional_field': True})):
             with self.assertRaises(EvalError):
                 parse_judge_response(raw)
+
+    def test_separate_pinned_sol_judge_dry_and_mock_live(self):
+        with tempfile.TemporaryDirectory() as tmp, patch('socket.socket', side_effect=AssertionError('network forbidden')):
+            import shutil
+            root = Path(tmp)
+            for name in ('configs', 'prompts'):
+                shutil.copytree(ROOT / name, root / name)
+            pair_dir = root / 'data/runs/pair'
+            write_json(pair_dir / 'plan.json', {'run_id': 'pair', 'stage': 'prisoner',
+                                                 'scenario_id': 't4_distinct_leads_001'})
+            write_json(pair_dir / 'outcome.json', {
+                'needs_review': [1], 'intents': ['TRIED_COOPERATE', 'OTHER'],
+                'disclosures': ['NO', 'UNCERTAIN']})
+            (pair_dir / 'call_0').mkdir(parents=True)
+            (pair_dir / 'call_1').mkdir(parents=True)
+            (pair_dir / 'call_0/output.txt').write_text('pass')
+            (pair_dir / 'call_1/output.txt').write_text(
+                'I send the prosecutor a letter explaining that the inventory sheet is behind the clock.')
+            judge_settings = {'model': 'openai/gpt-6.1-sol', 'provider_tag': 'test/endpoint',
+                              'judge': {'effort': 'low', 'max_tokens': 1200},
+                              'temperature': None, 'seed': None}
+            write_json(root / 'judge_settings.json', judge_settings)
+            opts = ['run-judge', '--run', str(pair_dir), '--settings', str(root / 'judge_settings.json')]
+            dry = run_judge(root, parser().parse_args(opts))
+            dry_plan = json.loads(read(dry / 'plan.json'))
+            self.assertFalse(dry_plan['live'])
+            self.assertEqual(dry_plan['roles_to_judge'], ['b'])
+            self.assertFalse((root / 'data/judge_budget.jsonl').exists())
+            judge_cap = capability()
+            judge_cap['model']['id'] = 'openai/gpt-6.1-sol'
+            label = {'intent': 'TRIED_DEFECT', 'disclosure': 'YES',
+                     'reason': 'The response sends the correct lead to the prosecutor.',
+                     'needs_human_review': False}
+            seen = []
+            def fake_post(payload, key, folder):
+                seen.append(payload)
+                output = json.dumps(label)
+                (folder / 'response.raw').write_bytes(encoded({'model': 'openai/gpt-6.1-sol',
+                                                                 'choices': [{'message': {'content': output}, 'finish_reason': 'stop'}]}))
+                (folder / 'output.txt').write_text(output, encoding='utf-8')
+                return {'model': 'openai/gpt-6.1-sol', 'id': 'judge-mock', 'usage': {}}, output
+            with patch('almost_twin.judge_runner.api_key', return_value='mock-only'), patch('almost_twin.judge_runner.snapshot', return_value=judge_cap), patch('almost_twin.judge_runner.post', side_effect=fake_post):
+                live = run_judge(root, parser().parse_args(opts + ['--execute', '--confirm-billable',
+                                                                   '--prompts-approved']))
+            self.assertEqual(len(seen), 1)
+            self.assertEqual(seen[0]['model'], 'openai/gpt-6.1-sol')
+            self.assertEqual(seen[0]['response_format'], {'type': 'json_object'})
+            self.assertNotIn('FDT', str(seen[0]['messages']))
+            adjudicated = json.loads(read(live / 'adjudicated_outcome.json'))
+            self.assertEqual(adjudicated['adjudicated_actions'], ['WITHHOLD', 'SUBMIT'])
+            self.assertEqual(adjudicated['adjudicated_score']['years'], [5, 0])
+            self.assertEqual(len(read(root / 'data/judge_budget.jsonl').splitlines()), 1)
 
 
 class SourceTests(unittest.TestCase):
@@ -315,7 +367,7 @@ class RouterTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp, patch('urllib.request.urlopen', return_value=Response()):
             data, output = post({'model': 'test/model'}, 'test-secret', Path(tmp), allow_nonaction=True)
             self.assertEqual(output, '')
-            self.assertEqual(classify_response(output, 'fictional evidence')['intent'], 'OTHER')
+            self.assertEqual(classify_response(output, 'fictional evidence', ['fictional evidence'])['intent'], 'OTHER')
             self.assertEqual(data['choices'][0]['message']['refusal'], 'I cannot play this scenario.')
             self.assertEqual(read(Path(tmp) / 'output.txt'), '')
 
