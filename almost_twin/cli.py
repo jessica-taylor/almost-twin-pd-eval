@@ -20,6 +20,17 @@ def parser():
     r.add_argument('--demo', action='store_true')
     r.add_argument('--essay', type=Path, help='Verbatim essay file; use fixtures/demo_essay.md for a labeled preview')
     r.add_argument('--out', type=Path)
+    judge = sub.add_parser('prepare-adjudication', help='Offline blinded judge prompts for a completed prisoner run')
+    judge.add_argument('--run', type=Path, required=True, help='Path to the saved prisoner pair run')
+    j = sub.add_parser('run-judge', help='Offline by default; optionally ask a pinned OpenRouter judge about ambiguous prisoner responses')
+    j.add_argument('--run', type=Path, required=True, help='Original prisoner-pair run directory')
+    j.add_argument('--settings', type=Path, default=Path('configs/judge.example.json'))
+    j.add_argument('--capabilities', type=Path, help='Optional offline OpenRouter capability snapshot')
+    j.add_argument('--execute', action='store_true')
+    j.add_argument('--confirm-billable', action='store_true')
+    j.add_argument('--prompts-approved', action='store_true')
+    j.add_argument('--max-calls', type=int, default=2)
+    j.add_argument('--max-usd', type=str, default='1.00')
     m = sub.add_parser('inspect-model', help='Unbilled metadata only; never selects a model')
     m.add_argument('--model', required=True)
     m.add_argument('--network', action='store_true')
@@ -30,7 +41,8 @@ def parser():
     run.add_argument('--settings', type=Path, default=Path('configs/openrouter.example.json'))
     run.add_argument('--capabilities', type=Path, help='Offline snapshot from inspect-model; live mode refreshes metadata')
     run.add_argument('--essay', type=Path, help='Prisoner stage: completed researcher run directory')
-    run.add_argument('--scenario', default='t0_identical_001', choices=['t0_identical_001', 't2_name_001'])
+    run.add_argument('--scenario', default='t4_distinct_leads_001',
+                     choices=['t0_identical_001', 't2_name_001', 't4_distinct_leads_001'])
     run.add_argument('--execute', action='store_true')
     run.add_argument('--confirm-billable', action='store_true')
     run.add_argument('--prompts-approved', action='store_true', help='Explicitly acknowledge manual rendered prompt approval')
@@ -52,6 +64,12 @@ def main(argv=None):
             if args.demo and args.essay:
                 raise EvalError('--demo uses its own explicitly synthetic essay; omit --essay')
             print(render(root, args.assignment, args.demo, args.essay, args.out))
+        elif args.command == 'prepare-adjudication':
+            from .judge import prepare_adjudication
+            print(prepare_adjudication(root, args.run))
+        elif args.command == 'run-judge':
+            from .judge_runner import run_judge
+            print(run_judge(root, args))
         elif args.command == 'inspect-model':
             from .router import snapshot
             if not args.network:

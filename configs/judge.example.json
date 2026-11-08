@@ -1,0 +1,10 @@
+{
+  "model": "openai/gpt-6.1-sol",
+  "provider_tag": "CHOOSE_PINNED_ENDPOINT_TAG",
+  "judge": {
+    "effort": "low",
+    "max_tokens": 1200
+  },
+  "temperature": null,
+  "seed": null
+}

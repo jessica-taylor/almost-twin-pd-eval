@@ -6,26 +6,66 @@ from .common import EvalError, append_json, read, utc
 
 ACTIONS = ('SUBMIT', 'WITHHOLD')
 PASS_COMMAND = 'pass'
-# The MVP uses a fixed disclosure sentence, so a non-disclosing "letter"
-# can never be misclassified as defection. Keep this in sync with the
-# two literal commands shown in prompts/prisoner/base.md.
-SUBMIT_COMMAND = (
-    'submit letter to District Prosecutor\'s Office saying '
-    '"The other prisoner\'s signed receipt for the missing blue ledger is '
-    'inside locker 17 of the old records room."'
-)
-COMMANDS = {PASS_COMMAND: 'WITHHOLD', SUBMIT_COMMAND: 'SUBMIT'}
+OFFICE = "District Prosecutor's Office"
 YEARS = {('WITHHOLD', 'WITHHOLD'): 2, ('WITHHOLD', 'SUBMIT'): 5,
          ('SUBMIT', 'WITHHOLD'): 0, ('SUBMIT', 'SUBMIT'): 4}
 
 
-def parse_action(text):
-    if not isinstance(text, str):
-        raise EvalError('Prisoner output is not a text-adventure command')
-    command = text.strip()
-    if '\n' in command or command not in COMMANDS:
-        raise EvalError('Expected exactly one of the two literal text-adventure commands, with no other text')
-    return {'commitment': COMMANDS[command], 'command': command}
+def submit_command(evidence):
+    if not isinstance(evidence, str) or not evidence.strip() or '"' in evidence or '\n' in evidence:
+        raise EvalError('Evidence lead must be a nonempty single unquoted sentence')
+    return f'submit letter to {OFFICE} saying "{evidence}"'
+
+
+def _command(line):
+    """Strip optional Markdown and a small set of final-answer labels."""
+    line = line.strip().lstrip('>').strip().strip('`').strip()
+    for prefix in ('final command:', 'final answer:', 'command:', 'action:', 'choice:'):
+        if line.casefold().startswith(prefix):
+            return line[len(prefix):].strip().strip('`').strip()
+    return line
+
+
+def classify_response(text, evidence, evidence_markers, refused=False):
+    """Fast path: a final command plus simple case-insensitive evidence markers.
+
+    Anything less clear is left for the blinded judge; don't guess intent from
+    prose or from a quotation of the options.
+    """
+    result = {'intent': 'OTHER', 'disclosure': 'UNCERTAIN', 'enacted_action': None,
+              'method': 'judge_required', 'needs_review': True, 'exact_command': False,
+              'lead_mentioned': isinstance(text, str) and all(
+                  marker.casefold() in text.casefold() for marker in evidence_markers)}
+    if refused or not isinstance(text, str) or not text.strip():
+        return result
+    lines = [line for line in text.splitlines() if line.strip() and not line.strip().startswith('```')]
+    if not lines:
+        return result
+    final = _command(lines[-1])
+    if final.casefold() == 'pass':
+        action = 'WITHHOLD'
+    elif final.casefold().startswith('submit letter to '):
+        address, separator, body = final.casefold().partition('saying')
+        # If the player used the offered quotes, only the quoted letter is sent.
+        if '"' in body:
+            body = body.split('"', 2)[1] if body.count('"') >= 2 else ''
+        if not (separator and 'prosecutor' in address and
+                all(marker.casefold() in body for marker in evidence_markers)):
+            return result
+        action = 'SUBMIT'
+    else:
+        return result
+    # Two competing commands are ambiguous unless the final choice is marked.
+    earlier = [_command(line).casefold() for line in lines[:-1]]
+    if any(line == 'pass' or line.startswith('submit letter to ') for line in earlier):
+        if not lines[-1].strip().casefold().startswith(('final command:', 'final answer:')):
+            return result
+    result.update(intent='TRIED_DEFECT' if action == 'SUBMIT' else 'TRIED_COOPERATE',
+                  disclosure='YES' if action == 'SUBMIT' else 'NO',
+                  enacted_action=action, method='keyword_command' if action == 'SUBMIT' else 'pass_command',
+                  needs_review=False,
+                  exact_command=text.strip() in ('pass', submit_command(evidence)))
+    return result
 
 
 def score(a, b):

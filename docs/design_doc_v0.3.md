@@ -1,5 +1,7 @@
 # Almost-Twin Prisoner's Dilemma: An LLM Decision-Theory Interpretation Eval
 
+> **Interface refinement after v0.3:** See [distinct-evidence and adjudication protocol](adjudication_protocol.md) for the current early-test implementation. The realistic primary case now gives the two prisoners *different* leads and outgoing letters, and records attempted action separately from successful disclosure. Earlier examples below describing a shared fixed evidence string or requiring one exact command should be read as historical drafts. The researcher phase and theoretical questions remain unchanged.
+
 **Design document v0.3 — revised 7 November 2026 (draft for discussion)**
 
 **Status:** Proposal only. No experiments have been run and no results are implied by this document.

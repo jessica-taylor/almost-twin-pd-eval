@@ -5,15 +5,22 @@ import re
 from pathlib import Path
 
 from .common import EvalError, encoded, load_yaml, read, sha, write_json
+from .game import submit_command
 
 SLOT = re.compile(r'\{\{([A-Z_]+)\}\}')
 
 
-def mask_private(rendered, observation):
-    """For pair audits, mask the known private insertion without visible XML tags."""
+def mask_private(rendered, observation, evidence):
+    """Mask all role-specific scene/letter slots without visible instrumentation."""
     if not isinstance(observation, str) or not observation.strip() or rendered.count(observation) != 1:
         raise EvalError('Private scene text must appear exactly once in the rendered prompt')
-    return rendered.replace(observation, '[PRIVATE_OBSERVATION]', 1)
+    command = submit_command(evidence)
+    # One appearance in the notebook and one inside the suggested letter.
+    if rendered.count(command) != 1 or rendered.count(evidence) != 2:
+        raise EvalError('Role-specific evidence must occur exactly in notebook and command')
+    return (rendered.replace(observation, '[PRIVATE_OBSERVATION]', 1)
+            .replace(command, '[PRIVATE_SUBMIT_COMMAND]', 1)
+            .replace(evidence, '[PRIVATE_EVIDENCE]', 1))
 
 
 def fill(template, values):
@@ -52,20 +59,42 @@ def researcher(root, item, source, source_info):
 def prisoners(root, item, essay, case):
     result = []
     for role in ('a', 'b'):
+        evidence = case[f'evidence_{role}']
         text = fill(read(root / 'prompts/prisoner/base.md'), {
             'THEORY_LABEL': item['theory_label'], 'ESSAY_TEXT': essay,
-            'OBSERVATION_RELATION': case['relation'], 'PRIVATE_OBSERVATION': case[f'private_{role}']})
+            'OBSERVATION_RELATION': case['relation'], 'PRIVATE_OBSERVATION': case[f'private_{role}'],
+            'EVIDENCE_LEAD': evidence, 'SUBMIT_COMMAND': submit_command(evidence)})
         result.append([{'role': 'user', 'content': text}])
     a, b = (x[0]['content'] for x in result)
-    if mask_private(a, case['private_a']) != mask_private(b, case['private_b']):
-        raise EvalError('Pair differs outside private observations')
+    if mask_private(a, case['private_a'], case['evidence_a']) != mask_private(b, case['private_b'], case['evidence_b']):
+        raise EvalError('Pair differs outside the declared role-specific scene/evidence/command slots')
     if case['family'] == 'T0_identical' and a != b:
         raise EvalError('T0 pair is not identical')
+    if case['family'] == 'T4_distinct_leads' and submit_command(case['evidence_a']) == submit_command(case['evidence_b']):
+        raise EvalError('Distinct-evidence case must have distinct in-world letters')
     return result
 
 
 def cases(root):
-    return load_yaml(root / 'prompts/prisoner/observation_cases.yaml')['cases']
+    data = load_yaml(root / 'prompts/prisoner/observation_cases.yaml')
+    result = []
+    for case in data['cases']:
+        c = dict(case)
+        if ('evidence_a' in c) != ('evidence_b' in c):
+            raise EvalError('Paired observations must supply both evidence leads or neither')
+        if ('evidence_markers_a' in c) != ('evidence_markers_b' in c):
+            raise EvalError('Paired observations must supply both marker lists or neither')
+        for role in ('a', 'b'):
+            c.setdefault(f'evidence_{role}', data['default_evidence'])
+            c.setdefault(f'evidence_markers_{role}', data['default_evidence_markers'])
+            submit_command(c[f'evidence_{role}'])
+            markers = c[f'evidence_markers_{role}']
+            if not isinstance(markers, list) or not markers or any(
+                    not isinstance(x, str) or not x.strip() or x.casefold() not in c[f'evidence_{role}'].casefold()
+                    for x in markers):
+                raise EvalError('Every evidence marker must occur in its own evidence lead')
+        result.append(c)
+    return result
 
 
 def export_messages(folder, name, messages):
@@ -97,7 +126,7 @@ def render(root, name, demo=False, essay_path=None, out=None):
         if not essay.strip():
             raise EvalError('Empty essay')
         for case in cases(root):
-            if case['family'] not in ('T0_identical', 'T2_name'):
+            if case['family'] not in ('T0_identical', 'T2_name', 'T4_distinct_leads'):
                 continue
             pair = prisoners(root, item, essay, case)
             case_dir = folder / case['family']
@@ -113,7 +142,7 @@ def render(root, name, demo=False, essay_path=None, out=None):
     index += '[Complete researcher prompt](researcher.md) · [Exact messages JSON](researcher.json) · [Hashes](audit.json)\n\n'
     if essay is not None:
         index += '| Case | Prisoner A | Prisoner B | Precise diff |\n|---|---|---|---|\n'
-        for family in ('T0_identical', 'T2_name'):
+        for family in ('T0_identical', 'T2_name', 'T4_distinct_leads'):
             index += f'| {family} | [A]({family}/a.md) | [B]({family}/b.md) | [Diff]({family}/pair.diff) |\n'
     (folder / 'index.md').write_text(index, encoding='utf-8')
     return folder

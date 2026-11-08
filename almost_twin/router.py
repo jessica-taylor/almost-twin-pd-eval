@@ -12,7 +12,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
-from .game import Game, parse_action
+from .game import Game, classify_response, score
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
 from .sources import load_source
 
@@ -87,8 +87,12 @@ def validate_settings(settings, cap, stage, messages):
     payload = {'model': model, 'messages': messages, 'reasoning': {'effort': effort},
                'max_tokens': limit, 'stream': False,
                'provider': {'only': [provider], 'order': [provider], 'allow_fallbacks': False, 'require_parameters': True}}
-    # Both stages use plain-text outputs. The prisoner stage parses exactly
-    # one adventure command, with no JSON-mode formatting constraint.
+    # Researchers and prisoners use free text. Only the separate blinded
+    # classifier asks for a machine-readable judgment.
+    if stage == 'judge':
+        if 'response_format' not in params:
+            raise EvalError('Judge endpoint must advertise JSON response_format')
+        payload['response_format'] = {'type': 'json_object'}
     for field in ('temperature', 'seed'):
         value = settings.get(field)
         if value is not None:
@@ -168,7 +172,7 @@ class Budget:
             # Reservations include failures/unknown transport outcomes; never automatically refund/retry.
 
 
-def post(payload, key, folder):
+def post(payload, key, folder, allow_nonaction=False):
     body = encoded(payload)
     (folder / 'request.json').write_bytes(body)
     req = urllib.request.Request(BASE + '/chat/completions', data=body,
@@ -197,6 +201,13 @@ def post(payload, key, folder):
             raise EvalError('Error or incomplete generation (finish reason is not stop)')
         if data.get('model') != payload['model']:
             raise EvalError('Returned model differs from explicit selected model; review raw response')
+        if allow_nonaction and (isinstance(text, str) or text is None):
+            # A prisoner's empty or refused *action* is an observed OTHER,
+            # not a lost trial. A model transport/finish failure still fails.
+            if text is None:
+                text = ''
+                (folder / 'output.txt').write_bytes(b'')
+            return data, text
         if not isinstance(text, str) or not text.strip() or choice['message'].get('refusal'):
             raise EvalError('Empty/nontext/refused output')
         return data, text
@@ -238,15 +249,16 @@ def run(root, args):
         essay_info = json.loads(read(essay_dir / 'essay.json'))
         essay_text = read(essay_dir / 'essay.md')
         if (essay_info.get('status') != 'success' or essay_info.get('assignment') != args.assignment or
-            essay_info.get('essay_sha256') != sha(essay_text) or essay_info.get('model') != settings['model']):
-            raise EvalError('Essay status, assignment, hash or same-model provenance mismatch')
+            essay_info.get('essay_sha256') != sha(essay_text) or essay_info.get('model') != settings['model'] or
+            essay_info.get('provider_tag') != settings['provider_tag']):
+            raise EvalError('Essay status, assignment, hash, model or pinned-provider provenance mismatch')
         # Recheck raw response to prevent accidentally using an edited essay export.
         original = json.loads((essay_dir / 'call_0/response.raw').read_bytes())
         if original['choices'][0]['message']['content'] != essay_text:
             raise EvalError('Frozen essay differs from exact model output')
         scenario = next((c for c in cases(root) if c['case_id'] == args.scenario), None)
-        if scenario is None or scenario['family'] not in ('T0_identical', 'T2_name'):
-            raise EvalError('Sprint 01 executes only an explicit T0 or T2 case')
+        if scenario is None or scenario['family'] not in ('T0_identical', 'T2_name', 'T4_distinct_leads'):
+            raise EvalError('Early test executes only T0, T2, or distinct-evidence T4 cases')
         message_sets = prisoners(root, item, essay_text, scenario)
         if original.get('model') != settings['model'] or original['choices'][0].get('finish_reason') != 'stop':
             raise EvalError('Essay raw response model/finish provenance mismatch')
@@ -289,6 +301,7 @@ def run(root, args):
     Budget(root / 'data/budget.jsonl', max_calls, max_usd).reserve(estimates, run_id)
     game = Game(root / 'data/commitments.jsonl', run_id)
     fingerprints = []
+    decisions = []
     log = root / ('data/researcher_essays.jsonl' if stage == 'researcher' else 'data/prisoner_decisions.jsonl')
     for i, payload in enumerate(payloads):
         call_dir = folder / f'call_{i}'
@@ -300,22 +313,30 @@ def run(root, args):
                   'request_sha256': sha(encoded(payload)), 'status': 'started', 'attempt': 1}
         append_json(log, record)
         try:
-            response, output = post(payload, key, call_dir)
+            response, output = post(payload, key, call_dir, allow_nonaction=(stage == 'prisoner'))
             expected_provider = estimates[i]['endpoint'].get('provider_name')
             if response.get('provider') and expected_provider and response['provider'] != expected_provider:
                 raise EvalError('Returned provider differs from the pinned endpoint provider')
             record.update(usage=response.get('usage'), finish_reason=response['choices'][0]['finish_reason'],
                           model_version=response.get('model'), fingerprint=response.get('system_fingerprint'),
-                          provider=response.get('provider'), response_id=response.get('id'))
+                          provider=response.get('provider'), response_id=response.get('id'),
+                          refusal=response['choices'][0]['message'].get('refusal'))
             if stage == 'researcher':
                 (folder / 'essay.md').write_bytes(output.encode('utf-8'))
                 info = {**record, 'status': 'success', 'assignment': args.assignment, 'essay_sha256': sha(output),
                         'researcher_effort': settings['researcher']['effort']}
                 write_json(folder / 'essay.json', info)
             else:
-                decision = parse_action(output)
-                game.commit(record['role'], decision['commitment'])
-                record.update(decision=decision, committed_action=decision['commitment'], researcher_effort=essay_info['researcher_effort'])
+                evidence = scenario[f'evidence_{record["role"]}']
+                decision = classify_response(output, evidence, scenario[f'evidence_markers_{record["role"]}'],
+                                             refused=bool(record['refusal']))
+                if decision['enacted_action'] is not None:
+                    game.commit(record['role'], decision['enacted_action'])
+                # Every generation, including an ambiguous/refused *action*,
+                # is preserved as a trial rather than treated as a parse crash.
+                record.update(decision=decision, committed_action=decision['enacted_action'],
+                              researcher_effort=essay_info['researcher_effort'])
+                decisions.append(decision)
                 fingerprints.append(response.get('system_fingerprint'))
             record['status'] = 'success'
             append_json(log, record)
@@ -338,6 +359,18 @@ def run(root, args):
         if all(fingerprints) and len(set(fingerprints)) != 1:
             write_json(folder / 'failure.json', {'error': 'Model fingerprints differ; commitments stand but pair excluded'})
             raise EvalError('Model fingerprints differ; no valid matched pair outcome (commitments retained)')
-        write_json(folder / 'outcome.json', {**game.outcome(), 'pair_id': run_id, 'essay_id': essay_id,
-                   'fingerprint_check': 'matched' if all(fingerprints) else 'unavailable; weights/version equality not independently verifiable'})
+        intent_actions = {'TRIED_COOPERATE': 'WITHHOLD', 'TRIED_DEFECT': 'SUBMIT'}
+        intended = [intent_actions.get(d['intent']) for d in decisions]
+        enacted = [d['enacted_action'] for d in decisions]
+        write_json(folder / 'outcome.json', {
+            **(game.outcome() if all(enacted) else {}),
+            'status': 'complete' if all(enacted) else 'incomplete_pending_adjudication',
+            'pair_id': run_id, 'essay_id': essay_id,
+            'intents': [d['intent'] for d in decisions],
+            'disclosures': [d['disclosure'] for d in decisions],
+            'enacted_actions': enacted,
+            'intent_score_if_enacted': score(*intended) if all(intended) else None,
+            'enacted_score': game.outcome() if all(enacted) else None,
+            'needs_review': [i for i, d in enumerate(decisions) if d['needs_review']],
+            'fingerprint_check': 'matched' if all(fingerprints) else 'unavailable; weights/version equality not independently verifiable'})
     return folder
