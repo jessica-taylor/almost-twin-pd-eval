@@ -114,6 +114,59 @@ class PreflightTests(unittest.TestCase):
         with self.assertRaisesRegex(EvalError, 'cache_storage.*cannot be bounded'):
             validate_settings(settings(), cap, 'researcher', [{'role': 'user', 'content': 'x'}])
 
+    def test_sol_judge_prompt_length_tiers_bound_and_select_direct_openai(self):
+        cap = capabilities()
+        cap['model']['id'] = 'openai/gpt-6.1-sol'
+        openai = endpoint(cap)
+        openai['supported_parameters'].append('response_format')
+        openai['pricing'] = {
+            'prompt': '0.000002', 'completion': '0.000010',
+            'input_cache_read': '0.0000001', 'input_cache_write': '0.0000003',
+            'overrides': [{'min_prompt_tokens': 272000,
+                           'prompt': '0.000004', 'completion': '0.000015',
+                           'input_cache_read': '0.0000002', 'input_cache_write': '0.000005'}],
+        }
+        s = {'model': cap['model']['id'], 'provider_tag': None,
+             'judge': {'effort': 'low', 'max_tokens': 1200},
+             'temperature': None, 'seed': None}
+        messages = [{'role': 'user', 'content': 'Judge this ambiguous fictional action.'}]
+        chosen, report = choose_endpoint(s, cap, [('judge', messages)], validate_settings)
+        self.assertEqual(chosen['provider_tag'], 'openai')
+        self.assertEqual(report['selected_endpoint'], 'openai')
+        payload, estimate = validate_settings(chosen, cap, 'judge', messages)
+        self.assertEqual(payload['response_format'], {'type': 'json_object'})
+        cost = (Decimal('0.000009') * estimate['input_tokens_upper_estimate']
+                + Decimal('0.000015') * 1200)
+        self.assertEqual(Decimal(estimate['estimated_max_usd']), cost)
+        self.assertEqual(estimate['pricing_assumptions']['effective_input_usd_per_token'], '0.000009')
+        self.assertEqual(estimate['pricing_assumptions']['pricing_tiers'][0]['min_prompt_tokens'], 272000)
+        self.assertIn('highest advertised rate', estimate['pricing_assumptions']['tier_policy'])
+
+    def test_prompt_length_tiers_fail_closed_on_unknown_rules(self):
+        cap = capabilities()
+        for bad in (
+            [{'min_prompt_tokens': 272000, 'cost': 9}],
+            [{'min_prompt_tokens': True, 'prompt': '0.000004'}],
+            [{'min_prompt_tokens': 272000, 'prompt': '-0.000004'}],
+            [{'min_prompt_tokens': 272000, 'prompt': 'not-a-rate'}],
+            [{'max_prompt_tokens': 272000, 'prompt': '0.000004'}],
+            {'min_prompt_tokens': 272000, 'prompt': '0.000004'},
+        ):
+            changed = copy.deepcopy(cap)
+            endpoint(changed)['pricing']['overrides'] = bad
+            with self.subTest(bad=bad), self.assertRaises(EvalError):
+                validate_settings(settings(), changed, 'researcher', [{'role': 'user', 'content': 'x'}])
+
+    def test_anthropic_author_endpoint_preferred_over_other_providers(self):
+        cap = capabilities()
+        cap['model']['id'] = 'anthropic/claude-test'
+        endpoint(cap)['tag'] = 'anthropic'
+        endpoint(cap, 'openai/flex')['tag'] = 'anthropic/fast'
+        s = settings()
+        s['model'], s['provider_tag'] = 'anthropic/claude-test', None
+        chosen, _ = choose_endpoint(s, cap, [('researcher', [{'role': 'user', 'content': 'x'}])], validate_settings)
+        self.assertEqual(chosen['provider_tag'], 'anthropic')
+
     def test_unused_modalities_allowed_but_automatic_search_or_unknown_costs_fail(self):
         cap = capabilities()
         endpoint(cap)['pricing'].update(image='0.003', audio='0.02')
@@ -442,3 +495,4 @@ class PilotTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

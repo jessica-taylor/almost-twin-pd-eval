@@ -19,6 +19,8 @@ python3 -m almost_twin fetch-sources --network --source cdt_wikipedia
 
 Only the first preparation needs a fetched and verified source. The following **prepares** five independent samples, makes unbilled model-capability checks, chooses a pinned endpoint for Nano and the judge, computes conservative cost estimates, and writes all initial researcher prompts. It makes **zero paid model calls**:
 
+Provider tags are normally selected automatically: prefer the model author's base endpoint (`openai` for OpenAI, `anthropic` for Anthropic), then author variants, then other validated endpoints. The chosen provider is frozen for the batch; there is no silent fallback or substitution during execution. Recognized prompt-length pricing tiers are conservatively priced using the highest applicable advertised rates, so a small judge request may have a deliberately high cost estimate.
+
 ```sh
 python3 -m almost_twin batch prepare \
   --assignment cdt_wikipedia --model openai/gpt-5-nano \
