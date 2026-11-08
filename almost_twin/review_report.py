@@ -1,7 +1,7 @@
 """Offline study-wide review dispositions; never changes scored outcomes.
 
-Kept outside frozen generation code so an already prepared study remains
-resumable. The original summary, JSONL, and judge results remain authoritative.
+Source responses and judge outcomes are authoritative; derived result indexes
+can be regenerated under the current code without making model calls.
 """
 
 import argparse
@@ -61,10 +61,12 @@ def write_review_report(root, folder):
             'planned_pairs': len(original_rows),
             'scored_pairs': counters['complete'],
             'resolved_nonaction_pairs': counters['resolved_nonaction'],
+            'resolved_unscored_pairs': counters['resolved_unscored'],
             'resolved_nonaction_prisoners': nonaction_prisoners,
             'human_review_pairs': counters['needs_human_review'],
             'other_unscored_pairs': sum(count for status, count in counters.items()
-                                        if status not in ('complete', 'resolved_nonaction', 'needs_human_review')),
+                                        if status not in ('complete', 'resolved_nonaction',
+                                                          'resolved_unscored', 'needs_human_review')),
             'status_counts': dict(counters),
         })
 
@@ -76,25 +78,28 @@ def write_review_report(root, folder):
     write_json(folder / 'review_summary.json', {
         'schema_version': 1, 'generated_at_utc': utc(), 'study_id': manifest['study_id'],
         'rule': RULE_ID, 'raw_results_sha256_by_cell': input_hashes,
-        'note': 'Offline review annotations. Does not change raw sample status, final actions, scores, or primary cooperation estimand.',
+        'note': 'Offline review annotations. Does not change source responses, judge outcomes, final actions, scores, or primary cooperation estimand.',
         'cell_summaries': cell_summaries})
     lines = ['# Offline study review dispositions', '',
-             '**No paid model calls.** Original `summary.md`, outcome JSON and frozen study '
-             'status remain unchanged. This report separates unscored, clearly judged '
+             '**No paid model calls.** Source model responses and judge outcomes '
+             'remain unchanged. This report separates unscored, clearly judged '
              'nonactions (including refusals) from genuinely unresolved human-review cases.', '',
-             '| Theory | Model | Scored pairs | Resolved nonaction pairs | Human-review pairs | Other unscored |',
-             '|---|---|---:|---:|---:|---:|']
+             '| Theory | Model | Scored pairs | Resolved nonaction pairs | Other resolved unscored | Human-review pairs | Other unscored |',
+             '|---|---|---:|---:|---:|---:|---:|']
     for item in cell_summaries:
         lines.append(f'| {item["assignment"]} | {item["model"]} | {item["scored_pairs"]} | '
-                     f'{item["resolved_nonaction_pairs"]} | {item["human_review_pairs"]} | '
+                     f'{item["resolved_nonaction_pairs"]} | {item["resolved_unscored_pairs"]} | '
+                     f'{item["human_review_pairs"]} | '
                      f'{item["other_unscored_pairs"]} |')
     lines += ['', 'A resolved nonaction requires a judge label of `OTHER`, disclosure `NO`, '
               'and an explicit `needs_human_review=false` for each unscored prisoner. '
               'The current judge schema does not distinguish refusal from other clear '
-              'nonparticipation; the exact judge explanations are in `review_samples.csv`. '
+              'nonparticipation. Other resolved unscored responses have clear intent and '
+              'disclosure labels but no valid scored game action. Exact judge explanations '
+              'are in `review_samples.csv`. '
               '**Do not score these as cooperation.**', '',
               'Input result hashes and the rule ID are in `review_summary.json`; '
-              'the original `results.jsonl` and response files are untouched.', '']
+              'source response and judge files are untouched.', '']
     (folder / 'review_summary.md').write_text('\n'.join(lines), encoding='utf-8')
     return folder
 

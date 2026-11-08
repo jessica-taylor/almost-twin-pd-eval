@@ -21,6 +21,7 @@ from .judge import judge_messages
 from .judge_runner import run_judge
 from .pilot import prepare as prepare_pilot, resume as resume_pilot
 from .preflight import choose_endpoint
+from .review_disposition import classify_adjudication
 from .router import Budget, snapshot, validate_settings
 
 
@@ -41,7 +42,7 @@ CODE_FILES = (
     'almost_twin/judge_runner.py', 'almost_twin/judge.py',
     'almost_twin/game.py', 'almost_twin/preflight.py',
     'almost_twin/prompts.py', 'almost_twin/sources.py',
-    'almost_twin/approvals.py',
+    'almost_twin/approvals.py', 'almost_twin/review_disposition.py',
 )
 
 
@@ -274,12 +275,12 @@ def _read_sample(folder, config, entry):
         result['judge_run'], result['judge_run_id'] = str(jdir), jdir.name
         if (jdir / 'adjudicated_outcome.json').exists():
             judged = json.loads(read(jdir / 'adjudicated_outcome.json'))
+            terminal = classify_adjudication(judged)
             result.update(judge_outcome=judged, adjudicated_actions=judged['adjudicated_actions'],
                           needs_human_review=judged['needs_human_review'],
                           final_actions=judged['adjudicated_actions'],
                           final_score=judged.get('adjudicated_score'),
-                          status='complete' if (judged['adjudicated_score'] is not None and
-                                                not judged['needs_human_review']) else 'needs_human_review')
+                          status=terminal['status'])
         elif sample_state.get('judge_status') == 'attempted':
             result.update(status='failed', error=f'Judge attempted; inspect {jdir}; no automatic retry')
     if sample_state.get('error'):
@@ -396,7 +397,8 @@ def run(root, args):
         todo = []
         for entry in config['samples']:
             status = _read_sample(folder, config, entry)['status']
-            if status in ('complete', 'failed', 'needs_human_review'):
+            if status in ('complete', 'failed', 'needs_human_review',
+                          'resolved_nonaction', 'resolved_unscored'):
                 continue
             if status == 'pending_judge' and config['judge_settings'] is None:
                 continue

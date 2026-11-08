@@ -124,12 +124,16 @@ It writes `samples/00000/result.md` and `result.json` (and equivalents for each 
 If a judge explicitly labels a prisoner `OTHER` / disclosure `NO` with
 `needs_human_review=false`, the pair is **unscored but no longer requires a
 human to resolve its action**. This includes clear procedural refusals, which
-must not be counted as cooperation. The existing frozen runner may still say
-`needs_human_review` because that previously meant *any* unscorable pair.
-The offline reporter now shows `resolved_nonaction` in its derived result; for
-study-wide corrected review counts (without changing the original score), run
+must not be counted as cooperation. Fresh studies now use the terminal
+`resolved_nonaction` status directly; other confidently classified but invalid
+unscored actions are `resolved_unscored`. `needs_human_review` is reserved for
+actual ambiguity or inconsistent judging records. For older studies, the
+offline reporter can interpret the legacy broad `needs_human_review` status;
+to see review counts without changing any source outcome, run
 `python3 -m almost_twin.review_report --study data/studies/cdt-haiku-gemini-smoke`.
-See [the review-disposition protocol](docs/study_workflow.md#clear-refusals-versus-genuinely-ambiguous-actions-offline-annotation).
+Changes to the generation runner require **preparing a new study** before
+further paid calls; old frozen runs can still be inspected offline.
+See [the review-disposition protocol](docs/study_workflow.md#clear-refusals-versus-genuinely-ambiguous-actions).
 
 ## Try it offline
 

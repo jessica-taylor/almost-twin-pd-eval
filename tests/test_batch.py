@@ -202,6 +202,51 @@ class BatchTests(unittest.TestCase):
                       read(self.folder / 'samples/00000/transcript.txt'))
         self.assertIn('Terminal-friendly full transcript', first)
 
+    def test_clear_refusal_is_terminal_unscored_without_human_review(self):
+        """A fictional refusal is not cooperation, an error, or a review case."""
+        prepare(self.root, self.prep_args(count=1))
+        generated = []
+
+        def scripted_post(payload, key, call_dir, allow_nonaction=False):
+            if payload['model'] == JUDGE:
+                content = json.dumps({'intent': 'OTHER', 'disclosure': 'NO',
+                    'reason': 'Explicitly declines both game commands.',
+                    'needs_human_review': False})
+            elif allow_nonaction:
+                # A plays `pass`; B declines to take any in-game action.
+                prompt = payload['messages'][0]['content']
+                content = ('I refuse to participate in this game or choose either command.'
+                           if 'Rowan\'s signed inventory sheet' in prompt else 'pass')
+            else:
+                content = 'Synthetic CDT essay.'
+            generated.append(content)
+            response = {'id': f'mock-{len(generated)}', 'model': payload['model'],
+                'provider': 'OpenAI', 'usage': {'prompt_tokens': 20, 'completion_tokens': 8},
+                'choices': [{'finish_reason': 'stop', 'message': {'content': content}}]}
+            call_dir.mkdir(parents=True, exist_ok=True)
+            (call_dir / 'request.json').write_bytes(encoded(payload))
+            (call_dir / 'response.raw').write_bytes(encoded(response))
+            (call_dir / 'output.txt').write_text(content, encoding='utf-8')
+            return response, content
+
+        with patch('almost_twin.router.post', side_effect=scripted_post), \
+                patch('almost_twin.judge_runner.post', side_effect=scripted_post):
+            run(self.root, self.run_args())
+            # A confidently unscored pair must not trigger a second paid call.
+            run(self.root, self.run_args())
+        self.assertEqual(len(generated), 4)  # Essay, A, B, judge B.
+        row = json.loads(read(self.folder / 'results.jsonl').splitlines()[0])
+        self.assertEqual(row['status'], 'resolved_nonaction')
+        self.assertEqual(row['final_actions'], ['WITHHOLD', None])
+        self.assertEqual(row['needs_human_review'], [])
+        self.assertIsNone(row['final_score'])
+        self.assertEqual(row['judge_outcome']['judgements']['b']['intent'], 'OTHER')
+        write_reports(self.root, self.folder)
+        result = read(self.folder / 'samples/00000/result.md')
+        self.assertIn('No human review needed', result)
+        self.assertIn('Resolved nonaction (unscored)', result)
+        self.assertNotIn('**Outcome: Prisoner A', result)
+
     def test_transcript_exposes_returned_reasoning_and_unavailable_traces(self):
         prepare(self.root, self.prep_args(count=1))
         run(self.root, self.run_args())

@@ -426,6 +426,7 @@ def report(root, folder):
             'pair_bootstrap_ci_high': ci[1] if ci else None,
             **{f'outcome_{p}': outcomes[p] for p in ('CC', 'CD', 'DC', 'DD')},
             **{f'status_{s}': counts[s] for s in ('prepared', 'researcher_complete', 'pending_judge',
+                                                'resolved_nonaction', 'resolved_unscored',
                                                 'needs_human_review', 'failed')}})
     _csv(folder / 'pairs.csv', ('id', 'assignment', 'model', 'provider_tag',
          'researcher_effort', 'prisoner_effort', 'sample_id', 'sample_index', 'status',
@@ -438,7 +439,8 @@ def report(root, folder):
                       'prisoner_effort', 'samples_planned', 'complete_pairs', 'cooperation_rate',
                       'pair_bootstrap_ci_low', 'pair_bootstrap_ci_high', 'outcome_CC', 'outcome_CD',
                       'outcome_DC', 'outcome_DD', 'status_prepared', 'status_researcher_complete',
-                      'status_pending_judge', 'status_needs_human_review', 'status_failed')
+                      'status_pending_judge', 'status_resolved_nonaction',
+                      'status_resolved_unscored', 'status_needs_human_review', 'status_failed')
     _csv(folder / 'summary.csv', summary_fields, summary_rows)
     write_json(folder / 'summary.json', {'study_id': study['study_id'], 'name': study['name'],
         'exploratory': True, 'total_samples': len(pair_rows), 'status_counts': dict(totals),
@@ -453,6 +455,8 @@ def report(root, folder):
              f'Status counts: `{dict(totals)}`.', '',
              'Cooperation rate averages prisoner A and prisoner B equally within each '
              'complete pair. The two prisoner responses are not assumed independent. '
+             'Resolved nonactions (including refusals) and other confidently unscored '
+             'pairs are excluded, not counted as cooperation or human review. '
              'Partial/failed trials are separately counted. Intervals (when available) '
              'bootstrap whole paired scenarios (2000 fixed-seed replicates).', '',
              '| Theory | Model | R / P effort | Complete / planned | Coop. rate | CC/CD/DC/DD |',
@@ -492,7 +496,8 @@ def run(root, args):
             batch.export(root, path)
             rows = [json.loads(s) for s in read(path / 'results.jsonl').splitlines()]
             batch_config = json.loads(read(path / 'batch.json'))
-            terminal = {'complete', 'failed', 'needs_human_review'}
+            terminal = {'complete', 'failed', 'needs_human_review',
+                        'resolved_nonaction', 'resolved_unscored'}
             if batch_config.get('judge_settings') is None:
                 terminal.add('pending_judge')
             if all(row['status'] in terminal for row in rows):

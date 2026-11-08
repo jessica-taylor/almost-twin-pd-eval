@@ -198,24 +198,35 @@ sharing or publication. The code is still labeled **exploratory**; freeze a
 separate preregistration of models, source versions, effort settings, planned
 N and analysis before a confirmatory research run.
 
-### Clear refusals versus genuinely ambiguous actions (offline annotation)
+### Clear refusals versus genuinely ambiguous actions
 
 An explicit refusal to participate is **not** the game command `pass` and must
 not be counted as cooperation. The current judge schema intentionally labels
 procedural refusals `intent=OTHER`, `disclosure=NO`. If it also returns
 `needs_human_review=false`, then the outcome is an **unscored, resolved
-nonaction**, not a case requiring additional human adjudication. The existing
+nonaction**, not a case requiring additional human adjudication. The
 judge schema does not distinguish refusals from other clear non-decisions;
 consult its saved `reason` and the model transcript for the exact distinction.
 
-The original batch runner used the broad terminal status `needs_human_review`
-for **any** unscorable pair, even when the judge explicitly set its review
-flag to false. Prepared studies hash the execution and judging code, so fixing
-that live status logic in place would prevent an already-started study from
-resuming. To preserve the frozen instrument, we provide an **offline-only,
-versioned review disposition** that corrects this reporting distinction
-without altering the source outcome, game journal, model calls, or cooperation
-denominator:
+The batch runner now distinguishes these terminal statuses:
+
+- `complete`: a valid action for both prisoners, with a scored pair.
+- `resolved_nonaction`: at least one confidently classified `OTHER` / `NO`
+  response, with no actual ambiguity; the pair is **unscored**.
+- `resolved_unscored`: another confidently judged but invalid/unscorable
+  action (e.g. a clear attempt to submit evidence without disclosing it).
+- `needs_human_review`: an ambiguous disclosure, a judge request for review,
+  or inconsistent judge annotations; only these require human attention.
+
+No resolved nonaction or other resolved-unscored pair is counted in cooperation
+rates. The code checks the structured judge decisions, not its free-form
+explanation, and never overrides the original fictional commitment journal.
+
+Older frozen studies used `needs_human_review` for **every** unscorable pair.
+The offline review report can still interpret those records. Re-running the
+current reporter does **not** make model calls, but changing hashed runner
+code invalidates live resume of a previously prepared study; start a new
+study directory to use this status logic for new experiments:
 
 ```sh
 python3 -m almost_twin.sample_report \
@@ -224,15 +235,12 @@ python3 -m almost_twin.review_report \
   --study data/studies/cdt-haiku-gemini-smoke
 ```
 
-The first command adds `review_disposition` to the **derived** per-sample
-`result.json`, a clear explanation in `result.md`, and a note in the readable
-transcripts. The second creates **`review_summary.md`, `review_summary.json`
-and `review_samples.csv`**, showing resolved nonactions separately from true
-human-review cases. Both commands are unbilled and work on already-prepared
-studies; original JSONL statuses and historical scores remain untouched. The
-report includes the exact source-results hashes and rule identifier. Existing
-`study run` may continue to print the original broad terminal status—this is
-intentional to avoid silently changing an in-progress frozen experiment.
+The first command writes per-sample `review_disposition` to derived `result.json`,
+an explanation in `result.md`, and readable transcripts. The second writes
+**`review_summary.md`, `review_summary.json`, and `review_samples.csv`**,
+separating resolved nonactions, other unscored cases, and actual human-review
+cases. Both commands are unbilled. Responses, judge records and historical
+scores remain unchanged; derived summaries are generated from those sources.
 
 For future instruments, consider a distinct `REFUSAL` judge label and a
 separate terminal `refused` status; that is a **new judging protocol** and
