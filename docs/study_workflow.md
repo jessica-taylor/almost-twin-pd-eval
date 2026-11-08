@@ -126,9 +126,12 @@ python3 -m almost_twin.sample_report \
   --batch data/studies/cross-provider-v1/batches/<cell-id>
 ```
 
-`samples/00000/transcript.md` links exact model responses, readable reasoning
-when supplied and raw OpenRouter JSON. The study summary does not reinterpret
-or overwrite those original records. All `data/` remains gitignored and
+`samples/00000/transcript.md` and `samples/00000/transcript.txt` both include
+all visible model responses and readable reasoning **inline**. The Markdown
+version additionally links the exact individual text files and raw OpenRouter
+JSON. For a terminal, use `less samples/00000/transcript.txt` from the batch
+directory. The study summary does not reinterpret or overwrite those original
+records. All `data/` remains gitignored and
 should be reviewed for source rights and sensitive provider data before
 sharing or publication. The code is still labeled **exploratory**; freeze a
 separate preregistration of models, source versions, effort settings, planned

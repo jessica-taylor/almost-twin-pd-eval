@@ -194,7 +194,13 @@ class BatchTests(unittest.TestCase):
         self.assertIn('Prisoner A', transcript)
         self.assertIn('Judge for A', transcript)
         self.assertIn('Readable reasoning: **not provided**', transcript)
+        self.assertIn('### Complete visible response', transcript)
+        self.assertIn('I submit the locker 17 information to the prosecutor.', transcript)
+        self.assertIn('Synthetic essay #1: reason according to CDT.', transcript)
         self.assertTrue((self.folder / 'samples/00000/transcript/prisoner_a_response.txt').exists())
+        self.assertIn('I submit the locker 17 information to the prosecutor.',
+                      read(self.folder / 'samples/00000/transcript.txt'))
+        self.assertIn('Terminal-friendly full transcript', first)
 
     def test_transcript_exposes_returned_reasoning_and_unavailable_traces(self):
         prepare(self.root, self.prep_args(count=1))
@@ -245,6 +251,29 @@ class BatchTests(unittest.TestCase):
         transcript = read(sample / 'transcript.md')
         self.assertIn('Reasoning tokens reported in usage: `15`', transcript)
         self.assertIn('Original API response (complete JSON)', transcript)
+        self.assertIn('Private-model-reasoning returned as plaintext.', transcript)
+        self.assertIn('Considering option A.', transcript)
+        self.assertIn('Judge rationale via legacy alias.', read(sample / 'transcript.txt'))
+        self.assertNotIn('synthetic-encrypted-payload', transcript)
+
+    def test_transcript_escapes_model_markdown_fences_without_truncation(self):
+        prepare(self.root, self.prep_args(count=1))
+        run(self.root, self.run_args())
+        row = json.loads(read(self.folder / 'results.jsonl').splitlines()[0])
+        raw_file = Path(row['prisoner_run']) / 'call_1/response.raw'
+        raw = json.loads(read(raw_file))
+        reasoning = 'A note before.\n```\n## A heading that should stay literal\n```\nA note after.'
+        raw['choices'][0]['message']['reasoning'] = reasoning
+        write_json(raw_file, raw)
+        calls = len(self.calls)
+        write_reports(self.root, self.folder)
+        self.assertEqual(len(self.calls), calls)
+        sample = self.folder / 'samples/00000'
+        markdown = read(sample / 'transcript.md')
+        text = read(sample / 'transcript.txt')
+        self.assertIn('````text\n' + reasoning + '\n````', markdown)
+        self.assertIn(reasoning, text)
+        self.assertEqual(read(sample / 'transcript/prisoner_b_reasoning.txt'), reasoning)
 
     def test_resume_only_pending_samples_and_no_double_calls(self):
         prepare(self.root, self.prep_args())
