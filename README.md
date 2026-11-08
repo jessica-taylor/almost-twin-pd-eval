@@ -103,6 +103,14 @@ preflight projection exceeds it. Prisoner A and B continue to receive their
 fixed, different prompts, and the primary cooperation rate weights them
 equally within each complete two-prisoner sample.
 
+For the **Haiku versus Gemini Flash CDT-only pilot**, use
+`configs/study.cdt-haiku-gemini-smoke.yaml` and the exact staged commands in
+[the cross-provider CDT section](docs/study_workflow.md#cross-provider-cdt-pilot-haiku-versus-gemini-flash).
+It runs two full scenarios per model at low effort, keeps the Wikipedia CDT
+source and A/B observations fixed, and lets metadata preflight select and
+validate the serving endpoint automatically. This is a system check, not
+enough samples for a meaningful comparison of cooperation rates.
+
 See [study workflow and safeguards](docs/study_workflow.md).
 
 For an immediately readable **cooperate/defect result in every sample directory**, run the offline reporting command after any amount of batch progress:

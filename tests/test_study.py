@@ -225,6 +225,21 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(parser().parse_args(['study', 'run', '--study', 'y']).study_command, 'run')
         self.assertEqual(parser().parse_args(['study', 'report', '--study', 'y']).study_command, 'report')
 
+    def test_cross_provider_cdt_smoke_config_has_exactly_two_low_effort_cells(self):
+        spec, _ = load_spec(ROOT / 'configs/study.cdt-haiku-gemini-smoke.yaml')
+        self.assertTrue(spec['exploratory'])
+        self.assertEqual(spec['assignments'], ['cdt_wikipedia'])
+        self.assertEqual(spec['scenario'], 't4_distinct_leads_001')
+        self.assertEqual(spec['count_per_cell'], 2)
+        self.assertEqual(spec['researcher_efforts'], ['low'])
+        self.assertEqual(spec['prisoner_efforts'], ['low'])
+        self.assertEqual([model['id'] for model in spec['models']], [
+            'anthropic/claude-haiku-5.5', 'google/gemini-3.8-flash'])
+        self.assertTrue(all(model.get('provider_tag') is None for model in spec['models']))
+        self.assertTrue(spec['judge']['enabled'])
+        self.assertEqual(spec['judge']['model'], JUDGE)
+        self.assertEqual(spec['judge']['effort'], 'low')
+
 
 if __name__ == '__main__':
     unittest.main()
