@@ -13,6 +13,7 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from decimal import Decimal
 from pathlib import Path
+from time import monotonic
 from types import SimpleNamespace
 
 from .approvals import approve, source_scope
@@ -43,6 +44,7 @@ CODE_FILES = (
     'almost_twin/game.py', 'almost_twin/preflight.py',
     'almost_twin/prompts.py', 'almost_twin/sources.py',
     'almost_twin/approvals.py', 'almost_twin/review_disposition.py',
+    'almost_twin/accounting.py',
 )
 
 
@@ -206,6 +208,8 @@ def prepare(root, args):
     # represent only the shared fields and explicit seed policy.
     _seal(folder / 'batch.json', batch)
     plan = {'batch_id': batch['batch_id'], 'exploratory': True, 'count': args.count,
+            'expected_researcher_plus_prisoner_usd': str(
+                Decimal(projected['expected_three_call_usd']) * args.count),
             'projected_researcher_plus_prisoner_usd': str(sum(
                 Decimal(e['estimated_max_usd']) for e in estimates)),
             'projected_request_count': 3 * args.count,
@@ -213,13 +217,15 @@ def prepare(root, args):
             'judge_pricing': 'Actual uncertain judge prompts priced and reserved only when generated',
             'budget_check': budget_check, 'judge_selection': judge_selection,
             'approval_scope': _approval_scope(batch),
-            'note': 'Projected prisoner costs use a conservative context ceiling, not the future essay length.'}
+            'note': 'Projected prisoner costs use the enforced researcher-essay JSON-size ceiling; '
+                    'actual assembled prompts are independently checked before billing.'}
     write_json(folder / 'plan.json', plan)
     (folder / 'plan.md').write_text(
         '# Exploratory Almost-Twin PD batch\n\n'
         f'Batch: {batch["batch_id"]}; {args.count} fresh researcher essays + {2 * args.count} prisoner calls.\n\n'
         f'Assignment: {args.assignment}; scenario: {args.scenario}; model: {args.model}; endpoint: {first["settings"]["provider_tag"]}.\n\n'
-        f'Estimated upper bound (researcher + prisoners): ${plan["projected_researcher_plus_prisoner_usd"]}. '
+        f'Expected researcher + prisoner cost (heuristic): ${plan["expected_researcher_plus_prisoner_usd"]}. '
+        f'Estimated upper bound: ${plan["projected_researcher_plus_prisoner_usd"]}. '
         'Judge costs are separately capped and validated at request time.\n\n'
         'Review the source and prompt templates, the first sample in samples/00000/researcher/messages_0.md, '
         'and plan.json before authorizing dynamic sample generation.\n\n'
@@ -373,6 +379,12 @@ def _sample_live(root, folder, entry, scope, config):
             return {'sample_id': entry['sample_id'], 'status': 'failed', 'error': str(error)}
 
 
+def _timed_sample_live(root, folder, entry, scope, config):
+    started = monotonic()
+    result = _sample_live(root, folder, entry, scope, config)
+    return {**result, 'elapsed_seconds': round(monotonic() - started, 3)}
+
+
 def run(root, args):
     root, folder = Path(root).resolve(), Path(args.batch).resolve()
     config = _load(root, folder, require_original_code=bool(args.execute or args.confirm_billable))
@@ -406,13 +418,19 @@ def run(root, args):
         if args.limit is not None:
             todo = todo[:args.limit]
         results = []
+        started = monotonic()
         with ThreadPoolExecutor(max_workers=args.jobs) as pool:
-            futures = [pool.submit(_sample_live, root, folder, entry, scope, config) for entry in todo]
+            futures = [pool.submit(_timed_sample_live, root, folder, entry, scope, config) for entry in todo]
             for future in as_completed(futures):
                 result = future.result()
                 results.append(result)
                 _event(folder, 'sample_processed', **result)
                 # Keep a resumable materialized index even if interrupted.
                 export(root, folder)
-        _event(folder, 'batch_run_finished', attempted=len(todo), failed=sum(r['status'] == 'failed' for r in results))
-        return export(root, folder)
+        _event(folder, 'batch_run_finished', attempted=len(todo),
+               failed=sum(r['status'] == 'failed' for r in results),
+               elapsed_seconds=round(monotonic() - started, 3))
+        if getattr(args, 'auto_reports', True):
+            from .sample_report import write_reports
+            write_reports(root, folder)  # Offline; no additional model requests.
+        return folder

@@ -16,8 +16,12 @@ from collections import Counter
 from decimal import Decimal
 from pathlib import Path
 from types import SimpleNamespace
+from time import monotonic
 
 from . import batch
+from .accounting import (EXPECTED_PRISONER_OUTPUT_TOKENS, EXPECTED_RESEARCHER_OUTPUT_TOKENS,
+                         expected_prisoner_input_tokens, prisoner_input_ceiling,
+                         sample_usage)
 from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
 from .judge import judge_messages
 from .preflight import choose_endpoint, estimate_price
@@ -199,6 +203,8 @@ def check(root, spec):
         except EvalError as exc:
             failures.append({'cell': 'judge', 'reason': str(exc)})
     projected = Decimal(0)
+    expected = Decimal(0)
+    full_context_projection = Decimal(0)
     estimates = []
     validated_cells = []
     for cell in _cells(spec):
@@ -216,23 +222,46 @@ def check(root, spec):
             settings, selection = choose_endpoint(settings, caps[cell['model']],
                 [('researcher', sources[cell['assignment']]),
                  ('prisoner', [{'role': 'user', 'content': ''}])], validate_settings)
-            _, researcher_price = validate_settings(settings, caps[cell['model']], 'researcher',
-                                                    sources[cell['assignment']])
+            researcher_payload, researcher_price = validate_settings(settings, caps[cell['model']],
+                                                                     'researcher', sources[cell['assignment']])
             prisoner_payload, prisoner_price = validate_settings(settings, caps[cell['model']], 'prisoner',
                                                                  [{'role': 'user', 'content': ''}])
             endpoint = prisoner_price['endpoint']
-            ceiling = min(endpoint['context_length'] - spec['prisoner_max_tokens'],
-                          endpoint.get('max_prompt_tokens') or endpoint['context_length'])
+            ceiling = prisoner_input_ceiling(root, assignment(root, cell['assignment']), scenario,
+                                             spec['researcher_max_tokens'], endpoint,
+                                             spec['prisoner_max_tokens'])
             per_prisoner, _ = estimate_price(prisoner_payload, endpoint, caps[cell['model']]['model'],
                                             ceiling, spec['prisoner_max_tokens'])
+            expected_input = expected_prisoner_input_tokens(root, assignment(root, cell['assignment']),
+                                                             scenario, spec['researcher_max_tokens'], endpoint,
+                                                             spec['prisoner_max_tokens'])
+            typical_prisoner, _ = estimate_price(prisoner_payload, endpoint, caps[cell['model']]['model'],
+                                                 expected_input,
+                                                 min(spec['prisoner_max_tokens'],
+                                                     EXPECTED_PRISONER_OUTPUT_TOKENS))
+            typical_researcher, _ = estimate_price(researcher_payload, researcher_price['endpoint'],
+                                                   caps[cell['model']]['model'],
+                                                   researcher_price['input_tokens_upper_estimate'],
+                                                   min(spec['researcher_max_tokens'],
+                                                       EXPECTED_RESEARCHER_OUTPUT_TOKENS))
+            full_ceiling = min(endpoint['context_length'] - spec['prisoner_max_tokens'],
+                               endpoint.get('max_prompt_tokens') or endpoint['context_length'])
+            full_per_prisoner, _ = estimate_price(prisoner_payload, endpoint, caps[cell['model']]['model'],
+                                                 full_ceiling, spec['prisoner_max_tokens'])
             per_sample = Decimal(researcher_price['estimated_max_usd']) + 2 * Decimal(per_prisoner)
+            typical_sample = Decimal(typical_researcher) + 2 * Decimal(typical_prisoner)
+            full_sample = Decimal(researcher_price['estimated_max_usd']) + 2 * Decimal(full_per_prisoner)
             projected += spec['count_per_cell'] * per_sample
+            expected += spec['count_per_cell'] * typical_sample
+            full_context_projection += spec['count_per_cell'] * full_sample
             # These are the same three conservative reservations prepared by batch.
             estimates.extend([{'estimated_max_usd': researcher_price['estimated_max_usd']},
                               {'estimated_max_usd': per_prisoner},
                               {'estimated_max_usd': per_prisoner}] * spec['count_per_cell'])
             validated_cells.append({**cell, 'selected_provider_tag': settings['provider_tag'],
-                                    'selection': selection, 'projected_usd': str(per_sample * spec['count_per_cell'])})
+                                    'selection': selection, 'projected_usd': str(per_sample * spec['count_per_cell']),
+                                    'expected_usd': str(typical_sample * spec['count_per_cell']),
+                                    'full_context_ceiling_usd': str(full_sample * spec['count_per_cell'])})
         except EvalError as exc:
             failures.append({'cell': cell['id'], 'reason': str(exc)})
     if not failures:
@@ -251,6 +280,13 @@ def check(root, spec):
             'no_billable_requests': True, 'count_per_cell': spec['count_per_cell'],
             'expected_cells': len(_cells(spec)), 'validated_cells': validated_cells,
             'projected_researcher_prisoner_usd': str(projected),
+            'expected_researcher_prisoner_usd': str(expected),
+            'projected_full_context_ceiling_usd': str(full_context_projection),
+            'cost_projection_method': 'Enforced max researcher essay JSON bytes = 8 x researcher_max_tokens; '
+                                      'final prisoner prompts revalidated before billing',
+            'expected_cost_method': 'Heuristic: up to 3000 researcher output tokens, 800 prisoner output '
+                                    'tokens, 4 encoded essay bytes per expected researcher token; '
+                                    'advertised pricing with conservative per-token rates',
             'projected_researcher_prisoner_calls': len(estimates),
             'possible_judge_calls': (2 * spec['count_per_cell'] * len(_cells(spec)) if judge['enabled'] else 0),
             'judge_selection': judge_selection, 'failures': failures}, caps, judge_cap
@@ -342,8 +378,12 @@ def prepare(root, args):
         f'{len(cells)} condition cells × {spec["count_per_cell"]} full paired scenarios; '
         f'{result["projected_researcher_prisoner_calls"]} baseline model calls, '
         f'up to {result["possible_judge_calls"]} judge calls.\n\n'
-        f'Conservative researcher/prisoner cost projection: '
-        f'${result["projected_researcher_prisoner_usd"]}; judges priced only on real requests.\n\n'
+        f'Expected researcher/prisoner cost (heuristic, not a cap): '
+        f'${result["expected_researcher_prisoner_usd"]}.\n\n'
+        f'Conservative researcher/prisoner cost bound using the enforced essay size limit: '
+        f'${result["projected_researcher_prisoner_usd"]}. An unrestricted full-context '
+        f'ceiling would have been ${result["projected_full_context_ceiling_usd"]}. '
+        'Judge requests are separately priced only when needed.\n\n'
         'Review specification.yaml, preflight.json, all selected providers and '
         'the existing researcher/prisoner/judge templates. Individual batch plans '
         'and first researcher messages appear under batches/.\n\n'
@@ -352,7 +392,7 @@ def prepare(root, args):
         'These flags authorize dynamic essay-dependent prompts, not literal review of every message.\n',
         encoding='utf-8')
     append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_prepared', 'cells': len(cells)})
-    report(root, folder)
+    report(root, folder, include_details=False)
     return folder
 
 
@@ -365,6 +405,17 @@ def _csv(path, fields, rows):
     path.write_text(buffer.getvalue(), encoding='utf-8')
 
 
+def _recorded_batch_seconds(folder):
+    """Sum completed batch-run durations, including work across resumptions."""
+    path = folder / 'events.jsonl'
+    if not path.is_file():
+        return None
+    durations = [event['elapsed_seconds'] for line in read(path).splitlines()
+                 if (event := json.loads(line)).get('event') == 'batch_run_finished'
+                 and isinstance(event.get('elapsed_seconds'), (float, int))]
+    return sum(durations) if durations else None
+
+
 def _ci_pair_bootstrap(fractions, seed, draws=2000):
     if len(fractions) < 10:
         return None
@@ -374,11 +425,16 @@ def _ci_pair_bootstrap(fractions, seed, draws=2000):
     return [values[int(.025 * draws)], values[int(.975 * draws) - 1]]
 
 
-def report(root, folder):
+def report(root, folder, include_details=True):
     root, folder = Path(root).resolve(), Path(folder).resolve()
     study = _load(root, folder)
     pair_rows, action_rows, summary_rows = [], [], []
     totals = Counter()
+    cost_counts = Counter()
+    reported_cost = Decimal(0)
+    execution_seconds = 0
+    execution_seconds_known = False
+    rate_limit_failures = 0
     for cell in study['cells']:
         batch_dir = folder / cell['path']
         batch.export(root, batch_dir)
@@ -386,7 +442,21 @@ def report(root, folder):
         outcomes = Counter()
         fractions = []
         counts = Counter(row['status'] for row in rows)
+        cell_counts = Counter()
+        cell_cost = Decimal(0)
+        cell_rate_limit_failures = 0
+        duration = _recorded_batch_seconds(batch_dir)
+        if duration is not None:
+            execution_seconds += duration
+            execution_seconds_known = True
         for row in rows:
+            usage = sample_usage(row)
+            cell_counts.update({key: usage[key] for key in
+                                ('attempted_calls', 'priced_calls', 'unpriced_calls',
+                                 'prompt_tokens', 'completion_tokens')})
+            cell_cost += Decimal(usage['reported_provider_usd'])
+            if row['status'] == 'failed' and 'HTTP 429' in (row.get('error') or ''):
+                cell_rate_limit_failures += 1
             a, b = (row.get('final_actions') or [None, None])[:2]
             pair = ((('C' if a == 'WITHHOLD' else 'D') + ('C' if b == 'WITHHOLD' else 'D'))
                     if row['status'] == 'complete' and a in ('WITHHOLD', 'SUBMIT')
@@ -402,7 +472,9 @@ def report(root, folder):
                 'essay_sha256': row.get('essay_sha256'),
                 'researcher_run': row.get('researcher_run'),
                 'prisoner_run': row.get('prisoner_run'), 'judge_run': row.get('judge_run'),
-                'error': row.get('error')})
+                'error': row.get('error'),
+                'reported_provider_usd': usage['reported_provider_usd'],
+                'unpriced_calls': usage['unpriced_calls']})
             for role, idx in (('a', 0), ('b', 1)):
                 action_rows.append({'cell_id': cell['id'], 'assignment': cell['assignment'],
                     'model': cell['model'], 'provider_tag': cell['selected_provider_tag'],
@@ -415,6 +487,9 @@ def report(root, folder):
                     'final_action': (row.get('final_actions') or [None, None])[idx],
                     'prisoner_run': row.get('prisoner_run')})
         totals.update(counts)
+        cost_counts.update(cell_counts)
+        reported_cost += cell_cost
+        rate_limit_failures += cell_rate_limit_failures
         mean = sum(fractions) / len(fractions) if fractions else None
         ci = _ci_pair_bootstrap(fractions, cell['id'])
         summary_rows.append({'cell_id': cell['id'], 'assignment': cell['assignment'],
@@ -424,6 +499,11 @@ def report(root, folder):
             'complete_pairs': len(fractions), 'cooperation_rate': mean,
             'pair_bootstrap_ci_low': ci[0] if ci else None,
             'pair_bootstrap_ci_high': ci[1] if ci else None,
+            'reported_provider_usd': str(cell_cost),
+            'priced_calls': cell_counts['priced_calls'],
+            'unpriced_calls': cell_counts['unpriced_calls'],
+            'rate_limit_failures': cell_rate_limit_failures,
+            'recorded_execution_seconds': duration,
             **{f'outcome_{p}': outcomes[p] for p in ('CC', 'CD', 'DC', 'DD')},
             **{f'status_{s}': counts[s] for s in ('prepared', 'researcher_complete', 'pending_judge',
                                                 'resolved_nonaction', 'resolved_unscored',
@@ -431,21 +511,32 @@ def report(root, folder):
     _csv(folder / 'pairs.csv', ('id', 'assignment', 'model', 'provider_tag',
          'researcher_effort', 'prisoner_effort', 'sample_id', 'sample_index', 'status',
          'pair_outcome', 'final_a', 'final_b', 'essay_sha256', 'researcher_run',
-         'prisoner_run', 'judge_run', 'error'), pair_rows)
+         'prisoner_run', 'judge_run', 'error', 'reported_provider_usd',
+         'unpriced_calls'), pair_rows)
     _csv(folder / 'decisions.csv', ('cell_id', 'assignment', 'model', 'provider_tag',
          'researcher_effort', 'prisoner_effort', 'sample_id', 'role', 'status', 'intent',
          'disclosure', 'enacted_action', 'final_action', 'prisoner_run'), action_rows)
     summary_fields = ('cell_id', 'assignment', 'model', 'provider_tag', 'researcher_effort',
                       'prisoner_effort', 'samples_planned', 'complete_pairs', 'cooperation_rate',
-                      'pair_bootstrap_ci_low', 'pair_bootstrap_ci_high', 'outcome_CC', 'outcome_CD',
+                      'pair_bootstrap_ci_low', 'pair_bootstrap_ci_high',
+                      'reported_provider_usd', 'priced_calls', 'unpriced_calls',
+                      'rate_limit_failures', 'recorded_execution_seconds',
+                      'outcome_CC', 'outcome_CD',
                       'outcome_DC', 'outcome_DD', 'status_prepared', 'status_researcher_complete',
                       'status_pending_judge', 'status_resolved_nonaction',
                       'status_resolved_unscored', 'status_needs_human_review', 'status_failed')
     _csv(folder / 'summary.csv', summary_fields, summary_rows)
+    measured = {'reported_provider_usd': str(reported_cost),
+                **{key: cost_counts[key] for key in ('attempted_calls', 'priced_calls',
+                    'unpriced_calls', 'prompt_tokens', 'completion_tokens')},
+                'all_calls_priced': cost_counts['unpriced_calls'] == 0,
+                'rate_limit_failures': rate_limit_failures,
+                'recorded_execution_seconds': round(execution_seconds, 3)
+                if execution_seconds_known else None}
     write_json(folder / 'summary.json', {'study_id': study['study_id'], 'name': study['name'],
         'exploratory': True, 'total_samples': len(pair_rows), 'status_counts': dict(totals),
         'total_complete_pairs': sum(r['complete_pairs'] for r in summary_rows),
-        'cell_summaries': summary_rows,
+        'cell_summaries': summary_rows, 'provider_usage': measured,
         'primary_estimand': 'mean of (cooperate A + cooperate B) / 2 over complete, scored pairs',
         'missingness': 'Unscored samples excluded from the rate and reported separately; no imputation',
         'intervals': '2000 deterministic bootstrap resamples of whole paired scenarios; only for n>=10'})
@@ -453,6 +544,13 @@ def report(root, folder):
              f'Full scenarios: {len(pair_rows)}; scored pairs: '
              f'{sum(r["complete_pairs"] for r in summary_rows)}.',
              f'Status counts: `{dict(totals)}`.', '',
+             f'Provider-reported inference charges: ${reported_cost} '
+             f'({cost_counts["priced_calls"]}/{cost_counts["attempted_calls"]} calls priced, '
+             f'{cost_counts["unpriced_calls"]} unknown). '
+             'Includes judge calls where available; missing charges are **not** treated as zero.',
+             f'Recorded execution time: {measured["recorded_execution_seconds"]} seconds '
+             f'(completed batch invocations; not model compute time). '
+             f'HTTP 429 failed scenarios: {rate_limit_failures}.', '',
              'Cooperation rate averages prisoner A and prisoner B equally within each '
              'complete pair. The two prisoner responses are not assumed independent. '
              'Resolved nonactions (including refusals) and other confidently unscored '
@@ -468,8 +566,16 @@ def report(root, folder):
                      f'{item["researcher_effort"]} / {item["prisoner_effort"]} | '
                      f'{item["complete_pairs"]} / {item["samples_planned"]} | {frac} | {outcomes} |')
     lines += ['', 'Machine-readable: `pairs.csv`, `decisions.csv`, `summary.csv`, `summary.json`.',
+              'Readable per-sample results and transcripts are in each batch under `samples/`;',
+              'the offline review disposition summary is in `review_summary.md`.',
               'Exact prompts, responses, available reasoning and judge records remain in each batch and its raw runs.', '']
     (folder / 'summary.md').write_text('\n'.join(lines), encoding='utf-8')
+    if include_details:
+        from .sample_report import write_reports
+        from .review_report import write_review_report
+        for cell in study['cells']:
+            write_reports(root, folder / cell['path'])
+        write_review_report(root, folder)
     return folder
 
 
@@ -504,9 +610,12 @@ def run(root, args):
                 continue
             count += 1
             append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_cell_started', 'cell': cell['id']})
+            started = monotonic()
             batch.run(root, SimpleNamespace(batch=path, execute=True, confirm_billable=True,
                 approve_variable_prompts=True, jobs=args.jobs, limit=args.limit_per_cell,
-                wait_for_lock=False))
-            append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_cell_finished', 'cell': cell['id']})
-            report(root, folder)
+                wait_for_lock=False, auto_reports=False))
+            append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_cell_finished',
+                                                 'cell': cell['id'],
+                                                 'elapsed_seconds': round(monotonic() - started, 3)})
+            report(root, folder, include_details=False)
         return report(root, folder)

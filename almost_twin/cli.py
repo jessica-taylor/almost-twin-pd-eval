@@ -177,7 +177,9 @@ def main(argv=None):
             if plan_path.exists():
                 plan = json.loads(plan_path.read_text())
                 if args.pilot_command == 'prepare':
-                    print(f"Exploratory pilot; no billable requests. Researcher estimate: ${plan['researcher_estimated_usd']}; three-call projected upper estimate: ${plan['projected_three_call_usd']}.")
+                    print(f"Exploratory pilot; no billable requests. Three-call expected cost (heuristic): "
+                          f"${plan['expected_three_call_usd']}; conservative upper estimate: "
+                          f"${plan['projected_three_call_usd']}.")
                     print(f"Inspect {folder / 'plan.md'} and {folder / 'researcher/messages_0.md'}")
                 else:
                     print(f"Estimated stage maximum: ${plan.get('estimated_total_usd')}; exact requests and metadata: {plan_path}")
@@ -197,7 +199,7 @@ def main(argv=None):
             summary = json.loads((folder / 'summary.json').read_text())
             print(f"Exploratory batch: {summary['total']} samples; statuses: {summary['counts']}")
             print(f"Analysis files: {folder / 'results.jsonl'} and {folder / 'results.csv'}")
-            print(f"Review: {folder / 'plan.md'}; raw runs: {folder / 'samples'}")
+            print(f"Review: {folder / 'plan.md'}; readable sample transcripts: {folder / 'samples'}")
         elif args.command == 'study':
             from .study import check as study_check, load_spec as study_load_spec
             from .study import prepare as study_prepare, run as study_run, report as study_report
@@ -207,7 +209,10 @@ def main(argv=None):
                 if args.out:
                     write_json(args.out, result)
                 print(json.dumps({k: result[k] for k in ('expected_cells', 'projected_researcher_prisoner_calls',
-                            'possible_judge_calls', 'projected_researcher_prisoner_usd', 'failures')}, indent=2))
+                            'possible_judge_calls', 'expected_researcher_prisoner_usd',
+                            'projected_researcher_prisoner_usd',
+                            'projected_full_context_ceiling_usd', 'expected_cost_method',
+                            'cost_projection_method', 'failures')}, indent=2))
                 if result['failures']:
                     return 1
                 print('All requested model/effort/provider cells passed unbilled preflight. No generations occurred.')
@@ -222,6 +227,15 @@ def main(argv=None):
             summary = json.loads((folder / 'summary.json').read_text())
             print(f"Study: {summary['total_complete_pairs']}/{summary['total_samples']} complete pairs; statuses: {summary['status_counts']}")
             print(f"Results: {folder / 'summary.md'}, {folder / 'summary.csv'}, {folder / 'pairs.csv'}, {folder / 'decisions.csv'}")
+            if args.study_command != 'prepare':
+                usage = summary['provider_usage']
+                print(f"Provider-reported cost: ${usage['reported_provider_usd']} "
+                      f"({usage['priced_calls']}/{usage['attempted_calls']} calls priced; "
+                      f"{usage['unpriced_calls']} unknown). "
+                      f"Recorded execution: {usage['recorded_execution_seconds']}s; "
+                      f"HTTP 429 failed scenarios: {usage['rate_limit_failures']}.")
+                print(f"Readable transcripts: {folder / 'batches'}; "
+                      f"review dispositions: {folder / 'review_summary.md'}")
         elif args.command == 'run':
             from .router import run
             print(run(root, args))

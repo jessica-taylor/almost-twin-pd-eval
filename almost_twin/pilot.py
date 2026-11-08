@@ -7,6 +7,8 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from .approvals import source_scope
+from .accounting import (EXPECTED_PRISONER_OUTPUT_TOKENS, EXPECTED_RESEARCHER_OUTPUT_TOKENS,
+                         expected_prisoner_input_tokens, prisoner_input_ceiling)
 from .common import EvalError, append_json, encoded, read, sha, utc, write_json
 from .preflight import choose_endpoint, estimate_price
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
@@ -64,7 +66,8 @@ def _readable(folder, config, state):
              f'Assignment: {config["assignment"]}; model: {config["settings"]["model"]}; pinned endpoint: {config["settings"]["provider_tag"]}.', '',
              f'Efforts: researcher={config["settings"]["researcher"]["effort"]}, prisoner={config["settings"]["prisoner"]["effort"]}. Scenario: {config["scenario"]}.', '',
              f'Researcher maximum estimated cost: ${root_plan["researcher_estimated_usd"]}.',
-             f'Projected three-call upper estimate: ${root_plan["projected_three_call_usd"]} (prisoner input bounded by endpoint context, conditional on fitting; actual prompts/cost prepared after essay).', '',
+             f'Expected three-call cost (heuristic, not a cap): ${root_plan["expected_three_call_usd"]}.',
+             f'Projected three-call upper estimate: ${root_plan["projected_three_call_usd"]} (prisoner input bounded by the enforced researcher-essay size limit and endpoint context; actual prompts/cost checked after essay).', '',
              '[Researcher prompt](researcher/messages_0.md) · [Exact message JSON](researcher/messages_0.json) · [Exact serialized request](researcher/request_0.json)', '',
              '[Machine plan, effort evidence and price assumptions](plan.json) · [Pinned settings](settings.json) · [Append-only pilot events](events.jsonl)', '',
              'No separate source approval is required. Source hashes and attribution are retained. Model calls require both --execute and --confirm-billable; prompt approval is tied to serialized request hashes.', '']
@@ -106,11 +109,20 @@ def prepare(root, args):
     payload, estimate = validate_settings(settings, cap, 'researcher', messages)
     prisoner_payload, prisoner_estimate = validate_settings(settings, cap, 'prisoner', [{'role': 'user', 'content': ''}])
     endpoint = prisoner_estimate['endpoint']
-    prompt_ceiling = min(endpoint['context_length'] - args.prisoner_max_tokens, endpoint.get('max_prompt_tokens') or endpoint['context_length'])
+    prompt_ceiling = prisoner_input_ceiling(root, item, scenario, args.researcher_max_tokens,
+                                             endpoint, args.prisoner_max_tokens)
     price, assumptions = estimate_price(prisoner_payload, endpoint, cap['model'], prompt_ceiling, args.prisoner_max_tokens)
+    typical_input = expected_prisoner_input_tokens(root, item, scenario, args.researcher_max_tokens,
+                                                   endpoint, args.prisoner_max_tokens)
+    typical_prisoner, _ = estimate_price(prisoner_payload, endpoint, cap['model'], typical_input,
+                                         min(args.prisoner_max_tokens, EXPECTED_PRISONER_OUTPUT_TOKENS))
+    typical_researcher, _ = estimate_price(payload, estimate['endpoint'], cap['model'],
+                                           estimate['input_tokens_upper_estimate'],
+                                           min(args.researcher_max_tokens, EXPECTED_RESEARCHER_OUTPUT_TOKENS))
+    typical_three_calls = str(Decimal(typical_researcher) + 2 * Decimal(typical_prisoner))
     projection = {'estimated_max_usd': price, 'pricing_assumptions': assumptions,
                   'input_tokens_upper_estimate': prompt_ceiling, 'reasoning_evidence': prisoner_estimate['reasoning_evidence'],
-                  'kind': 'context ceiling projection; not an actual prisoner request'}
+                  'kind': 'enforced essay-size ceiling; final assembled prisoner request still independently checked'}
     estimates = [estimate, projection, projection]
     budget = Budget(root / 'data/budget.jsonl', args.max_calls, args.max_usd).check(estimates)
     folder = Path(args.out).resolve() if args.out else root / 'data/pilots' / str(uuid.uuid4())
@@ -129,7 +141,9 @@ def prepare(root, args):
     _stage_export(folder / 'researcher', [payload], [estimate], {'stage': 'researcher', 'exploratory': True, **identity})
     write_json(folder / 'plan.json', {'exploratory': True, 'pilot_id': config['pilot_id'], 'source_identity': identity,
                 'endpoint_selection': selection, 'researcher_estimated_usd': estimate['estimated_max_usd'],
-                'projected_three_call_usd': _total(estimates), 'estimates': estimates, 'budget': budget,
+                'projected_three_call_usd': _total(estimates),
+                'expected_three_call_usd': typical_three_calls,
+                'estimates': estimates, 'budget': budget,
                 'source_approval_required': False,
                 'metadata_sha256': sha(encoded(cap))})
     write_json(folder / 'state.json', {})
