@@ -120,9 +120,10 @@ def parser():
     srun.add_argument('--execute', action='store_true')
     srun.add_argument('--confirm-billable', action='store_true')
     srun.add_argument('--approve-variable-prompts', action='store_true')
-    srun.add_argument('--jobs', type=int, default=1, help='Global maximum concurrent complete scenarios across model cells (1..16)')
-    srun.add_argument('--provider-jobs', type=int, default=1,
-                      help='Maximum concurrent scenarios per provider family (default: 1; 1..16)')
+    srun.add_argument('--jobs', type=int, default=5,
+                      help='Global maximum concurrent complete scenarios across model cells (default: 5; 1..16)')
+    srun.add_argument('--provider-jobs', type=int, default=2,
+                      help='Maximum concurrent scenarios per provider family (default: 2; 1..16)')
     srun.add_argument('--limit-cells', type=int, help='Process at most this many pending condition cells')
     srun.add_argument('--limit-per-cell', type=int, help='Process at most this many pending scenarios per selected cell')
     sstatus = study_actions.add_parser('report', help='Regenerate study-wide CSV/JSON/Markdown results; no model calls')
