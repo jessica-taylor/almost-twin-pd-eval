@@ -47,7 +47,8 @@ def parser():
     prep.add_argument('--prisoner-effort', default='low')
     prep.add_argument('--researcher-max-tokens', type=int, default=12000)
     prep.add_argument('--prisoner-max-tokens', type=int, default=3000)
-    prep.add_argument('--scenario', default='t4_distinct_leads_001', choices=['t0_identical_001', 't2_name_001', 't4_distinct_leads_001'])
+    prep.add_argument('--scenario', default='t4_distinct_leads_001',
+                      help='Active case_id in prompts/prisoner/observation_cases.yaml')
     prep.add_argument('--provider-tag', help='Override automatic endpoint selection; never silently replaced')
     prep.add_argument('--capabilities', type=Path, help='Use a saved snapshot for entirely offline preparation instead of metadata GETs')
     prep.add_argument('--allow-unverified-effort', metavar='REASON', help='Record a manual override only when metadata is insufficient; cannot override explicit unsupported efforts')
@@ -71,7 +72,7 @@ def parser():
     bprep.add_argument('--model', default='openai/gpt-5-nano')
     bprep.add_argument('--count', type=int, required=True)
     bprep.add_argument('--scenario', default='t4_distinct_leads_001',
-                       choices=['t0_identical_001', 't2_name_001', 't4_distinct_leads_001'])
+                       help='Active case_id in prompts/prisoner/observation_cases.yaml')
     bprep.add_argument('--researcher-effort', default='low')
     bprep.add_argument('--prisoner-effort', default='low')
     bprep.add_argument('--researcher-max-tokens', type=int, default=12000)
@@ -112,7 +113,7 @@ def parser():
     run.add_argument('--capabilities', type=Path, help='Offline snapshot from inspect-model; live mode refreshes metadata')
     run.add_argument('--essay', type=Path, help='Prisoner stage: completed researcher run directory')
     run.add_argument('--scenario', default='t4_distinct_leads_001',
-                     choices=['t0_identical_001', 't2_name_001', 't4_distinct_leads_001'])
+                     help='Active case_id in prompts/prisoner/observation_cases.yaml')
     run.add_argument('--execute', action='store_true')
     run.add_argument('--confirm-billable', action='store_true')
     run.add_argument('--prompts-approved', action='store_true', help='Explicitly acknowledge manual rendered prompt approval')

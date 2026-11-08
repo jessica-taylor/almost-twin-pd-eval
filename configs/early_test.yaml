@@ -57,7 +57,8 @@ main_protocol:
   prisoner_output_format: "command_preferred_with_fallback_adjudication"
   prisoner_reference: "essay_only"
   essay_samples_per_cell: 1
-  observation_families: ["T4_distinct_leads", "T0_identical", "T2_name"]
+  # All active cases have different private observations, evidence, and letter text.
+  observation_families: ["T4_distinct_leads"]
   default_scenario: "t4_distinct_leads_001"
   scenario_pairs_per_essay_and_condition: 1
   independent_prisoner_calls_per_pair: 2
@@ -83,3 +84,4 @@ privacy:
   never_log_api_key: true
   gitignore_downloaded_source_text: true
   gitignore_full_prompts_containing_copyrighted_sources: true
+

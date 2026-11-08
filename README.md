@@ -183,15 +183,15 @@ Render actual article text with the labeled synthetic essay for **procedure insp
 python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay fixtures/demo_essay.md
 ```
 
-Change `--assignment` to `cdt_sep`, `edt_sep`, `cdt_wikipedia`, `edt_wikipedia` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T0_identical/a.md`, `b.md` and `pair.diff` show identical requests; `T2_name/` changes only Rowan → Sasha; `T4_distinct_leads/` changes both characters' names, evidence and outgoing letters. `audit.json` records hashes. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
+Change `--assignment` to `cdt_sep`, `edt_sep`, `cdt_wikipedia`, `edt_wikipedia` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T4_distinct_leads/a.md`, `b.md` and `pair.diff` show the role-specific names, evidence and outgoing letters. `audit.json` records hashes. The current early-test design **always** gives the two prisoners different observations and different concrete disclosure commands; older identical-prompt controls are no longer runnable. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
 
-The handoff index at `data/review.md` links the full researcher prompt and both prisoner prompts/diffs for one T0 and one T2, plus all source reports. Prisoner previews currently contain the clearly labeled synthetic fixture because no live researcher essay exists. Before any live prisoner call, render again using the **actual frozen essay**:
+Any old `data/review.md` handoff index was generated under an earlier template version and may still refer to T0/T2 controls. Use a fresh `render-prompts` export for the current active case. Before any live prisoner call, render again using the **actual frozen essay**:
 
 ```sh
 python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay data/runs/RESEARCHER_RUN_ID/essay.md
 ```
 
-T0 requests are byte-identical. T2 requests differ only in the private intake-card name. T4 requests differ in three audited slots: the visible cell observation, the notebook's private lead, and the example disclosure command. Single-pass substitution preserves embedded essay/source text verbatim. IDs, filenames, budgets, hashes and hypotheses are metadata only. [docs/hypotheses.md](docs/hypotheses.md) is never loaded by rendering or execution; tests prohibit experiment/game fields in researcher instructions. Natural examples inside the supplied article are retained.
+T4 requests differ in three audited slots: the visible cell observation, the notebook's private lead, and the example disclosure command. No active scenario claims identical observations. New observation variants can be added to the YAML, but must also have distinct private observations and concrete disclosure letters. Single-pass substitution preserves embedded essay/source text verbatim. IDs, filenames, budgets, hashes and hypotheses are metadata only. [docs/hypotheses.md](docs/hypotheses.md) is never loaded by rendering or execution; tests prohibit experiment/game fields in researcher instructions. Natural examples inside the supplied article are retained.
 
 ## OpenRouter settings and lower-level preflight
 

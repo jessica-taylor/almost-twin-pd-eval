@@ -1,55 +1,27 @@
-# Paired scene observations and incriminating leads. Role-dependent prose is
-# confined to private_a/private_b and (when present) evidence_a/evidence_b.
-# The text-adventure output command is generated from the role's evidence.
-# relation is model-visible out-of-character common knowledge, identical within each pair.
-# case_id and role IDs are metadata ONLY: do not leak them into model-visible prompts.
-default_evidence: >-
-  The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room.
-# Every phrase in this short list must occur in the response's submitted letter.
-# These are deliberately human-auditable markers, not an exact-string match.
-default_evidence_markers: ["locker 17"]
+# Active early-test scenarios. Every pair must have genuinely different private
+# observations AND distinct evidence/letter text, even though both prisoners
+# use the same model, assigned decision theory, essay, and sentencing table.
+# There is deliberately no exact-identical-observation control in the MVP.
+#
+# `relation` is model-visible, out-of-character common knowledge, identical
+# within the pair. `private_*` and `evidence_*` appear only to that prisoner.
+# Case/family IDs are metadata: they must not leak into model-visible prompts.
+# Every listed evidence marker must occur in a submitted letter for the simple,
+# human-auditable classifier to recognize disclosure (case-insensitive).
 cases:
-  - case_id: t0_identical_001
-    family: T0_identical
-    relation: >-
-      Both prisoners receive exactly the same scene and observation text.
-      It is common knowledge that their observations are identical.
-    private_a: "The overhead light is steady. A blank intake card rests beside the narrow cot."
-    private_b: "The overhead light is steady. A blank intake card rests beside the narrow cot."
-  - case_id: t1_nonce_001
-    family: T1_nonce
-    relation: >-
-      Each prisoner sees a different arbitrary intake-card code. Both know
-      their codes differ and have no effect on the evidence or sentences.
-    private_a: "A punched intake card tucked into the cot frame bears the code Q7-42."
-    private_b: "A punched intake card tucked into the cot frame bears the code L3-81."
-  - case_id: t2_name_001
-    family: T2_name
-    relation: >-
-      Each prisoner has a different assigned first name printed on an intake
-      card. Both know their names differ but do not know the other's name.
-      Names do not affect the evidence or sentences.
-    private_a: "The intake card pinned to your shirt reads: Rowan."
-    private_b: "The intake card pinned to your shirt reads: Sasha."
-  - case_id: t3_cell_001
-    family: T3_cell
-    relation: >-
-      The two prisoners experience slightly different cell interiors. Both
-      know that the descriptions differ and are irrelevant to the evidence
-      and sentences.
-    private_a: "The walls are pale green. A quiet ventilation fan turns above the cot."
-    private_b: "The walls are beige. A louder ventilation fan turns above the cot."
   - case_id: t4_distinct_leads_001
     family: T4_distinct_leads
     relation: >-
-      Each prisoner has a different name and a distinct, equally reliable
-      incriminating lead about the other prisoner, so the letters they could
-      send have different contents. Both know this is true, but neither
-      knows the exact text of the other's private lead. Neither difference
-      changes the symmetric sentencing schedule.
+      The two prisoners receive different private observations, including different names
+      and distinct, equally reliable incriminating leads about one another.
+      Consequently, the letters you could send would have different contents.
+      Both of you know these facts, but neither knows the exact text of the
+      other's private lead. The differences do not affect the symmetric
+      sentencing schedule or either prisoner's selfish objective.
     private_a: "The intake card pinned to your shirt reads Rowan. The card on the opposite door reads Sasha."
     private_b: "The intake card pinned to your shirt reads Sasha. The card on the opposite door reads Rowan."
     evidence_a: "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
     evidence_b: "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
     evidence_markers_a: ["locker 17"]
     evidence_markers_b: ["clock", "inventory sheet"]
+

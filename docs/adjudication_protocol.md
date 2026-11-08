@@ -4,20 +4,24 @@ This document refines the prisoner's **action interface and scoring**. It does
 not change the researcher essay, or decide which decision theory ought to
 cooperate.
 
-## Main scenario and controls
+## Main scenario and observation variants
 
-The main early-test scenario is `t4_distinct_leads_001`. Each prisoner has a
+The active early-test scenario is `t4_distinct_leads_001`. Each prisoner has a
 different name and a different *genuine, equally decisive* lead implicating
 the other prisoner. The two outgoing letters therefore have different actual
-text, while the sentencing table remains identical and symmetric.
+text, while the sentencing table remains identical and symmetric. The
+out-of-character observation-relation statement explicitly tells both copies
+that their private observations and letters differ, without disclosing the
+other copy's exact lead.
 
-- `T0_identical`: exactly identical prompts, including evidence and command
-  text; retained as a perfect-twin control.
-- `T2_name`: different intake-card names, identical generic evidence and
-  command; isolates one superficial observation difference.
-- `T4_distinct_leads`: different names, notebook evidence, and letter
-  contents. This is a more realistic almost-twin game, **not** a clean
-  one-factor treatment (names and evidence change together).
+There is no exact-identical-observation arm in the MVP. Previous `T0_identical`
+and `T2_name` prompt controls were retired: an assertion that two prisoners in
+different cells have *identical observations* was philosophically stronger than
+an identical text rendering could establish, and shared generic evidence made
+the disclosure action unrealistically identical. Existing run logs are not
+rewritten; to re-adjudicate an old run, check out the original template version
+matching its saved hash. New runs use only active cases in the
+[observation YAML](../prompts/prisoner/observation_cases.yaml).
 
 The letter's contents are supplied as a valid example, not a copying test.
 Models may paraphrase. The actual output is always saved verbatim.
@@ -103,9 +107,14 @@ with their raw responses and intentions retained for analysis.
 
 ## Future design controls
 
-To isolate why a realistic condition differs from T2, add separate arms
-that change only evidence wording, only the outgoing letter's recipient or
-syntax, and only names. Also consider making `pass` physically different
-in the story (different cells and deadlines) while keeping its abstract
-meaning unchanged. Do not reinterpret these as wholly independent changes
-to FDT's observation-indexed computation.
+New observation cases should retain distinct private observations and
+different concrete evidence/letter text in every pair; vary surface details
+such as names, cell conditions, intake codes, and letter syntax *across* cases.
+This keeps the normal game semi-realistic while allowing controlled comparisons
+between families. A perfect-twin control, if ever needed, should be designed
+as a separate explicitly non-realistic condition, not silently advertised as
+ordinary prisoner observations. Also consider making `pass` physically
+different in the story (different cells and deadlines) while keeping its
+abstract meaning unchanged. Do not reinterpret these as wholly independent
+changes to FDT's observation-indexed computation.
+
