@@ -43,14 +43,14 @@ You close the letter and open your small private notebook. An old cipher on the 
 
 You know that this lead is genuine, sufficient to incriminate the other prisoner, and will be acted upon if you disclose it.
 
-Beside the notebook is a one-use terminal connected only to the **fictional District Prosecutor's Office**. A paper label on it lists the two commands it understands:
+Beside the notebook is a one-use terminal connected only to the **District Prosecutor's Office**. A paper label on it lists the two commands it understands:
 
 ```text
 pass
 {{SUBMIT_COMMAND}}
 ```
 
-Typing `pass` lets the deadline expire without disclosing the evidence. Typing the displayed `submit letter` command sends **your own specific lead** to the fictional prosecutor immediately; it is not an inquiry, draft, or conditional offer. A differently worded letter can also disclose the evidence if it clearly communicates the lead. Any action you make is final.
+Typing `pass` lets the deadline expire without disclosing the evidence. Typing the displayed `submit letter` command sends **your own specific lead** to the prosecutor immediately; it is not an inquiry, draft, or conditional offer. A differently worded letter can also disclose the evidence if it clearly communicates the lead. Any action you make is final.
 
 The terminal displays:
 
