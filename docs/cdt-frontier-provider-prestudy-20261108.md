@@ -35,8 +35,8 @@ The model IDs are intended identities, **not proof of endpoint capability**.
 allowances, prices and providers. In particular, do not silently downgrade
 effort or fall back to an unrelated model if an endpoint fails its check.
 Provider tags are deliberately not hardcoded: `study prepare` freezes the
-verified selected provider/route per cell, which must be reviewed. GLM and
-Qwen can have materially different hosts and quantizations.
+verified selected provider/route per cell, which must be reviewed. In
+particular, GLM's many possible hosts can differ in quantization/behavior.
 
 ## Essay limits and generation budgets
 
