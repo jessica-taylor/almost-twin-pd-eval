@@ -1,0 +1,161 @@
+{
+  "note": "Metadata only; no article text, excerpts, rendered prompts or media. Manual source review and manifest pinning remain pending.",
+  "sources": [
+    {
+      "source_id": "cdt_wikipedia",
+      "title": "Causal decision theory",
+      "revision_id": 1381555528,
+      "revision_timestamp": "2026-10-23T08:33:02Z",
+      "permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+      "attribution": {
+        "article_title": "Causal decision theory",
+        "contributors": "Wikipedia contributors",
+        "revision_id": 1381555528,
+        "revision_timestamp": "2026-10-23T08:33:02Z",
+        "permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+        "history_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&action=history",
+        "license_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "modifications": [
+          "Mechanically converted revision-pinned rendered HTML to Markdown; retained article prose, headings, lists, tables, citations and references.",
+          "Recovered formula LaTeX from MathML annotations/image alt text, or the same revision wikitext in order when counts match; did not rewrite, summarize or repair formulas.",
+          "Removed navigation, edit controls, styles and website UI; excluded media bytes/URLs while retaining meaningful text descriptions.",
+          "Prepended title, contributor attribution, revision/history URLs, license and conversion notice."
+        ],
+        "rights_qualifications": "Individual media and third-party quoted material may have separate rights. Source reuse or adaptations in future publications may carry attribution/share-alike or other obligations."
+      },
+      "downloads": [
+        {
+          "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&titles=Causal+decision+theory",
+          "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&titles=Causal+decision+theory",
+          "retrieved_at_utc": "2026-11-08T02:40:46.587299+00:00",
+          "raw_file": "revision.json",
+          "raw_sha256": "a19f40af87118872294aac8470584b965108d6faa27f1eb626262a6b1f6c2a96",
+          "bytes": 17468,
+          "content_type": "application/json; charset=utf-8"
+        },
+        {
+          "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1381555528&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+          "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1381555528&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+          "retrieved_at_utc": "2026-11-08T02:40:47.337492+00:00",
+          "raw_file": "parse.json",
+          "raw_sha256": "5bb86fb412834a0dc500c61f6cfc3952452c0400463d5b4da91bec9a178cafab",
+          "bytes": 104319,
+          "content_type": "application/json; charset=utf-8"
+        }
+      ],
+      "artifacts": {
+        "revision.wikitext": {
+          "sha256": "4c0c52e9d7b86178fb97edbe178392f19ed9bd0a959a1a3d6b5a19189f17d255",
+          "bytes": 16909,
+          "derived_from": "revision.json"
+        },
+        "rendered.html": {
+          "sha256": "818b291abd5b01d356496fe992a851ea4a279c6fbd588a54b23adf3d21390705",
+          "bytes": 81408,
+          "derived_from": "parse.json"
+        }
+      },
+      "normalized_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+      "text_statistics": {
+        "headings": 11,
+        "math_expressions": 19,
+        "wikitext_math_expressions": 19,
+        "wikitext_math_recoveries": 19,
+        "reference_anchors": 51,
+        "characters": 23876,
+        "words": 2238,
+        "lines": 169
+      },
+      "revision_pinned": false,
+      "manual_revision_review": "pending",
+      "source_provenance_sha256": "d677b52feee8745aa1f0eb22b6e22307a0f88f3a248df33f5ae36f347e1d151e",
+      "automated_qa": "passed_automated_checks",
+      "manual_approval": false,
+      "media_exclusions_count": 0,
+      "inspection_notes": [
+        "All original math tags retained as exact LaTeX; MathML/wikitext ordinal correspondence needs manual review.",
+        "Twin/correlated-decision examples preserved; see local QA before interpretation.",
+        "Publisher citation warning retained; inspect original API diagnostics locally."
+      ]
+    },
+    {
+      "source_id": "edt_wikipedia",
+      "title": "Evidential decision theory",
+      "revision_id": 1373679688,
+      "revision_timestamp": "2026-09-07T07:36:26Z",
+      "permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+      "attribution": {
+        "article_title": "Evidential decision theory",
+        "contributors": "Wikipedia contributors",
+        "revision_id": 1373679688,
+        "revision_timestamp": "2026-09-07T07:36:26Z",
+        "permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+        "history_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&action=history",
+        "license_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "modifications": [
+          "Mechanically converted revision-pinned rendered HTML to Markdown; retained article prose, headings, lists, tables, citations and references.",
+          "Recovered formula LaTeX from MathML annotations/image alt text, or the same revision wikitext in order when counts match; did not rewrite, summarize or repair formulas.",
+          "Removed navigation, edit controls, styles and website UI; excluded media bytes/URLs while retaining meaningful text descriptions.",
+          "Prepended title, contributor attribution, revision/history URLs, license and conversion notice."
+        ],
+        "rights_qualifications": "Individual media and third-party quoted material may have separate rights. Source reuse or adaptations in future publications may carry attribution/share-alike or other obligations."
+      },
+      "downloads": [
+        {
+          "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&titles=Evidential+decision+theory",
+          "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&titles=Evidential+decision+theory",
+          "retrieved_at_utc": "2026-11-08T02:40:47.546465+00:00",
+          "raw_file": "revision.json",
+          "raw_sha256": "8b5f9aba386512b5175508cc8c897adf28cd3f3c4eb0d65f03d6ec44f1a9b935",
+          "bytes": 10553,
+          "content_type": "application/json; charset=utf-8"
+        },
+        {
+          "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1373679688&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+          "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1373679688&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+          "retrieved_at_utc": "2026-11-08T02:40:48.392424+00:00",
+          "raw_file": "parse.json",
+          "raw_sha256": "053f47e9266400477211151b7a12b77a5d0671d0e1f72d52d5850ad73891398c",
+          "bytes": 76370,
+          "content_type": "application/json; charset=utf-8"
+        }
+      ],
+      "artifacts": {
+        "revision.wikitext": {
+          "sha256": "f126cf9add5f8db575155b87b0b3ae5ef77750bf729efbd42e53477ad04173c3",
+          "bytes": 9979,
+          "derived_from": "revision.json"
+        },
+        "rendered.html": {
+          "sha256": "f15e340ef725fd2db01269a551a0a5b9bf1b99d2011529d521283a61658318de",
+          "bytes": 61405,
+          "derived_from": "parse.json"
+        }
+      },
+      "normalized_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+      "text_statistics": {
+        "headings": 10,
+        "math_expressions": 16,
+        "wikitext_math_expressions": 16,
+        "wikitext_math_recoveries": 16,
+        "reference_anchors": 19,
+        "characters": 13538,
+        "words": 1374,
+        "lines": 140
+      },
+      "revision_pinned": false,
+      "manual_revision_review": "pending",
+      "source_provenance_sha256": "f3482ea1ec105b545a3d6d888d314f91441b6100c4a00c0ae1c4edbd76dffcdf",
+      "automated_qa": "passed_automated_checks",
+      "manual_approval": false,
+      "media_exclusions_count": 0,
+      "inspection_notes": [
+        "All original math tags retained as exact LaTeX; MathML/wikitext ordinal correspondence needs manual review.",
+        "Twin/correlated-decision examples preserved; see local QA before interpretation.",
+        "Original align environments retained; Markdown math rendering may vary."
+      ]
+    }
+  ]
+}

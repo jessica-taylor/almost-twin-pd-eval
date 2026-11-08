@@ -35,6 +35,27 @@ sources:
     license_page: "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html"
     redistribution: "inspect actual license before redistributing full text"
 
+  cdt_wikipedia:
+    title: "Causal decision theory"
+    page_title: "Causal decision theory"
+    url: "https://en.wikipedia.org/wiki/Causal_decision_theory"
+    source_format: mediawiki
+    revision_id: null  # Set the reviewed revision ID after manual source review; never auto-approve.
+    revision_review: pending
+    license_name: "CC BY-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    redistribution: "Keep local; contributor attribution/share-alike apply, with qualifications for media/third-party material."
+  edt_wikipedia:
+    title: "Evidential decision theory"
+    page_title: "Evidential decision theory"
+    url: "https://en.wikipedia.org/wiki/Evidential_decision_theory"
+    source_format: mediawiki
+    revision_id: null  # Set the reviewed revision ID after manual source review; never auto-approve.
+    revision_review: pending
+    license_name: "CC BY-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    redistribution: "Keep local; contributor attribution/share-alike apply, with qualifications for media/third-party material."
+
 local_cache:
   root: "data/source_cache"
   gitignore: true

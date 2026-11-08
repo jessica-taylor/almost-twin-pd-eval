@@ -14,7 +14,7 @@ from pathlib import Path
 from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
 from .game import Game, classify_response, score
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
-from .sources import load_source
+from .sources import load_source, source_identity
 
 BASE = 'https://openrouter.ai/api/v1'
 MAX_AGE_HOURS = 24
@@ -224,7 +224,7 @@ def run(root, args):
         if not args.prompts_approved:
             raise EvalError('Review complete rendered prompts first, then explicitly pass --prompts-approved')
         if stage == 'researcher' and not args.source_terms_reviewed:
-            raise EvalError('SOURCE LICENSE/TERMS REVIEW REQUIRED: full human articles will be sent to OpenRouter and its selected provider. Personal download permission is not transmission permission. Resolve SEP and FDT terms individually, then pass --source-terms-reviewed.')
+            raise EvalError('SOURCE LICENSE/TERMS REVIEW REQUIRED: full human articles will be sent to OpenRouter and its selected provider. Personal download permission is not transmission permission. Resolve source-specific terms (including Wikipedia attribution/share-alike where applicable), then pass --source-terms-reviewed.')
         key = api_key(root)
     settings = json.loads(read(args.settings))
     allowed = {'model', 'provider_tag', 'researcher', 'prisoner', 'temperature', 'seed', 'provider_effort_review'}
@@ -239,6 +239,8 @@ def run(root, args):
     if stage == 'researcher':
         source, source_info = load_source(root, item['source_id'])
         message_sets = [researcher(root, item, source, source_info)]
+        source_record = source_identity(item['source_id'], source, source_info)
+        source_record['theory'] = item['theory_label']
         source_hash = sha(source)
         essay_id = str(uuid.uuid4())
         scenario = None
@@ -262,6 +264,10 @@ def run(root, args):
         message_sets = prisoners(root, item, essay_text, scenario)
         if original.get('model') != settings['model'] or original['choices'][0].get('finish_reason') != 'stop':
             raise EvalError('Essay raw response model/finish provenance mismatch')
+        fields = ('source_id', 'source_revision', 'source_revision_timestamp', 'source_permanent_url', 'source_sha256', 'source_provenance_sha256', 'theory')
+        source_record = {field: essay_info.get(field) for field in fields}
+        if source_record['theory'] is not None and source_record['theory'] != item['theory_label']:
+            raise EvalError('Assignment theory label differs from the frozen researcher artifact')
         source_hash, essay_id = essay_info['source_sha256'], essay_info['essay_id']
     cap = snapshot(settings.get('model')) if live else (json.loads(read(args.capabilities)) if args.capabilities else None)
     payloads, estimates = [], []
@@ -279,7 +285,7 @@ def run(root, args):
     folder.mkdir(parents=True)
     for i, messages in enumerate(message_sets):
         export_messages(folder, f'messages_{i}', messages)
-    plan = {'run_id': run_id, 'stage': stage, 'assignment': args.assignment, 'live': bool(live),
+    plan = {**source_record, 'run_id': run_id, 'stage': stage, 'assignment': args.assignment, 'live': bool(live),
             'essay_id': essay_id, 'scenario_id': scenario['case_id'] if scenario else None,
             'template_hashes': hashes, 'source_sha256': source_hash,
             'essay_sha256': sha(essay_text) if essay_text is not None else None,
@@ -306,7 +312,9 @@ def run(root, args):
     for i, payload in enumerate(payloads):
         call_dir = folder / f'call_{i}'
         call_dir.mkdir()
-        record = {'utc': utc(), 'run_id': run_id, 'essay_id': essay_id, 'scenario_id': plan['scenario_id'],
+        record = {**source_record, 'assignment': args.assignment,
+                  'reasoning_settings': {name: settings[name] for name in ('researcher', 'prisoner')},
+                  'utc': utc(), 'run_id': run_id, 'essay_id': essay_id, 'scenario_id': plan['scenario_id'],
                   'role': 'researcher' if stage == 'researcher' else ('a', 'b')[i],
                   'template_hashes': hashes, 'source_sha256': source_hash, 'essay_sha256': plan['essay_sha256'],
                   'model': settings['model'], 'effort': settings[stage]['effort'], 'provider_tag': settings['provider_tag'],

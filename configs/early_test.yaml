@@ -40,6 +40,15 @@ assignments:
     source_id: fdt
     researcher_focus_file: "prompts/researcher/fdt_policy_focus.md"
 
+  - id: cdt_wikipedia
+    theory_label: CDT
+    source_id: cdt_wikipedia
+    researcher_focus_file: null
+  - id: edt_wikipedia
+    theory_label: EDT
+    source_id: edt_wikipedia
+    researcher_focus_file: null
+
 main_protocol:
   researcher_template: "prompts/researcher/base.md"
   prisoner_template: "prompts/prisoner/base.md"

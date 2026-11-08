@@ -1,0 +1,26 @@
+{
+  "batchcomplete": true,
+  "query": {
+    "pages": [
+      {
+        "pageid": 1,
+        "ns": 0,
+        "title": "Causal decision theory",
+        "revisions": [
+          {
+            "revid": 123456,
+            "timestamp": "2026-10-01T12:00:00Z",
+            "size": 871,
+            "sha1": "3c6253112a8067919898285075599ef0a41f667c",
+            "slots": {
+              "main": {
+                "contentmodel": "wikitext",
+                "content": "Synthetic fixture for software tests, not an excerpt from Wikipedia.\nA decision theory evaluates choices using an explicit mathematical rule. This invented reference explains the rule, gives examples, and records its limits without prescribing an answer to a particular evaluation.\n== Decision rule ==\n<math>V(a)=\\sum_s P(s)U(a,s)</math>\nA mathematical example compares two available actions under a simple finite distribution. The expression is retained verbatim rather than repaired or interpreted by the extractor.\n== Examples ==\nTwo twin agents may compare their reasoning procedures. In an ordinary prisoner's dilemma, cooperation and correlated choices merit discussion. These illustrative sentences are synthetic software fixtures.\n* First example\n* Second example\n== References ==\n<ref name=\"fiction\">Example Author. Invented reference. 2026.</ref>\n<references/>\n"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
