@@ -1,14 +1,16 @@
 # URLs and extraction preferences. No downloaded article text belongs in git.
 schema_version: 1
 sources:
-  cdt:
+  cdt_sep:
+    legacy_cache_id: cdt  # Read-only reuse of pre-rename downloads during --reextract.
     title: "Causal Decision Theory"
     authoring_organization: "Stanford Encyclopedia of Philosophy"
     url: "https://plato.stanford.edu/entries/decision-causal/"
     source_format: html
     extraction: "main article body to Markdown; preserve math, sections and examples"
     redistribution: "restricted — see https://plato.stanford.edu/info.html"
-  edt:
+  edt_sep:
+    legacy_cache_id: edt  # Historical files/provenance are never renamed or edited.
     title: "Decision Theory"
     authoring_organization: "Stanford Encyclopedia of Philosophy"
     url: "https://plato.stanford.edu/entries/decision-theory/"
@@ -34,6 +36,27 @@ sources:
       - "Footnote 16 on page 31: suggested policy-level formulation"
     license_page: "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html"
     redistribution: "inspect actual license before redistributing full text"
+
+  cdt_wikipedia:
+    title: "Causal decision theory"
+    page_title: "Causal decision theory"
+    url: "https://en.wikipedia.org/wiki/Causal_decision_theory"
+    source_format: mediawiki
+    revision_id: null  # Set the reviewed revision ID after manual source review; never auto-approve.
+    revision_review: pending
+    license_name: "CC BY-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    redistribution: "Keep local; contributor attribution/share-alike apply, with qualifications for media/third-party material."
+  edt_wikipedia:
+    title: "Evidential decision theory"
+    page_title: "Evidential decision theory"
+    url: "https://en.wikipedia.org/wiki/Evidential_decision_theory"
+    source_format: mediawiki
+    revision_id: null  # Set the reviewed revision ID after manual source review; never auto-approve.
+    revision_review: pending
+    license_name: "CC BY-SA 4.0"
+    license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
+    redistribution: "Keep local; contributor attribution/share-alike apply, with qualifications for media/third-party material."
 
 local_cache:
   root: "data/source_cache"

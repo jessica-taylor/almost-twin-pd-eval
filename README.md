@@ -33,7 +33,7 @@ python3 -m almost_twin fetch-sources --network
 python3 -m almost_twin fetch-sources --reextract
 ```
 
-Source acquisition is explicitly network-enabled but never calls a generation API. Without `--network` or `--reextract`, the command fails before networking. `--source cdt`, `--source edt`, and `--source fdt` can restrict acquisition. Each attempt has an immutable directory under `data/source_cache/<source_id>/`; successful automated checks update `current.json`. Failed attempts retain diagnostics and do not overwrite the earlier source. A failed command exits nonzero even if some other sources succeeded.
+Source acquisition is explicitly network-enabled but never calls a generation API. Without `--network` or `--reextract`, the command fails before networking. `--source` requires an explicit article choice: `cdt_sep`, `edt_sep`, `fdt`, `cdt_wikipedia`, or `edt_wikipedia`. Each attempt has an immutable directory under `data/source_cache/<source_id>/`; successful automated checks update `current.json`. Failed attempts retain diagnostics and do not overwrite the earlier source. A failed command exits nonzero even if some other sources succeeded.
 
 Read `data/source_cache/report.md`, then each linked `article.md`, `qa.md`, and `provenance.json`. Raw downloads, retrieval times, resolved URLs, revisions, byte hashes, normalization hashes, extractor identity/code hash, conversion commands, warnings, and text counts are recorded. Local raw and normalized hashes are checked again before prompt use.
 
@@ -44,6 +44,40 @@ The actual Sprint 01 acquisition succeeded for all three sources. A metadata-onl
 - **FDT:** Explicitly pinned `1710.05060v2` TeX source, retrieved before any PDF processing. A safe tar/gzip/single-TeX reader rejects traversal, links, special files and excessive decompression; input/include files are resolved without executing TeX. Conservative Markdown retains display math, all four equation numbers, sixteen footnotes, macro definitions, TikZ graph code and bibliography data. QA shows Equation (4), its observation-indexed variable, the observation-change paragraph, the graph-construction open problem and footnote 16. **Some macro notation, cross-references and graph drawings remain literal TeX**; manual formatting approval is necessary. This is not a polished Pandoc rendition. If source conversion fails, text PDF extraction is attempted with `pdftotext -layout`; a failed mathematical check is a visible failure. A genuinely non-textual PDF requires separate manual OCR work, which is not implemented.
 
 All `data/` artifacts are gitignored, including full source text, source excerpts, rendered prompts, responses, commitments and local budget state. Only URLs, metadata/hashes, scripts, templates and synthetic fixtures belong in the repository. SEP's [terms](https://plato.stanford.edu/info.html#t) distinguish personal downloads from redistribution. Before sending full articles to OpenRouter and a provider, resolve that **separate source-license/terms question**, individually for SEP and FDT. Availability on arXiv is not blanket redistribution permission. The researcher runner blocks live article transmission until `--source-terms-reviewed` is explicitly passed; that flag records your resolved review, not a legal determination by this scaffold.
+
+## Wikipedia CDT and EDT source variants
+
+Theory and source are separate: **CDT** and **EDT** are theory labels, while every selectable reference names its source explicitly.
+
+| Theory | SEP source / assignment | Wikipedia source / assignment |
+|---|---|---|
+| CDT | `cdt_sep` | `cdt_wikipedia` |
+| EDT | `edt_sep` | `edt_wikipedia` |
+
+Bare `cdt` and `edt` are not source IDs or assignment shortcuts and do not select SEP. Decision-theory instructions and model-visible labels remain simply CDT/EDT. The pinned FDT source is unchanged.
+
+Old cache directories and the original acquisition snapshot retain their historical `cdt`/`edt` identifiers. To reuse their exact downloads offline under the explicit names, run `python3 -m almost_twin fetch-sources --reextract --source cdt_sep --source edt_sep`. This creates new immutable attempts without renaming or changing old bytes/provenance. Historical run/essay assignment IDs are not rewritten or silently aliased.
+
+```sh
+python3 -m almost_twin fetch-sources --network --source cdt_wikipedia
+python3 -m almost_twin fetch-sources --network --source edt_wikipedia
+python3 -m almost_twin render-prompts --assignment cdt_wikipedia --essay fixtures/demo_essay.md
+python3 -m almost_twin render-prompts --assignment edt_wikipedia --essay fixtures/demo_essay.md
+# Always offline; keeps the original revision, API responses and retrieval provenance:
+python3 -m almost_twin fetch-sources --reextract --source cdt_wikipedia --source edt_wikipedia
+# Offline researcher preflight only; no key or generation request:
+python3 -m almost_twin run researcher --assignment cdt_wikipedia
+```
+
+Read `data/source_cache/report.md` and both local QA reports, then the full articles, original `revision.wikitext` and `rendered.html`. Complete researcher previews and exact JSON messages are under `data/rendered_prompts/source_review/{cdt_wikipedia,edt_wikipedia}/`; prisoners in these previews use the **synthetic** essay fixture. The ordinary prisoner dry-run command also accepts these assignment IDs, once supplied a frozen same-model researcher artifact. No such real model artifact is generated in this source-only sprint.
+
+Acquisition uses the official MediaWiki Revisions API and Parse API `oldid` for the **same revision**; raw JSON, decoded wikitext, rendered HTML, normalized Markdown and provenance are hashed. Mathematical expressions are recovered from LaTeX annotations/alt text or exact revision wikitext with matching expression counts. Unannotated MathML recovery explicitly requires manual formula-correspondence review. All substantive sections, examples, lists, relevant tables, citations and references are retained; edit/navigation UI and media are excluded, with meaningful image descriptions and exclusions recorded. No LLM rewriting or external image downloads occur.
+
+The acquired candidates are CDT revision **1381555528** and EDT revision **1373679688**. Automated QA passed with warnings; **manual review and manifest pinning remain pending**. After approving an article, set `revision_id` to its reviewed integer and `revision_review: approved` in `sources/manifest.yaml`. Subsequent acquisition verifies that pin; re-extraction accepts only the matching cached revision. Before pinning, network acquisition is discovery and may resolve a newer candidate. A cached revision that conflicts with a manifest pin is rejected before prompt use.
+
+Both normalized articles include title, attribution to Wikipedia contributors with a history link, permanent revision URL, CC BY-SA 4.0 name/link, conversion modifications and media/third-party-rights qualifications. They remain local and gitignored. The explicit live source-license-review gate is retained, and later publications/adaptations can carry licensing obligations.
+
+Wikipedia is useful as a licensed reference condition, but is not necessarily as comprehensive or philosophically authoritative as SEP. **EDT explicitly discusses the twin prisoner's dilemma and recommends cooperation; CDT also discusses twins and correlated decisions.** These passages are preserved. Exposure annotations and excerpts are for human QA only, not extra researcher instructions. See the [SEP/Wikipedia comparison, downloaded revisions and formatting caveats](docs/wikipedia_sources.md) and [metadata-only acquisition report](sources/wikipedia_acquisition_report.json).
 
 ## Review the exact prompts
 
@@ -60,7 +94,7 @@ Render actual article text with the labeled synthetic essay for **procedure insp
 python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay fixtures/demo_essay.md
 ```
 
-Change `--assignment` to `cdt`, `edt` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T0_identical/a.md`, `b.md` and `pair.diff` show identical requests; `T2_name/` changes only Rowan → Sasha; `T4_distinct_leads/` changes both characters' names, evidence and outgoing letters. `audit.json` records hashes. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
+Change `--assignment` to `cdt_sep`, `edt_sep`, `cdt_wikipedia`, `edt_wikipedia` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T0_identical/a.md`, `b.md` and `pair.diff` show identical requests; `T2_name/` changes only Rowan → Sasha; `T4_distinct_leads/` changes both characters' names, evidence and outgoing letters. `audit.json` records hashes. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
 
 The handoff index at `data/review.md` links the full researcher prompt and both prisoner prompts/diffs for one T0 and one T2, plus all source reports. Prisoner previews currently contain the clearly labeled synthetic fixture because no live researcher essay exists. Before any live prisoner call, render again using the **actual frozen essay**:
 

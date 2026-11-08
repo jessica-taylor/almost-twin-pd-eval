@@ -107,7 +107,7 @@ def export_messages(folder, name, messages):
 
 
 def render(root, name, demo=False, essay_path=None, out=None):
-    from .sources import load_source
+    from .sources import load_source, source_identity
     item = assignment(root, name)
     if demo:
         source = 'SYNTHETIC SOURCE FIXTURE: This is invented placeholder material for offline software inspection. It is not a human-written reference article.'
@@ -118,7 +118,8 @@ def render(root, name, demo=False, essay_path=None, out=None):
         essay = read(essay_path) if essay_path else None
     folder = Path(out) if out else root / 'data/rendered_prompts' / ('demo' if demo else 'source_review') / name
     folder.mkdir(parents=True, exist_ok=True)
-    audit = {'assignment': name, 'demo': demo, 'source_sha256': sha(source),
+    audit = {**source_identity(item['source_id'], source, info), 'assignment': name,
+             'theory': item['theory_label'], 'demo': demo, 'source_sha256': sha(source),
              'essay_sha256': sha(essay) if essay is not None else None,
              'template_hashes': template_hashes(root, item), 'messages': {}}
     audit['messages']['researcher'] = export_messages(folder, 'researcher', researcher(root, item, source, info))

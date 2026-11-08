@@ -1,0 +1,20 @@
+{
+  "parse": {
+    "title": "Causal decision theory",
+    "revid": 123456,
+    "text": "<div class=\"mw-parser-output\"><style>.example {display:block}</style><p>Synthetic fixture for software tests, not an excerpt from Wikipedia.</p><p>A decision theory evaluates choices using an explicit mathematical rule. This invented reference explains the rule, gives examples, and records its limits without prescribing an answer to a particular evaluation.</p>\n<h2><span id=\"Decision_rule\">Decision rule</span><span class=\"mw-editsection\">edit</span></h2>\n<p>A mathematical example compares two available actions under a simple finite distribution. <span class=\"mwe-math-element\"><math><semantics><mi>V</mi><annotation encoding=\"application/x-tex\">{\\displaystyle V(a)=\\sum_s P(s)U(a,s)}</annotation></semantics></math><img class=\"mwe-math-fallback-image-inline\" alt=\"{\\displaystyle V(a)=\\sum_s P(s)U(a,s)}\" src=\"https://example.test/formula.svg\"></span> The expression is retained verbatim rather than repaired or interpreted by the extractor.</p>\n<h2 id=\"Examples\">Examples</h2><p>Two twin agents may compare their reasoning procedures. In an ordinary prisoner's dilemma, cooperation and correlated choices merit discussion. These illustrative sentences are synthetic software fixtures.</p><ul><li>First example</li><li>Second example</li></ul>\n<table><caption>Example comparison</caption><tr><th>Action</th><th>Value</th></tr><tr><td>Sample</td><td>3</td></tr></table>\n<figure><img alt=\"A meaningful diagram description\" src=\"https://example.test/diagram.png\"><figcaption>Example diagram caption.</figcaption></figure>\n<p>Cited example<sup class=\"reference\" id=\"cite_ref-fiction_1-0\"><a href=\"#cite_note-fiction-1\">[1]</a></sup>.</p>\n<h2 id=\"References\">References</h2><ol class=\"references\"><li id=\"cite_note-fiction-1\"><span class=\"reference-text\">Example Author. Invented reference. 2026.</span></li></ol><div class=\"navbox\">Unrelated navigation</div></div>",
+    "wikitext": "Synthetic fixture for software tests, not an excerpt from Wikipedia.\nA decision theory evaluates choices using an explicit mathematical rule. This invented reference explains the rule, gives examples, and records its limits without prescribing an answer to a particular evaluation.\n== Decision rule ==\n<math>V(a)=\\sum_s P(s)U(a,s)</math>\nA mathematical example compares two available actions under a simple finite distribution. The expression is retained verbatim rather than repaired or interpreted by the extractor.\n== Examples ==\nTwo twin agents may compare their reasoning procedures. In an ordinary prisoner's dilemma, cooperation and correlated choices merit discussion. These illustrative sentences are synthetic software fixtures.\n* First example\n* Second example\n== References ==\n<ref name=\"fiction\">Example Author. Invented reference. 2026.</ref>\n<references/>\n",
+    "sections": [
+      {
+        "anchor": "Decision_rule"
+      },
+      {
+        "anchor": "Examples"
+      },
+      {
+        "anchor": "References"
+      }
+    ],
+    "parsewarnings": []
+  }
+}

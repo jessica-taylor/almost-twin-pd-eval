@@ -12,14 +12,14 @@ from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
 from urllib.parse import urljoin
 
-from .common import EvalError, load_yaml, read, sha, utc, write_json
+from .common import EvalError, encoded, load_yaml, read, sha, utc, write_json
 
 VERSION = 'mechanical-source-extractor/1.0'
 MAX_BYTES = 30_000_000
 
 
 def download(url, dest):
-    req = urllib.request.Request(url, headers={'User-Agent': 'AlmostTwinSourceAudit/0.1 (personal research download)'})
+    req = urllib.request.Request(url, headers={'User-Agent': 'AlmostTwinSourceAudit/0.2 (research source audit; https://github.com/jessica-taylor/almost-twin-pd-eval)'})
     with urllib.request.urlopen(req, timeout=30) as response:
         body = response.read(MAX_BYTES + 1)
         expected = response.headers.get('Content-Length')
@@ -300,6 +300,12 @@ def tex_extract(folder):
 
 
 def quality(source_id, text, method):
+    if method == 'mediawiki':
+        if len(text) < 400 or len(text.split()) < 60 or '\ufffd' in text:
+            raise EvalError('Wikipedia material is empty, truncated or encoding-damaged')
+        return {'coverage': 'MediaWiki revision/HTML consistency, sections, formula and citation checks recorded in provenance; manual review required.'}
+    if source_id not in ('cdt_sep', 'edt_sep', 'fdt'):
+        raise EvalError(f'Unknown source quality route: {source_id}/{method}')
     if len(text) < 12000 or len(text.split()) < 1500 or '\ufffd' in text:
         raise EvalError('Source is empty, too short, or has encoding replacement characters')
     if source_id == 'fdt':
@@ -333,7 +339,7 @@ def quality(source_id, text, method):
             if not all(w in passages['policy_footnote_16'] for w in ('policy', 'maps inputs to actions', 'multi-agent')):
                 raise EvalError('Footnote 16 lost policy selection content')
         return passages
-    required = ['Expected Utility', 'Newcomb', 'Concluding Remarks'] if source_id == 'cdt' else ['3.2', 'Jeffrey', 'desirability', 'Challenges to EU theory']
+    required = ['Expected Utility', 'Newcomb', 'Concluding Remarks'] if source_id == 'cdt_sep' else ['3.2', 'Jeffrey', 'desirability', 'Challenges to EU theory']
     for term in required:
         if term not in text:
             raise EvalError(f'{source_id}: missing required coverage {term!r}')
@@ -345,6 +351,10 @@ def fetch_one(root, source_id, spec, network, reextract=False):
     base.mkdir(parents=True, exist_ok=True)
     # Immutable attempt directories: old approved sources are never overwritten.
     prior = sorted(base.glob('*/provenance.json'), reverse=True)
+    # Reuse original downloads without treating bare theory IDs as source aliases.
+    if reextract and spec.get('legacy_cache_id'):
+        legacy_base = root / 'data/source_cache' / spec['legacy_cache_id']
+        prior += sorted(legacy_base.glob('*/provenance.json'), reverse=True)
     folder = base / utc().replace(':', '').replace('+', '_')
     folder.mkdir()
     provenance = {'source_id': source_id, 'title': spec['title'], 'extractor': VERSION,
@@ -353,14 +363,31 @@ def fetch_one(root, source_id, spec, network, reextract=False):
     try:
         if not network and not reextract:
             raise EvalError('Network disabled. Use --network or --reextract.')
+        wiki_cached = None
+        if reextract and spec.get('source_format') == 'mediawiki':
+            pointer = base / 'current.json'
+            if pointer.exists():
+                cached_pointer = json.loads(read(pointer))
+                wiki_cached = base / cached_pointer['directory'] / 'provenance.json'
+                if wiki_cached.parent.parent != base:
+                    raise EvalError('Invalid MediaWiki cache pointer')
+                if cached_pointer.get('provenance_sha256') and sha(wiki_cached.read_bytes()) != cached_pointer['provenance_sha256']:
+                    raise EvalError('Cached source provenance hash mismatch')
+                if sha((wiki_cached.parent / 'article.md').read_bytes()) != cached_pointer['normalized_sha256']:
+                    raise EvalError('Cached normalized article hash mismatch')
+            else:
+                wiki_cached = next((p for p in prior if {'revision.json', 'parse.json'} <= {r['raw_file'] for r in json.loads(read(p)).get('downloads', [])}), None)
+            if wiki_cached is None:
+                raise EvalError('No complete MediaWiki cached attempt; --reextract never downloads')
+            verify_artifacts(wiki_cached.parent, json.loads(read(wiki_cached)))
         def get(url, filename):
             dest = folder / filename
             if reextract:
                 found = None
-                for previous in prior:
+                for previous in ([wiki_cached] if wiki_cached else prior):
                     old = json.loads(read(previous))
                     for record in old.get('downloads', []):
-                        if record['url'] == url:
+                        if record['url'] == url or (wiki_cached and record['raw_file'] == filename):
                             raw = previous.parent / record['raw_file']
                             if raw.is_file() and sha(raw.read_bytes()) == record['raw_sha256']:
                                 found = (raw, record)
@@ -374,7 +401,10 @@ def fetch_one(root, source_id, spec, network, reextract=False):
             else:
                 provenance['downloads'].append(download(url, dest))
             return dest
-        if source_id != 'fdt':
+        if spec.get('source_format') == 'mediawiki':
+            from .mediawiki import acquire
+            text = acquire(spec, get, provenance, folder)
+        elif source_id in ('cdt_sep', 'edt_sep'):
             html = read(get(spec['url'], 'raw.html'))
             notes = None
             if 'notes.html#note-' in html:
@@ -382,9 +412,9 @@ def fetch_one(root, source_id, spec, network, reextract=False):
             text, revision, stats = sep_extract(html, spec['url'], notes)
             provenance.update(revision=revision, url=spec['url'], method='html', text_statistics=stats,
                               conversion_command='stdlib HTMLParser article + preamble + bibliography + linked notes -> Markdown')
-            if source_id == 'edt':
+            if source_id == 'edt_sep':
                 provenance['warnings'].append('Full Decision Theory entry, especially section 3.2 Jeffrey\'s theory; this is not a dedicated EDT article.')
-        else:
+        elif source_id == 'fdt':
             provenance['url'] = spec['preferred_source_url']
             try:
                 raw = get(spec['preferred_source_url'], 'source.bin')
@@ -410,6 +440,8 @@ def fetch_one(root, source_id, spec, network, reextract=False):
                 provenance.update(method='pdf', conversion_command='pdftotext -layout raw.pdf pdf.txt',
                                   text_statistics={}, url=spec['pdf_fallback_url'])
                 provenance['warnings'].append('PDF text has uncertain mathematical glyph/layout fidelity; manual equation approval required.')
+        else:
+            raise EvalError(f'No extractor for source {source_id}')
         passages = quality(source_id, text, provenance['method'])
         (folder / 'article.md').write_bytes(text.encode('utf-8'))
         provenance.update(normalized_sha256=sha(text), normalized_file='article.md', status='passed_automated_checks',
@@ -417,11 +449,28 @@ def fetch_one(root, source_id, spec, network, reextract=False):
         provenance['text_statistics'].update(characters=len(text), words=len(text.split()), lines=len(text.splitlines()))
         report = f'# Local source QA — {source_id}\n\nAutomated checks passed; manual source/prompt approval is still required.\n\n'
         report += '\n'.join('- ' + w for w in provenance['warnings']) + '\n\n'
+        if provenance['method'] == 'mediawiki':
+            from .mediawiki import attribution_text
+            report += '## Attribution and conversion\n\n' + attribution_text(provenance['attribution'])
+            report += '## Source-specific experimental exposure (human experimenter only)\n\n'
+            report += '\n'.join(f'- **{k}:** {v}' for k, v in provenance['experimental_exposure'].items()) + '\n\n'
+            report += 'These descriptive scans do not remove or rewrite examples and are not supplied as researcher instructions. Inspect the complete source in context.\n\n'
+            report += '## Mathematical and structural QA\n\n' + json.dumps(provenance['text_statistics'], indent=2) + '\n\n'
+            report += '## Original mathematical expressions (local inspection only)\n\n'
+            original_wiki = read(folder / 'revision.wikitext')
+            for expression in re.findall(r'<math\b[^>]*>(.*?)</math\s*>', original_wiki, re.S | re.I):
+                report += '```latex\n' + expression.strip() + '\n```\n\n'
+            report += '## Close-example passages (human experimenter only; local excerpts)\n\n'
+            for paragraph in text.split('\n\n'):
+                if re.search(r'prisoner|\btwin\b|same algorithm', paragraph, re.I):
+                    report += '```text\n' + paragraph[:1000] + '\n```\n\n'
+            report += '## Media exclusions\n\n' + json.dumps(provenance['media_exclusions'], ensure_ascii=False, indent=2) + '\n\n'
         for label, passage in passages.items():
             report += f'## {label}\n\n```text\n{passage}\n```\n\n'
         (folder / 'qa.md').write_text(report, encoding='utf-8')
         write_json(folder / 'provenance.json', provenance)
-        write_json(base / 'current.json', {'directory': folder.name, 'normalized_sha256': sha(text)})
+        write_json(base / 'current.json', {'directory': folder.name, 'normalized_sha256': sha(text),
+                                           'provenance_sha256': sha((folder / 'provenance.json').read_bytes())})
         return provenance, folder
     except Exception as error:
         provenance['error'] = f'{type(error).__name__}: {error}'
@@ -469,18 +518,53 @@ def fetch_sources(root, selected, network=False, reextract=False):
 def load_source(root, source_id):
     base = root / 'data/source_cache' / source_id
     try:
+        configured_sources = load_yaml(root / 'sources/manifest.yaml')['sources']
+        if source_id not in configured_sources:
+            raise EvalError(f'Unknown source {source_id}; select an explicit source ID from {sorted(configured_sources)}')
         current = json.loads(read(base / 'current.json'))
         folder = base / current['directory']
         if folder.parent != base or not folder.is_dir():
             raise EvalError('Invalid source cache pointer')
-        info = json.loads(read(folder / 'provenance.json'))
+        provenance_bytes = (folder / 'provenance.json').read_bytes()
+        if current.get('provenance_sha256') and sha(provenance_bytes) != current['provenance_sha256']:
+            raise EvalError('Source provenance hash mismatch')
+        info = json.loads(provenance_bytes)
         text = read(folder / 'article.md')
         if info['status'] != 'passed_automated_checks' or sha(text) != info['normalized_sha256'] or sha(text) != current['normalized_sha256']:
             raise EvalError('Source cache hash or QA status mismatch; fetch again')
         quality(source_id, text, info['method'])
-        for raw in info['downloads']:
-            if sha((folder / raw['raw_file']).read_bytes()) != raw['raw_sha256']:
-                raise EvalError('Raw source hash mismatch')
-        return text, info
+        verify_artifacts(folder, info)
+        if info['method'] == 'mediawiki':
+            configured = load_yaml(root / 'sources/manifest.yaml')['sources'][source_id]
+            if configured.get('revision_id') is not None and configured['revision_id'] != info['revision_id']:
+                raise EvalError('Cached Wikipedia revision differs from manifest pin; fetch the pinned revision')
+            from .mediawiki import api_json, parsed_data, revision_data
+            # Cache validation uses frozen provenance, not a subsequently changed manifest.
+            frozen_spec = {'page_title': info['attribution']['article_title'], 'revision_id': info['revision_id']}
+            revision_id, timestamp, wikitext = revision_data(api_json(folder / 'revision.json'), frozen_spec)
+            html, _, _ = parsed_data(api_json(folder / 'parse.json'), frozen_spec, revision_id, wikitext)
+            if wikitext != read(folder / 'revision.wikitext') or html != read(folder / 'rendered.html') or timestamp != info['revision_timestamp']:
+                raise EvalError('Derived Wikipedia artifacts do not match the frozen API responses')
+        return text, {**info, 'provenance_sha256': sha((folder / 'provenance.json').read_bytes())}
     except (FileNotFoundError, KeyError, json.JSONDecodeError) as error:
         raise EvalError(f'Missing or incomplete source {source_id}; run fetch-sources --network and review QA') from error
+
+
+def verify_artifacts(folder, info):
+    for raw in info.get('downloads', []):
+        path = folder / raw['raw_file']
+        if path.parent != folder or sha(path.read_bytes()) != raw['raw_sha256']:
+            raise EvalError('Raw source hash mismatch')
+    for filename, record in info.get('artifacts', {}).items():
+        path = folder / filename
+        if path.parent != folder or sha(path.read_bytes()) != record['sha256']:
+            raise EvalError('Derived source artifact hash mismatch')
+
+
+def source_identity(source_id, text, info):
+    """Freeze source identity in a run; do not reconstruct it from assignment config."""
+    return {'source_id': source_id, 'source_revision': info.get('revision'),
+            'source_revision_timestamp': info.get('revision_timestamp'),
+            'source_permanent_url': info.get('permanent_url', info.get('url')),
+            'source_sha256': sha(text),
+            'source_provenance_sha256': info.get('provenance_sha256') or sha(encoded(info))}
