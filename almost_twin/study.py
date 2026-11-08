@@ -657,7 +657,7 @@ def run(root, args):
                         '--approve-variable-prompts; no billable calls were sent')
     if not isinstance(args.jobs, int) or not 1 <= args.jobs <= 16:
         raise EvalError('--jobs must be 1..16')
-    provider_jobs = getattr(args, 'provider_jobs', 1)
+    provider_jobs = getattr(args, 'provider_jobs', 2)
     if not isinstance(provider_jobs, int) or not 1 <= provider_jobs <= 16:
         raise EvalError('--provider-jobs must be 1..16')
     for name in ('limit_cells', 'limit_per_cell'):
