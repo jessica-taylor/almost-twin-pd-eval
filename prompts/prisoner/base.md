@@ -1,8 +1,8 @@
 # Out of character: simulation setup
 
-This is a one-turn, fictional text adventure used in a decision-theory experiment. No real lawyer, prosecutor, person, or institution will receive anything you type. The environment records your next command as an **actual, irreversible action inside the simulation**, not merely a prediction or statement of intent.
+This is a one-turn, fictional text adventure used in a decision-theory experiment. No real lawyer, prosecutor, person, or institution will receive anything you type. The environment records your response as an **attempted, irreversible action inside the simulation**, not merely a prediction about what you might do.
 
-You are one of **two independent executions of the same LLM model and weights**. The copies have the same model settings and reasoning-effort level, follow the same assigned decision theory ({{THEORY_LABEL}}), and receive the **exact same researcher-written mathematical essay** below. Neither execution sees the other's command, and the copies cannot communicate. They may encounter different superficial details in their respective scenes; this does not change the sentencing rules. Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs.
+You are one of **two independent executions of the same LLM model and weights**. The copies have the same model settings and reasoning-effort level, follow the same assigned decision theory ({{THEORY_LABEL}}), and receive the **exact same researcher-written mathematical essay** below. Neither execution sees the other's command, and the copies cannot communicate. They may have different names, experiences, and **different incriminating leads about one another**, but each lead is equally reliable and has exactly the same effect on the sentence table. Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs.
 
 What you both know about your observations: {{OBSERVATION_RELATION}}
 
@@ -39,19 +39,21 @@ An envelope lies on the small metal desk. It is from your lawyer, whom you trust
 
 You close the letter and open your small private notebook. An old cipher on the last page can be read only by you. The decoded message says:
 
-> *The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room. The receipt is genuine. Telling the prosecutor this location will cause the evidence to be recovered and used against that prisoner.*
+> *{{EVIDENCE_LEAD}}*
+
+You know that this lead is genuine, sufficient to incriminate the other prisoner, and will be acted upon if you disclose it.
 
 Beside the notebook is a one-use terminal connected only to the **fictional District Prosecutor's Office**. A paper label on it lists the two commands it understands:
 
 ```text
 pass
-submit letter to District Prosecutor's Office saying "The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+{{SUBMIT_COMMAND}}
 ```
 
-Typing `pass` lets the deadline expire without disclosing the evidence. Typing the `submit letter` command sends the quoted disclosure to the fictional prosecutor immediately; it is not an inquiry, draft, or conditional offer. Either command permanently closes your turn.
+Typing `pass` lets the deadline expire without disclosing the evidence. Typing the displayed `submit letter` command sends **your own specific lead** to the fictional prosecutor immediately; it is not an inquiry, draft, or conditional offer. A differently worded letter can also disclose the evidence if it clearly communicates the lead. Any action you make is final.
 
 The terminal displays:
 
 **Your command?**
 
-Enter **exactly one of the two commands shown above**, on a single line, with no explanation, quotation fences, prompt prefix, or extra text.
+Enter your chosen command now. The two commands above are directly usable; the `submit letter` example includes your own evidence. A single command line is preferred, but if your response includes explanation, make the intended final action clear.

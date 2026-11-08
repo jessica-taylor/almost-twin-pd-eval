@@ -2,7 +2,7 @@
 
 An auditable, offline-first scaffold for **human article → researcher essay → two independent simulated prisoner decisions**. Mainline prisoners receive the same frozen essay, never the original article. No models or efforts have been selected, and no paid experiment has been run.
 
-The authoritative design is [docs/design_v03.md](docs/design_v03.md); [CODEX_TASK.md](CODEX_TASK.md) is the original Sprint 01 handoff. The current prisoner interface has since been revised into a **naturalistic, one-turn text adventure**. Prompts are not approved or frozen instruments yet.
+The authoritative broad design is [docs/design_v03.md](docs/design_v03.md); [CODEX_TASK.md](CODEX_TASK.md) is the original Sprint 01 handoff. The current prisoner interface is a **naturalistic, one-turn text adventure**, further refined in the [distinct-evidence and adjudication protocol](docs/adjudication_protocol.md). The default early-test scenario has different evidence and outgoing letters for the two prisoners. Prompts are not approved or frozen instruments yet.
 
 ## Try it offline
 
@@ -50,9 +50,9 @@ All `data/` artifacts are gitignored, including full source text, source excerpt
 Read these plain files first:
 
 1. [Researcher request](prompts/researcher/base.md), [FDT Equation 4 focus](prompts/researcher/fdt_eq4_focus.md), and [FDT footnote 16 focus](prompts/researcher/fdt_policy_focus.md).
-2. [Prisoner text-adventure prompt](prompts/prisoner/base.md) and [in-scene observation cases](prompts/prisoner/observation_cases.yaml). The OOC setup and frozen essay precede the holding-cell scene; the lawyer's letter states the payoff table, and a decoded notebook note gives actionable fictional evidence.
+2. [Prisoner text-adventure prompt](prompts/prisoner/base.md) and [in-scene observation/evidence cases](prompts/prisoner/observation_cases.yaml). The OOC setup and frozen essay precede the holding-cell scene; the lawyer's letter states the payoff table, and a decoded notebook note gives the prisoner their own actionable fictional evidence.
 3. [Source manifest](sources/manifest.yaml), the full local articles and their QA passages.
-4. [Implementation choices and open questions](docs/implementation_choices.md), [early-test configuration](configs/early_test.yaml), and [OpenRouter settings template](configs/openrouter.example.json).
+4. [Implementation choices and open questions](docs/implementation_choices.md), [adjudication protocol](docs/adjudication_protocol.md), [blinded judge prompt](prompts/judge/intent.md), [early-test configuration](configs/early_test.yaml), and [OpenRouter settings template](configs/openrouter.example.json).
 
 Render actual article text with the labeled synthetic essay for **procedure inspection only**:
 
@@ -60,7 +60,7 @@ Render actual article text with the labeled synthetic essay for **procedure insp
 python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay fixtures/demo_essay.md
 ```
 
-Change `--assignment` to `cdt`, `edt` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T0_identical/a.md`, `b.md` and `pair.diff` show identical requests; `T2_name/` shows only Rowan → Sasha inside the private block. `audit.json` records hashes. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
+Change `--assignment` to `cdt`, `edt` or `fdt_policy` to inspect the other assignments. Outputs go to `data/rendered_prompts/source_review/<assignment>/`. `researcher.md/.json` contains the actual article; `T0_identical/a.md`, `b.md` and `pair.diff` show identical requests; `T2_name/` changes only Rowan → Sasha; `T4_distinct_leads/` changes both characters' names, evidence and outgoing letters. `audit.json` records hashes. Omitting `--essay` renders only the researcher request; an empty essay fails. A subsequent render can replace the review export; run directories and source attempts are unique.
 
 The handoff index at `data/review.md` links the full researcher prompt and both prisoner prompts/diffs for one T0 and one T2, plus all source reports. Prisoner previews currently contain the clearly labeled synthetic fixture because no live researcher essay exists. Before any live prisoner call, render again using the **actual frozen essay**:
 
@@ -68,7 +68,7 @@ The handoff index at `data/review.md` links the full researcher prompt and both 
 python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay data/runs/RESEARCHER_RUN_ID/essay.md
 ```
 
-T0 requests are byte-identical. T2 requests differ only in the bounded private field (the name printed on an intake card, Rowan versus Sasha). Single-pass substitution preserves embedded essay/source text verbatim. IDs, filenames, budgets, hashes and hypotheses are metadata only. [docs/hypotheses.md](docs/hypotheses.md) is never loaded by rendering or execution; tests prohibit experiment/game fields in researcher instructions. Natural examples inside the supplied article are retained.
+T0 requests are byte-identical. T2 requests differ only in the private intake-card name. T4 requests differ in three audited slots: the visible cell observation, the notebook's private lead, and the example disclosure command. Single-pass substitution preserves embedded essay/source text verbatim. IDs, filenames, budgets, hashes and hypotheses are metadata only. [docs/hypotheses.md](docs/hypotheses.md) is never loaded by rendering or execution; tests prohibit experiment/game fields in researcher instructions. Natural examples inside the supplied article are retained.
 
 ## OpenRouter settings, preflight and dry run
 
@@ -115,25 +115,33 @@ After reading the entire saved essay and rendering/approving the resulting priso
 ```sh
 python3 -m almost_twin run prisoner --assignment fdt_eq4 \
   --settings data/openrouter/settings.json \
-  --essay data/runs/RESEARCHER_RUN_ID --scenario t0_identical_001 \
+  --essay data/runs/RESEARCHER_RUN_ID --scenario t4_distinct_leads_001 \
   --execute --confirm-billable --prompts-approved
 ```
 
 Both billable flags are required. There is no batch command. The default persistent project budget is four calls and US$2 estimated spend; `--max-calls`/`--max-usd` explicitly change those limits. `data/budget.jsonl` reserves the whole stage before calling; failed/unknown transport outcomes remain charged against the reservation. A pair is always preflighted and reserved together. Calls are sequential HTTP requests **with separate one-message contexts**, not continuations; neither request contains the other's output. No automated retries are implemented. Changing the local ledger, directory or cap can bypass local accounting, so retain it as an audit record.
 
-Each live call saves the exact serialized request, exact raw response bytes, transport metadata, output text and append-only start/success/failure JSONL events with source/template/essay hashes, IDs, model, effort, usage, finish reason and route metadata. Truncated/empty/refused/malformed outputs fail. The researcher `essay.md` is the entire unedited response content, frozen by hash and verified against the raw response before reuse. Only a completed same-model, same-assignment researcher artifact is accepted for execution; a standalone synthetic preview is not a runnable research essay.
+Each live call saves the exact serialized request, exact raw response bytes, transport metadata, output text and append-only start/success/failure JSONL events with source/template/essay hashes, IDs, model, effort, usage, finish reason and route metadata. Transport errors and truncated generations fail. **Empty or refused prisoner answers are retained as `OTHER` responses**, while an empty/refused researcher essay still fails. The researcher `essay.md` is the entire unedited response content, frozen by hash and verified against the raw response before reuse. Only a completed same-model, same-assignment researcher artifact is accepted for execution; a standalone synthetic preview is not a runnable research essay.
 
-Prisoners must enter **one of two literal text-adventure commands**, not JSON:
+Prisoners are encouraged to enter **one of two text-adventure commands**, not JSON. Here is the T4 example for the first prisoner:
 
 ```text
 pass
-submit letter to District Prosecutor's Office saying "The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
 ```
 
-Each response is **exactly one line** containing *one* of these commands. The second command is a fixed, genuinely incriminating disclosure; the prisoner does not merely announce that they would defect. The strict parser rejects explanations, altered letter text, multiple commands, or ambiguous responses rather than guessing C/D. `pass = WITHHOLD = C`, and `submit letter = SUBMIT = D`. A valid action immediately appends an irreversible fictional commitment; if the other call fails, the first commitment remains and there is no completed outcome. Sentences `(2,2)/(5,0)/(0,5)/(4,4)` and utility `5 − own years` implement the design. The state machine has no contact mechanism for a real prosecutor or other person. Prisoner justifications are not requested in this MVP; the essay and raw action remain available for interpretation.
+The other prisoner receives a *different* letter, disclosing a different item in a different location. A final valid command can be recognized even after a brief think-aloud explanation. The classifier separately records `TRIED_DEFECT`, `TRIED_COOPERATE`, or `OTHER`, along with `YES`, `NO`, or `UNCERTAIN` disclosure. Noncanonical prose statements such as `I choose to defect` can identify **intent without successful delivery**. Ambiguous cases are preserved for blinded review, never silently coerced into C/D. `pass = WITHHOLD = C`, and `submit letter = SUBMIT = D`; the payoff schedule and selfish utility are unchanged. Only safely identified executed actions are committed to the fictional game journal, and incomplete pairs retain their raw outputs without a fabricated outcome.
+
+For a completed local prisoner run, prepare **offline, blind** prompts for later LLM or human classification:
+
+```sh
+python3 -m almost_twin prepare-adjudication --run data/runs/PRISONER_RUN_ID
+```
+
+These are written under the run's `adjudication_prompts/` directory. The judge sees the private lead, possible command and raw response, **not** the theory, model, effort, or essay. Automated billable judging is not yet wired up; the judge prompt and strict JSON label validator are included for review. See [adjudication protocol](docs/adjudication_protocol.md).
 
 ## Scope and remaining decisions
 
-Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls; strict action parsing; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
+Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls; role-specific evidence/letters; conservative intent and delivery classification; offline blinded-judge packet rendering; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
 
 Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, automated grading, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, or empirical results have occurred. Scaling waits for manual prompt approval.

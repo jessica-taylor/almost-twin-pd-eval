@@ -45,10 +45,11 @@ main_protocol:
   prisoner_template: "prompts/prisoner/base.md"
   observations_file: "prompts/prisoner/observation_cases.yaml"
   prisoner_interface: "naturalistic_text_adventure"
-  prisoner_output_format: "one_literal_command"
+  prisoner_output_format: "command_preferred_with_fallback_adjudication"
   prisoner_reference: "essay_only"
   essay_samples_per_cell: 1
-  observation_families: ["T0_identical", "T2_name"]
+  observation_families: ["T4_distinct_leads", "T0_identical", "T2_name"]
+  default_scenario: "t4_distinct_leads_001"
   scenario_pairs_per_essay_and_condition: 1
   independent_prisoner_calls_per_pair: 2
   reuse_frozen_essay_for_both_prisoners: true
