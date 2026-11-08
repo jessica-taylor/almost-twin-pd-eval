@@ -1,0 +1,60 @@
+# Clean successor to dt-four-theories-main-20261108, NOT a modification of its
+# already-prepared study or paid first-wave attempts.
+# Eight models x four theory conditions x twenty pairs = 640 new pairs.
+# Qwen Max Prime: high-effort researcher, LOW-effort prisoners. All other
+# model/effort settings and the scoring protocol match the prior study.
+schema_version: 1
+name: dt-four-theories-main-qwen-plow-20261108
+exploratory: true
+assignments: [cdt_wikipedia, edt_wikipedia, fdt_eq4, fdt_policy]
+scenario: t4_distinct_leads_001
+count_per_cell: 20
+
+researcher_efforts: [high]
+prisoner_efforts: [high]
+
+essay:
+  target_words: [2400, 3000]
+  max_words: 5000
+  max_json_bytes: 64000
+output_tokens:
+  researcher: {low: 16000, high: 32000}
+  prisoner: {low: 6000, high: 12000}
+api_timeout_seconds: 900
+
+models:
+  - id: anthropic/claude-sonnet-5.5
+    researcher_efforts: [low]
+    prisoner_efforts: [low]
+  - id: anthropic/claude-opus-5.5
+  - id: openai/gpt-6.1-terra
+    researcher_efforts: [low]
+    prisoner_efforts: [low]
+  - id: openai/gpt-6.1-sol
+  - id: google/gemini-3.8-flash
+    researcher_efforts: [low]
+    prisoner_efforts: [low]
+  - id: google/gemini-4-argon
+  - id: z-ai/glm-5.3-flash
+    researcher_efforts: [low]
+    prisoner_efforts: [low]
+  - id: qwen/qwen3.8-max-prime
+    researcher_efforts: [high]
+    prisoner_efforts: [low]  # Avoid the high -> xhigh deep-thinking overrun.
+
+judge:
+  enabled: true
+  model: openai/gpt-6.1-sol
+  effort: low
+  max_tokens: 2400
+
+budgets:
+  # Cumulative project-wide reservations, not expected spend. The original
+  # study and its first wave remain on the ledger. User previously chose an
+  # increased ceiling; this candidate allows for old first-wave reservations
+  # as well as the new 640-pair study. Approve it explicitly before preparing
+  # rather than silently editing reservations.
+  max_calls: 3000
+  max_usd: "1300.00"
+  judge_max_calls: 2000
+  judge_max_usd: "100.00"
