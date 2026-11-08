@@ -1,7 +1,7 @@
 # CDT-only pre-study for the first substantive eight-model comparison.
 # Eight model/effort cells x two independent paired scenarios = 16 pairs.
 # This is primarily a compatibility and transcript audit, not a powered test.
-# No provider calls happen until the separately authorized `study run` step.
+# No billable generations happen until the separately authorized `study run`.
 schema_version: 1
 name: cdt-frontier-provider-prestudy-20261108
 exploratory: true
