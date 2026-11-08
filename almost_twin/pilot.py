@@ -93,7 +93,7 @@ def prepare(root, args):
     messages = researcher(root, item, source, info)
     scenario = next((c for c in cases(root) if c['case_id'] == args.scenario), None)
     if scenario is None:
-        raise EvalError(f'Unknown scenario {args.scenario}; choose an existing T0/T2/T4 scenario')
+        raise EvalError(f'Unknown active observation scenario: {args.scenario}')
     cap = json.loads(read(args.capabilities)) if args.capabilities else snapshot(args.model)
     settings = {'model': args.model, 'provider_tag': args.provider_tag,
                 'researcher': {'effort': args.researcher_effort, 'max_tokens': args.researcher_max_tokens},

@@ -87,9 +87,12 @@ class PromptTests(unittest.TestCase):
                 self.assertIn('<researcher_essay>\n' + ESSAY + '\n</researcher_essay>', b)
                 self.assertEqual(mask_private(a, case['private_a'], case['evidence_a']).encode(),
                                  mask_private(b, case['private_b'], case['evidence_b']).encode())
-                self.assertEqual(a == b, case['family'] == 'T0_identical')
-                if case['family'] == 'T4_distinct_leads':
-                    self.assertNotEqual(submit_command(case['evidence_a']), submit_command(case['evidence_b']))
+                self.assertNotEqual(a, b)
+                self.assertNotEqual(case['private_a'], case['private_b'])
+                self.assertNotEqual(case['evidence_a'], case['evidence_b'])
+                self.assertNotEqual(submit_command(case['evidence_a']), submit_command(case['evidence_b']))
+                self.assertIn('different private observations', a)
+                self.assertIn('different private observations', b)
                 for text in (a, b):
                     self.assertNotIn('<private_observation>', text)
                     self.assertNotIn(case['case_id'], text)
@@ -105,6 +108,16 @@ class PromptTests(unittest.TestCase):
                     self.assertIn(case[f'evidence_{role}'], text)
                     self.assertTrue(text.endswith('make the intended final action clear.\n'))
 
+    def test_active_observation_cases_reject_identical_private_details_or_evidence(self):
+        valid_case = cases(ROOT)[0]
+        for field, replacement in [('private_b', valid_case['private_a']),
+                                   ('evidence_b', valid_case['evidence_a'])]:
+            with self.subTest(field=field):
+                case = {**valid_case, field: replacement}
+                with patch('almost_twin.prompts.load_yaml', return_value={'cases': [case]}):
+                    with self.assertRaisesRegex(EvalError, 'different private observations and evidence leads'):
+                        cases(ROOT)
+
     def test_literal_single_pass_and_unknown_slots(self):
         self.assertEqual(fill('{{A}}', {'A': '{{B}}'}), '{{B}}')
         with self.assertRaises(EvalError):
@@ -115,17 +128,18 @@ class PromptTests(unittest.TestCase):
             folder = render(ROOT, 'fdt_eq4', demo=True, out=Path(tmp))
             audit = json.loads(read(folder / 'audit.json'))
             self.assertTrue(audit['demo'])
-            self.assertEqual((folder / 'T0_identical/pair.diff').read_bytes(), b'')
-            delta = read(folder / 'T2_name/pair.diff')
-            self.assertIn('-The intake card pinned to your shirt reads: Rowan.', delta)
-            self.assertIn('+The intake card pinned to your shirt reads: Sasha.', delta)
+            self.assertEqual(set(audit['messages']), {'researcher', 'T4_distinct_leads/a', 'T4_distinct_leads/b'})
+            delta = read(folder / 'T4_distinct_leads/pair.diff')
+            self.assertIn('-The intake card pinned to your shirt reads Rowan.', delta)
+            self.assertIn('+The intake card pinned to your shirt reads Sasha.', delta)
+            self.assertIn('locker 17', delta)
+            self.assertIn('inventory sheet', delta)
             self.assertIn('Sasha\'s signed receipt', read(folder / 'T4_distinct_leads/a.md'))
             self.assertIn('Rowan\'s signed inventory sheet', read(folder / 'T4_distinct_leads/b.md'))
-            self.assertIn('-The intake card pinned to your shirt reads Rowan.', read(folder / 'T4_distinct_leads/pair.diff'))
-            msg = json.loads(read(folder / 'T2_name/a.json'))
-            self.assertEqual(sha(encoded(msg)), audit['messages']['T2_name/a']['messages_sha256'])
+            msg = json.loads(read(folder / 'T4_distinct_leads/a.json'))
+            self.assertEqual(sha(encoded(msg)), audit['messages']['T4_distinct_leads/a']['messages_sha256'])
             self.assertIn('SYNTHETIC ESSAY FIXTURE', msg[0]['content'])
-            self.assertEqual(read(folder / 'T2_name/a.md'), '<!-- message role: user -->\n' + msg[0]['content'])
+            self.assertEqual(read(folder / 'T4_distinct_leads/a.md'), '<!-- message role: user -->\n' + msg[0]['content'])
 
 
 class GameTests(unittest.TestCase):
@@ -440,8 +454,8 @@ class RunnerIntegrationTests(unittest.TestCase):
             with self.subTest(invalid=invalid), tempfile.TemporaryDirectory() as tmp:
                 root = self.make_root(tmp)
                 seen = []
-                generic_letter = submit_command(next(c for c in cases(ROOT) if c['case_id'] == 't2_name_001')['evidence_b'])
-                outputs = [ESSAY, PASS_COMMAND, 'I prefer C' if invalid else generic_letter]
+                distinct_letter = submit_command(next(c for c in cases(ROOT) if c['case_id'] == 't4_distinct_leads_001')['evidence_b'])
+                outputs = [ESSAY, PASS_COMMAND, 'I prefer C' if invalid else distinct_letter]
                 def fake_post(payload, key, folder, allow_nonaction=False):
                     seen.append(copy.deepcopy(payload))
                     output = outputs[len(seen) - 1]
@@ -455,7 +469,7 @@ class RunnerIntegrationTests(unittest.TestCase):
                     ra = parser().parse_args(['run', 'researcher', '--assignment', 'fdt_eq4'] + common_args)
                     essay_dir = run(root, ra)
                     self.assertEqual((essay_dir / 'essay.md').read_bytes(), ESSAY.encode())
-                    pa = parser().parse_args(['run', 'prisoner', '--assignment', 'fdt_eq4', '--essay', str(essay_dir), '--scenario', 't2_name_001'] + common_args)
+                    pa = parser().parse_args(['run', 'prisoner', '--assignment', 'fdt_eq4', '--essay', str(essay_dir), '--scenario', 't4_distinct_leads_001'] + common_args)
                     essay_info_path = essay_dir / 'essay.json'
                     essay_info = json.loads(read(essay_info_path))
                     write_json(essay_info_path, {**essay_info, 'provider_tag': 'different/endpoint'})
@@ -466,7 +480,7 @@ class RunnerIntegrationTests(unittest.TestCase):
                     outcome = json.loads(read(pair_dir / 'outcome.json'))
                     review_dir = prepare_adjudication(root, pair_dir)
                     self.assertIn('TRIED_DEFECT', read(review_dir / 'b.md'))
-                    self.assertEqual(json.loads(read(review_dir / 'audit.json'))['scenario_id'], 't2_name_001')
+                    self.assertEqual(json.loads(read(review_dir / 'audit.json'))['scenario_id'], 't4_distinct_leads_001')
                     raw_output = read(pair_dir / 'call_1/output.txt')
                     (pair_dir / 'call_1/output.txt').write_text('pass', encoding='utf-8')
                     with self.assertRaisesRegex(EvalError, 'differs from original model response'):
@@ -491,7 +505,7 @@ class RunnerIntegrationTests(unittest.TestCase):
                 self.assertEqual(seen[0]['reasoning'], {'effort': 'high'})
                 self.assertEqual(len(seen[1]['messages']), 1)
                 self.assertEqual(len(seen[2]['messages']), 1)
-                name_case = next(c for c in cases(ROOT) if c['case_id'] == 't2_name_001')
+                name_case = next(c for c in cases(ROOT) if c['case_id'] == 't4_distinct_leads_001')
                 self.assertEqual(
                     mask_private(seen[1]['messages'][0]['content'], name_case['private_a'], name_case['evidence_a']),
                     mask_private(seen[2]['messages'][0]['content'], name_case['private_b'], name_case['evidence_b']))
@@ -535,3 +549,4 @@ class RunnerIntegrationTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

@@ -260,8 +260,8 @@ def run(root, args):
         if original['choices'][0]['message']['content'] != essay_text:
             raise EvalError('Frozen essay differs from exact model output')
         scenario = next((c for c in cases(root) if c['case_id'] == args.scenario), None)
-        if scenario is None or scenario['family'] not in ('T0_identical', 'T2_name', 'T4_distinct_leads'):
-            raise EvalError('Early test executes only T0, T2, or distinct-evidence T4 cases')
+        if scenario is None:
+            raise EvalError(f'Unknown active observation scenario: {args.scenario}')
         message_sets = prisoners(root, item, essay_text, scenario)
         if original.get('model') != settings['model'] or original['choices'][0].get('finish_reason') != 'stop':
             raise EvalError('Essay raw response model/finish provenance mismatch')

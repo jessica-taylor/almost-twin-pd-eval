@@ -68,25 +68,28 @@ def prisoners(root, item, essay, case):
     a, b = (x[0]['content'] for x in result)
     if mask_private(a, case['private_a'], case['evidence_a']) != mask_private(b, case['private_b'], case['evidence_b']):
         raise EvalError('Pair differs outside the declared role-specific scene/evidence/command slots')
-    if case['family'] == 'T0_identical' and a != b:
-        raise EvalError('T0 pair is not identical')
-    if case['family'] == 'T4_distinct_leads' and submit_command(case['evidence_a']) == submit_command(case['evidence_b']):
-        raise EvalError('Distinct-evidence case must have distinct in-world letters')
+    if a == b:
+        raise EvalError('Every active observation pair must have distinct model-visible prompts')
     return result
 
 
 def cases(root):
     data = load_yaml(root / 'prompts/prisoner/observation_cases.yaml')
     result = []
+    seen_ids, seen_families = set(), set()
     for case in data['cases']:
         c = dict(case)
-        if ('evidence_a' in c) != ('evidence_b' in c):
-            raise EvalError('Paired observations must supply both evidence leads or neither')
-        if ('evidence_markers_a' in c) != ('evidence_markers_b' in c):
-            raise EvalError('Paired observations must supply both marker lists or neither')
+        for field in ('case_id', 'family', 'relation', 'private_a', 'private_b',
+                      'evidence_a', 'evidence_b', 'evidence_markers_a', 'evidence_markers_b'):
+            if field not in c or not c[field]:
+                raise EvalError(f'Active observation case missing required field: {field}')
+        if c['case_id'] in seen_ids or c['family'] in seen_families:
+            raise EvalError('Duplicate observation case ID/family would overwrite a rendered preview')
+        seen_ids.add(c['case_id'])
+        seen_families.add(c['family'])
+        if c['private_a'] == c['private_b'] or c['evidence_a'] == c['evidence_b']:
+            raise EvalError('Active cases must have different private observations and evidence leads')
         for role in ('a', 'b'):
-            c.setdefault(f'evidence_{role}', data['default_evidence'])
-            c.setdefault(f'evidence_markers_{role}', data['default_evidence_markers'])
             submit_command(c[f'evidence_{role}'])
             markers = c[f'evidence_markers_{role}']
             if not isinstance(markers, list) or not markers or any(
@@ -94,6 +97,8 @@ def cases(root):
                     for x in markers):
                 raise EvalError('Every evidence marker must occur in its own evidence lead')
         result.append(c)
+    if not result:
+        raise EvalError('No active observation cases')
     return result
 
 
@@ -127,8 +132,6 @@ def render(root, name, demo=False, essay_path=None, out=None):
         if not essay.strip():
             raise EvalError('Empty essay')
         for case in cases(root):
-            if case['family'] not in ('T0_identical', 'T2_name', 'T4_distinct_leads'):
-                continue
             pair = prisoners(root, item, essay, case)
             case_dir = folder / case['family']
             case_dir.mkdir(exist_ok=True)
@@ -143,7 +146,8 @@ def render(root, name, demo=False, essay_path=None, out=None):
     index += '[Complete researcher prompt](researcher.md) · [Exact messages JSON](researcher.json) · [Hashes](audit.json)\n\n'
     if essay is not None:
         index += '| Case | Prisoner A | Prisoner B | Precise diff |\n|---|---|---|---|\n'
-        for family in ('T0_identical', 'T2_name', 'T4_distinct_leads'):
+        for family in (c['family'] for c in cases(root)):
             index += f'| {family} | [A]({family}/a.md) | [B]({family}/b.md) | [Diff]({family}/pair.diff) |\n'
     (folder / 'index.md').write_text(index, encoding='utf-8')
     return folder
+
