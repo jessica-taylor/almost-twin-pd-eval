@@ -121,6 +121,16 @@ python3 -m almost_twin.sample_report --batch data/batches/cdt-nano-five
 
 It writes `samples/00000/result.md` and `result.json` (and equivalents for each other sample) and prints the current A/B classifications. `WITHHOLD` means cooperate; `SUBMIT` means defect. The report distinguishes recognized commands from judge-inferred actions, and shows years/utility only for a complete scored pair. It also writes **`samples/00000/transcript.md`**, a **terminal-friendly `samples/00000/transcript.txt`**, and a `transcript/` folder. Both full transcripts show the complete returned researcher/prisoner/judge answer texts and **any readable reasoning supplied by OpenRouter inline**, rather than being link-only indexes. Individual response and reasoning files, structured details and authoritative `response.raw` JSON remain available. The transcript explicitly says when no readable reasoning was returned; reported reasoning tokens are not treated as a trace. It works with batches prepared before this feature and makes **no model calls**. It is deliberately separate from the hash-pinned generation runner, so adding or updating the reporter does not invalidate an in-progress batch.
 
+If a judge explicitly labels a prisoner `OTHER` / disclosure `NO` with
+`needs_human_review=false`, the pair is **unscored but no longer requires a
+human to resolve its action**. This includes clear procedural refusals, which
+must not be counted as cooperation. The existing frozen runner may still say
+`needs_human_review` because that previously meant *any* unscorable pair.
+The offline reporter now shows `resolved_nonaction` in its derived result; for
+study-wide corrected review counts (without changing the original score), run
+`python3 -m almost_twin.review_report --study data/studies/cdt-haiku-gemini-smoke`.
+See [the review-disposition protocol](docs/study_workflow.md#clear-refusals-versus-genuinely-ambiguous-actions-offline-annotation).
+
 ## Try it offline
 
 Use Python 3.11+ and PyYAML 6.x. From the repository root:

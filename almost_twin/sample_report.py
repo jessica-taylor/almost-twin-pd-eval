@@ -12,6 +12,7 @@ from pathlib import Path
 
 from .batch import export
 from .common import EvalError, read, sha, write_json
+from .review_disposition import disposition
 
 
 def action_label(action):
@@ -147,6 +148,7 @@ def _text_section(sample, entry, key):
 
 
 def write_transcript(sample, row):
+    review = row.get('review_disposition') or disposition(row)
     speakers = [('Researcher', 'researcher', row.get('researcher_run'), 'call_0'),
                 ('Prisoner A', 'prisoner_a', row.get('prisoner_run'), 'call_0'),
                 ('Prisoner B', 'prisoner_b', row.get('prisoner_run'), 'call_1')]
@@ -167,6 +169,9 @@ def write_transcript(sample, row):
              f'Original parser actions: A `{_at(row.get("enacted_actions"), 0)}`, '
              f'B `{_at(row.get("enacted_actions"), 1)}`. '
              'A judge may supply analytical labels without altering the original commitments.', '']
+    if review['review_status'] != row['status']:
+        lines.extend([f'Offline review disposition: **{review["review_status"]}** '
+                      '(human review **not** required; the pair is still unscored).', ''])
     plain = [f'SAMPLE {row["sample_index"]:05d} — model responses and reasoning',
              f'Status: {row["status"]}',
              f'Prisoner A: {action_label(_at(row.get("final_actions"), 0))}; '
@@ -175,6 +180,9 @@ def write_transcript(sample, row):
              f'B={_at(row.get("enacted_actions"), 1)}', '',
              'Readable reasoning below is exactly what the provider returned or was '
              'extracted from explicit readable detail fields; it may not be a full internal trace.', '']
+    if review['review_status'] != row['status']:
+        plain.insert(2, f'Offline review disposition: {review["review_status"]} '
+                        '(no human review required; pair unscored)')
     for title, stem, run_dir, call in speakers:
         entry = _transcript_entry(sample, title, stem, run_dir, call)
         entries.append(entry)
@@ -224,6 +232,7 @@ def write_transcript(sample, row):
 
 def render(sample, row):
     status = row['status']
+    review = row.get('review_disposition') or disposition(row)
     final = row.get('final_actions') or []
     enacted = row.get('enacted_actions') or []
     intents = row.get('intents') or []
@@ -236,7 +245,9 @@ def render(sample, row):
     years = (final_score or {}).get('years') or []
     utilities = (final_score or {}).get('utilities') or []
 
-    lines = [f'# Sample {row["sample_index"]:05d} — {status}', '',
+    title_status = (f'{review["review_status"]} (raw: {status})'
+                    if review['review_status'] != status else status)
+    lines = [f'# Sample {row["sample_index"]:05d} — {title_status}', '',
              f'Assignment: `{row["assignment"]}` · model: `{row["model"]}` · scenario: `{row["scenario"]}`', '']
     if status == 'complete':
         lines.append(f'**Outcome: Prisoner A — {action_label(_at(final, 0))}; '
@@ -244,6 +255,14 @@ def render(sample, row):
     elif status == 'pending_judge':
         lines.append('**Classification pending:** at least one response needs judging. '
                      'Any displayed action may be only a parser result.')
+    elif review['review_status'] == 'resolved_nonaction':
+        roles = ', '.join(review['nonaction_roles'])
+        lines.append(f'**No human review needed:** prisoner {roles} was classified '
+                     '`OTHER` (no in-game decision) with disclosure `NO`; the judge '
+                     'explicitly set `needs_human_review=false`. This includes refusals, '
+                     'but the existing judge schema does not distinguish refusals from '
+                     'other clear non-decisions. **The pair remains unscored**, and '
+                     'the frozen original status is preserved.')
     elif status == 'needs_human_review':
         lines.append('**Needs human review:** the judge did not produce a fully scored outcome.')
     else:
@@ -255,7 +274,8 @@ def render(sample, row):
         initial_disclosure = _at(disclosures, i) or '—'
         judge_disclosure = _at(judged_disclosures, i) or '—'
         lines.append('| ' + ' | '.join([
-            name, action_label(_at(final, i)), action_label(_at(enacted, i)),
+            name, ('Resolved nonaction (unscored)' if name in review['nonaction_roles']
+                   else action_label(_at(final, i))), action_label(_at(enacted, i)),
             _at(intents, i) or '—', _at(judged_intents, i) or '—',
             f'{initial_disclosure} / {judge_disclosure}',
             str(_at(years, i)) if _at(years, i) is not None else '—',
@@ -270,6 +290,11 @@ def render(sample, row):
         lines.extend([f'Initial classifier flagged prisoner(s): {labels}.', ''])
     if row.get('needs_human_review'):
         lines.extend([f'Judge requested human review: {row["needs_human_review"]}.', ''])
+    if review['judge_reasons']:
+        lines.extend(['## Judge explanation for resolved nonaction', ''])
+        for role, explanation in review['judge_reasons'].items():
+            lines.append(f'- Prisoner {role}: {explanation}')
+        lines.append('')
     if row.get('error'):
         lines.extend(['## Error', '', f'`{row["error"]}`', ''])
     lines.extend(['## Inspect the original model outputs', '',
@@ -304,9 +329,12 @@ def write_reports(root, batch):
         if row['sample_id'] != entry['sample_id'] or row['sample_index'] != entry['index']:
             raise EvalError('Mismatched sample index or ID; refusing to create reports')
         sample = batch / entry['path']
-        write_json(sample / 'result.json', row)
-        write_transcript(sample, row)
-        (sample / 'result.md').write_text(render(sample, row), encoding='utf-8')
+        # This derived field is intentionally NOT written to the source
+        # results.jsonl or irrevocable game journal.
+        report_row = {**row, 'review_disposition': disposition(row)}
+        write_json(sample / 'result.json', report_row)
+        write_transcript(sample, report_row)
+        (sample / 'result.md').write_text(render(sample, report_row), encoding='utf-8')
     return rows
 
 
@@ -327,8 +355,9 @@ def main(argv=None):
         print(f'Read complete responses and returned reasoning: less {first}')
     for row in rows[:20]:
         actions = row.get('final_actions') or []
+        review = disposition(row)
         print(f'{row["sample_index"]:05d}: A {action_label(_at(actions, 0))}, '
-              f'B {action_label(_at(actions, 1))} [{row["status"]}]')
+              f'B {action_label(_at(actions, 1))} [{review["review_status"]}]')
     if len(rows) > 20:
         print(f'... {len(rows) - 20} more samples; see files for the full list.')
     return 0
