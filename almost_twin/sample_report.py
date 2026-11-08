@@ -6,6 +6,7 @@ remain executable with their original code hashes. No API calls are made.
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -129,6 +130,22 @@ def _transcript_entry(sample, title, stem, run_dir, call):
     return entry
 
 
+def _fenced_text(value):
+    """Keep arbitrary model text literal, even if it contains Markdown fences.
+
+    The extra newline before the closing fence is presentation-only; the
+    original text is still saved verbatim in transcript/*.txt and response.raw.
+    """
+    longest = max((len(match.group(0)) for match in re.finditer(r'`+', value)), default=0)
+    marker = '`' * max(3, longest + 1)
+    return f'{marker}text\n{value}\n{marker}'
+
+
+def _text_section(sample, entry, key):
+    relative = entry.get(key)
+    return read(sample / relative) if relative else None
+
+
 def write_transcript(sample, row):
     speakers = [('Researcher', 'researcher', row.get('researcher_run'), 'call_0'),
                 ('Prisoner A', 'prisoner_a', row.get('prisoner_run'), 'call_0'),
@@ -138,33 +155,71 @@ def write_transcript(sample, row):
                          ('Judge for B', 'judge_b', row['judge_run'], 'call_b')])
     entries = []
     lines = [f'# Sample {row["sample_index"]:05d} — model responses and reasoning', '',
-             'The files below reproduce the **visible response text** and any **reasoning material actually returned** '
-             'by OpenRouter. The linked `response.raw` JSON remains authoritative. '
-             'A missing reasoning field does not mean that the model performed no internal reasoning.', '']
+             'This is a **self-contained readable transcript** of the complete visible responses '
+             'and any readable reasoning returned by OpenRouter. Text appears inline below; '
+             'the linked `response.raw` JSON is authoritative. A missing reasoning field '
+             'does not mean that the model performed no internal reasoning. '
+             'Returned reasoning may itself be a summary rather than a complete internal trace.', '',
+             '## Outcome', '',
+             f'Status: `{row["status"]}`. ',
+             f'Prisoner A: **{action_label(_at(row.get("final_actions"), 0))}**; '
+             f'Prisoner B: **{action_label(_at(row.get("final_actions"), 1))}**.',
+             f'Original parser actions: A `{_at(row.get("enacted_actions"), 0)}`, '
+             f'B `{_at(row.get("enacted_actions"), 1)}`. '
+             'A judge may supply analytical labels without altering the original commitments.', '']
+    plain = [f'SAMPLE {row["sample_index"]:05d} — model responses and reasoning',
+             f'Status: {row["status"]}',
+             f'Prisoner A: {action_label(_at(row.get("final_actions"), 0))}; '
+             f'Prisoner B: {action_label(_at(row.get("final_actions"), 1))}',
+             f'Original parser: A={_at(row.get("enacted_actions"), 0)}, '
+             f'B={_at(row.get("enacted_actions"), 1)}', '',
+             'Readable reasoning below is exactly what the provider returned or was '
+             'extracted from explicit readable detail fields; it may not be a full internal trace.', '']
     for title, stem, run_dir, call in speakers:
         entry = _transcript_entry(sample, title, stem, run_dir, call)
         entries.append(entry)
         lines.extend([f'## {title}', '', f'Status: `{entry["status"]}`.'])
+        plain.extend(['=' * 60, title.upper(), '=' * 60, f'Status: {entry["status"]}'])
+        if entry.get('model'):
+            lines.append(f'Model: `{entry["model"]}`; provider: `{entry.get("provider")}`; '
+                         f'finish reason: `{entry.get("finish_reason")}`.')
+            plain.append(f'Model: {entry["model"]}; provider: {entry.get("provider")}; '
+                         f'finish reason: {entry.get("finish_reason")}')
         if entry.get('reasoning_tokens') is not None:
             lines.append(f'Reasoning tokens reported in usage: `{entry["reasoning_tokens"]}` '
                          '(not necessarily a readable trace).')
+            plain.append(f'Reasoning tokens reported: {entry["reasoning_tokens"]}')
         if entry.get('response_file'):
-            lines.append(f'- [Complete visible response]({entry["response_file"]})')
+            content = _text_section(sample, entry, 'response_file')
+            lines.extend(['', f'### Complete visible response ([verbatim file]({entry["response_file"]}))', '',
+                          _fenced_text(content), ''])
+            plain.extend(['', 'VISIBLE RESPONSE:', content, ''])
+        else:
+            lines.extend(['', '### Visible response', '', '**Not available.**', ''])
+            plain.extend(['', 'VISIBLE RESPONSE: not available', ''])
         if entry.get('reasoning_file'):
-            lines.append(f'- [Readable reasoning returned]({entry["reasoning_file"]}) '
-                         f'(`{entry["reasoning_status"]}`)')
+            reasoning = _text_section(sample, entry, 'reasoning_file')
+            lines.extend([f'### Readable reasoning returned ([verbatim file]({entry["reasoning_file"]}))', '',
+                          f'Type: `{entry["reasoning_status"]}`.', '', _fenced_text(reasoning), ''])
+            plain.extend([f'READABLE REASONING ({entry["reasoning_status"]}):', reasoning, ''])
         else:
             lines.append(f'- Readable reasoning: **not provided** (`{entry["reasoning_status"]}`).')
+            plain.extend([f'READABLE REASONING: not provided ({entry["reasoning_status"]})', ''])
         if entry.get('reasoning_details_file'):
             lines.append(f'- [Complete structured reasoning details]({entry["reasoning_details_file"]}) '
                          '(may contain summaries or encrypted blocks).')
+            plain.append(f'Structured reasoning details: {entry["reasoning_details_file"]}')
         if entry.get('reasoning_field_file'):
             lines.append(f'- [Non-text reasoning field]({entry["reasoning_field_file"]})')
+            plain.append(f'Non-text reasoning field: {entry["reasoning_field_file"]}')
         if entry.get('raw_path'):
             lines.append(_link(sample, run_dir, f'{call}/response.raw', 'Original API response (complete JSON)'))
+            plain.append(f'Original API response: {entry["raw_path"]}')
         lines.append('')
+        plain.append('')
     write_json(sample / 'transcript_index.json', entries)
     (sample / 'transcript.md').write_text('\n'.join(lines), encoding='utf-8')
+    (sample / 'transcript.txt').write_text('\n'.join(plain), encoding='utf-8')
 
 
 def render(sample, row):
@@ -219,6 +274,7 @@ def render(sample, row):
         lines.extend(['## Error', '', f'`{row["error"]}`', ''])
     lines.extend(['## Inspect the original model outputs', '',
                   '- [All responses and returned reasoning (transcript)](transcript.md)',
+                  '- [Terminal-friendly full transcript](transcript.txt)',
                   '- [Machine-readable transcript index](transcript_index.json)'])
     references = [
         _link(sample, row.get('researcher_run'), 'essay.md', 'Researcher essay'),
@@ -264,7 +320,11 @@ def main(argv=None):
     except (EvalError, OSError, ValueError, KeyError, json.JSONDecodeError) as error:
         print(f'ERROR: {error}', file=sys.stderr)
         return 1
-    print(f'Wrote {len(rows)} per-sample result.md and result.json files in {args.batch}/samples/')
+    print(f'Wrote {len(rows)} per-sample results, full transcript.md and terminal-friendly '
+          f'transcript.txt files in {args.batch}/samples/')
+    if rows:
+        first = Path(args.batch) / 'samples' / f'{rows[0]["sample_index"]:05d}' / 'transcript.txt'
+        print(f'Read complete responses and returned reasoning: less {first}')
     for row in rows[:20]:
         actions = row.get('final_actions') or []
         print(f'{row["sample_index"]:05d}: A {action_label(_at(actions, 0))}, '
