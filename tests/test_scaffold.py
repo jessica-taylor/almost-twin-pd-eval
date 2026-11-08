@@ -51,6 +51,33 @@ class PromptTests(unittest.TestCase):
             for hidden in ('almost-twin', 'Rowan', 'Sasha', 'SUBMIT', 'WITHHOLD', 'PRIVATE_OBSERVATION', 't0_identical', 'prisoner', 'benchmark'):
                 self.assertNotIn(hidden.lower(), msg.lower())
 
+    def test_action_and_policy_theories_have_distinct_names_in_both_stages(self):
+        import re
+        source = 'The original source uses FDT in its own terminology; keep this quotation verbatim.\n'
+        essay = 'Frozen essay quoting the original source notation FDT.\n'
+        for name, tag, full_name, passage, other in (
+            ('fdt_eq4', 'A-FDT', 'action functional decision theory', 'Equation (4), Section 5', 'P-FDT'),
+            ('fdt_policy', 'P-FDT', 'policy functional decision theory', 'footnote 16', 'A-FDT'),
+        ):
+            with self.subTest(assignment=name):
+                item = assignment(ROOT, name)
+                self.assertEqual(item['theory_label'], f'{tag} ({full_name})')
+                self.assertEqual(item['source_id'], 'fdt')
+                request = researcher(ROOT, item, source, {'title': 'Original source', 'url': 'urn:fixture'})[0]['content']
+                self.assertIn(source, request)
+                self.assertIn(passage, request)
+                self.assertIn(f'Use **{tag}** consistently', request)
+                authored = request.replace(source, '')
+                self.assertIn(full_name, authored)
+                self.assertNotIn(other, authored)
+                self.assertIsNone(re.search(r'(?<![AP]-)\bFDT\b', authored))
+                for case in cases(ROOT):
+                    for messages in prisoners(ROOT, item, essay, case):
+                        text = messages[0]['content']
+                        self.assertIn(f'Use {tag} ({full_name})', text)
+                        self.assertIn(essay, text)
+                        self.assertIsNone(re.search(r'(?<![AP]-)\bFDT\b', text.replace(essay, '')))
+
     def test_pairs_verbatim_essay_and_only_private_difference(self):
         for item_name in ('cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy'):
             for case in cases(ROOT):

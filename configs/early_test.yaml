@@ -32,11 +32,11 @@ assignments:
     source_id: edt_sep
     researcher_focus_file: null
   - id: fdt_eq4
-    theory_label: FDT
+    theory_label: "A-FDT (action functional decision theory)"
     source_id: fdt
     researcher_focus_file: "prompts/researcher/fdt_eq4_focus.md"
   - id: fdt_policy
-    theory_label: FDT
+    theory_label: "P-FDT (policy functional decision theory)"
     source_id: fdt
     researcher_focus_file: "prompts/researcher/fdt_policy_focus.md"
 

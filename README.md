@@ -128,9 +128,18 @@ Wikipedia is useful as a licensed reference condition, but is not necessarily as
 
 ## Review the exact prompts
 
+The two functional decision theories have distinct model-visible names:
+
+| Assignment ID | Assigned decision theory | Primary source passage |
+|---|---|---|
+| `fdt_eq4` | **A-FDT** — action functional decision theory | Equation (4), Section 5 |
+| `fdt_policy` | **P-FDT** — policy functional decision theory | Footnote 16, policy selection |
+
+Researcher and prisoner requests explicitly name A-FDT or P-FDT. The researcher is asked to use that distinct name consistently in its essay and identify other theories by their specific names. There is no assignment to apply an unqualified “FDT.” Both assignments use the same unmodified human-written paper; its original title, notation and quotations remain intact. The source ID `fdt` identifies that paper, not an assigned decision theory. Historical prompts, essays and results are not relabeled.
+
 Read these plain files first:
 
-1. [Researcher request](prompts/researcher/base.md), [FDT Equation 4 focus](prompts/researcher/fdt_eq4_focus.md), and [FDT footnote 16 focus](prompts/researcher/fdt_policy_focus.md).
+1. [Researcher request](prompts/researcher/base.md), [A-FDT Equation 4 assignment](prompts/researcher/fdt_eq4_focus.md), and [P-FDT footnote 16 assignment](prompts/researcher/fdt_policy_focus.md).
 2. [Prisoner text-adventure prompt](prompts/prisoner/base.md) and [in-scene observation/evidence cases](prompts/prisoner/observation_cases.yaml). The OOC setup and frozen essay precede the holding-cell scene; the lawyer's letter states the payoff table, and a decoded notebook note gives the prisoner their own actionable fictional evidence.
 3. [Source manifest](sources/manifest.yaml), the full local articles and their QA passages.
 4. [Implementation choices and open questions](docs/implementation_choices.md), [adjudication protocol](docs/adjudication_protocol.md), [blinded judge prompt](prompts/judge/intent.md), [early-test configuration](configs/early_test.yaml), and [OpenRouter settings template](configs/openrouter.example.json).
