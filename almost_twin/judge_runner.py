@@ -8,6 +8,7 @@ from .common import EvalError, append_json, encoded, read, sha, utc, write_json
 from .game import score
 from .approvals import approve
 from .judge import parse_judge_response, prepare_adjudication
+from .progress_log import progress, timed_progress
 from .router import Budget, api_key, post, snapshot, validate_settings
 
 
@@ -41,8 +42,11 @@ def run_judge(root, args):
     if live and not (args.execute and args.confirm_billable and args.prompts_approved):
         raise EvalError('Live judging requires --execute, --confirm-billable, and --prompts-approved')
     key = api_key(root) if live and uncertain_indices else None
-    cap = snapshot(settings.get('model')) if live and uncertain_indices else (
-        json.loads(read(args.capabilities)) if args.capabilities else None)
+    if live and uncertain_indices:
+        with timed_progress(f'judge model metadata: {settings["model"]}'):
+            cap = snapshot(settings['model'])
+    else:
+        cap = json.loads(read(args.capabilities)) if args.capabilities else None
 
     roles = [('a', 0), ('b', 1)]
     chosen = [(role, i, json.loads(read(judge_dir / f'{role}.json')))
@@ -90,7 +94,8 @@ def run_judge(root, args):
                   'role': role, 'model': settings['model'], 'utc': utc(), 'status': 'started'}
         append_json(root / 'data/judge_decisions.jsonl', record)
         try:
-            response, raw_label = post(payloads[j], key, call_dir)
+            with timed_progress(f'{settings["model"]} judge for prisoner {role.upper()}'):
+                response, raw_label = post(payloads[j], key, call_dir)
             expected_provider = estimates[j]['endpoint'].get('provider_name')
             if response.get('provider') and expected_provider and response['provider'] != expected_provider:
                 raise EvalError('Returned judge provider differs from the pinned endpoint provider')
@@ -101,6 +106,8 @@ def run_judge(root, args):
             judgements[role] = label
             write_json(call_dir / 'label.json', label)
             append_json(root / 'data/judge_decisions.jsonl', record)
+            progress.info('Judge for prisoner %s: label validated (intent=%s, disclosure=%s)',
+                          role.upper(), label['intent'], label['disclosure'])
         except Exception as error:
             record.update(status='failed', error=str(error))
             append_json(root / 'data/judge_decisions.jsonl', record)
