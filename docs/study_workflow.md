@@ -197,3 +197,44 @@ should be reviewed for source rights and sensitive provider data before
 sharing or publication. The code is still labeled **exploratory**; freeze a
 separate preregistration of models, source versions, effort settings, planned
 N and analysis before a confirmatory research run.
+
+### Clear refusals versus genuinely ambiguous actions (offline annotation)
+
+An explicit refusal to participate is **not** the game command `pass` and must
+not be counted as cooperation. The current judge schema intentionally labels
+procedural refusals `intent=OTHER`, `disclosure=NO`. If it also returns
+`needs_human_review=false`, then the outcome is an **unscored, resolved
+nonaction**, not a case requiring additional human adjudication. The existing
+judge schema does not distinguish refusals from other clear non-decisions;
+consult its saved `reason` and the model transcript for the exact distinction.
+
+The original batch runner used the broad terminal status `needs_human_review`
+for **any** unscorable pair, even when the judge explicitly set its review
+flag to false. Prepared studies hash the execution and judging code, so fixing
+that live status logic in place would prevent an already-started study from
+resuming. To preserve the frozen instrument, we provide an **offline-only,
+versioned review disposition** that corrects this reporting distinction
+without altering the source outcome, game journal, model calls, or cooperation
+denominator:
+
+```sh
+python3 -m almost_twin.sample_report \
+  --batch data/studies/cdt-haiku-gemini-smoke/batches/*haiku*
+python3 -m almost_twin.review_report \
+  --study data/studies/cdt-haiku-gemini-smoke
+```
+
+The first command adds `review_disposition` to the **derived** per-sample
+`result.json`, a clear explanation in `result.md`, and a note in the readable
+transcripts. The second creates **`review_summary.md`, `review_summary.json`
+and `review_samples.csv`**, showing resolved nonactions separately from true
+human-review cases. Both commands are unbilled and work on already-prepared
+studies; original JSONL statuses and historical scores remain untouched. The
+report includes the exact source-results hashes and rule identifier. Existing
+`study run` may continue to print the original broad terminal status—this is
+intentional to avoid silently changing an in-progress frozen experiment.
+
+For future instruments, consider a distinct `REFUSAL` judge label and a
+separate terminal `refused` status; that is a **new judging protocol** and
+requires a new, explicitly versioned study. Do not silently change the judge
+prompt or the meaning of old labels mid-study.
