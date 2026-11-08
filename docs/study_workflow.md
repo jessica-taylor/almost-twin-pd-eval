@@ -65,6 +65,21 @@ reserved project requests; a fresh study does not reset the underlying ledger.
 For the smallest previously validated CDT plumbing experiment, use
 `configs/study.smoke.example.yaml` instead.
 
+### Live command progress
+
+`study check`, `study prepare`, and `study run` now print flushed
+`[progress]` messages to stderr **while they work**. Preflight shows the
+model being fetched/validated and the chosen endpoint for each cell;
+preparation shows each completed batch; execution shows the active cell,
+sample, researcher call, separate prisoner A/B calls, conditional judge
+calls, and elapsed times. Slow metadata and API requests print a
+`Still waiting` heartbeat every 20 seconds, so a quiet terminal does not
+look hung. These lines contain identifiers and statuses, **not** source
+articles, essays, prisoner observations, responses or credentials.
+
+The append-only JSONL audit files remain authoritative; console messages are
+informational, do not make additional requests, and do not change scoring.
+
 ### Cross-provider CDT pilot: Haiku versus Gemini Flash
 
 `configs/study.cdt-haiku-gemini-smoke.yaml` specifies just two cells, in order:

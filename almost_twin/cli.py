@@ -5,6 +5,7 @@ import urllib.error
 from pathlib import Path
 
 from .common import EvalError, write_json
+from .progress_log import enable_progress, restore_progress
 
 
 def parser():
@@ -144,6 +145,9 @@ def parser():
 def main(argv=None):
     args = parser().parse_args(argv)
     root = args.root.resolve()
+    previous_progress_level = (enable_progress()
+        if args.command in ('study', 'batch', 'pilot', 'run', 'run-judge', 'inspect-model')
+        else None)
     try:
         if args.command == 'fetch-sources':
             from .sources import fetch_sources
@@ -242,6 +246,9 @@ def main(argv=None):
     except (EvalError, OSError, ValueError, KeyError, urllib.error.URLError) as error:
         print(f'ERROR: {error}', file=sys.stderr)
         return 1
+    finally:
+        if previous_progress_level is not None:
+            restore_progress(previous_progress_level)
     return 0
 
 

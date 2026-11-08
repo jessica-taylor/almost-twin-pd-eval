@@ -11,6 +11,7 @@ from .accounting import (EXPECTED_PRISONER_OUTPUT_TOKENS, EXPECTED_RESEARCHER_OU
                          expected_prisoner_input_tokens, prisoner_input_ceiling)
 from .common import EvalError, append_json, encoded, read, sha, utc, write_json
 from .preflight import choose_endpoint, estimate_price
+from .progress_log import timed_progress
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
 from .router import Budget, run, snapshot, validate_settings
 from .sources import load_source, source_identity
@@ -215,7 +216,8 @@ def _resume(root, folder, args):
     cap_path = folder / 'capabilities.json'
     settings = config['settings']
     if live or config['metadata_mode'] == 'online_refresh':
-        cap = snapshot(settings['model'])
+        with timed_progress(f'refreshing model metadata: {settings["model"]}'):
+            cap = snapshot(settings['model'])
         cap_path = folder / 'metadata_checks' / (str(uuid.uuid4()) + '.json')
         write_json(cap_path, cap)
     if config.get('canonical_model') and cap['model'].get('canonical_slug') != config['canonical_model']:

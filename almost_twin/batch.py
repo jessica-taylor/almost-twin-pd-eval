@@ -22,6 +22,7 @@ from .judge import judge_messages
 from .judge_runner import run_judge
 from .pilot import prepare as prepare_pilot, resume as resume_pilot
 from .preflight import choose_endpoint
+from .progress_log import progress
 from .review_disposition import classify_adjudication
 from .router import Budget, snapshot, validate_settings
 
@@ -380,9 +381,16 @@ def _sample_live(root, folder, entry, scope, config):
 
 
 def _timed_sample_live(root, folder, entry, scope, config):
+    progress.info('Sample %d/%d for %s: started', entry['index'] + 1,
+                  config['count'], config['model'])
     started = monotonic()
     result = _sample_live(root, folder, entry, scope, config)
-    return {**result, 'elapsed_seconds': round(monotonic() - started, 3)}
+    elapsed = round(monotonic() - started, 3)
+    progress.info('Sample %d/%d for %s: %s after %.1fs%s',
+                  entry['index'] + 1, config['count'], config['model'],
+                  'pipeline finished' if result['status'] == 'processed' else result['status'], elapsed,
+                  f'; error: {result["error"]}' if result.get('error') else '')
+    return {**result, 'elapsed_seconds': elapsed}
 
 
 def run(root, args):
@@ -417,6 +425,8 @@ def run(root, args):
             todo.append(entry)
         if args.limit is not None:
             todo = todo[:args.limit]
+        progress.info('Batch %s: running %d pending samples (jobs=%d)',
+                      config['model'], len(todo), args.jobs)
         results = []
         started = monotonic()
         with ThreadPoolExecutor(max_workers=args.jobs) as pool:
@@ -430,6 +440,9 @@ def run(root, args):
         _event(folder, 'batch_run_finished', attempted=len(todo),
                failed=sum(r['status'] == 'failed' for r in results),
                elapsed_seconds=round(monotonic() - started, 3))
+        progress.info('Batch %s: finished %d samples in %.1fs; %d failed',
+                      config['model'], len(results), monotonic() - started,
+                      sum(r['status'] == 'failed' for r in results))
         if getattr(args, 'auto_reports', True):
             from .sample_report import write_reports
             write_reports(root, folder)  # Offline; no additional model requests.

@@ -25,6 +25,7 @@ from .accounting import (EXPECTED_PRISONER_OUTPUT_TOKENS, EXPECTED_RESEARCHER_OU
 from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
 from .judge import judge_messages
 from .preflight import choose_endpoint, estimate_price
+from .progress_log import progress, timed_progress
 from .prompts import assignment, cases, prisoners, researcher
 from .router import Budget, snapshot, validate_settings
 from .sources import load_source
@@ -164,6 +165,9 @@ def _cells(spec):
 def check(root, spec):
     """Validate the whole matrix and projected project budget; never POST."""
     root = Path(root).resolve()
+    cells = _cells(spec)
+    progress.info('Preflight: %d models, %d condition cells, %d scenarios per cell (no billable calls)',
+                  len(spec['models']), len(cells), spec['count_per_cell'])
     scenario = next((c for c in cases(root) if c['case_id'] == spec['scenario']), None)
     if scenario is None:
         raise EvalError(f'Unknown active scenario {spec["scenario"]!r}')
@@ -175,17 +179,23 @@ def check(root, spec):
         prisoners(root, item, 'Synthetic preflight essay; no generation occurred.', scenario)
     caps = {}
     failures = []
-    for model in spec['models']:
+    for index, model in enumerate(spec['models'], 1):
         try:
-            caps[model['id']] = snapshot(model['id'])
+            with timed_progress(f'model metadata {index}/{len(spec["models"])}: {model["id"]}'):
+                caps[model['id']] = snapshot(model['id'])
         except EvalError as exc:
+            progress.warning('Metadata unavailable for %s: %s', model['id'], str(exc)[:240])
             failures.append({'cell': f'metadata:{model["id"]}', 'reason': str(exc)})
     judge = spec['judge']
     judge_cap = None
     if judge['enabled']:
         try:
-            judge_cap = caps.get(judge['model']) or snapshot(judge['model'])
+            judge_cap = caps.get(judge['model'])
+            if judge_cap is None:
+                with timed_progress(f'judge metadata: {judge["model"]}'):
+                    judge_cap = snapshot(judge['model'])
         except EvalError as exc:
+            progress.warning('Judge metadata unavailable: %s', str(exc)[:240])
             failures.append({'cell': 'judge metadata', 'reason': str(exc)})
     judge_settings = None
     judge_selection = None
@@ -207,9 +217,13 @@ def check(root, spec):
     full_context_projection = Decimal(0)
     estimates = []
     validated_cells = []
-    for cell in _cells(spec):
+    for index, cell in enumerate(cells, 1):
+        progress.info('Checking cell %d/%d: %s (researcher=%s, prisoner=%s)',
+                      index, len(cells), cell['model'],
+                      cell['researcher_effort'], cell['prisoner_effort'])
         if cell['model'] not in caps:
             failures.append({'cell': cell['id'], 'reason': 'Model metadata unavailable; cannot select a provider'})
+            progress.warning('Cell %d/%d blocked: no model metadata', index, len(cells))
             continue
         settings = {'model': cell['model'], 'provider_tag': cell['provider_tag'],
                     'researcher': {'effort': cell['researcher_effort'], 'max_tokens': spec['researcher_max_tokens']},
@@ -262,7 +276,10 @@ def check(root, spec):
                                     'selection': selection, 'projected_usd': str(per_sample * spec['count_per_cell']),
                                     'expected_usd': str(typical_sample * spec['count_per_cell']),
                                     'full_context_ceiling_usd': str(full_sample * spec['count_per_cell'])})
+            progress.info('Cell %d/%d passed; provider=%s', index, len(cells),
+                          settings['provider_tag'])
         except EvalError as exc:
+            progress.warning('Cell %d/%d failed preflight: %s', index, len(cells), str(exc)[:240])
             failures.append({'cell': cell['id'], 'reason': str(exc)})
     if not failures:
         budget = spec['budgets']
@@ -276,6 +293,9 @@ def check(root, spec):
                        budget['judge_max_usd']).check([{'estimated_max_usd': '0'}] * possible)
         except EvalError as exc:
             failures.append({'cell': 'project-wide budget', 'reason': str(exc)})
+    progress.info('Preflight finished: %d/%d cells passed; %d failures; expected cost $%s; '
+                  'conservative projection $%s',
+                  len(validated_cells), len(cells), len(failures), expected, projected)
     return {'schema_version': 1, 'checked_at_utc': utc(),
             'no_billable_requests': True, 'count_per_cell': spec['count_per_cell'],
             'expected_cells': len(_cells(spec)), 'validated_cells': validated_cells,
@@ -322,6 +342,7 @@ def prepare(root, args):
     root = Path(root).resolve()
     spec, raw = load_spec(args.config)
     folder = Path(args.out).resolve()
+    progress.info('Preparing a fresh study at %s', folder)
     if folder.exists():
         raise EvalError(f'Study directory already exists: {folder}; choose a new --out')
     result, caps, judge_cap = check(root, spec)
@@ -345,6 +366,8 @@ def prepare(root, args):
     cells = []
     for i, checked in enumerate(result['validated_cells']):
         path = folder / 'batches' / checked['id']
+        progress.info('Preparing batch %d/%d: %s', i + 1,
+                      len(result['validated_cells']), checked['model'])
         # Study-wide project limits are also passed to every batch, so the
         # existing per-request reservation ledger remains the authority.
         a = SimpleNamespace(assignment=checked['assignment'], model=checked['model'],
@@ -365,6 +388,8 @@ def prepare(root, args):
             judge_max_usd=spec['budgets']['judge_max_usd'], out=path)
         batch.prepare(root, a)
         cells.append({**checked, 'path': str(path.relative_to(folder))})
+        progress.info('Prepared batch %d/%d: %s', i + 1,
+                      len(result['validated_cells']), checked['model'])
     study = {'schema_version': 1, 'exploratory': True, 'study_id': str(uuid.uuid4()),
              'repo_root': str(root), 'created_at_utc': utc(), 'name': spec['name'],
              'spec_sha256': sha(raw), 'study_code_sha256': _study_code_sha256(),
@@ -393,6 +418,8 @@ def prepare(root, args):
         encoding='utf-8')
     append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_prepared', 'cells': len(cells)})
     report(root, folder, include_details=False)
+    progress.info('Study preparation complete: %d cells, %d planned scenarios; no generations',
+                  len(cells), len(cells) * spec['count_per_cell'])
     return folder
 
 
@@ -591,12 +618,16 @@ def run(root, args):
         value = getattr(args, name)
         if value is not None and (not isinstance(value, int) or value < 1):
             raise EvalError(f'--{name.replace("_", "-")} must be positive')
+    progress.info('Study run: %d model/theory cells, jobs=%d, limit_per_cell=%s',
+                  len(study['cells']), args.jobs,
+                  args.limit_per_cell if args.limit_per_cell is not None else 'all')
     # One writer per study. Batch locks protect individual samples and stages.
     with (folder / '.study.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         count = 0
-        for cell in study['cells']:
+        for index, cell in enumerate(study['cells'], 1):
             if args.limit_cells is not None and count >= args.limit_cells:
+                progress.info('Reached --limit-cells=%d; stopping this invocation', args.limit_cells)
                 break
             path = folder / cell['path']
             batch.export(root, path)
@@ -607,8 +638,13 @@ def run(root, args):
             if batch_config.get('judge_settings') is None:
                 terminal.add('pending_judge')
             if all(row['status'] in terminal for row in rows):
+                progress.info('Cell %d/%d already terminal: %s; skipping', index,
+                              len(study['cells']), cell['model'])
                 continue
             count += 1
+            pending = sum(row['status'] not in terminal for row in rows)
+            progress.info('Starting cell %d/%d: %s (%d pending scenarios)', index,
+                          len(study['cells']), cell['model'], pending)
             append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_cell_started', 'cell': cell['id']})
             started = monotonic()
             batch.run(root, SimpleNamespace(batch=path, execute=True, confirm_billable=True,
@@ -617,5 +653,9 @@ def run(root, args):
             append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_cell_finished',
                                                  'cell': cell['id'],
                                                  'elapsed_seconds': round(monotonic() - started, 3)})
+            progress.info('Finished cell %d/%d: %s in %.1fs', index,
+                          len(study['cells']), cell['model'], monotonic() - started)
             report(root, folder, include_details=False)
-        return report(root, folder)
+        result = report(root, folder)
+        progress.info('Study invocation complete; results: %s', result / 'summary.md')
+        return result
