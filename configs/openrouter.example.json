@@ -1,14 +1,15 @@
 {
   "model": null,
   "provider_tag": null,
-  "researcher": {"effort": null, "max_tokens": 12000},
-  "prisoner": {"effort": null, "max_tokens": 3000},
+  "researcher": {
+    "effort": null,
+    "max_tokens": 12000
+  },
+  "prisoner": {
+    "effort": null,
+    "max_tokens": 3000
+  },
   "temperature": null,
   "seed": null,
-  "provider_effort_review": {
-    "efforts": [],
-    "evidence_url": null,
-    "reviewed_at_utc": null,
-    "note": "Required if selected endpoint does not publish reasoning.supported_efforts. Review provider/model documentation; do not infer effort support from the generic reasoning parameter."
-  }
+  "reasoning_override": null
 }

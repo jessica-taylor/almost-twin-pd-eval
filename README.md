@@ -1,8 +1,56 @@
 # Almost-Twin Decision Theory Eval — Sprint 01
 
-An auditable, offline-first scaffold for **human article → researcher essay → two independent simulated prisoner decisions**. Mainline prisoners receive the same frozen essay, never the original article. No models or efforts have been selected, and no paid experiment has been run.
+An auditable, offline-first scaffold for **human article → researcher essay → two independent simulated prisoner decisions**. Mainline prisoners receive the same frozen essay, never the original article. Model and effort choices are explicit in each saved pilot; preparation requires no model calls.
 
 The authoritative broad design is [docs/design_v03.md](docs/design_v03.md); [CODEX_TASK.md](CODEX_TASK.md) is the original Sprint 01 handoff. The current prisoner interface is a **naturalistic, one-turn text adventure**, further refined in the [distinct-evidence and adjudication protocol](docs/adjudication_protocol.md). The default early-test scenario has different evidence and outgoing letters for the two prisoners. Prompts are not approved or frozen instruments yet.
+
+## Quick start: exploratory CDT Wikipedia / GPT-5 Nano
+
+Use Python 3.11+ with PyYAML installed. Set `OPENROUTER_API_KEY` in your environment or a gitignored `.env` (see `.env.example`). No endpoint-tag discovery, settings file or hand-written timestamp is needed for this workflow.
+
+Acquire the source, open `data/source_cache/report.md` and its full article/QA links, then acknowledge transmission rights for that exact revision/text:
+
+```sh
+python3 -m almost_twin fetch-sources --network --source cdt_wikipedia
+python3 -m almost_twin approve-source --source cdt_wikipedia --source-terms-reviewed
+```
+
+Source approval persists locally by source ID, revision, permanent URL and normalized-text hash. It does not grant permission for changed text or a different revision. Existing manifest pins and raw-source/provenance checks are respected; the approval command does not edit the manifest.
+
+Prepare one exploratory three-call pilot. This command refreshes **unbilled metadata only**, selects and pins an endpoint, and exports the complete researcher request and spending estimate. It sends no source or essay to a model:
+
+```sh
+python3 -m almost_twin pilot prepare \
+  --assignment cdt_wikipedia --model openai/gpt-5-nano \
+  --researcher-effort low --prisoner-effort low \
+  --scenario t4_distinct_leads_001 --out data/pilots/cdt-nano
+```
+
+Open `data/pilots/cdt-nano/plan.md`. The researcher prompt, message JSON and exact serialized request are in its `researcher/` directory. Review the estimated cost and effort evidence, then explicitly authorize **one researcher call**:
+
+```sh
+python3 -m almost_twin pilot researcher --pilot data/pilots/cdt-nano \
+  --execute --confirm-billable --prompts-approved
+```
+
+The command prints the frozen `essay.md` path; the pilot's `plan.md` links it and all run artifacts. Read the essay before preparing the two prisoner requests:
+
+```sh
+python3 -m almost_twin pilot prisoners --pilot data/pilots/cdt-nano
+```
+
+That command makes no generation requests. Inspect both `data/pilots/cdt-nano/prisoners/messages_0.md` and `messages_1.md`, their JSON/serialized requests and updated costs, then explicitly authorize **two independent prisoner calls**:
+
+```sh
+python3 -m almost_twin pilot prisoners --pilot data/pilots/cdt-nano \
+  --execute --confirm-billable --prompts-approved
+```
+
+The updated `plan.md` links the pair outcome, responses and exact API records. Exploratory runs and append-only essay/decision/commitment logs live under `data/exploratory/`; the pilot's append-only history is `events.jsonl`. The project-wide budget ledger remains `data/budget.jsonl`. All these artifacts, approvals and credentials are gitignored.
+
+Pilot defaults are three cumulative reserved calls and US$2 estimated spend. Set `--max-calls`/`--max-usd` at preparation to change them explicitly; prior project reservations, including failed/unknown transport outcomes, count toward those caps. The initial pair-cost projection uses the endpoint context ceiling because the essay is not yet known; exact pair costs are recalculated after the essay. These are estimated caps, not an account billing guarantee. Use an OpenRouter key credit limit for a hard account limit.
+
+A completed researcher or pair is returned when resumed, never automatically called again. Partial failures preserve responses, commitments, logs and reservations and require deliberate new preparation rather than an automatic retry. Existing pilots cannot be overwritten. Use a new `--out` for a new exploratory trial or changed instructions/settings. [Detailed behavior and audit assumptions](docs/pilot_workflow.md).
 
 ## Try it offline
 
@@ -43,7 +91,7 @@ The actual Sprint 01 acquisition succeeded for all three sources. A metadata-onl
 - **EDT:** SEP's full *Decision Theory* article, substantive revision 20 August 2025, including §3.2 on Jeffrey and twelve linked notes. This is a broad decision-theory article, **not a dedicated EDT entry**.
 - **FDT:** Explicitly pinned `1710.05060v2` TeX source, retrieved before any PDF processing. A safe tar/gzip/single-TeX reader rejects traversal, links, special files and excessive decompression; input/include files are resolved without executing TeX. Conservative Markdown retains display math, all four equation numbers, sixteen footnotes, macro definitions, TikZ graph code and bibliography data. QA shows Equation (4), its observation-indexed variable, the observation-change paragraph, the graph-construction open problem and footnote 16. **Some macro notation, cross-references and graph drawings remain literal TeX**; manual formatting approval is necessary. This is not a polished Pandoc rendition. If source conversion fails, text PDF extraction is attempted with `pdftotext -layout`; a failed mathematical check is a visible failure. A genuinely non-textual PDF requires separate manual OCR work, which is not implemented.
 
-All `data/` artifacts are gitignored, including full source text, source excerpts, rendered prompts, responses, commitments and local budget state. Only URLs, metadata/hashes, scripts, templates and synthetic fixtures belong in the repository. SEP's [terms](https://plato.stanford.edu/info.html#t) distinguish personal downloads from redistribution. Before sending full articles to OpenRouter and a provider, resolve that **separate source-license/terms question**, individually for SEP and FDT. Availability on arXiv is not blanket redistribution permission. The researcher runner blocks live article transmission until `--source-terms-reviewed` is explicitly passed; that flag records your resolved review, not a legal determination by this scaffold.
+All `data/` artifacts are gitignored, including full source text, source excerpts, rendered prompts, responses, commitments and local budget state. Only URLs, metadata/hashes, scripts, templates and synthetic fixtures belong in the repository. SEP's [terms](https://plato.stanford.edu/info.html#t) distinguish personal downloads from redistribution. Before sending full articles to OpenRouter and a provider, resolve that **separate source-license/terms question**, individually for SEP and FDT. Availability on arXiv is not blanket redistribution permission. The researcher runner blocks live article transmission until the exact source has a persisted `approve-source` acknowledgement or `--source-terms-reviewed` is explicitly passed; that flag records your resolved review, not a legal determination by this scaffold.
 
 ## Wikipedia CDT and EDT source variants
 
@@ -104,31 +152,27 @@ python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay data/runs/RES
 
 T0 requests are byte-identical. T2 requests differ only in the private intake-card name. T4 requests differ in three audited slots: the visible cell observation, the notebook's private lead, and the example disclosure command. Single-pass substitution preserves embedded essay/source text verbatim. IDs, filenames, budgets, hashes and hypotheses are metadata only. [docs/hypotheses.md](docs/hypotheses.md) is never loaded by rendering or execution; tests prohibit experiment/game fields in researcher instructions. Natural examples inside the supplied article are retained.
 
-## OpenRouter settings, preflight and dry run
+## OpenRouter settings and lower-level preflight
 
-The runner has no built-in model selection. Copy `configs/openrouter.example.json` to `data/openrouter/settings.json`; select an exact model ID, one endpoint provider tag, separate researcher `effort` (`e_R`) and prisoner `effort` (`e_A`), and output limits. Researcher/prisoner limits of 12,000/3,000 tokens are **reviewable starter budgets**, including reasoning where counted by the provider. They are not guarantees of a complete essay or adequate reasoning. Null temperature/seed means those fields are omitted and provider defaults apply; an explicit seed is shared by both calls and can change how independent sampling behaves.
+The pilot workflow above generates its pinned settings automatically. The existing lower-level `run` commands remain available. For them, copy [configs/openrouter.example.json](configs/openrouter.example.json), choose a model and separate researcher/application efforts, and optionally set `provider_tag`. A null provider selects an endpoint once for the researcher; prisoner execution inherits the frozen essay's endpoint. Explicit provider-tag overrides are never silently replaced. Null temperature/seed omits those fields; requested optional decoding parameters must be advertised as supported.
 
-After you select a model, unbilled metadata discovery is available:
-
-```sh
-python3 -m almost_twin inspect-model --network --model YOUR/EXACT_MODEL --out data/openrouter/capabilities.json
-```
-
-This sends no source, essay or credential. Inspect the saved model and `endpoints[]`. Set `provider_tag` to one exact endpoint `tag`, not a broad provider family that could match multiple routes. If the endpoint does not advertise individual supported reasoning efforts, supply a dated `provider_effort_review` in your settings: allowed efforts, provider/model documentation URL, review timestamp and explanatory note. A generic `reasoning` parameter advertisement alone is insufficient. If current catalog shape differs or the evidence is insufficient, preflight fails until reviewed. There is no silent effort translation or fallback in application code.
+Offline metadata snapshots remain supported:
 
 ```sh
-python3 -m almost_twin run researcher --assignment fdt_eq4 \
-  --settings data/openrouter/settings.json \
-  --capabilities data/openrouter/capabilities.json
+python3 -m almost_twin inspect-model --network --model openai/gpt-5-nano --out data/openrouter/capabilities.json
+python3 -m almost_twin run researcher --assignment cdt_wikipedia \
+  --settings data/openrouter/settings.json --capabilities data/openrouter/capabilities.json
 ```
 
-This is still offline. It exports complete messages, validated payload metadata and a conservative cost estimate to a unique `data/runs/<uuid>/plan.json`; it makes no reservation, records no successful essay, and requires no key. Without a capability file it exports a clearly **unvalidated** plan with unknown cost. Do not interpret that plan as permission or feasibility for a live call.
+`run` is offline by default; without a capability file it exports a clearly **unvalidated** plan with unknown cost. `pilot prepare --capabilities data/openrouter/capabilities.json` also runs entirely offline. Normal pilot preparation/resume refreshes unbilled metadata automatically; live execution always refreshes before spending, validates the same pinned endpoint and model version, and stops if that endpoint becomes unsuitable. There is no mid-experiment fallback.
 
-Preflight requires the selected endpoint to advertise requested parameters, accepts only verified effort levels, checks full untruncated context and output limits, and requires JSON-object response-format support for prisoners. Unknown limits, nonstandard pricing, unsupported temperature/seed and stale (>24 hours) capability/evidence timestamps fail. Live mode refreshes metadata before spending. Token estimates use UTF-8 message JSON bytes plus 512 framing tokens as a deliberately conservative proxy; no source or essay is shortened. Pricing is taken from the pinned endpoint and includes the full output token budget. These are **estimated spending caps**, not a provider-enforced dollar ceiling; use an OpenRouter key credit limit for a hard account spending limit.
+Reasoning validation uses endpoint `reasoning.supported_efforts` first, then model-level metadata. An explicit `null` accepts gateway effort values per OpenRouter's documented semantics; an omitted field supplies no effort evidence. Mandatory reasoning still rejects `none`. Plans record `verified_by_endpoint_metadata`, `verified_by_model_metadata`, or `documented_manual_override`, and preserve the selected effort unchanged. Insufficient evidence is `unverified` and blocks execution unless the user supplies a recorded assumption with `pilot prepare --allow-unverified-effort "reason"`, or a `reasoning_override` object with `efforts` and `reason` in lower-level settings. This override has no timestamp expiry and cannot bypass an explicitly unsupported effort. The old `provider_effort_review` format is accepted as a manual override, without requiring a new 24-hour review.
 
-The request path is `POST https://openrouter.ai/api/v1/chat/completions`. It sends a single `reasoning: {effort: ...}`, explicit `max_tokens`, `provider.require_parameters: true`, exact `provider.only`/`order`, and `allow_fallbacks: false`. Model IDs and any returned provider are checked, raw responses and actual route metadata are retained. Per-model weights cannot be independently inspected; pair fingerprints are compared when returned, and a mismatch excludes the pair while preserving any already committed actions. Missing fingerprints are recorded as unverifiable.
+Pricing is request-aware. Text-only requests do not pay for optional search, image/audio or other tools they do not enable. Nonzero prices for those unused features are listed in `plan.json` under `estimates[].pricing_assumptions.ignored_fields`, with reasons. Requests explicitly disable OpenRouter plugins; tools/modalities are absent, and known automatic-search models/defaults are rejected. Cache reads use the larger of prompt/read rates, cache-write rates are conservatively added on every input token, and separate internal-reasoning rates are added on the full combined output budget. Unknown potentially applicable prices, storage charges, tier overrides, invalid rates and unknown limits still fail with actionable diagnostics.
 
-Reference documentation: [chat API](https://openrouter.ai/docs/api/api-reference/chat/create-a-chat-completion), [reasoning and supported efforts](https://openrouter.ai/docs/guides/best-practices/reasoning-tokens), [endpoint metadata](https://openrouter.ai/docs/api/api-reference/endpoints/list-endpoints), [provider parameter requirements](https://openrouter.ai/docs/guides/routing/provider-selection).
+Token estimates use UTF-8 message JSON bytes plus 512 framing tokens, including the full output budget; source/essay text is never truncated. The request path remains `POST https://openrouter.ai/api/v1/chat/completions`, with one `reasoning: {effort: ...}`, one supported output-limit field, `require_parameters: true`, and pinned `provider.only`/`order` with fallback disabled. Plain-text prisoner responses and current adjudication behavior are unchanged; only the separate judge requests JSON.
+
+References: [OpenRouter reasoning/effort semantics](https://openrouter.ai/docs/guides/best-practices/reasoning-tokens), [web-search enablement](https://openrouter.ai/docs/guides/features/plugins/web-search), [prompt-cache charges](https://openrouter.ai/docs/guides/best-practices/prompt-caching), [GPT-5 Nano](https://developers.openai.com/api/docs/models/gpt-5-nano).
 
 ## Optional live smoke test — only after manual approval
 
@@ -189,6 +233,6 @@ This is an **offline plan**, requiring no API key. After reading the generated j
 
 ## Scope and remaining decisions
 
-Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls with a matching researcher/prisoner model **and provider tag**; role-specific evidence/letters; **simple marker-based command recognition**; separate guarded OpenRouter Sol-judge stage with historical evidence/output integrity checks; blinded-judge prompt exports; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
+Implemented: exploratory prepare/researcher/prisoners workflow with automatic endpoint pinning, persistent hash-bound approvals and request-aware pricing; source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls with a matching researcher/prisoner model **and provider tag**; role-specific evidence/letters; **simple marker-based command recognition**; separate guarded OpenRouter Sol-judge stage with historical evidence/output integrity checks; blinded-judge prompt exports; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
 
 Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, batch adjudication, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, or empirical results have occurred. Scaling waits for manual prompt approval.

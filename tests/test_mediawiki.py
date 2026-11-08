@@ -22,7 +22,8 @@ FIXTURES = ROOT / 'tests/fixtures/mediawiki'
 
 class MediaWikiTests(unittest.TestCase):
     def setUp(self):
-        self.spec = load_yaml(ROOT / 'sources/manifest.yaml')['sources']['cdt_wikipedia']
+        self.spec = {**load_yaml(ROOT / 'sources/manifest.yaml')['sources']['cdt_wikipedia'],
+                     'revision_id': None, 'revision_review': 'pending'}
         self.query = json.loads(read(FIXTURES / 'revision.json'))
         self.parsed = json.loads(read(FIXTURES / 'parse.json'))
 
@@ -30,6 +31,13 @@ class MediaWikiTests(unittest.TestCase):
         root = Path(tmp)
         for folder in ('sources', 'configs', 'prompts', 'fixtures'):
             shutil.copytree(ROOT / folder, root / folder)
+        # Synthetic API revisions must not depend on a user's real manifest pins.
+        import yaml
+        manifest_path = root / 'sources/manifest.yaml'
+        manifest = load_yaml(manifest_path)
+        for name in ('cdt_wikipedia', 'edt_wikipedia'):
+            manifest['sources'][name].update(revision_id=None, revision_review='pending')
+        manifest_path.write_text(yaml.safe_dump(manifest, sort_keys=False))
         return root
 
     def downloader(self, requests):

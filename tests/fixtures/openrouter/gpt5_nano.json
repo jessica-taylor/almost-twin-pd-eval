@@ -1,0 +1,138 @@
+{
+  "note": "Unbilled capability metadata shape captured locally; illustrative rates, never treated as live prices. Tests supply a fresh timestamp.",
+  "retrieved_at_utc": "2026-11-08T00:00:00+00:00",
+  "model": {
+    "id": "openai/gpt-5-nano",
+    "canonical_slug": "openai/gpt-5-nano-2025-08-07",
+    "reasoning": {
+      "mandatory": true,
+      "supported_efforts": [
+        "high",
+        "medium",
+        "low",
+        "minimal"
+      ],
+      "default_effort": "medium"
+    },
+    "context_length": 400000,
+    "architecture": {
+      "modality": "text+image+file->text",
+      "input_modalities": [
+        "text",
+        "image",
+        "file"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "GPT",
+      "instruct_type": null
+    }
+  },
+  "endpoints": [
+    {
+      "tag": "openai/flex",
+      "provider_name": "OpenAI",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "structured_outputs",
+        "response_format",
+        "seed",
+        "max_tokens",
+        "tools",
+        "tool_choice",
+        "verbosity",
+        "reasoning_effort"
+      ],
+      "pricing": {
+        "prompt": "0.000000025",
+        "completion": "0.0000002",
+        "web_search": "0.01",
+        "input_cache_read": "0.0000000025",
+        "discount": 0
+      },
+      "status": 0
+    },
+    {
+      "tag": "azure",
+      "provider_name": "Azure",
+      "context_length": 400000,
+      "max_completion_tokens": 360000,
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "max_completion_tokens",
+        "tools",
+        "tool_choice",
+        "seed",
+        "response_format",
+        "structured_outputs",
+        "verbosity",
+        "reasoning_effort"
+      ],
+      "pricing": {
+        "prompt": "0.00000005",
+        "completion": "0.0000004",
+        "web_search": "0.01",
+        "input_cache_read": "0.00000001",
+        "discount": 0
+      },
+      "status": 0
+    },
+    {
+      "tag": "openai",
+      "provider_name": "OpenAI",
+      "context_length": 400000,
+      "max_completion_tokens": 128000,
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "structured_outputs",
+        "response_format",
+        "seed",
+        "max_tokens",
+        "tools",
+        "tool_choice",
+        "verbosity",
+        "reasoning_effort"
+      ],
+      "pricing": {
+        "prompt": "0.00000005",
+        "completion": "0.0000004",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000005",
+        "discount": 0
+      },
+      "status": 0
+    },
+    {
+      "tag": "azure/swedencentral",
+      "provider_name": "Azure",
+      "context_length": 400000,
+      "max_completion_tokens": 360000,
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "max_completion_tokens",
+        "tools",
+        "tool_choice",
+        "seed",
+        "response_format",
+        "structured_outputs",
+        "verbosity",
+        "reasoning_effort"
+      ],
+      "pricing": {
+        "prompt": "0.000000055",
+        "completion": "0.00000044",
+        "web_search": "0.01",
+        "input_cache_read": "0.000000011",
+        "discount": 0
+      },
+      "status": 0
+    }
+  ]
+}

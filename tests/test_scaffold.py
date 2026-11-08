@@ -317,7 +317,7 @@ class RouterTests(unittest.TestCase):
                    lambda s, c: c['endpoints'][0].update(max_completion_tokens=None),
                    lambda s, c: s.update(model='different/model'),
                    lambda s, c: s.update(seed=4) or c['endpoints'][0].update(supported_parameters=['reasoning', 'max_tokens', 'response_format']),
-                   lambda s, c: c['endpoints'][0].update(reasoning={}),
+                   lambda s, c: (c['endpoints'][0].update(reasoning={}), c['model'].update(reasoning={})),
                    lambda s, c: c.update(retrieved_at_utc='2001-01-01T00:00:00+00:00'),
                    lambda s, c: c['endpoints'][0]['pricing'].update(overrides=[{'cost': 10}])]
         for mutate in changes:

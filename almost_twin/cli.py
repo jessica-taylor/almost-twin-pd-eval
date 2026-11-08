@@ -35,6 +35,34 @@ def parser():
     m.add_argument('--model', required=True)
     m.add_argument('--network', action='store_true')
     m.add_argument('--out', type=Path, default=Path('data/openrouter/capabilities.json'))
+    approval = sub.add_parser('approve-source', help='Persist rights acknowledgement for an exact verified source revision/text; offline')
+    approval.add_argument('--source', required=True)
+    approval.add_argument('--source-terms-reviewed', action='store_true')
+    pilot = sub.add_parser('pilot', help='Prepare and resume a small exploratory researcher → prisoner pair pilot')
+    actions = pilot.add_subparsers(dest='pilot_command', required=True)
+    prep = actions.add_parser('prepare', help='Refresh unbilled metadata, select/pin endpoint, export exact researcher request and costs; no generations')
+    prep.add_argument('--assignment', required=True)
+    prep.add_argument('--model', required=True)
+    prep.add_argument('--researcher-effort', default='low')
+    prep.add_argument('--prisoner-effort', default='low')
+    prep.add_argument('--researcher-max-tokens', type=int, default=12000)
+    prep.add_argument('--prisoner-max-tokens', type=int, default=3000)
+    prep.add_argument('--scenario', default='t4_distinct_leads_001', choices=['t0_identical_001', 't2_name_001', 't4_distinct_leads_001'])
+    prep.add_argument('--provider-tag', help='Override automatic endpoint selection; never silently replaced')
+    prep.add_argument('--capabilities', type=Path, help='Use a saved snapshot for entirely offline preparation instead of metadata GETs')
+    prep.add_argument('--allow-unverified-effort', metavar='REASON', help='Record a manual override only when metadata is insufficient; cannot override explicit unsupported efforts')
+    prep.add_argument('--temperature', type=float)
+    prep.add_argument('--seed', type=int)
+    prep.add_argument('--out', type=Path, help='New pilot directory; default data/pilots/<uuid>')
+    prep.add_argument('--max-calls', type=int, default=3)
+    prep.add_argument('--max-usd', default='2.00')
+    for stage in ('researcher', 'prisoners'):
+        step = actions.add_parser(stage, help='Dry-run/inspect by default; both billing flags are required for generation')
+        step.add_argument('--pilot', type=Path, required=True)
+        step.add_argument('--execute', action='store_true')
+        step.add_argument('--confirm-billable', action='store_true')
+        step.add_argument('--prompts-approved', action='store_true', help='Approve the prepared serialized requests by hash; persisted locally')
+        step.add_argument('--source-terms-reviewed', action='store_true', help='Optional alternative to an existing approve-source acknowledgement')
     run = sub.add_parser('run', help='Dry run by default; one researcher OR one prisoner pair, no batch')
     run.add_argument('stage', choices=['researcher', 'prisoner'])
     run.add_argument('--assignment', choices=['cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy', 'cdt_wikipedia', 'edt_wikipedia'], required=True)
@@ -76,6 +104,26 @@ def main(argv=None):
                 raise EvalError('Network disabled: inspect-model requires --network (unbilled metadata only)')
             write_json(args.out, snapshot(args.model))
             print(args.out)
+        elif args.command == 'approve-source':
+            from .approvals import approve_source
+            identity = approve_source(root, args.source, args.source_terms_reviewed)
+            print(f"Approved source transmission rights for {identity['source_id']} revision {identity['source_revision']} SHA-256 {identity['source_sha256']}. Stored in data/approvals.jsonl.")
+        elif args.command == 'pilot':
+            from .pilot import prepare, resume
+            folder = prepare(root, args) if args.pilot_command == 'prepare' else resume(root, args)
+            print(folder)
+            plan_path = folder / 'plan.json'
+            if plan_path.exists():
+                plan = json.loads(plan_path.read_text())
+                if args.pilot_command == 'prepare':
+                    print(f"Exploratory pilot; no billable requests. Researcher estimate: ${plan['researcher_estimated_usd']}; three-call projected upper estimate: ${plan['projected_three_call_usd']}.")
+                    print(f"Inspect {folder / 'plan.md'} and {folder / 'researcher/messages_0.md'}")
+                else:
+                    print(f"Estimated stage maximum: ${plan.get('estimated_total_usd')}; exact requests and metadata: {plan_path}")
+            if (folder / 'essay.md').exists():
+                print(f"Frozen essay: {folder / 'essay.md'}. Inspect it before pilot prisoners.")
+            if args.pilot_command != 'prepare':
+                print(f"Pilot review index: {args.pilot.resolve() / 'plan.md'}")
         elif args.command == 'run':
             from .router import run
             print(run(root, args))

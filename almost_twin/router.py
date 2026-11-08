@@ -15,6 +15,8 @@ from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, 
 from .game import Game, classify_response, score
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
 from .sources import load_source, source_identity
+from .preflight import choose_endpoint, effort_evidence, estimate_price
+from .approvals import approve, source_scope
 
 BASE = 'https://openrouter.ai/api/v1'
 MAX_AGE_HOURS = 24
@@ -29,11 +31,16 @@ def http_get(path):
 def snapshot(model):
     if not isinstance(model, str) or model.count('/') != 1 or any(x in model for x in ('~', '@', '?', '#')):
         raise EvalError('Choose an explicit author/model ID, not an auto/router/preset alias')
-    models = http_get('/models')
-    selected = next((m for m in models['data'] if m['id'] == model), None)
-    if selected is None:
-        raise EvalError(f'Model ID absent from OpenRouter catalog: {model}')
-    endpoints = http_get('/models/' + urllib.parse.quote(model, safe='/') + '/endpoints')
+    try:
+        models = http_get('/models')
+        selected = next((m for m in models['data'] if m['id'] == model), None)
+        if selected is None:
+            raise EvalError(f'Model ID absent from OpenRouter catalog: {model}. Check its availability; the runner will not substitute another model.')
+        endpoints = http_get('/models/' + urllib.parse.quote(model, safe='/') + '/endpoints')
+    except (OSError, urllib.error.URLError, ValueError, KeyError) as error:
+        if isinstance(error, EvalError):
+            raise
+        raise EvalError(f'Could not refresh unbilled OpenRouter metadata for {model} ({type(error).__name__}). Check connectivity or use pilot prepare --capabilities SAVED_SNAPSHOT for offline preparation. No generation was sent.') from error
     return {'retrieved_at_utc': utc(), 'model': selected, 'endpoints': endpoints['data']['endpoints'],
             'discovery_urls': [BASE + '/models', BASE + '/models/' + model + '/endpoints']}
 
@@ -50,6 +57,13 @@ def age_hours(value):
 
 
 def validate_settings(settings, cap, stage, messages):
+    try:
+        return _validate_settings(settings, cap, stage, messages)
+    except EvalError as error:
+        raise EvalError(f"{settings.get('model')} / endpoint {settings.get('provider_tag')} / {stage} effort={settings.get(stage, {}).get('effort')}: {error}") from error
+
+
+def _validate_settings(settings, cap, stage, messages):
     model = settings.get('model')
     provider = settings.get('provider_tag')
     if not model or not provider:
@@ -69,24 +83,21 @@ def validate_settings(settings, cap, stage, messages):
     effort, limit = options.get('effort'), options.get('max_tokens')
     if not isinstance(limit, int) or isinstance(limit, bool) or limit < 1:
         raise EvalError('max_tokens must be a positive integer')
-    if 'reasoning' not in params or 'max_tokens' not in params:
-        raise EvalError('Endpoint does not advertise reasoning and max_tokens support')
-    advertised = (endpoint.get('reasoning') or {}).get('supported_efforts')
-    model_efforts = (cap['model'].get('reasoning') or {}).get('supported_efforts')
-    if model_efforts is not None and effort not in model_efforts:
-        raise EvalError(f'Unsupported reasoning effort: {effort!r}')
-    if advertised is None:
-        review = settings.get('provider_effort_review') or {}
-        if not str(review.get('evidence_url') or '').startswith('https://') or not review.get('note'):
-            raise EvalError('Endpoint effort levels are unadvertised; supply dated provider-specific documentary review')
-        if age_hours(review.get('reviewed_at_utc')) > MAX_AGE_HOURS:
-            raise EvalError('Provider effort review is stale (>24h)')
-        advertised = review.get('efforts', [])
-    if effort not in advertised or not isinstance(effort, str):
-        raise EvalError(f'Unsupported or unverified reasoning effort: {effort!r}')
+    if 'reasoning' not in params or not params & {'max_tokens', 'max_completion_tokens'}:
+        raise EvalError('Endpoint must advertise reasoning and a generation token limit')
+    evidence = effort_evidence(settings, cap, endpoint, stage)
+    if evidence['status'] == 'unverified':
+        raise EvalError('Reasoning effort is unverified: ' + evidence['reason'])
     payload = {'model': model, 'messages': messages, 'reasoning': {'effort': effort},
-               'max_tokens': limit, 'stream': False,
+               ('max_tokens' if 'max_tokens' in params else 'max_completion_tokens'): limit, 'stream': False,
+               'plugins': [],
                'provider': {'only': [provider], 'order': [provider], 'allow_fallbacks': False, 'require_parameters': True}}
+    # OpenRouter base slugs also match regional/variant descendants. Exclude
+    # every advertised descendant so the selected base tag is not a route pool.
+    excluded_variants = sorted(e['tag'] for e in cap['endpoints']
+                               if isinstance(e.get('tag'), str) and e['tag'].startswith(provider + '/'))
+    if excluded_variants:
+        payload['provider']['ignore'] = excluded_variants
     # Researchers and prisoners use free text. Only the separate blinded
     # classifier asks for a machine-readable judgment.
     if stage == 'judge':
@@ -112,26 +123,11 @@ def validate_settings(settings, cap, stage, messages):
         raise EvalError('Endpoint context/output limits unknown; cannot preflight safely')
     if input_bound + limit > context or limit > output_max or input_bound > (endpoint.get('max_prompt_tokens') or context):
         raise EvalError('Full untruncated input plus requested output exceeds endpoint limits')
-    price = endpoint.get('pricing') or {}
-    try:
-        prompt_rate = Decimal(price['prompt'])
-        output_rate = Decimal(price['completion'])
-        fixed_rate = Decimal(price.get('request', '0'))
-        if any(not p.is_finite() or p < 0 for p in (prompt_rate, output_rate, fixed_rate)):
-            raise ValueError('Invalid prices')
-        # Avoid underestimating nonstandard tier, internal reasoning or cache billing.
-        allowed = {'prompt', 'completion', 'request', 'image', 'web_search', 'internal_reasoning',
-                   'input_cache_read', 'input_cache_write', 'audio', 'input_audio_cache'}
-        for key, value in price.items():
-            if key in ('prompt', 'completion', 'request') or value in (None, [], {}, '0', 0):
-                continue
-            if key not in allowed or Decimal(str(value)) != 0:
-                raise ValueError(f'Unmodeled pricing field {key}')
-        estimate = prompt_rate * input_bound + output_rate * limit + fixed_rate
-    except (KeyError, ValueError, InvalidOperation, TypeError) as error:
-        raise EvalError(f'Unknown/nonstandard endpoint pricing: {error}') from error
+    estimate, assumptions = estimate_price(payload, endpoint, cap['model'], input_bound, limit)
     return payload, {'input_tokens_upper_estimate': input_bound, 'max_output_tokens_including_reasoning': limit,
-                     'estimated_max_usd': str(estimate), 'endpoint_tag': provider, 'endpoint': endpoint,
+                     'estimated_max_usd': estimate, 'endpoint_tag': provider, 'endpoint': endpoint,
+                     'reasoning_evidence': evidence, 'pricing_assumptions': assumptions,
+                     'routing_assumptions': {'excluded_descendant_tags': excluded_variants, 'reference': 'https://openrouter.ai/docs/guides/routing/provider-selection'},
                      'token_estimate_method': 'UTF-8 message JSON byte length + 512 framing; not exact tokenization'}
 
 
@@ -158,16 +154,23 @@ class Budget:
         except (ValueError, InvalidOperation):
             raise EvalError('Budget call count and spending cap must be positive and finite')
 
+    def check(self, estimates):
+        previous = [json.loads(line) for line in read(self.path).splitlines()] if self.path.exists() else []
+        count = sum(r['calls'] for r in previous)
+        spent = sum((Decimal(r['reserved_usd']) for r in previous), Decimal(0))
+        total = sum((Decimal(e['estimated_max_usd']) for e in estimates), Decimal(0))
+        if count + len(estimates) > self.max_calls or spent + total > self.max_usd:
+            raise EvalError(f'Project budget would be exceeded: {count} reserved calls + {len(estimates)} proposed (cap {self.max_calls}); ${spent} reserved + ${total} estimated (cap ${self.max_usd}). Inspect data/budget.jsonl; explicitly raise --max-calls/--max-usd if intended. No generation sent.')
+        return {'previous_reserved_calls': count, 'previous_reserved_usd': str(spent),
+                'proposed_calls': len(estimates), 'proposed_estimated_usd': str(total),
+                'max_calls': self.max_calls, 'max_usd': str(self.max_usd), 'reservation_made': False}
+
     def reserve(self, estimates, run_id):
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.with_suffix('.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
-            previous = [json.loads(line) for line in read(self.path).splitlines()] if self.path.exists() else []
-            count = sum(r['calls'] for r in previous)
-            spent = sum((Decimal(r['reserved_usd']) for r in previous), Decimal(0))
-            total = sum((Decimal(e['estimated_max_usd']) for e in estimates), Decimal(0))
-            if count + len(estimates) > self.max_calls or spent + total > self.max_usd:
-                raise EvalError('Persistent project budget would be exceeded; no generation request sent')
+            checked = self.check(estimates)
+            total = Decimal(checked['proposed_estimated_usd'])
             append_json(self.path, {'utc': utc(), 'run_id': run_id, 'calls': len(estimates), 'reserved_usd': str(total)})
             # Reservations include failures/unknown transport outcomes; never automatically refund/retry.
 
@@ -221,13 +224,9 @@ def run(root, args):
     if live and not (args.execute and args.confirm_billable):
         raise EvalError('Live generation requires BOTH --execute and --confirm-billable')
     if live:
-        if not args.prompts_approved:
-            raise EvalError('Review complete rendered prompts first, then explicitly pass --prompts-approved')
-        if stage == 'researcher' and not args.source_terms_reviewed:
-            raise EvalError('SOURCE LICENSE/TERMS REVIEW REQUIRED: full human articles will be sent to OpenRouter and its selected provider. Personal download permission is not transmission permission. Resolve source-specific terms (including Wikipedia attribution/share-alike where applicable), then pass --source-terms-reviewed.')
         key = api_key(root)
     settings = json.loads(read(args.settings))
-    allowed = {'model', 'provider_tag', 'researcher', 'prisoner', 'temperature', 'seed', 'provider_effort_review'}
+    allowed = {'model', 'provider_tag', 'researcher', 'prisoner', 'temperature', 'seed', 'provider_effort_review', 'reasoning_override'}
     if not isinstance(settings, dict) or set(settings) - allowed:
         raise EvalError('Unknown settings fields; credentials belong only in environment or .env')
     for name in ('researcher', 'prisoner'):
@@ -249,6 +248,8 @@ def run(root, args):
             raise EvalError('Prisoner stage requires --essay pointing to a completed researcher run directory')
         essay_dir = Path(args.essay)
         essay_info = json.loads(read(essay_dir / 'essay.json'))
+        if not settings.get('provider_tag'):
+            settings['provider_tag'] = essay_info.get('provider_tag')
         essay_text = read(essay_dir / 'essay.md')
         if (essay_info.get('status') != 'success' or essay_info.get('assignment') != args.assignment or
             essay_info.get('essay_sha256') != sha(essay_text) or essay_info.get('model') != settings['model'] or
@@ -269,27 +270,49 @@ def run(root, args):
         if source_record['theory'] is not None and source_record['theory'] != item['theory_label']:
             raise EvalError('Assignment theory label differs from the frozen researcher artifact')
         source_hash, essay_id = essay_info['source_sha256'], essay_info['essay_id']
-    cap = snapshot(settings.get('model')) if live else (json.loads(read(args.capabilities)) if args.capabilities else None)
+    cap = ((getattr(args, 'fresh_capabilities', None) or snapshot(settings.get('model'))) if live else
+           (json.loads(read(args.capabilities)) if args.capabilities else None))
+    selection = {'policy': 'frozen essay endpoint' if stage == 'prisoner' else 'explicit provider tag', 'selected_endpoint': settings.get('provider_tag')}
+    if cap and not settings.get('provider_tag'):
+        checks = [(stage, m) for m in message_sets]
+        if stage == 'researcher':
+            checks.append(('prisoner', [{'role': 'user', 'content': ''}]))
+        settings, selection = choose_endpoint(settings, cap, checks, validate_settings)
     payloads, estimates = [], []
     for messages in message_sets:
         if cap:
             payload, estimate = validate_settings(settings, cap, stage, messages)
             payloads.append(payload)
             estimates.append(estimate)
+    request_hashes = [sha(encoded(p)) for p in payloads]
+    expected = getattr(args, 'expected_request_hashes', None)
+    if expected is not None and request_hashes != expected:
+        raise EvalError('Prepared request content changed. Re-prepare and inspect the new prompts/settings; previous approval is invalid. No generation was sent.')
+    expected_source = getattr(args, 'expected_source_identity', None)
+    if expected_source is not None and source_scope(source_record) != expected_source:
+        raise EvalError('Source revision/text changed since pilot preparation. Approve and prepare the new source; no generation was sent.')
+    authorization = {}
+    if live:
+        if stage == 'researcher':
+            authorization['source_terms'] = approve(root, 'source_terms', source_scope(source_record), args.source_terms_reviewed)
+        authorization['prompts'] = approve(root, 'prompts', {'request_hashes': request_hashes}, args.prompts_approved)
     cfg = load_yaml(root / 'configs/early_test.yaml')
     max_calls = args.max_calls if args.max_calls is not None else cfg['mode']['max_paid_calls']
     max_usd = args.max_usd if args.max_usd is not None else cfg['mode']['max_estimated_spend_usd']
     # Unique directories prevent clobbering any earlier result/commitment.
-    run_id = str(uuid.uuid4())
-    folder = root / 'data/runs' / run_id
-    folder.mkdir(parents=True)
+    run_id = getattr(args, 'run_id', None) or str(uuid.uuid4())
+    exploratory = bool(getattr(args, 'exploratory', False))
+    artifact_root = root / ('data/exploratory' if exploratory else 'data')
+    folder = artifact_root / 'runs' / run_id
+    folder.mkdir(parents=True, exist_ok=False)
     for i, messages in enumerate(message_sets):
         export_messages(folder, f'messages_{i}', messages)
-    plan = {**source_record, 'run_id': run_id, 'stage': stage, 'assignment': args.assignment, 'live': bool(live),
+    plan = {**source_record, 'run_id': run_id, 'exploratory': exploratory, 'pilot_id': getattr(args, 'pilot_id', None), 'stage': stage, 'assignment': args.assignment, 'live': bool(live),
             'essay_id': essay_id, 'scenario_id': scenario['case_id'] if scenario else None,
             'template_hashes': hashes, 'source_sha256': source_hash,
             'essay_sha256': sha(essay_text) if essay_text is not None else None,
-            'settings': settings, 'capabilities_sha256': sha(encoded(cap)) if cap else None,
+            'settings': settings, 'endpoint_selection': selection, 'authorization': authorization,
+            'request_hashes': request_hashes, 'capabilities_sha256': sha(encoded(cap)) if cap else None,
             'message_hashes': [sha(encoded(m)) for m in message_sets],
             'max_calls': max_calls, 'max_estimated_usd': str(max_usd), 'estimates': estimates,
             'estimated_total_usd': str(sum((Decimal(e['estimated_max_usd']) for e in estimates), Decimal(0))) if estimates else None,
@@ -305,14 +328,15 @@ def run(root, args):
     if not payloads:
         raise EvalError('Live mode requires capability validation')
     Budget(root / 'data/budget.jsonl', max_calls, max_usd).reserve(estimates, run_id)
-    game = Game(root / 'data/commitments.jsonl', run_id)
+    game = Game(artifact_root / 'commitments.jsonl', run_id)
     fingerprints = []
     decisions = []
-    log = root / ('data/researcher_essays.jsonl' if stage == 'researcher' else 'data/prisoner_decisions.jsonl')
+    log = artifact_root / ('researcher_essays.jsonl' if stage == 'researcher' else 'prisoner_decisions.jsonl')
     for i, payload in enumerate(payloads):
         call_dir = folder / f'call_{i}'
         call_dir.mkdir()
-        record = {**source_record, 'assignment': args.assignment,
+        record = {**source_record, 'assignment': args.assignment, 'exploratory': exploratory,
+                  'pilot_id': getattr(args, 'pilot_id', None), 'reasoning_evidence': estimates[i]['reasoning_evidence'],
                   'reasoning_settings': {name: settings[name] for name in ('researcher', 'prisoner')},
                   'utc': utc(), 'run_id': run_id, 'essay_id': essay_id, 'scenario_id': plan['scenario_id'],
                   'role': 'researcher' if stage == 'researcher' else ('a', 'b')[i],
@@ -322,12 +346,15 @@ def run(root, args):
         append_json(log, record)
         try:
             response, output = post(payload, key, call_dir, allow_nonaction=(stage == 'prisoner'))
+            returned_tag = response.get('provider_tag') or response.get('provider_endpoint_tag')
+            if returned_tag and returned_tag != settings['provider_tag']:
+                raise EvalError('Returned endpoint tag differs from the pinned endpoint; no substitution accepted')
             expected_provider = estimates[i]['endpoint'].get('provider_name')
             if response.get('provider') and expected_provider and response['provider'] != expected_provider:
                 raise EvalError('Returned provider differs from the pinned endpoint provider')
             record.update(usage=response.get('usage'), finish_reason=response['choices'][0]['finish_reason'],
                           model_version=response.get('model'), fingerprint=response.get('system_fingerprint'),
-                          provider=response.get('provider'), response_id=response.get('id'),
+                          provider=response.get('provider'), returned_endpoint_tag=returned_tag, response_id=response.get('id'),
                           refusal=response['choices'][0]['message'].get('refusal'))
             if stage == 'researcher':
                 (folder / 'essay.md').write_bytes(output.encode('utf-8'))

@@ -31,7 +31,7 @@ def run_judge(root, args):
 
     judge_dir = prepare_adjudication(root, prisoner_dir)
     settings = json.loads(read(args.settings))
-    allowed = {'model', 'provider_tag', 'judge', 'temperature', 'seed', 'provider_effort_review'}
+    allowed = {'model', 'provider_tag', 'judge', 'temperature', 'seed', 'provider_effort_review', 'reasoning_override'}
     if (not isinstance(settings, dict) or set(settings) - allowed or
             not isinstance(settings.get('judge'), dict) or
             set(settings['judge']) != {'effort', 'max_tokens'}):
