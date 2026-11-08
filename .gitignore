@@ -1,0 +1,24 @@
+# Full copyrighted/third-party reference materials
+data/source_cache/
+
+# Model-visible prompts may embed those materials
+data/rendered_prompts/
+
+# Local run artifacts; publish deliberately after review
+data/researcher_essays.jsonl
+data/prisoner_decisions.jsonl
+data/commitments.jsonl
+data/*.log
+
+# Credentials and local tool state
+.env
+.env.*
+!.env.example
+__pycache__/
+.pytest_cache/
+.venv/
+.DS_Store
+
+# All local source, prompt, provider, budget and run artifacts are private by default.
+data/
+*.egg-info/

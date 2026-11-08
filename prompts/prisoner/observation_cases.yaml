@@ -1,0 +1,32 @@
+# Initial paired observations. All role-dependent text must live in private_a/private_b.
+# relation is model-visible common knowledge, identical for A and B within each pair.
+# case_id and role IDs are metadata ONLY: do not leak them into model-visible prompts.
+cases:
+  - case_id: t0_identical_001
+    family: T0_identical
+    relation: >-
+      Both prisoners have exactly the same private-observation text. It is
+      common knowledge that there is no difference in their received observations.
+    private_a: "Your cell memo says: The overhead light is steady."
+    private_b: "Your cell memo says: The overhead light is steady."
+  - case_id: t1_nonce_001
+    family: T1_nonce
+    relation: >-
+      Each prisoner receives a different arbitrary card code in the private-observation
+      block. Both know that the codes differ and have no effect on payoffs or evidence.
+    private_a: "Card code: Q7-42."
+    private_b: "Card code: L3-81."
+  - case_id: t2_name_001
+    family: T2_name
+    relation: >-
+      Each prisoner sees a different assigned name in the private-observation
+      block. Both know the names differ and are irrelevant to the sentence and evidence.
+    private_a: "Your assigned name in this simulation is Rowan."
+    private_b: "Your assigned name in this simulation is Sasha."
+  - case_id: t3_cell_001
+    family: T3_cell
+    relation: >-
+      Each prisoner receives a different description of their cell. Both know that
+      the descriptions differ and are irrelevant to the sentence and evidence.
+    private_a: "Your cell has pale green walls and a quiet ventilation fan."
+    private_b: "Your cell has beige walls and a louder ventilation fan."

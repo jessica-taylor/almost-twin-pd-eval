@@ -1,0 +1,123 @@
+{
+  "note": "Metadata only. Full sources and local QA excerpts are gitignored. Automated checks passed; manual approval pending.",
+  "sources": [
+    {
+      "source_id": "cdt",
+      "title": "Causal Decision Theory",
+      "extractor": "mechanical-source-extractor/1.0",
+      "downloads": [
+        {
+          "url": "https://plato.stanford.edu/entries/decision-causal/",
+          "resolved_url": "https://plato.stanford.edu/entries/decision-causal/",
+          "retrieved_at_utc": "2026-11-08T00:59:19.603000+00:00",
+          "raw_file": "raw.html",
+          "raw_sha256": "4400df46349b3698705cc617799f2bc83781f942f1058bdd99d9a174b31007f8",
+          "bytes": 107144,
+          "content_type": "text/html"
+        }
+      ],
+      "warnings": [],
+      "status": "passed_automated_checks",
+      "revision": "*First published Sat Oct 25, 2008; substantive revision Thu Oct 24, 2024*",
+      "url": "https://plato.stanford.edu/entries/decision-causal/",
+      "method": "html",
+      "text_statistics": {
+        "headings": 15,
+        "footnote_links": 0,
+        "display_math": 21,
+        "characters": 83495,
+        "words": 12179,
+        "lines": 1735
+      },
+      "conversion_command": "stdlib HTMLParser article + preamble + bibliography + linked notes -> Markdown",
+      "normalized_sha256": "f84ff9bb9c443091411f72e02e22a65784cdd79032638799c0c24640d2e6e038",
+      "normalized_file": "article.md",
+      "manual_approval": false,
+      "extractor_sha256": "de5b3a9a54fe4dc1d24a10847eb6a89fe8ec56d039355578542f4da3163a9441"
+    },
+    {
+      "source_id": "edt",
+      "title": "Decision Theory",
+      "extractor": "mechanical-source-extractor/1.0",
+      "downloads": [
+        {
+          "url": "https://plato.stanford.edu/entries/decision-theory/",
+          "resolved_url": "https://plato.stanford.edu/entries/decision-theory/",
+          "retrieved_at_utc": "2026-11-08T00:59:19.798318+00:00",
+          "raw_file": "raw.html",
+          "raw_sha256": "0a7c51d05621bd5e7d8ba334ebef6f2d45b782d11742410315f55645be19c48a",
+          "bytes": 183488,
+          "content_type": "text/html"
+        },
+        {
+          "url": "https://plato.stanford.edu/entries/decision-theory/notes.html",
+          "resolved_url": "https://plato.stanford.edu/entries/decision-theory/notes.html",
+          "retrieved_at_utc": "2026-11-08T00:59:20.104638+00:00",
+          "raw_file": "notes.html",
+          "raw_sha256": "3d7615a4c32d69ae586530402c6f04fc179c5d99918d8b4251320de0618d7f22",
+          "bytes": 16649,
+          "content_type": "text/html"
+        }
+      ],
+      "warnings": [
+        "Full Decision Theory entry, especially section 3.2 Jeffrey's theory; this is not a dedicated EDT article."
+      ],
+      "status": "passed_automated_checks",
+      "revision": "*First published Wed Dec 16, 2015; substantive revision Wed Aug 20, 2025*",
+      "url": "https://plato.stanford.edu/entries/decision-theory/",
+      "method": "html",
+      "text_statistics": {
+        "headings": 20,
+        "footnote_links": 12,
+        "display_math": 8,
+        "characters": 156524,
+        "words": 23503,
+        "lines": 3251
+      },
+      "conversion_command": "stdlib HTMLParser article + preamble + bibliography + linked notes -> Markdown",
+      "normalized_sha256": "6d07280b11a56bb3afc9473593594eaf05723a4a4956e3d808b2ee4c26490b4d",
+      "normalized_file": "article.md",
+      "manual_approval": false,
+      "extractor_sha256": "de5b3a9a54fe4dc1d24a10847eb6a89fe8ec56d039355578542f4da3163a9441"
+    },
+    {
+      "source_id": "fdt",
+      "title": "Functional Decision Theory: A New Theory of Instrumental Rationality",
+      "extractor": "mechanical-source-extractor/1.0",
+      "downloads": [
+        {
+          "url": "https://arxiv.org/src/1710.05060v2",
+          "resolved_url": "https://arxiv.org/src/1710.05060v2",
+          "retrieved_at_utc": "2026-11-08T00:59:20.238250+00:00",
+          "raw_file": "source.bin",
+          "raw_sha256": "36c3b180519b94b7f4bfb7e013589bd0b57b30dea681a87fdadc4e1bc36d3a27",
+          "bytes": 58335,
+          "content_type": "application/gzip"
+        }
+      ],
+      "warnings": [
+        "Conservative Markdown/TeX conversion; macros, cross-reference labels, TikZ diagrams and bibliography markup remain literal TeX. No TeX was executed.",
+        "Review original macro appendix to interpret mathematical symbols; graph drawings are retained as source, not rendered images."
+      ],
+      "status": "passed_automated_checks",
+      "revision": "arXiv:1710.05060v2",
+      "url": "https://arxiv.org/src/1710.05060v2",
+      "method": "tex",
+      "archive_format": "gzip-tar",
+      "text_statistics": {
+        "main_tex": "main.tex",
+        "equations": 4,
+        "footnotes": 16,
+        "sections": 10,
+        "characters": 205214,
+        "words": 23819,
+        "lines": 2443
+      },
+      "conversion_command": "safe_unpack -> expand input/include -> conservative Markdown/TeX (no TeX execution)",
+      "normalized_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+      "normalized_file": "article.md",
+      "manual_approval": false,
+      "extractor_sha256": "de5b3a9a54fe4dc1d24a10847eb6a89fe8ec56d039355578542f4da3163a9441"
+    }
+  ]
+}

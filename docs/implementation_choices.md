@@ -1,0 +1,25 @@
+# Sprint 01 choices requiring review
+
+The design in `design_v03.md` is authoritative. These choices implement the narrow scaffold; they do not settle the theoretical interpretation or tune prompts to the experimenter's predictions.
+
+| Choice | Implementation and review implication |
+|---|---|
+| Prompt drafts | Astra's prompt files are copied verbatim. No length target or additional theory interpretation was introduced. Hypotheses stay separate. |
+| FDT revision | The preferred TeX URL is pinned to `1710.05060v2`, matching the specified PDF/design, rather than the moving unversioned source endpoint. |
+| SEP scope | Full native articles, preambles and bibliographies are supplied. EDT includes the separate notes page and §3.2 Jeffrey; it is not a dedicated EDT article. Native length/style asymmetry remains. |
+| FDT conversion | No Pandoc or LaTeXML was installed. The standard-library converter retains literal math/macros, graph source, footnotes and bibliography data. Some notation and cross-references require reading TeX. Manual formatting review is pending. Original diagrams have not been redrawn or interpreted. |
+| Source freshness | Immutable local attempts plus an explicitly hashed current pointer. SEP revisions are recorded rather than claimed immutable URLs. Offline re-extraction preserves original retrieval timestamps and raw bytes. A failed new fetch leaves an older successful current pointer intact; the failed command/report is explicit. |
+| Live authorization | Both billable flags, a key, and manual prompt approval acknowledgement are required. Full article transmission separately requires resolved source terms. No live permission is implied by downloading or rendering. |
+| Provider selection | Exact model ID and endpoint tag are chosen by the user. Fresh parameter/context/price metadata and, where needed, a dated provider-specific effort review are required. Unknown capability information blocks execution. No fallback. |
+| Stage budgets | 12,000 tokens for researcher / 3,000 for prisoner are proposed defaults for review, not chosen effort levels. Reasoning can consume output budgets. The defaults are checked against the actual endpoint, never silently reduced. |
+| Token estimate | Message UTF-8 JSON byte count + 512 framing, plus full output limit. Deliberately conservative and sometimes over-restrictive; no tokenizer-specific estimate or absolute billing guarantee. Nonstandard pricing blocks the path. |
+| Budget scope | Project-wide append-only reservation ledger. Default four calls / $2 estimated across invocations. Failures/unknown billing are not refunded automatically. No retries, including favorable/unfavorable parse failures. |
+| Pair execution | Two separate requests, each containing one user message with the same essay and settings. Sequential transport does not create shared conversational state. No role IDs or counterpart output enter prompts. |
+| Randomness | Temperature/seed omitted unless explicitly configured and advertised as supported. Explicit seed is the same within a pair. Independent invocations need not imply independent sampled randomness with a fixed seed. |
+| Same model/version | Prisoner model ID must match researcher provenance; both prisoner calls pin the same endpoint. Returned model/provider and available pair fingerprints are checked. API metadata cannot prove equality of underlying weights, and missing fingerprints are marked unverifiable. |
+| Commitment timing | Each strictly valid response commits immediately to a local fictional journal. If the next call is invalid, the first decision is still irreversible; no pair outcome is fabricated. Fingerprint mismatches exclude the pair while retaining commitments. |
+| Output validity | Exactly one JSON object with the template's three fields; strict action names, no duplicate/extra keys or Markdown fences. Justification must be nonempty; sentence-count style is left for review rather than automatic grading. No fallback action parsing. |
+| Controls | Draft direct-paper file remains readable but unimplemented; essay-plus-paper is also unimplemented. T1/T3 are not executable in Sprint 01. Both optional controls require explicit complete prompt review before implementation. |
+| Privacy | All `data/`, `.env` and raw/full-text artifacts are gitignored. The committed acquisition snapshot contains metadata/hashes only, no passages. Review logs and outputs before deliberate publication. |
+
+Open choices: models/providers/immutable version availability; supported `e_R` and `e_A`; generation limits and optional sampling settings; whether conservative TeX is an acceptable research source format; article transmission rights; and final manual source/prompt approval. The one T0/T2 handoff currently uses an explicitly synthetic essay because no paid researcher has run. Actual model-written essays require a second prompt inspection before their prisoner stage.

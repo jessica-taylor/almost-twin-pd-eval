@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "almost-twin-eval"
+version = "0.1.0"
+description = "Auditable offline-first essay and paired decision scaffold"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6.0,<7"]
+
+[project.scripts]
+almost-twin = "almost_twin.cli:main"
+
+[tool.setuptools]
+packages = ["almost_twin"]

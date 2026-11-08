@@ -1,0 +1,46 @@
+# URLs and extraction preferences. No downloaded article text belongs in git.
+schema_version: 1
+sources:
+  cdt:
+    title: "Causal Decision Theory"
+    authoring_organization: "Stanford Encyclopedia of Philosophy"
+    url: "https://plato.stanford.edu/entries/decision-causal/"
+    source_format: html
+    extraction: "main article body to Markdown; preserve math, sections and examples"
+    redistribution: "restricted — see https://plato.stanford.edu/info.html"
+  edt:
+    title: "Decision Theory"
+    authoring_organization: "Stanford Encyclopedia of Philosophy"
+    url: "https://plato.stanford.edu/entries/decision-theory/"
+    required_section: "3.2 Jeffrey's theory"
+    source_format: html
+    extraction: "main article body to Markdown; audit EDT coverage"
+    note: "Not a dedicated standalone EDT article. Flag limitations; do not silently replace."
+    redistribution: "restricted — see https://plato.stanford.edu/info.html"
+  fdt:
+    title: "Functional Decision Theory: A New Theory of Instrumental Rationality"
+    authors:
+      - "Eliezer Yudkowsky"
+      - "Nate Soares"
+    version: "arXiv:1710.05060v2"
+    abstract_url: "https://arxiv.org/abs/1710.05060"
+    preferred_source_url: "https://arxiv.org/src/1710.05060v2"
+    source_url_note: "Version pinned to the authoritative v2 design, rather than the moving unversioned endpoint."
+    pdf_fallback_url: "https://arxiv.org/pdf/1710.05060v2"
+    extraction: "download TeX source; preserve math and footnotes; fallback to pdftotext -layout"
+    required_passages:
+      - "Section 5, Equation (4), observation-indexed output node"
+      - "Section 5 discussion of constructing the logical dependency graph"
+      - "Footnote 16 on page 31: suggested policy-level formulation"
+    license_page: "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html"
+    redistribution: "inspect actual license before redistributing full text"
+
+local_cache:
+  root: "data/source_cache"
+  gitignore: true
+  preserve_raw_downloads: true
+  preserve_normalized_markdown: true
+  record_sha256: true
+  record_retrieved_at_utc: true
+  record_extractor: true
+  fail_on_truncation: true

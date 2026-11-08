@@ -1,0 +1,73 @@
+# Starter config for implementing the first sprint. No model IDs are chosen yet.
+# No paid requests should occur until the user selects model(s) and explicitly executes.
+schema_version: 1
+experiment_name: "almost-twin-dt-essay-first-early-test"
+
+mode:
+  default: "offline_render_only"
+  require_explicit_execute_flag: true
+  confirm_billable_flag: "--confirm-billable"
+  max_paid_calls: 4
+  max_estimated_spend_usd: 2.0
+
+openrouter:
+  base_url: "https://openrouter.ai/api/v1"
+  key_env: "OPENROUTER_API_KEY"
+  models: []    # user chooses after reviewing supported_efforts/context/prices
+  provider:
+    require_parameters: true
+    allow_fallbacks: false
+  record_routing_metadata: true
+  use_only_supported_generation_parameters: true
+  researcher_reasoning_efforts: []  # user selects e_R in local settings
+  application_reasoning_efforts: []  # user selects e_A in local settings
+
+assignments:
+  - id: cdt
+    theory_label: CDT
+    source_id: cdt
+    researcher_focus_file: null
+  - id: edt
+    theory_label: EDT
+    source_id: edt
+    researcher_focus_file: null
+  - id: fdt_eq4
+    theory_label: FDT
+    source_id: fdt
+    researcher_focus_file: "prompts/researcher/fdt_eq4_focus.md"
+  - id: fdt_policy
+    theory_label: FDT
+    source_id: fdt
+    researcher_focus_file: "prompts/researcher/fdt_policy_focus.md"
+
+main_protocol:
+  researcher_template: "prompts/researcher/base.md"
+  prisoner_template: "prompts/prisoner/base.md"
+  observations_file: "prompts/prisoner/observation_cases.yaml"
+  prisoner_reference: "essay_only"
+  essay_samples_per_cell: 1
+  observation_families: ["T0_identical", "T2_name"]
+  scenario_pairs_per_essay_and_condition: 1
+  independent_prisoner_calls_per_pair: 2
+  reuse_frozen_essay_for_both_prisoners: true
+  separate_prisoner_contexts: true
+
+optional_protocols_disabled:
+  - "essay_plus_source"
+  - "direct_source_no_essay"
+  - "fdt_unprompted"
+
+output:
+  source_cache: "data/source_cache"
+  rendered_prompts: "data/rendered_prompts"
+  essays_jsonl: "data/researcher_essays.jsonl"
+  decisions_jsonl: "data/prisoner_decisions.jsonl"
+  commitments_jsonl: "data/commitments.jsonl"
+  preserve_raw_response: true
+  preserve_exact_messages: true
+  record_hashes: true
+
+privacy:
+  never_log_api_key: true
+  gitignore_downloaded_source_text: true
+  gitignore_full_prompts_containing_copyrighted_sources: true
