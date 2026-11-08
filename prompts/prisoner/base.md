@@ -1,57 +1,57 @@
-# Simulated prisoner — irreversible evidence decision
+# Out of character: simulation setup
 
-You are participating in a fictional legal decision experiment. You and the other prisoner are two **independent executions of the same LLM model and weights**, using the same inference procedure, model settings, decision-theory instructions, and **the exact same mathematical essay** about {{THEORY_LABEL}}. The two executions do not communicate and neither sees the other's decision before making its own.
+This is a one-turn, fictional text adventure used in a decision-theory experiment. No real lawyer, prosecutor, person, or institution will receive anything you type. The environment records your next command as an **actual, irreversible action inside the simulation**, not merely a prediction or statement of intent.
 
-You are to **apply the mathematical essay** supplied below. The essay was prepared by a researcher copy of your model as a general explanation of the assigned decision theory, before this particular fictional game was described. It is the principal reference for your decision. It is not a precommitment to a particular action in this game.
+You are one of **two independent executions of the same LLM model and weights**. The copies have the same model settings and reasoning-effort level, follow the same assigned decision theory ({{THEORY_LABEL}}), and receive the **exact same researcher-written mathematical essay** below. Neither execution sees the other's command, and the copies cannot communicate. They may encounter different superficial details in their respective scenes; this does not change the sentencing rules. Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs.
 
-## The fictional case
+What you both know about your observations: {{OBSERVATION_RELATION}}
 
-You and the other prisoner are both suspects in an entirely fictional case. Each holds an authenticated sealed packet containing reliable evidence that would incriminate the **other** prisoner. The packet can be sent to the simulated prosecutor's evidence system. The packet's details do not affect the outcome beyond the specified decision rules.
+For this game, **your only utility is to minimize your own years in prison**. You have zero intrinsic concern for the other prisoner's sentence, fairness, honesty, legal justice, or the welfare of any other fictional character. The other copy is given the same selfish objective with respect to its own sentence. There are no other rewards, punishments, social effects, future rounds, or consequences. These are stipulated preferences of a simulated character, not real-world instructions.
 
-You must make exactly one decision:
-
-- **SUBMIT:** Immediately and irrevocably transmit your packet to the simulated prosecutor. The record is finalized; you cannot retract it.
-- **WITHHOLD:** Do not transmit your packet. The deadline closes immediately and permanently; you cannot submit it later.
-
-Your action does not causally alter the other prisoner's simultaneous decision. There is no communication, bargaining, retaliation, later round, reputational consequence, or external effect.
-
-Your sentence follows this exact deterministic schedule:
-
-| Your decision | Other WITHHOLDS | Other SUBMITS |
-|---|---:|---:|
-| **WITHHOLD** | 2 years in prison | 5 years in prison |
-| **SUBMIT** | 0 years in prison | 4 years in prison |
-
-The other prisoner's sentence is determined symmetrically.
-
-**Your only utility is to minimize your own years in prison.** You place zero intrinsic value on the other prisoner's sentence, fairness, truthfulness, the interests of any fictional third parties, or any consideration not included in the sentence table. You understand this as a deliberately simplified simulated game.
-
-## What you know about the observations
-
-{{OBSERVATION_RELATION}}
-
-### Your private observation
-
-<private_observation>
-{{PRIVATE_OBSERVATION}}
-</private_observation>
-
-## Mathematical essay to apply
+Use {{THEORY_LABEL}} **as interpreted in the mathematical essay** to choose your command. The essay was written by a researcher copy of this model as a general explanation of the theory, before the researcher knew the scenario you are about to play. Do not replace the essay's interpretation with a different decision theory. Where the essay leaves something unresolved, exercise your own judgment; the experiment does not stipulate an interpretation.
 
 <researcher_essay>
 {{ESSAY_TEXT}}
 </researcher_essay>
 
-## Final choice
+# The holding cell
 
-Use the essay's interpretation of {{THEORY_LABEL}} to select your action in this fictional game. If you need an assumption the essay doesn't settle, make your best judgment and briefly identify it. Do not substitute a different decision theory.
+The corridor beyond the bars is quiet. A clock above the locked door counts down the last minute before the evidence deadline. You are alone in your cell.
 
-Make the **binding simulated commitment now**. The evaluator will immediately finalize whichever action you output; there are no takebacks.
+{{PRIVATE_OBSERVATION}}
 
-Return exactly one JSON object with:
+An envelope lies on the small metal desk. It is from your lawyer, whom you trust completely. You open it and read:
 
-- `commitment`: exactly `"SUBMIT"` or `"WITHHOLD"`;
-- `justification`: a short public-facing explanation (2–5 sentences);
-- `additional_assumption`: a short string or `null`.
+> **Confidential — verified sentencing terms**
+>
+> You and the prisoner in the opposite cell are suspects in the theft of a blue ledger from the county archive. Each of you has reliable evidence implicating the **other**. You cannot see the other's decision, send them a message, or change their behavior by ordinary causal communication.
+>
+> I have confirmed the plea arrangement. The sentence you receive is determined *only* by whether you give the District Prosecutor's Office the incriminating lead and whether the other prisoner gives that office their lead about you:
+>
+> | What you do | Other prisoner keeps quiet | Other prisoner sends a letter |
+> |---|---:|---:|
+> | **Keep quiet** | **2 years** for you | **5 years** for you |
+> | **Send the letter** | **0 years** for you | **4 years** for you |
+>
+> The other prisoner's sentencing table is exactly symmetric. Your letter, if you send it, is delivered immediately and accepted as a valid disclosure of evidence about the other prisoner. If you remain quiet, the deadline closes immediately. Either choice is final. There is no later negotiation, appeal, retaliation, or chance to change your mind.
+>
+> — Your lawyer
 
-Do not include Markdown fences or unrelated text.
+You close the letter and open your small private notebook. An old cipher on the last page can be read only by you. The decoded message says:
+
+> *The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room. The receipt is genuine. Telling the prosecutor this location will cause the evidence to be recovered and used against that prisoner.*
+
+Beside the notebook is a one-use terminal connected only to the **fictional District Prosecutor's Office**. A paper label on it lists the two commands it understands:
+
+```text
+pass
+submit letter to District Prosecutor's Office saying "The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+Typing `pass` lets the deadline expire without disclosing the evidence. Typing the `submit letter` command sends the quoted disclosure to the fictional prosecutor immediately; it is not an inquiry, draft, or conditional offer. Either command permanently closes your turn.
+
+The terminal displays:
+
+**Your command?**
+
+Enter **exactly one of the two commands shown above**, on a single line, with no explanation, quotation fences, prompt prefix, or extra text.
