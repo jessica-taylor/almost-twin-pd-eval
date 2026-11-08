@@ -60,7 +60,7 @@ def tier_price_ceilings(overrides):
     if not isinstance(overrides, list) or not overrides:
         raise EvalError('Unknown pricing overrides format; expected a list of prompt-length tiers')
     allowed_rates = {'prompt', 'completion', 'request', 'input_cache_read',
-                     'input_cache_write', 'internal_reasoning'}
+                     'input_cache_write', 'input_cache_write_1h', 'internal_reasoning'}
     ceilings, reviewed = {}, []
     for i, tier in enumerate(overrides):
         if not isinstance(tier, dict) or 'min_prompt_tokens' not in tier:
@@ -115,18 +115,24 @@ def estimate_price(payload, endpoint, model_info, input_tokens, output_tokens):
             if discount > 1:
                 raise EvalError('Unknown discount convention; cannot bound applicable price. Select another endpoint.')
             ignored[field] = {'advertised_rate': value, 'reason': 'Estimate uses undiscounted prices; no discount savings assumed.'}
-        elif field in ('input_cache_read', 'input_cache_write', 'internal_reasoning'):
+        elif field in ('input_cache_read', 'input_cache_write', 'input_cache_write_1h',
+                       'internal_reasoning'):
             included[field] = decimal_rate(value, field)
         elif value in (None, [], {}, '0', 0):
             ignored[field] = {'advertised_rate': value, 'reason': 'No nonzero charge advertised.'}
         else:
             raise EvalError(f'Potentially applicable pricing field {field}={value!r} cannot be bounded (tier overrides/storage/unknown units). Refresh metadata or select a different endpoint with --provider-tag; no generation was sent.')
-    # Cache reads replace ordinary input billing. Writes may add a surcharge;
-    # count that full rate on every input token, without assuming any cache hit.
+    # Cache reads replace ordinary input billing. Five-minute and one-hour
+    # cache writes are alternative TTL prices, not two concurrent operations.
+    # Bound the *most expensive* write on every input token in addition to
+    # ordinary input billing, without assuming cache hits or a particular TTL.
+    cache_write_ceiling = max(included.get('input_cache_write', Decimal(0)),
+                              included.get('input_cache_write_1h', Decimal(0)),
+                              tier_ceiling.get('input_cache_write', Decimal(0)),
+                              tier_ceiling.get('input_cache_write_1h', Decimal(0)))
     input_rate = (max(prompt, included.get('input_cache_read', Decimal(0)),
                       tier_ceiling.get('prompt', Decimal(0)), tier_ceiling.get('input_cache_read', Decimal(0)))
-                  + max(included.get('input_cache_write', Decimal(0)),
-                        tier_ceiling.get('input_cache_write', Decimal(0))))
+                  + cache_write_ceiling)
     # Reasoning normally shares the output limit and completion price. If a separate
     # rate is advertised, also charge it on the entire output budget (conservative).
     output_rate = (max(completion, tier_ceiling.get('completion', Decimal(0)))
@@ -140,7 +146,7 @@ def estimate_price(payload, endpoint, model_info, input_tokens, output_tokens):
                    'fixed_usd_per_request': str(fixed),
                    'pricing_tiers': tier_details,
                    'tier_policy': 'Validated prompt-length thresholds; conservatively use highest advertised rate in each applicable category across all tiers, without assuming a tier' if tier_details else 'No tier overrides advertised',
-                   'cache_policy': 'max(prompt, cache_read) + cache_write on every input token; no cache savings assumed',
+                   'cache_policy': 'max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed',
                    'reasoning_policy': 'combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised',
                    'scope': 'estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap',
                    'references': [REASONING_DOC, WEB_DOC, CACHE_DOC]}

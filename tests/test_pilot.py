@@ -142,6 +142,49 @@ class PreflightTests(unittest.TestCase):
         self.assertEqual(estimate['pricing_assumptions']['pricing_tiers'][0]['min_prompt_tokens'], 272000)
         self.assertIn('highest advertised rate', estimate['pricing_assumptions']['tier_policy'])
 
+    def test_anthropic_one_hour_cache_write_tier_is_bounded_and_auditable(self):
+        cap = capabilities()
+        cap['model']['id'] = 'anthropic/claude-haiku-5.5'
+        direct = endpoint(cap)
+        direct['tag'] = 'anthropic'
+        direct['pricing'] = {
+            'prompt': '0.0000001', 'completion': '0.0000005',
+            'input_cache_read': '0.00000001',
+            'input_cache_write': '0.000000125',
+            'input_cache_write_1h': '0.0000002',
+            'overrides': [{'min_prompt_tokens': 100000,
+                           'prompt': '0.0000005', 'completion': '0.0000025',
+                           'input_cache_read': '0.00000005',
+                           'input_cache_write': '0.000000625',
+                           'input_cache_write_1h': '0.000001'}],
+        }
+        s = settings()
+        s['model'], s['provider_tag'] = 'anthropic/claude-haiku-5.5', None
+        messages = [{'role': 'user', 'content': 'CDT source text and instructions.'}]
+        chosen, selection = choose_endpoint(s, cap, [('researcher', messages)], validate_settings)
+        self.assertEqual(chosen['provider_tag'], 'anthropic')
+        self.assertEqual(selection['selected_endpoint'], 'anthropic')
+        _, estimate = validate_settings(chosen, cap, 'researcher', messages)
+        # Uses maximum across base and 100k+ tier; 1-hour and 5-minute writes
+        # are alternatives, with the larger rate reserved for every input token.
+        expected = (Decimal('0.0000015') * estimate['input_tokens_upper_estimate']
+                    + Decimal('0.0000025') * 12000)
+        self.assertEqual(Decimal(estimate['estimated_max_usd']), expected)
+        assumptions = estimate['pricing_assumptions']
+        self.assertEqual(assumptions['effective_input_usd_per_token'], '0.0000015')
+        self.assertEqual(assumptions['pricing_tiers'][0]['advertised_rates']['input_cache_write_1h'],
+                         '0.000001')
+        self.assertIn('1-hour', assumptions['cache_policy'])
+
+        bad = copy.deepcopy(cap)
+        endpoint(bad, 'anthropic')['pricing']['overrides'][0]['input_cache_write_1h'] = 'NaN'
+        with self.assertRaisesRegex(EvalError, 'input_cache_write_1h'):
+            validate_settings(chosen, bad, 'researcher', messages)
+        bad = copy.deepcopy(cap)
+        endpoint(bad, 'anthropic')['pricing']['overrides'][0]['cache_storage'] = '0.00001'
+        with self.assertRaisesRegex(EvalError, 'unsupported keys'):
+            validate_settings(chosen, bad, 'researcher', messages)
+
     def test_prompt_length_tiers_fail_closed_on_unknown_rules(self):
         cap = capabilities()
         for bad in (
