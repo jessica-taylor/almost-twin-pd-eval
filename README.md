@@ -86,6 +86,17 @@ sequentially, running multiple full scenarios concurrently within a cell;
 cooperation rates and CC/CD/DC/DD counts, readable per-sample transcripts,
 offline review dispositions, provider-reported inference charges and execution
 statistics. `study report` can regenerate all of these without calling models.
+Researcher essays now target 1,200–1,500 words, with an enforced maximum of
+1,800 whitespace-delimited words (including math and references). New pilot,
+batch and study defaults allow 16,000 output tokens, including reasoning.
+Overlong or truncated outputs are saved as failed attempts without retries;
+`summary.md` highlights the cause, output budget, reasoning tokens and essay
+word count. `failures.csv` provides the same diagnostics for analysis.
+
+For the seven-model follow-up to the 12K CDT provider smoke test, use
+[`configs/study.cdt-provider-smoke-16k.yaml`](configs/study.cdt-provider-smoke-16k.yaml).
+It requests one T4 scenario per model and preserves the prior endpoints and
+low efforts. See [the follow-up instructions](docs/study_workflow.md#long-essay-follow-up).
 Example:
 
 ```sh

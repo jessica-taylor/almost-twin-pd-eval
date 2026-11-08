@@ -23,6 +23,7 @@ from .accounting import (EXPECTED_PRISONER_OUTPUT_TOKENS, EXPECTED_RESEARCHER_OU
                          expected_prisoner_input_tokens, prisoner_input_ceiling,
                          sample_usage)
 from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
+from .failures import sample_failure
 from .judge import judge_messages
 from .preflight import choose_endpoint, estimate_price
 from .progress_log import progress, timed_progress
@@ -133,7 +134,7 @@ def load_spec(path):
     count = _positive_integer(spec.get('count_per_cell'), 'count_per_cell')
     if count > 10000:
         raise EvalError('count_per_cell exceeds the batch limit of 10000')
-    for name, default in (('researcher_max_tokens', 12000), ('prisoner_max_tokens', 3000)):
+    for name, default in (('researcher_max_tokens', 16000), ('prisoner_max_tokens', 3000)):
         spec[name] = _positive_integer(spec.get(name, default), name)
     if not isinstance(spec.get('scenario', 't4_distinct_leads_001'), str):
         raise EvalError('scenario must be a case_id')
@@ -455,7 +456,7 @@ def _ci_pair_bootstrap(fractions, seed, draws=2000):
 def report(root, folder, include_details=True):
     root, folder = Path(root).resolve(), Path(folder).resolve()
     study = _load(root, folder)
-    pair_rows, action_rows, summary_rows = [], [], []
+    pair_rows, action_rows, summary_rows, failed_attempts = [], [], [], []
     totals = Counter()
     cost_counts = Counter()
     reported_cost = Decimal(0)
@@ -477,6 +478,11 @@ def report(root, folder, include_details=True):
             execution_seconds += duration
             execution_seconds_known = True
         for row in rows:
+            failure = sample_failure(row)
+            if failure:
+                failed_attempts.append({'model': cell['model'],
+                    'provider_tag': cell['selected_provider_tag'], 'sample_id': row['sample_id'],
+                    **failure, 'error': row.get('error')})
             usage = sample_usage(row)
             cell_counts.update({key: usage[key] for key in
                                 ('attempted_calls', 'priced_calls', 'unpriced_calls',
@@ -500,6 +506,7 @@ def report(root, folder, include_details=True):
                 'researcher_run': row.get('researcher_run'),
                 'prisoner_run': row.get('prisoner_run'), 'judge_run': row.get('judge_run'),
                 'error': row.get('error'),
+                **failure,
                 'reported_provider_usd': usage['reported_provider_usd'],
                 'unpriced_calls': usage['unpriced_calls']})
             for role, idx in (('a', 0), ('b', 1)):
@@ -539,7 +546,11 @@ def report(root, folder, include_details=True):
          'researcher_effort', 'prisoner_effort', 'sample_id', 'sample_index', 'status',
          'pair_outcome', 'final_a', 'final_b', 'essay_sha256', 'researcher_run',
          'prisoner_run', 'judge_run', 'error', 'reported_provider_usd',
-         'unpriced_calls'), pair_rows)
+         'unpriced_calls', 'failure_category', 'failure_stage', 'completion_tokens',
+         'output_token_limit', 'reasoning_tokens', 'essay_words', 'finish_reason', 'failed_call'), pair_rows)
+    _csv(folder / 'failures.csv', ('model', 'provider_tag', 'sample_id',
+         'failure_category', 'failure_stage', 'completion_tokens', 'output_token_limit',
+         'reasoning_tokens', 'essay_words', 'finish_reason', 'failed_call', 'error'), failed_attempts)
     _csv(folder / 'decisions.csv', ('cell_id', 'assignment', 'model', 'provider_tag',
          'researcher_effort', 'prisoner_effort', 'sample_id', 'role', 'status', 'intent',
          'disclosure', 'enacted_action', 'final_action', 'prisoner_run'), action_rows)
@@ -563,7 +574,7 @@ def report(root, folder, include_details=True):
     write_json(folder / 'summary.json', {'study_id': study['study_id'], 'name': study['name'],
         'exploratory': True, 'total_samples': len(pair_rows), 'status_counts': dict(totals),
         'total_complete_pairs': sum(r['complete_pairs'] for r in summary_rows),
-        'cell_summaries': summary_rows, 'provider_usage': measured,
+        'cell_summaries': summary_rows, 'provider_usage': measured, 'failed_attempts': failed_attempts,
         'primary_estimand': 'mean of (cooperate A + cooperate B) / 2 over complete, scored pairs',
         'missingness': 'Unscored samples excluded from the rate and reported separately; no imputation',
         'intervals': '2000 deterministic bootstrap resamples of whole paired scenarios; only for n>=10'})
@@ -596,6 +607,22 @@ def report(root, folder, include_details=True):
               'Readable per-sample results and transcripts are in each batch under `samples/`;',
               'the offline review disposition summary is in `review_summary.md`.',
               'Exact prompts, responses, available reasoning and judge records remain in each batch and its raw runs.', '']
+    failure_lines = ['## Failed attempts', '',
+                     'Failures are retained without automatic retries. Output tokens include reasoning; '
+                     'essay words count all whitespace-delimited visible text. Unknown counts are shown as —.', '',
+                     '| Model | Endpoint | Stage | Failure | Output tokens / limit | Reasoning tokens | Essay words |',
+                     '|---|---|---|---|---:|---:|---:|']
+    for item in failed_attempts:
+        show = lambda key: item.get(key) if item.get(key) is not None else '—'
+        failure_lines.append(f'| {item["model"]} | {item["provider_tag"]} | '
+                             f'{show("failure_stage")} | `{item["failure_category"]}` | '
+                             f'{show("completion_tokens")} / {show("output_token_limit")} | '
+                             f'{show("reasoning_tokens")} | {show("essay_words")} |')
+    if not failed_attempts:
+        failure_lines = ['## Failed attempts', '', 'None.', '']
+    failure_lines += ['', 'Details: `failures.csv` and `summary.json` (`failed_attempts`).', '']
+    # Keep the cause table close to the headline status, ahead of outcome statistics.
+    lines[8:8] = failure_lines
     (folder / 'summary.md').write_text('\n'.join(lines), encoding='utf-8')
     if include_details:
         from .sample_report import write_reports

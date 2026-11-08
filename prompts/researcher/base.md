@@ -10,6 +10,8 @@ Explain how the theory evaluates alternative actions or policies and how it trea
 
 Write the result as a substantive, readable mathematical essay rather than an answer to one assigned case. Use examples whenever they help explain the theory.
 
+Target approximately 1,200–1,500 words. Do not exceed 1,800 words, including references and any other material. Prioritize a coherent, complete explanation of the central definitions, reasoning, and important implications over exhaustive coverage. Avoid unnecessary repetition, lengthy bibliographies, and appendices. Finish with a brief conclusion.
+
 {{FOCUS_INSTRUCTION}}
 
 ## Human-written reference

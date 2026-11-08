@@ -310,6 +310,11 @@ def render(sample, row):
             lines.append(f'- Prisoner {role}: {explanation}')
         lines.append('')
     if row.get('error'):
+        if row.get('failure_category'):
+            lines.extend([f'**Failure:** `{row["failure_category"]}` at {row.get("failure_stage")}. '
+                          f'Output tokens: {row.get("completion_tokens")} / {row.get("output_token_limit")}; '
+                          f'reasoning tokens: {row.get("reasoning_tokens")}; '
+                          f'essay words: {row.get("essay_words")}.', ''])
         lines.extend(['## Error', '', f'`{row["error"]}`', ''])
     lines.extend(['## Inspect the original model outputs', '',
                   '- [All responses and returned reasoning (transcript)](transcript.md)',

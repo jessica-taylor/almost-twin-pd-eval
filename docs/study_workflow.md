@@ -65,6 +65,75 @@ reserved project requests; a fresh study does not reset the underlying ledger.
 For the smallest previously validated CDT plumbing experiment, use
 `configs/study.smoke.example.yaml` instead.
 
+### Long-essay follow-up
+
+`configs/study.cdt-provider-smoke-16k.yaml` follows the original
+`cdt-provider-smoke-20261108` with **one scenario per model**, the same seven
+models and explicit original endpoints, CDT Wikipedia source, distinct T4
+leads and low researcher/prisoner efforts. The prisoner and judge limits and
+cumulative project budgets are unchanged. Keep the original study directory;
+never replace its failed attempts with new successes.
+
+All researcher assignments use the same 1,200–1,500-word target, 1,800-word
+maximum, and request for a brief conclusion. The independent hard word check
+counts whitespace-delimited words across the entire visible output, including
+headings, math and references; it is an approximate length convention, not a
+linguistic tokenizer. Shorter essays are accepted. The existing serialized-byte
+ceiling remains an additional bound. No output is cut down or rewritten to fit.
+New pilot/batch/study defaults allow **16,000 total output tokens**, including
+reasoning. Explicit limits in historical configurations remain unchanged.
+There is no automatic budget escalation or retry.
+
+Prepare with unbilled metadata requests only:
+
+```sh
+python3 -m almost_twin study prepare \
+  --config configs/study.cdt-provider-smoke-16k.yaml \
+  --out data/studies/cdt-provider-smoke-16k
+```
+
+Inspect `plan.md`, `preflight.json`, and each batch's researcher messages before
+running. Once prepared, **this separate command makes paid calls**:
+
+```sh
+python3 -m almost_twin study run \
+  --study data/studies/cdt-provider-smoke-16k \
+  --execute --confirm-billable --approve-variable-prompts --jobs 1
+```
+
+`summary.md` starts with failed-attempt diagnostics. `failures.csv`,
+`summary.json` (`failed_attempts`), `pairs.csv` and each sample's `result.md`
+include the stage, cause, provider-reported output/reasoning tokens, requested
+output limit and visible essay words. The stable causes include:
+
+| Cause | Meaning |
+|---|---|
+| `output_token_limit` | Provider returned `finish_reason: length`; partial output is preserved. |
+| `essay_size_limit` | Completed researcher output exceeded the word or serialized-byte bound. |
+| `provider_error` | Provider API or transport failed; unknown billing remains reserved. |
+| `parse_error` | Malformed API response or missing usable researcher text. |
+| `refusal` | Explicit researcher refusal field or provider content-filter stop. |
+
+Other causes stay explicit (`incomplete_generation`, `validation_error`,
+`preflight_error`, `unknown_failure`) rather than guessing. Refusals expressed
+only in ordinary prose are not automatically inferred here. Prisoner
+nonaction classification and adjudication are unchanged. Output-limit causes
+take precedence over word counts for truncated responses. Offline reporting
+can derive these diagnostics for historical failures without changing their
+raw responses, logs or status.
+
+For the DeepSeek failure, the saved model metadata advertises `low` effort but
+does **not** advertise `reasoning.supports_max_tokens`; the selected
+`atlas-cloud/fp8` endpoint only advertises generic reasoning parameters.
+[OpenRouter's reasoning documentation](https://openrouter.ai/docs/guides/best-practices/reasoning-tokens)
+uses `supports_max_tokens: true` to advertise token-budget controls and warns
+that a supplied reasoning budget can map to an effort level on effort-only
+models. This does not establish a hard 4K–6K cap for that endpoint. The follow-up
+therefore retains the exact `reasoning: {effort: low}` setting; it does not
+silently add a token cap or send conflicting effort/budget fields. A future
+provider-specific cap needs evidence of enforcement and its own explicit
+configuration. Compare actual reasoning-token usage after the follow-up.
+
 ### Live command progress
 
 `study check`, `study prepare`, and `study run` now print flushed

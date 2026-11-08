@@ -9,7 +9,7 @@ import json
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
-from .common import EvalError, encoded, read
+from .common import EvalError, GenerationError, encoded, read
 from .prompts import prisoners
 
 
@@ -18,6 +18,7 @@ from .prompts import prisoners
 # deliberately generous *additional hard size limit*, not a claim about a
 # provider's tokenizer.  Over-limit essays are preserved but cannot be used.
 ESSAY_JSON_BYTES_PER_OUTPUT_TOKEN = 8
+MAX_ESSAY_WORDS = 1800
 EXPECTED_RESEARCHER_OUTPUT_TOKENS = 3000
 EXPECTED_PRISONER_OUTPUT_TOKENS = 800
 EXPECTED_ESSAY_JSON_BYTES_PER_OUTPUT_TOKEN = 4
@@ -38,9 +39,15 @@ def max_essay_json_bytes(researcher_max_tokens):
 def require_essay_within_limit(essay, researcher_max_tokens):
     count, maximum = essay_json_bytes(essay), max_essay_json_bytes(researcher_max_tokens)
     if count > maximum:
-        raise EvalError(f'Researcher essay exceeds hard JSON-encoded size limit: '
+        raise GenerationError('essay_size_limit', f'Researcher essay exceeds hard JSON-encoded size limit: '
                         f'{count} bytes > {maximum} bytes (8 x researcher max_tokens). '
                         'Raw generation preserved; no prisoner request is authorized.')
+    words = len(essay.split())
+    if words > MAX_ESSAY_WORDS:
+        raise GenerationError('essay_size_limit',
+                              f'Researcher essay exceeds hard word limit: {words} > {MAX_ESSAY_WORDS} '
+                              '(whitespace-delimited words, including references and math). '
+                              'Raw generation preserved; no prisoner request is authorized.')
 
 
 def prisoner_input_ceiling(root, item, scenario, researcher_max_tokens, endpoint,

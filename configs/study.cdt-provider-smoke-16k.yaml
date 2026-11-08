@@ -1,0 +1,40 @@
+# Follow-up to cdt-provider-smoke-20261108; preserve that study and its failures.
+# One scenario per model. Same sources, observations, efforts, endpoints and
+# prisoner/judge limits. Changes: uniform 1,200–1,500-word essay target,
+# enforced 1,800-word maximum and 16K researcher output allowance.
+schema_version: 1
+name: cdt-provider-smoke-16k
+exploratory: true
+assignments: [cdt_wikipedia]
+scenario: t4_distinct_leads_001
+count_per_cell: 1
+researcher_efforts: [low]
+prisoner_efforts: [low]
+researcher_max_tokens: 16000
+prisoner_max_tokens: 3000
+models:
+  - id: google/gemini-3.8-flash
+    provider_tag: google-ai-studio
+  - id: openai/gpt-6.1-terra
+    provider_tag: openai
+  - id: anthropic/claude-sonnet-5.5
+    provider_tag: anthropic
+  - id: z-ai/glm-5.3
+    provider_tag: z-ai/fp8
+  - id: deepseek/deepseek-v4.1-flash
+    provider_tag: atlas-cloud/fp8
+  - id: qwen/qwen3.8-27b
+    provider_tag: akashml/fp8
+  - id: openai/gpt-6-luna
+    provider_tag: openai
+judge:
+  enabled: true
+  model: openai/gpt-6.1-sol
+  effort: low
+  max_tokens: 1200
+budgets:
+  # Existing cumulative project ceilings; no ledger reset or automatic increase.
+  max_calls: 300
+  max_usd: "25.00"
+  judge_max_calls: 200
+  judge_max_usd: "10.00"

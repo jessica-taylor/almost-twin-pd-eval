@@ -10,6 +10,14 @@ class EvalError(ValueError):
     """A visible validation failure; never an experimental success."""
 
 
+class GenerationError(EvalError):
+    """A failed generation with an auditable, machine-readable cause."""
+
+    def __init__(self, category, message):
+        super().__init__(message)
+        self.category = category
+
+
 def utc():
     return datetime.now(timezone.utc).isoformat()
 

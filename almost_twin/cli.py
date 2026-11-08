@@ -46,7 +46,7 @@ def parser():
     prep.add_argument('--model', required=True)
     prep.add_argument('--researcher-effort', default='low')
     prep.add_argument('--prisoner-effort', default='low')
-    prep.add_argument('--researcher-max-tokens', type=int, default=12000)
+    prep.add_argument('--researcher-max-tokens', type=int, default=16000)
     prep.add_argument('--prisoner-max-tokens', type=int, default=3000)
     prep.add_argument('--scenario', default='t4_distinct_leads_001',
                       help='Active case_id in prompts/prisoner/observation_cases.yaml')
@@ -76,7 +76,7 @@ def parser():
                        help='Active case_id in prompts/prisoner/observation_cases.yaml')
     bprep.add_argument('--researcher-effort', default='low')
     bprep.add_argument('--prisoner-effort', default='low')
-    bprep.add_argument('--researcher-max-tokens', type=int, default=12000)
+    bprep.add_argument('--researcher-max-tokens', type=int, default=16000)
     bprep.add_argument('--prisoner-max-tokens', type=int, default=3000)
     bprep.add_argument('--provider-tag')
     bprep.add_argument('--capabilities', type=Path)

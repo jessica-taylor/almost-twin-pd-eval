@@ -11,8 +11,9 @@ from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
-from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
+from .common import EvalError, GenerationError, append_json, encoded, load_yaml, read, sha, utc, write_json
 from .accounting import require_essay_within_limit
+from .failures import failure_details, response_failure
 from .game import Game, classify_response, score
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
 from .sources import load_source, source_identity
@@ -190,20 +191,27 @@ def post(payload, key, folder, allow_nonaction=False):
         raw = error.read()
         (folder / 'response.raw').write_bytes(raw)
         write_json(folder / 'transport.json', {'status': error.code})
-        raise EvalError(f'OpenRouter HTTP {error.code}; raw error saved; no retry') from error
+        raise GenerationError('provider_error', f'OpenRouter HTTP {error.code}; raw error saved; no retry') from error
     except (OSError, urllib.error.URLError) as error:
-        raise EvalError(f'OpenRouter transport failed ({type(error).__name__}); billing outcome unknown, no retry') from error
+        raise GenerationError('provider_error', f'OpenRouter transport failed ({type(error).__name__}); billing outcome unknown, no retry') from error
     (folder / 'response.raw').write_bytes(raw)
     write_json(folder / 'transport.json', metadata)
     try:
         data = json.loads(raw)
+        problem = response_failure(data)
+        if problem in ('provider_error', 'parse_error'):
+            raise GenerationError(problem, f'OpenRouter {problem}; inspect saved raw response; no retry')
         choice = data['choices'][0]
+        if not isinstance(choice.get('message'), dict):
+            raise GenerationError('parse_error', 'Malformed OpenRouter message; raw bytes saved')
         # Always preserve content even on truncation/refusal/route mismatch.
         text = choice['message'].get('content')
         if isinstance(text, str):
             (folder / 'output.txt').write_bytes(text.encode('utf-8'))
-        if data.get('error') or len(data['choices']) != 1 or choice.get('finish_reason') != 'stop':
-            raise EvalError('Error or incomplete generation (finish reason is not stop)')
+        if problem:
+            raise GenerationError(problem,
+                                  f'OpenRouter {problem}: finish_reason={choice.get("finish_reason")}; '
+                                  'partial output and usage saved; no retry')
         if data.get('model') != payload['model']:
             raise EvalError('Returned model differs from explicit selected model; review raw response')
         if allow_nonaction and (isinstance(text, str) or text is None):
@@ -213,11 +221,13 @@ def post(payload, key, folder, allow_nonaction=False):
                 text = ''
                 (folder / 'output.txt').write_bytes(b'')
             return data, text
-        if not isinstance(text, str) or not text.strip() or choice['message'].get('refusal'):
-            raise EvalError('Empty/nontext/refused output')
+        if choice['message'].get('refusal'):
+            raise GenerationError('refusal', 'Researcher explicitly refused; raw response saved; no retry')
+        if not isinstance(text, str) or not text.strip():
+            raise GenerationError('parse_error', 'Empty/nontext output; raw response saved; no retry')
         return data, text
     except (KeyError, IndexError, TypeError, json.JSONDecodeError) as error:
-        raise EvalError('Malformed OpenRouter response; raw bytes saved') from error
+        raise GenerationError('parse_error', 'Malformed OpenRouter response; raw bytes saved') from error
 
 
 def run(root, args):
@@ -375,6 +385,7 @@ def run(root, args):
                           provider=response.get('provider'), returned_endpoint_tag=returned_tag, response_id=response.get('id'),
                           refusal=response['choices'][0]['message'].get('refusal'))
             if stage == 'researcher':
+                record['essay_words'] = len(output.split())
                 require_essay_within_limit(output, settings['researcher']['max_tokens'])
                 (folder / 'essay.md').write_bytes(output.encode('utf-8'))
                 info = {**record, 'status': 'success', 'assignment': args.assignment, 'essay_sha256': sha(output),
@@ -408,6 +419,7 @@ def run(root, args):
                 except (ValueError, TypeError, AttributeError):
                     pass
             record.update(status='failed', error=str(error))
+            record.update(failure_details(folder, stage, getattr(error, 'category', None)))
             append_json(log, record)
             write_json(folder / 'failure.json', record)
             raise EvalError(f'Run failed; artifacts: {folder}; {error}') from error

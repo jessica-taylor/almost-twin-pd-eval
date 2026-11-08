@@ -18,6 +18,7 @@ from types import SimpleNamespace
 
 from .approvals import approve, source_scope
 from .common import EvalError, append_json, encoded, read, sha, utc, write_json
+from .failures import sample_failure
 from .judge import judge_messages
 from .judge_runner import run_judge
 from .pilot import prepare as prepare_pilot, resume as resume_pilot
@@ -36,6 +37,8 @@ CSV_FIELDS = (
     'final_a', 'final_b', 'enacted_score_a', 'enacted_score_b',
     'final_score_a', 'final_score_b', 'needs_review', 'needs_human_review',
     'researcher_run', 'prisoner_run', 'judge_run', 'error',
+    'failure_category', 'failure_stage', 'completion_tokens', 'output_token_limit',
+    'reasoning_tokens', 'essay_words',
 )
 
 CODE_FILES = (
@@ -46,6 +49,7 @@ CODE_FILES = (
     'almost_twin/prompts.py', 'almost_twin/sources.py',
     'almost_twin/approvals.py', 'almost_twin/review_disposition.py',
     'almost_twin/accounting.py',
+    'almost_twin/failures.py',
 )
 
 
@@ -292,6 +296,7 @@ def _read_sample(folder, config, entry):
             result.update(status='failed', error=f'Judge attempted; inspect {jdir}; no automatic retry')
     if sample_state.get('error'):
         result.update(status='failed', error=sample_state['error'])
+    result.update(sample_failure(result))
     return result
 
 

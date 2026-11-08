@@ -15,7 +15,7 @@ from urllib.parse import parse_qs, urlparse
 import yaml
 
 from almost_twin.cli import parser
-from almost_twin.common import EvalError, encoded, load_yaml, read, sha, utc
+from almost_twin.common import EvalError, GenerationError, encoded, load_yaml, read, sha, utc
 from almost_twin.game import submit_command
 from almost_twin.prompts import cases
 from almost_twin.sources import fetch_one
@@ -116,6 +116,7 @@ class StudyTests(unittest.TestCase):
 
     def test_preflight_and_preparation_are_unbilled(self):
         spec, data = load_spec(self.config)
+        self.assertEqual(spec['researcher_max_tokens'], 16000)
         self.assertEqual(spec['models'][0]['prisoner_efforts'], ['low', 'high'])
         result, _, _ = check(self.root, spec)
         self.assertEqual(result['expected_cells'], 2)
@@ -251,9 +252,45 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(sent[0]['usage'], {'include': True})
         summary = json.loads(read(self.study / 'summary.json'))
         self.assertEqual(summary['status_counts']['failed'], 1)
-        sample = next((self.study / 'batches').glob('*/samples/00000'))
+        first_cell = json.loads(read(self.study / 'study.json'))['cells'][0]
+        sample = self.study / first_cell['path'] / 'samples/00000'
         self.assertIn('essay exceeds hard JSON-encoded size limit', read(sample / 'result.json'))
         self.assertIn('x' * 161, read(sample / 'transcript.txt'))
+        self.assertEqual(summary['failed_attempts'][0]['failure_category'], 'essay_size_limit')
+        self.assertIn('essay_size_limit', read(self.study / 'failures.csv'))
+        self.assertIn('essay_size_limit', read(self.study / 'summary.md'))
+
+    def test_long_essay_fails_without_prisoners_or_retry(self):
+        self.spec['prisoner_efforts'] = ['low']
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        prepare(self.root, self.prep_args())
+        calls = []
+
+        def long_post(payload, key, folder, allow_nonaction=False):
+            calls.append(payload)
+            content = 'word ' * 1801
+            response = {'model': payload['model'], 'usage': {'completion_tokens': 4000, 'cost': '.01'},
+                        'choices': [{'finish_reason': 'stop', 'message': {'content': content}}]}
+            folder.mkdir(exist_ok=True)
+            (folder / 'request.json').write_bytes(encoded(payload))
+            (folder / 'response.raw').write_bytes(encoded(response))
+            (folder / 'output.txt').write_text(content)
+            return response, content
+
+        with patch('almost_twin.router.post', side_effect=long_post):
+            run(self.root, self.run_args(limit_cells=1, limit_per_cell=1))
+            # Only the remaining sample in the same cell can run on resume.
+            run(self.root, self.run_args(limit_cells=1, limit_per_cell=1))
+            run(self.root, self.run_args(limit_cells=1, limit_per_cell=1))
+        self.assertEqual(len(calls), 2)
+        summary = json.loads(read(self.study / 'summary.json'))
+        self.assertEqual(summary['status_counts']['failed'], 2)
+        for failure in summary['failed_attempts']:
+            self.assertEqual(failure['failure_category'], 'essay_size_limit')
+            self.assertEqual(failure['essay_words'], 1801)
+            self.assertEqual(failure['failure_stage'], 'researcher')
+        for payload in calls:
+            self.assertEqual(payload['max_tokens'], 16000)
 
     def test_http_429_failure_is_reported_without_retry(self):
         prepare(self.root, self.prep_args())
@@ -269,6 +306,43 @@ class StudyTests(unittest.TestCase):
         summary = json.loads(read(self.study / 'summary.json'))
         self.assertEqual(summary['provider_usage']['rate_limit_failures'], 1)
         self.assertIn('HTTP 429 failed scenarios: 1', read(self.study / 'summary.md'))
+
+    def test_truncation_records_token_and_word_diagnostics_before_size_checks(self):
+        self.spec['prisoner_efforts'] = ['low']
+        self.spec['count_per_cell'] = 1
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        prepare(self.root, self.prep_args())
+        sent = []
+
+        def truncated(payload, key, folder, allow_nonaction=False):
+            sent.append(payload)
+            text = 'word ' * 5341
+            response = {'model': payload['model'],
+                        'usage': {'completion_tokens': 16000, 'cost': '.02',
+                                  'completion_tokens_details': {'reasoning_tokens': 9580}},
+                        'choices': [{'finish_reason': 'length', 'message': {'content': text}}]}
+            (folder / 'request.json').write_bytes(encoded(payload))
+            (folder / 'response.raw').write_bytes(encoded(response))
+            (folder / 'output.txt').write_text(text)
+            raise GenerationError('output_token_limit', 'Provider exhausted output budget; no retry')
+
+        with patch('almost_twin.router.post', side_effect=truncated):
+            run(self.root, self.run_args())
+            run(self.root, self.run_args())
+        self.assertEqual(len(sent), 1)
+        failure = json.loads(read(self.study / 'summary.json'))['failed_attempts'][0]
+        self.assertEqual(failure['failure_category'], 'output_token_limit')
+        self.assertEqual(failure['completion_tokens'], 16000)
+        self.assertEqual(failure['output_token_limit'], 16000)
+        self.assertEqual(failure['reasoning_tokens'], 9580)
+        self.assertEqual(failure['essay_words'], 5341)
+        summary_text = read(self.study / 'summary.md')
+        self.assertIn('16000 / 16000', summary_text)
+        self.assertIn('9580 | 5341', summary_text)
+        logs = list((self.root / 'data/exploratory').glob('researcher_essays.jsonl'))
+        records = [json.loads(line) for line in read(logs[0]).splitlines()]
+        self.assertEqual(records[-1]['failure_category'], 'output_token_limit')
+        self.assertEqual(records[-1]['essay_words'], 5341)
 
     def test_study_code_changes_block_generation_but_not_offline_reporting(self):
         prepare(self.root, self.prep_args())

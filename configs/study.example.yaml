@@ -10,7 +10,7 @@ scenario: t4_distinct_leads_001
 count_per_cell: 20
 researcher_efforts: [low]
 prisoner_efforts: [low, high]
-researcher_max_tokens: 12000
+researcher_max_tokens: 16000
 prisoner_max_tokens: 3000
 models:
   - id: openai/gpt-6-luna
