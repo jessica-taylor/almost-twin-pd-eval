@@ -1,7 +1,8 @@
 """One frozen matrix of auditable full-scenario batches.
 
 Study preparation uses only unbilled capability discovery. Generation remains
-in batch.run, with its existing approval, budget, hash, and no-retry rules.
+in batch's per-sample pipeline, with its existing approval, budget, hash,
+and no-retry rules. Live study runs schedule samples across model cells.
 The prisoner roles and observation assignments are intentionally fixed.
 """
 
@@ -12,7 +13,9 @@ import json
 import random
 import re
 import uuid
-from collections import Counter
+from collections import Counter, deque
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
+from contextlib import ExitStack
 from decimal import Decimal
 from pathlib import Path
 from types import SimpleNamespace
@@ -444,6 +447,17 @@ def _recorded_batch_seconds(folder):
     return sum(durations) if durations else None
 
 
+def _last_study_wall_seconds(folder):
+    """Actual wall time of the most recent complete invocation, not cell-seconds."""
+    path = folder / 'events.jsonl'
+    if not path.is_file():
+        return None
+    durations = [event['elapsed_seconds'] for line in read(path).splitlines()
+                 if (event := json.loads(line)).get('event') == 'study_run_finished'
+                 and isinstance(event.get('elapsed_seconds'), (float, int))]
+    return durations[-1] if durations else None
+
+
 def _ci_pair_bootstrap(fractions, seed, draws=2000):
     if len(fractions) < 10:
         return None
@@ -570,7 +584,8 @@ def report(root, folder, include_details=True):
                 'all_calls_priced': cost_counts['unpriced_calls'] == 0,
                 'rate_limit_failures': rate_limit_failures,
                 'recorded_execution_seconds': round(execution_seconds, 3)
-                if execution_seconds_known else None}
+                if execution_seconds_known else None,
+                'last_run_wall_seconds': _last_study_wall_seconds(folder)}
     write_json(folder / 'summary.json', {'study_id': study['study_id'], 'name': study['name'],
         'exploratory': True, 'total_samples': len(pair_rows), 'status_counts': dict(totals),
         'total_complete_pairs': sum(r['complete_pairs'] for r in summary_rows),
@@ -586,8 +601,9 @@ def report(root, folder, include_details=True):
              f'({cost_counts["priced_calls"]}/{cost_counts["attempted_calls"]} calls priced, '
              f'{cost_counts["unpriced_calls"]} unknown). '
              'Includes judge calls where available; missing charges are **not** treated as zero.',
-             f'Recorded execution time: {measured["recorded_execution_seconds"]} seconds '
-             f'(completed batch invocations; not model compute time). '
+             f'Recorded cell execution: {measured["recorded_execution_seconds"]} aggregate seconds '
+             f'(overlapping cells are counted separately; not wall time). '
+             f'Last run wall time: {measured["last_run_wall_seconds"]} seconds. '
              f'HTTP 429 failed scenarios: {rate_limit_failures}.', '',
              'Cooperation rate averages prisoner A and prisoner B equally within each '
              'complete pair. The two prisoner responses are not assumed independent. '
@@ -641,48 +657,120 @@ def run(root, args):
                         '--approve-variable-prompts; no billable calls were sent')
     if not isinstance(args.jobs, int) or not 1 <= args.jobs <= 16:
         raise EvalError('--jobs must be 1..16')
+    provider_jobs = getattr(args, 'provider_jobs', 1)
+    if not isinstance(provider_jobs, int) or not 1 <= provider_jobs <= 16:
+        raise EvalError('--provider-jobs must be 1..16')
     for name in ('limit_cells', 'limit_per_cell'):
         value = getattr(args, name)
         if value is not None and (not isinstance(value, int) or value < 1):
             raise EvalError(f'--{name.replace("_", "-")} must be positive')
-    progress.info('Study run: %d model/theory cells, jobs=%d, limit_per_cell=%s',
-                  len(study['cells']), args.jobs,
+    progress.info('Study run: %d model/theory cells, global jobs=%d, provider jobs=%d, limit_per_cell=%s',
+                  len(study['cells']), args.jobs, provider_jobs,
                   args.limit_per_cell if args.limit_per_cell is not None else 'all')
-    # One writer per study. Batch locks protect individual samples and stages.
-    with (folder / '.study.lock').open('a') as lock:
+    # One writer per study; hold every selected batch lock while its samples run.
+    # Global jobs spread across cells instead of concentrating on one provider.
+    with (folder / '.study.lock').open('a') as lock, ExitStack() as locks:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        count = 0
+        selected = []
         for index, cell in enumerate(study['cells'], 1):
-            if args.limit_cells is not None and count >= args.limit_cells:
+            if args.limit_cells is not None and len(selected) >= args.limit_cells:
                 progress.info('Reached --limit-cells=%d; stopping this invocation', args.limit_cells)
                 break
             path = folder / cell['path']
             batch.export(root, path)
             rows = [json.loads(s) for s in read(path / 'results.jsonl').splitlines()]
-            batch_config = json.loads(read(path / 'batch.json'))
+            config = json.loads(read(path / 'batch.json'))
             terminal = {'complete', 'failed', 'needs_human_review',
                         'resolved_nonaction', 'resolved_unscored'}
-            if batch_config.get('judge_settings') is None:
+            if config.get('judge_settings') is None:
                 terminal.add('pending_judge')
             if all(row['status'] in terminal for row in rows):
                 progress.info('Cell %d/%d already terminal: %s; skipping', index,
                               len(study['cells']), cell['model'])
                 continue
-            count += 1
-            pending = sum(row['status'] not in terminal for row in rows)
-            progress.info('Starting cell %d/%d: %s (%d pending scenarios)', index,
-                          len(study['cells']), cell['model'], pending)
-            append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_cell_started', 'cell': cell['id']})
-            started = monotonic()
-            batch.run(root, SimpleNamespace(batch=path, execute=True, confirm_billable=True,
-                approve_variable_prompts=True, jobs=args.jobs, limit=args.limit_per_cell,
-                wait_for_lock=False, auto_reports=False))
-            append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_cell_finished',
-                                                 'cell': cell['id'],
-                                                 'elapsed_seconds': round(monotonic() - started, 3)})
-            progress.info('Finished cell %d/%d: %s in %.1fs', index,
-                          len(study['cells']), cell['model'], monotonic() - started)
-            report(root, folder, include_details=False)
+            # A concurrent direct `batch run` must not race this study's batch.
+            batch_lock = locks.enter_context((path / '.batch.lock').open('a'))
+            fcntl.flock(batch_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            config = batch._load(root, path, require_original_code=True)
+            scope = batch._approval_scope(config)
+            batch.approve(root, 'batch_dynamic_templates', scope, acknowledged=True)
+            todo = [entry for entry in config['samples']
+                    if (status := batch._read_sample(path, config, entry)['status']) not in terminal]
+            if args.limit_per_cell is not None:
+                todo = todo[:args.limit_per_cell]
+            if not todo:
+                continue
+            batch._event(path, 'batch_execution_authorized', jobs=args.jobs,
+                         scheduler='study_global', provider_jobs=provider_jobs)
+            selected.append({'index': index, 'cell': cell, 'path': path, 'config': config,
+                             'scope': scope, 'todo': deque(todo), 'planned': len(todo), 'done': 0,
+                             'failed': 0, 'started': None})
+
+        started = monotonic()
+        append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_run_started',
+                    'jobs': args.jobs, 'provider_jobs': provider_jobs,
+                    'selected_cells': len(selected)})
+        # Round-robin the cells so that a long batch for one model does not
+        # fill the worker pool before other models have a chance to start.
+        queued = deque()
+        while any(item['todo'] for item in selected):
+            for item in selected:
+                if item['todo']:
+                    queued.append((item, item['todo'].popleft()))
+        active_providers = Counter()
+        active_cells = Counter()
+        futures = {}
+        with ThreadPoolExecutor(max_workers=args.jobs) as pool:
+            while queued or futures:
+                # Do not occupy a worker waiting on a provider semaphore: scan
+                # past saturated providers to keep the other workers useful.
+                for _ in range(len(queued)):
+                    if len(futures) >= args.jobs:
+                        break
+                    item, entry = queued.popleft()
+                    provider = item['cell']['selected_provider_tag'].split('/')[0]
+                    if active_providers[provider] >= provider_jobs:
+                        queued.append((item, entry))
+                        continue
+                    if item['started'] is None:
+                        item['started'] = monotonic()
+                        progress.info('Starting cell %d/%d: %s (%d scenarios)',
+                                      item['index'], len(study['cells']), item['cell']['model'],
+                                      item['planned'])
+                        append_json(folder / 'events.jsonl',
+                                    {'utc': utc(), 'event': 'study_cell_started', 'cell': item['cell']['id']})
+                    active_providers[provider] += 1
+                    active_cells[item['cell']['id']] += 1
+                    future = pool.submit(batch._timed_sample_live, root, item['path'],
+                                         entry, item['scope'], item['config'])
+                    futures[future] = (item, provider)
+                if not futures:
+                    raise EvalError('No runnable study samples despite available jobs')
+                completed, _ = wait(futures, return_when=FIRST_COMPLETED)
+                for future in completed:
+                    item, provider = futures.pop(future)
+                    active_providers[provider] -= 1
+                    active_cells[item['cell']['id']] -= 1
+                    outcome = future.result()
+                    item['done'] += 1
+                    item['failed'] += outcome['status'] == 'failed'
+                    batch._event(item['path'], 'sample_processed', **outcome)
+                    # No other sample in this cell is writing while exporting.
+                    if active_cells[item['cell']['id']] == 0:
+                        batch.export(root, item['path'])
+                    if item['done'] == item['planned']:
+                        elapsed = round(monotonic() - item['started'], 3)
+                        batch._event(item['path'], 'batch_run_finished', attempted=item['done'],
+                                     failed=item['failed'], elapsed_seconds=elapsed)
+                        append_json(folder / 'events.jsonl',
+                                    {'utc': utc(), 'event': 'study_cell_finished',
+                                     'cell': item['cell']['id'], 'elapsed_seconds': elapsed})
+                        progress.info('Finished cell %d/%d: %s in %.1fs (%d failed)',
+                                      item['index'], len(study['cells']), item['cell']['model'],
+                                      elapsed, item['failed'])
+        elapsed = round(monotonic() - started, 3)
+        append_json(folder / 'events.jsonl', {'utc': utc(), 'event': 'study_run_finished',
+                    'elapsed_seconds': elapsed, 'selected_cells': len(selected)})
         result = report(root, folder)
-        progress.info('Study invocation complete; results: %s', result / 'summary.md')
+        progress.info('Study invocation finished in %.1fs; results: %s', elapsed, result / 'summary.md')
         return result
