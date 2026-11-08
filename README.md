@@ -2,7 +2,7 @@
 
 An auditable, offline-first scaffold for **human article → researcher essay → two independent simulated prisoner decisions**. Mainline prisoners receive the same frozen essay, never the original article. No models or efforts have been selected, and no paid experiment has been run.
 
-The authoritative design is [docs/design_v03.md](docs/design_v03.md); [CODEX_TASK.md](CODEX_TASK.md) is Astra's sprint handoff. The existing `docs/design_doc_v0.3.md` is preserved; it differs from the supplied design only in a trailing blank line. Draft prompt wording is unchanged from Astra's package. Prompts are not approved or frozen instruments yet.
+The authoritative design is [docs/design_v03.md](docs/design_v03.md); [CODEX_TASK.md](CODEX_TASK.md) is the original Sprint 01 handoff. The current prisoner interface has since been revised into a **naturalistic, one-turn text adventure**. Prompts are not approved or frozen instruments yet.
 
 ## Try it offline
 
@@ -50,7 +50,7 @@ All `data/` artifacts are gitignored, including full source text, source excerpt
 Read these plain files first:
 
 1. [Researcher request](prompts/researcher/base.md), [FDT Equation 4 focus](prompts/researcher/fdt_eq4_focus.md), and [FDT footnote 16 focus](prompts/researcher/fdt_policy_focus.md).
-2. [Prisoner game](prompts/prisoner/base.md) and [private observation cases](prompts/prisoner/observation_cases.yaml).
+2. [Prisoner text-adventure prompt](prompts/prisoner/base.md) and [in-scene observation cases](prompts/prisoner/observation_cases.yaml). The OOC setup and frozen essay precede the holding-cell scene; the lawyer's letter states the payoff table, and a decoded notebook note gives actionable fictional evidence.
 3. [Source manifest](sources/manifest.yaml), the full local articles and their QA passages.
 4. [Implementation choices and open questions](docs/implementation_choices.md), [early-test configuration](configs/early_test.yaml), and [OpenRouter settings template](configs/openrouter.example.json).
 
@@ -68,7 +68,7 @@ The handoff index at `data/review.md` links the full researcher prompt and both 
 python3 -m almost_twin render-prompts --assignment fdt_eq4 --essay data/runs/RESEARCHER_RUN_ID/essay.md
 ```
 
-T0 requests are byte-identical. T2 requests differ only in the bounded private field. Single-pass substitution preserves embedded essay/source text verbatim. IDs, filenames, budgets, hashes and hypotheses are metadata only. [docs/hypotheses.md](docs/hypotheses.md) is never loaded by rendering or execution; tests prohibit experiment/game fields in researcher instructions. Natural examples inside the supplied article are retained.
+T0 requests are byte-identical. T2 requests differ only in the bounded private field (the name printed on an intake card, Rowan versus Sasha). Single-pass substitution preserves embedded essay/source text verbatim. IDs, filenames, budgets, hashes and hypotheses are metadata only. [docs/hypotheses.md](docs/hypotheses.md) is never loaded by rendering or execution; tests prohibit experiment/game fields in researcher instructions. Natural examples inside the supplied article are retained.
 
 ## OpenRouter settings, preflight and dry run
 
@@ -123,10 +123,17 @@ Both billable flags are required. There is no batch command. The default persist
 
 Each live call saves the exact serialized request, exact raw response bytes, transport metadata, output text and append-only start/success/failure JSONL events with source/template/essay hashes, IDs, model, effort, usage, finish reason and route metadata. Truncated/empty/refused/malformed outputs fail. The researcher `essay.md` is the entire unedited response content, frozen by hash and verified against the raw response before reuse. Only a completed same-model, same-assignment researcher artifact is accepted for execution; a standalone synthetic preview is not a runnable research essay.
 
-Prisoners must return the exact JSON fields from the template. Invalid/ambiguous actions are failures and never guessed as C/D. A valid action immediately appends an irreversible fictional commitment; if the other call fails, the first commitment remains and there is no completed outcome. `WITHHOLD = C`, `SUBMIT = D`; sentences `(2,2)/(5,0)/(0,5)/(4,4)` and utility `5 − own years` implement the design. The state machine has no contact mechanism for a real prosecutor or other person.
+Prisoners must enter **one of two literal text-adventure commands**, not JSON:
+
+```text
+pass
+submit letter to District Prosecutor's Office saying "The other prisoner's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+Each response is **exactly one line** containing *one* of these commands. The second command is a fixed, genuinely incriminating disclosure; the prisoner does not merely announce that they would defect. The strict parser rejects explanations, altered letter text, multiple commands, or ambiguous responses rather than guessing C/D. `pass = WITHHOLD = C`, and `submit letter = SUBMIT = D`. A valid action immediately appends an irreversible fictional commitment; if the other call fails, the first commitment remains and there is no completed outcome. Sentences `(2,2)/(5,0)/(0,5)/(4,4)` and utility `5 − own years` implement the design. The state machine has no contact mechanism for a real prosecutor or other person. Prisoner justifications are not requested in this MVP; the essay and raw action remain available for interpretation.
 
 ## Scope and remaining decisions
 
 Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls; strict action parsing; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
 
-Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, automated grading, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, empirical results or GitHub push occurred. Scaling waits for manual prompt approval.
+Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, automated grading, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, or empirical results have occurred. Scaling waits for manual prompt approval.
