@@ -63,6 +63,48 @@ def parser():
         step.add_argument('--confirm-billable', action='store_true')
         step.add_argument('--prompts-approved', action='store_true', help='Approve the prepared serialized requests by hash; persisted locally')
         step.add_argument('--source-terms-reviewed', action='store_true', help=argparse.SUPPRESS)
+    batch = sub.add_parser('batch', help='Prepare/run/export repeated full essay + prisoner pair + optional judge samples')
+    batch_actions = batch.add_subparsers(dest='batch_command', required=True)
+    bprep = batch_actions.add_parser('prepare', help='Prepare a pinned exploratory batch; all metadata calls are unbilled')
+    bprep.add_argument('--assignment', default='cdt_wikipedia',
+                       choices=['cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy', 'cdt_wikipedia', 'edt_wikipedia'])
+    bprep.add_argument('--model', default='openai/gpt-5-nano')
+    bprep.add_argument('--count', type=int, required=True)
+    bprep.add_argument('--scenario', default='t4_distinct_leads_001',
+                       choices=['t0_identical_001', 't2_name_001', 't4_distinct_leads_001'])
+    bprep.add_argument('--researcher-effort', default='low')
+    bprep.add_argument('--prisoner-effort', default='low')
+    bprep.add_argument('--researcher-max-tokens', type=int, default=12000)
+    bprep.add_argument('--prisoner-max-tokens', type=int, default=3000)
+    bprep.add_argument('--provider-tag')
+    bprep.add_argument('--capabilities', type=Path)
+    bprep.add_argument('--allow-unverified-effort')
+    bprep.add_argument('--temperature', type=float)
+    bprep.add_argument('--seed-base', type=int,
+                       help='Optional explicit per-sample seed: base+sample index; omitted by default')
+    bprep.add_argument('--judge-model', default='openai/gpt-6.1-sol')
+    bprep.add_argument('--judge-provider-tag')
+    bprep.add_argument('--judge-effort', default='low')
+    bprep.add_argument('--judge-max-tokens', type=int, default=1200)
+    bprep.add_argument('--judge-capabilities', type=Path)
+    bprep.add_argument('--judge-allow-unverified-effort')
+    bprep.add_argument('--no-judge', action='store_true', help='Leave ambiguous classifications pending human/later judging')
+    bprep.add_argument('--max-calls', type=int, required=True, help='Persistent project-wide generation call cap')
+    bprep.add_argument('--max-usd', required=True, help='Persistent project-wide estimated generation USD cap')
+    bprep.add_argument('--judge-max-calls', type=int, default=100, help='Separate persistent judge call cap')
+    bprep.add_argument('--judge-max-usd', default='5.00', help='Separate persistent judge estimated USD cap')
+    bprep.add_argument('--out', type=Path, help='New batch directory; default data/batches/<uuid>')
+    brun = batch_actions.add_parser('run', help='Resume pending samples; explicit billable and template-family authorization required')
+    brun.add_argument('--batch', type=Path, required=True)
+    brun.add_argument('--execute', action='store_true')
+    brun.add_argument('--confirm-billable', action='store_true')
+    brun.add_argument('--approve-variable-prompts', action='store_true',
+                      help='Authorize reviewed template family with fresh, unreviewed generated essays and judge inputs')
+    brun.add_argument('--jobs', type=int, default=1, help='Concurrent full samples (each contains sequential stages)')
+    brun.add_argument('--limit', type=int, help='Process at most this many pending samples in this invocation')
+    brun.add_argument('--wait-for-lock', action='store_true')
+    bstatus = batch_actions.add_parser('status', help='Regenerate CSV/JSONL derived indexes; no generation')
+    bstatus.add_argument('--batch', type=Path, required=True)
     run = sub.add_parser('run', help='Dry run by default; one researcher OR one prisoner pair, no batch')
     run.add_argument('stage', choices=['researcher', 'prisoner'])
     run.add_argument('--assignment', choices=['cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy', 'cdt_wikipedia', 'edt_wikipedia'], required=True)
@@ -124,6 +166,19 @@ def main(argv=None):
                 print(f"Frozen essay: {folder / 'essay.md'}. Inspect it before pilot prisoners.")
             if args.pilot_command != 'prepare':
                 print(f"Pilot review index: {args.pilot.resolve() / 'plan.md'}")
+        elif args.command == 'batch':
+            from .batch import prepare as batch_prepare, run as batch_run, export as batch_export
+            if args.batch_command == 'prepare':
+                folder = batch_prepare(root, args)
+            elif args.batch_command == 'run':
+                folder = batch_run(root, args)
+            else:
+                folder = batch_export(root, args.batch)
+            print(folder)
+            summary = json.loads((folder / 'summary.json').read_text())
+            print(f"Exploratory batch: {summary['total']} samples; statuses: {summary['counts']}")
+            print(f"Analysis files: {folder / 'results.jsonl'} and {folder / 'results.csv'}")
+            print(f"Review: {folder / 'plan.md'}; raw runs: {folder / 'samples'}")
         elif args.command == 'run':
             from .router import run
             print(run(root, args))
@@ -135,3 +190,4 @@ def main(argv=None):
 
 if __name__ == '__main__':
     sys.exit(main())
+
