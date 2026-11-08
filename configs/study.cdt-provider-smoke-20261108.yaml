@@ -1,0 +1,44 @@
+# Exploratory CDT-only provider/model compatibility smoke test.
+# Seven models x two paired scenarios each = 14 complete scenario attempts.
+# Each attempt generates one independent researcher essay and two prisoner
+# decisions; judge calls are conditional. This is NOT a statistical study.
+# First pass: --jobs 1 --limit-per-cell 1 (one scenario per model).
+# Models, reasoning efforts, provider endpoints, costs and context compatibility
+# must all pass live `study check` before any billable run.
+schema_version: 1
+name: cdt-provider-smoke-20261108
+exploratory: true
+assignments: [cdt_wikipedia]
+scenario: t4_distinct_leads_001
+count_per_cell: 2
+researcher_efforts: [low]
+prisoner_efforts: [low]
+# Keep the prior CDT smoke's limits so the experiment changes the model slate,
+# not the essay/response budget. The runner enforces 8x researcher_max_tokens
+# as the serialized essay byte limit before sending any prisoner request.
+researcher_max_tokens: 12000
+prisoner_max_tokens: 3000
+models:
+  # Previously completed CDT pilot; retained as a known-working control.
+  - id: google/gemini-3.8-flash
+  # Mid-tier OpenAI and Anthropic coverage (Haiku omitted due to refusals).
+  - id: openai/gpt-6.1-terra
+  - id: anthropic/claude-sonnet-5.5
+  # Open-weight models on different hosting stacks.
+  - id: z-ai/glm-5.3
+  - id: deepseek/deepseek-v4.1-flash
+  - id: qwen/qwen3.8-27b
+  # Lower-cost OpenAI baseline.
+  - id: openai/gpt-6-luna
+judge:
+  enabled: true
+  model: openai/gpt-6.1-sol
+  effort: low
+  max_tokens: 1200
+budgets:
+  # Cumulative ceilings across the entire project (including prior pilots),
+  # not a fresh allowance for this config. Review preflight before changing.
+  max_calls: 300
+  max_usd: "25.00"
+  judge_max_calls: 200
+  judge_max_usd: "10.00"
