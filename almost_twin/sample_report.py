@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 from .batch import export
-from .common import EvalError, read, write_json
+from .common import EvalError, read, sha, write_json
 
 
 def action_label(action):
@@ -33,6 +33,138 @@ def _link(sample, path, suffix, title):
         return None
     relative = os.path.relpath(target, sample)
     return f'- [{title}]({relative})'
+
+
+def _reasoning_tokens(response):
+    usage = response.get('usage') or {}
+    if not isinstance(usage, dict):
+        return None
+    for key in ('completion_tokens_details', 'output_tokens_details'):
+        details = usage.get(key) or {}
+        if isinstance(details, dict) and details.get('reasoning_tokens') is not None:
+            return details['reasoning_tokens']
+    return usage.get('reasoning_tokens')
+
+
+def _transcript_entry(sample, title, stem, run_dir, call):
+    """Export exactly what was returned, without attempting to recover hidden reasoning."""
+    entry = {'speaker': title, 'call': call, 'status': 'not_run', 'reasoning_status': 'not_provided'}
+    if not run_dir:
+        return entry
+    call_dir = Path(run_dir) / call
+    raw_path = call_dir / 'response.raw'
+    if not raw_path.is_file():
+        entry['status'] = 'no_raw_response'
+        return entry
+    entry['raw_path'] = str(raw_path)
+    entry['raw_sha256'] = sha(raw_path.read_bytes())
+    try:
+        response = json.loads(raw_path.read_bytes())
+    except (ValueError, UnicodeDecodeError):
+        entry['status'] = 'unparseable_raw_response'
+        return entry
+    if not isinstance(response, dict):
+        entry['status'] = 'unparseable_raw_response'
+        return entry
+    entry.update(model=response.get('model'), provider=response.get('provider'),
+                 response_id=response.get('id'), reasoning_tokens=_reasoning_tokens(response))
+    choices = response.get('choices') or []
+    choice = choices[0] if isinstance(choices, list) and choices else {}
+    if not isinstance(choice, dict):
+        choice = {}
+    message = choice.get('message') or {}
+    if not isinstance(message, dict):
+        message = {}
+    entry['finish_reason'] = choice.get('finish_reason') if isinstance(choice, dict) else None
+    content = message.get('content')
+    folder = sample / 'transcript'
+    folder.mkdir(parents=True, exist_ok=True)
+    if isinstance(content, str):
+        output_path = call_dir / 'output.txt'
+        if output_path.is_file() and output_path.read_bytes() != content.encode('utf-8'):
+            raise EvalError(f'{title} raw response disagrees with saved output.txt: {call_dir}')
+        target = folder / f'{stem}_response.txt'
+        target.write_bytes(content.encode('utf-8'))
+        entry.update(status='response_available', response_file=str(target.relative_to(sample)),
+                     response_sha256=sha(content))
+    else:
+        entry['status'] = 'no_text_content'
+
+    reasoning = message.get('reasoning')
+    if not isinstance(reasoning, str):
+        reasoning = message.get('reasoning_content')  # Legacy alias.
+    details = message.get('reasoning_details')
+    if isinstance(details, list):
+        target = folder / f'{stem}_reasoning_details.json'
+        write_json(target, details)
+        entry['reasoning_details_file'] = str(target.relative_to(sample))
+        entry['reasoning_details_types'] = [d.get('type') for d in details if isinstance(d, dict)]
+    if isinstance(reasoning, str):
+        target = folder / f'{stem}_reasoning.txt'
+        target.write_bytes(reasoning.encode('utf-8'))
+        entry['reasoning_file'] = str(target.relative_to(sample))
+        entry['reasoning_status'] = 'plaintext' if reasoning else 'empty_plaintext'
+    elif isinstance(details, list):
+        # The full detail blocks are separately saved, including encrypted
+        # ones. This convenience text includes only explicitly readable parts.
+        readable = []
+        for d in details:
+            if not isinstance(d, dict):
+                continue
+            value = d.get('text') if isinstance(d.get('text'), str) else d.get('summary')
+            if isinstance(value, str):
+                readable.append(f'[{d.get("type", "reasoning detail")}]\n{value}')
+        if readable:
+            target = folder / f'{stem}_reasoning.txt'
+            target.write_text('\n\n'.join(readable), encoding='utf-8')
+            entry['reasoning_file'] = str(target.relative_to(sample))
+            entry['reasoning_status'] = 'readable_structured_details'
+        else:
+            entry['reasoning_status'] = 'structured_but_no_readable_text'
+    elif message.get('reasoning') is not None:
+        target = folder / f'{stem}_reasoning_field.json'
+        write_json(target, message['reasoning'])
+        entry['reasoning_field_file'] = str(target.relative_to(sample))
+        entry['reasoning_status'] = 'nontext_field'
+    return entry
+
+
+def write_transcript(sample, row):
+    speakers = [('Researcher', 'researcher', row.get('researcher_run'), 'call_0'),
+                ('Prisoner A', 'prisoner_a', row.get('prisoner_run'), 'call_0'),
+                ('Prisoner B', 'prisoner_b', row.get('prisoner_run'), 'call_1')]
+    if row.get('judge_run'):
+        speakers.extend([('Judge for A', 'judge_a', row['judge_run'], 'call_a'),
+                         ('Judge for B', 'judge_b', row['judge_run'], 'call_b')])
+    entries = []
+    lines = [f'# Sample {row["sample_index"]:05d} — model responses and reasoning', '',
+             'The files below reproduce the **visible response text** and any **reasoning material actually returned** '
+             'by OpenRouter. The linked `response.raw` JSON remains authoritative. '
+             'A missing reasoning field does not mean that the model performed no internal reasoning.', '']
+    for title, stem, run_dir, call in speakers:
+        entry = _transcript_entry(sample, title, stem, run_dir, call)
+        entries.append(entry)
+        lines.extend([f'## {title}', '', f'Status: `{entry["status"]}`.'])
+        if entry.get('reasoning_tokens') is not None:
+            lines.append(f'Reasoning tokens reported in usage: `{entry["reasoning_tokens"]}` '
+                         '(not necessarily a readable trace).')
+        if entry.get('response_file'):
+            lines.append(f'- [Complete visible response]({entry["response_file"]})')
+        if entry.get('reasoning_file'):
+            lines.append(f'- [Readable reasoning returned]({entry["reasoning_file"]}) '
+                         f'(`{entry["reasoning_status"]}`)')
+        else:
+            lines.append(f'- Readable reasoning: **not provided** (`{entry["reasoning_status"]}`).')
+        if entry.get('reasoning_details_file'):
+            lines.append(f'- [Complete structured reasoning details]({entry["reasoning_details_file"]}) '
+                         '(may contain summaries or encrypted blocks).')
+        if entry.get('reasoning_field_file'):
+            lines.append(f'- [Non-text reasoning field]({entry["reasoning_field_file"]})')
+        if entry.get('raw_path'):
+            lines.append(_link(sample, run_dir, f'{call}/response.raw', 'Original API response (complete JSON)'))
+        lines.append('')
+    write_json(sample / 'transcript_index.json', entries)
+    (sample / 'transcript.md').write_text('\n'.join(lines), encoding='utf-8')
 
 
 def render(sample, row):
@@ -85,7 +217,9 @@ def render(sample, row):
         lines.extend([f'Judge requested human review: {row["needs_human_review"]}.', ''])
     if row.get('error'):
         lines.extend(['## Error', '', f'`{row["error"]}`', ''])
-    lines.extend(['## Inspect the original model outputs', ''])
+    lines.extend(['## Inspect the original model outputs', '',
+                  '- [All responses and returned reasoning (transcript)](transcript.md)',
+                  '- [Machine-readable transcript index](transcript_index.json)'])
     references = [
         _link(sample, row.get('researcher_run'), 'essay.md', 'Researcher essay'),
         _link(sample, row.get('prisoner_run'), 'call_0/output.txt', 'Prisoner A raw response'),
@@ -115,6 +249,7 @@ def write_reports(root, batch):
             raise EvalError('Mismatched sample index or ID; refusing to create reports')
         sample = batch / entry['path']
         write_json(sample / 'result.json', row)
+        write_transcript(sample, row)
         (sample / 'result.md').write_text(render(sample, row), encoding='utf-8')
     return rows
 

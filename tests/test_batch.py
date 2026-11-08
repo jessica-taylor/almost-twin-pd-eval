@@ -15,7 +15,7 @@ from urllib.parse import parse_qs, urlparse
 import yaml
 
 from almost_twin.batch import _approval_scope, _load, export, prepare, run
-from almost_twin.common import EvalError, encoded, load_yaml, read, sha, utc
+from almost_twin.common import EvalError, encoded, load_yaml, read, sha, utc, write_json
 from almost_twin.sample_report import write_reports
 from almost_twin.sources import fetch_one
 
@@ -185,10 +185,66 @@ class BatchTests(unittest.TestCase):
         self.assertIn('Prisoner A — Defect (SUBMIT); Prisoner B — Cooperate (WITHHOLD)', first)
         self.assertIn('Prisoner A raw response', first)
         self.assertIn('Judge annotations', first)
+        self.assertIn('All responses and returned reasoning', first)
         self.assertIn('[results.csv](../../results.csv)', first)
         per_sample = json.loads(read(self.folder / 'samples/00000/result.json'))
         self.assertEqual(per_sample['final_actions'], rows[0]['final_actions'])
         self.assertEqual(per_sample['enacted_actions'], rows[0]['enacted_actions'])
+        transcript = read(self.folder / 'samples/00000/transcript.md')
+        self.assertIn('Prisoner A', transcript)
+        self.assertIn('Judge for A', transcript)
+        self.assertIn('Readable reasoning: **not provided**', transcript)
+        self.assertTrue((self.folder / 'samples/00000/transcript/prisoner_a_response.txt').exists())
+
+    def test_transcript_exposes_returned_reasoning_and_unavailable_traces(self):
+        prepare(self.root, self.prep_args(count=1))
+        run(self.root, self.run_args())
+        row = json.loads(read(self.folder / 'results.jsonl').splitlines()[0])
+        researcher = Path(row['researcher_run']) / 'call_0/response.raw'
+        prisoner_a = Path(row['prisoner_run']) / 'call_0/response.raw'
+        prisoner_b = Path(row['prisoner_run']) / 'call_1/response.raw'
+        judge = Path(row['judge_run']) / 'call_a/response.raw'
+
+        # Synthetic variants of OpenRouter's documented non-streaming shapes.
+        raw = json.loads(read(researcher))
+        raw['choices'][0]['message']['reasoning'] = 'Private-model-reasoning returned as plaintext.'
+        raw['usage']['completion_tokens_details'] = {'reasoning_tokens': 18}
+        write_json(researcher, raw)
+        raw = json.loads(read(prisoner_a))
+        raw['choices'][0]['message']['reasoning_details'] = [
+            {'type': 'reasoning.text', 'text': 'Considering option A.'},
+            {'type': 'reasoning.summary', 'summary': 'Compared possible actions.'},
+        ]
+        write_json(prisoner_a, raw)
+        raw = json.loads(read(prisoner_b))
+        raw['choices'][0]['message']['reasoning_details'] = [
+            {'type': 'reasoning.encrypted', 'data': 'synthetic-encrypted-payload'},
+        ]
+        raw['usage']['completion_tokens_details'] = {'reasoning_tokens': 15}
+        write_json(prisoner_b, raw)
+        raw = json.loads(read(judge))
+        raw['choices'][0]['message']['reasoning_content'] = 'Judge rationale via legacy alias.'
+        write_json(judge, raw)
+
+        call_count = len(self.calls)
+        write_reports(self.root, self.folder)
+        self.assertEqual(len(self.calls), call_count)
+        sample = self.folder / 'samples/00000'
+        self.assertEqual(read(sample / 'transcript/researcher_reasoning.txt'),
+                         'Private-model-reasoning returned as plaintext.')
+        self.assertEqual(read(sample / 'transcript/prisoner_a_reasoning.txt'),
+                         '[reasoning.text]\nConsidering option A.\n\n[reasoning.summary]\nCompared possible actions.')
+        self.assertEqual(read(sample / 'transcript/judge_a_reasoning.txt'), 'Judge rationale via legacy alias.')
+        self.assertFalse((sample / 'transcript/prisoner_b_reasoning.txt').exists())
+        self.assertEqual(json.loads(read(sample / 'transcript/prisoner_b_reasoning_details.json'))[0]['data'],
+                         'synthetic-encrypted-payload')
+        index = json.loads(read(sample / 'transcript_index.json'))
+        self.assertEqual(index[0]['reasoning_tokens'], 18)
+        self.assertEqual(index[1]['reasoning_status'], 'readable_structured_details')
+        self.assertEqual(index[2]['reasoning_status'], 'structured_but_no_readable_text')
+        transcript = read(sample / 'transcript.md')
+        self.assertIn('Reasoning tokens reported in usage: `15`', transcript)
+        self.assertIn('Original API response (complete JSON)', transcript)
 
     def test_resume_only_pending_samples_and_no_double_calls(self):
         prepare(self.root, self.prep_args())
