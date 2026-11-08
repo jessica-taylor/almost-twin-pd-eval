@@ -1,0 +1,230 @@
+"""Study matrix tests. All source downloads and model generations are mocked."""
+
+import copy
+import csv
+import json
+import os
+import shutil
+import tempfile
+import unittest
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
+from urllib.parse import parse_qs, urlparse
+
+import yaml
+
+from almost_twin.cli import parser
+from almost_twin.common import EvalError, encoded, load_yaml, read, sha, utc
+from almost_twin.game import submit_command
+from almost_twin.prompts import cases
+from almost_twin.sources import fetch_one
+from almost_twin.study import check, load_spec, prepare, report, run
+
+
+ROOT = Path(__file__).resolve().parents[1]
+NANO = 'openai/gpt-5-nano'
+JUDGE = 'openai/gpt-6.1-sol'
+
+
+class StudyTests(unittest.TestCase):
+    def setUp(self):
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name)
+        for name in ('configs', 'prompts', 'sources'):
+            shutil.copytree(ROOT / name, self.root / name)
+        manifest_path = self.root / 'sources/manifest.yaml'
+        manifest = load_yaml(manifest_path)
+        manifest['sources']['cdt_wikipedia'].update(revision_id=123456,
+                                                    revision_review='approved')
+        manifest_path.write_text(yaml.safe_dump(manifest, sort_keys=False))
+
+        def download(url, dest):
+            action = parse_qs(urlparse(url).query)['action'][0]
+            fixture = ROOT / 'tests/fixtures/mediawiki' / (
+                'revision.json' if action == 'query' else 'parse.json')
+            payload = fixture.read_bytes()
+            dest.write_bytes(payload)
+            return {'url': url, 'raw_file': dest.name, 'raw_sha256': sha(payload),
+                    'retrieved_at_utc': utc()}
+
+        with patch('almost_twin.sources.download', side_effect=download):
+            fetch_one(self.root, 'cdt_wikipedia', manifest['sources']['cdt_wikipedia'], network=True)
+        self.calls = []
+
+        def metadata(model):
+            cap = json.loads(read(ROOT / 'tests/fixtures/openrouter/gpt5_nano.json'))
+            cap['retrieved_at_utc'] = utc()
+            cap['model']['id'] = model
+            if model == JUDGE:
+                for endpoint in cap['endpoints']:
+                    endpoint['supported_parameters'] = list(
+                        set(endpoint['supported_parameters']) | {'response_format'})
+            return copy.deepcopy(cap)
+
+        for name in ('almost_twin.study.snapshot', 'almost_twin.batch.snapshot',
+                     'almost_twin.pilot.snapshot', 'almost_twin.router.snapshot',
+                     'almost_twin.judge_runner.snapshot'):
+            p = patch(name, side_effect=metadata)
+            p.start()
+            self.addCleanup(p.stop)
+
+        def fake_post(payload, key, folder, allow_nonaction=False):
+            self.calls.append(payload)
+            content = ('pass' if allow_nonaction else 'Synthetic CDT explanation, independently generated.')
+            response = {'id': f'mock-{len(self.calls)}', 'model': payload['model'],
+                        'provider': 'OpenAI', 'system_fingerprint': 'same-mock-weights',
+                        'usage': {'prompt_tokens': 10, 'completion_tokens': 5},
+                        'choices': [{'finish_reason': 'stop', 'message': {'content': content}}]}
+            folder.mkdir(parents=True, exist_ok=True)
+            (folder / 'request.json').write_bytes(encoded(payload))
+            (folder / 'response.raw').write_bytes(encoded(response))
+            (folder / 'output.txt').write_text(content)
+            return response, content
+
+        p = patch('almost_twin.router.post', side_effect=fake_post)
+        self.fake_post = fake_post
+        p.start()
+        self.addCleanup(p.stop)
+        p = patch.dict(os.environ, {'OPENROUTER_API_KEY': 'synthetic-test-key'}, clear=True)
+        p.start()
+        self.addCleanup(p.stop)
+        self.config = self.root / 'study_config.yaml'
+        self.study = self.root / 'data/studies/v1'
+        self.spec = {
+            'schema_version': 1, 'name': 'fixture study', 'exploratory': True,
+            'assignments': ['cdt_wikipedia'], 'scenario': 't4_distinct_leads_001',
+            'count_per_cell': 2, 'models': [{'id': NANO}],
+            'researcher_efforts': ['low'], 'prisoner_efforts': ['low', 'high'],
+            'judge': {'enabled': True, 'model': JUDGE, 'effort': 'low', 'max_tokens': 1200},
+            'budgets': {'max_calls': 30, 'max_usd': '10.00',
+                        'judge_max_calls': 30, 'judge_max_usd': '5.00'},
+        }
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+
+    def prep_args(self):
+        return SimpleNamespace(config=self.config, out=self.study)
+
+    def run_args(self, **overrides):
+        values = dict(study=self.study, execute=True, confirm_billable=True,
+            approve_variable_prompts=True, jobs=2, limit_cells=None, limit_per_cell=None,
+            )
+        values.update(overrides)
+        return SimpleNamespace(**values)
+
+    def test_preflight_and_preparation_are_unbilled(self):
+        spec, data = load_spec(self.config)
+        self.assertEqual(spec['models'][0]['prisoner_efforts'], ['low', 'high'])
+        result, _, _ = check(self.root, spec)
+        self.assertEqual(result['expected_cells'], 2)
+        self.assertEqual(result['projected_researcher_prisoner_calls'], 12)
+        self.assertFalse(result['failures'])
+        self.assertEqual(self.calls, [])
+        prepare(self.root, self.prep_args())
+        self.assertEqual(self.calls, [])
+        study = json.loads(read(self.study / 'study.json'))
+        self.assertEqual(study['spec_sha256'], sha(data))
+        self.assertEqual(len(study['cells']), 2)
+        self.assertTrue(all(c['selected_provider_tag'] == 'openai' for c in study['cells']))
+        self.assertEqual(json.loads(read(self.study / 'summary.json'))['total_samples'], 4)
+        self.assertFalse((self.root / 'data/budget.jsonl').exists())
+        with self.assertRaisesRegex(EvalError, 'already exists'):
+            prepare(self.root, self.prep_args())
+
+    def test_study_run_resume_report_and_paired_average(self):
+        prepare(self.root, self.prep_args())
+        with self.assertRaisesRegex(EvalError, 'Live study execution requires'):
+            run(self.root, self.run_args(execute=False))
+        self.assertEqual(len(self.calls), 0)
+        run(self.root, self.run_args(limit_cells=1, limit_per_cell=1))
+        self.assertEqual(len(self.calls), 3)
+        summary = json.loads(read(self.study / 'summary.json'))
+        self.assertEqual(summary['total_complete_pairs'], 1)
+        run(self.root, self.run_args())
+        self.assertEqual(len(self.calls), 12)
+        run(self.root, self.run_args())
+        self.assertEqual(len(self.calls), 12)
+        report(self.root, self.study)
+        self.assertEqual(len(self.calls), 12)
+        with (self.study / 'pairs.csv').open() as stream:
+            pairs = list(csv.DictReader(stream))
+        with (self.study / 'decisions.csv').open() as stream:
+            decisions = list(csv.DictReader(stream))
+        with (self.study / 'summary.csv').open() as stream:
+            cells = list(csv.DictReader(stream))
+        self.assertEqual(len(pairs), 4)
+        self.assertEqual(len(decisions), 8)
+        self.assertEqual([c['complete_pairs'] for c in cells], ['2', '2'])
+        self.assertEqual([c['cooperation_rate'] for c in cells], ['1.0', '1.0'])
+        self.assertTrue(all(p['pair_outcome'] == 'CC' for p in pairs))
+        self.assertTrue(all(d['final_action'] == 'WITHHOLD' for d in decisions))
+        self.assertEqual(json.loads(read(self.study / 'summary.json'))['status_counts'],
+                         {'complete': 4})
+
+    def test_modified_study_spec_is_rejected_after_preparation(self):
+        prepare(self.root, self.prep_args())
+        (self.study / 'specification.yaml').write_text('modified after preparation')
+        with self.assertRaisesRegex(EvalError, 'specification changed'):
+            report(self.root, self.study)
+
+    def test_study_code_changes_block_generation_but_not_offline_reporting(self):
+        prepare(self.root, self.prep_args())
+        with patch('almost_twin.study._study_code_sha256', return_value='different'):
+            report(self.root, self.study)
+            with self.assertRaisesRegex(EvalError, 'execution code changed'):
+                run(self.root, self.run_args())
+        self.assertEqual(self.calls, [])
+
+    def test_one_cooperation_one_defection_is_half_without_role_randomization(self):
+        # Both prisoner prompts stay in their fixed A/B positions; a mixed
+        # response counts as 0.5 cooperation at the paired-scenario level.
+        evidence = cases(self.root)[0]['evidence_b']
+        real_post = self.fake_post
+
+        def mixed_post(payload, key, folder, allow_nonaction=False):
+            if allow_nonaction and evidence in payload['messages'][0]['content']:
+                # Replace the default mock's A/B-independent pass response.
+                content = submit_command(evidence)
+                self.calls.append(payload)
+                response = {'id': f'mock-{len(self.calls)}', 'model': payload['model'],
+                    'provider': 'OpenAI', 'system_fingerprint': 'same-mock-weights',
+                    'choices': [{'finish_reason': 'stop', 'message': {'content': content}}]}
+                folder.mkdir(parents=True, exist_ok=True)
+                (folder / 'request.json').write_bytes(encoded(payload))
+                (folder / 'response.raw').write_bytes(encoded(response))
+                (folder / 'output.txt').write_text(content)
+                return response, content
+            return real_post(payload, key, folder, allow_nonaction)
+
+        prepare(self.root, self.prep_args())
+        with patch('almost_twin.router.post', side_effect=mixed_post):
+            run(self.root, self.run_args())
+        with (self.study / 'summary.csv').open() as stream:
+            cells = list(csv.DictReader(stream))
+        self.assertEqual([c['cooperation_rate'] for c in cells], ['0.5', '0.5'])
+        self.assertEqual([c['outcome_CD'] for c in cells], ['2', '2'])
+        self.assertEqual([c['outcome_DC'] for c in cells], ['0', '0'])
+
+    def test_incompatible_effort_is_reported_before_any_output(self):
+        spec, _ = load_spec(self.config)
+        spec['models'][0]['prisoner_efforts'] = ['none']
+        result, _, _ = check(self.root, spec)
+        self.assertEqual(len(result['failures']), 1)
+        self.assertEqual(result['projected_researcher_prisoner_calls'], 0)
+        self.assertEqual(len(self.calls), 0)
+        self.spec['prisoner_efforts'] = ['none']
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        with self.assertRaisesRegex(EvalError, 'preflight failed'):
+            prepare(self.root, self.prep_args())
+        self.assertFalse(self.study.exists())
+
+    def test_cli_has_study_commands(self):
+        self.assertEqual(parser().parse_args(['study', 'check', '--config', 'x']).study_command, 'check')
+        self.assertEqual(parser().parse_args(['study', 'prepare', '--config', 'x', '--out', 'y']).study_command, 'prepare')
+        self.assertEqual(parser().parse_args(['study', 'run', '--study', 'y']).study_command, 'run')
+        self.assertEqual(parser().parse_args(['study', 'report', '--study', 'y']).study_command, 'report')
+
+
+if __name__ == '__main__':
+    unittest.main()

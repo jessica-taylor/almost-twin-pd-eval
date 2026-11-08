@@ -106,6 +106,24 @@ def parser():
     brun.add_argument('--wait-for-lock', action='store_true')
     bstatus = batch_actions.add_parser('status', help='Regenerate CSV/JSONL derived indexes; no generation')
     bstatus.add_argument('--batch', type=Path, required=True)
+    study = sub.add_parser('study', help='Prepare, execute and summarize a frozen multi-model/theory matrix')
+    study_actions = study.add_subparsers(dest='study_command', required=True)
+    scheck = study_actions.add_parser('check', help='Unbilled full-matrix endpoint and budget preflight; no generations')
+    scheck.add_argument('--config', type=Path, required=True)
+    scheck.add_argument('--out', type=Path, help='Optional JSON preflight report')
+    sprep = study_actions.add_parser('prepare', help='Unbilled preflight and preparation of every complete-scenario batch')
+    sprep.add_argument('--config', type=Path, required=True)
+    sprep.add_argument('--out', type=Path, required=True, help='New study directory; will never overwrite')
+    srun = study_actions.add_parser('run', help='Resume the matrix using existing batch audit/budget protections')
+    srun.add_argument('--study', type=Path, required=True)
+    srun.add_argument('--execute', action='store_true')
+    srun.add_argument('--confirm-billable', action='store_true')
+    srun.add_argument('--approve-variable-prompts', action='store_true')
+    srun.add_argument('--jobs', type=int, default=1, help='Concurrent complete scenarios within one condition cell')
+    srun.add_argument('--limit-cells', type=int, help='Process at most this many pending condition cells')
+    srun.add_argument('--limit-per-cell', type=int, help='Process at most this many pending scenarios per selected cell')
+    sstatus = study_actions.add_parser('report', help='Regenerate study-wide CSV/JSON/Markdown results; no model calls')
+    sstatus.add_argument('--study', type=Path, required=True)
     run = sub.add_parser('run', help='Dry run by default; one researcher OR one prisoner pair, no batch')
     run.add_argument('stage', choices=['researcher', 'prisoner'])
     run.add_argument('--assignment', choices=['cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy', 'cdt_wikipedia', 'edt_wikipedia'], required=True)
@@ -180,6 +198,30 @@ def main(argv=None):
             print(f"Exploratory batch: {summary['total']} samples; statuses: {summary['counts']}")
             print(f"Analysis files: {folder / 'results.jsonl'} and {folder / 'results.csv'}")
             print(f"Review: {folder / 'plan.md'}; raw runs: {folder / 'samples'}")
+        elif args.command == 'study':
+            from .study import check as study_check, load_spec as study_load_spec
+            from .study import prepare as study_prepare, run as study_run, report as study_report
+            if args.study_command == 'check':
+                specification, _ = study_load_spec(args.config)
+                result, _, _ = study_check(root, specification)
+                if args.out:
+                    write_json(args.out, result)
+                print(json.dumps({k: result[k] for k in ('expected_cells', 'projected_researcher_prisoner_calls',
+                            'possible_judge_calls', 'projected_researcher_prisoner_usd', 'failures')}, indent=2))
+                if result['failures']:
+                    return 1
+                print('All requested model/effort/provider cells passed unbilled preflight. No generations occurred.')
+                return 0
+            if args.study_command == 'prepare':
+                folder = study_prepare(root, args)
+                print(f'Prepared {folder}; NO billable calls. Review plan.md, preflight.json and each batch plan.')
+            elif args.study_command == 'run':
+                folder = study_run(root, args)
+            else:
+                folder = study_report(root, args.study)
+            summary = json.loads((folder / 'summary.json').read_text())
+            print(f"Study: {summary['total_complete_pairs']}/{summary['total_samples']} complete pairs; statuses: {summary['status_counts']}")
+            print(f"Results: {folder / 'summary.md'}, {folder / 'summary.csv'}, {folder / 'pairs.csv'}, {folder / 'decisions.csv'}")
         elif args.command == 'run':
             from .router import run
             print(run(root, args))

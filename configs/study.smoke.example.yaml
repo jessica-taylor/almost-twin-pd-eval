@@ -1,0 +1,22 @@
+# Tiny CDT-only, low-effort plumbing test. It still requires explicit billable
+# authorization to run, and the project-wide reservation ledger counts pilots.
+schema_version: 1
+name: cdt-nano-smoke
+exploratory: true
+assignments: [cdt_wikipedia]
+scenario: t4_distinct_leads_001
+count_per_cell: 2
+researcher_efforts: [low]
+prisoner_efforts: [low]
+models:
+  - id: openai/gpt-5-nano
+judge:
+  enabled: true
+  model: openai/gpt-6.1-sol
+  effort: low
+  max_tokens: 1200
+budgets:
+  max_calls: 50
+  max_usd: "5.00"
+  judge_max_calls: 50
+  judge_max_usd: "5.00"
