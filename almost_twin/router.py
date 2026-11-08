@@ -12,6 +12,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from .common import EvalError, append_json, encoded, load_yaml, read, sha, utc, write_json
+from .accounting import require_essay_within_limit
 from .game import Game, classify_response, score
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
 from .sources import load_source, source_identity
@@ -90,7 +91,7 @@ def _validate_settings(settings, cap, stage, messages):
         raise EvalError('Reasoning effort is unverified: ' + evidence['reason'])
     payload = {'model': model, 'messages': messages, 'reasoning': {'effort': effort},
                ('max_tokens' if 'max_tokens' in params else 'max_completion_tokens'): limit, 'stream': False,
-               'plugins': [],
+               'plugins': [], 'usage': {'include': True},
                'provider': {'only': [provider], 'order': [provider], 'allow_fallbacks': False, 'require_parameters': True}}
     # OpenRouter base slugs also match regional/variant descendants. Exclude
     # every advertised descendant so the selected base tag is not a route pool.
@@ -365,6 +366,7 @@ def run(root, args):
                           provider=response.get('provider'), returned_endpoint_tag=returned_tag, response_id=response.get('id'),
                           refusal=response['choices'][0]['message'].get('refusal'))
             if stage == 'researcher':
+                require_essay_within_limit(output, settings['researcher']['max_tokens'])
                 (folder / 'essay.md').write_bytes(output.encode('utf-8'))
                 info = {**record, 'status': 'success', 'assignment': args.assignment, 'essay_sha256': sha(output),
                         'researcher_effort': settings['researcher']['effort']}

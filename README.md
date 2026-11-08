@@ -47,7 +47,7 @@ python3 -m almost_twin pilot prisoners --pilot data/pilots/cdt-nano \
 
 The updated `plan.md` links the pair outcome, responses and exact API records. Exploratory runs and append-only essay/decision/commitment logs live under `data/exploratory/`; the pilot's append-only history is `events.jsonl`. The project-wide budget ledger remains `data/budget.jsonl`. All these artifacts, approvals and credentials are gitignored.
 
-Pilot defaults are three cumulative reserved calls and US$2 estimated spend. Set `--max-calls`/`--max-usd` at preparation to change them explicitly; prior project reservations, including failed/unknown transport outcomes, count toward those caps. The initial pair-cost projection uses the endpoint context ceiling because the essay is not yet known; exact pair costs are recalculated after the essay. These are estimated caps, not an account billing guarantee. Use an OpenRouter key credit limit for a hard account limit.
+Pilot defaults are three cumulative reserved calls and US$2 estimated spend. Set `--max-calls`/`--max-usd` at preparation to change them explicitly; prior project reservations, including failed/unknown transport outcomes, count toward those caps. Preparation now distinguishes a heuristic **expected** cost (assuming 3,000 researcher output tokens, 800 prisoner output tokens and four serialized essay bytes per researcher token) from a conservative cost bound. The bound uses the fixed prisoner template size plus a generous, **enforced** researcher essay size limit of `8 * researcher_max_tokens` JSON-encoded bytes (also subject to endpoint context limits). Oversized essays remain in raw logs but are not passed to prisoners. Exact requests are independently revalidated and reserved after the essay. These are estimated caps, not an account billing guarantee. Use an OpenRouter key credit limit for a hard account limit.
 
 A completed researcher or pair is returned when resumed, never automatically called again. Partial failures preserve responses, commitments, logs and reservations and require deliberate new preparation rather than an automatic retry. Existing pilots cannot be overwritten. Use a new `--out` for a new exploratory trial or changed instructions/settings. [Detailed behavior and audit assumptions](docs/pilot_workflow.md).
 
@@ -74,7 +74,7 @@ python3 -m almost_twin batch run --batch data/batches/cdt-nano-five \
 python3 -m almost_twin batch status --batch data/batches/cdt-nano-five
 ```
 
-Each sample creates a **fresh essay** and two independent prisoner calls, followed by zero to two judge calls for ambiguous actions. Every API request, raw response, validation result and error is retained. The derived `results.jsonl` and `results.csv` contain one row per sample for later analysis. There are no automatic retries of attempted calls; completed trials are skipped on resume. Judge model/effort, budgets and endpoint are configurable at preparation. See [full batch workflow, artifacts and safeguards](docs/batch_workflow.md).
+Each sample creates a **fresh essay** and two independent prisoner calls, followed by zero to two judge calls for ambiguous actions. Every API request, raw response, validation result and error is retained. The derived `results.jsonl` and `results.csv` contain one row per sample for later analysis; `result.md`, `transcript.txt` and `transcript.md` are **generated automatically at the end of `batch run`**. There are no automatic retries of attempted calls; completed trials are skipped on resume. Judge model/effort, budgets and endpoint are configurable at preparation. See [full batch workflow, artifacts and safeguards](docs/batch_workflow.md).
 
 ### Study-wide model × theory × reasoning-effort matrices
 
@@ -82,8 +82,11 @@ Use `study check` (unbilled) to validate every requested model/provider/effort
 combination and the aggregate budget **before** creating a study. `study
 prepare` freezes a separate batch for each cell; `study run` resumes cells
 sequentially, running multiple full scenarios concurrently within a cell;
-`study report` exports pair-level and prisoner-level results, cooperation
-rates and CC/CD/DC/DD counts without calling models. Example:
+`study run` automatically exports pair-level and prisoner-level results,
+cooperation rates and CC/CD/DC/DD counts, readable per-sample transcripts,
+offline review dispositions, provider-reported inference charges and execution
+statistics. `study report` can regenerate all of these without calling models.
+Example:
 
 ```sh
 python3 -m almost_twin study check --config configs/study.smoke.example.yaml
@@ -91,7 +94,6 @@ python3 -m almost_twin study prepare --config configs/study.smoke.example.yaml \
   --out data/studies/cdt-smoke
 python3 -m almost_twin study run --study data/studies/cdt-smoke \
   --execute --confirm-billable --approve-variable-prompts --jobs 2
-python3 -m almost_twin study report --study data/studies/cdt-smoke
 ```
 
 Only the `study run` line is billable. For the proposed OpenAI, Anthropic,
@@ -113,13 +115,13 @@ enough samples for a meaningful comparison of cooperation rates.
 
 See [study workflow and safeguards](docs/study_workflow.md).
 
-For an immediately readable **cooperate/defect result in every sample directory**, run the offline reporting command after any amount of batch progress:
+For an immediately readable **cooperate/defect result in every sample directory**, `batch run` and `study run` now generate the reports automatically. You can still regenerate a standalone batch report without paid calls:
 
 ```sh
 python3 -m almost_twin.sample_report --batch data/batches/cdt-nano-five
 ```
 
-It writes `samples/00000/result.md` and `result.json` (and equivalents for each other sample) and prints the current A/B classifications. `WITHHOLD` means cooperate; `SUBMIT` means defect. The report distinguishes recognized commands from judge-inferred actions, and shows years/utility only for a complete scored pair. It also writes **`samples/00000/transcript.md`**, a **terminal-friendly `samples/00000/transcript.txt`**, and a `transcript/` folder. Both full transcripts show the complete returned researcher/prisoner/judge answer texts and **any readable reasoning supplied by OpenRouter inline**, rather than being link-only indexes. Individual response and reasoning files, structured details and authoritative `response.raw` JSON remain available. The transcript explicitly says when no readable reasoning was returned; reported reasoning tokens are not treated as a trace. It works with batches prepared before this feature and makes **no model calls**. It is deliberately separate from the hash-pinned generation runner, so adding or updating the reporter does not invalidate an in-progress batch.
+It writes `samples/00000/result.md` and `result.json` (and equivalents for each other sample) and prints the current A/B classifications. `WITHHOLD` means cooperate; `SUBMIT` means defect. The report distinguishes recognized commands from judge-inferred actions, and shows years/utility only for a complete scored pair. It also writes **`samples/00000/transcript.md`**, a **terminal-friendly `samples/00000/transcript.txt`**, and a `transcript/` folder. Both full transcripts show the complete returned researcher/prisoner/judge answer texts and **any readable reasoning supplied by OpenRouter inline**, rather than being link-only indexes. Individual response and reasoning files, structured details and authoritative `response.raw` JSON remain available. The transcript explicitly says when no readable reasoning was returned; reported reasoning tokens are not treated as a trace. It works with batches prepared before this feature and makes **no model calls**. The derived reports also show provider-reported cost (`usage.cost`) where available; missing prices are not treated as zero. OpenRouter requests now enable `usage.include=true` to request cost data. It is deliberately separate from the hash-pinned generation runner, so adding or updating the reporter does not invalidate an in-progress batch.
 
 If a judge explicitly labels a prisoner `OTHER` / disclosure `NO` with
 `needs_human_review=false`, the pair is **unscored but no longer requires a

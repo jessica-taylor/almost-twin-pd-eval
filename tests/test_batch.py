@@ -179,6 +179,8 @@ class BatchTests(unittest.TestCase):
             self.assertEqual(json.loads(read(Path(row['researcher_run']) / 'plan.json'))['authorization']['approval_kind'],
                              'reviewed_template_with_variable_essay')
             self.assertTrue((Path(row['prisoner_run']) / 'call_1/response.raw').exists())
+        self.assertTrue((self.folder / 'samples/00000/result.md').exists())
+        self.assertTrue((self.folder / 'samples/00000/transcript.txt').exists())
         write_reports(self.root, self.folder)
         self.assertEqual(len(self.calls), 7)  # Reporting makes no model requests.
         first = read(self.folder / 'samples/00000/result.md')

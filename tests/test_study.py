@@ -75,7 +75,8 @@ class StudyTests(unittest.TestCase):
             content = ('pass' if allow_nonaction else 'Synthetic CDT explanation, independently generated.')
             response = {'id': f'mock-{len(self.calls)}', 'model': payload['model'],
                         'provider': 'OpenAI', 'system_fingerprint': 'same-mock-weights',
-                        'usage': {'prompt_tokens': 10, 'completion_tokens': 5},
+                        'usage': {'prompt_tokens': 10, 'completion_tokens': 5,
+                                  'cost': '0.002'},
                         'choices': [{'finish_reason': 'stop', 'message': {'content': content}}]}
             folder.mkdir(parents=True, exist_ok=True)
             (folder / 'request.json').write_bytes(encoded(payload))
@@ -119,6 +120,11 @@ class StudyTests(unittest.TestCase):
         result, _, _ = check(self.root, spec)
         self.assertEqual(result['expected_cells'], 2)
         self.assertEqual(result['projected_researcher_prisoner_calls'], 12)
+        self.assertLess(float(result['projected_researcher_prisoner_usd']),
+                        float(result['projected_full_context_ceiling_usd']))
+        self.assertLess(float(result['expected_researcher_prisoner_usd']),
+                        float(result['projected_researcher_prisoner_usd']))
+        self.assertIn('8 x researcher_max_tokens', result['cost_projection_method'])
         self.assertFalse(result['failures'])
         self.assertEqual(self.calls, [])
         prepare(self.root, self.prep_args())
@@ -139,6 +145,10 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(len(self.calls), 0)
         run(self.root, self.run_args(limit_cells=1, limit_per_cell=1))
         self.assertEqual(len(self.calls), 3)
+        sample = next((self.study / 'batches').glob('*/samples/00000'))
+        self.assertTrue((sample / 'result.md').exists())
+        self.assertTrue((sample / 'transcript.txt').exists())
+        self.assertTrue((self.study / 'review_summary.md').exists())
         summary = json.loads(read(self.study / 'summary.json'))
         self.assertEqual(summary['total_complete_pairs'], 1)
         run(self.root, self.run_args())
@@ -161,6 +171,12 @@ class StudyTests(unittest.TestCase):
         self.assertTrue(all(d['final_action'] == 'WITHHOLD' for d in decisions))
         self.assertEqual(json.loads(read(self.study / 'summary.json'))['status_counts'],
                          {'complete': 4})
+        usage = json.loads(read(self.study / 'summary.json'))['provider_usage']
+        self.assertEqual(usage['reported_provider_usd'], '0.024')
+        self.assertEqual(usage['priced_calls'], 12)
+        self.assertEqual(usage['unpriced_calls'], 0)
+        self.assertGreaterEqual(usage['recorded_execution_seconds'], 0)
+        self.assertIn('$0.024', read(self.study / 'summary.md'))
 
     def test_study_reports_judge_resolved_refusals_separately_from_review(self):
         prepare(self.root, self.prep_args())
@@ -195,6 +211,7 @@ class StudyTests(unittest.TestCase):
         summary = json.loads(read(self.study / 'summary.json'))
         self.assertEqual(summary['status_counts'], {'resolved_nonaction': 4})
         self.assertEqual(summary['total_complete_pairs'], 0)
+        self.assertEqual(summary['provider_usage']['unpriced_calls'], 16)
         self.assertTrue(all(item['status_resolved_nonaction'] == 2 for item in summary['cell_summaries']))
         self.assertTrue(all(item['status_needs_human_review'] == 0 for item in summary['cell_summaries']))
         self.assertTrue(all(item['cooperation_rate'] is None for item in summary['cell_summaries']))
@@ -209,6 +226,49 @@ class StudyTests(unittest.TestCase):
         (self.study / 'specification.yaml').write_text('modified after preparation')
         with self.assertRaisesRegex(EvalError, 'specification changed'):
             report(self.root, self.study)
+
+    def test_oversized_essay_is_preserved_but_prisoners_are_not_called(self):
+        self.spec['researcher_max_tokens'] = 20
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        prepare(self.root, self.prep_args())
+        sent = []
+
+        def oversized_post(payload, key, folder, allow_nonaction=False):
+            sent.append(payload)
+            output = 'x' * 161  # More than 8 x researcher_max_tokens JSON bytes.
+            response = {'id': 'mock-oversize', 'model': payload['model'],
+                        'usage': {'prompt_tokens': 10, 'completion_tokens': 5},
+                        'choices': [{'finish_reason': 'stop', 'message': {'content': output}}]}
+            folder.mkdir(parents=True, exist_ok=True)
+            (folder / 'request.json').write_bytes(encoded(payload))
+            (folder / 'response.raw').write_bytes(encoded(response))
+            (folder / 'output.txt').write_text(output)
+            return response, output
+
+        with patch('almost_twin.router.post', side_effect=oversized_post):
+            run(self.root, self.run_args(limit_cells=1, limit_per_cell=1))
+        self.assertEqual(len(sent), 1)
+        self.assertEqual(sent[0]['usage'], {'include': True})
+        summary = json.loads(read(self.study / 'summary.json'))
+        self.assertEqual(summary['status_counts']['failed'], 1)
+        sample = next((self.study / 'batches').glob('*/samples/00000'))
+        self.assertIn('essay exceeds hard JSON-encoded size limit', read(sample / 'result.json'))
+        self.assertIn('x' * 161, read(sample / 'transcript.txt'))
+
+    def test_http_429_failure_is_reported_without_retry(self):
+        prepare(self.root, self.prep_args())
+        sent = []
+
+        def rate_limited(payload, key, folder, allow_nonaction=False):
+            sent.append(payload)
+            raise EvalError('OpenRouter HTTP 429; raw error saved; no retry')
+
+        with patch('almost_twin.router.post', side_effect=rate_limited):
+            run(self.root, self.run_args(limit_cells=1, limit_per_cell=1))
+        self.assertEqual(len(sent), 1)
+        summary = json.loads(read(self.study / 'summary.json'))
+        self.assertEqual(summary['provider_usage']['rate_limit_failures'], 1)
+        self.assertIn('HTTP 429 failed scenarios: 1', read(self.study / 'summary.md'))
 
     def test_study_code_changes_block_generation_but_not_offline_reporting(self):
         prepare(self.root, self.prep_args())

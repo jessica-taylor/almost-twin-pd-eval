@@ -10,6 +10,7 @@ import re
 import sys
 from pathlib import Path
 
+from .accounting import sample_usage
 from .batch import export
 from .common import EvalError, read, sha, write_json
 from .review_disposition import disposition
@@ -249,6 +250,11 @@ def render(sample, row):
                     if review['review_status'] != status else status)
     lines = [f'# Sample {row["sample_index"]:05d} — {title_status}', '',
              f'Assignment: `{row["assignment"]}` · model: `{row["model"]}` · scenario: `{row["scenario"]}`', '']
+    usage = row.get('provider_usage') or sample_usage(row)
+    if usage['attempted_calls']:
+        lines += [f'Provider-reported cost: ${usage["reported_provider_usd"]} '
+                  f'({usage["priced_calls"]}/{usage["attempted_calls"]} calls priced; '
+                  f'{usage["unpriced_calls"]} unknown, **not assumed free**).', '']
     if status == 'complete':
         lines.append(f'**Outcome: Prisoner A — {action_label(_at(final, 0))}; '
                      f'Prisoner B — {action_label(_at(final, 1))}.**')
@@ -339,7 +345,8 @@ def write_reports(root, batch):
         sample = batch / entry['path']
         # This derived field is intentionally NOT written to the source
         # results.jsonl or irrevocable game journal.
-        report_row = {**row, 'review_disposition': disposition(row)}
+        report_row = {**row, 'review_disposition': disposition(row),
+                      'provider_usage': sample_usage(row)}
         write_json(sample / 'result.json', report_row)
         write_transcript(sample, report_row)
         (sample / 'result.md').write_text(render(sample, report_row), encoding='utf-8')

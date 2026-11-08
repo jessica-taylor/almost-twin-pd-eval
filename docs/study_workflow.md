@@ -45,12 +45,22 @@ prisoner request, source and scenario validity, judge endpoint, pricing and
 does not skip or substitute any requested condition. It requires unbilled
 OpenRouter metadata GETs, not credentials or model-generation calls.
 
-The `max_usd` field in the example is a deliberately low protective ceiling:
-larger studies are likely to fail this check until you explicitly review the
-conservative projected spend and select a suitable budget. The estimate is a
-conservative *upper bound based on context ceilings*, and may be much larger
-than realized spend. Budgets count previously reserved project requests; a
-fresh study does not reset the underlying ledger.
+The `max_usd` field in the example is a protective project-wide reservation
+ceiling. The default cost projection uses a **new enforced essay-size bound**:
+the researcher's output is limited to at most `8 * researcher_max_tokens`
+JSON-encoded essay bytes, and the prisoner projection adds that to the exact
+scenario/template overhead. The large former full-context estimate is still
+shown separately for comparison. The factor of eight is deliberately generous,
+not a claim about the model's tokenizer. Oversized essay responses are preserved
+as failed researcher attempts, without sending prisoner requests; the actual
+assembled requests are always validated independently before billing.
+`study check` also displays a separate **expected-cost heuristic** (up to 3,000
+researcher output tokens, 800 prisoner output tokens and four serialized essay
+bytes per researcher output token). That forecast is intended for planning,
+not used to authorize spending; the conservative essay-bound projection is used
+for preparation budget checks. Real charges are reported from provider-supplied
+usage, when present. Budgets count previously
+reserved project requests; a fresh study does not reset the underlying ledger.
 
 For the smallest previously validated CDT plumbing experiment, use
 `configs/study.smoke.example.yaml` instead.
@@ -105,14 +115,13 @@ concurrently *within each cell*; cells still run sequentially.
 python3 -m almost_twin study run \
   --study data/studies/cdt-haiku-gemini-smoke \
   --execute --confirm-billable --approve-variable-prompts --jobs 2
-python3 -m almost_twin study report \
-  --study data/studies/cdt-haiku-gemini-smoke
 ```
 
 Read `summary.md` for the two model rows and `pairs.csv` / `decisions.csv` for
-the exact paired outcomes. To see what they *said*, including all readable
-reasoning actually returned by the provider, run the offline
-`almost_twin.sample_report` command for each cell as described below. Keep the
+the exact paired outcomes. **Study runs now automatically write** every
+sample's `result.md`, `transcript.txt`, and `transcript.md`, and the study-wide
+`review_summary.md` / `review_samples.csv`—no separate reporting command needed.
+The optional `study report` command regenerates those outputs offline. Keep the
 raw responses and route/provenance records: model thinking tokens may be
 counted even if the endpoint supplies no readable reasoning text.
 
@@ -161,15 +170,27 @@ effort calls in CDT-only smoke tests and decide the cap before the main study.
 python3 -m almost_twin study report --study data/studies/cross-provider-v1
 ```
 
-This makes **zero model calls** and regenerates:
+This makes **zero model calls** and regenerates the same outputs that a finished
+`study run` now writes automatically:
 
 | File | Meaning |
 |---|---|
-| `summary.md`, `summary.csv`, `summary.json` | Per-condition complete pair counts, cooperation rate and CC/CD/DC/DD frequencies; failed/pending states separately counted |
+| `summary.md`, `summary.csv`, `summary.json` | Per-condition complete pair counts, cooperation rate and CC/CD/DC/DD frequencies; failure counts, provider-reported costs, elapsed batch execution time and 429 failures |
 | `pairs.csv` | One row for every complete-scenario sample, including missing, failed and unjudged samples |
 | `decisions.csv` | Two rows per sample, with original intention, disclosure, enacted and final classifications, plus raw run paths |
 | `preflight.json`, `study.json`, `specification.yaml` | All chosen conditions, source/config identities, provider selection, estimated cost and provenance |
 | `batches/<cell>/` | Unmodified per-cell batch artifacts, exact prompts and raw responses |
+| `batches/<cell>/samples/<id>/result.md`, `transcript.txt`, `transcript.md` | Automatically generated readable outcome, full visible responses and any provider-returned reasoning |
+| `review_summary.md`, `review_samples.csv` | Offline disposition of resolved nonactions versus genuinely ambiguous trials |
+
+OpenRouter requests ask for `usage.include=true`. Only explicit `usage.cost`
+values are included in the displayed provider charges (including judge calls);
+older responses or endpoints without a price are counted as **unknown**, not
+zero. This is distinct from the preflight estimate and budget reservations.
+For operational throughput, `--jobs` controls parallel *full scenarios* within
+one cell (allowed 1–16); stages inside each scenario and the cells themselves
+remain sequential. Too many jobs can exceed provider throughput or rate limits;
+HTTP 429 failures are recorded, not automatically retried.
 
 The primary descriptive estimand is the mean of the A/B cooperation fraction
 for **complete scored pairs**, so `CC=1`, `CD/DC=0.5`, and `DD=0`.
@@ -179,8 +200,8 @@ descriptive interval bootstraps whole *pairs*, not individual decisions.
 Avoid treating this interval as a replacement for a preregistered statistical
 analysis or drawing confirmatory conclusions from adaptive sampling.
 
-To get individual human-readable transcripts and any provider-returned
-reasoning, invoke the existing **offline** reporter for a given cell:
+To regenerate just one batch's human-readable transcripts and any
+provider-returned reasoning, the original **offline** reporter still works:
 
 ```sh
 python3 -m almost_twin.sample_report \
@@ -223,10 +244,11 @@ rates. The code checks the structured judge decisions, not its free-form
 explanation, and never overrides the original fictional commitment journal.
 
 Older frozen studies used `needs_human_review` for **every** unscorable pair.
-The offline review report can still interpret those records. Re-running the
-current reporter does **not** make model calls, but changing hashed runner
+The offline review report can still interpret those records. Both manual
+report commands below remain available for legacy data, although current
+`study run`/`study report` invoke them automatically. Changing hashed runner
 code invalidates live resume of a previously prepared study; start a new
-study directory to use this status logic for new experiments:
+study directory when adopting these generation changes:
 
 ```sh
 python3 -m almost_twin.sample_report \
