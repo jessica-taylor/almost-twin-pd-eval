@@ -131,6 +131,23 @@ class BatchTests(unittest.TestCase):
             json.loads(read(folder / 'samples/00000/pilot.json'))['pilot_id'],
             json.loads(read(folder / 'samples/00001/pilot.json'))['pilot_id'])
 
+    def test_prepare_autoselects_sol_judge_with_known_long_context_prices(self):
+        def metadata(model):
+            cap = cap_for(model)
+            if model == JUDGE:
+                base = next(ep for ep in cap['endpoints'] if ep['tag'] == 'openai')
+                base['pricing']['overrides'] = [{
+                    'min_prompt_tokens': 272000, 'prompt': '0.000004',
+                    'completion': '0.000015', 'input_cache_read': '0.0000002',
+                    'input_cache_write': '0.000005',
+                }]
+            return cap
+        with patch('almost_twin.batch.snapshot', side_effect=metadata):
+            folder = prepare(self.root, self.prep_args(count=1))
+        batch = json.loads(read(folder / 'batch.json'))
+        self.assertEqual(batch['judge_settings']['provider_tag'], 'openai')
+        self.assertFalse(self.calls)
+
     def test_full_batch_judges_only_ambiguous_and_exports_one_row_each(self):
         prepare(self.root, self.prep_args())
         run(self.root, self.run_args())

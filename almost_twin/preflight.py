@@ -48,6 +48,38 @@ def decimal_rate(value, field):
         raise EvalError(f'Invalid applicable pricing field {field}={value!r}; need a finite nonnegative USD rate or a different endpoint') from error
 
 
+def tier_price_ceilings(overrides):
+    """Safely bound known OpenRouter prompt-length tiers without guessing a tier.
+
+    The threshold is validated and recorded, but we use the maximum rate in
+    every field across *all* tiers. That also covers unexpected tier selection
+    and conservative input-token estimates. Unknown rules still fail closed.
+    """
+    if overrides in (None, []):
+        return {}, []
+    if not isinstance(overrides, list) or not overrides:
+        raise EvalError('Unknown pricing overrides format; expected a list of prompt-length tiers')
+    allowed_rates = {'prompt', 'completion', 'request', 'input_cache_read',
+                     'input_cache_write', 'internal_reasoning'}
+    ceilings, reviewed = {}, []
+    for i, tier in enumerate(overrides):
+        if not isinstance(tier, dict) or 'min_prompt_tokens' not in tier:
+            raise EvalError(f'Unknown pricing override tier {i}: expected min_prompt_tokens and rate fields')
+        unknown = set(tier) - allowed_rates - {'min_prompt_tokens'}
+        threshold = tier['min_prompt_tokens']
+        if unknown or not isinstance(threshold, int) or isinstance(threshold, bool) or threshold < 0:
+            raise EvalError(f'Unknown pricing override tier {i}: unsupported keys or threshold {tier!r}')
+        if not any(key in tier for key in allowed_rates):
+            raise EvalError(f'Pricing override tier {i} does not advertise any rate')
+        amounts = {}
+        for key in allowed_rates & tier.keys():
+            amount = decimal_rate(tier[key], f'overrides[{i}].{key}')
+            ceilings[key] = max(ceilings.get(key, Decimal(0)), amount)
+            amounts[key] = str(amount)
+        reviewed.append({'min_prompt_tokens': threshold, 'advertised_rates': amounts})
+    return ceilings, reviewed
+
+
 def estimate_price(payload, endpoint, model_info, input_tokens, output_tokens):
     """Bound supported plain-text requests; never price a requested tool as free."""
     if any(not isinstance(m.get('content'), str) for m in payload['messages']):
@@ -68,12 +100,13 @@ def estimate_price(payload, endpoint, model_info, input_tokens, output_tokens):
     prompt = decimal_rate(price['prompt'], 'prompt')
     completion = decimal_rate(price['completion'], 'completion')
     fixed = decimal_rate(price.get('request', 0), 'request')
+    tier_ceiling, tier_details = tier_price_ceilings(price.get('overrides'))
     ignored, included = {}, {}
     optional = {'web_search', 'image', 'image_output', 'image_input', 'audio', 'input_audio', 'output_audio',
                 'audio_input', 'audio_output', 'input_audio_cache', 'audio_cache_read', 'video', 'video_per_second',
                 'file', 'file_search', 'tool_use', 'tool_calls'}
     for field, value in price.items():
-        if field in ('prompt', 'completion', 'request'):
+        if field in ('prompt', 'completion', 'request', 'overrides'):
             continue
         if field in optional:
             ignored[field] = {'advertised_rate': value, 'reason': 'No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected.'}
@@ -90,15 +123,23 @@ def estimate_price(payload, endpoint, model_info, input_tokens, output_tokens):
             raise EvalError(f'Potentially applicable pricing field {field}={value!r} cannot be bounded (tier overrides/storage/unknown units). Refresh metadata or select a different endpoint with --provider-tag; no generation was sent.')
     # Cache reads replace ordinary input billing. Writes may add a surcharge;
     # count that full rate on every input token, without assuming any cache hit.
-    input_rate = max(prompt, included.get('input_cache_read', Decimal(0))) + included.get('input_cache_write', Decimal(0))
+    input_rate = (max(prompt, included.get('input_cache_read', Decimal(0)),
+                      tier_ceiling.get('prompt', Decimal(0)), tier_ceiling.get('input_cache_read', Decimal(0)))
+                  + max(included.get('input_cache_write', Decimal(0)),
+                        tier_ceiling.get('input_cache_write', Decimal(0))))
     # Reasoning normally shares the output limit and completion price. If a separate
     # rate is advertised, also charge it on the entire output budget (conservative).
-    output_rate = completion + included.get('internal_reasoning', Decimal(0))
+    output_rate = (max(completion, tier_ceiling.get('completion', Decimal(0)))
+                   + max(included.get('internal_reasoning', Decimal(0)),
+                         tier_ceiling.get('internal_reasoning', Decimal(0))))
+    fixed = max(fixed, tier_ceiling.get('request', Decimal(0)))
     total = input_rate * input_tokens + output_rate * output_tokens + fixed
     assumptions = {'request_kind': 'plain-text chat without search/tools/media', 'ignored_fields': ignored,
                    'included_additional_rates': {k: str(v) for k, v in included.items()},
                    'effective_input_usd_per_token': str(input_rate), 'effective_output_usd_per_token': str(output_rate),
                    'fixed_usd_per_request': str(fixed),
+                   'pricing_tiers': tier_details,
+                   'tier_policy': 'Validated prompt-length thresholds; conservatively use highest advertised rate in each applicable category across all tiers, without assuming a tier' if tier_details else 'No tier overrides advertised',
                    'cache_policy': 'max(prompt, cache_read) + cache_write on every input token; no cache savings assumed',
                    'reasoning_policy': 'combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised',
                    'scope': 'estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap',
@@ -128,3 +169,4 @@ def choose_endpoint(settings, cap, checks, validate):
             failures.append({'endpoint': endpoint.get('tag'), 'reason': str(error)})
     raise EvalError(f'No suitable endpoint for {settings["model"]} (override={requested!r}). '
                     f'Candidates: {failures or "requested tag absent"}. Change the requested limits/efforts or select a documented endpoint; no model was substituted.')
+
