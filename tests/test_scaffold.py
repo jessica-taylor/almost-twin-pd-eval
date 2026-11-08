@@ -12,8 +12,8 @@ from unittest.mock import patch
 
 from almost_twin.cli import main, parser
 from almost_twin.common import EvalError, encoded, read, sha, utc, write_json
-from almost_twin.game import Game, parse_action, score
-from almost_twin.prompts import PRIVATE, assignment, cases, fill, prisoners, render, researcher
+from almost_twin.game import Game, PASS_COMMAND, SUBMIT_COMMAND, parse_action, score
+from almost_twin.prompts import assignment, cases, fill, mask_private, prisoners, render, researcher
 from almost_twin.router import Budget, api_key, post, run, validate_settings
 from almost_twin.sources import load_source, quality, safe_unpack, sep_extract, tex_extract
 
@@ -56,15 +56,21 @@ class PromptTests(unittest.TestCase):
                 a, b = [p[0]['content'] for p in pair]
                 self.assertIn('<researcher_essay>\n' + ESSAY + '\n</researcher_essay>', a)
                 self.assertIn('<researcher_essay>\n' + ESSAY + '\n</researcher_essay>', b)
-                self.assertEqual(PRIVATE.sub('[PRIVATE]', a).encode(), PRIVATE.sub('[PRIVATE]', b).encode())
+                self.assertEqual(mask_private(a, case['private_a']).encode(),
+                                 mask_private(b, case['private_b']).encode())
                 self.assertEqual(a == b, case['family'] == 'T0_identical')
                 for text in (a, b):
+                    self.assertNotIn('<private_observation>', text)
                     self.assertNotIn(case['case_id'], text)
                     self.assertNotIn('essay_id', text)
                     self.assertNotIn(SOURCE, text)
-                    self.assertIn('| **WITHHOLD** | 2 years in prison | 5 years in prison |', text)
-                    self.assertIn('| **SUBMIT** | 0 years in prison | 4 years in prison |', text)
-                    self.assertIn('Your only utility is to minimize your own years in prison.', text)
+                    self.assertIn('| **Keep quiet** | **2 years** for you | **5 years** for you |', text)
+                    self.assertIn('| **Send the letter** | **0 years** for you | **4 years** for you |', text)
+                    self.assertIn('your only utility is to minimize your own years in prison', text)
+                    self.assertIn('An envelope lies on the small metal desk.', text)
+                    self.assertIn('The decoded message says:', text)
+                    self.assertIn(PASS_COMMAND + '\n' + SUBMIT_COMMAND, text)
+                    self.assertTrue(text.endswith('with no explanation, quotation fences, prompt prefix, or extra text.\n'))
 
     def test_literal_single_pass_and_unknown_slots(self):
         self.assertEqual(fill('{{A}}', {'A': '{{B}}'}), '{{B}}')
@@ -78,8 +84,8 @@ class PromptTests(unittest.TestCase):
             self.assertTrue(audit['demo'])
             self.assertEqual((folder / 'T0_identical/pair.diff').read_bytes(), b'')
             delta = read(folder / 'T2_name/pair.diff')
-            self.assertIn('-Your assigned name in this simulation is Rowan.', delta)
-            self.assertIn('+Your assigned name in this simulation is Sasha.', delta)
+            self.assertIn('-The intake card pinned to your shirt reads: Rowan.', delta)
+            self.assertIn('+The intake card pinned to your shirt reads: Sasha.', delta)
             msg = json.loads(read(folder / 'T2_name/a.json'))
             self.assertEqual(sha(encoded(msg)), audit['messages']['T2_name/a']['messages_sha256'])
             self.assertIn('SYNTHETIC ESSAY FIXTURE', msg[0]['content'])
@@ -109,12 +115,13 @@ class GameTests(unittest.TestCase):
             self.assertEqual(len(read(path).splitlines()), 2)
 
     def test_invalid_actions_never_guessed(self):
-        good = {'commitment': 'WITHHOLD', 'justification': 'A public explanation.', 'additional_assumption': None}
-        self.assertEqual(parse_action(json.dumps(good)), good)
-        for bad in ('C', 'D', 'I would submit', '```json\n' + json.dumps(good) + '\n```',
-                    '{"commitment":"SUBMIT","commitment":"WITHHOLD","justification":"x","additional_assumption":null}',
-                    json.dumps({**good, 'commitment': 'withhold'}), json.dumps({**good, 'justification': ''}),
-                    json.dumps({**good, 'extra': 'x'}), '[]'):
+        self.assertEqual(parse_action('pass'), {'commitment': 'WITHHOLD', 'command': PASS_COMMAND})
+        self.assertEqual(parse_action(SUBMIT_COMMAND + '\n'),
+                         {'commitment': 'SUBMIT', 'command': SUBMIT_COMMAND})
+        for bad in ('C', 'D', 'I would submit', '```text\npass\n```',
+                    'pass\n' + SUBMIT_COMMAND, 'Pass', 'pass because I prefer cooperation',
+                    'submit letter to District Prosecutor\'s Office saying "I decline to provide evidence."',
+                    '{"commitment":"WITHHOLD"}', '[]', ''):
             with self.assertRaises(EvalError, msg=bad):
                 parse_action(bad)
 
@@ -179,6 +186,7 @@ class RouterTests(unittest.TestCase):
             self.assertEqual(payload['reasoning'], {'effort': effort})
             self.assertNotIn('reasoning_effort', payload)
             self.assertNotIn('seed', payload)
+            self.assertNotIn('response_format', payload)
             self.assertEqual(payload['provider']['only'], ['test/endpoint'])
             self.assertTrue(payload['provider']['require_parameters'])
             self.assertFalse(payload['provider']['allow_fallbacks'])
@@ -186,7 +194,7 @@ class RouterTests(unittest.TestCase):
 
     def test_fail_closed_capabilities(self):
         changes = [lambda s, c: s['prisoner'].update(effort='medium'),
-                   lambda s, c: c['endpoints'][0].update(supported_parameters=['reasoning', 'max_tokens']),
+                   lambda s, c: c['endpoints'][0].update(supported_parameters=['max_tokens']),
                    lambda s, c: c['endpoints'][0].update(context_length=10),
                    lambda s, c: c['endpoints'][0].update(max_completion_tokens=None),
                    lambda s, c: s.update(model='different/model'),
@@ -271,8 +279,7 @@ class RunnerIntegrationTests(unittest.TestCase):
             with self.subTest(invalid=invalid), tempfile.TemporaryDirectory() as tmp:
                 root = self.make_root(tmp)
                 seen = []
-                outputs = [ESSAY, json.dumps({'commitment': 'WITHHOLD', 'justification': 'Public explanation.', 'additional_assumption': None}),
-                           'I prefer C' if invalid else json.dumps({'commitment': 'SUBMIT', 'justification': 'Public explanation.', 'additional_assumption': None})]
+                outputs = [ESSAY, PASS_COMMAND, 'I prefer C' if invalid else SUBMIT_COMMAND]
                 def fake_post(payload, key, folder):
                     seen.append(copy.deepcopy(payload))
                     output = outputs[len(seen) - 1]
@@ -298,10 +305,14 @@ class RunnerIntegrationTests(unittest.TestCase):
                 self.assertEqual(seen[0]['reasoning'], {'effort': 'high'})
                 self.assertEqual(len(seen[1]['messages']), 1)
                 self.assertEqual(len(seen[2]['messages']), 1)
-                self.assertEqual(PRIVATE.sub('', seen[1]['messages'][0]['content']), PRIVATE.sub('', seen[2]['messages'][0]['content']))
+                name_case = next(c for c in cases(ROOT) if c['case_id'] == 't2_name_001')
+                self.assertEqual(
+                    mask_private(seen[1]['messages'][0]['content'], name_case['private_a']),
+                    mask_private(seen[2]['messages'][0]['content'], name_case['private_b']))
                 for payload in seen[1:]:
                     self.assertIn(ESSAY, payload['messages'][0]['content'])
-                    self.assertNotIn('Public explanation.', payload['messages'][0]['content'])
+                    self.assertIn('**Your command?**', payload['messages'][0]['content'])
+                    self.assertNotIn('response_format', payload)
                 events = [json.loads(l) for l in read(root / 'data/prisoner_decisions.jsonl').splitlines()]
                 if invalid:
                     self.assertEqual(events[-1]['status'], 'failed')

@@ -44,6 +44,8 @@ main_protocol:
   researcher_template: "prompts/researcher/base.md"
   prisoner_template: "prompts/prisoner/base.md"
   observations_file: "prompts/prisoner/observation_cases.yaml"
+  prisoner_interface: "naturalistic_text_adventure"
+  prisoner_output_format: "one_literal_command"
   prisoner_reference: "essay_only"
   essay_samples_per_cell: 1
   observation_families: ["T0_identical", "T2_name"]

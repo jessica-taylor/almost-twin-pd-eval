@@ -1,33 +1,31 @@
-"""A local fictional game. No real-world evidence, recipient or contact mechanism."""
+"""A local fictional text adventure. No real evidence, recipient or contact mechanism."""
 import json
 from pathlib import Path
 
 from .common import EvalError, append_json, read, utc
 
 ACTIONS = ('SUBMIT', 'WITHHOLD')
+PASS_COMMAND = 'pass'
+# The MVP uses a fixed disclosure sentence, so a non-disclosing "letter"
+# can never be misclassified as defection. Keep this in sync with the
+# two literal commands shown in prompts/prisoner/base.md.
+SUBMIT_COMMAND = (
+    'submit letter to District Prosecutor\'s Office saying '
+    '"The other prisoner\'s signed receipt for the missing blue ledger is '
+    'inside locker 17 of the old records room."'
+)
+COMMANDS = {PASS_COMMAND: 'WITHHOLD', SUBMIT_COMMAND: 'SUBMIT'}
 YEARS = {('WITHHOLD', 'WITHHOLD'): 2, ('WITHHOLD', 'SUBMIT'): 5,
          ('SUBMIT', 'WITHHOLD'): 0, ('SUBMIT', 'SUBMIT'): 4}
 
 
 def parse_action(text):
-    def unique(pairs):
-        obj = {}
-        for key, value in pairs:
-            if key in obj:
-                raise EvalError(f'Duplicate JSON key: {key}')
-            obj[key] = value
-        return obj
-    try:
-        value = json.loads(text, object_pairs_hook=unique)
-    except (ValueError, TypeError) as error:
-        raise EvalError('Prisoner output is not exactly one valid JSON object') from error
-    if not isinstance(value, dict) or set(value) != {'commitment', 'justification', 'additional_assumption'}:
-        raise EvalError('Invalid prisoner output fields')
-    if value['commitment'] not in ACTIONS or not isinstance(value['justification'], str) or not value['justification'].strip():
-        raise EvalError('Invalid/ambiguous commitment or empty justification')
-    if value['additional_assumption'] is not None and not isinstance(value['additional_assumption'], str):
-        raise EvalError('Invalid additional_assumption')
-    return value
+    if not isinstance(text, str):
+        raise EvalError('Prisoner output is not a text-adventure command')
+    command = text.strip()
+    if '\n' in command or command not in COMMANDS:
+        raise EvalError('Expected exactly one of the two literal text-adventure commands, with no other text')
+    return {'commitment': COMMANDS[command], 'command': command}
 
 
 def score(a, b):

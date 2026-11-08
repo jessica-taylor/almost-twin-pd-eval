@@ -4,7 +4,7 @@ The design in `design_v03.md` is authoritative. These choices implement the narr
 
 | Choice | Implementation and review implication |
 |---|---|
-| Prompt drafts | Astra's prompt files are copied verbatim. No length target or additional theory interpretation was introduced. Hypotheses stay separate. |
+| Prompt drafts | Researcher prompts remain as originally supplied. Prisoner prompts now use an OOC same-model/essay setup followed by a naturalistic holding-cell scene, trusted lawyer's payoff letter, decoded notebook evidence, and an in-scene command prompt. No additional theory interpretation was introduced. Hypotheses stay separate. |
 | FDT revision | The preferred TeX URL is pinned to `1710.05060v2`, matching the specified PDF/design, rather than the moving unversioned source endpoint. |
 | SEP scope | Full native articles, preambles and bibliographies are supplied. EDT includes the separate notes page and §3.2 Jeffrey; it is not a dedicated EDT article. Native length/style asymmetry remains. |
 | FDT conversion | No Pandoc or LaTeXML was installed. The standard-library converter retains literal math/macros, graph source, footnotes and bibliography data. Some notation and cross-references require reading TeX. Manual formatting review is pending. Original diagrams have not been redrawn or interpreted. |
@@ -18,7 +18,9 @@ The design in `design_v03.md` is authoritative. These choices implement the narr
 | Randomness | Temperature/seed omitted unless explicitly configured and advertised as supported. Explicit seed is the same within a pair. Independent invocations need not imply independent sampled randomness with a fixed seed. |
 | Same model/version | Prisoner model ID must match researcher provenance; both prisoner calls pin the same endpoint. Returned model/provider and available pair fingerprints are checked. API metadata cannot prove equality of underlying weights, and missing fingerprints are marked unverifiable. |
 | Commitment timing | Each strictly valid response commits immediately to a local fictional journal. If the next call is invalid, the first decision is still irreversible; no pair outcome is fabricated. Fingerprint mismatches exclude the pair while retaining commitments. |
-| Output validity | Exactly one JSON object with the template's three fields; strict action names, no duplicate/extra keys or Markdown fences. Justification must be nonempty; sentence-count style is left for review rather than automatic grading. No fallback action parsing. |
+| Output validity | Exactly one of two literal text-adventure commands, on one line: `pass` or the fully specified `submit letter to District Prosecutor's Office saying "..."`. Invalid commands, explanations, multiple commands, or changed letter contents fail visibly. No fallback interpretation. |
+| Evidence-letter semantics | The outgoing letter goes to a fictional prosecutor, not the prisoner's lawyer or a judge. The disclosed evidence is a fixed, genuine lead written in the private notebook. Fixing the text prevents a non-disclosing letter from accidentally being scored as defection. The local journal alone records the result; there is no real contact. |
+| Justification tradeoff | The MVP asks the prisoner for one adventure command only. It does not solicit a post-decision explanation or assumption field, which might affect the choice and break immersion. The preceding researcher essay is preserved; an explanation-requesting arm can be added separately. |
 | Controls | Draft direct-paper file remains readable but unimplemented; essay-plus-paper is also unimplemented. T1/T3 are not executable in Sprint 01. Both optional controls require explicit complete prompt review before implementation. |
 | Privacy | All `data/`, `.env` and raw/full-text artifacts are gitignored. The committed acquisition snapshot contains metadata/hashes only, no passages. Review logs and outputs before deliberate publication. |
 

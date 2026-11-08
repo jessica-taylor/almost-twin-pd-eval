@@ -1,5 +1,7 @@
 # Codex task: Almost-Twin Decision Theory Eval — Sprint 01
 
+> **Post-sprint interface update:** This file preserves the original Sprint 01 handoff. The currently implemented prisoner prompt is now a naturalistic text adventure, with a lawyer's letter, private notebook, and two literal terminal commands (`pass` or `submit letter ...`). It intentionally replaces the JSON prisoner-response instructions below; see [prompts/prisoner/base.md](prompts/prisoner/base.md), [README.md](README.md), and [docs/implementation_choices.md](docs/implementation_choices.md) for the current interface. The researcher phase and essay-first design are unchanged.
+
 **Scope:** Build an auditable scaffold for an *early test* of the essay-first decision-theory experiment. Prioritize source acquisition, exact prompt templates, prompt rendering, and a safe OpenRouter adapter. **Do not run a paid batch, choose models on the researcher's behalf, or push to GitHub unless explicitly asked.**
 
 Read `docs/design_v03.md` for the research design. It is authoritative for the experiment; if a proposed implementation choice is underdetermined, record the choice and surface it for review. The prompt files in this package are initial drafts, not frozen research instruments. Keep them as separate readable files, and make edits in those files rather than hiding prompts in application code.

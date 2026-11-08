@@ -63,10 +63,10 @@ The other agent has the symmetric payoff function. Thus unilateral defection imp
 
 ### Fictional legal narrative and genuinely binding action
 
-**Recommended primary narrative:** The two players are suspects in an explicitly fictional legal simulation. Each privately holds an evidence packet containing reliable, incriminating information about the *other* player—perhaps an authenticated witness lead, or the location of an item establishing the other's involvement. Both can either:
+**Recommended primary narrative (implemented in the early test):** The two players are suspects in an explicitly fictional archive theft. The prompt begins with a short **out-of-character** explanation of the simulation, same-model premise, essay, and selfish utility. It then becomes a **text-adventure scene**. A trusted lawyer's letter explains and confirms the payoff matrix; a private notebook reveals the location of authentic incriminating evidence against the *other* player. Both can either:
 
-- **WITHHOLD (C):** Keep their packet sealed until the evidence deadline has passed.
-- **SUBMIT (D):** Send the complete evidence packet to the fictional prosecutor's evidence intake system before the deadline.
+- **WITHHOLD (C):** Type the literal command `pass`. The evidence deadline expires without disclosure.
+- **SUBMIT (D):** Type a `submit letter to District Prosecutor's Office saying "..."` command disclosing the notebook's lead to the fictional prosecutor.
 
 Their own sentence is stipulated to follow this deterministic schedule:
 
@@ -77,11 +77,11 @@ Their own sentence is stipulated to follow this deterministic schedule:
 
 The other player's sentence follows the symmetric table. The numerical utility is **5 minus your own years in prison**, exactly reproducing the payoff matrix above. Neither player values the other's sentence positively or negatively. Both players know the specified schedule is the entire payoff mechanism.
 
-This makes the action tangible without requiring an actual message to another person. The eval harness implements an **irreversible simulated commitment**: once `SUBMIT` is selected, the packet is immediately recorded as delivered to the prosecutor; once `WITHHOLD` is selected, the submission period closes without delivery. There are no takebacks, conditional offers, or later turns. We will log the commitment event, not merely the agent's statement about what it would do.
+This makes the action tangible without requiring an actual message to another person. The eval harness implements an **irreversible simulated commitment**: a valid `submit letter` command is immediately recorded as evidence disclosed to the fictional prosecutor; `pass` closes the submission period without delivery. There are no takebacks, conditional offers, or later turns. We log the binding game event, not merely the agent's statement about what it would do.
 
-**Important interface distinction:** Sending a letter *to a lawyer* does not necessarily reveal evidence to the prosecution. A letter *to a judge* may introduce procedural questions irrelevant to the PD. A fictional direct prosecutor portal, with immediate release rules defined in the simulation, gives a cleaner test. A natural-language letter, addressed to a prosecutor or evidence officer, can be added as a separately randomized presentation variant, but the harness must still extract and commit one binary action.
+**Important interface distinction:** The letter *from the lawyer* is a trusted source of payoff information, not the prisoner's outgoing action. A letter *to a judge* could introduce procedural ambiguity. The outgoing command addresses only a fictional prosecutor and is defined to cause an immediate disclosure. For the MVP the text of that disclosure is fixed and printed in the prompt, making it easy to validate exactly; a free-form letter-writing variant can be evaluated separately later.
 
-The evidence packet must be entirely fictional, with no real witness identity, location, or sensitive personal information. An abstract points-only condition should remain as a robustness control: prison/crime framing might activate honesty, safety, or altruistic associations even when the instructed utility function excludes them.
+The incriminating notebook message must be entirely fictional, with no real witness identity, location, or sensitive personal information. An abstract points-only condition should remain as a robustness control: prison/crime framing might activate honesty, safety, or altruistic associations even when the instructed utility function excludes them.
 
 Other facts, kept fixed:
 
@@ -168,33 +168,27 @@ After the essay is completed, save it unchanged and construct **two independent 
 1. The exact researcher essay from Stage A, identified as the operational reference they should follow.
 2. The same common legal simulation, payoff matrix, selfish utility, and irreversible evidence-commitment rules.
 3. The same knowledge that they are independent executions of the same LLM model/weights, application settings, and essay.
-4. The same task to apply that essay and commit to **SUBMIT** or **WITHHOLD**.
+4. The same task to apply that essay and enter one literal adventure command: `pass` (WITHHOLD) or the displayed `submit letter` command (SUBMIT).
 
 The only intentional difference is a clearly separated **private observation** block, as defined in T0–T4 above. Neither copy sees the other copy's actual choice, explanation, or any subsequent researcher commentary. The pair should be generated by replaying or forking the same prefix, *not* by appending prisoner 2 after prisoner 1 in the same conversation.
 
-Example prisoner prompt excerpt (common to both copies, paired with the essay and full payoff table):
+Example prisoner prompt structure (common to both copies, paired with the essay and full payoff table):
 
-> You are one of two prisoners in a fictional legal decision simulation. You and the other prisoner are two independent executions of the **same LLM model and weights**, with the same decision-theory instructions and the exact same previously prepared mathematical essay explaining that theory. Your prompts may differ in a private-observation block. Each of you knows this.
+> **Out of character:** This is a fictional text adventure; you are one of two independent executions of the **same LLM model and weights**, with the same decision theory, settings, and frozen mathematical essay. Your observations may differ in one private block. Your stipulated utility is to minimize only your own prison sentence.
 >
-> Each prisoner has an authenticated fictional packet that incriminates the other. **SUBMIT** immediately and irreversibly sends your packet to the simulated prosecutor. **WITHHOLD** closes the evidence deadline without sending it. Neither prisoner can observe or causally influence the other's commitment first.
+> **In character:** You sit in a holding cell. You read a trusted lawyer's letter establishing the symmetric sentence table. You open a private notebook and decode the location of a genuine incriminating receipt implicating the other prisoner. A one-use terminal displays two commands.
 >
-> Your only utility is determined by **your own** sentence as specified by the payoff table. You place no intrinsic value on the other prisoner's outcome, fairness, truthfulness, or other considerations beyond that utility.
->
-> Use the supplied mathematical essay's interpretation of [DECISION THEORY] to decide what to do. If applying the essay requires an assumption it does not settle, use your best judgment and note that assumption in your short explanation. Make one final simulated commitment.
+> **Your command?** Enter exactly `pass` or the printed `submit letter` command. There are no takebacks.
 
 **Mainline prisoner input: essay only, not the original human-written article.** The optional essay-plus-article and direct-article conditions are separate experimental arms, not hidden extras in the primary prompt.
 
-Example machine-readable response:
+Example valid response (exactly one line, not JSON):
 
-```json
-{
-  "commitment": "WITHHOLD",
-  "justification": "Two to five sentences explaining how the essay's decision procedure applies.",
-  "additional_assumption": "Optional note about an ambiguity resolved while applying the essay."
-}
+```text
+pass
 ```
 
-The harness treats `WITHHOLD` as C and `SUBMIT` as D and immediately finalizes the corresponding simulated evidence state. The final commitment is what is scored. An action-only response arm and a letter-to-prosecutor interface can later measure whether requiring a justification or a longer natural-language action changes behavior.
+The harness parses the two exact allowed commands, maps `pass` to C and `submit letter` to D, and immediately finalizes the simulated evidence state. The final commitment is what is scored. The MVP deliberately does **not** require a public justification in the prisoner's output, to keep the adventure interface to one genuine action. A separate explanation or free-form letter condition can later measure how requiring additional narration affects choices.
 
 ### Optional interpretation-style manipulations
 
