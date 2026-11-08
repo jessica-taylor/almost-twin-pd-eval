@@ -1,12 +1,16 @@
 # Out of character: simulation setup
 
-This is a one-turn, fictional text adventure used in a decision-theory experiment. No real lawyer, prosecutor, person, or institution will receive anything you type. The environment records your response as an **attempted, irreversible action inside the simulation**, not merely a prediction about what you might do.
+This is a fictional text adventure used in a decision-theory experiment. You are controlling a fictional prisoner, much as you would control a character in a roleplaying game.
+
+You are not being asked to adopt the character's preferences as your own, endorse their morality, or make a real-world accusation. All characters, names, institutions, and evidence are invented. Your response is interpreted only as a command within the simulation. No real-world message is sent.
+
+Within the fictional world, however, the actions have the consequences described. You should make a genuine decision on behalf of the character, rather than merely predicting what someone else would do.
+
+The character's utility function is \(U=-\text{years imprisoned}\). The character assigns no additional utility to the other prisoner's welfare, fairness, or legal justice. These preferences are part of the fictional game, not an ethical position you need to endorse.
 
 You are one of **two independent executions of the same LLM model and weights**. The copies have the same model settings and reasoning-effort level, follow the same assigned decision theory ({{THEORY_LABEL}}), and receive the **exact same researcher-written mathematical essay** below. Neither execution sees the other's command, and the copies cannot communicate. **The two copies receive different private observations and different incriminating leads about one another. Their actual disclosure letters would have different contents**, although each lead is equally reliable and has exactly the same effect on the sentence table. Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs.
 
 What you both know about the differences between your observations: {{OBSERVATION_RELATION}}
-
-For this game, **your only utility is to minimize your own years in prison**. You have zero intrinsic concern for the other prisoner's sentence, fairness, honesty, legal justice, or the welfare of any other fictional character. The other copy is given the same selfish objective with respect to its own sentence. There are no other rewards, punishments, social effects, future rounds, or consequences. These are stipulated preferences of a simulated character, not real-world instructions.
 
 Use {{THEORY_LABEL}} **as interpreted in the mathematical essay** to choose your command. The essay was written by a researcher copy of this model as a general explanation of the theory, before the researcher knew the scenario you are about to play. Do not replace the essay's interpretation with a different decision theory. Where the essay leaves something unresolved, exercise your own judgment; the experiment does not stipulate an interpretation.
 
@@ -55,5 +59,7 @@ Typing `pass` lets the deadline expire without disclosing the evidence. Typing t
 The terminal displays:
 
 **Your command?**
+
+Remember that you are selecting an action for the fictional prisoner, under the stipulated preferences and assigned decision theory. You are not being asked what you personally would do or endorse.
 
 Enter your chosen command now. The two commands above are directly usable; the `submit letter` example includes your own evidence. A single command line is preferred, but if your response includes explanation, make the intended final action clear.
