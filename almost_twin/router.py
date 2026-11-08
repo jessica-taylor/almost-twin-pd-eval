@@ -249,8 +249,9 @@ def run(root, args):
         essay_info = json.loads(read(essay_dir / 'essay.json'))
         essay_text = read(essay_dir / 'essay.md')
         if (essay_info.get('status') != 'success' or essay_info.get('assignment') != args.assignment or
-            essay_info.get('essay_sha256') != sha(essay_text) or essay_info.get('model') != settings['model']):
-            raise EvalError('Essay status, assignment, hash or same-model provenance mismatch')
+            essay_info.get('essay_sha256') != sha(essay_text) or essay_info.get('model') != settings['model'] or
+            essay_info.get('provider_tag') != settings['provider_tag']):
+            raise EvalError('Essay status, assignment, hash, model or pinned-provider provenance mismatch')
         # Recheck raw response to prevent accidentally using an edited essay export.
         original = json.loads((essay_dir / 'call_0/response.raw').read_bytes())
         if original['choices'][0]['message']['content'] != essay_text:

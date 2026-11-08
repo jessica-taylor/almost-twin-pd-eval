@@ -140,7 +140,7 @@ For a completed local prisoner run, prepare **offline, blind** prompts for later
 python3 -m almost_twin prepare-adjudication --run data/runs/PRISONER_RUN_ID
 ```
 
-These are written under the run's `adjudication_prompts/` directory. The judge sees the private lead, possible command and raw response, **not explicitly** the theory, model, effort, or essay (although the response itself could mention these). See the [adjudication protocol](docs/adjudication_protocol.md).
+These are written under the run's `adjudication_prompts/` directory. Before creating judge prompts, the command checks that the evidence-case YAML has the same hash as the one used for the prisoner run, and that each `output.txt` exactly matches the model content in its saved `response.raw`. Any mismatch stops adjudication, preventing later template edits or output-file changes from silently affecting historical labels. The judge sees the private lead, possible command and raw response, **not explicitly** the theory, model, effort, or essay (although the response itself could mention these). See the [adjudication protocol](docs/adjudication_protocol.md).
 
 To run the **optional** OpenRouter judge, the example configuration uses `openai/gpt-6.1-sol`. Inspect its available endpoint tags first and enter an exact `provider_tag` into a copy of [configs/judge.example.json](configs/judge.example.json):
 
@@ -155,6 +155,6 @@ This is an **offline plan**, requiring no API key. After reading the generated j
 
 ## Scope and remaining decisions
 
-Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls; role-specific evidence/letters; **simple marker-based command recognition**; separate guarded OpenRouter Sol-judge stage; blinded-judge prompt exports; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
+Implemented: source acquisition/provenance/QA; readable literal templates; offline prompt rendering, hashes and diffs; a small protected OpenRouter path; frozen essays; independent paired calls with a matching researcher/prisoner model **and provider tag**; role-specific evidence/letters; **simple marker-based command recognition**; separate guarded OpenRouter Sol-judge stage with historical evidence/output integrity checks; blinded-judge prompt exports; persistent fictional commitments and symmetric scoring; offline/mocked integration tests. All tests run without network or credentials.
 
 Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, batch adjudication, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. No paid batch, live smoke test, or empirical results have occurred. Scaling waits for manual prompt approval.

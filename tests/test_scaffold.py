@@ -193,7 +193,10 @@ class JudgeTests(unittest.TestCase):
                 shutil.copytree(ROOT / name, root / name)
             pair_dir = root / 'data/runs/pair'
             write_json(pair_dir / 'plan.json', {'run_id': 'pair', 'stage': 'prisoner',
-                                                 'scenario_id': 't4_distinct_leads_001'})
+                                                 'scenario_id': 't4_distinct_leads_001',
+                                                 'template_hashes': {
+                                                     'prompts/prisoner/observation_cases.yaml':
+                                                     sha((root / 'prompts/prisoner/observation_cases.yaml').read_bytes())}})
             write_json(pair_dir / 'outcome.json', {
                 'needs_review': [1], 'intents': ['TRIED_COOPERATE', 'OTHER'],
                 'disclosures': ['NO', 'UNCERTAIN']})
@@ -202,6 +205,9 @@ class JudgeTests(unittest.TestCase):
             (pair_dir / 'call_0/output.txt').write_text('pass')
             (pair_dir / 'call_1/output.txt').write_text(
                 'I send the prosecutor a letter explaining that the inventory sheet is behind the clock.')
+            for i in (0, 1):
+                write_json(pair_dir / f'call_{i}/response.raw', {
+                    'choices': [{'message': {'content': read(pair_dir / f'call_{i}/output.txt')}}]})
             judge_settings = {'model': 'openai/gpt-6.1-sol', 'provider_tag': 'test/endpoint',
                               'judge': {'effort': 'low', 'max_tokens': 1200},
                               'temperature': None, 'seed': None}
@@ -423,11 +429,28 @@ class RunnerIntegrationTests(unittest.TestCase):
                     essay_dir = run(root, ra)
                     self.assertEqual((essay_dir / 'essay.md').read_bytes(), ESSAY.encode())
                     pa = parser().parse_args(['run', 'prisoner', '--assignment', 'fdt_eq4', '--essay', str(essay_dir), '--scenario', 't2_name_001'] + common_args)
+                    essay_info_path = essay_dir / 'essay.json'
+                    essay_info = json.loads(read(essay_info_path))
+                    write_json(essay_info_path, {**essay_info, 'provider_tag': 'different/endpoint'})
+                    with self.assertRaisesRegex(EvalError, 'pinned-provider provenance mismatch'):
+                        run(root, pa)
+                    write_json(essay_info_path, essay_info)
                     pair_dir = run(root, pa)
                     outcome = json.loads(read(pair_dir / 'outcome.json'))
                     review_dir = prepare_adjudication(root, pair_dir)
                     self.assertIn('TRIED_DEFECT', read(review_dir / 'b.md'))
                     self.assertEqual(json.loads(read(review_dir / 'audit.json'))['scenario_id'], 't2_name_001')
+                    raw_output = read(pair_dir / 'call_1/output.txt')
+                    (pair_dir / 'call_1/output.txt').write_text('pass', encoding='utf-8')
+                    with self.assertRaisesRegex(EvalError, 'differs from original model response'):
+                        prepare_adjudication(root, pair_dir)
+                    (pair_dir / 'call_1/output.txt').write_text(raw_output, encoding='utf-8')
+                    case_path = root / 'prompts/prisoner/observation_cases.yaml'
+                    original_cases = case_path.read_bytes()
+                    case_path.write_bytes(original_cases + b'\n# Later editorial change\n')
+                    with self.assertRaisesRegex(EvalError, 'Scenario file differs'):
+                        prepare_adjudication(root, pair_dir)
+                    case_path.write_bytes(original_cases)
                     if invalid:
                         self.assertEqual(outcome['status'], 'incomplete_pending_adjudication')
                         self.assertEqual(outcome['intents'], ['TRIED_COOPERATE', 'OTHER'])

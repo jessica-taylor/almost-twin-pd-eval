@@ -48,6 +48,10 @@ def prepare_adjudication(root, run_dir):
     plan = json.loads(read(run_dir / 'plan.json'))
     if plan.get('stage') != 'prisoner':
         raise EvalError('Adjudication requires a prisoner-pair run directory')
+    case_file = 'prompts/prisoner/observation_cases.yaml'
+    saved_case_hash = (plan.get('template_hashes') or {}).get(case_file)
+    if not saved_case_hash or saved_case_hash != sha((root / case_file).read_bytes()):
+        raise EvalError('Scenario file differs from the prisoner run (or saved hash is missing); cannot adjudicate against changed evidence')
     scenario = next((c for c in cases(root) if c['case_id'] == plan['scenario_id']), None)
     if scenario is None:
         raise EvalError('Unknown scenario in saved run')
@@ -61,6 +65,17 @@ def prepare_adjudication(root, run_dir):
         if not path.exists():
             raise EvalError(f'Cannot adjudicate missing raw prisoner output: {path}')
         raw = read(path)
+        # ``post`` preserves the raw model response independently of output.txt.
+        # A null content is stored as an empty text output for prisoner refusals.
+        try:
+            original = json.loads((run_dir / f'call_{i}/response.raw').read_bytes())
+            model_content = original['choices'][0]['message']['content']
+        except (OSError, ValueError, KeyError, IndexError, TypeError) as error:
+            raise EvalError(f'Missing or invalid original prisoner response for role {role}') from error
+        if model_content is not None and not isinstance(model_content, str):
+            raise EvalError(f'Nontext original prisoner response for role {role}')
+        if raw != (model_content if model_content is not None else ''):
+            raise EvalError(f'Saved output.txt differs from original model response for role {role}')
         messages = judge_messages(root, scenario[f'evidence_{role}'], raw)
         info['messages'][role] = {
             **export_messages(out, role, messages), 'raw_response_sha256': sha(raw)}

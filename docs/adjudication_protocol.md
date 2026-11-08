@@ -61,7 +61,12 @@ execute with preference for cooperation.
 3. Everything else becomes `OTHER`/`UNCERTAIN` **pending blinded
    adjudication**—including explicit prose intentions. The offline
    `prepare-adjudication` command writes prompts from
-   [the judge template](../prompts/judge/intent.md). The separate
+   [the judge template](../prompts/judge/intent.md). Before constructing
+   judge prompts, it requires that the evidence-case YAML still matches
+   the hash saved with the prisoner run and that `output.txt` matches
+   the original `response.raw` message content (including empty refusal
+   responses). Changed files produce an explicit error, not silently
+   revised historical labels. The separate
    `run-judge` command can send **only flagged responses** to a pinned
    OpenRouter judge (the example configuration uses
    `openai/gpt-6.1-sol`). It requires explicit
