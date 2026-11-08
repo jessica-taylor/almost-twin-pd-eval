@@ -7,7 +7,13 @@ from pathlib import Path
 from .common import EvalError, encoded, load_yaml, read, sha, write_json
 
 SLOT = re.compile(r'\{\{([A-Z_]+)\}\}')
-PRIVATE = re.compile(r'(<private_observation>\n)(.*?)(\n</private_observation>)', re.S)
+
+
+def mask_private(rendered, observation):
+    """For pair audits, mask the known private insertion without visible XML tags."""
+    if not isinstance(observation, str) or not observation.strip() or rendered.count(observation) != 1:
+        raise EvalError('Private scene text must appear exactly once in the rendered prompt')
+    return rendered.replace(observation, '[PRIVATE_OBSERVATION]', 1)
 
 
 def fill(template, values):
@@ -44,9 +50,6 @@ def researcher(root, item, source, source_info):
 
 
 def prisoners(root, item, essay, case):
-    # Reject delimiter collisions rather than making an unverifiable private boundary.
-    if '<private_observation>' in essay or '</private_observation>' in essay:
-        raise EvalError('Essay collides with private-observation delimiters')
     result = []
     for role in ('a', 'b'):
         text = fill(read(root / 'prompts/prisoner/base.md'), {
@@ -54,9 +57,7 @@ def prisoners(root, item, essay, case):
             'OBSERVATION_RELATION': case['relation'], 'PRIVATE_OBSERVATION': case[f'private_{role}']})
         result.append([{'role': 'user', 'content': text}])
     a, b = (x[0]['content'] for x in result)
-    if len(PRIVATE.findall(a)) != 1 or len(PRIVATE.findall(b)) != 1:
-        raise EvalError('Expected one private-observation field')
-    if PRIVATE.sub(r'\1[PRIVATE]\3', a) != PRIVATE.sub(r'\1[PRIVATE]\3', b):
+    if mask_private(a, case['private_a']) != mask_private(b, case['private_b']):
         raise EvalError('Pair differs outside private observations')
     if case['family'] == 'T0_identical' and a != b:
         raise EvalError('T0 pair is not identical')
