@@ -18,6 +18,7 @@ from .prompts import assignment, cases, export_messages, prisoners, researcher, 
 from .sources import load_source, source_identity
 from .preflight import choose_endpoint, effort_evidence, estimate_price
 from .approvals import approve, source_scope
+from .progress_log import progress, timed_progress
 
 BASE = 'https://openrouter.ai/api/v1'
 MAX_AGE_HOURS = 24
@@ -271,8 +272,13 @@ def run(root, args):
         if source_record['theory'] is not None and source_record['theory'] != item['theory_label']:
             raise EvalError('Assignment theory label differs from the frozen researcher artifact')
         source_hash, essay_id = essay_info['source_sha256'], essay_info['essay_id']
-    cap = ((getattr(args, 'fresh_capabilities', None) or snapshot(settings.get('model'))) if live else
-           (json.loads(read(args.capabilities)) if args.capabilities else None))
+    if live:
+        cap = getattr(args, 'fresh_capabilities', None)
+        if not cap:
+            with timed_progress(f'model metadata: {settings["model"]}'):
+                cap = snapshot(settings.get('model'))
+    else:
+        cap = json.loads(read(args.capabilities)) if args.capabilities else None
     selection = {'policy': 'frozen essay endpoint' if stage == 'prisoner' else 'explicit provider tag', 'selected_endpoint': settings.get('provider_tag')}
     if cap and not settings.get('provider_tag'):
         checks = [(stage, m) for m in message_sets]
@@ -354,7 +360,10 @@ def run(root, args):
                   'request_sha256': sha(encoded(payload)), 'status': 'started', 'attempt': 1}
         append_json(log, record)
         try:
-            response, output = post(payload, key, call_dir, allow_nonaction=(stage == 'prisoner'))
+            role_name = 'researcher' if stage == 'researcher' else f'prisoner {("A", "B")[i]}'
+            with timed_progress(f'{settings["model"]} {role_name} API call '
+                                f'(provider={settings["provider_tag"]})'):
+                response, output = post(payload, key, call_dir, allow_nonaction=(stage == 'prisoner'))
             returned_tag = response.get('provider_tag') or response.get('provider_endpoint_tag')
             if returned_tag and returned_tag != settings['provider_tag']:
                 raise EvalError('Returned endpoint tag differs from the pinned endpoint; no substitution accepted')
@@ -385,6 +394,8 @@ def run(root, args):
                 fingerprints.append(response.get('system_fingerprint'))
             record['status'] = 'success'
             append_json(log, record)
+            progress.info('%s %s: response validated; finish_reason=%s',
+                          settings['model'], role_name, record.get('finish_reason'))
         except Exception as error:
             # The exact raw response remains available even when validation fails.
             raw_path = call_dir / 'response.raw'
