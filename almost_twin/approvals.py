@@ -1,4 +1,4 @@
-"""Local append-only acknowledgements, scoped to exact source/request content."""
+"""Hash-bound request approvals and optional legacy source acknowledgements."""
 import json
 
 from .common import EvalError, append_json, encoded, read, sha, utc
@@ -28,9 +28,9 @@ def has_approval(root, kind, scope):
 def approve(root, kind, scope, acknowledged=False):
     if has_approval(root, kind, scope):
         return approval_key(kind, scope)
+    if kind == 'source_terms' and not acknowledged:
+        return None  # Legacy acknowledgement is optional and never gates execution.
     if not acknowledged:
-        if kind == 'source_terms':
-            raise EvalError('Article transmission rights are not approved for this exact source revision/text. Inspect the source/license, then run approve-source --source SOURCE_ID --source-terms-reviewed, or pass --source-terms-reviewed with execution.')
         raise EvalError('These exact requests are not approved. Inspect the rendered Markdown/JSON and cost, then pass --prompts-approved. Any change to messages, model, endpoint, effort or decoding settings requires new approval.')
     key = approval_key(kind, scope)
     append_json(root / 'data/approvals.jsonl', {'utc': utc(), 'kind': kind, 'key': key, 'scope': scope,
@@ -38,7 +38,7 @@ def approve(root, kind, scope, acknowledged=False):
     return key
 
 
-def approve_source(root, source_id, acknowledged):
+def approve_source(root, source_id, acknowledged=False):
     source, info = load_source(root, source_id)
     identity = source_identity(source_id, source, info)
     approve(root, 'source_terms', source_scope(identity), acknowledged)

@@ -8,14 +8,13 @@ The authoritative broad design is [docs/design_v03.md](docs/design_v03.md); [COD
 
 Use Python 3.11+ with PyYAML installed. Set `OPENROUTER_API_KEY` in your environment or a gitignored `.env` (see `.env.example`). No endpoint-tag discovery, settings file or hand-written timestamp is needed for this workflow.
 
-Acquire the source, open `data/source_cache/report.md` and its full article/QA links, then acknowledge transmission rights for that exact revision/text:
+Acquire the source and inspect `data/source_cache/report.md` and its full article/QA links:
 
 ```sh
 python3 -m almost_twin fetch-sources --network --source cdt_wikipedia
-python3 -m almost_twin approve-source --source cdt_wikipedia --source-terms-reviewed
 ```
 
-Source approval persists locally by source ID, revision, permanent URL and normalized-text hash. It does not grant permission for changed text or a different revision. Existing manifest pins and raw-source/provenance checks are respected; the approval command does not edit the manifest.
+No separate source approval is required. Source attribution, manifest pins, revision identity and raw/normalized/provenance hash checks remain in place.
 
 Prepare one exploratory three-call pilot. This command refreshes **unbilled metadata only**, selects and pins an endpoint, and exports the complete researcher request and spending estimate. It sends no source or essay to a model:
 
@@ -89,9 +88,9 @@ The actual Sprint 01 acquisition succeeded for all three sources. A metadata-onl
 
 - **CDT:** SEP's full *Causal Decision Theory* article, substantive revision 24 October 2024. Headings, examples, bibliography and math are retained.
 - **EDT:** SEP's full *Decision Theory* article, substantive revision 20 August 2025, including §3.2 on Jeffrey and twelve linked notes. This is a broad decision-theory article, **not a dedicated EDT entry**.
-- **FDT:** Explicitly pinned `1710.05060v2` TeX source, retrieved before any PDF processing. A safe tar/gzip/single-TeX reader rejects traversal, links, special files and excessive decompression; input/include files are resolved without executing TeX. Conservative Markdown retains display math, all four equation numbers, sixteen footnotes, macro definitions, TikZ graph code and bibliography data. QA shows Equation (4), its observation-indexed variable, the observation-change paragraph, the graph-construction open problem and footnote 16. **Some macro notation, cross-references and graph drawings remain literal TeX**; manual formatting approval is necessary. This is not a polished Pandoc rendition. If source conversion fails, text PDF extraction is attempted with `pdftotext -layout`; a failed mathematical check is a visible failure. A genuinely non-textual PDF requires separate manual OCR work, which is not implemented.
+- **FDT:** Explicitly pinned `1710.05060v2` TeX source, retrieved before any PDF processing. A safe tar/gzip/single-TeX reader rejects traversal, links, special files and excessive decompression; input/include files are resolved without executing TeX. Conservative Markdown retains display math, all four equation numbers, sixteen footnotes, macro definitions, TikZ graph code and bibliography data. QA shows Equation (4), its observation-indexed variable, the observation-change paragraph, the graph-construction open problem and footnote 16. **Some macro notation, cross-references and graph drawings remain literal TeX**; inspect the mathematical formatting as needed. This is not a polished Pandoc rendition. If source conversion fails, text PDF extraction is attempted with `pdftotext -layout`; a failed mathematical check is a visible failure. A genuinely non-textual PDF requires separate manual OCR work, which is not implemented.
 
-All `data/` artifacts are gitignored, including full source text, source excerpts, rendered prompts, responses, commitments and local budget state. Only URLs, metadata/hashes, scripts, templates and synthetic fixtures belong in the repository. SEP's [terms](https://plato.stanford.edu/info.html#t) distinguish personal downloads from redistribution. Before sending full articles to OpenRouter and a provider, resolve that **separate source-license/terms question**, individually for SEP and FDT. Availability on arXiv is not blanket redistribution permission. The researcher runner blocks live article transmission until the exact source has a persisted `approve-source` acknowledgement or `--source-terms-reviewed` is explicitly passed; that flag records your resolved review, not a legal determination by this scaffold.
+All `data/` artifacts are gitignored, including full source text, source excerpts, rendered prompts, responses, commitments and local budget state. Only URLs, metadata/hashes, scripts, templates and synthetic fixtures belong in the repository. Each source retains its licensing, attribution and redistribution metadata, including [SEP terms](https://plato.stanford.edu/info.html#t). The runner verifies source integrity and imposes no separate article-transmission approval step.
 
 ## Wikipedia CDT and EDT source variants
 
@@ -123,7 +122,7 @@ Acquisition uses the official MediaWiki Revisions API and Parse API `oldid` for 
 
 The acquired candidates are CDT revision **1381555528** and EDT revision **1373679688**. Automated QA passed with warnings; **manual review and manifest pinning remain pending**. After approving an article, set `revision_id` to its reviewed integer and `revision_review: approved` in `sources/manifest.yaml`. Subsequent acquisition verifies that pin; re-extraction accepts only the matching cached revision. Before pinning, network acquisition is discovery and may resolve a newer candidate. A cached revision that conflicts with a manifest pin is rejected before prompt use.
 
-Both normalized articles include title, attribution to Wikipedia contributors with a history link, permanent revision URL, CC BY-SA 4.0 name/link, conversion modifications and media/third-party-rights qualifications. They remain local and gitignored. The explicit live source-license-review gate is retained, and later publications/adaptations can carry licensing obligations.
+Both normalized articles include title, attribution to Wikipedia contributors with a history link, permanent revision URL, CC BY-SA 4.0 name/link, conversion modifications and media/third-party-rights qualifications. They remain local and gitignored. No source-license approval step blocks execution; attribution and rights qualifications remain attached to the article, and later publications/adaptations can carry licensing obligations.
 
 Wikipedia is useful as a licensed reference condition, but is not necessarily as comprehensive or philosophically authoritative as SEP. **EDT explicitly discusses the twin prisoner's dilemma and recommends cooperation; CDT also discusses twins and correlated decisions.** These passages are preserved. Exposure annotations and excerpts are for human QA only, not extra researcher instructions. See the [SEP/Wikipedia comparison, downloaded revisions and formatting caveats](docs/wikipedia_sources.md) and [metadata-only acquisition report](sources/wikipedia_acquisition_report.json).
 
@@ -176,7 +175,7 @@ References: [OpenRouter reasoning/effort semantics](https://openrouter.ai/docs/g
 
 ## Optional live smoke test — only after manual approval
 
-**Do not execute these example commands until you approve the rendered prompts, resolve article transmission terms, select the model/efforts, and review cost.** No live test is part of the completed sprint.
+**Do not execute these example commands until you approve the rendered prompts, select the model/efforts, and review cost.** No live test is part of the completed sprint.
 
 Set `OPENROUTER_API_KEY` in the environment, or a gitignored `.env` containing `OPENROUTER_API_KEY=...` (no shell evaluation/interpolation). The environment takes precedence. Keys are used only for the generation Authorization header and are never saved in request artifacts.
 
@@ -185,7 +184,7 @@ One researcher call:
 ```sh
 python3 -m almost_twin run researcher --assignment fdt_eq4 \
   --settings data/openrouter/settings.json \
-  --execute --confirm-billable --prompts-approved --source-terms-reviewed
+  --execute --confirm-billable --prompts-approved
 ```
 
 After reading the entire saved essay and rendering/approving the resulting prisoner prompts, one pair (two independently instantiated calls):

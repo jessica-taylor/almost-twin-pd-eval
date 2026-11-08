@@ -35,9 +35,9 @@ def parser():
     m.add_argument('--model', required=True)
     m.add_argument('--network', action='store_true')
     m.add_argument('--out', type=Path, default=Path('data/openrouter/capabilities.json'))
-    approval = sub.add_parser('approve-source', help='Persist rights acknowledgement for an exact verified source revision/text; offline')
+    approval = sub.add_parser('approve-source', help='Legacy optional source verification; never required for execution')
     approval.add_argument('--source', required=True)
-    approval.add_argument('--source-terms-reviewed', action='store_true')
+    approval.add_argument('--source-terms-reviewed', action='store_true', help=argparse.SUPPRESS)
     pilot = sub.add_parser('pilot', help='Prepare and resume a small exploratory researcher → prisoner pair pilot')
     actions = pilot.add_subparsers(dest='pilot_command', required=True)
     prep = actions.add_parser('prepare', help='Refresh unbilled metadata, select/pin endpoint, export exact researcher request and costs; no generations')
@@ -62,7 +62,7 @@ def parser():
         step.add_argument('--execute', action='store_true')
         step.add_argument('--confirm-billable', action='store_true')
         step.add_argument('--prompts-approved', action='store_true', help='Approve the prepared serialized requests by hash; persisted locally')
-        step.add_argument('--source-terms-reviewed', action='store_true', help='Optional alternative to an existing approve-source acknowledgement')
+        step.add_argument('--source-terms-reviewed', action='store_true', help=argparse.SUPPRESS)
     run = sub.add_parser('run', help='Dry run by default; one researcher OR one prisoner pair, no batch')
     run.add_argument('stage', choices=['researcher', 'prisoner'])
     run.add_argument('--assignment', choices=['cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy', 'cdt_wikipedia', 'edt_wikipedia'], required=True)
@@ -74,7 +74,7 @@ def parser():
     run.add_argument('--execute', action='store_true')
     run.add_argument('--confirm-billable', action='store_true')
     run.add_argument('--prompts-approved', action='store_true', help='Explicitly acknowledge manual rendered prompt approval')
-    run.add_argument('--source-terms-reviewed', action='store_true', help='Acknowledge resolved third-party article transmission rights')
+    run.add_argument('--source-terms-reviewed', action='store_true', help=argparse.SUPPRESS)
     run.add_argument('--max-calls', type=int)
     run.add_argument('--max-usd', type=str)
     return p
@@ -107,7 +107,7 @@ def main(argv=None):
         elif args.command == 'approve-source':
             from .approvals import approve_source
             identity = approve_source(root, args.source, args.source_terms_reviewed)
-            print(f"Approved source transmission rights for {identity['source_id']} revision {identity['source_revision']} SHA-256 {identity['source_sha256']}. Stored in data/approvals.jsonl.")
+            print(f"Verified source {identity['source_id']} revision {identity['source_revision']} SHA-256 {identity['source_sha256']}. No source approval is required for execution.")
         elif args.command == 'pilot':
             from .pilot import prepare, resume
             folder = prepare(root, args) if args.pilot_command == 'prepare' else resume(root, args)

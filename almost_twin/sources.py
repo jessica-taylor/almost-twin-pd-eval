@@ -447,7 +447,7 @@ def fetch_one(root, source_id, spec, network, reextract=False):
         provenance.update(normalized_sha256=sha(text), normalized_file='article.md', status='passed_automated_checks',
                           manual_approval=False, extractor_sha256=sha(Path(__file__).read_bytes()))
         provenance['text_statistics'].update(characters=len(text), words=len(text.split()), lines=len(text.splitlines()))
-        report = f'# Local source QA — {source_id}\n\nAutomated checks passed; manual source/prompt approval is still required.\n\n'
+        report = f'# Local source QA — {source_id}\n\nAutomated checks passed. Inspect source/mathematical formatting as needed; no separate source approval is required.\n\n'
         report += '\n'.join('- ' + w for w in provenance['warnings']) + '\n\n'
         if provenance['method'] == 'mediawiki':
             from .mediawiki import attribution_text
@@ -497,7 +497,7 @@ def fetch_sources(root, selected, network=False, reextract=False):
             results.append({'source': name, 'status': 'failed', 'error': str(error)})
             errors.append(str(error))
     write_json(root / 'data/source_cache/report.json', results)
-    report = '# Local source extraction report\n\nAutomated checks only; manual article, mathematics and prompt approval remains pending. Full source text and QA excerpts are local-only.\n\n'
+    report = '# Local source extraction report\n\nAutomated checks only; article and mathematical formatting are available for inspection. No separate source approval is required. Full source text and QA excerpts are local-only.\n\n'
     for result in results:
         report += f'## {result["source"]}: {result["status"]}\n\n'
         if 'directory' in result:

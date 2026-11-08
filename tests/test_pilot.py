@@ -219,7 +219,6 @@ class PilotTests(unittest.TestCase):
 
     def researcher(self):
         self.prep()
-        approve_source(self.root, 'cdt_wikipedia', True)
         return self.step('researcher', live=True, approve_prompt=True)
 
     def test_preparation_is_unbilled_and_prices_readable_exact_requests(self):
@@ -236,7 +235,7 @@ class PilotTests(unittest.TestCase):
         self.assertEqual(payload['messages'], messages)
         self.assertIn('Wikipedia contributors', messages[0]['content'])
         self.assertNotIn('t4_distinct_leads_001', messages[0]['content'])
-        self.assertFalse(json.loads(read(folder / 'plan.json'))['source_terms_approved'])
+        self.assertFalse(json.loads(read(folder / 'plan.json'))['source_approval_required'])
 
     def test_complete_two_stage_http_mock_resume_and_no_key_in_artifacts(self):
         essay_dir = self.researcher()
@@ -269,26 +268,49 @@ class PilotTests(unittest.TestCase):
         reservations = [json.loads(line) for line in read(self.root / 'data/budget.jsonl').splitlines()]
         self.assertEqual(sum(r['calls'] for r in reservations), 3)
 
-    def test_source_approval_persists_by_revision_and_text_not_retrieval_time(self):
+    def test_optional_legacy_source_acknowledgement_remains_scoped_to_original_source(self):
         identity = approve_source(self.root, 'cdt_wikipedia', True)
         self.assertTrue(has_approval(self.root, 'source_terms', source_scope(identity)))
         self.assertTrue(has_approval(self.root, 'source_terms', source_scope({**identity, 'source_provenance_sha256': 'new retrieval metadata'})))
         for field, value in (('source_revision', 999), ('source_sha256', 'changed source')):
             self.assertFalse(has_approval(self.root, 'source_terms', source_scope({**identity, field: value})))
 
-    def test_source_and_prompt_approval_required_without_implicit_execution(self):
+    def test_researcher_requires_no_source_approval_but_keeps_prompt_and_billing_checks(self):
         self.prep()
         self.step('researcher')
         self.assertFalse(self.calls)
-        with self.assertRaisesRegex(EvalError, 'transmission rights'):
-            self.step('researcher', live=True, approve_prompt=True)
-        self.assertFalse(self.calls)
-        approve_source(self.root, 'cdt_wikipedia', True)
         with self.assertRaisesRegex(EvalError, 'not approved'):
             self.step('researcher', live=True)
         self.assertFalse(self.calls)
-        self.step('researcher', live=True, approve_prompt=True)
+        result = self.step('researcher', live=True, approve_prompt=True)
         self.assertEqual(len(self.calls), 1)
+        plan = json.loads(read(result / 'plan.json'))
+        self.assertFalse(plan['source_approval_required'])
+        self.assertNotIn('source_terms', plan['authorization'])
+        records = [json.loads(line) for line in read(self.root / 'data/approvals.jsonl').splitlines()]
+        self.assertTrue(all(r['kind'] == 'prompts' for r in records))
+
+    def test_original_cli_command_resumes_a_pilot_previously_blocked_by_source_approval(self):
+        self.prep()
+        # Existing pilot plans/states may predate removal of the source-rights gate.
+        plan_path = self.folder / 'plan.json'
+        plan = json.loads(read(plan_path))
+        plan.pop('source_approval_required')
+        plan['source_terms_approved'] = False
+        write_json(plan_path, plan)
+        stage_plan = json.loads(read(self.folder / 'researcher/plan.json'))
+        write_json(self.folder / 'state.json', {
+            'researcher_run': str(self.root / 'data/exploratory/runs/previous-preflight-only-failure'),
+            'researcher_status': 'preflight_failed',
+            'researcher_request_hashes': stage_plan['request_hashes']})
+        with redirect_stdout(io.StringIO()):
+            result = main(['--root', str(self.root), 'pilot', 'researcher', '--pilot', str(self.folder),
+                           '--execute', '--confirm-billable', '--prompts-approved'])
+        self.assertEqual(result, 0)
+        self.assertEqual(len(self.calls), 1)
+        records = [json.loads(line) for line in read(self.root / 'data/approvals.jsonl').splitlines()]
+        self.assertTrue(all(r['kind'] == 'prompts' for r in records))
+        self.assertIn('No separate source approval is required', read(self.folder / 'plan.md'))
 
     def test_prompt_approval_hash_changes_invalidate_it(self):
         scope = {'request_hashes': ['original']}
@@ -296,7 +318,6 @@ class PilotTests(unittest.TestCase):
         self.assertTrue(has_approval(self.root, 'prompts', scope))
         self.assertFalse(has_approval(self.root, 'prompts', {'request_hashes': ['changed effort, source or message']}))
         self.prep()
-        approve_source(self.root, 'cdt_wikipedia', True)
         path = self.folder / 'researcher/messages_0.md'
         path.write_text(read(path) + 'tampered')
         with self.assertRaisesRegex(EvalError, 'approval is invalid'):
@@ -354,7 +375,6 @@ class PilotTests(unittest.TestCase):
 
     def test_new_endpoint_variant_requires_repreparation_instead_of_broadening_route(self):
         self.prep()
-        approve_source(self.root, 'cdt_wikipedia', True)
         new = copy.deepcopy(endpoint(self.cap))
         new['tag'] = 'openai/another-region'
         self.cap['endpoints'].append(new)
@@ -411,10 +431,8 @@ class PilotTests(unittest.TestCase):
         self.assertEqual(len(self.calls), 1)
         self.assertTrue((self.folder / 'prisoners/messages_1.md').exists())
 
-    def test_cli_preparation_and_source_approval_without_a_key(self):
+    def test_cli_preparation_without_source_approval_or_key(self):
         with patch.dict(os.environ, {}, clear=True), redirect_stdout(io.StringIO()) as output:
-            result = main(['--root', str(self.root), 'approve-source', '--source', 'cdt_wikipedia', '--source-terms-reviewed'])
-            self.assertEqual(result, 0)
             result = main(['--root', str(self.root), 'pilot', 'prepare', '--assignment', 'cdt_wikipedia', '--model', MODEL, '--out', str(self.folder)])
             self.assertEqual(result, 0)
         self.assertIn('no billable requests', output.getvalue())

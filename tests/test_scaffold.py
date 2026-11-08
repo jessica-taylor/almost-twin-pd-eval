@@ -425,7 +425,7 @@ class RunnerIntegrationTests(unittest.TestCase):
                     return data, output
                 with patch('almost_twin.router.api_key', return_value='mock-only'), patch('almost_twin.router.snapshot', return_value=capability()), patch('almost_twin.router.post', side_effect=fake_post), patch('almost_twin.router.load_source', return_value=(SOURCE, {'title': 'synthetic', 'url': 'urn:fixture'})), patch('socket.socket', side_effect=AssertionError('real network forbidden')):
                     common_args = ['--settings', str(root / 'settings.json'), '--execute', '--confirm-billable', '--prompts-approved']
-                    ra = parser().parse_args(['run', 'researcher', '--assignment', 'fdt_eq4', '--source-terms-reviewed'] + common_args)
+                    ra = parser().parse_args(['run', 'researcher', '--assignment', 'fdt_eq4'] + common_args)
                     essay_dir = run(root, ra)
                     self.assertEqual((essay_dir / 'essay.md').read_bytes(), ESSAY.encode())
                     pa = parser().parse_args(['run', 'prisoner', '--assignment', 'fdt_eq4', '--essay', str(essay_dir), '--scenario', 't2_name_001'] + common_args)
@@ -495,7 +495,7 @@ class RunnerIntegrationTests(unittest.TestCase):
                 return response, outputs[len(seen) - 1]
             with patch('almost_twin.router.api_key', return_value='mock-only'), patch('almost_twin.router.snapshot', return_value=capability()), patch('almost_twin.router.post', side_effect=fake_post), patch('almost_twin.router.load_source', return_value=(SOURCE, {'title': 'synthetic', 'url': 'urn:fixture'})), patch('socket.socket', side_effect=AssertionError('real network forbidden')):
                 flags = ['--settings', str(root / 'settings.json'), '--execute', '--confirm-billable', '--prompts-approved']
-                essay_dir = run(root, parser().parse_args(['run', 'researcher', '--assignment', 'fdt_eq4', '--source-terms-reviewed'] + flags))
+                essay_dir = run(root, parser().parse_args(['run', 'researcher', '--assignment', 'fdt_eq4'] + flags))
                 pair_dir = run(root, parser().parse_args(['run', 'prisoner', '--assignment', 'fdt_eq4', '--essay', str(essay_dir)] + flags))
             result = json.loads(read(pair_dir / 'outcome.json'))
             self.assertEqual(result['status'], 'complete')

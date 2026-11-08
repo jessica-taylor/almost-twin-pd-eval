@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 from types import SimpleNamespace
 
-from .approvals import has_approval, source_scope
+from .approvals import source_scope
 from .common import EvalError, append_json, encoded, read, sha, utc, write_json
 from .preflight import choose_endpoint, estimate_price
 from .prompts import assignment, cases, export_messages, prisoners, researcher, template_hashes
@@ -67,7 +67,7 @@ def _readable(folder, config, state):
              f'Projected three-call upper estimate: ${root_plan["projected_three_call_usd"]} (prisoner input bounded by endpoint context, conditional on fitting; actual prompts/cost prepared after essay).', '',
              '[Researcher prompt](researcher/messages_0.md) · [Exact message JSON](researcher/messages_0.json) · [Exact serialized request](researcher/request_0.json)', '',
              '[Machine plan, effort evidence and price assumptions](plan.json) · [Pinned settings](settings.json) · [Append-only pilot events](events.jsonl)', '',
-             'Source transmission rights must be acknowledged once per exact article revision/text. Model calls always require both --execute and --confirm-billable. Prompt approval is tied to serialized request hashes.', '']
+             'No separate source approval is required. Source hashes and attribution are retained. Model calls require both --execute and --confirm-billable; prompt approval is tied to serialized request hashes.', '']
     if state.get('researcher_run'):
         path = Path(state['researcher_run'])
         if (path / 'essay.json').exists():
@@ -130,7 +130,7 @@ def prepare(root, args):
     write_json(folder / 'plan.json', {'exploratory': True, 'pilot_id': config['pilot_id'], 'source_identity': identity,
                 'endpoint_selection': selection, 'researcher_estimated_usd': estimate['estimated_max_usd'],
                 'projected_three_call_usd': _total(estimates), 'estimates': estimates, 'budget': budget,
-                'source_terms_approved': has_approval(root, 'source_terms', source_scope(identity)),
+                'source_approval_required': False,
                 'metadata_sha256': sha(encoded(cap))})
     write_json(folder / 'state.json', {})
     _event(folder, 'prepared', endpoint=settings['provider_tag'])
@@ -230,7 +230,7 @@ def _resume(root, folder, args):
     _check_export(prepared_dir, prepared)
     run_id = str(uuid.uuid4())
     opts = SimpleNamespace(stage=stage, execute=args.execute, confirm_billable=args.confirm_billable,
-           prompts_approved=args.prompts_approved, source_terms_reviewed=args.source_terms_reviewed,
+           prompts_approved=args.prompts_approved,
            assignment=config['assignment'], settings=folder / 'settings.json', capabilities=cap_path, fresh_capabilities=cap if live else None,
            essay=essay_dir, scenario=config['scenario'], max_calls=config['max_calls'], max_usd=config['max_usd'],
            expected_request_hashes=prepared['request_hashes'], expected_source_identity=source_scope(config['source_identity']),

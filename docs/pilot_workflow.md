@@ -20,7 +20,7 @@ Before an essay exists, the pair projection uses the largest input allowed by th
 
 ## Approvals and integrity
 
-`approve-source --source ID --source-terms-reviewed` verifies current source/raw/derived hashes, then saves an append-only local acknowledgement for source ID, revision, permanent URL and normalized article hash. The acknowledgement remains valid if only retrieval/provenance timestamps change, and requires a new review if article text or revision changes. This records the user's review; it does not decide source rights or auto-approve a new article. Manifest pins are respected and never edited by this command.
+No separate source-rights approval is required to run a researcher. Current source/raw/derived hashes, manifest revision pins and the pilot's frozen source identity are still checked. Attribution, license information and conversion details remain in the article/provenance; removing the approval gate does not alter the model-visible source. The old `approve-source` command and `--source-terms-reviewed` flag are accepted for compatibility but are optional and never consulted to authorize model calls. Existing pilots need no migration or new approval record.
 
 `--prompts-approved` approves the exact serialized request hash (both requests together for a pair). It is stored in `data/approvals.jsonl`. Every model request still needs both explicit billing flags. Model, endpoint, effort, sampling/output settings, essay or prompt changes alter the request hash. Pilot preparation files are sealed and checked against regenerated requests, so editing an inspected Markdown file, settings, scenario or template fails rather than silently using a prior approval. Changed material needs a newly prepared/reviewed pilot.
 
@@ -42,6 +42,6 @@ The pilot lock prevents concurrent stage execution. A failed preflight that neve
 - `state.json`, `events.jsonl`: resume pointers/frozen essay digest and append-only stage events.
 - `data/exploratory/runs/<uuid>/`: exact API request, raw response, extracted output, essay/outcome and failure records.
 - `data/exploratory/{researcher_essays,prisoner_decisions,commitments}.jsonl`: append-only trial/commitment journals.
-- `data/{approvals,budget}.jsonl`: persistent source/request approvals and shared project reservations.
+- `data/{approvals,budget}.jsonl`: exact-request approvals (plus any optional historical source acknowledgements) and shared project reservations.
 
 See the README quick start for copy-pastable CDT Wikipedia / GPT-5 Nano / low-effort / distinct-evidence T4 commands. No model requests were made during this usability sprint; HTTP responses in the tests are mocked.

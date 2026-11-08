@@ -290,11 +290,9 @@ def run(root, args):
         raise EvalError('Prepared request content changed. Re-prepare and inspect the new prompts/settings; previous approval is invalid. No generation was sent.')
     expected_source = getattr(args, 'expected_source_identity', None)
     if expected_source is not None and source_scope(source_record) != expected_source:
-        raise EvalError('Source revision/text changed since pilot preparation. Approve and prepare the new source; no generation was sent.')
+        raise EvalError('Source revision/text changed since pilot preparation. Prepare a new pilot for the changed source; no generation was sent.')
     authorization = {}
     if live:
-        if stage == 'researcher':
-            authorization['source_terms'] = approve(root, 'source_terms', source_scope(source_record), args.source_terms_reviewed)
         authorization['prompts'] = approve(root, 'prompts', {'request_hashes': request_hashes}, args.prompts_approved)
     cfg = load_yaml(root / 'configs/early_test.yaml')
     max_calls = args.max_calls if args.max_calls is not None else cfg['mode']['max_paid_calls']
@@ -317,7 +315,7 @@ def run(root, args):
             'max_calls': max_calls, 'max_estimated_usd': str(max_usd), 'estimates': estimates,
             'estimated_total_usd': str(sum((Decimal(e['estimated_max_usd']) for e in estimates), Decimal(0))) if estimates else None,
             'validation': 'validated' if cap else 'NOT VALIDATED: supply selected model/settings and --capabilities; no price estimate available',
-            'license_review_acknowledged': bool(args.source_terms_reviewed), 'prompt_approval_acknowledged': bool(args.prompts_approved)}
+            'source_approval_required': False, 'prompt_approval_acknowledged': bool(args.prompts_approved)}
     for i, payload in enumerate(payloads):
         (folder / f'request_{i}.json').write_bytes(encoded(payload))
     write_json(folder / 'plan.json', plan)
