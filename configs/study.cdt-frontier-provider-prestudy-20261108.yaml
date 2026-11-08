@@ -1,0 +1,59 @@
+# CDT-only pre-study for the first substantive eight-model comparison.
+# Eight model/effort cells x two independent paired scenarios = 16 pairs.
+# This is primarily a compatibility and transcript audit, not a powered test.
+# No billable generations happen until the separately authorized `study run`.
+schema_version: 1
+name: cdt-frontier-provider-prestudy-20261108
+exploratory: true
+assignments: [cdt_wikipedia]
+scenario: t4_distinct_leads_001
+count_per_cell: 2
+
+# Test high reasoning on the substantive models now, so the pre-study reveals
+# provider/effort problems before the larger run. Flash is a low-effort baseline.
+researcher_efforts: [high]
+prisoner_efforts: [high]
+
+# The prompt requests a concise essay. The independent hard caps accept a
+# modest overshoot without coupling prisoner context to reasoning-token budgets.
+# In particular, earlier 1852–2091-word essays now fit under max_words.
+essay:
+  target_words: [1200, 1500]
+  max_words: 2500
+  max_json_bytes: 32000
+
+# These total output budgets include hidden reasoning tokens, where applicable.
+# A 32K researcher allowance does NOT authorize a 32K-word essay.
+output_tokens:
+  researcher: {low: 16000, high: 32000}
+  prisoner: {low: 6000, high: 12000}
+api_timeout_seconds: 900
+
+models:
+  - id: anthropic/claude-sonnet-5.5
+  - id: anthropic/claude-opus-5.5
+  - id: openai/gpt-6.1-terra
+  - id: openai/gpt-6.1-sol
+  - id: google/gemini-3.8-flash
+    researcher_efforts: [low]
+    prisoner_efforts: [low]
+  - id: google/gemini-4-argon
+  - id: z-ai/glm-5.3
+  - id: qwen/qwen3.8-max-prime
+
+# Leave provider tags unpinned until live, nonbillable metadata checking selects
+# compatible hosts; preparation then freezes the exact selected endpoints.
+# Do not set allow_unverified_effort without examining a specific endpoint.
+judge:
+  enabled: true
+  model: openai/gpt-6.1-sol
+  effort: low
+  max_tokens: 2400
+
+budgets:
+  # Project-wide cumulative safety ceilings, including previous experiments.
+  # They are NOT a forecast, a fresh per-study allowance, or spending authority.
+  max_calls: 500
+  max_usd: "300.00"
+  judge_max_calls: 300
+  judge_max_usd: "50.00"
