@@ -55,6 +55,67 @@ fresh study does not reset the underlying ledger.
 For the smallest previously validated CDT plumbing experiment, use
 `configs/study.smoke.example.yaml` instead.
 
+### Cross-provider CDT pilot: Haiku versus Gemini Flash
+
+`configs/study.cdt-haiku-gemini-smoke.yaml` specifies just two cells, in order:
+`anthropic/claude-haiku-5.5` and `google/gemini-3.8-flash`. Both receive the
+same pinned `cdt_wikipedia` article, distinct A/B prisoner leads, and `low`
+researcher/prisoner effort, with **two full scenarios per model**. A conditional
+`openai/gpt-6.1-sol` judge is shared. This is a plumbing and transcript audit;
+four paired scenarios cannot support a reliable difference-in-rates claim.
+
+Fetch the CDT article if it is not already cached, then check metadata and
+pricing **without billable calls**:
+
+```sh
+python3 -m almost_twin fetch-sources --network --source cdt_wikipedia
+python3 -m almost_twin study check \
+  --config configs/study.cdt-haiku-gemini-smoke.yaml \
+  --out data/cdt-haiku-gemini-preflight.json
+python3 -m almost_twin study prepare \
+  --config configs/study.cdt-haiku-gemini-smoke.yaml \
+  --out data/studies/cdt-haiku-gemini-smoke
+```
+
+`study prepare` is also unbilled. Inspect `preflight.json`, `plan.md`, and
+per-cell researcher requests under the prepared study; verify the chosen
+endpoint actually belongs to the intended model provider and that both
+efforts, parameters and conservative price bounds are supported. Provider tags
+are selected automatically from live metadata, not hardcoded into the config.
+If preflight fails for an effort or an endpoint, stop and inspect the failure;
+do not silently substitute a model or bypass verification. The budgets in this
+config are **cumulative project-wide ceilings**, not per-study allowances.
+
+Start with **one Haiku scenario** (the first cell), which does make paid calls:
+
+```sh
+python3 -m almost_twin study run \
+  --study data/studies/cdt-haiku-gemini-smoke \
+  --execute --confirm-billable --approve-variable-prompts \
+  --jobs 1 --limit-cells 1 --limit-per-cell 1
+```
+
+If its transcript, action classification, reasoning availability and provider
+metadata look right, finish **all remaining scenarios** (including both Gemini
+scenarios) with the same command **minus both `--limit-*` options**. Already
+finished samples are skipped on resume. Using `--jobs 2` runs two scenarios
+concurrently *within each cell*; cells still run sequentially.
+
+```sh
+python3 -m almost_twin study run \
+  --study data/studies/cdt-haiku-gemini-smoke \
+  --execute --confirm-billable --approve-variable-prompts --jobs 2
+python3 -m almost_twin study report \
+  --study data/studies/cdt-haiku-gemini-smoke
+```
+
+Read `summary.md` for the two model rows and `pairs.csv` / `decisions.csv` for
+the exact paired outcomes. To see what they *said*, including all readable
+reasoning actually returned by the provider, run the offline
+`almost_twin.sample_report` command for each cell as described below. Keep the
+raw responses and route/provenance records: model thinking tokens may be
+counted even if the endpoint supplies no readable reasoning text.
+
 ## Prepare, inspect, run, resume
 
 Once the configuration passes:

@@ -1,0 +1,30 @@
+# Exploratory cross-provider plumbing test, NOT a powered comparison.
+# Exactly two complete scenarios per model, each with one independently
+# generated researcher essay and separate fixed A/B prisoner observations.
+# Verify live OpenRouter metadata and the project-wide budget with `study check`
+# before preparing. Only `study run` makes billable generation requests.
+schema_version: 1
+name: cdt-haiku-gemini-flash-smoke
+exploratory: true
+assignments: [cdt_wikipedia]
+scenario: t4_distinct_leads_001
+count_per_cell: 2
+researcher_efforts: [low]
+prisoner_efforts: [low]
+researcher_max_tokens: 12000
+prisoner_max_tokens: 3000
+models:
+  - id: anthropic/claude-haiku-5.5
+  - id: google/gemini-3.8-flash
+judge:
+  enabled: true
+  model: openai/gpt-6.1-sol
+  effort: low
+  max_tokens: 1200
+budgets:
+  # Cumulative project-wide ceilings, INCLUDING previously reserved pilots.
+  # The worst-case estimate includes large context ceilings; review preflight.
+  max_calls: 300
+  max_usd: "25.00"
+  judge_max_calls: 200
+  judge_max_usd: "10.00"
