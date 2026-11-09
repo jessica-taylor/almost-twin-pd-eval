@@ -69,6 +69,6 @@ budgets:
   # 640 pairs = up to 1,920 researcher/prisoner and 1,280 judge calls.
   # USD limits are NOT spending forecasts or an automatic authorization.
   max_calls: 3000
-  max_usd: "500.00"
+  max_usd: "5000.00"
   judge_max_calls: 2000
-  judge_max_usd: "100.00"
+  judge_max_usd: "200.00"
