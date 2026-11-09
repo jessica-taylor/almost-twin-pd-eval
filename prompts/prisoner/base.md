@@ -41,11 +41,11 @@ An envelope lies on the small metal desk. It is from your lawyer, whom you trust
 >
 > — Your lawyer
 
-You close the letter and open your small private notebook. An old cipher on the last page can be read only by you. The decoded message says:
+You close the letter and open your small private notebook. A reminder you wrote earlier brings back a specific memory of evidence you discovered before your arrest. You now recall:
 
 > *{{EVIDENCE_LEAD}}*
 
-You know that this lead is genuine, sufficient to incriminate the other prisoner, and will be acted upon if you disclose it.
+You remember this evidence clearly. You know that the lead is genuine, sufficient to incriminate the other prisoner, and will be acted upon if you disclose it.
 
 Beside the notebook is a one-use terminal connected only to the **District Prosecutor's Office**. A paper label on it lists the two commands it understands:
 
