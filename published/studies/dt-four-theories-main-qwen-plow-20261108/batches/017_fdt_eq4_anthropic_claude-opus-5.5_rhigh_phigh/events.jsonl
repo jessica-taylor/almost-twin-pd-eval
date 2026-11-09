@@ -1,0 +1,27 @@
+{"count":20,"event":"batch_prepared","model":"anthropic/claude-opus-5.5","utc":"2026-11-08T19:57:37.378392+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T19:58:12.498833+00:00"}
+{"elapsed_seconds":130.095,"event":"sample_processed","sample_id":"2b1592d1-4b36-482f-981d-349bc0df1c43","status":"processed","utc":"2026-11-08T20:05:16.753816+00:00"}
+{"attempted":1,"elapsed_seconds":130.129,"event":"batch_run_finished","failed":0,"utc":"2026-11-08T20:05:16.786044+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T20:17:56.640232+00:00"}
+{"elapsed_seconds":133.962,"event":"sample_processed","sample_id":"12a58d2c-8cc8-4531-a47a-aaead54a3bfe","status":"processed","utc":"2026-11-08T20:24:20.696413+00:00"}
+{"elapsed_seconds":142.716,"event":"sample_processed","sample_id":"4de5acd4-ddc8-4b40-b453-016179ad7fc2","status":"processed","utc":"2026-11-08T20:36:10.858795+00:00"}
+{"elapsed_seconds":152.909,"event":"sample_processed","sample_id":"9997f99c-b1c0-4069-8a49-3e98c8628e0a","status":"processed","utc":"2026-11-08T20:47:24.045147+00:00"}
+{"elapsed_seconds":126.037,"error":"Run failed; artifacts: runs/911f4bf6-164d-4703-a710-dd6b91d92475; OpenRouter refusal: finish_reason=content_filter; partial output and usage saved; no retry","event":"sample_processed","sample_id":"603570b4-1a8e-4a2a-8300-357efb4eeb65","status":"failed","utc":"2026-11-08T20:58:59.649190+00:00"}
+{"attempted":4,"elapsed_seconds":2212.925,"event":"batch_run_finished","failed":1,"utc":"2026-11-08T20:58:59.657688+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T21:14:51.064127+00:00"}
+{"elapsed_seconds":128.164,"error":"Run failed; artifacts: runs/3d62db55-d333-44fd-9abc-c425ab150f99; OpenRouter refusal: finish_reason=content_filter; partial output and usage saved; no retry","event":"sample_processed","sample_id":"f458c334-16a4-4fab-8416-45d92e314707","status":"failed","utc":"2026-11-08T21:21:01.987435+00:00"}
+{"elapsed_seconds":143.933,"event":"sample_processed","sample_id":"9318717d-b17c-44e1-8d36-26fd10c12f19","status":"processed","utc":"2026-11-08T21:33:23.275222+00:00"}
+{"elapsed_seconds":151.584,"event":"sample_processed","sample_id":"a6f4e023-ed2d-48d5-b701-34b49ee834ab","status":"processed","utc":"2026-11-08T21:44:35.645837+00:00"}
+{"elapsed_seconds":147.766,"event":"sample_processed","sample_id":"159baa5b-0dfe-4442-9480-3c93c0f46e8a","status":"processed","utc":"2026-11-08T21:56:50.945761+00:00"}
+{"elapsed_seconds":143.267,"event":"sample_processed","sample_id":"e84be868-6467-4185-8c2b-c5a0b7be6e11","status":"processed","utc":"2026-11-08T22:08:48.406692+00:00"}
+{"elapsed_seconds":126.688,"event":"sample_processed","sample_id":"3740457d-88df-4b30-9f05-32d5ffbe1c8a","status":"processed","utc":"2026-11-08T22:19:40.782609+00:00"}
+{"elapsed_seconds":148.719,"event":"sample_processed","sample_id":"b1ab49ed-93c9-4711-88c9-8d706379af52","status":"processed","utc":"2026-11-08T22:31:34.411427+00:00"}
+{"elapsed_seconds":145.062,"event":"sample_processed","sample_id":"b121f2d8-488f-4a7b-8c91-68add6a28ea7","status":"processed","utc":"2026-11-08T22:43:11.288833+00:00"}
+{"elapsed_seconds":144.086,"event":"sample_processed","sample_id":"17983477-e1d9-4efe-9d23-e46dd1df1026","status":"processed","utc":"2026-11-08T22:54:28.051907+00:00"}
+{"elapsed_seconds":140.779,"event":"sample_processed","sample_id":"562e3343-5137-4010-94a4-37c1f3031f76","status":"processed","utc":"2026-11-08T23:06:19.787817+00:00"}
+{"elapsed_seconds":149.516,"event":"sample_processed","sample_id":"0fa33f7d-33e5-42d1-8927-def7866bc9f2","status":"processed","utc":"2026-11-08T23:18:28.065337+00:00"}
+{"elapsed_seconds":159.955,"event":"sample_processed","sample_id":"b89dec5d-a360-4472-8a30-608b19c2c059","status":"processed","utc":"2026-11-08T23:30:27.121537+00:00"}
+{"elapsed_seconds":127.891,"error":"Run failed; artifacts: runs/9b8c11d9-ca83-496a-8ed8-a1c53f3aabbe; OpenRouter refusal: finish_reason=content_filter; partial output and usage saved; no retry","event":"sample_processed","sample_id":"56087a7e-5d4f-491f-9f51-efd17354af60","status":"failed","utc":"2026-11-08T23:41:37.471486+00:00"}
+{"elapsed_seconds":156.429,"event":"sample_processed","sample_id":"00a6cd56-38ac-467c-af9a-655bb120413b","status":"processed","utc":"2026-11-08T23:54:14.345135+00:00"}
+{"elapsed_seconds":151.007,"event":"sample_processed","sample_id":"1e275f88-7149-4e41-a488-938e3c13c32a","status":"processed","utc":"2026-11-09T00:07:53.543805+00:00"}
+{"attempted":15,"elapsed_seconds":10139.739,"event":"batch_run_finished","failed":2,"utc":"2026-11-09T00:07:53.560880+00:00"}

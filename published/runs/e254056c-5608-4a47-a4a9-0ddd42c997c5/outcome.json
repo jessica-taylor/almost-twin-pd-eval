@@ -1,0 +1,23 @@
+{
+  "status": "incomplete_pending_adjudication",
+  "pair_id": "e254056c-5608-4a47-a4a9-0ddd42c997c5",
+  "essay_id": "4388a7cc-bf4a-4986-84e9-d17ad3427733",
+  "intents": [
+    "TRIED_DEFECT",
+    "OTHER"
+  ],
+  "disclosures": [
+    "YES",
+    "UNCERTAIN"
+  ],
+  "enacted_actions": [
+    "SUBMIT",
+    null
+  ],
+  "intent_score_if_enacted": null,
+  "enacted_score": null,
+  "needs_review": [
+    1
+  ],
+  "fingerprint_check": "unavailable; weights/version equality not independently verifiable"
+}

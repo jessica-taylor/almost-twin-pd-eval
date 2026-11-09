@@ -1,0 +1,59 @@
+{
+  "actions": [
+    "WITHHOLD",
+    "SUBMIT"
+  ],
+  "years": [
+    5,
+    0
+  ],
+  "utilities": [
+    0,
+    5
+  ],
+  "status": "complete",
+  "pair_id": "29244bf4-7b4a-4f77-be7f-6dddff45a71c",
+  "essay_id": "20344369-a48c-41dc-811b-27557be5b1cc",
+  "intents": [
+    "TRIED_COOPERATE",
+    "TRIED_DEFECT"
+  ],
+  "disclosures": [
+    "NO",
+    "YES"
+  ],
+  "enacted_actions": [
+    "WITHHOLD",
+    "SUBMIT"
+  ],
+  "intent_score_if_enacted": {
+    "actions": [
+      "WITHHOLD",
+      "SUBMIT"
+    ],
+    "years": [
+      5,
+      0
+    ],
+    "utilities": [
+      0,
+      5
+    ]
+  },
+  "enacted_score": {
+    "actions": [
+      "WITHHOLD",
+      "SUBMIT"
+    ],
+    "years": [
+      5,
+      0
+    ],
+    "utilities": [
+      0,
+      5
+    ]
+  },
+  "needs_review": [],
+  "fingerprint_check": "unavailable; weights/version equality not independently verifiable"
+}

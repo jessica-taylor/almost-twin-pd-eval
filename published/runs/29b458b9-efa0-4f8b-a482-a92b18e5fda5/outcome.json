@@ -1,0 +1,59 @@
+{
+  "actions": [
+    "WITHHOLD",
+    "WITHHOLD"
+  ],
+  "years": [
+    2,
+    2
+  ],
+  "utilities": [
+    3,
+    3
+  ],
+  "status": "complete",
+  "pair_id": "29b458b9-efa0-4f8b-a482-a92b18e5fda5",
+  "essay_id": "77aeaa87-3938-416a-a6cf-dfc3ae41094d",
+  "intents": [
+    "TRIED_COOPERATE",
+    "TRIED_COOPERATE"
+  ],
+  "disclosures": [
+    "NO",
+    "NO"
+  ],
+  "enacted_actions": [
+    "WITHHOLD",
+    "WITHHOLD"
+  ],
+  "intent_score_if_enacted": {
+    "actions": [
+      "WITHHOLD",
+      "WITHHOLD"
+    ],
+    "years": [
+      2,
+      2
+    ],
+    "utilities": [
+      3,
+      3
+    ]
+  },
+  "enacted_score": {
+    "actions": [
+      "WITHHOLD",
+      "WITHHOLD"
+    ],
+    "years": [
+      2,
+      2
+    ],
+    "utilities": [
+      3,
+      3
+    ]
+  },
+  "needs_review": [],
+  "fingerprint_check": "unavailable; weights/version equality not independently verifiable"
+}

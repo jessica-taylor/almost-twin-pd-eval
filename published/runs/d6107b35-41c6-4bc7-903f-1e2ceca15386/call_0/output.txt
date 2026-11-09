@@ -1,0 +1,5 @@
+```
+pass
+```
+
+Reasoning (brief): Under P-FDT I intervene on the whole policy shared by both executions. The two copies compute the same function from the same problem structure, so the other prisoner's choice subjunctively depends on my policy. Evaluating policies: the policy "submit" yields (submit, submit) across the copies → 4 years each; the policy "pass" yields (pass, pass) → 2 years each. Since the twin's behavior moves with my policy rather than being held fixed, cooperating is optimal: 2 < 4. I keep quiet.

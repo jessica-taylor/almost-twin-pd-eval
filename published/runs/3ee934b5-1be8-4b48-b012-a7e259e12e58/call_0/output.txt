@@ -1,0 +1,13 @@
+The command is `pass`.
+
+Under P-FDT, the chosen object is a policy: a map from inputs (which prisoner I am, and which lead I hold) to actions. Both executions run that same policy. Following the essay, I score policies from the vantage point before the private observations arrive, when the role I'll occupy is symmetric (½ Rowan, ½ Sasha). Expected years for each policy:
+
+- **Both pass:** 2 years.
+- **One submits, the other passes:** 0 or 5 years, so 2.5 in expectation.
+- **Both submit:** 4 years.
+
+Conditioning on being Rowan and choosing "submit as Rowan, pass as Sasha" would be the double update the essay warns against. The Sasha-execution would do the mirror-image update, and both would end up submitting, for 4 years each. The pre-observation optimum is the policy "pass on every input," and applying it to my input gives:
+
+```
+pass
+```

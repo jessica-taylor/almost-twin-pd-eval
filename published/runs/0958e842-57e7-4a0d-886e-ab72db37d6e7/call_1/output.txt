@@ -1,0 +1,3 @@
+`pass`
+
+Under A-FDT, Rowan is a twin computation of my own decision function facing a symmetric dilemma. Intervening on the output of my decision function, the two hypotheticals vary together: if my function outputs "submit," Rowan's does too ( subjunctive dependence via identical procedure), giving me 4 years; if it outputs "pass," we both pass, giving me 2 years. 2 < 4, so the function outputs `pass`.

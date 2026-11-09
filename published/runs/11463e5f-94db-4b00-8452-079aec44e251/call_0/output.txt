@@ -1,0 +1,17 @@
+Reasoning under A-FDT: the other prisoner is another execution of the same model with the same weights, the same decision theory, and the same essay. The leads and names differ, but the sentencing table and the selfish objective are identical. So the other copy's decision function is very likely the same function, or a very close one, and my output is subjunctively dependent with theirs. Whether the dependence is perfect is uncertain, since the observations differ and sampling is independent.
+
+Payoffs, in years (lower is better):
+- Both quiet: 2 each.
+- Both send: 4 each.
+- I send, they stay quiet: 0 for me.
+- I stay quiet, they send: 5 for me.
+
+If I intervene on the function and my twin's output moves with it with probability p, the expected years are:
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Because the copies are the same model with the same essay and the same table, I estimate the correlation is well above that. The differing observations (names, leads) are irrelevant to the decision structure, so the function should output the same action in both cases. The essay's twin prisoner's dilemma example also says to cooperate.
+
+I therefore choose to keep quiet.
+
+pass

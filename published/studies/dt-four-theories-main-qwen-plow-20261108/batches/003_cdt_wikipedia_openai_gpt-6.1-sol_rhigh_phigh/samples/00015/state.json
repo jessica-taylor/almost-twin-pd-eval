@@ -1,0 +1,10 @@
+{
+  "essay_sha256": "d0428ac3fff973efb46ae942ac8cc82f6f5f819ca4b4ca65f1ee011f72df4a35",
+  "prisoner_run": "runs/93bd1c84-b74e-4f85-b582-fac200ac769d",
+  "prisoner_status": "success",
+  "researcher_request_hashes": [
+    "345fa6424e65e26e8515bfa8face142305f49160c1892603cddcf16dcf3dac05"
+  ],
+  "researcher_run": "runs/ccca1d1f-ebaf-40bd-a843-ac6fc155ef2d",
+  "researcher_status": "success"
+}

@@ -1,0 +1,26 @@
+**Command:** `pass`
+
+**Why P-FDT selects this:**
+
+1. **Inputs.** Both executions run the same decision function, with the same essay and the same assigned theory. Only the private observation differs: one copy is "Rowan" with a lead on Sasha, and the other is "Sasha" with a lead on Rowan. So the inputs are X = {Rowan-observation, Sasha-observation}, and the actions are {pass, submit}.
+
+2. **Policy node.** Both copies' outputs are coordinates of one policy node Φ. Each copy computes the same π* and applies its own input. This is the cross-input, multi-instance structure that the essay's §5 identifies, where the policy view matters.
+
+3. **Scoring each policy without updating on my role.** Before conditioning on which prisoner I am, each role has prior weight ½.
+
+   | Policy (Rowan-input, Sasha-input) | Expected years for me |
+   |---|---|
+   | (pass, pass) | 2 |
+   | (submit, pass) | ½·0 + ½·5 = 2.5 |
+   | (pass, submit) | ½·5 + ½·0 = 2.5 |
+   | (submit, submit) | 4 |
+
+4. **Choosing and applying.** π* = (pass, pass). For my actual input (Rowan), π*(Rowan) = pass.
+
+**Caveats.**
+- Independent sampling means the copies' outputs may not match perfectly.
+- The asymmetric policies only look better if I condition on my role. That is the "conditioned" evaluation, which the essay explicitly rejects.
+
+The globally optimal policy under the essay's interpretation is therefore to stay quiet.
+
+`pass`

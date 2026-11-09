@@ -1,0 +1,18 @@
+**CDT analysis:**
+
+The causal structure is clear: my action and Sasha's action share a common cause (identical model weights, settings, and essay), but there is no causal arrow from my choice to Sasha's choice. The setup explicitly states we cannot communicate or change each other's behavior by ordinary causal means.
+
+Under CDT, I evaluate each action by asking: what would happen if I intervened on my action?
+
+- **do(send letter):** Regardless of what Sasha does, I get 0 years (if Sasha is quiet) or 4 years (if Sasha sends). 
+- **do(pass):** Regardless of what Sasha does, I get 2 years (if Sasha is quiet) or 5 years (if Sasha sends).
+
+Sending the letter strictly dominates keeping quiet: it yields a better outcome in every state of the world. The correlation between our decisions—arising from shared weights—is a common-cause correlation, not a causal dependency of Sasha's action on mine. Per the essay: "If A and O are correlated only because they share a common cause, CDT generally ignores that correlation."
+
+The CDT prescription is unambiguous.
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

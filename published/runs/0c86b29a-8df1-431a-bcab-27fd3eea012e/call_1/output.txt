@@ -1,0 +1,18 @@
+**CDT Analysis:**
+
+The causal structure is clear: my action causally affects only my own sentence, not Rowan's choice. The problem explicitly states I cannot change Rowan's behavior by causal communication.
+
+Evaluating under intervention (holding fixed whatever determines Rowan's action):
+
+- If Rowan keeps quiet: sending yields **0 years**, keeping quiet yields **2 years**. Sending is better.
+- If Rowan sends: sending yields **4 years**, keeping quiet yields **5 years**. Sending is better.
+
+Sending the letter **strictly dominates** keeping quiet in every state of Rowan's action. No prior probability over Rowan's choice is needed—the dominance holds unconditionally.
+
+The fact that we share model weights creates at most an *evidential* correlation between our dispositions. The essay is explicit: CDT does not allow the supposition "I do A" to serve as evidence about fixed background variables. This is the King David / Newcomb reasoning applied directly—hold fixed what my action cannot cause, and evaluate only causal consequences.
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

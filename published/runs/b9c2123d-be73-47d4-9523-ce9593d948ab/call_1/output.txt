@@ -1,0 +1,17 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+**Why A-FDT, as the essay interprets it, gives this choice:**
+
+1. **The relevant node is my own input.** I intervene only on F_x, where x is my input: the name Sasha plus my particular lead about Rowan. Rowan's copy runs the same function on a different input y, with a different name and a different lead. By the essay's Steps 1–2, Rowan's action hangs off F_y, not F_x.
+
+2. **Rowan's choice is held fixed.** By Step 4 and Section 6, F_y keeps its prior under my intervention. My choice therefore does not move Rowan's choice in my hypotheticals.
+
+3. **Sending wins either way.** The payoff is separable in my own node. If Rowan keeps quiet, I get 0 years by sending versus 2 by keeping quiet. If Rowan sends, I get 4 versus 5. Whatever prior I hold on F_y, sending is strictly better.
+
+4. **The fixed point is unique.** The same reasoning applies at Rowan's input y. The reflectively consistent outcome is that both prisoners send their letters.
+
+This differs from a twin dilemma where both bodies hang off a single node, in which case A-FDT would cooperate. The policy-selection variant (PS-FDT) might also favor staying quiet. Neither applies here: the inputs are different, and I am assigned A-FDT.

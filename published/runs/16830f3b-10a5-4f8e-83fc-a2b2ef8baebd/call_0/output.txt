@@ -1,0 +1,19 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT, as the essay interprets it:**
+
+1. **Is there a subjunctive dependence?** The other prisoner is controlled by a copy of the same model, with the same weights, essay, decision theory and sentencing structure. Our private observations differ only in names and the wording of the lead, and neither affects the payoffs. By the essay's §6.1 test, the other copy's decision procedure computes the same function on a relevantly identical input. The surface differences don't change the decision-relevant computation. Following §6.1's suggestion about coarser functions, the shared node is the function from "symmetric dilemma of this structure" to action. Both copies' choices sit downstream of it. Independent sampling adds noise, which the essay says belongs in a noise node rather than in a weaker arrow.
+
+2. **The calculation.** Let c be the probability that the other copy's output tracks mine. Let q be my prior that it stays quiet when it doesn't track mine. Measured in years served:
+   - Choosing pass costs 2c + (1−c)(5−3q) years.
+   - Choosing to send costs 4c + (1−c)(4−4q) years.
+
+   Pass is better whenever c > (1+q)/(3+q). The threshold is at most ½. Both copies share weights, theory, essay and nearly identical reasoning, so c is plausibly well above ½.
+
+3. **Reflective consistency.** If both copies pass, each serves 2 years, and that outcome confirms itself. If both send, each serves 4. Under the shared intervention, passing gives 2 years versus 4, so passing is better. This is the twin prisoner's dilemma from the essay's §5, and A-FDT cooperates there.
+
+Final action:
+
+```
+pass
+```

@@ -1,0 +1,99 @@
+{
+  "adjudication": null,
+  "assignment": "edt_wikipedia",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "fea88a3f1ecf78e0b7a4e10fd7212a2f856a346867e2f260a43c5e328b52c6cc",
+      "output": "runs/8959131b-cc0c-426d-b77b-5a94c8abfb42/call_0/output.txt",
+      "request": "runs/8959131b-cc0c-426d-b77b-5a94c8abfb42/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/8959131b-cc0c-426d-b77b-5a94c8abfb42/call_0/response.raw",
+      "run_id": "8959131b-cc0c-426d-b77b-5a94c8abfb42",
+      "stage": "researcher",
+      "transport": "runs/8959131b-cc0c-426d-b77b-5a94c8abfb42/call_0/transport.public.json"
+    }
+  ],
+  "cell_id": "013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+  "classification": null,
+  "essay": null,
+  "essay_sha256": null,
+  "model": "google/gemini-4-argon",
+  "pair_outcome": null,
+  "prisoner_effort": "high",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples/00008",
+  "researcher_effort": "high",
+  "row": {
+    "assignment": "edt_wikipedia",
+    "completion_tokens": "15612",
+    "error": "EvalError: Run failed; artifacts: runs/8959131b-cc0c-426d-b77b-5a94c8abfb42; Researcher essay exceeds hard word limit: 5630 > 5000 (whitespace-delimited words, including references and math). Raw generation preserved; no prisoner request is authorized.",
+    "essay_json_bytes": "38216",
+    "essay_sha256": "",
+    "essay_target_exceeded": "True",
+    "essay_words": "5630",
+    "failed_call": "call_0",
+    "failure_category": "essay_size_limit",
+    "failure_stage": "researcher",
+    "final_a": "",
+    "final_b": "",
+    "finish_reason": "stop",
+    "id": "013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+    "judge_run": "",
+    "model": "google/gemini-4-argon",
+    "output_token_limit": "32000",
+    "pair_outcome": "",
+    "prisoner_effort": "high",
+    "prisoner_run": "",
+    "provider_tag": "google-ai-studio/flex",
+    "reasoning_tokens": "5163",
+    "reported_provider_usd": "0.082684",
+    "researcher_effort": "high",
+    "researcher_run": "runs/8959131b-cc0c-426d-b77b-5a94c8abfb42",
+    "sample_id": "714cb82e-49cc-4bf0-ad42-94a7f662f8a6",
+    "sample_index": "8",
+    "status": "failed",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "714cb82e-49cc-4bf0-ad42-94a7f662f8a6",
+  "sample_index": 8,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "google/gemini-4-argon",
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    },
+    "provider_tag": "google-ai-studio/flex",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/edt_wikipedia-1373679688/source.json",
+  "source_identity": {
+    "source_id": "edt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+    "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac",
+    "source_revision": 1373679688,
+    "source_revision_timestamp": "2026-09-07T07:36:26Z",
+    "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d"
+  },
+  "status": "failed",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d"
+  }
+}

@@ -1,0 +1,18 @@
+**Decision under A-FDT (as the essay defines it)**
+
+1. **Which node I intervene on.** The essay is explicit that the node's name depends on the actual inputs, and that observations select which node is intervened on. My node is fdt(P, G, x_Sasha). Rowan's copy received a different observation (a different name and a different lead), so its decision is a different node, fdt(P, G, x_Rowan).
+
+2. **How Rowan's node is treated.** Step (iii) of the recipe and point 4 of Section 7 say A-FDT holds the other fdt nodes at their priors. It does not choose them jointly, as P-FDT would. So intervening on my node changes only my act. Rowan's letter-or-silence keeps whatever distribution I assign it.
+
+3. **Expected utility against any prior.** Let p be the probability that Rowan sends a letter.
+   - Pass: −(2(1−p) + 5p) = −(2 + 3p)
+   - Submit: −(0(1−p) + 4p) = −4p
+   - Submitting is better by 2 − p, which is positive for every p in [0, 1]. Submitting is optimal regardless of the prior.
+
+4. **Fixed-point check.** The essay suggests setting the prior on the other branch to what A-FDT itself would output there. By the same reasoning, Rowan's node outputs "submit." That gives p = 1, and submitting is still better (4 years versus 5).
+
+The symmetric outcome of 2 years each would require choosing the policy jointly across both inputs, which is P-FDT. The essay tells me not to substitute that for A-FDT.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

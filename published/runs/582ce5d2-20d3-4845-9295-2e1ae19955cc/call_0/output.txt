@@ -1,0 +1,17 @@
+**Decision under A-FDT**
+
+1. **Locate the function nodes.** The other prisoner runs the same decision function, but on a different input: different name, different lead, different possible letter. Under the essay's construction (§3.2, and point (ii) in §3), observations select which node is intervened on. So the other prisoner's act is governed by a distinct node, F_Sasha's-input. My act is governed by F_Rowan's-input.
+
+2. **Evaluate.** I intervene only on F_Rowan's-input. F_Sasha's-input stays at its prior, which should be self-consistent per §6.3. Let r be the probability that the other prisoner keeps quiet.
+   - Expected years from `pass`: 2r + 5(1−r) = 5 − 3r
+   - Expected years from `submit letter`: 0·r + 4(1−r) = 4 − 4r
+
+   Submitting the letter gives fewer years for every r in [0, 1]. Within A-FDT's hypotheticals it is strictly dominant.
+
+3. **Check self-consistency.** By symmetry, A-FDT run on the other prisoner's input also submits. So r = 0 is the fixed point, and my verdict holds at that value too. This is the same distinct-input structure as the essay's §6.4 example. Because the inputs differ, A-FDT cannot treat both prisoners' acts as children of one node, as it could in the identical-twin case.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

@@ -1,0 +1,11 @@
+Under the essay's literal reading of Equation (4), the prisoner should send the letter.
+
+**Choosing the node.** I intervene only on my own node, F_x, where x is my private observation (I am Sasha and hold the lead about Rowan). The other copy runs the same function, but on a different input: a different name and a different lead. So its output is a sibling node, F_y. Recipe step 3 says to hold F_y at its prior. The edge criterion in §3 draws an edge only to processes that compute my procedure on *my* input y, so there is no edge from F_x to the other prisoner's choice.
+
+**Comparing actions with F_y held fixed.** Sending the letter is better whatever F_y is:
+- If the other prisoner keeps quiet, sending gives 0 years instead of 2.
+- If the other prisoner sends, sending gives 4 years instead of 5.
+
+**Checking the sibling prior.** The essay proposes using the self-consistent value for F_y, which is the action A-FDT would output at the other input. That value is also to send, so the result is stable. Unlike the coordination example in §7(b), there is only one self-consistent outcome here, and A-FDT is not indifferent at any prior.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

@@ -1,0 +1,39 @@
+{
+  "source_id": "fdt",
+  "title": "Functional Decision Theory: A New Theory of Instrumental Rationality",
+  "extractor": "mechanical-source-extractor/1.0",
+  "downloads": [
+    {
+      "url": "https://arxiv.org/src/1710.05060v2",
+      "resolved_url": "https://arxiv.org/src/1710.05060v2",
+      "retrieved_at_utc": "2026-11-08T19:06:20.388553+00:00",
+      "raw_file": "source.bin",
+      "raw_sha256": "36c3b180519b94b7f4bfb7e013589bd0b57b30dea681a87fdadc4e1bc36d3a27",
+      "bytes": 58335,
+      "content_type": "application/gzip"
+    }
+  ],
+  "warnings": [
+    "Conservative Markdown/TeX conversion; macros, cross-reference labels, TikZ diagrams and bibliography markup remain literal TeX. No TeX was executed.",
+    "Review original macro appendix to interpret mathematical symbols; graph drawings are retained as source, not rendered images."
+  ],
+  "status": "passed_automated_checks",
+  "revision": "arXiv:1710.05060v2",
+  "url": "https://arxiv.org/src/1710.05060v2",
+  "method": "tex",
+  "archive_format": "gzip-tar",
+  "text_statistics": {
+    "main_tex": "main.tex",
+    "equations": 4,
+    "footnotes": 16,
+    "sections": 10,
+    "characters": 205214,
+    "words": 23819,
+    "lines": 2443
+  },
+  "conversion_command": "safe_unpack -> expand input/include -> conservative Markdown/TeX (no TeX execution)",
+  "normalized_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "normalized_file": "article.md",
+  "manual_approval": false,
+  "extractor_sha256": "6fc0f4d2f8a3fcb2f9d87ac9aa316c1ed8f6e08d482da64213b6b464d4d1d34e"
+}

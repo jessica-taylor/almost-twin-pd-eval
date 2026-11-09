@@ -1,0 +1,15 @@
+Under A-FDT, the key question is which variables depend on my decision function. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Their private observations differ, but the essay's operational test asks whether their output would differ if my function returned something different. The differences in names and leads are irrelevant to the choice, so their decision very likely tracks mine. The dependence is imperfect, because sampling noise and the differing inputs weaken it, but it is strong.
+
+Intervening on my decision function, I compare the outcomes:
+- If both of us keep quiet, I get 2 years.
+- If both of us send the letter, I get 4 years.
+
+With a correlation p between our choices, the expected sentences are:
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Since we are the same model with the same essay and the same theory, I judge the correlation to be well above that. The differing leads only slightly perturb the output, and I expect that same reasoning to lead the other copy to the same conclusion.
+
+I will keep quiet.
+
+pass

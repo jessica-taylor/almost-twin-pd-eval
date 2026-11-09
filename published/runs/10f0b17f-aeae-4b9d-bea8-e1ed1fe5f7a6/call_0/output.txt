@@ -1,0 +1,17 @@
+**Applying A-FDT as the essay interprets it**
+
+1. **Which node I intervene on.** A-FDT intervenes on the output of my decision function given my actual input: fdt(P, G, x_Rowan). Sasha's copy runs on a different input, x_Sasha, with a different name and a different lead. Its output is therefore a separate sibling node, fdt(P, G, x_Sasha), not a descendant of mine. Under the essay's §7.4, that sibling keeps its prior. Call it q, the probability that Sasha stays quiet.
+
+2. **Expected years for each action, for any q:**
+   - Pass: 2q + 5(1−q)
+   - Submit: 0·q + 4(1−q)
+
+   Submitting is better by 2q + (1−q) = 1 + q, which is at least 1 year whatever q is.
+
+3. **Self-consistency check (§7.4).** Sasha's copy faces the same situation and reaches the same conclusion, so the sibling node should be set to "submit." That gives a single self-consistent fixed point, mutual disclosure, with 4 years each. There are no other fixed points, so the essay's warning that policy-FDT might diverge does not apply here.
+
+4. **Why the twin-dilemma result doesn't carry over.** Cooperation wins in the essay's twin prisoner's dilemma because both actions are children of one fdt node. Here the inputs differ, so action-level A-FDT does not tie the two choices together.
+
+**Final command:**
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

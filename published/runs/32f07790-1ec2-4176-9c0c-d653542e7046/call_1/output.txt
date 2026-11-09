@@ -1,0 +1,8 @@
+**pass**
+
+Under A-FDT, the choice comes down to how strongly Rowan's decision depends on mine, and here that dependence is strong.
+
+- **Shared reasoning.** Rowan's choice is produced by the same model, following the same decision theory and reading the same essay. Our inputs differ only in names and the wording of each lead, and those differences have no bearing on the sentencing table or the selfish objective. So the two computations very likely give the same output. I'll call my confidence in that agreement ρ.
+- **Threshold.** Using the essay's partial-similarity model, passing beats sending the letter whenever 2ρ > (1−ρ)(2−q), where q is the chance Rowan sends a letter if his choice turns out to be independent of mine. Even in the worst case (q = 0), this only requires ρ > 0.5. That is easily met when the reasoning is this symmetric.
+- **Comparison.** If we both pass, I get 2 years. If we both send letters, I get 4. Passing yields fewer years.
+- **Self-consistency.** If I expect Rowan to reach the same conclusion, my best response is still to pass, so the choice holds up.

@@ -1,0 +1,16 @@
+**P-FDT analysis:**
+
+The two prisoners are independent executions of the same model, same weights, same settings, same decision theory, same essay, with symmetric (though not identical) observations. Per the essay's Section 4.3 (twin prisoner's dilemma) and its treatment of subjunctive dependence: "For copies or twins using the same reasoning procedure, the answer is yes" — both agents' actions are downstream from the same policy variable.
+
+Under **do(Pol = keep quiet)**: both copies keep quiet → 2 years each.
+Under **do(Pol = send letter)**: both copies send letters → 4 years each.
+
+Since U = −years, the keep-quiet policy yields higher utility (−2 > −4). Even allowing for some sampling divergence, the threshold for cooperation to dominate is p > 5/7 ≈ 0.714, which is easily exceeded given the strong subjunctive dependence.
+
+CDT would defect (sending letter dominates in the local sense), but P-FDT correctly recognizes that switching the policy also switches the other copy's action, so the dominance argument dissolves.
+
+**My command:**
+
+```
+pass
+```

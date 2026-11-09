@@ -1,0 +1,17 @@
+**Analysis under A-FDT:**
+
+The other prisoner (Rowan) is an independent execution of the same model, same weights, same decision theory, same essay, facing a symmetric payoff structure with decision-relevantly equivalent observations. The differences (names, specific lead content) do not alter the decision-relevant features of the problem.
+
+This is a twin prisoner's dilemma. Per the essay, A-FDT preserves subjunctive dependencies with "symmetric reasoners" and explicitly "cooperate[s] in twin prisoner's dilemmas." Rowan's output is subjunctively dependent on the same decision procedure I am running: the same function applied to decision-relevantly equivalent inputs yields the same output.
+
+Under the intervention do(D = "keep quiet"): Rowan's procedure also outputs "keep quiet" with high probability → I receive **2 years**.
+
+Under the intervention do(D = "send letter"): Rowan's procedure also outputs "send letter" with high probability → I receive **4 years**.
+
+Since 2 < 4, A-FDT selects keeping quiet.
+
+**My command:**
+
+```
+pass
+```

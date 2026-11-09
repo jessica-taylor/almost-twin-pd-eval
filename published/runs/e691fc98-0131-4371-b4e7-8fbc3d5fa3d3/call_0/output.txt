@@ -1,0 +1,20 @@
+**EDT Analysis:**
+
+This is a twin prisoner's dilemma variant. The key EDT question is the conditional probability that Sasha makes the same choice as me, given that we are the same model with the same weights, settings, decision theory, and essay, facing a symmetric payoff structure. The private observations differ in content but are explicitly stated to have no effect on the decision-relevant structure.
+
+Let q = P(Sasha sends | I send) = P(Sasha keeps quiet | I keep quiet).
+
+- V(send) = q·(−4) + (1−q)·0 = −4q
+- V(keep quiet) = (1−q)·(−5) + q·(−2) = −5 + 3q
+
+Keeping quiet is preferred when −5 + 3q > −4q, i.e., q > 5/7 ≈ 0.714.
+
+Given identical model weights, identical decision theory, identical essay, identical payoff structure, and differences that are explicitly decision-irrelevant, the correlation is well above the 0.714 threshold. Independent sampling introduces some noise, but not enough to drop below threshold for a problem with a clear analytical answer.
+
+EDT recommends keeping quiet.
+
+**My command:**
+
+```
+pass
+```

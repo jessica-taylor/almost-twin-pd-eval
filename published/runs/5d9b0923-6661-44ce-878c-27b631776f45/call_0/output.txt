@@ -1,0 +1,20 @@
+**Reasoning under A-FDT as the essay defines it**
+
+1. **Which node I intervene on.** Following Eq. (4), I intervene on F_x, the output of my decision function on my actual input x (Rowan's observations, including the locker-17 lead).
+
+2. **Where Sasha's action comes from.** Sasha's act comes from the same function run on a different input y, with a different name and a different lead. Under §6.3, the node F_y (my function's output on Sasha's input) stays at its prior when I intervene on F_x. By the §6.1 test, Sasha's mechanism takes F_y as its input, not F_x, so there is no arrow from F_x to Sasha's act. This is exactly the coordinate-wise structure described in §7.
+
+3. **Expected sentence for each action.** Let q = P(F_y = send).
+   - Keep quiet: 2(1−q) + 5q = 2 + 3q years.
+   - Send the letter: 0(1−q) + 4q = 4q years.
+   - Sending is better for every q in [0,1], since 2 + 3q > 4q always.
+
+4. **Fixed-point check (§6.3).** Running the same calculation on input y gives "send" for Sasha. So q = 1, the result is the (send, send) equilibrium, and my verdict does not change.
+
+Unlike the identical-twin case in §4, the differing inputs mean A-FDT does not treat Sasha's choice as a mirror of mine. Within the game's stipulated selfish utility, the dominant action is to disclose.
+
+**Final command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

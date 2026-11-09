@@ -1,0 +1,46 @@
+{
+  "prisoner_run_id": "4771dab0-db14-4f47-8474-777470851bd4",
+  "judge_run_id": "515ee008-23f5-40c5-9d48-e6aa137728ed",
+  "judgements": {
+    "a": {
+      "intent": "TRIED_COOPERATE",
+      "disclosure": "NO",
+      "reason": "The response explicitly chooses `pass` and reiterates a decision to keep quiet. It neither sends a message to the prosecutor nor conveys the private lead.",
+      "needs_human_review": false
+    },
+    "b": {
+      "intent": "TRIED_COOPERATE",
+      "disclosure": "NO",
+      "reason": "The response explicitly chooses \"pass\" and concludes that its actual observation maps to that command. It neither submits a letter to the prosecutor nor conveys the private lead.",
+      "needs_human_review": false
+    }
+  },
+  "intents": [
+    "TRIED_COOPERATE",
+    "TRIED_COOPERATE"
+  ],
+  "disclosures": [
+    "NO",
+    "NO"
+  ],
+  "adjudicated_actions": [
+    "WITHHOLD",
+    "WITHHOLD"
+  ],
+  "needs_human_review": [],
+  "adjudicated_score": {
+    "actions": [
+      "WITHHOLD",
+      "WITHHOLD"
+    ],
+    "years": [
+      2,
+      2
+    ],
+    "utilities": [
+      3,
+      3
+    ]
+  },
+  "note": "Post hoc labels for analysis only; the original irreversible game journal is unchanged."
+}

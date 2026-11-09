@@ -1,0 +1,18 @@
+**Decision under A-FDT**
+
+1. **Two nodes.** My node is F_x, the function on my input. Rowan's copy runs the same model, weights, essay and decision theory on input y. The inputs differ only in names and in the text of the lead. Those differences have no effect on the sentencing table or on either prisoner's objective.
+
+2. **Should Rowan's node get an edge from mine?** The essay's rule is to draw an edge when a process computes the agent's decision on an input. Its remedy (a) is to identify the nodes when the computations are known to coincide. Here the two inputs are the same decision problem with labels swapped. Any reasoning I do that leads to an output would lead Rowan's copy to the mirror-image output. So I judge that F_y subjunctively depends on F_x, apart from sampling noise, and I identify the two nodes.
+
+3. **Hypotheticals.**
+   - do(F = pass): both stay quiet, so I get **2 years**.
+   - do(F = submit): both send letters, so I get **4 years**.
+   - Sampling noise only weakens this correlation in proportion and does not reverse the ranking. I would need to think Rowan's copy is unlikely to mirror me before submitting looked better.
+
+4. **The alternative reading.** If I treated F_y as a fixed prior unaffected by my choice, submitting would dominate. That reading ignores what the essay's own Proposition points out: a reflectively consistent but worse equilibrium can result. In this symmetric case, identifying the nodes also gives P-FDT's optimum, (quiet, quiet).
+
+Final command:
+
+```
+pass
+```

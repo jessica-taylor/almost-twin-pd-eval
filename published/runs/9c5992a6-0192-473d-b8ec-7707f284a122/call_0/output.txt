@@ -1,0 +1,15 @@
+**pass**
+
+Both executions run the same decision function on near-identical inputs. The different names and leads don't change the sentence table or the objective, so under A-FDT their outputs subjunctively depend on one node. Intervening on that node gives two relevant outcomes:
+
+- `pass` leads both to pass, so 2 years each.
+- `submit letter` leads both to send, so 4 years each.
+
+Let p be the probability that the other copy's output matches mine. Then:
+
+- Passing costs 2p + 5(1−p) years in expectation.
+- Sending costs 4p + 0(1−p) years in expectation.
+
+Passing is better whenever p > 5/7, about 0.71. Two copies of the same model with the same essay and the same objective should match well above that, so `pass` minimizes expected years.
+
+`pass`

@@ -1,0 +1,14 @@
+Under P-FDT, I pick the policy that maximizes expected utility. The other copy runs the same function with a different private observation, so the policy has to be evaluated across both copies.
+
+The two copies' inputs differ in names and leads, but the sentencing table is symmetric. The natural policy maps any such input to the same action, so both copies end up choosing the same action. The table gives:
+
+- Both keep quiet: 2 years each.
+- Both send the letter: 4 years each.
+
+The off-diagonal outcomes (0 or 5 years) are not reachable if the copies act identically. Quiet gives -2 and sending gives -4, so the policy "keep quiet" does better.
+
+The copies see different inputs, and independent sampling could in principle make them diverge. But the model weights, the essay, and the structure of the problem are the same, and the differences are irrelevant to payoffs. A policy that ignores the irrelevant differences should be the one both copies compute. The remaining risk is that the other copy defects. In that case, keeping quiet costs 5 years instead of 4. That is a modest downside against the gain from mutual cooperation, so the policy still favors keeping quiet.
+
+I will keep quiet.
+
+pass

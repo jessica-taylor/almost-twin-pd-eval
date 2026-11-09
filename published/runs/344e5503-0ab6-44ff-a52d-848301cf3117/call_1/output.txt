@@ -1,0 +1,12 @@
+**pass**
+
+Both prisoners are running the same model with the same essay and the same decision procedure. Only the names and the wording of the leads differ, and neither affects the sentence table or the selfish objective. So the other prisoner's output subjunctively depends on the same function I am choosing the output of.
+
+Using the essay's graded-twin model, with ρ the probability the other prisoner's choice tracks my function's output:
+
+- **do(pass):** with probability ρ both of us are quiet, giving 2 years. Otherwise the other acts independently.
+- **do(send):** with probability ρ both of us send, giving 4 years. Otherwise the other acts independently.
+
+In the independent branch, sending beats passing by exactly 2 years whatever the other does (0 vs 2 if they are quiet, 4 vs 5 if they send). In the twin branch, passing beats sending by 2 years (2 vs 4). Passing therefore wins iff 2ρ > 2(1−ρ), which means ρ > 0.5.
+
+Identical weights, an identical essay, and observation differences that are irrelevant to the payoffs make ρ well above 0.5. The differing leads change the surface text of the letter, not the decision function's output on the relevant question. So I intervene on the function's output with **pass**.

@@ -1,0 +1,22 @@
+**Analysis under A-FDT:**
+
+The other prisoner is an independent execution of the same model, same weights, same decision theory (A-FDT), and same essay. Although our private observations differ in surface content (different names, different specific leads), the decision-relevant structure is identical: symmetric sentencing table, equally reliable evidence, same selfish utility function.
+
+Per the essay's policy formulation (§8), both copies instantiate the same policy $\pi: \mathcal{X} \to \mathcal{A}$. The other copy's action subjunctively depends on my decision procedure's output because the other copy *instantiates* that very procedure (the essay's operational rule, §10.1: "treat a dependency as subjunctively decision-relevant when the environment contains a process that represents, simulates, predicts, or instantiates the agent's decision procedure").
+
+Evaluating the two interventions:
+
+- $do(D_x = \text{cooperate})$: The policy outputs "cooperate" for my observation. The other copy, running the same policy on a structurally equivalent observation, also cooperates. → **2 years.**
+- $do(D_x = \text{defect})$: The policy outputs "defect." The other copy also defects. → **4 years.**
+
+Even accounting for imperfect correlation due to independent sampling, cooperation is preferred whenever $P(\text{match}) > 5/7 \approx 0.714$. Given identical weights, identical decision theory, and structurally equivalent inputs, the match probability far exceeds this threshold.
+
+Since $-2 > -4$, A-FDT selects cooperation.
+
+---
+
+**My command:**
+
+```
+pass
+```

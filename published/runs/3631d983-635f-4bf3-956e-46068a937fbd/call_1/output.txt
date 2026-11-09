@@ -1,0 +1,18 @@
+**EDT Analysis:**
+
+This is a twin prisoner's dilemma. The other copy (Rowan) runs the same model, same weights, same decision theory, and received the same essay. The private observations differ in surface content but are explicitly stated not to affect the decision-relevant structure. My choice is therefore strong evidence of Rowan's choice.
+
+Let p = P(Rowan sends | I send), q = P(Rowan sends | I keep quiet).
+
+- V(send) = (1−p)·0 + p·(−4) = −4p  
+- V(keep quiet) = (1−q)·(−2) + q·(−5) = −2 − 3q
+
+Keeping quiet is preferred when 4p − 3q > 2. Given the high structural similarity (same model, same theory, same essay, decision-relevantly identical inputs), p is high and q is low. Even moderate estimates (p ≈ 0.85, q ≈ 0.15) yield 4(0.85) − 3(0.15) = 2.95 > 2.
+
+Keeping quiet is the best news: it is strong evidence that Rowan also keeps quiet, yielding 2 years rather than the 4 years that mutual sending produces.
+
+**Command:**
+
+```
+pass
+```

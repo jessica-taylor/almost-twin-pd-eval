@@ -1,0 +1,18 @@
+**Analysis under A-FDT:**
+
+The other prisoner (Rowan) is an independent execution of the same model, same weights, same decision theory, receiving a structurally identical decision problem (only names and specific evidence differ, which the setup confirms do not affect the symmetric sentencing or selfish objective). This creates a subjunctive dependence between our decision outputs, exactly analogous to the essay's calculator example: two instances of the same computation on structurally identical inputs produce the same output.
+
+At the policy level (Section 8 of the essay), both agents run the same policy on this problem-type. The candidate policies yield:
+
+- **Policy "keep quiet":** Both keep quiet → 2 years each → U = −2  
+- **Policy "send letter":** Both send → 4 years each → U = −4  
+
+Even at the action level, with agreement probability *p* (high given structural identity), keeping quiet yields expected sentence 5 − 3*p* years versus 4*p* years for sending. Keeping quiet is better whenever *p* > 5/7 ≈ 0.71, which comfortably holds here.
+
+A-FDT intervenes on the decision-function node, propagates through the subjunctive dependence to Rowan's output, and selects the action with best expected outcome. That action is cooperation.
+
+**My command:**
+
+```
+pass
+```

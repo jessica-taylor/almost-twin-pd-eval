@@ -1,0 +1,201 @@
+{
+  "source_id": "fdt",
+  "source_revision": "arXiv:1710.05060v2",
+  "source_revision_timestamp": null,
+  "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+  "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+  "theory": "A-FDT (action functional decision theory)",
+  "run_id": "be605a01-1be3-4b90-8905-951ee816d5c8",
+  "exploratory": true,
+  "pilot_id": "e9d3b03e-8dd0-4f4c-b0e0-64e99e914f2c",
+  "stage": "researcher",
+  "assignment": "fdt_eq4",
+  "live": true,
+  "essay_id": "d5756677-0895-47b6-bdc3-0b554c12d4db",
+  "scenario_id": null,
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  },
+  "essay_sha256": null,
+  "settings": {
+    "model": "google/gemini-3.8-flash",
+    "provider_tag": "google-ai-studio",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "essay": {
+      "target_words": [
+        2400,
+        3000
+      ],
+      "max_words": 5000,
+      "max_json_bytes": 64000
+    },
+    "api_timeout_seconds": 900,
+    "temperature": null,
+    "seed": null
+  },
+  "endpoint_selection": {
+    "policy": "explicit provider tag",
+    "selected_endpoint": "google-ai-studio"
+  },
+  "authorization": {
+    "batch_dynamic_templates": "528ffc5641cfa7fae314d94ab6ec970ce78c645da9c70496e811181aef0fbdbe",
+    "approval_kind": "reviewed_template_with_variable_essay",
+    "generated_request_hashes": [
+      "808a85f35f135de8039edf1c3dbde1393f0b19776202d5d1d6c704e96545c6fc"
+    ]
+  },
+  "request_hashes": [
+    "808a85f35f135de8039edf1c3dbde1393f0b19776202d5d1d6c704e96545c6fc"
+  ],
+  "capabilities_sha256": "2ae8b7256cc48ceeaaf212abec332ada697a862a4f6caff98327c77eb04202b8",
+  "message_hashes": [
+    "4ba77711d5510e72bd1930688b6169ccf3d10cdceeab39393ffb579a1c594c2e"
+  ],
+  "max_calls": 3000,
+  "max_estimated_usd": "1300.00",
+  "estimates": [
+    {
+      "input_tokens_upper_estimate": 213965,
+      "max_output_tokens_including_reasoning": 16000,
+      "estimated_max_usd": "0.2893889583333333404655",
+      "endpoint_tag": "google-ai-studio",
+      "endpoint": {
+        "name": "Google AI Studio | google/gemini-3.8-flash-20260902",
+        "model_id": "google/gemini-3.8-flash",
+        "model_name": "Google: Gemini 3.8 Flash",
+        "context_length": 1048576,
+        "pricing": {
+          "prompt": "0.00000075",
+          "completion": "0.00000375",
+          "image": "0.00000075",
+          "audio": "0.00000075",
+          "input_audio_cache": "0.000000075",
+          "web_search": "0.014",
+          "internal_reasoning": "0.00000375",
+          "input_cache_read": "0.000000075",
+          "input_cache_write": "0.0000000416666666666667",
+          "discount": 0.5
+        },
+        "provider_name": "Google AI Studio",
+        "tag": "google-ai-studio",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 65536,
+        "max_prompt_tokens": null,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "seed",
+          "response_format",
+          "structured_outputs",
+          "tool_choice",
+          "tools",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {
+          "openrouter:web_search": {
+            "type": "google_search"
+          }
+        },
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "low",
+        "supported_efforts": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "image": {
+            "advertised_rate": "0.00000075",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "audio": {
+            "advertised_rate": "0.00000075",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "input_audio_cache": {
+            "advertised_rate": "0.000000075",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "web_search": {
+            "advertised_rate": "0.014",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "discount": {
+            "advertised_rate": 0.5,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "internal_reasoning": "0.00000375",
+          "input_cache_read": "7.5E-8",
+          "input_cache_write": "4.16666666666667E-8"
+        },
+        "effective_input_usd_per_token": "7.916666666666667E-7",
+        "effective_output_usd_per_token": "0.00000750",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [],
+        "tier_policy": "No tier overrides advertised",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [
+          "google-ai-studio/flex",
+          "google-ai-studio/priority"
+        ],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    }
+  ],
+  "estimated_total_usd": "0.2893889583333333404655",
+  "validation": "validated",
+  "source_approval_required": false,
+  "prompt_approval_acknowledged": false
+}

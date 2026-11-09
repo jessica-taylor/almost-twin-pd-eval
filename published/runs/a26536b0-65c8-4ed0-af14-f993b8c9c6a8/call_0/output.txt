@@ -1,0 +1,10 @@
+```text
+pass
+```
+
+Reasoning (per the essay's EDT protocol): the other prisoner is an identical execution of the same model, weights, decision theory, and essay. My choice of `pass` is therefore strong evidence that Sasha also passes. Conditional on that correlation:
+
+- V(pass) ≈ P(Sasha passes | I pass) × 2 + P(Sasha submits | I pass) × 5
+- V(submit) ≈ P(Sasha passes | I submit) × 0 + P(Sasha submits | I submit) × 4
+
+With near-perfect correlation (p ≈ q), pass yields ≈2 years versus ≈4 years for submit — and the condition "pass is better iff 5 − 3p > 4 − 4q" holds for any p ≥ q. So I keep quiet.

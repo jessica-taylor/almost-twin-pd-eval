@@ -1,0 +1,23 @@
+**EDT analysis:**
+
+This is a symmetric prisoner's dilemma between two copies of the same model with the same weights, same decision theory, and same essay. The payoff structure is:
+
+- Both quiet: 2 years each
+- Both send: 4 years each
+- I send, other quiet: 0 years for me
+- I quiet, other sends: 5 years for me
+
+Using the EDT framework from the essay (Section 5), with correlation $q$ = P(Sasha makes same choice as me):
+
+$$V(\text{quiet}) = q(-2) + (1-q)(-5) = 3q - 5$$
+$$V(\text{send}) = q(-4) + (1-q)(0) = -4q$$
+
+Quiet is favored when $3q - 5 > -4q$, i.e., $q > 5/7 \approx 0.714$.
+
+The correlation here is high: identical model weights, identical decision theory, identical essay, identical payoff structure, and the setup explicitly states the differing private observations "do not affect the symmetric sentencing table or either prisoner's selfish objective." The only divergence source is sampling noise. The essay's treatment of the twin prisoner's dilemma (Section 5) and its discussion of similarity/logical correlation (Section 3, point 4) both point toward treating same-algorithm agents as strongly evidentially correlated. The correlation comfortably exceeds the $5/7$ threshold.
+
+**Command:**
+
+```
+pass
+```

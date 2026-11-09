@@ -1,0 +1,11 @@
+**pass**
+
+I treat the other prisoner's decision as subjunctively dependent on mine. Both of us run the same model and follow the same A-FDT procedure from the same essay. Our inputs differ only in names and in the wording of an equally reliable lead, and neither difference changes the sentencing table or the objective.
+
+A choice that depends on those details would be arbitrary. So in my graph, the node for my decision also determines the other prisoner's decision, with only a small noise term for independent sampling.
+
+Intervening on that shared node gives:
+- **do(F = pass):** both stay quiet, so I get about 2 years.
+- **do(F = submit):** both send letters, so I get about 4 years.
+
+Passing gives the shorter expected sentence, so the command is `pass`.

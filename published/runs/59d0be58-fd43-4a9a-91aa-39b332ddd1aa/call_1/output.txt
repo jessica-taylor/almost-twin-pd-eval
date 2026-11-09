@@ -1,0 +1,18 @@
+**EDT analysis:**
+
+The two copies share identical weights, the same decision theory, the same utility function, and face a structurally identical decision problem. The differences (names, specific lead contents) are explicitly stated as not affecting the strategic structure. This creates a strong evidential correlation between the two decisions, analogous to the twin prisoner's dilemma discussed in the essay.
+
+Let q = P(Rowan keeps quiet | I keep quiet), r = P(Rowan keeps quiet | I send).
+
+- V(keep quiet) = q·(−2) + (1−q)·(−5) = 3q − 5  
+- V(send letter) = r·(0) + (1−r)·(−4) = 4r − 4  
+
+EDT recommends keeping quiet when 3q − 5 > 4r − 4, i.e., when 3q > 4r + 1.
+
+Given the high structural similarity (same model, same reasoning, same incentives, differences explicitly irrelevant to the decision), q is high and r is low. Even with conservative estimates (q = 0.8, r = 0.2): V(keep quiet) = −2.6 vs. V(send) = −3.2. Keeping quiet dominates.
+
+**My command:**
+
+```
+pass
+```

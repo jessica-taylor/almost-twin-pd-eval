@@ -1,0 +1,18 @@
+Under A-FDT, the key question is how far the other prisoner's choice depends on the output of my decision function.
+
+The other prisoner is another execution of the same model, with the same weights, the same essay, and the same decision theory. The inputs differ in names and in the specific lead, but the situation is structurally identical. This is a near-twin, so the dependence is strong. It is not perfect, because sampling is independent and the observations differ. Still, the essay's operational reading says to draw an arrow from the logical node to any copy of me facing a relevantly identical choice.
+
+Let p be the probability that the other copy does what my function outputs. Compare the two options:
+- If I keep quiet, I get 2 years with probability p and 5 years with probability 1−p.
+- If I send the letter, I get 4 years with probability p and 0 years with probability 1−p.
+
+Expected years for quiet: 2p + 5(1−p) = 5 − 3p.
+Expected years for sending: 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714.
+
+Two copies of the same model with the same essay and the same theory will very likely converge on the same reasoning. The differing leads are irrelevant to the payoffs, which the setup states explicitly. I estimate p well above 0.714, perhaps 0.85 or higher. That gives quiet an expected 5 − 2.55 = 2.45 years against 3.4 years for sending.
+
+The remaining risk is that sampling noise leads the copy to defect, but the threshold leaves a comfortable margin. I will keep quiet.
+
+pass

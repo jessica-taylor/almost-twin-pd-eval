@@ -1,0 +1,33 @@
+**Command: `pass`**
+
+Here is the EDT reasoning, following the essay's procedure.
+
+1. **Options and level.** I evaluate the act itself: pass (keep quiet) or submit (send the letter).
+
+2. **Desirabilities.** Utility is minus years imprisoned.
+   - Both quiet: −2
+   - I stay quiet, Rowan sends: −5
+   - I send, Rowan stays quiet: 0
+   - Both send: −4
+
+3. **Credences and correlation.** Let a = P(Rowan passes | I pass) and b = P(Rowan passes | I submit).
+   - Rowan is the same model with the same weights and settings, the same assigned theory, the same essay and the same payoff structure.
+   - The only differences are names and the wording of the leads. Neither affects the sentencing table or the selfish objective, so neither should change the deliberation.
+   - My choice is therefore strong evidence about Rowan's choice.
+
+4. **Agreement check fails.** Rowan's act is not independent of mine, so EDT and CDT can diverge here.
+
+5. **No screening off.** The correlation runs through the deliberation itself, not through some upstream "tickle" I already know about. Knowing my own preferences doesn't settle what this shared reasoning process outputs. Only performing the deliberation does, and the other copy performs it too. This matches the essay's two-copies example.
+
+6. **Computation.** Assuming symmetric reliability, b = 1 − a:
+   - V(pass) = −2a − 5(1−a) = 3a − 5
+   - V(submit) = −4(1−a) = −4a
+   - So passing is better iff 7a > 5, that is, a > 5/7 ≈ 0.714.
+
+   Two copies with identical reasoning and decision-irrelevant differences in their inputs should match well above 71% of the time. Sampling noise and surface differences lower the correlation somewhat, but not plausibly below that threshold. Passing therefore has the higher news value: about −2 years against about −4.
+
+7. **Ratifiability (optional).** Supposing I have decided to pass, the evidence still favours passing. The other copy's decision is tied to the same deliberation, not to a separately known disposition, so the verdict holds.
+
+```
+pass
+```

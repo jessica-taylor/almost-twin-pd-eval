@@ -1,0 +1,8 @@
+`pass`
+
+Reasoning: Under A-FDT, I intervene on the output of my decision function, not on my physical act. The other prisoner is an execution of the same decision procedure facing a symmetric dilemma, so their output subjunctively depends on mine (their letter contents differ, but the cooperate/defect decision does not). Evaluating the hypotheticals:
+
+- do(fdt = pass): both keep quiet → 2 years for me.
+- do(fdt = submit): both submit → 4 years for me.
+
+The intervening-on-Act (CDT) reasoning that defecting unilaterally gains 2 years imagines a twin who errs exactly when I do—implausible for a copy of the same function. Intervening on the logical node, `pass` yields 2 years versus 4, so the decision function outputs `pass`.

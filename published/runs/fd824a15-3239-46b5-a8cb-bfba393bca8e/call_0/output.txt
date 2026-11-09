@@ -1,0 +1,14 @@
+Under P-FDT, the choice is a policy, and the other copy runs the same decision function. The two copies see different names and different leads, but those differences don't affect the payoffs. A sensible policy maps "my lead says X" to the same action type, either quiet or send, in both copies, so the two outcomes that matter are the symmetric ones.
+
+If both stay quiet, each gets 2 years. If both send, each gets 4 years. Mutual quiet is better.
+
+The residual doubt is that independent sampling might make the copies diverge. Suppose the other copy's action matches mine with probability p. The expected sentences are:
+
+- Quiet: 2p + 5(1−p)
+- Send: 4p + 0(1−p)
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. Two copies of the same model with the same essay and the same reasoning will very likely agree, so p should comfortably exceed that. The differences in names and leads are surface details that shouldn't change a decision rooted in the payoff structure.
+
+I choose the policy "keep quiet" and apply it to my input.
+
+`pass`

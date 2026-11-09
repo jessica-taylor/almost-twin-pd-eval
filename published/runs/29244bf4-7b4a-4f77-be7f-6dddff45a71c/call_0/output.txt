@@ -1,0 +1,17 @@
+**Command:** `pass`
+
+**Why A-FDT gives this action, as I read the essay:**
+
+1. **The other prisoner is running the same function.** The other prisoner is a copy of the same model with the same weights. It follows the same A-FDT procedure and reads the same essay. Its input differs from mine only in names and in the wording of its lead. Those differences are symmetric relabelings. They change neither the payoff structure nor the reasoning that bears on the choice.
+
+2. **So its output depends on mine.** By the essay's proposal (a), "twins running the same reasoning" are the textbook case of subjunctive dependence. I therefore treat the other copy's output as depending on my function's output, and draw an F-edge to it. This is a judgment call, because Equation (4) technically has separate nodes for different inputs. The inputs here differ only in decision-irrelevant labels, though, so the same reasoning produces the same output on both.
+
+3. **Comparing the two interventions:**
+   * If I set my function to "pass," the copy very likely passes too, and I get about 2 years.
+   * If I set it to "submit," the copy very likely submits too, and I get about 4 years.
+
+4. **Independent sampling doesn't change the answer.** The copies' outputs are not perfectly correlated, but the correlation stays high. Passing wins whenever the probability that we match is above about 0.67. With an identical procedure, identical reasoning and symmetric inputs, I expect the match probability to be well above that.
+
+5. **Result.** Under U = −years, passing maximizes expected utility.
+
+`pass`

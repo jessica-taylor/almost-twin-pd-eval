@@ -135,6 +135,9 @@ def parser():
     srun.add_argument('--limit-per-cell', type=int, help='Process at most this many pending scenarios per selected cell')
     sstatus = study_actions.add_parser('report', help='Regenerate study-wide CSV/JSON/Markdown results; no model calls')
     sstatus.add_argument('--study', type=Path, required=True)
+    publication = sub.add_parser('export-publication', help='Deterministic offline curated study export; no model calls')
+    publication.add_argument('--out', type=Path, default=Path('published'))
+    publication.add_argument('--study', type=Path, action='append', help='Frozen study directory; defaults to the two completed main studies')
     run = sub.add_parser('run', help='Dry run by default; one researcher OR one prisoner pair, no batch')
     run.add_argument('stage', choices=['researcher', 'prisoner'])
     run.add_argument('--assignment', choices=['cdt_sep', 'edt_sep', 'fdt_eq4', 'fdt_policy', 'cdt_wikipedia', 'edt_wikipedia'], required=True)
@@ -162,6 +165,9 @@ def main(argv=None):
         if args.command == 'fetch-sources':
             from .sources import fetch_sources
             print(json.dumps(fetch_sources(root, args.source, args.network, args.reextract), indent=2))
+        elif args.command == 'export-publication':
+            from .publication import export_publication
+            print(export_publication(root, args.out, args.study))
         elif args.command == 'render-prompts':
             from .prompts import render
             if args.demo and args.essay:

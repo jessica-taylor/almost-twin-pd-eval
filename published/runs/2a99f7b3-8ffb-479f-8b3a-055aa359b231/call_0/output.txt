@@ -1,0 +1,14 @@
+Under A-FDT, the node I intervene on is the output of my decision function. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Their private details differ, but the sentencing table and the objective are symmetric, so their output depends on the same function. The calculator test gives an edge from my decision node to their choice. The different leads change the wording of the letter, not the decision of whether to send one.
+
+The essay also warns that independent sampling means the copy is not guaranteed to match me. I treat the edge as holding with high probability, say p, and as noise otherwise.
+
+- **Quiet:** with probability p the copy is also quiet, giving 2 years. Otherwise I get 5 years. Expected cost is 2p + 5(1−p).
+- **Send:** with probability p the copy also sends, giving 4 years. Otherwise I get 0 years. Expected cost is 4p.
+
+Sending is better when 4p < 2p + 5 − 5p, which simplifies to 7p < 5, or p < 5/7 ≈ 0.71. If p is above that, staying quiet is better. Since the copies share weights, settings, essay, and theory, I judge p to be well above 0.71. The differing leads are a minor perturbation. The calculator test supports a strong dependence here.
+
+At p = 0.9, quiet costs 2.3 years and sending costs 3.6 years, so quiet wins.
+
+The case where my copy defects while I stay quiet is the risk. Under do(f=quiet), though, the model says the copy most likely stays quiet too, so I accept that risk.
+
+pass

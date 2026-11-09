@@ -1,0 +1,17 @@
+Under EDT, the question is how strongly my act is evidence about the other copy's act.
+
+The payoffs: if both keep quiet, I get 2 years. If both send, 4. If I keep quiet and the other sends, 5. If I send and the other stays quiet, 0.
+
+This is a prisoner's dilemma with the twin structure. Sending is the dominant action causally. Cooperation (keeping quiet) gives 2 against 4 for mutual defection.
+
+With correlation q that the other copy matches me:
+- V(quiet) = -(2q + 5(1-q)) = -(5 - 3q)
+- V(send) = -(4q + 0(1-q)) = -4q
+
+Quiet is better when 5 - 3q < 4q, so q > 5/7, about 0.714.
+
+The other execution is the same model with the same weights, the same essay, and the same decision theory. The private details differ, but the sentencing table is symmetric and the difference doesn't bear on the decision. My reasoning is therefore very likely the same as theirs, so q should be high, well above 0.71. Sampling noise and the different leads do not push it down to 0.71. The tickle defence doesn't screen this off either, because the correlation runs through the shared decision procedure itself, which introspection can't separate from my own choice.
+
+EDT therefore says to keep quiet.
+
+pass

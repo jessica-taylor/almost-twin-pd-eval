@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (A-FDT): Rowan is an identical execution of the same decision function facing a symmetric dilemma. Under Equation (4), I intervene on the logical node `fdt(P, G, x)` — not just my action token. Since Rowan's decision subjunctively depends on the same function's output, setting that output to *submit* makes both prisoners submit (4 years for me); setting it to *pass* makes both pass (2 years for me). Evaluating 2 < 4, the best output of this very function is to keep quiet.

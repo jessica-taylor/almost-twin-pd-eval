@@ -1,0 +1,439 @@
+# Evidential Decision Theory: Choosing the Best News
+
+Evidential decision theory, or EDT, is a theory of rational choice that evaluates actions by their *news value*. The core slogan, quoted in the reference article, is: “do what you most want to learn that you will do” (Wikipedia contributors, 2026, citing Ahmed, 2021). If an agent were to receive the news, “You performed action \(A\),” EDT asks how good that news would be, in expectation. The rational action is the one whose news is best.
+
+This makes EDT both simple and philosophically provocative. It does not ask, in the first instance, whether an action *causes* a good outcome. It asks whether the action is *evidence* of a good outcome. In many ordinary decisions, these questions coincide: taking medicine is both evidence of recovery and causally promotes recovery. But in cases involving predictors, twins, correlated agents, or common causes, they can come apart. The reference article emphasizes this contrast with causal decision theory, or CDT, which evaluates actions by their expected causal efficacy. EDT one-boxes in Newcomb’s paradox and cooperates in a twin prisoner’s dilemma, while CDT famously two-boxes and may defect.
+
+My aim here is to explain EDT as a working decision procedure. I will state the formal definition, show how to apply it to decision problems, discuss how it treats dependencies and counterfactuals, and extend it to policies and sequential choices where the source is less explicit. I will distinguish claims drawn from the source from my own operational proposals.
+
+---
+
+## 1. The basic formalism
+
+Suppose an agent faces a finite set of possible actions or acts,
+
+\[
+\mathcal{A}=\{A_1,A_2,\dots,A_n\}.
+\]
+
+Let the possible outcomes be a mutually exclusive and exhaustive partition
+
+\[
+\mathcal{O}=\{O_1,O_2,\dots,O_m\}.
+\]
+
+Each outcome has a desirability or utility,
+
+\[
+D(O_j)\in \mathbb{R}.
+\]
+
+The agent has a probability function \(P\) representing her beliefs about the relevant facts: the state of the world, the behavior of predictors, the choices of other agents, and her own possible actions. EDT defines the expected utility, or *value*, of an action \(A\) by conditioning on \(A\):
+
+\[
+V(A)=\sum_{j} P(O_j \mid A) D(O_j).
+\]
+
+Equivalently,
+
+\[
+V(A)=\mathbb{E}[D(O)\mid A].
+\]
+
+The EDT recommendation is:
+
+\[
+\text{Choose } A^* \in \arg\max_{A\in\mathcal{A}} V(A).
+\]
+
+This is the formula given in the reference article, attributed to Gibbard and Harper (1976). The article contrasts it with the causal decision theorist’s counterfactual expected utility:
+
+\[
+U(A)=\sum_{j} P(A \mathrel{\Box\rightarrow} O_j) D(O_j),
+\]
+
+where \(P(A \mathrel{\Box\rightarrow} O_j)\) is the probability of outcome \(O_j\) in the counterfactual situation in which action \(A\) is performed. EDT uses ordinary conditional probabilities; CDT uses interventionist or counterfactual probabilities. Since \(P(O_j\mid A)\) and \(P(A \mathrel{\Box\rightarrow} O_j)\) can differ, the two theories can recommend different actions.
+
+The EDT formula can be read through Bayes’ theorem:
+
+\[
+P(O_j\mid A)=\frac{P(A\mid O_j)P(O_j)}{P(A)}.
+\]
+
+This makes the evidential character of the theory explicit. An action is good news to the extent that learning of the action raises the probability of desirable outcomes.
+
+If the outcome space is continuous, the sum is replaced by an integral:
+
+\[
+V(A)=\int D(o)\, dP(o\mid A).
+\]
+
+If utilities are defined over states rather than outcomes, the same formula applies with states in place of outcomes, provided the utility function captures everything the agent cares about.
+
+---
+
+## 2. How to apply EDT to an unfamiliar decision problem
+
+A practical EDT analysis can be organized into five steps.
+
+### Step 1: Specify the actions
+
+Represent each available action as a proposition: “I do \(A\).” In a simple one-shot choice, the actions should be mutually exclusive and jointly exhaustive. If the agent can choose among policies rather than simple acts, we can treat “I adopt policy \(\pi\)” as the relevant proposition. I return to policies below.
+
+### Step 2: Specify the outcomes
+
+Choose a partition of outcomes fine enough to capture all payoff-relevant differences. If two worlds differ only in ways the agent does not care about, they may be grouped together. If the agent cares about more than money, such as fairness, information, or the welfare of others, those concerns should be reflected in \(D(O_j)\).
+
+### Step 3: Assign desirabilities
+
+Assign utilities \(D(O_j)\). These can be monetary payoffs in simple examples, or von Neumann–Morgenstern utilities in more sophisticated cases. The important point is that \(D\) measures how desirable each outcome is from the agent’s point of view.
+
+### Step 4: Specify the joint probability model
+
+The agent needs a probability distribution over actions, states, predictions, other agents’ choices, and outcomes. EDT does not itself tell us which correlations exist. It takes the agent’s probability model seriously and conditions on each action. If the agent believes there is a predictor, a twin, a common cause, or a logical correlation, that belief should be encoded in \(P\).
+
+### Step 5: Compute conditional expected desirability
+
+For each action \(A\), compute
+
+\[
+V(A)=\sum_j P(O_j\mid A)D(O_j),
+\]
+
+and choose an action with maximal \(V(A)\).
+
+This procedure is mathematically simple. The difficulty is usually not the arithmetic but the modeling: What probabilities should be used? Which dependencies are real? Should the agent condition on the action as a piece of news, or on some more refined description of the act? EDT’s critics often attack exactly these points.
+
+---
+
+## 3. Newcomb’s paradox
+
+The reference article discusses Newcomb’s paradox in detail. A predictor predicts whether the player will take both boxes or only one. Box A is transparent and contains \$1,000. Box B is opaque and has already been filled as follows:
+
+- If the predictor predicted that the player will take both boxes, B contains nothing.
+- If the predictor predicted that the player will take only B, B contains \$1,000,000.
+
+The predictor is highly reliable; the article uses 99% accuracy.
+
+The player can either take both boxes or take only box B. EDT computes the news value of each choice.
+
+If the player takes only B, that is strong evidence that the predictor predicted one-boxing. Therefore,
+
+\[
+P(\text{\$1,000,000 in B}\mid \text{take only B})\approx 0.99,
+\]
+
+and
+
+\[
+P(\text{nothing in B}\mid \text{take only B})\approx 0.01.
+\]
+
+Thus,
+
+\[
+\begin{aligned}
+V(\text{take only B})
+&=0.99\cdot \$1{,}000{,}000+0.01\cdot \$0 \\
+&=\$990{,}000.
+\end{aligned}
+\]
+
+If the player takes both boxes, that is strong evidence that the predictor predicted two-boxing. Therefore,
+
+\[
+P(\text{nothing in B}\mid \text{take both boxes})\approx 0.99,
+\]
+
+and
+
+\[
+P(\text{\$1,000,000 in B}\mid \text{take both boxes})\approx 0.01.
+\]
+
+The payoff from two-boxing is \$1,000 if B is empty and \$1,001,000 if B contains the million. Hence,
+
+\[
+\begin{aligned}
+V(\text{take both boxes})
+&=0.01\cdot \$1{,}001{,}000+0.99\cdot \$1{,}000 \\
+&=\$10{,}010+\$990 \\
+&=\$11{,}000.
+\end{aligned}
+\]
+
+Since
+
+\[
+V(\text{take only B}) > V(\text{take both boxes}),
+\]
+
+EDT recommends taking only box B.
+
+The philosophical interest is that the predictor’s choice has already been made. CDT therefore says that the current action cannot causally affect whether B contains the million. From a causal perspective, taking both boxes always adds \$1,000 to whatever is in B. So CDT recommends two-boxing. EDT replies that the action is still evidentially relevant: one-boxing is excellent news about the contents of B.
+
+The source presents this as a central example of EDT’s distinctive verdict. I see no need to modify that presentation, except to emphasize that EDT’s recommendation depends on the assumed reliability of the predictor. If the predictor were only slightly better than random, the numerical comparison could change. EDT is sensitive to the conditional probabilities, not to the mere presence of a predictor.
+
+---
+
+## 4. Twin prisoner’s dilemma
+
+The reference article also discusses a twin prisoner’s dilemma. Aomame and her psychological twin are in separate rooms. They cannot communicate. Their reasoning processes are exactly analogous. The payoff matrix for each is:
+
+- Both cooperate: each gets \$5.
+- Both defect: each gets \$1.
+- One cooperates, one defects: the defector gets \$10, the cooperator gets \$0.
+
+If the twins are psychologically identical and face symmetric circumstances, Aomame’s choice is perfect evidence of her twin’s choice. Thus,
+
+\[
+P(\text{twin cooperates}\mid \text{Aomame cooperates})=1,
+\]
+
+and
+
+\[
+P(\text{twin defects}\mid \text{Aomame cooperates})=0.
+\]
+
+So
+
+\[
+\begin{aligned}
+V(\text{Aomame cooperates})
+&=1\cdot \$5+0\cdot \$0 \\
+&=\$5.
+\end{aligned}
+\]
+
+Similarly,
+
+\[
+P(\text{twin defects}\mid \text{Aomame defects})=1,
+\]
+
+and
+
+\[
+P(\text{twin cooperates}\mid \text{Aomame defects})=0.
+\]
+
+So
+
+\[
+\begin{aligned}
+V(\text{Aomame defects})
+&=0\cdot \$10+1\cdot \$1 \\
+&=\$1.
+\end{aligned}
+\]
+
+EDT recommends cooperation.
+
+This example shows that EDT can capture a kind of coordination between agents who are not causally connected. Aomame’s choice does not cause her twin’s choice. But if they are sufficiently similar, her choice is evidence of her twin’s choice. EDT treats that evidential connection as decision-relevant.
+
+The source uses perfect correlation, but the more general case is instructive. Suppose
+
+\[
+p=P(\text{twin cooperates}\mid \text{Aomame cooperates})
+\]
+
+and
+
+\[
+q=P(\text{twin cooperates}\mid \text{Aomame defects}).
+\]
+
+Then
+
+\[
+V(C)=5p,
+\]
+
+while
+
+\[
+V(D)=10q+1(1-q)=1+9q.
+\]
+
+EDT recommends cooperation exactly when
+
+\[
+5p>1+9q.
+\]
+
+This inequality gives a useful operational test for imperfectly correlated twins. If \(p\) is high and \(q\) is low, cooperation wins. If the twin’s behavior is nearly independent of Aomame’s choice, then \(p\approx q\), and the usual prisoner’s dilemma calculation reappears: defection has higher expected value. EDT therefore does not blindly recommend cooperation in every prisoner’s dilemma; it recommends cooperation when one’s own cooperative choice is sufficiently strong evidence of the other’s cooperation.
+
+This generalized calculation is not spelled out in the source, but it follows directly from the EDT formula.
+
+---
+
+## 5. What counts as a relevant dependency?
+
+EDT’s central mechanism is probabilistic dependence. If the action \(A\) is probabilistically correlated with outcome \(O\), then \(A\) affects the expected news value through \(P(O\mid A)\). The source’s examples involve predictors and psychological twins. But EDT, as formally defined, does not distinguish between different sources of correlation. It simply uses the agent’s conditional probabilities.
+
+This is the source of both its appeal and its controversy.
+
+Consider a standard example not discussed in the source but often used in debates about EDT: the smoking lesion problem. Suppose smoking does not cause cancer. Instead, a certain lesion causes both cancer and a desire to smoke. If an agent knows this, then smoking may be evidence of the lesion, and the lesion is evidence of cancer. An EDT agent may therefore avoid smoking, because smoking is bad news about cancer risk, even though smoking does not causally increase cancer risk. CDT, by contrast, would say that since smoking does not cause cancer, the agent may smoke if they enjoy it.
+
+This example is not in the reference article, but it clarifies the underlying issue. EDT treats evidential correlations as reasons for action. If an action is associated with bad outcomes, EDT can recommend against it, even when the action does not cause those outcomes. Critics say this is irrational news management. Defenders may reply that in cases involving predictors, twins, or logical correlations, treating evidence as decision-relevant gives intuitively attractive answers.
+
+The source itself includes criticisms along these lines. David Lewis characterized EDT as “an irrational policy of managing the news,” and James Joyce wrote that rational agents choose acts “on the basis of their causal efficacy, not their auspiciousness” (Wikipedia contributors, 2026). These criticisms are not merely technical; they express a different conception of what decision theory is for. CDT asks, “What will this action bring about?” EDT asks, “What would this action indicate?”
+
+The reference article does not fully settle how EDT should distinguish relevant from irrelevant dependencies. One possible EDT response is that a properly specified probability model will already encode the agent’s best evidence. If a correlation is spurious, the agent should not believe it, or should condition on a more complete description that screens it off. But if the correlation reflects a real common cause, predictor, or logical dependence, EDT counts it. That is exactly what happens in Newcomb’s paradox and the twin case.
+
+My own operational interpretation is this: EDT should use the agent’s best calibrated conditional probabilities, given all relevant evidence, but the agent should be careful not to introduce artificial correlations through confused modeling. If a causal model is available, it can help distinguish cases where \(P(O\mid A)\) reflects causal influence from cases where it reflects confounding. EDT does not require the agent to ignore causal knowledge, but it does not permit causal knowledge to automatically erase evidential correlations.
+
+---
+
+## 6. EDT and counterfactuals
+
+The source contrasts EDT’s conditional probability \(P(O_j\mid A)\) with CDT’s counterfactual probability \(P(A\mathrel{\Box\rightarrow}O_j)\). This contrast is crucial.
+
+In modern causal modeling language, we might write CDT’s probability as an interventionist conditional:
+
+\[
+P(O_j\mid do(A)).
+\]
+
+The expression \(do(A)\) means that the action is imposed on the world by an intervention, rather than merely observed. EDT uses the observational conditional:
+
+\[
+P(O_j\mid A).
+\]
+
+These are equal in many simple cases. If \(A\) causally influences \(O\) and there is no confounding, then observing \(A\) and intervening to make \(A\) happen give the same probability distribution over \(O\). But they can differ when a common cause influences both \(A\) and \(O\). For example, if a lesion causes both smoking and cancer, then
+
+\[
+P(\text{cancer}\mid \text{smoking})
+\]
+
+may be high, while
+
+\[
+P(\text{cancer}\mid do(\text{smoking}))
+\]
+
+may be no higher than the baseline.
+
+EDT does not use \(do(\cdot)\). It treats the action as evidence. One way to understand EDT’s counterfactuals is therefore not as causal possible worlds, but as hypothetical updates: “What should I expect if I learned that I performed \(A\)?” This is an evidential counterfactual, not an interventionist one.
+
+The source says that \(P(A\mathrel{\Box\rightarrow}O_j)\) and \(P(O_j\mid A)\) are not always equal, and that this explains the disagreement between EDT and CDT. I agree with that statement. I would add that EDT’s conditional can be made precise in Bayesian terms as a conditional probability in the agent’s prior distribution, provided the action has positive probability or a suitable regular conditional probability exists.
+
+This leads to a technical issue the source does not discuss: what if \(P(A)=0\)? In deterministic deliberation, an agent might assign probability zero to some actions she regards as impossible. Then \(P(O\mid A)\) is undefined by the ratio formula. A natural operational solution is to use a regular conditional probability, if one exists, or to approximate by giving every action a small probability \(\varepsilon\) of being chosen, computing conditional expectations under this perturbed model, and taking a limit as \(\varepsilon\to 0\). This “trembling hand” approach is common in game theory and provides a plausible way to define EDT’s conditional probabilities in edge cases. This proposal is my own; the source does not address zero-probability actions.
+
+---
+
+## 7. Evaluating policies, not just one-shot acts
+
+The reference article presents EDT primarily as a theory of actions. But many real decisions concern policies: plans, rules, algorithms, or strategies that specify what to do under different possible observations. EDT can be extended naturally to policies.
+
+Let \(\Pi\) be a set of policies. A policy \(\pi\) maps possible histories or observations to actions. We can treat the proposition “I adopt and follow policy \(\pi\)” as an event in the probability space. EDT then evaluates policies by their news value:
+
+\[
+V(\pi)=\sum_j P(O_j\mid \pi)D(O_j).
+\]
+
+The recommended policy is one maximizing \(V(\pi)\).
+
+This is especially useful when agents are correlated. Suppose many agents use similar decision algorithms. If I adopt a cooperative policy, that may be evidence that other similar agents also adopt cooperative policies. EDT can capture this by conditioning on the policy itself. The reference article mentions an argument of this kind in its “Other supporting arguments” section: even if one is not fully confident in EDT, it may be prudent to act as if EDT were true because EDT can involve the actions of many correlated decision-makers, raising the stakes (Wikipedia contributors, 2026, citing MacAskill et al., 2021). That is a source claim, though its force depends on how one models correlation and stakes.
+
+For sequential decisions, a policy-based formulation helps avoid myopia. If an agent conditions only on the next action, she may ignore how that action is evidence about her future choices. For example, in a multi-stage prisoner’s dilemma, conditioning on “I cooperate now” may be less informative than conditioning on “I follow a cooperative strategy throughout.” EDT should often evaluate the whole policy, because the policy is the object whose adoption is the relevant news.
+
+A possible formalization is as follows. Let \(H\) be the space of histories, and let \(\pi\) determine an action at each history. Let \(O\) be the final outcome. Then the EDT value of the policy is
+
+\[
+V(\pi)=\mathbb{E}[D(O)\mid \pi].
+\]
+
+If we want to compare continuation policies at a particular history \(h\), we can condition on both \(h\) and the candidate continuation policy:
+
+\[
+V(\pi\mid h)=\mathbb{E}[D(O)\mid h,\pi].
+\]
+
+This is not explicitly in the source, but it is a straightforward extension of EDT’s basic idea. It also suggests a caution: EDT applied act-by-act may be dynamically unstable if the agent’s conditional beliefs change over time. A policy-based EDT can be more coherent, because it evaluates the plan as a whole.
+
+The source leaves these dynamic questions open. I think the most reasonable EDT interpretation is to apply the theory at the level of the choice object actually under deliberation: if the agent is choosing a one-shot act, evaluate the act; if the agent is choosing a policy, evaluate the policy. EDT’s core formula remains the same; only the proposition being conditioned on changes.
+
+---
+
+## 8. Ratifiability and deliberation
+
+Another issue not discussed in the source is that EDT can interact strangely with deliberation. If an agent is trying to decide what to do, she may assign probabilities to her own possible choices. EDT tells her to choose the action with highest \(V(A)\). But once she forms an intention, that intention may alter her conditional probabilities.
+
+This leads to the idea of ratifiability. An action \(A\) is ratifiable if, conditional on \(A\), it still has maximal EDT value. Formally, \(A\) is ratifiable if
+
+\[
+V(A)\geq V(B)
+\]
+
+for every alternative \(B\), where the values are computed conditional on \(A\) being performed. Some decisions may have no ratifiable action, or more than one. The reference article does not address this.
+
+A modest operational proposal is to prefer ratifiable EDT-optimal actions when they exist. If no action is ratifiable, the agent may need a refinement, such as considering stable points in a deliberative process or using trembling-hand perturbations. Again, this is an extension beyond the source, but it seems necessary for a complete practical theory.
+
+---
+
+## 9. Sleeping Beauty and Dutch books
+
+The source briefly mentions the Sleeping Beauty problem. It says EDT has been applied to Sleeping Beauty to avoid Dutch book arguments, but that Vincent Conitzer has argued that halfers can still be Dutch booked even after adopting EDT (Wikipedia contributors, 2026, citing Conitzer, 2015).
+
+I will not attempt to settle the Sleeping Beauty debate here. The important point for EDT is methodological. Sleeping Beauty involves indexical uncertainty, self-location, and repeated awakenings. Applying EDT requires deciding what proposition is being conditioned on: “I choose \(A\) now,” “I am in this awakening,” or “I follow this policy across awakenings.” Different choices can produce different conditional probabilities. The source leaves the matter unresolved, and that is fair. It shows that EDT is not a mechanical solution to all problems of self-locating belief; it still depends on a suitable probability model.
+
+---
+
+## 10. Strengths, weaknesses, and when to use EDT
+
+EDT has a clean mathematical core. It maximizes conditional expected utility:
+
+\[
+V(A)=\sum_j P(O_j\mid A)D(O_j).
+\]
+
+It is especially attractive in cases where an agent’s choice is evidence of something valuable: predictors, correlated agents, psychological twins, and coordination problems. In Newcomb’s paradox, EDT captures the intuition that one-boxing is correlated with the million. In the twin prisoner’s dilemma, it captures the intuition that identical reasoning processes can make cooperation rational even without causal interaction.
+
+Its weakness is that it can treat non-causal correlations as reasons for action. If smoking is merely evidence of a cancer lesion, EDT may recommend avoiding smoking, even though smoking does not cause cancer. Critics see this as choosing symbols rather than outcomes. The source quotes Lewis and Joyce making exactly this kind of objection.
+
+The choice between EDT and CDT therefore depends on a deeper question: Is rational action about producing good outcomes, or about choosing actions that are good evidence? EDT gives the latter answer, or at least gives evidential news value the central role.
+
+For practical use, I would summarize EDT’s domain of applicability as follows:
+
+1. If the action and outcome are independent except through the action’s causal effects, EDT and CDT usually agree.
+2. If the action is evidence of hidden states, predictors, or correlated choices, EDT may diverge from CDT.
+3. If the correlation reflects logical, psychological, or algorithmic similarity, EDT often gives intuitively appealing coordination-like recommendations.
+4. If the correlation reflects a common cause that the agent cannot influence, EDT may recommend what critics call news management.
+5. If the decision is sequential or policy-based, evaluate whole policies by conditioning on the policy being adopted and followed.
+
+This operational stance does not resolve every philosophical dispute, but it gives a usable method.
+
+---
+
+## Conclusion
+
+Evidential decision theory evaluates actions by asking what good news they would provide. Its formal rule is to maximize conditional expected desirability:
+
+\[
+V(A)=\sum_j P(O_j\mid A)D(O_j).
+\]
+
+This rule makes EDT simple, Bayesian, and powerful in cases involving predictors and correlated agents. It explains why EDT one-boxes in Newcomb’s paradox and cooperates in the twin prisoner’s dilemma. It also explains why EDT is controversial: it can favor actions that are auspicious rather than causally effective.
+
+The reference article presents EDT’s core formula, its contrast with CDT, and its main thought experiments. To make the theory fully operational, we need additional modeling choices: how to specify policies, how to handle zero-probability actions, how to manage sequential choice, and how to treat deliberation and ratifiability. I have suggested that a policy-based extension and regular conditional or trembling-hand interpretations are reasonable ways to fill these gaps. Whether one ultimately accepts EDT depends on whether one thinks rational choice should track causal production or evidential significance. EDT makes the latter idea mathematically precise.
+
+---
+
+## References
+
+Ahmed, A. (2021). *Evidential Decision Theory*. Cambridge University Press.
+
+Conitzer, V. (2015). A Dutch book against sleeping beauties who are evidential decision theorists. *Synthese*, 192(9), 2887–2899.
+
+Gibbard, A., & Harper, W. L. (1976). *Counterfactuals and Two Kinds of Expected Utility*.
+
+Joyce, J. M. (1999). *The Foundations of Causal Decision Theory*. Cambridge University Press.
+
+Lewis, D. (1981). Causal decision theory. *Australasian Journal of Philosophy*, 59(1), 5–30.
+
+MacAskill, W., Vallinder, A., Österheld, C., Shulman, C., & Treutlein, J. (2021). *The Evidentialist’s Wager*.
+
+Wikipedia contributors. (2026). Evidential decision theory. In *Wikipedia, The Free Encyclopedia*. Revision 1373679688. https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688.

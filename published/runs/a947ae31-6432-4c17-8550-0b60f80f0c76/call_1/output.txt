@@ -1,0 +1,13 @@
+**pass**
+
+Reasoning, under A-FDT as the essay interprets it:
+
+- The other prisoner is another run of the same model and weights, following the same theory and reading the same essay. Their output is computed by the same function as mine, on a different observation. That is subjunctive dependence, not mere correlation. The differing private leads and names change only the input text. They do not change the sentence table or the selfish objective, so they give no reason for the two runs to reach different conclusions.
+- Intervening on my decision function's output therefore moves the twin's output with probability ρ, the chance that our choices match.
+  - Keeping quiet has expected sentence 2ρ + 5(1−ρ) = 5 − 3ρ.
+  - Sending the letter has expected sentence 4ρ + 0(1−ρ) = 4ρ.
+  - Keeping quiet is better when 5 − 3ρ < 4ρ, which means ρ > 5/7 ≈ 0.71.
+- Two runs of the same model, with the same effort level, the same theory and the same essay, reasoning about a symmetric table, should match well above 71% of the time, even allowing for sampling noise. The twin has no privileged information that would make it deviate.
+- The temptation to send the letter because "my action can't causally affect theirs" is the CDT move of holding the twin's output fixed. A-FDT does not do that.
+
+Keeping quiet gives an expected sentence of about 5 − 3ρ, which is roughly 2.5 years if ρ ≈ 0.85. Sending the letter gives about 3.4 years.

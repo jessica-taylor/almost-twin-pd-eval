@@ -1,0 +1,3 @@
+`pass`
+
+Under P-FDT, the other prisoner is a symmetric copy of my decision procedure. The relevant intervention is on the shared policy, not my isolated act. Comparing policies: "keep quiet upon receiving a lead" yields 2 years for both copies (each copy's implementation of that policy keeps quiet); "submit letter" yields 4 years for each, since the other copy, implementing the same policy, also submits. Since the copies' actions subjunctively depend on the same decision function, submitting does not buy me a 0-year outcome—it buys mutual submission at 4 years. The quiet policy (2 years) strictly dominates the submitting policy (4 years) under the do(Π = π) evaluation, so I execute π*(my observation): keep quiet.

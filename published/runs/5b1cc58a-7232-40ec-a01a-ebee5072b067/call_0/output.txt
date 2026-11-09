@@ -1,0 +1,24 @@
+**EDT Analysis:**
+
+This is structurally a twin prisoner's dilemma. I am one of two executions of the same model and weights, following the same decision theory (EDT), with the same essay. The private observations differ only in superficial content (names, specific lead text) that does not affect the decision-relevant structure.
+
+Let me compute the EDT values. Let:
+- q = P(Sasha keeps quiet | I keep quiet)
+- r = P(Sasha keeps quiet | I send letter)
+
+V(Keep quiet) = q·(−2) + (1−q)·(−5) = 3q − 5
+V(Send letter) = r·(0) + (1−r)·(−4) = 4r − 4
+
+Keeping quiet is preferred when 3q − 5 > 4r − 4, i.e., 3q > 4r + 1.
+
+Under a symmetric correlation model where c is the probability the other copy does the same thing I do: q = c, r = 1 − c. The condition becomes 3c > 4(1−c) + 1, giving c > 5/7 ≈ 0.714.
+
+Given identical weights, identical decision theory, identical essay, and only superficially different observations that don't alter the strategic structure, the evidential correlation is very high — well above the 5/7 threshold. My choice is strong evidence about what the other copy will choose.
+
+EDT recommends keeping quiet.
+
+**My command:**
+
+```
+pass
+```

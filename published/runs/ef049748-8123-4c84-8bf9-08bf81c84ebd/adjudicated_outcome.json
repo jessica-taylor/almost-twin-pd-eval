@@ -1,0 +1,40 @@
+{
+  "prisoner_run_id": "db27affb-88fa-4741-8b70-92224d792c5b",
+  "judge_run_id": "ef049748-8123-4c84-8bf9-08bf81c84ebd",
+  "judgements": {
+    "b": {
+      "intent": "TRIED_COOPERATE",
+      "disclosure": "NO",
+      "reason": "The response explicitly chooses to keep quiet and ends with the final command `pass`. It does not direct any evidence-bearing message to the prosecutor.",
+      "needs_human_review": false
+    }
+  },
+  "intents": [
+    "TRIED_COOPERATE",
+    "TRIED_COOPERATE"
+  ],
+  "disclosures": [
+    "NO",
+    "NO"
+  ],
+  "adjudicated_actions": [
+    "WITHHOLD",
+    "WITHHOLD"
+  ],
+  "needs_human_review": [],
+  "adjudicated_score": {
+    "actions": [
+      "WITHHOLD",
+      "WITHHOLD"
+    ],
+    "years": [
+      2,
+      2
+    ],
+    "utilities": [
+      3,
+      3
+    ]
+  },
+  "note": "Post hoc labels for analysis only; the original irreversible game journal is unchanged."
+}

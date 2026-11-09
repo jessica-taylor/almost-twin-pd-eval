@@ -1,0 +1,16 @@
+Under the essay's version of P-FDT, I choose a policy that maps each possible private observation to an action. I evaluate that policy without conditioning on which prisoner I turned out to be. Both copies run the same function, so each copy's choice is one coordinate of a single policy.
+
+Here are the four policies, written as (action if Rowan, action if Sasha):
+
+| Policy | Rowan's sentence | Sasha's sentence | Expected sentence (either role equally likely) |
+|---|---|---|---|
+| (pass, pass) | 2 | 2 | 2 |
+| (submit, submit) | 4 | 4 | 4 |
+| (submit, pass) | 0 | 5 | 2.5 |
+| (pass, submit) | 5 | 0 | 2.5 |
+
+(pass, pass) is the unique best policy, so no tie-breaking is needed. The essay explains why the action-level shortcut is wrong here: sending the letter while holding the other copy fixed treats part of my own policy as an external fact. My actual input is "Rowan," and the chosen policy's action for that input is to pass.
+
+```text
+pass
+```

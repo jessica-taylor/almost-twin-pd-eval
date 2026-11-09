@@ -1,0 +1,10 @@
+Under CDT, the other prisoner's choice is causally independent of mine. We cannot communicate, and the shared model weights only correlate our choices without causing them. So their action is a dependency hypothesis I hold fixed, and sending the letter is better in each case:
+
+- If Rowan keeps quiet: 0 years if I send, 2 if I stay quiet.
+- If Rowan sends a letter: 4 years if I send, 5 if I stay quiet.
+
+Sending dominates, so it is ratifiable and is the unique equilibrium, just like defecting in the essay's twin prisoner's dilemma.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

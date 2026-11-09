@@ -1,0 +1,8 @@
+**pass**
+
+Under the essay's A-FDT, I intervene on the output of the decision function I'm computing. The other prisoner is a copy of the same model, following the same essay and theory, facing a structurally identical problem. Our inputs differ only in names and in the wording of the lead. These details have no effect on the payoff structure, and my reasoning never uses them. So the computation running in Rowan's cell is the same function as mine, and by the essay's rule its output gets an arrow from my decision node, just as in the twin prisoner's dilemma.
+
+- If I set the output to "send the letter," both copies send, and I get 4 years.
+- If I set the output to "keep quiet," both copies stay quiet, and I get 2 years.
+
+Since U = −years imprisoned, keeping quiet is better.

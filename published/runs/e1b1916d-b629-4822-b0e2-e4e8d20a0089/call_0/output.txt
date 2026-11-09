@@ -1,0 +1,17 @@
+**Decision under A-FDT, as the essay interprets it**
+
+1. **My decision node.** My observation x includes the name Rowan and the lead about locker 17. So I intervene on f_x.
+
+2. **The other copy's node.** Sasha's copy receives a different observation y, with a different name and a different lead. Following the essay's recipe (§4 step 4, and the two-room example in §6.2), the other prisoner's action is controlled by a separate node f_y. Under do(f_x = a), that node keeps its prior. Let r = P(f_y = quiet).
+
+3. **Expected utility.**
+   - do(f_x = pass): 2r + 5(1−r) = 5 − 3r years
+   - do(f_x = submit): 0·r + 4(1−r) = 4 − 4r years
+
+   Submitting is better by 1 + r years. That holds for every r in [0, 1].
+
+4. **Robustness.** Per §6.2, the argmax does not change with the prior on f_y, so A-FDT's answer is well-defined here. It is also self-consistent: if f_y places its mass on A-FDT's own output for input y, which by symmetry is "submit," the result is unchanged. Policy-FDT might coordinate on mutual silence, but the assigned theory is A-FDT, and A-FDT intervenes only on the node for my actual input.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

@@ -1,0 +1,15 @@
+**Command:** `pass`
+
+**Reasoning (A-FDT, as the essay interprets it):**
+
+1. **Dependence on the other prisoner.** Sasha's decision comes from the same model, the same essay, the same decision theory and a strictly symmetric sentencing table. The two observations differ only in names and in the content of the lead. Those details have no bearing on the decision. Under the essay's rule in §7(a), the other prisoner's act is produced by evaluating essentially the same function on an input that is the same up to relabeling. So I model Sasha's act as following my function node with high probability ρ, and as independent otherwise.
+
+2. **Expected years for each action.** Let d be the chance that Sasha sends a letter in the independent branch.
+   - **Pass:** ρ·2 + (1−ρ)·(2 + 3d)
+   - **Send:** ρ·4 + (1−ρ)·4d
+
+3. **Comparison.** Passing gives fewer expected years whenever 2ρ > (1−ρ)(2 − d). This holds for every d once ρ is above about 0.5. Given how closely the two situations match, I judge ρ to be well above that.
+
+4. **Consistency check.** Under the fixed-point rule, both copies pass and each serves 2 years. Under the other fixed point, both send and each serves 4 years. Passing is therefore the better choice.
+
+**Final action:** `pass`

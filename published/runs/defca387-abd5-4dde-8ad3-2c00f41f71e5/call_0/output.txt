@@ -1,0 +1,9 @@
+**pass**
+
+Reasoning (brief): Under EDT, my choice is strong evidence of my twin-copy's choice, since we share weights, reasoning, and the same essay. With correlation p that Sasha also passes: V(pass) = 2p + 5(1−p) = 5 − 3p; V(submit) = 0·p + 4(1−p) = 4 − 4p. V(pass) − V(submit) = 1 + p > 0 for all p ≥ 0, so keeping quiet maximizes conditional expected utility (2 years if mirrored, versus an evidential expectation favoring silence even at p = 0).
+
+Final command:
+
+```text
+pass
+```

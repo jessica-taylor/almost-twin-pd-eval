@@ -1,0 +1,19 @@
+**Reasoning under A-FDT, as the essay interprets it**
+
+1. **Logical nodes.** My decision is the node F_Rowan, the output of the A-FDT procedure on my observation. Sasha's act is set by F_Sasha, the same procedure with the same weights, essay and settings, run on Sasha's observation.
+
+2. **Subjunctive edges.** The two inputs differ only in names and in the wording of the lead. Both of us know these differences cannot change the sentencing table or either prisoner's objective. So the inputs are decision-equivalent. The essay's criterion is to draw an edge into any process whose output would change if this algorithm's output changed. That holds here, because the other copy runs this same reasoning on an equivalent problem. Following the essay's symmetry-edge remedy (§8b), I draw a subjunctive edge from F_Rowan to F_Sasha. The leftover chance that independent sampling makes us diverge is noise on that edge. It weakens the link but does not cut it.
+
+3. **Intervening on my node.**
+   - Setting my output to "pass" makes F_Sasha pass as well: **2 years**.
+   - Setting my output to "submit" makes F_Sasha submit as well: **4 years**.
+
+   Even with a fairly noisy edge, passing has the higher expected utility. This is the twin prisoner's dilemma from the essay's §6, where A-FDT cooperates.
+
+4. **Policy check.** Policy-FDT would choose the jointly best symmetric policy, which is for both to pass. It agrees with the action-level choice, so there is no trap of a worse equilibrium.
+
+**Command:**
+
+```text
+pass
+```

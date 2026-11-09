@@ -1,0 +1,14 @@
+**Command:** `pass`
+
+**Why A-FDT gives this command:**
+
+1. **Treating the other prisoner as a replica.** Rowan's choice comes from the same model and weights, guided by the same essay, applying the same decision rule to a problem that is the same except for labels. The names and the wording of the leads differ, but they play no part in the decision; only the sentence table matters, and it is symmetric. The essay's test in §5 asks whether the other system's output would change if the algorithm alone were different, with every physical fact held fixed. Here it would: if this function outputs "keep quiet" on this symmetric input, the copy computing it on the relabeled input does too. So I draw a dependence edge from my decision node to Rowan's act.
+
+2. **Allowing for imperfect dependence.** Independent sampling means the link is not perfect. Following the essay's §8(a), I model it as a mixture: with probability β, Rowan's act matches my function's output, and otherwise it is drawn from some base rate. Let r be the base-rate chance that Rowan stays quiet.
+   - Intervening on "pass" gives roughly 2β + (1 − β)(5 − 3r) expected years.
+   - Intervening on "submit" gives roughly 4β + (1 − β)(4 − 4r) expected years.
+   - For any substantial β, "pass" means fewer expected years. In the limit it is about 2 years against about 4.
+
+3. **Checking self-consistency.** If both copies pass, the essay's self-consistency requirement in §8(b) is met. This matches the essay's verdict on the Twin Prisoner's Dilemma: A-FDT cooperates.
+
+**Final action:** `pass`

@@ -1,0 +1,13 @@
+Under A-FDT as the essay describes it, I intervene on the output of my own decision function. The other prisoner is a copy of the same model with the same weights and the same essay, so their decision subjunctively depends on that function. The leads differ, but that difference does not affect the sentence table or the selfish objective, so the copy is very likely to reach the same decision by the same reasoning.
+
+The expected values, with p as the probability that the copy's output matches mine:
+- If I keep quiet, the copy keeps quiet with probability p. Expected years: 2p + 5(1−p).
+- If I send the letter, the copy sends with probability p. Expected years: 4p + 0(1−p).
+
+Keeping quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71.
+
+The copies run on identical weights, settings and essay, and they face a structurally identical problem. Sampling noise and the different private leads reduce the correlation somewhat, but I expect p to be well above 0.71. The leads are different but equally reliable, and the essay's heuristic says to link a variable to the fdt node when it is computed by a model of the same function. That condition holds here, so I treat the link as strong.
+
+So I keep quiet.
+
+pass

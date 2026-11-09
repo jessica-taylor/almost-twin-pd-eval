@@ -1,0 +1,18 @@
+**Command:** `pass`
+
+**Why P-FDT selects this:**
+
+1. **Inputs.** The shared decision function receives one of two inputs: "I am Rowan, holding a lead on Sasha" or "I am Sasha, holding a lead on Rowan." A policy maps each input to either pass or submit.
+
+2. **Which prior to evaluate under.** The essay (§7a) says to use the latest epistemic state common to all instances. That state includes the symmetric sentencing table but not which role this instance occupies. So each role has probability ½.
+
+3. **Scoring each policy:**
+   - Pass in both roles: 2 years in either role, so 2 years expected.
+   - Submit in both roles: 4 years expected.
+   - Submit as Rowan, pass as Sasha (or the reverse): 0 years in one role and 5 in the other, so 2.5 years expected.
+
+4. **Best policy.** Passing in both roles minimizes expected years, so π* is pass for both inputs. Applying it to my actual input (Rowan) gives `pass`.
+
+5. **Why not submit as Rowan.** Re-scoring the choice after learning I am Rowan would be the "double update" the essay warns against.
+
+Final action: `pass`

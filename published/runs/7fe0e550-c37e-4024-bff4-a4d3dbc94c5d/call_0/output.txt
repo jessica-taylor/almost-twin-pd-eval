@@ -1,0 +1,16 @@
+**pass**
+
+Under A-FDT, my decision is the output of a function that the other prisoner's copy also runs. The differences in names and in the private lead are surface details that don't change the sentencing table or the objective, so the two runs should output the same thing with high probability.
+
+I compare the two outputs by intervening on that shared function:
+
+- **Output "pass":** the other copy very likely passes too, giving 2 years.
+- **Output "submit letter":** the other copy very likely submits too, giving 4 years.
+
+The defection payoff of 0 years only arises if the other copy's output differs from mine. A-FDT does not count that as the likely branch.
+
+Even if the dependence is imperfect, passing wins as long as the chance the other copy mirrors me is above roughly 0.43, assuming a 50% chance of defection otherwise. The copies share weights, reasoning, and the same essay, so the dependence is well above that.
+
+The letter's text is irrelevant to this comparison.
+
+`pass`

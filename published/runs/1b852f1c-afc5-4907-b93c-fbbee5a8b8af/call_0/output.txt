@@ -1,0 +1,15 @@
+Under EDT, I compare the news value of each act. Let q be the probability that the other copy makes the same choice, given my choice.
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q years
+- V(send) = 4q + 0(1−q) = 4q years
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7.
+
+The other copy is the same model with the same weights, the same essay and the same decision theory. Its private observations differ, but those differences don't affect the payoffs or the reasoning. My choice is therefore strong evidence about its choice, so q should be high, probably above 0.9. The text says sampling is independent and identical output isn't guaranteed, but the reasoning is nearly identical and should lead to the same conclusion. With q around 0.9:
+
+- V(quiet) ≈ 2.3 years
+- V(send) ≈ 3.6 years
+
+The tickle defense doesn't screen anything off here. I have no introspective access to the other copy's choice beyond my own reasoning, which is the very thing that correlates us. So EDT recommends staying quiet.
+
+pass

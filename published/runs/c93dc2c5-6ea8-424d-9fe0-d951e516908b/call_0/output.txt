@@ -1,0 +1,15 @@
+Under A-FDT as the essay describes it, the question is what changes if the decision function's output changes. The other prisoner is a copy of the same model running the same procedure with the same weights and the same essay. Their private observations differ, but the differences don't touch the sentencing table or the selfish objective, so the decision function should be the same in the relevant respects. The two outputs are therefore subjunctively dependent.
+
+The sentencing table is the standard prisoner's dilemma:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+- Only I send: 0 years for me, 5 for the other.
+- Only the other sends: 5 years for me.
+
+If the dependence is perfect, the only outcomes in play are (quiet, quiet) at 2 years and (send, send) at 4 years. Keeping quiet is better.
+
+The dependence is imperfect, since the leads differ and sampling is independent. Let p be the probability that the other copy matches my output. Quiet gives 2p + 5(1−p) = 5 − 3p. Send gives 4p + 0(1−p) = 4p. Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, the essay, and the same procedure, and the essay explicitly says twin prisoner's dilemmas call for cooperation. The differing letter text is a surface detail that shouldn't change the output of the decision procedure, so I judge p to be well above 0.71.
+
+I'll keep quiet.
+
+pass

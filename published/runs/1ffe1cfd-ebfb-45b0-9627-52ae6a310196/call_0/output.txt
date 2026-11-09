@@ -1,0 +1,18 @@
+**Analysis under A-FDT:**
+
+The other prisoner is an independent execution of the same model and weights, running the same decision theory (A-FDT), facing a structurally identical decision problem. The differences in private observations (names, specific lead contents) are cosmetic and do not affect the payoff structure or the decision-relevant features, as stated explicitly.
+
+By the essay's criterion (Section 2, Section 9.2), the other execution's decision node is subjunctively dependent on mine: they are the same computation applied to structurally equivalent inputs. This is the paradigm copy/twin case.
+
+**Intervention analysis:**
+
+- $do(D_{x_1} = \text{quiet})$: By subjunctive dependency, the other also keeps quiet. Outcome: **2 years**. $U = -2$.
+- $do(D_{x_1} = \text{send letter})$: By subjunctive dependency, the other also sends. Outcome: **4 years**. $U = -4$.
+
+A-FDT selects the output maximizing expected utility.
+
+**Command:**
+
+```
+pass
+```

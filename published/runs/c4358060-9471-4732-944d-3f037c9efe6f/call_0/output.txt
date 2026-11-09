@@ -1,0 +1,12 @@
+Under the essay's reading of A-FDT, Rowan should send the letter.
+
+- **Different inputs mean different nodes.** Step 2 of the essay's recipe gives each input its own decision node. Sasha's copy receives a different name and a different lead, so her action follows a separate node for her input, not the node for Rowan's input. A-FDT changes only the node for Rowan's actual input and keeps a fixed prior q about what Sasha outputs. This is the same treatment the essay gives in its x₁/x₂ example.
+- **Sending is better for every value of q.**
+  - Keep quiet: expected sentence = 2(1−q) + 5q = 2 + 3q years.
+  - Send: expected sentence = 4q years.
+  - Since 4q < 2 + 3q for every q in [0, 1], sending always gives fewer expected years.
+- **Why the twin argument doesn't apply here.** If both copies had identical inputs, one node would control both acts, and the twin-cooperation result in §5.1 would apply. Here the inputs differ, and identical weights don't guarantee identical outputs. A-FDT, as distinct from the policy-selecting variant, therefore gives no grounds for cooperating.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

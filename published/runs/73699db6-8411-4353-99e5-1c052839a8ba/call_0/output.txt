@@ -1,0 +1,16 @@
+**pass**
+
+Rowan and Sasha are two runs of the same model with the same essay and the same decision theory. They differ only in names and in the wording of their leads, and the sentence table is symmetric. The other run's output is therefore very likely to depend on the same reasoning as mine, so it is downstream of the function I'm intervening on, and I should not hold it fixed.
+
+Let p be the probability that the other run outputs the same action as mine.
+
+- **Pass:** expected sentence = 2p + 5(1−p) years.
+- **Letter:** expected sentence = 4p + 0(1−p) years.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71.
+
+Both runs follow the same procedure on near-identical inputs, so I judge p to be well above that threshold. Setting the function's output to "pass" gives about 2 years. Setting it to "letter" gives about 4 years. The dominance argument that sending the letter is better whatever the other does holds the other's output fixed, which is exactly the surgery A-FDT rejects.
+
+This relies on the leads and names not changing the output, which the problem states they don't for the sentence table or the objective. The check from the essay's step 6 also passes: the winning hypothetical does not require the other run to behave differently from me.
+
+`pass`

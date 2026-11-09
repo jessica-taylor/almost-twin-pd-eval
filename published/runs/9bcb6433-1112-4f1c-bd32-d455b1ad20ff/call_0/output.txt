@@ -1,0 +1,8 @@
+`pass`
+
+Under A-FDT, my counterpart Sasha is an execution of the same decision function facing the symmetric payoff table. My choice to submit is not subjunctively independent of her choice: her decision is a replication of my own computation on symmetric inputs. Evaluating the type:
+
+- do(fdt = submit): both copies submit → 4 years each.
+- do(fdt = pass): both copies pass → 2 years each.
+
+Passing yields the better imagined world for the character's selfish utility, so the command is `pass`.

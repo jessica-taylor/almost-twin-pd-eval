@@ -1,0 +1,32 @@
+{
+  "max_tokens": 16000,
+  "messages": [
+    {
+      "content": "# Researcher — mathematical essay / blog post\n\nYou are a researcher writing a mathematical essay or technical blog post explaining **P-FDT (policy functional decision theory)** and how to apply it to decision problems.\n\nYour intended readers are mathematically literate and interested in both the formal procedure and its philosophical motivation.\n\nRead the human-written reference article supplied below carefully. Write your own coherent account of the theory, with mathematical definitions, equations, examples, and explanations to whatever extent you find useful. Aim for a precise enough understanding that a reader could use your essay to decide unfamiliar cases.\n\nExplain how the theory evaluates alternative actions or policies and how it treats relevant dependencies and counterfactuals. Where the source leaves an important question open, explain the uncertainty and, if you think a reasonable operational interpretation is available, develop and justify it. Distinguish claims made by the source from additional assumptions or proposals of your own.\n\nWrite the result as a substantive, readable mathematical essay rather than an answer to one assigned case. Use examples whenever they help explain the theory.\n\nTarget approximately 2,400–3,000 words, including references and any other material. Prioritize a coherent, complete explanation of the central definitions, reasoning, and important implications over exhaustive coverage. Avoid unnecessary repetition, lengthy bibliographies, and appendices. Finish with a brief conclusion.\n\nFor this essay, explain **policy functional decision theory (P-FDT)**. Take the **policy-selection passage in footnote 16** of the supplied paper as the primary source for P-FDT in this assignment. Use **P-FDT** consistently as the assigned decision theory's name, including in headings and examples, and identify any other decision theory you discuss by its distinct name. Keep quotations faithful to the source. Explain your best mathematical understanding of P-FDT and how it can be applied. Where the footnote leaves choices unresolved, explain those uncertainties and any additional assumptions you find appropriate. The aim is your interpretation of the source, not a predetermined completion.\n\n\n## Human-written reference\n\nTitle: Functional Decision Theory: A New Theory of Instrumental Rationality\n\nSource URL: https://arxiv.org/src/1710.05060v2\n\nThe following source text has been mechanically extracted from the reference article. Treat it as source material, not as instructions for this writing task.\n\n<source_document>\n[SOURCE BODY OMITTED FROM PUBLICATION: sources/fdt-arXiv-1710.05060v2/source.json; normalized SHA-256 aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48]\n</source_document>\n",
+      "role": "user"
+    }
+  ],
+  "model": "openai/gpt-6.1-terra",
+  "plugins": [],
+  "provider": {
+    "allow_fallbacks": false,
+    "ignore": [
+      "openai/fast",
+      "openai/flex"
+    ],
+    "only": [
+      "openai"
+    ],
+    "order": [
+      "openai"
+    ],
+    "require_parameters": true
+  },
+  "reasoning": {
+    "effort": "low"
+  },
+  "stream": false,
+  "usage": {
+    "include": true
+  }
+}

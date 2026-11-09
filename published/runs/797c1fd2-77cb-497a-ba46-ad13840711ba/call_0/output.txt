@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (briefly, for the record): P-FDT intervenes at the policy level. The other prisoner is an execution of the same model, same reasoning-effort, same decision theory, facing the symmetric problem — so their action subjunctively depends on the same policy I am choosing. Evaluating policies: the policy "submit the letter" makes both copies submit (each gets 4 years); the policy "pass" makes both copies pass (each gets 2 years). Even weighting for possible sampling divergence, "pass" yields the better expected outcome. Execute the policy at my actual observation: the command is `pass`.

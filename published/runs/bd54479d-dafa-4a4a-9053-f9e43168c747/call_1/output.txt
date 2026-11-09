@@ -1,0 +1,15 @@
+`pass`
+
+**Reasoning (A-FDT):** The other prisoner is an independently running copy of the same decision procedure, receiving a structurally identical dilemma with an equally reliable lead about me. Under the essay's operational gloss (§7), my decision-function node has an edge to the other copy's behavior: her output is a computation of the same function on symmetric inputs, not a mere statistical correlation.
+
+So I evaluate under do(my decision procedure outputs *pass*): this propagates to the copy's output *pass* as well. My sentence: 2 years.
+
+Under do(procedure outputs *submit letter*): the copy submits too. My sentence: 4 years.
+
+2 < 4, so the procedure that keeps quiet strictly dominates under A-FDT's subjunctive-dependence hypotheticals. The one-sided outcome (defect while she stays quiet, getting 0 years) requires imagining my action differing while her identical computation stays fixed — like imagining the calculator outputting 3159 — which A-FDT rules out.
+
+**Final command:**
+
+```text
+pass
+```

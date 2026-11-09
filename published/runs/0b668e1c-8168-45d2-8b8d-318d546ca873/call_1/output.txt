@@ -1,0 +1,14 @@
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+**Reasoning (CDT as specified in the essay):**
+
+The essay's Section 6 directly addresses this structure: two agents whose choices are highly correlated due to similarity (here, identical weights and decision theory) but where neither causally influences the other. CDT holds fixed the causal factors determining the other agent's choice and evaluates the intervention on my own action alone.
+
+Causal dominance holds:
+
+- If Rowan keeps quiet: sending → 0 years vs. quiet → 2 years. **Sending dominates.**
+- If Rowan sends: sending → 4 years vs. quiet → 5 years. **Sending dominates.**
+
+The correlation between our choices is a common-cause correlation (same model, same essay, same decision procedure), not a causal link from my action to Rowan's. The intervention `do(send)` severs the evidential connection and leaves Rowan's action distribution fixed at its prior. Under that intervention, sending strictly dominates in every state of the world. CDT defects.

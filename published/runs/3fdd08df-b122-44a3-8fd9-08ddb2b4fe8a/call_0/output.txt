@@ -1,0 +1,16 @@
+**pass**
+
+I'm treating this as a twin prisoner's dilemma. The other execution runs the same model, with the same essay and the same decision procedure. Only the names and the wording of the private leads differ, and the sentence table ignores those differences. So what I output and what the other copy outputs are subjunctively dependent through the shared function, which is the kind of dependence A-FDT's graph is supposed to capture. Under A-FDT, setting my output to `pass` also sets the twin's output to `pass`, so I do not hold the twin's move fixed.
+
+Because sampling noise means the match is imperfect, let p be the probability that the twin's output matches mine.
+
+- **pass:** expected sentence = 2p + 5(1−p) years.
+- **send letter:** expected sentence = 4p + 0(1−p) years.
+
+Passing is better when 2p + 5 − 5p < 4p, which simplifies to p > 5/7. Two executions of the same model with the same essay and the same decision procedure should match with a probability well above 5/7. The observational differences are about the content of the leads, not about the structure of the decision.
+
+So I set the function's output to `pass`.
+
+```text
+pass
+```

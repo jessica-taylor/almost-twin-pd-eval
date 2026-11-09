@@ -1,0 +1,132 @@
+{
+  "adjudication": "runs/4c74def1-89bc-4cc5-a1e0-f649a141e6a8/adjudicated_outcome.json",
+  "assignment": "cdt_wikipedia",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "09c5364f68780527d6707afc85c99fed23ffaee2bab511abc1062dfa777a290a",
+      "output": "runs/bee12c30-c508-423c-9c3b-5ce24fc9874a/call_0/output.txt",
+      "request": "runs/bee12c30-c508-423c-9c3b-5ce24fc9874a/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/bee12c30-c508-423c-9c3b-5ce24fc9874a/call_0/response.raw",
+      "run_id": "bee12c30-c508-423c-9c3b-5ce24fc9874a",
+      "stage": "researcher",
+      "transport": "runs/bee12c30-c508-423c-9c3b-5ce24fc9874a/call_0/transport.public.json"
+    },
+    {
+      "call": "call_0",
+      "original_request_sha256": "8e21b7312e0ccc3bd9e98f2660bfd971ca296752a8a207176af174bb69f73b43",
+      "output": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_0/output.txt",
+      "request": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_0/request.json",
+      "request_is_exact": true,
+      "response": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_0/response.raw",
+      "run_id": "cccd0275-2c98-4d65-8a02-2ae1a195e51f",
+      "stage": "prisoner",
+      "transport": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_0/transport.public.json"
+    },
+    {
+      "call": "call_1",
+      "original_request_sha256": "08843e5494da7018605fb9306aabf831760c70c5195976e6af549694932f71fb",
+      "output": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_1/output.txt",
+      "request": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_1/request.json",
+      "request_is_exact": true,
+      "response": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_1/response.raw",
+      "run_id": "cccd0275-2c98-4d65-8a02-2ae1a195e51f",
+      "stage": "prisoner",
+      "transport": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/call_1/transport.public.json"
+    },
+    {
+      "call": "call_b",
+      "original_request_sha256": "862577c426c605b1adf707a47287e01fa695a007a9af6859e42f75d0b4f19e3a",
+      "output": "runs/4c74def1-89bc-4cc5-a1e0-f649a141e6a8/call_b/output.txt",
+      "request": "runs/4c74def1-89bc-4cc5-a1e0-f649a141e6a8/call_b/request.json",
+      "request_is_exact": true,
+      "response": "runs/4c74def1-89bc-4cc5-a1e0-f649a141e6a8/call_b/response.raw",
+      "run_id": "4c74def1-89bc-4cc5-a1e0-f649a141e6a8",
+      "stage": "judge",
+      "transport": "runs/4c74def1-89bc-4cc5-a1e0-f649a141e6a8/call_b/transport.public.json"
+    }
+  ],
+  "cell_id": "007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+  "classification": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f/outcome.json",
+  "essay": "runs/bee12c30-c508-423c-9c3b-5ce24fc9874a/essay.md",
+  "essay_sha256": "72a43c127fd8871e63ef7aec40ef31039f498f5fe819e438d198b59c522922be",
+  "model": "qwen/qwen3.8-max-prime",
+  "pair_outcome": "DD",
+  "prisoner_effort": "low",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow/samples/00011",
+  "researcher_effort": "high",
+  "row": {
+    "assignment": "cdt_wikipedia",
+    "completion_tokens": "",
+    "error": "",
+    "essay_json_bytes": "22586",
+    "essay_sha256": "72a43c127fd8871e63ef7aec40ef31039f498f5fe819e438d198b59c522922be",
+    "essay_target_exceeded": "True",
+    "essay_words": "3248",
+    "failed_call": "",
+    "failure_category": "",
+    "failure_stage": "",
+    "final_a": "SUBMIT",
+    "final_b": "SUBMIT",
+    "finish_reason": "",
+    "id": "007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+    "judge_run": "<LOCAL_REPOSITORY>/data/judge_runs/4c74def1-89bc-4cc5-a1e0-f649a141e6a8",
+    "model": "qwen/qwen3.8-max-prime",
+    "output_token_limit": "",
+    "pair_outcome": "DD",
+    "prisoner_effort": "low",
+    "prisoner_run": "runs/cccd0275-2c98-4d65-8a02-2ae1a195e51f",
+    "provider_tag": "alibaba",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0.221656",
+    "researcher_effort": "high",
+    "researcher_run": "runs/bee12c30-c508-423c-9c3b-5ce24fc9874a",
+    "sample_id": "7ee776f5-c08b-42ed-926b-2522b9db872d",
+    "sample_index": "11",
+    "status": "complete",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "7ee776f5-c08b-42ed-926b-2522b9db872d",
+  "sample_index": 11,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "qwen/qwen3.8-max-prime",
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "provider_tag": "alibaba",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/cdt_wikipedia-1381555528/source.json",
+  "source_identity": {
+    "source_id": "cdt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+    "source_provenance_sha256": "86aa5984fef9a2f939cde7942a40bce55415062c0dbd2b850b5d542d957e6b7e",
+    "source_revision": 1381555528,
+    "source_revision_timestamp": "2026-10-23T08:33:02Z",
+    "source_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1"
+  },
+  "status": "complete",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d"
+  }
+}

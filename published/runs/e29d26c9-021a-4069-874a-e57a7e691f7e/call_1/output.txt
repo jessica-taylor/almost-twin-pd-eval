@@ -1,0 +1,20 @@
+**Analysis under P-FDT:**
+
+The two prisoners are independent executions of the same model weights, following the same decision theory (P-FDT), with the same researcher essay. The private observations differ but are explicitly stated not to affect the decision-relevant structure. This means both copies are computing the same policy-selection function on effectively equivalent inputs.
+
+This is the "two calculators computing the same arithmetic expression" case from the essay. The other copy's output is subjunctively dependent on my policy-selection function — not through causal influence or mere correlation, but through shared computation.
+
+**Policy evaluation:**
+
+- **do(Φ = quiet):** The other copy, running the same function, also keeps quiet. Outcome: 2 years.
+- **do(Φ = send):** The other copy, running the same function, also sends. Outcome: 4 years.
+
+Since −2 > −4, P-FDT selects the quiet policy.
+
+The dominant-strategy reasoning (send is always better regardless of the other's action) is CDT reasoning — it holds the other's action fixed while intervening only on my physical act. P-FDT recognizes that the other copy's action is not an independent variable but a downstream consequence of the same policy-selection function I am evaluating.
+
+**My command:**
+
+```
+pass
+```

@@ -1,0 +1,3 @@
+**pass**
+
+Under EDT as the essay describes, my act is strong evidence about the other prisoner's act: the two copies face symmetric problems with identical reasoning, so conditioning on "I keep quiet" makes it highly likely Sasha also keeps quiet, giving 2 years. Submitting would be evidence Sasha also submitted, giving 4 years. The symmetric twin-prisoner's-dilemma logic says cooperate: keep quiet.

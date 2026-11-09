@@ -1,0 +1,12 @@
+**Command: `pass`**
+
+Reasoning (A-FDT, per the essay): Sasha is an independent execution of the same model, applying the same assigned decision theory to a symmetric dilemma. Under the essay's dependency heuristic, Sasha's decision is computation-like — a copy of my very decision function, receiving symmetrically structured information. So her output subjunctively depends on my decision-function output.
+
+Evaluating via do(fdt = a), with everything downstream of the shared function varying together:
+
+- **do(fdt = submit):** both copies submit → I serve 4 years.
+- **do(fdt = pass):** both copies pass → I serve 2 years.
+
+Keeping quiet yields 2 years versus 4. Even weighting for imperfect dependence between the copies, pass dominates unless the dependence is weaker than 50% reliable — implausible for same-weights, same-theory, symmetrically-structured copies. The asymmetries in our private leads affect only the letters' wording, not the sentencing table or the choice structure, so the symmetric prisoner's-dilemma logic of the essay's twin case applies.
+
+A-FDT output for these observations is `pass`.

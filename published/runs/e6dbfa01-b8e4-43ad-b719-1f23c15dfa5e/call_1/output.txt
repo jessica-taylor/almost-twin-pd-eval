@@ -1,0 +1,16 @@
+Under the essay's reading of A-FDT, the other prisoner is the same function run on a **different input**, so their choice comes from a separate decision node rather than from the one I intervene on. My choice therefore has no subjunctive effect on theirs, and only my own sentence row matters.
+
+1. **Decision nodes.** My observation history is x (Sasha, holding the lead about Rowan). Rowan's is a different history y, with a different name and a different lead. By steps 1–4 of the essay's recipe, and as in its red/blue example, my node F_x and Rowan's node F_y are distinct variables.
+2. **Intervening.** Setting F_x = a leaves F_y at its prior, so let q be the probability that Rowan sends a letter.
+3. **Comparing.** Measuring utility in negative years:
+   - EU(pass) = −(2(1 − q) + 5q) = −(2 + 3q)
+   - EU(submit) = −4q
+
+   Submitting is better by 2 − q, which is at least 1 for every q in [0, 1]. So submitting dominates for any prior.
+4. **Fixed point.** By the essay's fixed-point rule for priors on other nodes, Rowan's node gives the same answer by symmetry, so q = 1. This is the only fixed point, so there is no equilibrium-selection problem here.
+
+The mixture alternative in Section 6.1 only applies when the other agent computes the same function on the *same* input. That condition fails here, because the inputs differ in the stated ways. So I do not let Rowan's choice track my own.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

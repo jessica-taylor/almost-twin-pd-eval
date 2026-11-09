@@ -1,0 +1,13 @@
+**Command:** `pass`
+
+**Why A-FDT picks this:**
+
+1. **The other copy's choice depends on mine.** The other prisoner runs the same model, uses the same essay's A-FDT, and faces a problem that is identical up to names and the wording of the lead. Under the essay's test in §6.1, its output should match mine for reasons I can verify: both of us are running the same reasoning on equivalent inputs. So I treat its choice as moving with my function's output, plus some noise to allow for independent sampling.
+
+2. **The expected sentences.** Let f be the chance that the copy's action matches mine.
+   - Keep quiet: 2f + 5(1−f) = 5 − 3f years.
+   - Send the letter: 4f + 0(1−f) = 4f years.
+
+3. **The threshold.** Keeping quiet is better whenever f > 5/7, about 0.71. For two runs of the same model on mirror-image inputs, matching that often is plausible.
+
+4. **The result.** Setting my function's output to "keep quiet" is expected to give about 2 years. Setting it to "send" is expected to give about 4 years. A-FDT keeps quiet.

@@ -1,0 +1,24 @@
+## A-FDT Analysis
+
+**Identifying the subjunctive dependency:** Rowan is an execution of the same model, same weights, same decision theory, applied to a structurally identical decision problem. The differences in observation (names, specific lead content) are explicitly stated to not affect the sentencing structure or selfish objective. This creates a strong subjunctive dependency between my decision output and Rowan's decision output — analogous to the essay's "twin prisoner's dilemma" case, though with imperfect correlation due to independent sampling.
+
+**Constructing the graph:** Let *q* be the probability that Rowan's decision matches mine, given the subjunctive dependency. Since we share the same decision procedure applied to the same structural problem, *q* is high (well above the critical threshold derived below).
+
+**Computing expected utilities:**
+
+- **EU(pass):** *q*(−2) + (1−*q*)(−5) = 3*q* − 5
+- **EU(submit):** *q*(−4) + (1−*q*)(0) = −4*q*
+
+Cooperation is preferred when 3*q* − 5 > −4*q*, i.e., when *q* > 5/7 ≈ 0.714.
+
+Given the structural identity of the problem and the shared decision procedure, *q* comfortably exceeds this threshold.
+
+**Conclusion:** A-FDT cooperates.
+
+---
+
+**My command:**
+
+```
+pass
+```

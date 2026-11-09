@@ -1,0 +1,20 @@
+**Reasoning under the essay's EDT**
+
+1. **Payoffs** (utility = −years): both quiet = −2; I quiet and Sasha sends = −5; I send and Sasha quiet = 0; both send = −4.
+
+2. **Correlation.** Let q = P(Sasha passes | I pass) and r = P(Sasha sends | I send).
+   - V(pass) = −2q − 5(1−q) = −5 + 3q
+   - V(send) = −4r
+   - With symmetric correlation (q = r), passing is better when 7q > 5, i.e. q > 5/7. This is the same threshold as the essay's twin case.
+
+3. **Credence about the correlation.** The other prisoner is the same model with the same weights and settings. It follows the same assigned theory and the same essay, and faces a strictly symmetric payoff table. The only differences are the names and the wording of the leads. Those are symmetric surface details that do not enter the payoff-relevant reasoning. Independent sampling adds some noise, but what drives the choice is the structural analysis, and that analysis is identical across copies. My conditional credence that Sasha's copy reaches the same verdict as mine is well above 5/7.
+
+4. **Screening check (6a).** Nothing in my private evidence screens off this correlation. The differing leads affect only the text of a letter, not the deliberation that decides whether to send it. As in the twin case, what is correlated is the deliberation itself.
+
+5. **Stability check (6b).** If I become confident that I pass, I become confident that Sasha's copy passes too. Then V(pass) ≈ −2 against V(send) ≈ −4, so passing still looks best and the choice is ratifiable under the correlated credences.
+
+**Final command:**
+
+```
+pass
+```

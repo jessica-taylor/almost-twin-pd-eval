@@ -1,0 +1,13 @@
+Payoffs, in years for me: both quiet is 2, I send while the other stays quiet is 0, I stay quiet while the other sends is 5, and both send is 4.
+
+Under EDT I need P(other sends | my action). The other prisoner is a copy of the same model with the same weights, the same assigned decision theory, and the same essay. Our private leads differ, but that doesn't change the sentence table or the objective. So our reasoning is strongly correlated, and the correlation survives my self-knowledge, as in the twin case from the essay. Sampling noise weakens it somewhat.
+
+Let q be the probability that the other copy matches my choice.
+- V(quiet) = -(2q + 5(1−q)) = -(5 − 3q)
+- V(send) = -(0·(1−q) + 4q) = -4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7 ≈ 0.714.
+
+Identical weights, the same essay, and the same decision theory make q likely well above 0.714. The differing leads are a minor perturbation. At q = 0.9, quiet costs 2.3 years and sending costs 3.6 years, so quiet wins.
+
+pass

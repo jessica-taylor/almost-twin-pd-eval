@@ -1,0 +1,14 @@
+Under EDT, the payoffs are as follows. Let q be the probability that the other copy matches my act.
+
+V(quiet) = 2q + 5(1−q) = 5 − 3q
+V(send) = 0·q + 4(1−q)... wait, a match on sending means both send, giving 4 years. So V(send) = 4q + 0·(1−q) = 4q.
+
+Quiet is better when 5 − 3q < 4q, i.e. q > 5/7.
+
+The other execution is the same model with the same weights, the same essay, and the same decision theory. The observations differ, but the differences do not touch the sentencing table, so my act should be strong evidence about what the other copy does. The independent sampling and the different leads add some noise, but I expect q to be well above 5/7, probably 0.9 or higher. The expected sentence for quiet is then about 2.3 years at q = 0.9, against 3.6 years for sending.
+
+The tickle defense doesn't help here. My introspection tells me I am running this reasoning, and the other copy runs the same reasoning, so conditioning on my own state doesn't screen off the correlation.
+
+I will stay quiet.
+
+pass

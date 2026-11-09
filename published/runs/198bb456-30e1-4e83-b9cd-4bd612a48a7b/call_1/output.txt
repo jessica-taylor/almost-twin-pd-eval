@@ -1,0 +1,20 @@
+**Analysis under A-FDT:**
+
+The two prisoners are independent executions of the same model weights, running the same decision theory (A-FDT), with the same utility function, facing a symmetric sentencing table. The private observations differ in content but are explicitly stated to be decision-irrelevant in structure. This is a psychological twin prisoner's dilemma.
+
+**Dependency graph:** My decision function's output subjunctively determines Rowan's action with high probability (same weights, same theory, same essay, isomorphic problem). The sampling caveat introduces some noise, but for a well-specified symmetric problem with a clear optimal output under the assigned theory, the correlation is strong.
+
+**Evaluating interventions (letting p = probability Rowan matches my output):**
+
+- Intervene on "send": Expected years = p·4 + (1−p)·0 = 4p
+- Intervene on "keep quiet": Expected years = p·2 + (1−p)·5 = 5 − 3p
+
+Keep quiet is better when 5 − 3p < 4p, i.e., p > 5/7 ≈ 0.714.
+
+Given identical weights, identical theory, identical essay, identical utility, and a symmetric problem where the observational differences are stated to be decision-irrelevant, p is well above this threshold. The policy formulation confirms this: a policy of mutual silence yields 2 years each; a policy of mutual disclosure yields 4 years each.
+
+**Command:**
+
+```
+pass
+```

@@ -1,0 +1,17 @@
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is a copy of the same model running the same essay and the same theory, so their choice subjunctively depends on that function, though not perfectly. Their private leads differ, and sampling is independent. Still, the structural decision is the same for both of us.
+
+Payoffs, assuming the copy's choice mirrors mine with probability q:
+- Quiet: 2q + 5(1−q)
+- Send: 0q + 4(1−q)... wait, if the copy mirrors me, sending gives 4, not 0. So: Send = 4q + 0(1−q)
+
+Compare these for a mirroring probability q:
+- Quiet: 2q + 5(1−q) = 5 − 3q
+- Send: 4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7, about 0.71.
+
+The copies share weights, settings, and the same essay, and the essay's reasoning pushes toward a symmetric output. The differing leads should not change the structure of the decision. I estimate q well above 0.71, around 0.9. Then quiet costs 5 − 2.7 = 2.3 years and sending costs 3.6 years.
+
+Because I hold the dependency fixed rather than the other's act, I stay quiet.
+
+pass

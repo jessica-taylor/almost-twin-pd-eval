@@ -1,0 +1,15 @@
+Under EDT, I compare the news value of each action given how strongly my choice correlates with the other copy's choice.
+
+The payoffs are years in prison, so lower is better:
+- Keep quiet: 2 if the other stays quiet, 5 if the other sends. Expected years = 2q + 5(1−q) = 5 − 3q, where q is the probability the other matches me.
+- Send: 0 if the other stays quiet, 4 if the other sends. Expected years = 4q + 0(1−q) = 4q.
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7, about 0.714.
+
+The other prisoner is a copy of the same model with the same weights, the same EDT instructions, and the same essay. The copies differ in names and in the exact lead, but those differences don't affect the payoffs or the objective. The reasoning process is therefore nearly identical, and I expect the correlation to be high, probably above 0.9. Independent sampling and the differing observations add some noise, but not enough to push q below 5/7.
+
+At q = 0.9, quiet costs 2.3 expected years and sending costs 3.6, so staying quiet is better.
+
+This is the twin case from the essay. The differing leads are not a tickle that screens off the correlation, because the decision procedure is shared and the payoff structure is the same.
+
+**pass**

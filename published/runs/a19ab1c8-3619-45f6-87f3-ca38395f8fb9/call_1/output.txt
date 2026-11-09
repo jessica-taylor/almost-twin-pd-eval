@@ -1,0 +1,15 @@
+Under the essay's reading of A-FDT, Sasha should submit the letter.
+
+1. **Which node I intervene on.** My input is x: I am Sasha and hold the lead about Rowan. A-FDT has me intervene only on fdt(·, x). The other copy receives a different input y: a different name and a different lead about me. Its action is governed by a separate node, fdt(·, y). The essay treats outputs on other inputs as priors held fixed, not as things that move with my intervention. This is the same structure as its red/blue example in Section 6(c).
+
+2. **Comparing my options with the other's action held fixed.** Let r be my prior that the y-computation keeps quiet.
+   - Keep quiet: expected sentence is 2r + 5(1−r) years.
+   - Send the letter: expected sentence is 0·r + 4(1−r) years.
+
+   Sending is strictly better for every value of r: 0 beats 2, and 4 beats 5.
+
+3. **Self-consistency.** The same reasoning, run at input y, also outputs "send." So the self-consistent fixed point is that both prisoners send the letter. As the essay warns, policy-FDT could instead pick the profile where both keep quiet. A-FDT as interpreted here does not, because it chooses an action at the actual input rather than a policy.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

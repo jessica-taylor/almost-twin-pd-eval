@@ -1,0 +1,15 @@
+`pass`
+
+Under A-FDT, my choice is the output of the decision function that the other prisoner's copy also runs. Our private leads differ, but the sentencing table and the selfish objective are the same, so our reasoning should land on the same output. Intervening on that shared output gives two comparisons:
+
+- If the function outputs "pass", both of us stay quiet and I serve 2 years.
+- If it outputs "send", both of us send and I serve 4 years.
+
+The copies are not guaranteed to match, because sampling is independent. Suppose the other copy matches my action with probability r. Then:
+
+- Passing gives an expected sentence of 2r + 5(1−r) = 5 − 3r years.
+- Sending gives 4r + 0(1−r) = 4r years.
+
+Passing is better whenever r > 5/7. Two copies of the same model with the same essay and the same symmetric table should match well above that threshold.
+
+The other prisoner's lead being different does not change the decision. The graph has the same shared function node feeding both actions, so I stay quiet.

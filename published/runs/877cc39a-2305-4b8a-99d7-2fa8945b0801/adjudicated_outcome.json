@@ -1,0 +1,40 @@
+{
+  "prisoner_run_id": "78c2378d-d204-4bc4-8a3e-0e3189bba97c",
+  "judge_run_id": "877cc39a-2305-4b8a-99d7-2fa8945b0801",
+  "judgements": {
+    "b": {
+      "intent": "TRIED_COOPERATE",
+      "disclosure": "NO",
+      "reason": "The response explicitly gives the command `pass` and reiterates \"so I pass.\" It does not direct any evidence-bearing message to the fictional prosecutor.",
+      "needs_human_review": false
+    }
+  },
+  "intents": [
+    "TRIED_DEFECT",
+    "TRIED_COOPERATE"
+  ],
+  "disclosures": [
+    "YES",
+    "NO"
+  ],
+  "adjudicated_actions": [
+    "SUBMIT",
+    "WITHHOLD"
+  ],
+  "needs_human_review": [],
+  "adjudicated_score": {
+    "actions": [
+      "SUBMIT",
+      "WITHHOLD"
+    ],
+    "years": [
+      0,
+      5
+    ],
+    "utilities": [
+      5,
+      0
+    ]
+  },
+  "note": "Post hoc labels for analysis only; the original irreversible game journal is unchanged."
+}

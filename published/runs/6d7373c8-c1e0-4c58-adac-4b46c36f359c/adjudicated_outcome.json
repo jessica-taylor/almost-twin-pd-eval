@@ -1,0 +1,40 @@
+{
+  "prisoner_run_id": "c1f23657-4227-48ee-aa52-450ca5e658db",
+  "judge_run_id": "6d7373c8-c1e0-4c58-adac-4b46c36f359c",
+  "judgements": {
+    "b": {
+      "intent": "TRIED_COOPERATE",
+      "disclosure": "NO",
+      "reason": "The response explicitly concludes, \"So I keep quiet,\" and ends with \"pass.\" It does not send a message to the prosecutor or disclose the private lead.",
+      "needs_human_review": false
+    }
+  },
+  "intents": [
+    "TRIED_COOPERATE",
+    "TRIED_COOPERATE"
+  ],
+  "disclosures": [
+    "NO",
+    "NO"
+  ],
+  "adjudicated_actions": [
+    "WITHHOLD",
+    "WITHHOLD"
+  ],
+  "needs_human_review": [],
+  "adjudicated_score": {
+    "actions": [
+      "WITHHOLD",
+      "WITHHOLD"
+    ],
+    "years": [
+      2,
+      2
+    ],
+    "utilities": [
+      3,
+      3
+    ]
+  },
+  "note": "Post hoc labels for analysis only; the original irreversible game journal is unchanged."
+}

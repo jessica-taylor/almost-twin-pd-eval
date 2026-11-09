@@ -1,0 +1,16 @@
+**Command:** `submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."`
+
+**Why A-FDT, as the essay interprets it, gives this verdict:**
+
+1. **Two separate logical nodes.** My input (Sasha's observations and lead) differs from Rowan's. So my action is the output of the function on my input, φ_x. Rowan's action is the output on Rowan's input, φ_y. Under the essay's recipe (§5.1, step 2), these are distinct nodes.
+
+2. **Intervene only on my own node.** Equation (4) intervenes on φ_x alone. φ_y stays at its prior, r = P(Rowan stays quiet), which I set to my estimate of A-FDT's own output on Rowan's input (§5.3).
+
+3. **Compare the two acts:**
+   - Pass: expected sentence = 2r + 5(1−r) = 5 − 3r years.
+   - Submit: expected sentence = 0·r + 4(1−r) = 4 − 4r years.
+   - Submitting is shorter by 1 + r years, which is positive for every r. So submit is optimal whatever the off-input prior.
+
+4. **Consistency check.** Since the verdict doesn't depend on r, A-FDT gives the same answer on Rowan's symmetric input. The fixed point is (submit, submit), and it is self-consistent.
+
+The cooperative outcome (2 years each) would need policy-level selection over both inputs together. The essay flags that as going beyond Equation (4), so I don't use it here. The twin prisoner's dilemma "cooperate" verdict applies when the copies receive identical inputs, which is not this case.

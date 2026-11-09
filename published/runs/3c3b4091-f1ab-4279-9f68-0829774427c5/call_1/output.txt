@@ -1,0 +1,12 @@
+Under A-FDT, I intervene on the output of my decision function, and the other copy runs the same function on a similar input. The leads differ, but the sentencing structure is the same, so the other copy's output very likely matches mine in whether it sends a letter or passes. I'll treat the dependence as strong, though not perfect, since the observations differ and sampling is independent.
+
+Let p be the probability that the other copy's output matches mine when I intervene on mine.
+
+- Pass: 2 years with probability p, 5 years with probability 1−p. Expected years = 2p + 5(1−p) = 5 − 3p.
+- Send: 4 years with probability p, 0 years with probability 1−p. Expected years = 4p.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7, about 0.714. Both copies share the same weights and the same essay, and the private differences don't touch the payoff structure. I expect the match probability to be well above 0.71, so passing wins.
+
+The robustness check in the essay says the answer shouldn't hinge on my prior over my own output. Here it depends only on the dependence strength, which I judge to be high. That is the graph input A-FDT needs.
+
+pass

@@ -1,0 +1,16 @@
+**Reasoning under P-FDT (as the essay interprets it):**
+
+- **Inputs:** There are two instances of the same decision function. One receives my observation (Sasha, with a lead on Rowan). The other receives the mirrored observation (Rowan, with a lead on Sasha). Both instances read their action from the same policy node.
+- **Evaluation:** Each policy is scored under the pre-observation model, without conditioning on which cell I am in. Each role is equally likely.
+  - **Pass on both inputs:** 2 years.
+  - **Submit on both inputs:** 4 years.
+  - **Submit on one input, pass on the other:** (0 + 5)/2 = 2.5 years in expectation.
+- **Optimal policy:** π* = (pass, pass), with an expected sentence of 2 years. This beats all alternatives, so no tie-break is needed. Applying π* to my actual input gives "pass."
+
+Independent sampling means the copies are not guaranteed to match. However, P-FDT routes both instances' actions through the single policy node, and the essay tells me not to replace that structure with a different decision theory.
+
+**Command:**
+
+```
+pass
+```

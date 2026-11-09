@@ -1,0 +1,7 @@
+`pass`
+
+Reasoning (EDT, per the essay): my choice is evidentially correlated with Rowan's, since we are copies of the same model following the same decision theory — a twin Prisoner's Dilemma structure. Conditioning on my passing: with high probability Rowan (the correlated twin) also passes, giving me ~2 years. Conditioning on my submitting: Rowan likely submits too, giving ~4 years. Even with partial correlation, V(pass) = 2 + 3r years versus V(submit) = 4r years, and passing is weakly better for every r < 1. As the essay's Section 4 prescribes — condition, don't intervene, respecting the twin correlation — the evidentially optimal command is:
+
+```text
+pass
+```

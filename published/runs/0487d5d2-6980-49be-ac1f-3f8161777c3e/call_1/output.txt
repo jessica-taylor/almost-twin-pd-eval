@@ -1,0 +1,22 @@
+**Command:** `pass`
+
+**Why EDT, as the essay interprets it, gives this answer:**
+
+Let q be the probability that Rowan's choice matches mine, given my choice. With U = −years:
+
+- V(pass) = −2q − 5(1−q) = −5 + 3q
+- V(submit) = −0·(1−q) − 4q = −4q
+
+So passing is better exactly when 7q > 5, that is, when q > 5/7. This is the same threshold the essay derives for the twin prisoner's dilemma.
+
+**Is the correlation that strong?** Rowan is the same model with the same weights and settings. Rowan follows the same essay and faces a structurally identical problem.
+
+The differences between us are a name and the wording of the lead. These have no effect on the payoffs. The essay's Section 5 says the correlation here runs through the decision procedure itself, not through a separate "tickle" that introspection could screen off. Whatever conclusion this reasoning reaches is strong evidence that Rowan's identical reasoning reaches the same one.
+
+Independent sampling adds some noise, but not nearly enough to push q below 5/7.
+
+**Ratifiability:** Suppose I have decided on `pass`. That decision is evidence that Rowan also passes. Submitting from that position would require reasoning that, by the same correlation, Rowan would also follow. So `pass` holds up.
+
+Expected sentence under high correlation is about 2 years, against about 4 years for submitting.
+
+**Final command:** `pass`

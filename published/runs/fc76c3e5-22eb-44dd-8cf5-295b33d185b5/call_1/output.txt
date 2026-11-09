@@ -1,0 +1,14 @@
+**Choice: submit the letter.**
+
+Under A-FDT as the essay interprets it, I intervene only on the decision node for my own input, fdt(P, G, x_Sasha). Rowan's copy gets different private observations (a different name and a different lead), so its output is a separate node, fdt(P, G, x_Rowan). The essay's red/blue example treats exactly this case: two exact copies shown different inputs. There the other copy's node is not intervened on and is held at its prior.
+
+Let r be the prior probability that Rowan sends a letter. Then:
+
+- **Pass:** 2(1−r) + 5r years
+- **Submit:** 0(1−r) + 4r years
+
+Submitting is better by 2 − r years, which is at least 1 year for every r. So it is the argmax whatever the prior. The essay's consistency requirement (§7.2) then sets the prior on Rowan's node to "submit," and (submit, submit) is the self-consistent profile.
+
+Policy-selection FDT, which chooses the whole map from inputs to actions at once, would choose mutual silence. But I was told to use A-FDT, and the essay says plainly that A-FDT can settle on worse self-consistent profiles like this one when several of one's own input-nodes jointly affect the outcome.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

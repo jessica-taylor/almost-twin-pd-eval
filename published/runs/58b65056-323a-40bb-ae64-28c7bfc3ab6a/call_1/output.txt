@@ -1,0 +1,14 @@
+`pass`
+
+Under P-FDT, I intervene on the policy my decision procedure implements, not merely this action. Both prisoners run the same selection procedure on a symmetric dilemma; what subjunctively depends on that procedure's output is *both* disclosure decisions, though the letters' contents differ. Evaluating candidate policies over the whole joint outcome:
+
+- Policy "submit": both copies submit — outcome 4 years.
+- Policy "pass": both copies pass — outcome 2 years.
+
+The sentencing table is symmetric and both leads are equally reliable, so nothing breaks the tie in favor of defection; the "pass" policy strictly dominates in expected utility once the correlated twin output is held fixed under the intervention. Keeping quiet is the precommitment I would have made before learning which cell I was in, and it is what the policy-level intervention selects.
+
+Final command:
+
+```text
+pass
+```

@@ -1,0 +1,15 @@
+**Analysis under P-FDT:**
+
+The other prisoner is an execution of the same model, same weights, same decision theory, and same essay, facing a structurally identical decision problem. The differences in our observations (names, specific leads) are exogenous and do not affect the game structure or utilities. This establishes a subjunctive dependence between my policy output and the other prisoner's policy output: the same policy-selection procedure applied to structurally identical inputs yields the same policy.
+
+Under the intervention do(Π_M = keep quiet), the other copy also keeps quiet with high probability → I receive **2 years**.
+
+Under the intervention do(Π_M = send letter), the other copy also sends with high probability → I receive **4 years**.
+
+Since U = −(years), and −2 > −4, P-FDT selects the "keep quiet" policy. Applying my actual input to this policy yields the action: keep quiet.
+
+**My command:**
+
+```
+pass
+```

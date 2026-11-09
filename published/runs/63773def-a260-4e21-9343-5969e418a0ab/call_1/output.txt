@@ -1,0 +1,14 @@
+**pass**
+
+Both executions are the same model with the same essay and the same decision procedure, so the other prisoner's choice subjunctively depends on the output of my decision function. Only the names and the wording of the leads differ, and they don't change the sentence table. In my graph, the `fdt` node therefore points to both prisoners' commands.
+
+The two surgeries compare as follows, where p is the probability that the other copy's output matches mine:
+
+- **do(fdt = pass):** the expected sentence is 2p + 5(1−p) = 5 − 3p years.
+- **do(fdt = send):** the expected sentence is 4p + 0(1−p) = 4p years.
+
+Passing is better whenever p > 5/7 ≈ 0.71. Two executions of the same weights with the same essay and the same objective should match well above that, since the differences in private observations don't touch the decision-relevant structure. At p near 1, passing gives about 2 years against about 4 for sending.
+
+Sending the letter would only look better if I held the other prisoner's output fixed while changing mine. That is the CDT-style surgery the essay rejects for this kind of dependence.
+
+`pass`

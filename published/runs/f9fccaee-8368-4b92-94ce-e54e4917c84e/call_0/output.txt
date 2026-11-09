@@ -1,0 +1,22 @@
+## EDT Analysis
+
+**Identifying the evidential correlation.** I am one of two executions of the same model, same weights, same decision theory (EDT), same reasoning effort. The scenario explicitly states the different private leads do not affect the symmetric sentencing schedule or either prisoner's selfish objective. Per the essay: *"If two algorithms are known to be identical and receive symmetric inputs, assigning probability near one to matching choices is natural."*
+
+The decision-relevant inputs here are structurally identical: same payoff matrix, same utility function (U = −years), same decision theory, same reasoning about correlation. The only difference—specific lead content—is stipulated to be irrelevant to the decision calculus. I therefore assign a high probability q ≈ 0.9+ that Sasha matches my choice.
+
+**Computing EDT values.** Let q = P(Sasha matches my action | my action).
+
+- V(quiet) = q·(−2) + (1−q)·(−5) = 3q − 5  
+- V(send letter) = q·(−4) + (1−q)·(0) = −4q
+
+Keeping quiet is EDT-optimal when 3q − 5 > −4q, i.e., q > 5/7 ≈ 0.714.
+
+With q well above that threshold (given the structural identity of the problem and same model/weights/theory), keeping quiet dominates in evidential expected value.
+
+At q = 0.95: V(quiet) = −2.15 vs. V(send) = −3.8.
+
+**Decision:** Keep quiet.
+
+```
+pass
+```

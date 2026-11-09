@@ -1,0 +1,16 @@
+Under the essay's reading of A-FDT, the right command is to submit the letter.
+
+**Why A-FDT submits here**
+
+- **One node per observation.** Step 2 of the essay's recipe creates a separate logical node for each distinct observation history. My observation (Rowan, the locker-17 lead) differs from Sasha's (a different name and a different lead). So my action is set by the node for my observation, and Sasha's action is set by a different node, the one for Sasha's observation.
+- **Surgery touches only my node.** Equation (4) intervenes only on the node for my current input. The node for Sasha's input is not a descendant of mine, so it keeps its prior distribution. This matches the essay's "rerun test": rewriting the algorithm's output on *this* input does not change its output on a different input.
+- **This is not the essay's twin dilemma.** The twin case in §5.1 has one shared node because both twins have identical inputs. That is not the case here.
+- **Sending is better whatever Sasha does.** Let r be my prior that Sasha sends a letter.
+  - If I pass: expected sentence is 2(1−r) + 5r years.
+  - If I submit: expected sentence is 0(1−r) + 4r years.
+  - Submitting is 2 years better when Sasha keeps quiet and 1 year better when Sasha sends. So it wins for every r.
+- **Consistency check.** The only self-consistent profile (§6.4) is that both copies submit. A policy-level chooser (P-FDT) might pick mutual silence instead. But A-FDT optimizes one input at a time, so it cannot reach that outcome here.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

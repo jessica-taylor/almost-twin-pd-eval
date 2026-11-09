@@ -1,0 +1,44 @@
+{
+  "payload_files": 19491,
+  "private_input_hashes_checked": 18739,
+  "studies": [
+    {
+      "attempted_calls": 633,
+      "cells": 6,
+      "raw_responses_priced": 633,
+      "reported_provider_usd": "84.0566605",
+      "scenario_records": 180,
+      "stage_calls": {
+        "judge": 94,
+        "prisoner": 359,
+        "researcher": 180
+      },
+      "status_counts": {
+        "complete": 176,
+        "failed": 4
+      },
+      "study": "afdt-anthropic-effort-sweep-20261108",
+      "unknown_prices": 0
+    },
+    {
+      "attempted_calls": 1936,
+      "cells": 32,
+      "raw_responses_priced": 1933,
+      "reported_provider_usd": "104.656218715",
+      "scenario_records": 640,
+      "stage_calls": {
+        "judge": 203,
+        "prisoner": 1103,
+        "researcher": 630
+      },
+      "status_counts": {
+        "complete": 543,
+        "failed": 87,
+        "prepared": 10
+      },
+      "study": "dt-four-theories-main-qwen-plow-20261108",
+      "unknown_prices": 3
+    }
+  ],
+  "verified": true
+}

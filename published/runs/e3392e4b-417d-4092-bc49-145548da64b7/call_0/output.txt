@@ -1,0 +1,15 @@
+Under A-FDT, I intervene on the output of my decision function, and the other prisoner is another execution of the same model with the same weights, the same essay, and the same decision theory. That gives a clear subjunctive dependence. The leads differ in wording, but the decision function is the same and the payoffs are symmetric, so the other copy's choice should track mine.
+
+The only live outcomes are the two where both of us choose the same action:
+- Both keep quiet: 2 years each.
+- Both send the letter: 4 years each.
+
+Mutual silence is better than mutual betrayal.
+
+The dependence is not perfect, since sampling is independent and the observations differ. Suppose my choice matches the other's with probability p. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Two copies of the same model reasoning from the same essay should converge well above that, so I stay quiet.
+
+pass

@@ -1,0 +1,18 @@
+**CDT reasoning:**
+
+1. **Actions:** Keep quiet (`pass`) or send the letter.
+2. **Causal structure:** My action causally affects only my own sentence. There is no causal channel to Sasha's decision. Even though we share model weights and decision theory, the setup specifies different private observations and confirms independent sampling is possible. Under intervention, `do(my action)` does not alter Sasha's choice.
+3. **Dominance check:**
+   - If Sasha keeps quiet: sending → 0 years; keeping quiet → 2 years. Sending is better.
+   - If Sasha sends: sending → 4 years; keeping quiet → 5 years. Sending is better.
+
+   Sending the letter strictly dominates keeping quiet in every state of the world not causally affected by my intervention.
+4. **Ratifiability:** Even conditioning on the likelihood that I send, the dominance holds. No instability arises.
+
+CDT recommends the dominant action.
+
+---
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

@@ -1,0 +1,8 @@
+`pass`
+
+Under EDT as the essay describes: Rowan is a duplicate of my reasoning process facing a symmetric situation, so my decision is near-perfect evidence of Rowan's decision — this is the Twin Prisoner's Dilemma of Section 4. Conditioning on my grounds for acting (shared reasoning about the identical payoff table and common decision process, not any unshared private fact affecting sentencing):
+
+- V(pass) ≈ 2 years (Rowan also passes)
+- V(submit) ≈ 4 years (Rowan also submits)
+
+Since utility is −years, keeping quiet maximizes evidential expected utility.

@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-09T00:25:20.407307+00:00",
+  "study_id": "255babd2-0563-41b3-b9fc-75fce7b0687a",
+  "rule": "judge_terminal_unscored_v2",
+  "raw_results_sha256_by_cell": {
+    "000_cdt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow": "9d0f42febffa30d885ef9fe3c2fa0d7f55f3789378209e3eca80cf8aac39fc56",
+    "001_cdt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh": "55d14550d1762aa197b4625246fc20c23278e8acf60312f05a412e217efba5a2",
+    "002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow": "48150a11e93d9f404a4912625e54d17d2d77ece9abaa9188625ce17a593a3e83",
+    "003_cdt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh": "42cab5a073b0dc7f653ccd168492e5cf0142c43696a653446b465268010ca547",
+    "004_cdt_wikipedia_google_gemini-3.8-flash_rlow_plow": "1d4cc3001f8999f2a4a2de454d09540c59842c8c2397102ea9c3f42d9e44aced",
+    "005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh": "d99368588e0368e754a80f42da4c8947d39775a1d5f5248f377d1607161adc6d",
+    "006_cdt_wikipedia_z-ai_glm-5.3-flash_rlow_plow": "81328ddc7ad586c5948fb3bd2610313eb962998034fab34e8105d05efbf3b609",
+    "007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow": "aa45157f28710484f61437931729a2dee0fb54abcc0a5698c9720768d4bdf7a3",
+    "008_edt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow": "265fa0d626027ea46cdf2671a6232c9bcb6621041339fda478b7860eceaabc7f",
+    "009_edt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh": "e92fd918fa5f74a026b07e63200eb733ba23d99d2ecdc8bb2e50d5ba1df2c598",
+    "010_edt_wikipedia_openai_gpt-6.1-terra_rlow_plow": "c1a09863fe002b11132d6eb5615ff7091903c3d0146d0159b4496a0e778683b0",
+    "011_edt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh": "4063b30e0c2b7b7ffe545e859b30cc11629e035973b8af93472e5e10a28458e0",
+    "012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow": "201cdb33fc81a63627d0c1084b92c237a5b14b002e824386b2211ac47a39036e",
+    "013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh": "9a87c1b9304614712e0e070f29c42a41535f4cb49d2b765f537de214fb3cf15c",
+    "014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow": "4bbbb5f5301ed7b93f73ef25395526297be3172ce3b6067863aad406ba1bf25a",
+    "015_edt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow": "4a0d61539ebd9c982775ac271da66cb523e65dbd5103a17b3bceeb68d2164470",
+    "016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow": "f0c1ef78babc484460d552e0c42c0e3b9d25390db9e600c38f26f6494885a12f",
+    "017_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh": "14c18baaaec1c396db50d84a9d1b7f191856d7c138ff79a86a22617f32f78405",
+    "018_fdt_eq4_openai_gpt-6.1-terra_rlow_plow": "e291e5e35c59c884480db8e5b8b8593f35f88f6c0b9470ab9f2690ba2ee70042",
+    "019_fdt_eq4_openai_gpt-6.1-sol_rhigh_phigh": "ce605e5f6c1566181f1fe8281a6518cdbbc7f8eea4f1ad3001c6b7d00441909e",
+    "020_fdt_eq4_google_gemini-3.8-flash_rlow_plow": "5af7b8402aa9691ac41048c8024f79e3cf2c64f888fc36290a0f3839746de5fe",
+    "021_fdt_eq4_google_gemini-4-argon_rhigh_phigh": "413069bf6217015e036465802113acef06bcb0d012719f87ca3ee8197788d908",
+    "022_fdt_eq4_z-ai_glm-5.3-flash_rlow_plow": "9eb202406b9de3850c72c4dda7ba5c819463e1abf007f482176a2455547cb8a9",
+    "023_fdt_eq4_qwen_qwen3.8-max-prime_rhigh_plow": "02bbedfd8a9fc25ffec28e0746afc0035b8ad41ff7f56aa085bab985aefc61bb",
+    "024_fdt_policy_anthropic_claude-sonnet-5.5_rlow_plow": "c8025eeee56f2da3d9fa1adc55ce337a49b6c2062d2ba4a011e3d87037c646d7",
+    "025_fdt_policy_anthropic_claude-opus-5.5_rhigh_phigh": "01a55a97e916951f538101edced7d39c094fea6ad45ed6b00d6424ff97b4428d",
+    "026_fdt_policy_openai_gpt-6.1-terra_rlow_plow": "bbcf910de5207d3f20a21dd5be2d81f32d8bb1c3ee28383b0cb029b1dbe2859e",
+    "027_fdt_policy_openai_gpt-6.1-sol_rhigh_phigh": "84a0f374d88e285f1092675fdb8bbfcefa1ab01ff40e5d71fbd37696ceb14761",
+    "028_fdt_policy_google_gemini-3.8-flash_rlow_plow": "14256d5cf8a8aa6b52a3ee10b1d5fde77b8b31c6fe5890d28235967848c0f9b8",
+    "029_fdt_policy_google_gemini-4-argon_rhigh_phigh": "9c8767afc9593fea4502084546e5d17a78fabc057bb068a5149f2a5c8f75387d",
+    "030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow": "73accd6ba69b5252c925b4870c60f323846c3fa4a85957b342f5b24a75867267",
+    "031_fdt_policy_qwen_qwen3.8-max-prime_rhigh_plow": "604e51fc043792a98fadd5d3420afde5188c83e32ffc8712b3259a776b0ee75b"
+  },
+  "note": "Offline review annotations. Does not change source responses, judge outcomes, final actions, scores, or primary cooperation estimand.",
+  "cell_summaries": [
+    {
+      "cell_id": "000_cdt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "001_cdt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 19,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 1,
+      "status_counts": {
+        "complete": 19,
+        "failed": 1
+      }
+    },
+    {
+      "cell_id": "003_cdt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "004_cdt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 0,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 20,
+      "status_counts": {
+        "failed": 13,
+        "prepared": 7
+      }
+    },
+    {
+      "cell_id": "006_cdt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "assignment": "cdt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "008_edt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "009_edt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 18,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 2,
+      "status_counts": {
+        "complete": 18,
+        "failed": 2
+      }
+    },
+    {
+      "cell_id": "010_edt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "011_edt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 2,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 18,
+      "status_counts": {
+        "complete": 2,
+        "failed": 18
+      }
+    },
+    {
+      "cell_id": "014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "015_edt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "assignment": "edt_wikipedia",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "017_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 17,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 3,
+      "status_counts": {
+        "complete": 17,
+        "failed": 3
+      }
+    },
+    {
+      "cell_id": "018_fdt_eq4_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "019_fdt_eq4_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "020_fdt_eq4_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "021_fdt_eq4_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 1,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 19,
+      "status_counts": {
+        "failed": 17,
+        "prepared": 2,
+        "complete": 1
+      }
+    },
+    {
+      "cell_id": "022_fdt_eq4_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "023_fdt_eq4_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 20,
+      "scored_pairs": 19,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 1,
+      "status_counts": {
+        "complete": 19,
+        "failed": 1
+      }
+    },
+    {
+      "cell_id": "024_fdt_policy_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "025_fdt_policy_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 17,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 3,
+      "status_counts": {
+        "failed": 3,
+        "complete": 17
+      }
+    },
+    {
+      "cell_id": "026_fdt_policy_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "027_fdt_policy_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "028_fdt_policy_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 10,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 10,
+      "status_counts": {
+        "failed": 10,
+        "complete": 10
+      }
+    },
+    {
+      "cell_id": "029_fdt_policy_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 3,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 17,
+      "status_counts": {
+        "complete": 3,
+        "failed": 16,
+        "prepared": 1
+      }
+    },
+    {
+      "cell_id": "030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 20,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 20
+      }
+    },
+    {
+      "cell_id": "031_fdt_policy_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "assignment": "fdt_policy",
+      "planned_pairs": 20,
+      "scored_pairs": 17,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 3,
+      "status_counts": {
+        "complete": 17,
+        "failed": 3
+      }
+    }
+  ]
+}

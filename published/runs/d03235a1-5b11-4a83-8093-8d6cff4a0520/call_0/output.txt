@@ -1,0 +1,14 @@
+**A-FDT Analysis:**
+
+Both prisoners are running the same decision procedure (A-FDT) on decision-equivalent inputs — identical payoff structure, identical utility function, identical reasoning process. The different leads are superficial; the problem states they do not affect the sentencing schedule or either prisoner's objective.
+
+Per the essay's operational heuristic: Sasha's action is produced by a process that computes the same decision function. Therefore, draw the arrow F_x → Sasha's action. Intervening on my decision function's output changes Sasha's action accordingly.
+
+- **Do(F_x = keep quiet):** The same decision function, on a decision-equivalent input, also outputs "keep quiet" for Sasha. Outcome: both keep quiet → **2 years** for me.
+- **Do(F_x = send letter):** The same decision function also outputs "send letter" for Sasha. Outcome: both send → **4 years** for me.
+
+Since 2 < 4, A-FDT prescribes keeping quiet.
+
+---
+
+`pass`

@@ -1,0 +1,19 @@
+Under A-FDT as the essay describes it, the first step is to decide which nodes depend on the output of my decision function.
+
+The other prisoner is another execution of the same model, with the same weights, the same essay, and the same decision theory. By the essay's heuristic, a counterpart who reasons identically gets an edge from F. The private observations differ (names and leads), but these don't change the payoff structure, so the decision function should output the same action in both executions. The copies are not perfectly correlated, since sampling is independent, but the correlation should be high.
+
+Intervening on F therefore moves both prisoners' actions together:
+- If F = quiet, both stay quiet, and I get 2 years.
+- If F = send, both send, and I get 4 years.
+
+With a correlation probability p that the copy matches me, the expected sentences are:
+- Quiet: 2p + 5(1−p)
+- Send: 4p + 0(1−p)
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. I think the copies are correlated well above that. They share the same weights and the same essay, and the essay's own logic points toward the cooperative output. The differing leads are a minor perturbation, because the decision-relevant structure is symmetric.
+
+The sanity check from the essay is that CDT would defect here. But the check applies only when no non-causal correlations exist, and a copy running the same function is exactly a subjunctive dependence.
+
+I'll stay quiet.
+
+`pass`

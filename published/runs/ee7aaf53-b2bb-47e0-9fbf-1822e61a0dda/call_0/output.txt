@@ -1,0 +1,9 @@
+Under CDT as the essay interprets it, I model the causal structure. My act cannot influence the other prisoner's act, since there is no communication, retaliation, or later stage. The other prisoner's choice is a state K, and I hold my credence in it fixed.
+
+Sending the letter is better in each state:
+- If the other stays quiet: 0 years versus 2 years.
+- If the other sends: 4 years versus 5 years.
+
+Sending strictly dominates. The essay's step 5 asks whether my credences about the state shift as I lean toward an act. The other copy runs the same model and may well reach the same output, so my choice is evidence about theirs. But that is a correlation, not a causal influence. The leads and wording differ, so the outputs are not guaranteed to match. Even if my credence that the other sends rises as I lean toward sending, sending still dominates at every credence, so it is ratifiable. The equilibrium check does not change the answer.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

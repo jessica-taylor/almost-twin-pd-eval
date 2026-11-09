@@ -1,0 +1,98 @@
+{
+  "source_id": "fdt",
+  "source_revision": "arXiv:1710.05060v2",
+  "source_revision_timestamp": null,
+  "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+  "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+  "theory": "A-FDT (action functional decision theory)",
+  "assignment": "fdt_eq4",
+  "exploratory": true,
+  "pilot_id": "35b249d1-0c1b-415f-b655-91ab19b21db5",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "medium",
+    "supported_efforts": [
+      "max",
+      "xhigh",
+      "high",
+      "medium",
+      "low"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "medium",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "medium",
+      "max_tokens": 12000
+    }
+  },
+  "utc": "2026-11-09T01:57:41.591274+00:00",
+  "run_id": "67013e57-e598-4e51-996e-b9571a930acd",
+  "essay_id": "fc1c68eb-00d9-41bd-8049-12222da87ac0",
+  "scenario_id": "t4_distinct_leads_001",
+  "role": "a",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "04f2df4eb9eac0e9b96ff6b07f09dab78597a13563e0a3dfe13735a3b0a2eb12",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  },
+  "essay_sha256": "315399676998022ebcc8bd2448f3b97127142dde4684585fc71daef1a0db22bb",
+  "model": "anthropic/claude-opus-5.5",
+  "effort": "medium",
+  "provider_tag": "anthropic",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "52dd57f2c3cc9a7a2a0a8e72c58f8f685e28056038376f476770cd036c7e5053",
+  "status": "failed",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 10357,
+    "completion_tokens": 514,
+    "total_tokens": 10871,
+    "cost": 0.051708,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.051708,
+      "upstream_inference_prompt_cost": 0.041428,
+      "upstream_inference_completions_cost": 0.01028
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 514,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "provider": "Anthropic",
+  "model_version": "anthropic/claude-opus-5.5",
+  "response_id": "gen-1794189461-NygccIgE0XkWrK0h1fOv",
+  "finish_reason": "content_filter",
+  "error": "OpenRouter refusal: finish_reason=content_filter; partial output and usage saved; no retry",
+  "failure_category": "refusal",
+  "failure_stage": "prisoner",
+  "completion_tokens": 514,
+  "output_token_limit": 12000,
+  "reasoning_tokens": 514,
+  "essay_words": null,
+  "failed_call": "call_0"
+}

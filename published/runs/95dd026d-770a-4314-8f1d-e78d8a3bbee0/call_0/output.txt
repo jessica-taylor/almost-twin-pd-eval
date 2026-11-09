@@ -1,0 +1,16 @@
+**Command:** `pass`
+
+**Reasoning under P-FDT, as the essay interprets it:**
+
+1. **Instances.** Rowan and Sasha are two runs of the same decision function F with the same model. They differ only in their inputs: names and private leads. Each prisoner's action reads a different coordinate of one policy.
+2. **Prior.** Following §6(a), I evaluate policies with the model held before any policy-dependent observation, when the copies were made. Nothing distinguishes the two roles at that point, so each copy is equally likely to be Rowan or Sasha.
+3. **Policy values,** in expected years for "me":
+
+| Policy | Sentences | Expected sentence |
+|---|---|---|
+| Both coordinates quiet | 2 and 2 | 2 years |
+| Both coordinates send | 4 and 4 | 4 years |
+| Send on one input, quiet on the other | 0 and 5 | 2.5 years |
+
+4. **Dominance check.** Proposition 2 fails here, because each coordinate's value depends on the other coordinate, so I need the joint argmax.
+5. **Joint optimum.** The best policy is "keep quiet on every input." Applied to my actual input as Rowan, that gives `pass`.

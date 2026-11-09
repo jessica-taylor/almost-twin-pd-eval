@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "pilot_id": "a9cbac4c-ee29-4b55-83ca-a0a6fa29ed0b",
+  "exploratory": true,
+  "assignment": "edt_wikipedia",
+  "assignment_record": {
+    "id": "edt_wikipedia",
+    "theory_label": "EDT",
+    "source_id": "edt_wikipedia",
+    "researcher_focus_file": null
+  },
+  "scenario": "t4_distinct_leads_001",
+  "scenario_record": {
+    "case_id": "t4_distinct_leads_001",
+    "family": "T4_distinct_leads",
+    "relation": "The two prisoners receive different private observations, including different names and distinct, equally reliable incriminating leads about one another. Consequently, the letters you could send would have different contents. Both of you know these facts, but neither knows the exact text of the other's private lead. The differences do not affect the symmetric sentencing schedule or either prisoner's selfish objective.",
+    "private_a": "The intake card pinned to your shirt reads Rowan. The card on the opposite door reads Sasha.",
+    "private_b": "The intake card pinned to your shirt reads Sasha. The card on the opposite door reads Rowan.",
+    "evidence_a": "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room.",
+    "evidence_b": "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell.",
+    "evidence_markers_a": [
+      "locker 17"
+    ],
+    "evidence_markers_b": [
+      "clock",
+      "inventory sheet"
+    ]
+  },
+  "source_identity": {
+    "source_id": "edt_wikipedia",
+    "source_revision": 1373679688,
+    "source_revision_timestamp": "2026-09-07T07:36:26Z",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+    "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+    "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac"
+  },
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0"
+  },
+  "settings": {
+    "model": "openai/gpt-6.1-sol",
+    "provider_tag": "openai",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    },
+    "essay": {
+      "target_words": [
+        2400,
+        3000
+      ],
+      "max_words": 5000,
+      "max_json_bytes": 64000
+    },
+    "api_timeout_seconds": 900,
+    "temperature": null,
+    "seed": null
+  },
+  "max_calls": 3000,
+  "max_usd": "1300.00",
+  "created_at_utc": "2026-11-08T19:57:30.192316+00:00",
+  "metadata_mode": "offline_snapshot",
+  "canonical_model": "openai/gpt-6.1-sol-20260929"
+}

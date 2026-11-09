@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (brief): Under P-FDT, I intervene on the policy, not the act. Sasha is an independent execution of the same model, same theory, same essay — a functional twin whose policy is subjunctively linked to mine. Evaluating policies updatelessly: the policy "keep quiet when facing this symmetric dilemma" yields ≈2 years; the policy "submit the letter" yields ≈4 years, since my twin implements the same policy and both letters get sent. Hold-out variations (quiet/submit mixes) are not available because any policy I pick is one my functional twin also picks. The argmax policy is mutual silence, so I execute its recommendation for my actual observation: `pass`.

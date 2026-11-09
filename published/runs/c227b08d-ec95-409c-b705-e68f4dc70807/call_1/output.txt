@@ -1,0 +1,21 @@
+Reasoning under A-FDT as the essay describes it:
+
+The payoff table is a standard prisoner's dilemma. Sending the letter gives 0 or 4 years, and keeping quiet gives 2 or 5. Sending is the better choice against either move by the other prisoner.
+
+The other prisoner is a copy of the same model with the same weights, the same decision theory, and the same essay. That means subjunctive dependence is plausible. The essay's heuristic says to add an edge from the decision function to any process that runs a representation of the agent's algorithm, and a twin is one of its named examples.
+
+The copies do differ. Their names differ and so do their private leads, so their inputs x are not identical. The essay says the dependence runs through shared computation. Both copies are running the same reasoning about the same game structure, and the differences in observations don't affect the sentencing table or the selfish objective. Their outputs should therefore be highly correlated, even if not perfectly. The essay also notes independent sampling is possible.
+
+Let p be the probability that the other copy's output matches mine under the hypothetical intervention.
+- Keep quiet: expected years = 2p + 5(1−p).
+- Send: expected years = 0·p + 4(1−p) when the correlation holds, i.e. send gives 4 only if they defect.
+
+Wait, I need to compare properly. If I quiet, the other quiets with probability p, giving 2 years. If I send, the other sends with probability p, giving 4 years.
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0·(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, so p > 5/7, about 0.71.
+
+Given the same weights, the same essay, and the same theory, I expect the correlation to be well above 0.71. Both copies will reason their way to this same comparison and cooperate. Keeping quiet is the choice.
+
+**pass**

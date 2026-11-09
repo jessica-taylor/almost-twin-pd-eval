@@ -1,0 +1,16 @@
+**CDT analysis:**
+
+The payoff structure gives strict dominance for sending the letter:
+
+- If Sasha keeps quiet: send → 0 years, pass → 2 years. Sending is better.
+- If Sasha sends: send → 4 years, pass → 5 years. Sending is better.
+
+Under CDT, I evaluate my action by its causal consequences via intervention. The problem states I cannot causally influence Sasha's decision. The fact that we share model weights creates a *correlation* between our decisions, but CDT explicitly rejects using one's own action as evidence about a causally independent variable. As the essay states regarding Newcomb's problem and King David: CDT holds fixed the state of the world that the action does not cause, and evaluates only the downstream causal effects of the intervention.
+
+Since sending the letter strictly dominates keeping quiet under every possible state of Sasha's action, CDT recommends sending.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

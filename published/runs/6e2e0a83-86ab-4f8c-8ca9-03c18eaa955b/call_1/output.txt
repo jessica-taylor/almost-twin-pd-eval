@@ -1,0 +1,12 @@
+A-FDT intervenes only on the node for my own input, fdt(…, x_Sasha). Rowan's copy runs the same function on a different input: a different name and a different lead. That makes it a different node, which keeps whatever prior q I hold for it. This is the situation §7.1 of the essay describes, where the "other agent" is effectively my counterpart at a different input.
+
+Let q be my prior probability that Rowan's node outputs "send." Intervening on my own node gives these expected sentences:
+
+- **Keep quiet:** 5q + 2(1−q) = 2 + 3q years
+- **Send:** 4q + 0(1−q) = 4q years
+
+Sending is better by 2 − q years, which is positive for every q in [0,1]. The verdict is therefore robust, so under the essay's guidance (§7.1, step 1) I report it without needing fixed-point analysis. Self-consistency also gives a unique solution: (send, send).
+
+The policy-level version, P-FDT, might pick mutual silence by choosing over input-to-action mappings. But I was told to apply A-FDT as the essay interprets it, so I do not use that alternative.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

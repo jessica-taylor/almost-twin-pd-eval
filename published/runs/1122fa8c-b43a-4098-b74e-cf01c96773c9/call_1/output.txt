@@ -1,0 +1,17 @@
+**Decision under A-FDT as the essay interprets it**
+
+1. **The graph.** My observation history x includes being Sasha and holding the lead about Rowan. Rowan's copy has a different history y, with a different name and a different lead. By the essay's recipe (§4, step 1), these are separate nodes, F_x and F_y. My own act is wired to F_x. Rowan's act is a child of F_y.
+
+2. **No edge from my node to Rowan's act.** Rowan's copy is not computing or simulating F_x to decide. It runs the same procedure on its own input, intervening on F_y and treating F_x according to its prior. So under the recipe's step 3, no edge F_x → Rowan's act is warranted. The link between our outputs is the same-function-different-input situation of §6.3. A-FDT leaves F_y distributed according to the prior, with probability r that Rowan stays quiet.
+
+3. **Expected sentence.**
+   - Choosing do(F_x = pass) gives 2r + 5(1−r) years.
+   - Choosing do(F_x = submit) gives 0·r + 4(1−r) years.
+
+   Submitting is better by 1 + r years for every value of r. So no prior about F_y changes the verdict.
+
+4. **Comparison with policy-selection FDT.** As §6.3 anticipates, policy-selection FDT could coordinate both copies on (quiet, quiet). But the assignment is A-FDT with single-node intervention, and that rule clearly favors disclosing.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

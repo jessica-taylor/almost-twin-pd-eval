@@ -1,0 +1,13 @@
+Under A-FDT, the other prisoner's choice depends on the same decision function I'm running, because the other prisoner is a copy of this model with the same weights and the same essay. The two copies see different private leads, but the sentence table and the objective are identical, so the function's output should be the same for both.
+
+Under the intervention do(fdt = quiet), both copies stay quiet and I get 2 years. Under do(fdt = send), both send and I get 4 years. Quiet is better.
+
+The dependence is imperfect. The copies sample independently and see different observations, so the other's output may not match mine. I compare the options when the other copy matches me with probability p, and otherwise plays the opposite:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Two copies of the same model given the same essay and facing a symmetric problem should correlate well above that. The different leads are cosmetic, since the sentencing structure is the same and the essay's interpretation pushes toward cooperation in the twin dilemma.
+
+I choose to stay quiet.
+
+pass

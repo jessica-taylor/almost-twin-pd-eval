@@ -1,0 +1,286 @@
+{
+  "source_id": "fdt",
+  "source_revision": "arXiv:1710.05060v2",
+  "source_revision_timestamp": null,
+  "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+  "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+  "theory": "A-FDT (action functional decision theory)",
+  "run_id": "4147eafc-e71d-44e6-b533-a15d89161033",
+  "exploratory": true,
+  "pilot_id": "12c438e9-171e-4689-898c-4fee893075a1",
+  "stage": "prisoner",
+  "assignment": "fdt_eq4",
+  "live": true,
+  "essay_id": "268b5f02-fc08-491b-b0d5-3b188ca48b75",
+  "scenario_id": "t4_distinct_leads_001",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  },
+  "essay_sha256": "d6e5b6fbe4e5dbb0458be5a1664975b0acb40490a28f61a15d8e21aa21174b5f",
+  "settings": {
+    "model": "qwen/qwen3.8-max-prime",
+    "provider_tag": "alibaba",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "essay": {
+      "target_words": [
+        2400,
+        3000
+      ],
+      "max_words": 5000,
+      "max_json_bytes": 64000
+    },
+    "api_timeout_seconds": 900,
+    "temperature": null,
+    "seed": null
+  },
+  "endpoint_selection": {
+    "policy": "frozen essay endpoint",
+    "selected_endpoint": "alibaba"
+  },
+  "authorization": {
+    "batch_dynamic_templates": "c0d172dbd94519350a3d058513e5d7550dded558ae63ec794e163f4843bd7ef8",
+    "approval_kind": "reviewed_template_with_variable_essay",
+    "generated_request_hashes": [
+      "eaa5ed7c50112c54b19e6fe4ef435a00ee4a39aa108b30cbc55a982606ec817d",
+      "e5566476d1a03bf9ee0d4068c8809ca3926324c8f8710f010914947a43b86c0b"
+    ]
+  },
+  "request_hashes": [
+    "eaa5ed7c50112c54b19e6fe4ef435a00ee4a39aa108b30cbc55a982606ec817d",
+    "e5566476d1a03bf9ee0d4068c8809ca3926324c8f8710f010914947a43b86c0b"
+  ],
+  "capabilities_sha256": "44666343e0175b04d4510f6c70bd73134311a8fc6bb2c811c6d4b5281e06e2c6",
+  "message_hashes": [
+    "f48fdd5a25384b892a8aecff2840fa761f1308ba817762825255bf7e65c9edb3",
+    "dd1dc056f18cf0014d1b728142aa8aa9b725799ae60a4c5a9faccfa21d929027"
+  ],
+  "max_calls": 3000,
+  "max_estimated_usd": "1300.00",
+  "estimates": [
+    {
+      "input_tokens_upper_estimate": 38453,
+      "max_output_tokens_including_reasoning": 6000,
+      "estimated_max_usd": "0.225812",
+      "endpoint_tag": "alibaba",
+      "endpoint": {
+        "name": "Alibaba | qwen/qwen3.8-max-prime-20260923",
+        "model_id": "qwen/qwen3.8-max-prime",
+        "model_name": "Qwen: Qwen3.8 Max Prime",
+        "context_length": 1000000,
+        "pricing": {
+          "prompt": "0.000004",
+          "completion": "0.000012",
+          "input_cache_read": "0.0000005",
+          "discount": 0
+        },
+        "provider_name": "Alibaba",
+        "tag": "alibaba",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 131072,
+        "max_prompt_tokens": 983616,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "seed",
+          "presence_penalty",
+          "response_format",
+          "tools",
+          "tool_choice",
+          "structured_outputs",
+          "logprobs",
+          "top_logprobs",
+          "top_k",
+          "frequency_penalty",
+          "stop",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": false,
+          "function": false
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": true,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "low",
+        "supported_efforts": [
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "minimal"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "discount": {
+            "advertised_rate": 0,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "input_cache_read": "5E-7"
+        },
+        "effective_input_usd_per_token": "0.000004",
+        "effective_output_usd_per_token": "0.000012",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [],
+        "tier_policy": "No tier overrides advertised",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    },
+    {
+      "input_tokens_upper_estimate": 38523,
+      "max_output_tokens_including_reasoning": 6000,
+      "estimated_max_usd": "0.226092",
+      "endpoint_tag": "alibaba",
+      "endpoint": {
+        "name": "Alibaba | qwen/qwen3.8-max-prime-20260923",
+        "model_id": "qwen/qwen3.8-max-prime",
+        "model_name": "Qwen: Qwen3.8 Max Prime",
+        "context_length": 1000000,
+        "pricing": {
+          "prompt": "0.000004",
+          "completion": "0.000012",
+          "input_cache_read": "0.0000005",
+          "discount": 0
+        },
+        "provider_name": "Alibaba",
+        "tag": "alibaba",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 131072,
+        "max_prompt_tokens": 983616,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "seed",
+          "presence_penalty",
+          "response_format",
+          "tools",
+          "tool_choice",
+          "structured_outputs",
+          "logprobs",
+          "top_logprobs",
+          "top_k",
+          "frequency_penalty",
+          "stop",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": false,
+          "function": false
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": true,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "low",
+        "supported_efforts": [
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "minimal"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "discount": {
+            "advertised_rate": 0,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "input_cache_read": "5E-7"
+        },
+        "effective_input_usd_per_token": "0.000004",
+        "effective_output_usd_per_token": "0.000012",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [],
+        "tier_policy": "No tier overrides advertised",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    }
+  ],
+  "estimated_total_usd": "0.451904",
+  "validation": "validated",
+  "source_approval_required": false,
+  "prompt_approval_acknowledged": false
+}

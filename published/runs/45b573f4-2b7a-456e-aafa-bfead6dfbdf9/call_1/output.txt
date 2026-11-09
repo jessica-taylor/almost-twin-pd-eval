@@ -1,0 +1,8 @@
+Under CDT, the other prisoner's choice is causally independent of mine, so I treat it as a fixed state of the world. This is a Prisoner's Dilemma with the following payoffs:
+
+- If Rowan keeps quiet, sending the letter gives me 0 years and keeping quiet gives me 2, so sending is better.
+- If Rowan sends a letter, sending gives me 4 years and keeping quiet gives me 5, so sending is better again.
+
+Sending the letter strictly dominates for every credence P(K) about Rowan's choice. The essay's complications (instability, ratifiability, the correlation between my copy and me) don't change this. Dominance holds in both states, so the choice is stable and ratifiable. The evidential link to the other copy is not a causal channel and doesn't enter the CDT calculation.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

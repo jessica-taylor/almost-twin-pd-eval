@@ -1,0 +1,18 @@
+Under A-FDT, I model the other prisoner as another instance of the same model and weights, running the same decision procedure on the same essay. The leads differ in wording and the names differ, but the sentencing table and selfish objective are identical. So the other copy's output is subjunctively dependent on mine. The dependence is imperfect, because sampling is independent and the private observations differ.
+
+The payoffs are:
+- If both of us keep quiet, I get 2 years.
+- If both of us send, I get 4 years.
+- If I send and the other stays quiet, I get 0. If I stay quiet and the other sends, I get 5.
+
+Let q be the probability that the other copy's action matches mine under do(fdt = a). Then:
+- EU(quiet) = -(2q + 5(1-q)) = -(5 - 3q)
+- EU(send) = -(4q + 0(1-q)) = -4q
+
+Quiet is better when 5 - 3q < 4q, which means q > 5/7, about 0.71.
+
+These are two runs of the same model, with the same reasoning effort and the same essay. The differences in the private leads are surface details that don't touch the structure of the problem. I expect the copies to reason almost identically, so q is probably well above 0.71, and I put it around 0.8 to 0.9. At q = 0.85, quiet costs 2.45 years in expectation and sending costs 3.4.
+
+Intervening on the function output therefore favors keeping quiet.
+
+pass

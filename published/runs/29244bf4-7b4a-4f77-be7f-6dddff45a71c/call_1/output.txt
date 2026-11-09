@@ -1,0 +1,14 @@
+**Decision under A-FDT as the essay interprets it:**
+
+1. **Which node I intervene on.** Equation (4) has me set F_x, my decision function's output on my own observation x. That observation includes the name "Sasha" and the specific stairwell/wall-clock lead.
+2. **What the other copy depends on.** The other copy runs the same function on a different input y, with a different name and a different lead. Its action therefore depends on F_y, not on F_x. Under the essay's proposal 6(a), an F_x edge goes only to processes that track my behaviour on input x. Under 6(b) and Step 3 of the recipe, F_y is a separate node held at its prior while I intervene on F_x.
+3. **Expected years.** With q as the prior that the other copy sends a letter:
+   - Pass: 2(1−q) + 5q
+   - Submit: 0(1−q) + 4q
+
+   Submitting is better by 2 + q years for every q, so it dominates.
+4. **The policy view does not apply.** The essay notes in 6(c) that the policy version can differ from A-FDT in multi-agent coordination cases like this one. I am assigned A-FDT, the action version, not the policy version.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

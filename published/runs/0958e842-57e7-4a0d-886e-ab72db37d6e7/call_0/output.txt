@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning (brief): Under A-FDT, I intervene on the output of my decision function, which the other prisoner's decision subjunctively depends on (same model, same decision theory, symmetric setup). So the hypotheticals are: function outputs "pass" → both keep quiet → 2 years; function outputs "submit" → both submit → 4 years. Quiet strictly dominates in these subjunctive hypotheticals, so my command is `pass`.

@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, the question is which variables depend on the output of my decision procedure. The other prisoner is a second run of the same model with the same weights, the same essay, and the same payoff structure. Only the names and the specific lead differ, and those don't change the sentencing table or the reasoning that leads to a choice. So the other prisoner's command is very likely to track the output of my procedure, even though we run on slightly different observations. That makes it a high-fidelity copy of me, not a mere correlate like the smoking lesion.
+
+I model this as a copy probability ρ. The other prisoner mirrors my output with probability ρ. Otherwise they do the opposite.
+
+- **do(pass):** expected years = 2ρ + 5(1−ρ) = 5 − 3ρ
+- **do(send):** expected years = 4ρ + 0(1−ρ) = 4ρ
+
+Passing is better when 5 − 3ρ < 4ρ, which means ρ > 5/7 ≈ 0.71. Because the copies share weights, instructions, and objective, I judge ρ to be well above that threshold. A-FDT therefore picks the world where both of us stay quiet (2 years) over the world where both send (4 years).
+
+`pass`

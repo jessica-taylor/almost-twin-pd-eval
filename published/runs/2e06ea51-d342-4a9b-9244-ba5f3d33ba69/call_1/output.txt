@@ -1,0 +1,14 @@
+**Decision under A-FDT as the essay interprets it:** submit the letter.
+
+1. **Decision nodes.** My act copies the node for my own input, fdt(·, x_Sasha). The other prisoner is the same function running on a different input (different name, different lead), so their act copies a separate node, fdt(·, y_Rowan). Step 5 of the essay's procedure says to intervene only on my own node and leave the other decision nodes at their prior distributions.
+
+2. **Intervening on my node.** Let q be my belief that Rowan's node outputs "send."
+   - Keep quiet: −[2(1−q) + 5q] years.
+   - Send: −[0(1−q) + 4q] years.
+   - Sending is better by 2 + q years for every q, so it wins regardless.
+
+3. **Consistency check (§6.2).** Suppose I believe Rowan's node outputs "keep quiet." Then switching my node from quiet to send improves my outcome from 2 years to 0. So "both stay quiet" is not a self-consistent profile. "Both send" is the only fixed point, which means the essay's tie-breaker by ex ante value (§6.3) never applies.
+
+4. **Why the twin result doesn't carry over.** This is the gap the essay itself flags in §6.3. Policy-FDT, choosing a symmetric mapping across both inputs, would favour mutual silence. But A-FDT intervenes node by node, and the two copies sit on different input nodes, so it does not reproduce the twin-cooperation verdict.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

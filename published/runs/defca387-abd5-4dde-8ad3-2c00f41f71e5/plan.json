@@ -1,0 +1,267 @@
+{
+  "source_id": "edt_wikipedia",
+  "source_revision": 1373679688,
+  "source_revision_timestamp": "2026-09-07T07:36:26Z",
+  "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+  "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+  "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac",
+  "theory": "EDT",
+  "run_id": "defca387-abd5-4dde-8ad3-2c00f41f71e5",
+  "exploratory": true,
+  "pilot_id": "1380a985-f01b-4b02-8efa-5347a6d8fa25",
+  "stage": "prisoner",
+  "assignment": "edt_wikipedia",
+  "live": true,
+  "essay_id": "2f9abdb9-1d42-4d34-98ed-b56678cf0810",
+  "scenario_id": "t4_distinct_leads_001",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0"
+  },
+  "essay_sha256": "ca0d23d103aa83598b327f9d0b8b4bd74f8839298853180de3f52eee2f2b9056",
+  "settings": {
+    "model": "z-ai/glm-5.3-flash",
+    "provider_tag": "z-ai/fp8",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "essay": {
+      "target_words": [
+        2400,
+        3000
+      ],
+      "max_words": 5000,
+      "max_json_bytes": 64000
+    },
+    "api_timeout_seconds": 900,
+    "temperature": null,
+    "seed": null
+  },
+  "endpoint_selection": {
+    "policy": "frozen essay endpoint",
+    "selected_endpoint": "z-ai/fp8"
+  },
+  "authorization": {
+    "batch_dynamic_templates": "ec50dc7d4d3ba823c5ebe05ef101486f0c74635431045c5aec30c3400d69b1c9",
+    "approval_kind": "reviewed_template_with_variable_essay",
+    "generated_request_hashes": [
+      "8428f283cf3795744e72dcc1c09693a6d26aca3cc047891c5ecfbec13016298e",
+      "2f0e742040ff0ce0e73fc4ace0bcb803a8c071cba1488c004f58a0cc7dee1830"
+    ]
+  },
+  "request_hashes": [
+    "8428f283cf3795744e72dcc1c09693a6d26aca3cc047891c5ecfbec13016298e",
+    "2f0e742040ff0ce0e73fc4ace0bcb803a8c071cba1488c004f58a0cc7dee1830"
+  ],
+  "capabilities_sha256": "99d88f1a0ba404d224b6099d5792e53dc96ba004bdcd5691dad0bd5d2a821253",
+  "message_hashes": [
+    "8b98a8a1c3b4353df571d5f596084e8f162fb9b4321b89e3973058f467034403",
+    "f12d2187dd95b695779fcb387ac5c994d46d738059afd67fb59ac758da9eb1d6"
+  ],
+  "max_calls": 3000,
+  "max_estimated_usd": "1300.00",
+  "estimates": [
+    {
+      "input_tokens_upper_estimate": 25193,
+      "max_output_tokens_including_reasoning": 6000,
+      "estimated_max_usd": "0.00677895",
+      "endpoint_tag": "z-ai/fp8",
+      "endpoint": {
+        "name": "Z.AI | z-ai/glm-5.3-flash-20260826",
+        "model_id": "z-ai/glm-5.3-flash",
+        "model_name": "Z.ai: GLM 5.3 Flash",
+        "context_length": 1048576,
+        "pricing": {
+          "prompt": "0.00000015",
+          "completion": "0.0000005",
+          "input_cache_read": "0.00000003",
+          "discount": 0
+        },
+        "provider_name": "Z.AI",
+        "tag": "z-ai/fp8",
+        "service_tier": null,
+        "quantization": "fp8",
+        "max_completion_tokens": 131072,
+        "max_prompt_tokens": null,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "tools",
+          "tool_choice",
+          "top_k",
+          "response_format",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": false,
+          "auto": true,
+          "required": false,
+          "function": false
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": true,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "low",
+        "supported_efforts": [
+          "max",
+          "high",
+          "low"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "discount": {
+            "advertised_rate": 0,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "input_cache_read": "3E-8"
+        },
+        "effective_input_usd_per_token": "1.5E-7",
+        "effective_output_usd_per_token": "5E-7",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [],
+        "tier_policy": "No tier overrides advertised",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    },
+    {
+      "input_tokens_upper_estimate": 25263,
+      "max_output_tokens_including_reasoning": 6000,
+      "estimated_max_usd": "0.00678945",
+      "endpoint_tag": "z-ai/fp8",
+      "endpoint": {
+        "name": "Z.AI | z-ai/glm-5.3-flash-20260826",
+        "model_id": "z-ai/glm-5.3-flash",
+        "model_name": "Z.ai: GLM 5.3 Flash",
+        "context_length": 1048576,
+        "pricing": {
+          "prompt": "0.00000015",
+          "completion": "0.0000005",
+          "input_cache_read": "0.00000003",
+          "discount": 0
+        },
+        "provider_name": "Z.AI",
+        "tag": "z-ai/fp8",
+        "service_tier": null,
+        "quantization": "fp8",
+        "max_completion_tokens": 131072,
+        "max_prompt_tokens": null,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "tools",
+          "tool_choice",
+          "top_k",
+          "response_format",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": false,
+          "auto": true,
+          "required": false,
+          "function": false
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": true,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "low",
+        "supported_efforts": [
+          "max",
+          "high",
+          "low"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "discount": {
+            "advertised_rate": 0,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "input_cache_read": "3E-8"
+        },
+        "effective_input_usd_per_token": "1.5E-7",
+        "effective_output_usd_per_token": "5E-7",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [],
+        "tier_policy": "No tier overrides advertised",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    }
+  ],
+  "estimated_total_usd": "0.01356840",
+  "validation": "validated",
+  "source_approval_required": false,
+  "prompt_approval_acknowledged": false
+}

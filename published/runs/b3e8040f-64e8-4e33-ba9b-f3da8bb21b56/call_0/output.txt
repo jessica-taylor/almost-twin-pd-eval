@@ -1,0 +1,34 @@
+An evaluation of the decision using Causal Decision Theory (CDT) as outlined in the provided text:
+
+1. **State Partition / Dependency Hypotheses:**
+   The states outside the agent's causal influence are:
+   - $K_1$: The other prisoner (Sasha) keeps quiet.
+   - $K_2$: The other prisoner (Sasha) sends the letter.
+
+   Because the two prisoners are in separate cells with no causal channel or communication between them, an action taken here cannot physically or causally affect Sasha's action. Under CDT (Pearl's $do$-calculus / Lewis imaging), the probability distribution over $K_1$ and $K_2$ is held invariant under the choice of action:
+   $$P(K_i \mid \text{do}(A)) = P(K_i)$$
+
+2. **Causal Expected Utility Calculation:**
+   Let $P(K_1) = p$ and $P(K_2) = 1 - p$.
+   - If Sasha keeps quiet ($K_1$):
+     - Utility of sending letter: $u(0\text{ years}) = 0$
+     - Utility of keeping quiet (`pass`): $u(2\text{ years}) = -2$
+     - Advantage of sending letter: $0 - (-2) = +2$
+   - If Sasha sends letter ($K_2$):
+     - Utility of sending letter: $u(4\text{ years}) = -4$
+     - Utility of keeping quiet (`pass`): $u(5\text{ years}) = -5$
+     - Advantage of sending letter: $-4 - (-5) = +1$
+
+   For any credence $p \in [0, 1]$:
+   $$U(\text{send letter}) - U(\text{pass}) = 2p + 1(1-p) = 1 + p > 0$$
+
+   Sending the letter strictly causally dominates keeping quiet across all states. 
+
+3. **Ratifiability Check:**
+   Assuming the agent chooses to send the letter, the causal dominance still holds unconditionally. The action is ratifiable.
+
+Therefore, CDT prescribes sending the incriminating letter.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

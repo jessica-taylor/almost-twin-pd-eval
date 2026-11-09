@@ -1,0 +1,13 @@
+Under the essay's reading of A-FDT, sending the letter is the better choice whatever the other prisoner does.
+
+**Which node I intervene on.** Equation (4) intervenes only on the decision node for my actual input. The essay says observations determine *which* node is intervened on. My input includes my name (Sasha) and my specific lead about Rowan. The other copy's input contains different names and a different lead. So the other copy's action comes from a different node, roughly fdt(P, G, x′), and the essay's procedure treats it as an input-specific node with a prior, q. This is not the same node as mine, which is what makes the twin case different.
+
+**Expected years imprisoned.** Let q be the probability that the other node outputs "send". Utility is negative years.
+
+- Pass: −2(1 − q) − 5q = −2 − 3q
+- Submit: 0·(1 − q) − 4q = −4q
+- Submit minus pass: 2 − q, which is positive for every q in [0, 1].
+
+**Robustness and fixed point.** The essay's step 5 asks first whether the verdict holds across all values of q. It does: submitting is strictly better for every q. The fixed-point check also holds, since the symmetric copy reasons the same way, so q = 1 is consistent. In that equilibrium each prisoner gets 4 years. This is worse than mutual silence, but it is the coordination limit that §6 attributes to A-FDT as distinct from policy-FDT.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

@@ -1,0 +1,359 @@
+{
+  "audited_head": "bcea2cdedfa8668016005ce2c5978def054c58cf",
+  "binary_blobs_requiring_separate_review": [],
+  "commit_identity_review": {
+    "email_sha256": [
+      "3c205d8fc749f72977b9331e3179773c315bb1f4860c366de2abe9ec9337730b",
+      "90c42099518e3147584d57a7c83cba9e15e554072eba9214c6b368afefd0a09d"
+    ],
+    "github_noreply_addresses": 0,
+    "note": "Git author/committer identities remain in history; no identity rewriting was performed.",
+    "unique_email_addresses": 2
+  },
+  "current_counts": {
+    "cookie_value": 1,
+    "embedded_url_password": 1,
+    "quoted_secret_assignment": 1
+  },
+  "current_findings": [
+    {
+      "blocking": true,
+      "kind": "embedded_url_password",
+      "line": 149,
+      "location": "tests/test_publication.py",
+      "value_sha256": "b60da2b5f2a259dee088dc87ac6bf5f39c9a80dcad9c37c66855c6e178ac2a50"
+    },
+    {
+      "blocking": true,
+      "kind": "cookie_value",
+      "line": 49,
+      "location": "tests/test_publication.py",
+      "value_sha256": "912d0f07ddcc56d8fbc1ea14745901890cef2c07d292a253f81a74c6c1b7da28"
+    },
+    {
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 94,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    }
+  ],
+  "history_blobs_scanned": 293,
+  "history_commit_tag_messages_scanned": 106,
+  "history_counts": {
+    "quoted_secret_assignment": 9
+  },
+  "history_findings": [
+    {
+      "blob": "5972abfd6e08a8735c2c447ac1fdb9c6d70ac631",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 94,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "57bbb7f44a22b3a55bba66906808aafa5f4e2292",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 94,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "0f2ef385c42b77b77891729f000adbf68d77142f",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 94,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "6f64d788d64f35fcbfc227a7c14273fb020c4673",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 94,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "f25ab317d436fa474989cd5287369de5553ade01",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 91,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "38c9cbb51e93bdb3311cb427e99a214641c74508",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 91,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "7d3fe0159272dfb476256e77a2bccd7d93bdae86",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 90,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "35b3ecbba894696884a4dd7ce7d35dbb1592215e",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 90,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    },
+    {
+      "blob": "0fdc8ba5d39a581266f97796907b2c53836efdfc",
+      "blocking": true,
+      "kind": "quoted_secret_assignment",
+      "line": 90,
+      "location": "tests/test_study.py",
+      "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+    }
+  ],
+  "history_scope": "All local refs and reflogs; no remote fetch, no history rewriting.",
+  "limitations": "Heuristic credential/privacy patterns and locally available full-article signatures. Does not audit unseen remote refs, server-side logs, unknown credentials, or quotation rights.",
+  "manual_review": {
+    "confirmed_credentials": 0,
+    "findings": [
+      {
+        "blob": null,
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "embedded_url_password",
+        "line": 149,
+        "location": "tests/test_publication.py",
+        "reason": "Source-code concatenation expression constructing an invalid.example synthetic URL for scanner tests; not a credential.",
+        "scope": "worktree",
+        "value_sha256": "b60da2b5f2a259dee088dc87ac6bf5f39c9a80dcad9c37c66855c6e178ac2a50"
+      },
+      {
+        "blob": null,
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "cookie_value",
+        "line": 49,
+        "location": "tests/test_publication.py",
+        "reason": "Fabricated cookie used to verify transport-cookie omission; not obtained from a server.",
+        "scope": "worktree",
+        "value_sha256": "912d0f07ddcc56d8fbc1ea14745901890cef2c07d292a253f81a74c6c1b7da28"
+      },
+      {
+        "blob": null,
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 94,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "worktree",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "5972abfd6e08a8735c2c447ac1fdb9c6d70ac631",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 94,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "57bbb7f44a22b3a55bba66906808aafa5f4e2292",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 94,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "0f2ef385c42b77b77891729f000adbf68d77142f",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 94,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "6f64d788d64f35fcbfc227a7c14273fb020c4673",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 94,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "f25ab317d436fa474989cd5287369de5553ade01",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 91,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "38c9cbb51e93bdb3311cb427e99a214641c74508",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 91,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "7d3fe0159272dfb476256e77a2bccd7d93bdae86",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 90,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "35b3ecbba894696884a4dd7ce7d35dbb1592215e",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 90,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      },
+      {
+        "blob": "0fdc8ba5d39a581266f97796907b2c53836efdfc",
+        "disposition": "reviewed_synthetic_fixture",
+        "kind": "quoted_secret_assignment",
+        "line": 90,
+        "location": "tests/test_study.py",
+        "reason": "Mocked, nonfunctional OPENROUTER_API_KEY fixture; no real provider key. Same literal in nine historical versions.",
+        "scope": "history",
+        "value_sha256": "14a02437c04b28f354a3f8125f95924af26b55d09b7e739d4234776997226fe0"
+      }
+    ],
+    "note": "Raw potential findings are retained above. Only these exact path/kind/hash cases have been reviewed; no blanket test-directory exemption. Contributor email identities remain in Git metadata for owner review before public visibility.",
+    "unreviewed_pattern_findings": 0
+  },
+  "remote_configuration_review": [
+    {
+      "config_key": "remote.origin.url",
+      "credential_pattern_matches": 0,
+      "embedded_http_credentials_or_userinfo": false,
+      "url_sha256": "606e110eab16c0914de31fe56507696f26cc6b417558bc37bd6715081d15c727"
+    }
+  ],
+  "scanner_version": "1",
+  "schema_version": 1,
+  "source_signatures": [
+    {
+      "sha256": "f84ff9bb9c443091411f72e02e22a65784cdd79032638799c0c24640d2e6e038",
+      "source_id": "cdt"
+    },
+    {
+      "sha256": "f84ff9bb9c443091411f72e02e22a65784cdd79032638799c0c24640d2e6e038",
+      "source_id": "cdt"
+    },
+    {
+      "sha256": "f84ff9bb9c443091411f72e02e22a65784cdd79032638799c0c24640d2e6e038",
+      "source_id": "cdt"
+    },
+    {
+      "sha256": "f84ff9bb9c443091411f72e02e22a65784cdd79032638799c0c24640d2e6e038",
+      "source_id": "cdt"
+    },
+    {
+      "sha256": "f84ff9bb9c443091411f72e02e22a65784cdd79032638799c0c24640d2e6e038",
+      "source_id": "cdt_sep"
+    },
+    {
+      "sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+      "source_id": "cdt_wikipedia"
+    },
+    {
+      "sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+      "source_id": "cdt_wikipedia"
+    },
+    {
+      "sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+      "source_id": "cdt_wikipedia"
+    },
+    {
+      "sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+      "source_id": "cdt_wikipedia"
+    },
+    {
+      "sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+      "source_id": "cdt_wikipedia"
+    },
+    {
+      "sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+      "source_id": "cdt_wikipedia"
+    },
+    {
+      "sha256": "6d07280b11a56bb3afc9473593594eaf05723a4a4956e3d808b2ee4c26490b4d",
+      "source_id": "edt"
+    },
+    {
+      "sha256": "6d07280b11a56bb3afc9473593594eaf05723a4a4956e3d808b2ee4c26490b4d",
+      "source_id": "edt"
+    },
+    {
+      "sha256": "6d07280b11a56bb3afc9473593594eaf05723a4a4956e3d808b2ee4c26490b4d",
+      "source_id": "edt"
+    },
+    {
+      "sha256": "6d07280b11a56bb3afc9473593594eaf05723a4a4956e3d808b2ee4c26490b4d",
+      "source_id": "edt_sep"
+    },
+    {
+      "sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+      "source_id": "edt_wikipedia"
+    },
+    {
+      "sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+      "source_id": "edt_wikipedia"
+    },
+    {
+      "sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+      "source_id": "edt_wikipedia"
+    },
+    {
+      "sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+      "source_id": "edt_wikipedia"
+    },
+    {
+      "sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+      "source_id": "edt_wikipedia"
+    },
+    {
+      "sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+      "source_id": "fdt"
+    },
+    {
+      "sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+      "source_id": "fdt"
+    },
+    {
+      "sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+      "source_id": "fdt"
+    },
+    {
+      "sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+      "source_id": "fdt"
+    }
+  ],
+  "tracked_files": 83,
+  "worktree_files_scanned": 19585
+}

@@ -1,0 +1,17 @@
+**Decision under A-FDT**
+
+1. **Is the other prisoner linked to my decision?** The other prisoner is a second run of the same model. It has the same weights, the same assigned theory and the same essay. Our inputs differ only in names and in the wording of each lead, and the sentencing tables are exactly symmetric. A-FDT technically intervenes on my node, F_x, and the other prisoner's choice is driven by a different node, F_y. Still, the essay's modelling test applies: the other copy's output would follow whatever my reasoning returns across hypothetical outputs. That is because its reasoning does not depend on which name or locker number appears in the lead. So for this decision, F_x and F_y are effectively the same function, and the other prisoner's choice is a descendant of my choice.
+
+2. **Comparing the two outcomes:**
+   * If my procedure outputs pass, both of us pass, and I serve 2 years.
+   * If my procedure outputs submit, both of us submit, and I serve 4 years.
+
+3. **Self-consistency check:** Both copies passing is a consistent fixed point. It is also the globally best profile, so the A-FDT choice agrees with the policy-FDT choice here.
+
+Passing gives 2 years instead of 4, so A-FDT keeps quiet.
+
+**Command:**
+
+```
+pass
+```

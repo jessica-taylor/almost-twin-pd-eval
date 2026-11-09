@@ -1,0 +1,18 @@
+**Command: `pass`**
+
+**Graph.** My node is F_Sasha, which is A-FDT run on my inputs. Rowan's act comes from F_Rowan. Rowan's inputs differ from mine only in the name and the wording of the lead. Those details don't enter the decision. The sentencing table, the objective, the essay and the model are all identical, so Rowan's copy is doing the same calculation with the labels swapped.
+
+**The essay's Step 2 is too strict here.** Read literally, it draws an edge only when the input is exactly the same. That would make Rowan's act independent of mine, and then sending the letter wins outright. But the essay calls approximate copies an unresolved hard case. It proposes a noisy edge from F_Sasha, with strength r equal to my credence that the other system tracks this very function. I use that.
+
+**Calculation.** Let r be the chance Rowan's choice matches mine, and d the chance Rowan sends the letter otherwise.
+- Keep quiet: −[2r + (1−r)(2(1−d) + 5d)]
+- Send the letter: −[4r + (1−r)·4d]
+- Keeping quiet minus sending: 2r − (1−r)(2−d).
+
+Even in the worst case (d = 1), keeping quiet is better whenever r > 1/3.
+
+**Value of r.** Same weights, same theory, same essay, and identical decision-relevant structure make the dependence strong. Independent sampling can make the copies diverge, but not nearly enough to push r below 1/3. So keeping quiet is the better action.
+
+```text
+pass
+```

@@ -1,0 +1,16 @@
+**Command:** `pass`
+
+Here is why A-FDT, as the essay interprets it, recommends staying quiet.
+
+1. **Where the dependence comes from.** Strictly, my node is F_x and Rowan's is F_y′, because our observations differ. But the differences are only names and the text of each lead, and none of that affects payoffs or the sentencing structure. My reasoning, and the other copy's (same weights, same essay, same theory), never uses those details. The essay's criterion draws an edge when the other process "evaluates any procedure the agent believes provably agrees with it on that input." For inputs that are the same apart from relabelling, I judge that the other copy's output tracks mine with high reliability. Following §7.1, I treat this as a probabilistic edge. Independent sampling adds some noise, so the link is not perfect.
+
+2. **The calculation.** Let p = P(Rowan stays quiet | do(F_x = pass)) and r = P(Rowan stays quiet | do(F_x = submit)).
+   - Staying quiet gives E[U] = −(5 − 3p).
+   - Sending the letter gives E[U] = −(4 − 4r).
+   - Staying quiet is better whenever 3p − 4r > 1.
+   - With strong correlation (p ≈ 0.9, r ≈ 0.1), staying quiet costs about 2.3 expected years and sending costs about 3.6.
+   - With perfect correlation, it is 2 years against 4.
+
+3. **Self-consistency.** If A-FDT returns "pass" on my input, it returns "pass" on the relabelled input too. That makes p high and r low, which is consistent with the choice.
+
+`pass`

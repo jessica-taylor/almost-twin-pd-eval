@@ -1,0 +1,18 @@
+**Decision under A-FDT**
+
+1. **Which node am I intervening on?** My output is fdt(P, G, x), where x is my observation: my name, Sasha's name, and the locker-17 lead. The other prisoner computes fdt(P, G, y), where y has different names and a different lead.
+
+2. **Is the other copy's move downstream of my node?** The essay's test is whether a variable's value is produced by evaluating the agent's function. Here the other copy runs the same weights, the same decision theory and the same essay on a problem that is structurally identical. The only differences are names and the wording of a lead, and neither affects the sentencing table or the utility function. My reasoning never uses the specific text of the lead. So the decision-relevant computation is the same function applied to inputs that are the same up to relabeling. That is the essay's "two calculators computing 6288+1048" case, not the "two pink calculators" case. I therefore draw the subjunctive edge: setting my output sets the other copy's output too, with a high copying probability ρ.
+
+3. **Expected sentence for each intervention:**
+   - do(fdt = pass): the twin also passes, so I get 2 years. With imperfect copying, the expected sentence is 2ρ + 5(1−ρ).
+   - do(fdt = submit): the twin also submits, so I get 4 years. The expected sentence is 4ρ + 0(1−ρ).
+   - Passing is better whenever 5 − 3ρ < 4ρ, that is, whenever ρ > 5/7. For copies of the same model reasoning the same way about this shared structure, I judge ρ to be well above 5/7.
+
+4. **Fixed-point check (§7.2):** If both copies pass, each copy's belief that the other passes matches what A-FDT outputs. The policy is therefore self-consistent, and it beats the mutual-submit fixed point (2 years versus 4).
+
+**Command:**
+
+```
+pass
+```

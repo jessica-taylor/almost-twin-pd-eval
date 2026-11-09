@@ -1,0 +1,17 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning under A-FDT as the essay interprets it:**
+
+- **Two separate decision nodes.** My observation history (Rowan, the locker-17 lead) differs from Sasha's. So my decision node is F_x, and Sasha's act is governed by a different node, F_y.
+- **Only my node is set.** Equation (4) intervenes only on F_x. F_y keeps its prior distribution, as in the essay's §6.3 treatment of nodes under different observations.
+- **No edge between the nodes.** The other prisoner computes the function on a different input. Nothing in the setup computes or models F_x in order to determine Sasha's act.
+- **Expected sentences.** Let s = P(F_y = send):
+  - do(F_x = pass) gives 2(1−s) + 5s = 2 + 3s years.
+  - do(F_x = submit) gives 0(1−s) + 4s = 4s years.
+- **Submitting wins for every s.** It is better by 2 − s years, which is at least 1 year. The verdict does not depend on my prior about the other copy.
+
+Policy-selection FDT, which would treat both instances as coordinated, could instead pick mutual silence, getting 2 years each rather than 4. The experiment specifies the action-selecting A-FDT of Equation (4), however, and under it the character submits the letter.

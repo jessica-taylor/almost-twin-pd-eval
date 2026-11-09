@@ -1,0 +1,99 @@
+{
+  "source_id": "fdt",
+  "source_revision": "arXiv:1710.05060v2",
+  "source_revision_timestamp": null,
+  "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+  "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+  "theory": "P-FDT (policy functional decision theory)",
+  "assignment": "fdt_policy",
+  "exploratory": true,
+  "pilot_id": "70a85621-8506-4c71-a516-7b00592a7d10",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "low",
+    "supported_efforts": [
+      "max",
+      "xhigh",
+      "high",
+      "medium",
+      "low",
+      "none"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    }
+  },
+  "utc": "2026-11-08T22:55:42.286992+00:00",
+  "run_id": "09710223-1d06-4086-898e-909740977f36",
+  "essay_id": "8cf367ac-6149-4548-82ff-040995656013",
+  "scenario_id": null,
+  "role": "researcher",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/fdt_policy_focus.md": "186fd02a693aea66076b768def49ba65c4d9dac31604ba5f7d3018eea37581b0"
+  },
+  "essay_sha256": "cc07697fa98288f21a183d5756aa94e702de98f79ea444fafcb2d34f49f81ee9",
+  "model": "openai/gpt-6.1-terra",
+  "effort": "low",
+  "provider_tag": "openai",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "41a0dd59b94105b93535c75fabc70a16fdfc1eefb21234cbb317d556b7082aee",
+  "status": "success",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 56617,
+    "completion_tokens": 3792,
+    "total_tokens": 60409,
+    "cost": 0.0217937,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 56614,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0217937,
+      "upstream_inference_prompt_cost": 0.0028337,
+      "upstream_inference_completions_cost": 0.01896
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "model_version": "openai/gpt-6.1-terra",
+  "fingerprint": null,
+  "provider": "OpenAI",
+  "returned_endpoint_tag": null,
+  "response_id": "gen-1794178542-4jKeKWlLhxBuefzxWPV9",
+  "refusal": null,
+  "essay_words": 2594,
+  "essay_json_bytes": 18277,
+  "essay_target_exceeded": false,
+  "essay_below_target": false,
+  "researcher_effort": "low"
+}

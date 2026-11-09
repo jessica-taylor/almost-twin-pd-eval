@@ -1,0 +1,298 @@
+# Acting on the News: A Formal Guide to Evidential Decision Theory and Its Operational Application
+
+When you stand at a decision point, how should you evaluate your options? Intuitively, rational choice is about selecting the action that produces the best outcome. Yet underneath that seemingly simple principle lies one of the deepest fractures in modern formal epistemology and decision theory. Should you evaluate a candidate action by its *causal efficacy*—what the action physically brings about in the future—or by its *evidential bearing*—what learning that you took the action would tell you about the state of the world as a whole?
+
+**Evidential decision theory** (EDT) champions the second answer. As characterized in the decision-theoretic literature, EDT holds that a rational agent facing a set of possible actions should select the option with the highest *news value*: the action that indicates the best expected outcome if the agent were to receive the "news" that she had taken it. In the memorable slogan of philosopher Arif Ahmed (2021, p. 7), EDT advises you to *"do what you most want to learn that you will do."*
+
+This perspective stands in sharp contrast to **causal decision theory** (CDT), which directs agents to select the action that causally produces the best expected outcome. In ordinary life, the two theories almost always agree: carrying an umbrella is good news that you will stay dry precisely because carrying an umbrella causes you to stay dry. However, when an agent's choice is statistically correlated with external states of the world that the choice does not physically cause—such as the predictions of an accurate forecaster, the choices of a symmetrically reasoning peer, or a pre-existing disposition—EDT and CDT split apart dramatically.
+
+In this essay, we will examine the mathematical foundations of Evidential Decision Theory, work through its classic philosophical test cases, and confront the practical challenges of applying the theory to unfamiliar decision problems. Standard introductory accounts of EDT—such as the reference overview on which this essay builds—present its core equation and canonical thought experiments concisely, but leave several critical operational questions open. How do we translate raw problem descriptions into the conditional probabilities required by EDT? What happens when an agent's deliberation assigns probability zero to unchosen acts? How should an operational decision-maker distinguish between useful predictive correlations and spurious common-cause confounders? Throughout our discussion, we will explicitly separate the foundational claims and formulas established in the reference literature from our own mathematical elaborations and operational proposals designed to make EDT a complete, usable tool for novel problems.
+
+---
+
+## 1. The Formal Apparatus: Conditional vs. Counterfactual Expectation
+
+The classical formalization of the split between evidential and causal expected utility comes from Allan Gibbard and William Harper's landmark 1976 paper, *Counterfactuals and Two Kinds of Expected Utility*. 
+
+Suppose a decision-maker faces a finite menu of mutually exclusive actions $\mathcal{A} = \{A_1, A_2, \dots, A_k\}$ and cares about a partition of possible complete outcomes $\mathcal{O} = \{O_1, O_2, \dots, O_n\}$. Each outcome $O_j$ is assigned a real-valued cardinal utility or *desirability* $D(O_j) \in \mathbb{R}$, and the agent's epistemic state is represented by a probability measure $P$.
+
+As presented in the reference account following Gibbard and Harper (1976), **Evidential Decision Theory** evaluates each action $A \in \mathcal{A}$ by its conditional expected utility, denoted $V(A)$:
+
+$$V(A) = \sum_{j} P(O_j \mid A) D(O_j)$$
+
+Here, $P(O_j \mid A)$ is the standard conditional probability that outcome $O_j$ occurs given that action $A$ is performed. The quantity $V(A)$ measures the "news value" of $A$: if an oracle informed you that you had selected $A$, you would update your probability distribution over outcomes from $P(O_j)$ to $P(O_j \mid A)$, and $V(A)$ would be your updated expectation of welfare.
+
+By contrast, Gibbard and Harper (1976) formulate **Causal Decision Theory** using counterfactual probabilities, evaluating each action $A$ by its efficacy value $U(A)$:
+
+$$U(A) = \sum_{j} P(A \mathrel{\Box\rightarrow} O_j) D(O_j)$$
+
+where the subjunctive conditional $A \mathrel{\Box\rightarrow} O_j$ reads *"if action $A$ were performed, outcome $O_j$ would occur,"* and $P(A \mathrel{\Box\rightarrow} O_j)$ denotes the probability of that counterfactual conditional. Because the conditional probability $P(O_j \mid A)$ and the counterfactual probability $P(A \mathrel{\Box\rightarrow} O_j)$ are not always equal, $V(A)$ and $U(A)$ can rank actions differently.
+
+### An Operational Extension: The State–Action–Payoff Decomposition
+
+While the outcome-level formula $V(A) = \sum_j P(O_j \mid A) D(O_j)$ from the reference article is maximally general, applying it to a novel decision problem requires an intermediate structural step that the reference leaves implicit in its worked examples. In practice, outcomes $O_j$ do not float free of the environment; they are determined jointly by what the agent *does* and how the *world* is arranged.
+
+To make the theory directly applicable to arbitrary decision tables, let us introduce an explicit **State–Action–Payoff decomposition** (an operational formalization extending the reference text). Let $\mathcal{S} = \{S_1, S_2, \dots, S_m\}$ be a partition of background *states of the world* (or "states of nature") that are fixed independently of the causal reach of the agent's current action—for instance, what a predictor has already placed in a box, or what a distant player is simultaneously deciding. For each action $A \in \mathcal{A}$ and state $S_i \in \mathcal{S}$, the pair $(A, S_i)$ determines a specific outcome $O(A, S_i)$ with desirability $D(A, S_i)$.
+
+When we condition on performing action $A$, the probability of realizing the outcome associated with state $S_i$ is simply the conditional probability of state $S_i$ given $A$. Thus, the EDT evaluation function becomes:
+
+$$V(A) = \sum_{i=1}^{m} P(S_i \mid A) D(A, S_i)$$
+
+Conversely, because the background states $S_i$ are, by construction, outside the causal influence of action $A$, performing $A$ would not causally alter which state $S_i$ obtains. Under CDT, the counterfactual probability that $S_i$ would hold if $A$ were performed is simply the unconditional prior probability $P(S_i)$: that is, $P(A \mathrel{\Box\rightarrow} O(A, S_i)) = P(S_i)$. Hence, the CDT evaluation function reduces to:
+
+$$U(A) = \sum_{i=1}^{m} P(S_i) D(A, S_i)$$
+
+Subtracting $U(A)$ from $V(A)$ yields a clean diagnostic formula that we may call the **Evidential Diagnostic Premium**:
+
+$$\Delta_{\text{ev}}(A) \equiv V(A) - U(A) = \sum_{i=1}^{m} \big[ P(S_i \mid A) - P(S_i) \big] D(A, S_i)$$
+
+This equation tells a practitioner exactly when EDT and CDT will agree or diverge in an unfamiliar domain:
+1. **Evidential Independence ($P(S_i \mid A) = P(S_i)$ for all $i$):** If the agent's choice provides no statistical information about the background states $\mathcal{S}$, then $\Delta_{\text{ev}}(A) = 0$ for every $A$, and EDT is mathematically identical to CDT.
+2. **Evidential Dependence ($P(S_i \mid A) \neq P(S_i)$ for some $i$):** If performing $A$ shifts the probability distribution over $\mathcal{S}$ toward states with high payoffs $D(A, S_i)$, then $\Delta_{\text{ev}}(A) > 0$. If this diagnostic premium is large enough to overcome any direct causal disadvantage of $A$, EDT and CDT will prescribe opposite actions.
+
+---
+
+## 2. Canonical Benchmarks: Predictive and Symmetric Correlations
+
+The reference article highlights two classic thought experiments where $\Delta_{\text{ev}}(A)$ drives a decisive wedge between EDT and CDT: **Newcomb's paradox** and the **Twin Prisoner's Dilemma**. Let us examine how EDT evaluates both cases.
+
+### Newcomb's Paradox (Predictive Correlation)
+
+Formulated by William Newcomb and analyzed extensively in the philosophical literature (Wolpert & Benford, 2013; Ahmed, 2021, pp. 22–26), Newcomb's paradox involves an agent, a predictor, and two boxes: Box A and Box B.
+* **Box A** is transparent and visibly contains $\$1,000$.
+* **Box B** is opaque. Before the game begins, the predictor—who is known to predict the player's choices with $99\%$ accuracy—has already placed either $\$1,000,000$ or $\$0$ inside Box B.
+* If the predictor predicted that the player would **take only Box B** ("one-boxing"), Box B contains $\$1,000,000$.
+* If the predictor predicted that the player would **take both Boxes A and B** ("two-boxing"), Box B contains $\$0$.
+
+At the moment of decision, the prediction has already been made and the money is already sitting (or not sitting) in Box B. The player does not know what the predictor predicted, and must choose between $A_1 = \text{take only B}$ and $A_2 = \text{take both boxes}$.
+
+| Action \ State of Box B | $S_1$: $\$1\text{M}$ in Box B (Predicted One-Box) | $S_2$: $\$0$ in Box B (Predicted Two-Box) |
+| :--- | :---: | :---: |
+| **$A_1$: Take only Box B** | $\$1,000,000$ | $\$0$ |
+| **$A_2$: Take both Boxes A and B** | $\$1,001,000$ | $\$1,000$ |
+
+As shown in the reference article, EDT evaluates the two actions by conditioning the state of Box B on the action taken. Assuming utility is linear in dollars, and taking the predictor's $99\%$ accuracy to mean $P(S_1 \mid A_1) = 0.99$ and $P(S_2 \mid A_2) = 0.99$, we compute:
+
+$$\begin{aligned}
+V(\text{take only B}) &= P(\text{1M in box B} \mid \text{take only B}) \times \$1,000,000 + P(\text{nothing in box B} \mid \text{take only B}) \times \$0 \\
+&= 0.99 \times \$1,000,000 + 0.01 \times \$0 = \$990,000
+\end{aligned}$$
+
+$$\begin{aligned}
+V(\text{take both boxes}) &= P(\text{1M in box B} \mid \text{take both boxes}) \times \$1,001,000 + P(\text{nothing in box B} \mid \text{take both boxes}) \times \$1,000 \\
+&= 0.01 \times \$1,001,000 + 0.99 \times \$1,000 = \$11,000
+\end{aligned}$$
+
+Because $V(\text{take only B}) = \$990,000 > V(\text{take both boxes}) = \$11,000$, EDT unambiguously prescribes taking only Box B. Choosing to one-box is overwhelmingly strong evidence that the predictor foresaw this choice and loaded Box B with $\$1,000,000$.
+
+CDT, by contrast, applies causal dominance. Because the contents of Box B were fixed in the past, your present choice has zero causal power over whether $S_1$ or $S_2$ obtains. Using our state-space notation, for any prior $P(S_1) = p \in [0,1]$, CDT calculates:
+
+$$U(\text{take both boxes}) = p(\$1,001,000) + (1-p)(\$1,000) = p(\$1,000,000) + \$1,000 = U(\text{take only B}) + \$1,000$$
+
+Regardless of $p$, two-boxing causally guarantees an extra $\$1,000$. Yet if an EDT agent and a CDT agent both walk into Newcomb's room, the EDT one-boxer walks out with $\$1,000,000$ ninety-nine percent of the time, whereas the CDT two-boxer walks out with $\$1,000$ ninety-nine percent of the time.
+
+### The Twin Prisoner's Dilemma (Algorithmic Symmetry)
+
+The reference article's second benchmark demonstrates that EDT does not require a crystal-ball predictor looking into the future; contemporaneous correlation between similar agents suffices. Following Greene and Levinstein (2020), consider **Aomame** and her **psychological twin**, placed in separate rooms without communication. Their reasoning processes are known to be exactly analogous. Each must choose whether to **Cooperate** ($\text{C}$) or **Defect** ($\text{D}$), caring only about her own individual payout:
+* If both cooperate, each receives $\$5$.
+* If both defect, each receives $\$1$.
+* If one defects and the other cooperates, the defector receives $\$10$ and the cooperator receives $\$0$.
+
+| Aomame's Action \ Twin's Action | $S_C$: Twin Cooperates | $S_D$: Twin Defects |
+| :--- | :---: | :---: |
+| **$\text{C}$: Aomame Cooperates** | $\$5$ | $\$0$ |
+| **$\text{D}$: Aomame Defects** | $\$10$ | $\$1$ |
+
+In a standard Prisoner's Dilemma against an independent stranger, defection strictly dominates cooperation ($\$10 > \$5$ and $\$1 > \$0$). Under CDT, the same dominance argument holds even against a twin, because Aomame's choice in her room does not causally affect her twin's choice in the other room.
+
+Under EDT, however, Aomame recognizes that her own decision is diagnostic of how their shared cognitive architecture resolves this exact dilemma. Therefore, $P(\text{twin cooperates} \mid \text{Aomame cooperates}) = 1$ and $P(\text{twin defects} \mid \text{Aomame defects}) = 1$. As calculated in the reference text:
+
+$$\begin{aligned}
+V(\text{Aomame cooperates}) &= P(\text{twin cooperates} \mid \text{Aomame cooperates}) \times \$5 + P(\text{twin defects} \mid \text{Aomame cooperates}) \times \$0 \\
+&= 1 \times \$5 + 0 \times \$0 = \$5
+\end{aligned}$$
+
+$$\begin{aligned}
+V(\text{Aomame defects}) &= P(\text{twin cooperates} \mid \text{Aomame defects}) \times \$10 + P(\text{twin defects} \mid \text{Aomame defects}) \times \$1 \\
+&= 0 \times \$10 + 1 \times \$1 = \$1
+\end{aligned}$$
+
+Because $V(\text{Aomame cooperates}) = \$5 > V(\text{Aomame defects}) = \$1$, EDT recommends cooperation. By conditioning on her own act, the evidential decision-maker achieves mutual cooperation without external enforcement—a phenomenon closely linked to Douglas Hofstadter's concept of *superrationality*.
+
+---
+
+## 3. Open Questions and Operational Resolutions for Unfamiliar Cases
+
+While the textbook calculations for Newcomb's paradox and the Twin Prisoner's Dilemma are straightforward, a researcher or practitioner attempting to apply the reference article's framework to a novel problem immediately encounters three foundational gaps:
+1. **How are the conditional probabilities $P(S_i \mid A)$ derived when a problem specifies forward causal/diagnostic accuracy rather than inverse posteriors?**
+2. **How is $P(O_j \mid A)$ defined when the agent's deliberation makes an unchosen action have probability zero ($P(A) = 0$)?**
+3. **How should EDT treat common-cause confounding—the core target of David Lewis's and James Joyce's criticisms—when deciding whether to follow raw evidential correlations?**
+
+Below, we explain why the reference text leaves these questions open and develop explicit mathematical protocols to resolve them. Everything in this section represents our operational extension and interpretation of the baseline theory.
+
+### Open Question 1: From Generative Likelihoods to Evidential Posteriors
+
+In Newcomb's paradox, the reference article states that the predictor predicts the player's choices "with 99% accuracy" and directly substitutes $P(\text{1M in box B} \mid \text{take only B}) = 0.99$. In many real-world or formal problems, however, "accuracy" is given as a property of the predictor's tracking mechanism conditioned on the agent's disposition or action, or vice versa, alongside non-uniform base rates. 
+
+Suppose you face an unfamiliar problem with a noisy classifier, diagnostic test, or imperfect peer. If you are given a joint or generative specification, how must you compute $P(S_i \mid A_k)$?
+
+**Operational Proposal (Bayesian Calibration):** Always construct a coherent joint probability table $P(S_i, A_k)$ over $\mathcal{S} \times \mathcal{A}$ before computing $V(A_k)$. Specifically, if the environment is specified by a prior distribution $P(S_i)$ over states and a conditional tracking distribution $P(A_k \mid S_i)$, you must apply Bayes' theorem:
+
+$$P(S_i \mid A_k) = \frac{P(A_k \mid S_i) P(S_i)}{\sum_{r=1}^{m} P(A_k \mid S_r) P(S_r)}$$
+
+Notice why this matters in Newcomb's paradox: $P(S_1 \mid A_1) = 0.99$ and $P(S_2 \mid A_2) = 0.99$ coincide with forward accuracy $P(A_1 \mid S_1) = 0.99$ and $P(A_2 \mid S_2) = 0.99$ *if and only if* the prior probabilities of the two predictions are symmetric ($P(S_1) = P(S_2) = 0.5$). If, instead, you have strong prior evidence that the predictor almost always leaves Box B empty—say $P(S_1) = 0.001$ and $P(S_2) = 0.999$— while the predictor's conditional sensitivity is $P(A_1 \mid S_1) = 0.99$ and $P(A_2 \mid S_2) = 0.99$, then Bayes' rule yields:
+
+$$P(S_1 \mid A_1) = \frac{(0.99)(0.001)}{(0.99)(0.001) + (0.01)(0.999)} \approx 0.0902$$
+
+Under this skewed prior, $V(\text{take only B}) \approx 0.0902 \times \$1,000,000 = \$90,200$, which is still much larger than $V(\text{take both})$, but if the reward in Box B were $\$1,500$ instead of $\$1,000,000$, the base-rate correction would flip the optimal decision from one-boxing ($V \approx \$135$) to two-boxing ($V \approx \$1,000.15$). Thus, in any novel case where base rates and sensor accuracies are given separately, computing $P(S_i \mid A_k)$ via Bayes' rule is mandatory.
+
+### Open Question 2: The Zero-Probability Conditioning Problem ($P(A) = 0$)
+
+In standard Kolmogorov probability theory, the conditional probability $P(O_j \mid A)$ is defined as the ratio:
+
+$$P(O_j \mid A) = \frac{P(O_j \cap A)}{P(A)}$$
+
+which is undefined whenever $P(A) = 0$. This creates a famous technical puzzle for EDT: if a rational agent knows her own decision algorithm and is certain while deliberating that she will never choose a blatantly inferior action $A_{\text{bad}}$, then her credence that she will perform $A_{\text{bad}}$ is $P(A_{\text{bad}}) = 0$. How, then, can she compute $V(A_{\text{bad}})$ to verify that it is inferior in the first place?
+
+**Operational Proposal ($\varepsilon$-Tremble Regularization):** To evaluate any feasible action $A \in \mathcal{A}$ without division by zero, we model the agent's execution channel as subject to an arbitrarily small "tremble" or execution noise $\varepsilon \in (0, 1)$, analogous to trembling-hand perfection in game theory. Even if the agent intends to select a default or optimal policy, there is a small probability $\varepsilon$ that a random or exploratory perturbation causes her decision mechanism to output action $A$. 
+
+More precisely, if the correlation between the state $S_i$ and the agent's action $A$ is governed by an underlying correlation parameter (such as twin similarity $\rho \in [0,1]$ or predictor accuracy $1 - \delta$), we treat $P(S_i \mid A)$ as a primitive conditional probability (in the sense of Popper–Rényi conditional probability spaces) or equivalently as the limit of regularized distributions $P_\varepsilon(S_i \mid A)$ where $P_\varepsilon(A) > 0$ for all $A \in \mathcal{A}$:
+
+$$V(A) = \lim_{\varepsilon \to 0^+} \sum_{i=1}^{m} P_\varepsilon(S_i \mid A) D(A, S_i)$$
+
+In practice, this means that when evaluating a hypothetical action $A$, the decision-maker asks: *"Given the structural correlation between my decision process and the environment, if my deliberation were to output $A$, what distribution over $\mathcal{S}$ would that output statistically indicate?"*
+
+### Open Question 3: Confounding Common Causes and "Managing the News"
+
+The sharpest philosophical objection to EDT appears in the reference article's "Criticism" section. David Lewis (1981) famously charged that EDT promotes *"an irrational policy of managing the news,"* and James M. Joyce (1999, p. 146) wrote: *"Rational agents choose acts on the basis of their causal efficacy, not their auspiciousness; they act to bring about good results even when doing so might betoken bad news."*
+
+Why do Lewis and Joyce make this charge? The reference text states their criticisms without illustrating the specific mathematical structure that motivates them: **common-cause confounding** (often called "medical Newcomb problems"). To decide unfamiliar cases responsibly, a reader must understand how common-cause problems work and how the two main operational schools within EDT handle them.
+
+#### A Worked Confounder Example: The Genetic Marker Dilemma
+
+Suppose a hidden genetic factor $G \in \{G_1, G_0\}$ has two completely separate causal effects:
+1. Having the gene ($G_1$) strongly predisposes an individual to crave and choose a high-cholesterol snack ($A_1 = \text{Eat Snack}$) rather than abstaining ($A_0 = \text{Abstain}$), such that $P(G_1 \mid A_1) = 0.80$ and $P(G_1 \mid A_0) = 0.10$.
+2. Having the gene ($G_1$) also directly causes a severe vascular condition later in life, carrying a utility penalty of $-100$ utils, whereas lacking the gene ($G_0$) carries $0$ penalty.
+3. Crucially, suppose the snack itself is completely harmless to the vascular system—the vascular condition is determined *solely* by the gene $G$ already present in your DNA—and eating the snack provides a mild culinary pleasure of $+5$ utils.
+
+Let us set up the State–Action–Payoff matrix:
+
+| Action \ Genetic State | $G_1$: Gene Present (Penalty $-100$) | $G_0$: Gene Absent (Penalty $0$) |
+| :--- | :---: | :---: |
+| **$A_1$: Eat Snack** | $-100 + 5 = -95$ | $0 + 5 = +5$ |
+| **$A_0$: Abstain** | $-100 + 0 = -100$ | $0 + 0 = 0$ |
+
+If we apply the raw EDT formula directly using $P(G_1 \mid A_1) = 0.80$ and $P(G_1 \mid A_0) = 0.10$:
+
+$$V(A_1) = 0.80(-95) + 0.20(+5) = -76 + 1 = -75$$
+
+$$V(A_0) = 0.10(-100) + 0.90(0) = -10$$
+
+Because $V(A_0) = -10 > V(A_1) = -75$, raw EDT tells you to **abstain** from the harmless snack! Eating the snack is terrible news ($P(G_1 \mid A_1) = 0.80$), whereas abstaining is good news ($P(G_1 \mid A_0) = 0.10$). Yet your DNA is already fixed at conception; refusing the snack will not rewrite your genome, and eating it causally gives you $+5$ utils in every state. This is exactly what Lewis (1981) meant by "managing the news" and what Joyce (1999) meant by choosing acts for their auspiciousness rather than their causal efficacy.
+
+When you confront an unfamiliar problem with a common cause, how should you apply EDT? In the research literature, there are two distinct operational interpretations:
+
+1. **Interpretation A: Hard-Line / Literal Evidentialism (Ahmed's Approach).**
+   Supported by Arif Ahmed (2021), hard-line EDT insists on applying $V(A) = \sum_i P(S_i \mid A) D(A, S_i)$ without exception. From this perspective, Newcomb's paradox and the Genetic Marker Dilemma have the exact same probabilistic structure: a prior common cause (in Newcomb's case, your early-morning brain state that determined both the predictor's scan and your current choice; in the genetic case, your DNA) correlates $A$ and $S$. If one-boxing is rational because agents who follow EDT end up richer on average across the population, then abstaining in the genetic case is the consistent price—or feature—of never conditioning away evidential correlations.
+2. **Interpretation B: Introspective Screening ("Tickle Defense" / Credence-Conditioned EDT).**
+   Originating with Richard Jeffrey and developed by Ellery Eells, this operational refinement argues that an agent does not choose in an epistemic vacuum. Before acting, a rational agent has introspective access to her own conscious desires, beliefs, and cravings—call this pre-choice introspective state $I$ (the "tickle"). If the genetic factor $G$ influences the action $A$ *only* by causing a conscious craving $I$, then once the agent already observes how strongly she craves the snack ($I$), the action $A$ provides *no further evidence* about $G$:
+   $$P(G_i \mid A, I) = P(G_i \mid I)$$
+   In statistical terms, the introspective state $I$ **screens off** the act $A$ from the state $G$. Under Introspective-Conditioned EDT, the agent maximizes:
+   $$V_I(A) = \sum_{i=1}^{m} P(S_i \mid A, I) D(A, S_i)$$
+   When $I$ screens off $G$ from $A$, $V_I(A_1) - V_I(A_0) = +5$, and EDT agrees with CDT that you should eat the snack! Conversely, in Newcomb's paradox or the Twin Prisoner's Dilemma, the predictor or twin is predicting the *final output* of your rational deliberation itself, not merely an upstream craving. Thus, even given all your pre-choice evidence $I$, your final act $A$ is still perfectly correlated with the prediction or twin's act ($P(S_i \mid A, I) \neq P(S_i \mid I)$), preserving one-boxing and twin cooperation.
+
+**Operational Recommendation:** When applying EDT to an unfamiliar case, always specify which interpretation you are executing. If you want pure, unconditioned news-value maximization (matching the reference article's baseline equation), apply **Interpretation A**. If you want to filter out spurious physiological/historical confounders while retaining Newcomb-style and Twin-PD cooperation, apply **Interpretation B** by conditioning on all pre-choice introspective evidence $I$.
+
+---
+
+## 4. Advanced Extensions: Self-Locating Beliefs and the Evidentialist's Wager
+
+The reference article briefly introduces two sophisticated modern arenas where EDT plays a pivotal role: the **Sleeping Beauty problem** (Conitzer, 2015) and **normative uncertainty** via the *Evidentialist's Wager* (MacAskill et al., 2021). Because the source text summarizes both in a couple of sentences, let us unpack their mathematical mechanics so that a reader can see how EDT operates in sequential indexical problems and meta-decision theory. (The formal reconstructions below are our own operational elaborations of the cited arguments.)
+
+### The Sleeping Beauty Problem and Diachronic Dutch Books
+
+In the classic **Sleeping Beauty problem**, Beauty is put to sleep on Sunday. A fair coin is tossed ($P(\text{Heads}) = 1/2, P(\text{Tails}) = 1/2$):
+* If **Heads** ($H$), she is awakened only on **Monday**, and then returned to sleep until the experiment ends on Wednesday.
+* If **Tails** ($T$), she is awakened on **Monday**, given an amnesia-inducing drug that erases her memory of Monday's awakening, and awakened again on **Tuesday**.
+
+Each time she wakes up, she cannot tell whether it is Monday or Tuesday. What should her credence $P(H)$ be upon waking? "Thirders" argue $P(H) = 1/3$, while "Halfers" argue $P(H) = 1/2$.
+
+As the reference article notes, Halfer positions are famously vulnerable to **Dutch book arguments**—sequences of bets, each deemed acceptable by the agent at the moment it is offered, that together guarantee a sure loss across all states of the world. Specifically, if a bookie offers Beauty a bet whenever she wakes up that pays $+x$ if $H$ and costs $-x$ if $T$, a CDT Halfer (who believes $P(H)=1/2$ and thinks accepting the bet today does not causally force her to accept it on another day) finds the bet fair ($U(\text{Accept}) = 0$). Yet because the bet is offered *once* when $H$ occurs (Monday) and *twice* when $T$ occurs (Monday and Tuesday), accepting every time results in a net payoff of $+x$ under $H$ and $-2x$ under $T$. By pairing this with a Sunday hedge bet, a bookie can extract a guaranteed profit.
+
+Why was EDT originally proposed as a rescue for Halfers? Under EDT, when Beauty wakes up and deliberates whether to accept ($A_1$) or reject ($A_0$) the bet, she recognizes that her Tuesday self under Tails is a **psychological twin** of her Monday self! If she accepts the bet at the current awakening, that is conclusive evidence that she will *also* accept the bet at the other awakening if the coin landed Tails. Thus, conditioned on accepting ($A_1$), the outcome under Tails is not a single loss of $-x$, but a doubled loss of $-2x$:
+
+$$V(\text{Accept}) = P(H \mid \text{Accept})(+x) + P(T \mid \text{Accept})(-2x) = \frac{1}{2}(+x) + \frac{1}{2}(-2x) = -\frac{1}{2}x < 0$$
+
+By accounting for the evidential correlation between her Monday and Tuesday choices, EDT causes the Halfer to reject the bet, blocking the symmetric Dutch book!
+
+However, as the reference article notes, **Vincent Conitzer (2015)** demonstrated that Halfers are *still* vulnerable to Dutch books even after adopting EDT. How does Conitzer's construction bypass the twin correlation? By exploiting **asymmetric information or randomization across awakenings** so that the Monday choice and Tuesday choice are decoupled. For instance, if the bookie offers slightly different bets depending on hidden environmental features or randomizes the bet parameters across days in a way that breaks the strict symmetry $P(\text{Accept on Tue} \mid \text{Accept on Mon}, T) = 1$ while keeping each conditional expectation positive for a Halfer, a diachronic Dutch book re-emerges. This reveals a deep lesson for sequential decision-making: EDT only protects against multi-stage exploitation when the correlation between stages is strong enough to make current actions fully diagnostic of future/parallel actions.
+
+### Normative Uncertainty and the Evidentialist's Wager
+
+What if you are genuinely unsure whether EDT or CDT is the true normative theory of rationality? As summarized in the reference article, William MacAskill, Aron Vallinder, Caspar Österheld, Carl Shulman, and Johannes Treutlein (2021) argue in *The Evidentialist's Wager* that even if an agent places relatively low credence in EDT, it can still be rational to act as if EDT were true because EDT's stakes are systematically amplified by correlated decision-makers.
+
+Let us formalize this meta-decision argument mathematically. Suppose you face a symmetric collective action problem (such as voting, reducing carbon emissions, or a multi-player Twin Prisoner's Dilemma) alongside $N - 1$ other decision-makers whose reasoning processes are correlated with yours with correlation coefficient $\rho \in (0, 1]$. 
+* Each agent chooses either a **Cooperative Act** ($C$) at personal causal cost $c > 0$, or a **Selfish Act** ($D$) at cost $0$.
+* Every agent who chooses $C$ generates a shared public benefit $b > 0$ for the world (or for each participant), where $b < c$ (so individual cooperation has a net causal loss of $b - c < 0$), but collective cooperation is beneficial: $\rho (N - 1) b > c - b$.
+
+Let us compare how CDT and EDT evaluate $C$ versus $D$:
+* **Under CDT:** Your choice causally affects only your own action. The net causal difference between cooperating and defecting is:
+  $$\Delta U \equiv U(C) - U(D) = b - c < 0$$
+  Notice that $\Delta U$ is completely independent of $N$. Whether there are $2$ correlated peers or $10,000$, CDT sees only the local cost $c - b$.
+* **Under EDT:** Choosing $C$ rather than $D$ shifts the conditional probability that each of the other $N - 1$ correlated agents also chooses $C$ by $\rho = P(\text{peer } C \mid \text{you } C) - P(\text{peer } C \mid \text{you } D)$. Thus, the net evidential difference is:
+  $$\Delta V(N) \equiv V(C) - V(D) = (b - c) + \rho (N - 1) b$$
+  Crucially, $\Delta V(N)$ scales linearly with the reference class size $N$!
+
+Now suppose you operate under **normative uncertainty**, assigning credence $q \in (0, 1)$ to EDT being the correct decision theory and $1 - q$ to CDT being correct. Under a standard expected-choiceworthiness meta-rule, you should cooperate ($C$) whenever the credence-weighted advantage of $C$ is positive:
+
+$$q \cdot \Delta V(N) + (1 - q) \cdot \Delta U > 0$$
+
+Substituting our expressions for $\Delta V(N)$ and $\Delta U$ yields:
+
+$$q \big[ (b - c) + \rho (N - 1) b \big] + (1 - q)(b - c) > 0 \iff q \rho (N - 1) b > c - b$$
+
+Solving for the minimum credence $q^*$ in EDT required to justify acting like an evidentialist gives:
+
+$$q^* = \frac{c - b}{\rho (N - 1) b}$$
+
+As the number of correlated agents $N$ grows large, $q^* \to 0$. For example, if $c = 2$, $b = 1$, $\rho = 0.25$, and there are $N = 401$ correlated peers, then $q^* = \frac{1}{0.25 \times 400 \times 1} = 0.01$. Even if you are $99\%$ confident in Causal Decision Theory and give only a $1\%$ credence to Evidential Decision Theory, the Evidentialist's Wager recommends cooperating because the expected stakes under EDT ($100\times$ amplification via correlated peers) swamp the single-agent causal loss under CDT.
+
+---
+
+## 5. A Practical Protocol for Deciding Unfamiliar Cases
+
+To synthesize our theoretical analysis and operational extensions into a self-contained workflow, here is a five-step procedure for applying Evidential Decision Theory to any unfamiliar decision problem:
+
+1. **Specify the Action Menu and Background State Partition:**
+   List the feasible actions $\mathcal{A} = \{A_1, \dots, A_k\}$ and partition all relevant external uncertainties that lie outside the direct causal influence of your current act into mutually exclusive, exhaustive states $\mathcal{S} = \{S_1, \dots, S_m\}$.
+2. **Assign State–Action Desirabilities:**
+   For every pair $(A_r, S_i)$, determine the resulting complete outcome $O(A_r, S_i)$ and assign its cardinal utility $D(A_r, S_i)$ (incorporating both the direct causal effects of $A_r$ and the impact of state $S_i$).
+3. **Determine Conditional State Probabilities $P(S_i \mid A_r)$:**
+   * Check whether your action $A_r$ is statistically correlated with $S_i$ via prior prediction (Newcomb-type), algorithmic symmetry (Twin-PD-type), or common causes.
+   * If the problem specifies forward likelihoods $P(A_r \mid S_i)$ and priors $P(S_i)$ separately, compute $P(S_i \mid A_r)$ via Bayes' rule.
+   * If deliberation assigns $P(A_r) = 0$ to hypothetical actions, evaluate $P(S_i \mid A_r)$ via $\varepsilon$-tremble regularization ($\lim_{\varepsilon \to 0^+} P_\varepsilon(S_i \mid A_r)$).
+   * If a common cause is present and you adopt Introspective Screening (Interpretation B) rather than Hard-Line EDT (Interpretation A), condition on your pre-choice introspective evidence $I$ to check whether $P(S_i \mid A_r, I) = P(S_i \mid I)$.
+4. **Compute the News Value $V(A_r)$:**
+   For each action $A_r \in \mathcal{A}$, calculate:
+   $$V(A_r) = \sum_{i=1}^{m} P(S_i \mid A_r) D(A_r, S_i)$$
+5. **Select the Maximizing Action (or Apply the Normative Wager):**
+   Choose $A^* \in \arg\max_{A_r \in \mathcal{A}} V(A_r)$. If deliberating under normative uncertainty with credence $q$ in EDT and $1 - q$ in CDT, choose $A^*$ to maximize $q V(A_r) + (1 - q) U(A_r)$, where $U(A_r) = \sum_i P(S_i) D(A_r, S_i)$.
+
+---
+
+## Conclusion
+
+Evidential Decision Theory offers a mathematically elegant and philosophically provocative answer to the question of rational agency. By replacing counterfactual speculation $P(A \mathrel{\Box\rightarrow} O_j)$ with standard conditional probability $P(O_j \mid A)$, EDT treats an agent's own choices as integral nodes in the web of statistical evidence about the universe. While critics like David Lewis and James Joyce rightly warn against conflating diagnostic auspiciousness with causal power in confounded environments, EDT shines brightest in interactive and predictive settings—allowing one-boxers to walk away rich in Newcomb's problem and symmetric reasoners to achieve cooperation in the Twin Prisoner's Dilemma. Equipped with a rigorous state-space decomposition and clear operational rules for Bayesian calibration, zero-probability conditioning, and introspective screening, a decision-maker can apply EDT systematically to whatever novel paradoxes the world presents.
+
+---
+
+## References
+
+* Ahmed, Arif (2021). *Evidential Decision Theory*. Cambridge University Press. ISBN 9781108607865.
+* Conitzer, Vincent (2015). "A Dutch book against sleeping beauties who are evidential decision theorists". *Synthese*, 192 (9): 2887–2899. doi:10.1007/s11229-015-0691-7.
+* Gibbard, Allan; Harper, William L. (1976). *Counterfactuals and Two Kinds of Expected Utility*. pp. 7–8.
+* Greene, Preston; Levinstein, Benjamin (2020). "Act Consequentialism without Free Rides". *Philosophical Perspectives*, 34 (1): 100–101. doi:10.1111/phpe.12138.
+* Joyce, James M. (1999). *The Foundations of Causal Decision Theory*. Cambridge University Press, p. 146.
+* Lewis, David (1981). "Causal decision theory". *Australasian Journal of Philosophy*, 59 (1): 5–30. doi:10.1080/00048408112340011.
+* MacAskill, William; Vallinder, Aron; Österheld, Caspar; Shulman, Carl; Treutlein, Johannes (2021). *The Evidentialist's Wager*. Global Priorities Institute Working Paper.
+* Wolpert, David H.; Benford, Gregory (2013). "The lesson of Newcomb's paradox". *Synthese*, 190 (9): 1637–1646. doi:10.1007/s11229-011-9899-3.

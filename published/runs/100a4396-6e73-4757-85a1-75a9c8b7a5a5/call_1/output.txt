@@ -1,0 +1,19 @@
+**Decision under A-FDT**
+
+1. **The intervention node.** My observation history x includes my name (Sasha), Rowan's name, and my particular lead. A-FDT intervenes only on the node for my decision function's output on that exact input.
+
+2. **The other prisoner's node.** Rowan's copy receives a different input y, with different names and a different lead. The essay's recipe (§4, step 4) says nodes for other inputs keep their prior distribution q. Their output is not moved by my intervention. This matches the essay's red/blue illustration in §6.3.
+
+3. **Expected sentence, with q = P(Rowan sends a letter):**
+   - Pass: 2(1−q) + 5q = 2 + 3q years
+   - Submit: 0(1−q) + 4q = 4q years
+
+   Submitting is better by 2 − q ≥ 1 year for every q, so it wins outright.
+
+4. **Self-consistency check (§6.2).** If both nodes are set to their computed outputs, submitting is the only fixed point. Since submitting wins for every q, there is nothing for tie-breaking or coordination to settle.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

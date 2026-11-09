@@ -1,0 +1,14 @@
+**Command: `pass`**
+
+Under the essay's version of P-FDT, I choose a policy that maps each prisoner's private input to an action. I evaluate it from a prior that has not yet been updated on those inputs (§5.1), which here means before learning whether I am Sasha or Rowan. Both copies run the same function, so one policy fixes both prisoners' choices.
+
+| Policy (Sasha's input, Rowan's input) | My sentence as Sasha | My sentence as Rowan | Expected years |
+|---|---|---|---|
+| (pass, pass) | 2 | 2 | **2** |
+| (submit, pass) | 0 | 5 | 2.5 |
+| (pass, submit) | 5 | 0 | 2.5 |
+| (submit, submit) | 4 | 4 | 4 |
+
+The best policy is to pass on either input, so on my actual input (Sasha) I pass. I don't score the lopsided policies from Sasha's viewpoint alone. Doing so would be the double update the essay warns against: Rowan's copy would then reason in mirror image, and the two of us would end up at (submit, submit), the worst outcome.
+
+pass

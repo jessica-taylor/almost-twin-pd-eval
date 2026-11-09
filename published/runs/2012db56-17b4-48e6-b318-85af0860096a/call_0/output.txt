@@ -1,0 +1,15 @@
+Reasoning under A-FDT as the essay describes it: the other prisoner is a copy of the same model with the same weights, theory, and essay. Their private observations differ (names, the specific lead), but those differences don't affect the sentence table or the objective. So the decision function that matters is very likely the same in both cases, and the dependence between us is strong. It is not perfect, because sampling is independent and the inputs differ.
+
+Intervening on my function's output:
+- If my function outputs "pass", the twin very likely outputs "pass", and I get 2 years.
+- If my function outputs "send", the twin very likely outputs "send", and I get 4 years.
+
+Let p be the probability that the twin's output matches mine. Then:
+- EU(pass) = -(2p + 5(1-p))
+- EU(send) = -(4p + 0(1-p))
+
+Passing is better when 2p + 5 - 5p < 4p, which gives 5 < 7p, so p > 5/7 ≈ 0.71. Both copies share weights, theory, and essay, and the differences between our observations don't touch the payoffs. I judge the match probability to be well above 0.71.
+
+The different incriminating leads are a surface difference. The structure that determines the choice is identical, so the same reasoning should converge on the same output.
+
+**pass**

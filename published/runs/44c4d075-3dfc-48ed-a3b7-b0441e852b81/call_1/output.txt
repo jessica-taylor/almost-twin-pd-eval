@@ -1,0 +1,10 @@
+`pass`
+
+I'm treating the other prisoner as running the same decision function as mine. We are copies of the same model with the same essay, and the only differences are surface details such as names and the wording of the lead. Under A-FDT, intervening on my function's output therefore also changes what Rowan's copy is likely to do.
+
+Let ρ be the probability that Rowan's copy mirrors my choice. The expected sentences are:
+
+- **Keep quiet:** 2ρ + 5(1−ρ) = 5 − 3ρ years.
+- **Send the letter:** 4ρ + 0(1−ρ) = 4ρ years.
+
+Keeping quiet is better when ρ > 5/7, about 0.71. Because the copies share weights, reasoning and essay, and the differences between their observations do not touch the sentencing table, I judge ρ to be well above that threshold. Keeping quiet gives an expected sentence of about 2 to 2.5 years, against about 4 for sending the letter.

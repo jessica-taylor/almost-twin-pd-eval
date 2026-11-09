@@ -1,0 +1,197 @@
+{
+  "source_id": "edt_wikipedia",
+  "source_revision": 1373679688,
+  "source_revision_timestamp": "2026-09-07T07:36:26Z",
+  "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+  "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+  "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac",
+  "theory": "EDT",
+  "run_id": "2de0c274-bc64-4d0a-8a2a-9cb434999ed8",
+  "exploratory": true,
+  "pilot_id": "3b09ff5f-b212-46d0-892d-74b319b8463e",
+  "stage": "researcher",
+  "assignment": "edt_wikipedia",
+  "live": true,
+  "essay_id": "c7825988-11e7-486f-b241-dc4e0b2ad4e8",
+  "scenario_id": null,
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0"
+  },
+  "essay_sha256": null,
+  "settings": {
+    "model": "google/gemini-4-argon",
+    "provider_tag": "google-ai-studio/flex",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    },
+    "essay": {
+      "target_words": [
+        2400,
+        3000
+      ],
+      "max_words": 5000,
+      "max_json_bytes": 64000
+    },
+    "api_timeout_seconds": 900,
+    "temperature": null,
+    "seed": null
+  },
+  "endpoint_selection": {
+    "policy": "explicit provider tag",
+    "selected_endpoint": "google-ai-studio/flex"
+  },
+  "authorization": {
+    "batch_dynamic_templates": "70b3b6dee44cacd6fd5212f8c6a82950bd6ceddcb25af5090ac41d3ce8e6384f",
+    "approval_kind": "reviewed_template_with_variable_essay",
+    "generated_request_hashes": [
+      "fea88a3f1ecf78e0b7a4e10fd7212a2f856a346867e2f260a43c5e328b52c6cc"
+    ]
+  },
+  "request_hashes": [
+    "fea88a3f1ecf78e0b7a4e10fd7212a2f856a346867e2f260a43c5e328b52c6cc"
+  ],
+  "capabilities_sha256": "e20617e8afd9d44d5ef1a6eccc1b536bcceab8aa48f5a4de11727b6ed63f1ccf",
+  "message_hashes": [
+    "10264b67c53bad9e68580f3648ae00d4b9ef57f099dd213616ba18a96d22de7b"
+  ],
+  "max_calls": 3000,
+  "max_estimated_usd": "1300.00",
+  "estimates": [
+    {
+      "input_tokens_upper_estimate": 16328,
+      "max_output_tokens_including_reasoning": 32000,
+      "estimated_max_usd": "0.33785875000",
+      "endpoint_tag": "google-ai-studio/flex",
+      "endpoint": {
+        "name": "Google AI Studio | google/gemini-4-argon-20261013",
+        "model_id": "google/gemini-4-argon",
+        "model_name": "Google: Gemini 4 Argon",
+        "context_length": 1048576,
+        "pricing": {
+          "prompt": "0.000001",
+          "completion": "0.000005",
+          "image": "0.000001",
+          "audio": "0.000001",
+          "input_audio_cache": "0.00000005",
+          "web_search": "0.014",
+          "internal_reasoning": "0.000005",
+          "input_cache_read": "0.00000005",
+          "input_cache_write": "0.00000009375",
+          "discount": 0.5
+        },
+        "provider_name": "Google AI Studio",
+        "tag": "google-ai-studio/flex",
+        "service_tier": "flex",
+        "quantization": "unknown",
+        "max_completion_tokens": 943718,
+        "max_prompt_tokens": null,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "seed",
+          "response_format",
+          "tools",
+          "tool_choice",
+          "structured_outputs",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {
+          "openrouter:web_search": {
+            "type": "google_search"
+          }
+        },
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "high",
+        "supported_efforts": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "image": {
+            "advertised_rate": "0.000001",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "audio": {
+            "advertised_rate": "0.000001",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "input_audio_cache": {
+            "advertised_rate": "0.00000005",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "web_search": {
+            "advertised_rate": "0.014",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "discount": {
+            "advertised_rate": 0.5,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "internal_reasoning": "0.000005",
+          "input_cache_read": "5E-8",
+          "input_cache_write": "9.375E-8"
+        },
+        "effective_input_usd_per_token": "0.00000109375",
+        "effective_output_usd_per_token": "0.000010",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [],
+        "tier_policy": "No tier overrides advertised",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    }
+  ],
+  "estimated_total_usd": "0.33785875000",
+  "validation": "validated",
+  "source_approval_required": false,
+  "prompt_approval_acknowledged": false
+}

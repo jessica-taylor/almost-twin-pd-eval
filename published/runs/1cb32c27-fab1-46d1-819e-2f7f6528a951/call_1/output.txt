@@ -1,0 +1,19 @@
+Reasoning under A-FDT as the essay describes it: the other prisoner's choice is made by a copy of the same model running the same decision procedure, so the two outputs subjunctively depend on each other. The differing private leads are only inputs. Both copies get the same sentence table and the same objective, so the question is whether the outputs are likely to match.
+
+The table has these payoffs:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+- I send and the other stays quiet: 0 years for me.
+- I stay quiet and the other sends: 5 years for me.
+
+If the other copy's output is the same as mine, quiet gives 2 years and sending gives 4. Sending is better only if the other's output is independent of mine.
+
+The essay notes that the lead text differs, so the observations differ. The decision function is still the same and the essay's graph rule is that the copy's output is a child of the fdt node. The difference in lead is a minor input difference. I judge that both copies will likely reason the same way and converge on the same output. The sampling noise is small compared with the 2-versus-4 gap.
+
+Say the probability that the other matches me is p. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, so p > 5/7, about 0.71. I think the correlation is higher than that, so I stay quiet.
+
+pass

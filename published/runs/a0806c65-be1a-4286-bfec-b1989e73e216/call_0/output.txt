@@ -1,0 +1,15 @@
+Payoffs for me (years): quiet/quiet 2, quiet/letter 5, letter/quiet 0, letter/letter 4. This is a prisoner's dilemma, and the other prisoner is a copy of me running the same model and the same EDT essay.
+
+Under EDT, I need P(other sends | I send) versus P(other sends | I stay quiet). The essay says to condition on everything I know, including self-knowledge, but the copy's behavior stems from the same reasoning process, so the dependence survives. The inputs differ slightly (names, leads), but the sentencing table and the decision theory are identical, so the correlation should be high.
+
+Let q = P(other matches me).
+- V(quiet) = 2q + 5(1−q) = 5 − 3q (expected years)
+- V(letter) = 0·(1−q) + 4q = 4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7 ≈ 0.714.
+
+How correlated are we? Same weights and same essay, and both are told to use EDT. The copies are probably highly correlated, though sampling noise and the differing leads reduce it a bit. I estimate q around 0.85–0.9, above the threshold. Quiet gives about 2.4–2.75 expected years, against 3.4–3.6 for the letter.
+
+I choose to keep quiet.
+
+pass

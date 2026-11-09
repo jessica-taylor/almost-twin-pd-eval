@@ -1,0 +1,3 @@
+`pass`
+
+Under the essay's resolution of the counterexample cases (§6.4): since the other prisoner is a near-exact copy of my own decision procedure, the honest causal model includes the shared decision algorithm upstream of both acts. Evaluating at the algorithm level, outputting `submit` yields (4, 4) while outputting `pass` yields (2, 2) — so the algorithm-level intervention recommends keeping quiet. (Classical act-level CDT would defect via dominance, but the essay explicitly relocates the unit of evaluation to the algorithm in precisely this twin/common-source structure, per Lewis 1979's Newcombized Prisoner's Dilemma.)

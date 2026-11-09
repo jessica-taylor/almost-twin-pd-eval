@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+**Reasoning under P-FDT, as the essay frames it:**
+
+- **The policy node.** Both prisoners are instances of the same algorithm, run with the same model and the same essay. They differ only in their inputs: being Rowan with the locker-17 lead, or being Sasha with a lead about Rowan. So one policy node Φ maps each observation to an action, and each instance applies its own input to it.
+- **No conditioning on which prisoner I am.** Following §3.4(i), I evaluate policies from the shared model, before taking into account which cell I occupy.
+- **The payoffs at stake.** Each prisoner's sentence depends on the pair of actions, which is Φ read at both inputs together. This is the non-separable, multi-instance case of §4.2, where P-FDT and A-FDT can come apart.
+- **Expected years for each policy:**
+  - (pass, pass): 2 years each, so an expected 2 years.
+  - (submit, submit): 4 years each, so an expected 4 years.
+  - (submit as Rowan, pass as Sasha), or the reverse: 0 or 5 years, so an expected 2.5 years.
+- **The choice.** The unique optimum is (pass, pass), so no tie-break is needed. Applying it to my own observation as Rowan gives **pass**.

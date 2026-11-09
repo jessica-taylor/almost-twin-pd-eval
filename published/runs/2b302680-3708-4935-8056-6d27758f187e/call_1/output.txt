@@ -1,0 +1,11 @@
+Under CDT, the other prisoner's choice is causally independent of mine. I can't communicate with them or influence them, so their action is a fixed background fact, and I hold my credence in it constant whatever I do.
+
+Dominance check:
+- If the other keeps quiet, sending gives me 0 years and passing gives me 2. Sending is better.
+- If the other sends, sending gives me 4 years and passing gives me 5. Sending is better.
+
+Sending dominates for every credence about the other's choice. The other copy is probably reasoning like me, but that is only evidence about their act. It doesn't cause it. The essay's CDT ignores that correlation, as it does in Newcomb's problem, where it two-boxes. The case also has no instability of the Death in Damascus kind, because the dominant act is ratifiable. Even if I became confident the other would send, sending still beats passing, 4 years against 5.
+
+I send the letter.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

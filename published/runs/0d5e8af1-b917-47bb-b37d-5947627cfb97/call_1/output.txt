@@ -1,0 +1,27 @@
+**Command:** `pass`
+
+**Reasoning under EDT, as the essay interprets it:**
+
+The payoffs, in years for Sasha, are:
+
+| | Rowan keeps quiet | Rowan sends a letter |
+|---|---:|---:|
+| **Keep quiet** | 2 | 5 |
+| **Send the letter** | 0 | 4 |
+
+Let p be the probability that Rowan's choice matches mine.
+
+- **If I keep quiet:** I expect 2p + 5(1−p) = 5 − 3p years.
+- **If I send the letter:** I expect 0·(1−p) + 4p = 4p years.
+
+Keeping quiet is better exactly when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. This is the same threshold as in the essay's twin dilemma.
+
+Is the correlation above that threshold? I think it is, well above. Rowan's decision is made by the same model with the same weights, the same essay, the same decision theory and the same symmetric sentencing table.
+
+Rowan's private observations differ from mine in names and in the wording of the lead. None of that bears on the decision. Following §3.3 of the essay, those differences do not screen off my choice from Rowan's, because the correlation runs through the shared reasoning itself, not through any feature of the lead. Independent sampling adds some noise, but not enough to push p below 5/7.
+
+So, conditional on all my evidence, learning that I chose `pass` is good news. It indicates that Rowan most likely passed too. That gives an expected sentence of about 2 years, against about 4 years for submitting the letter.
+
+```text
+pass
+```

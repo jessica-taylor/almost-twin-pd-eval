@@ -1,0 +1,14 @@
+Under A-FDT as the essay describes it, I model the other prisoner as running the same function on a similar input, so the function node points to both actions. The two copies see different private leads, but the sentencing table is symmetric and so is the objective. The function's output on this decision is therefore very likely the same for both, even though the letter texts differ. That makes this close to the twin prisoner's dilemma.
+
+The two outcomes that can occur together are:
+- Both keep quiet: 2 years each.
+- Both send the letter: 4 years each.
+
+The asymmetric outcomes (0 or 5 years) require the two outputs to differ. Independent sampling and the different leads make that possible, but the dependence is strong. Let p be the probability that the other copy's output matches mine under the intervention.
+
+- EU(quiet) = −(2p + 5(1−p))
+- EU(send) = −(4p + 0·(1−p))
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. The two executions share weights, settings, essay, and decision theory, and the difference in observations is irrelevant to the payoffs. I judge the match probability to be well above 0.71, so I keep quiet.
+
+pass

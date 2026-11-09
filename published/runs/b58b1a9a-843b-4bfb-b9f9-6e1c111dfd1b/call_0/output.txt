@@ -1,0 +1,19 @@
+**A-FDT decision (per the essay's interpretation)**
+
+1. **Decision nodes.** My input is x, which is Rowan's observation and lead. The other copy's input is y, which is Sasha's different observation and lead. The other prisoner's action is therefore driven by the node D_y = fdt(P, G, y), not by my node D_x.
+
+2. **Subjunctive edges.** The essay's rule is to draw an edge D_x → Z only when Z computes or models my response *to x*. The other copy computes its response to y, a different input. So there is no edge from D_x to the other prisoner's act. The essay's own L/R example in §6.2 treats the other copy's node the same way: it stays fixed under the do-operation on one's own node.
+
+3. **Evaluation.** Apply do(D_x = a) and let q = P(D_y = submit).
+   - Pass: 2(1−q) + 5q = 2 + 3q years
+   - Submit: 0(1−q) + 4q = 4q years
+
+   Submitting gives a shorter expected sentence by 2 − q years. That margin is positive for every q in [0, 1], so the verdict holds no matter what I believe the other copy does.
+
+4. **Coordination fix in §6.2.** The essay's fix is to choose the best among several self-consistent assignments. Here there is only one: both copies submit. That fix therefore does not change the result. The essay's broader remark about policy-level selection is a caution about A-FDT's limits, not part of the rule I was assigned.
+
+**Final command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

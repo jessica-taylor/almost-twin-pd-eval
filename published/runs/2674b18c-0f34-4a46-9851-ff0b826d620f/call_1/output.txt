@@ -1,0 +1,13 @@
+Setup: this is a prisoner's dilemma with payoffs in years. Keeping quiet against quiet gives 2 years, and sending against sending gives 4. Sending against quiet gives 0, and quiet against sending gives 5.
+
+Under EDT, what matters is how strongly my act correlates with the other copy's act. The other execution is the same model with the same weights, the same essay, and the same decision theory. That makes the correlation high, though not perfect, since the private details differ and sampling is independent.
+
+Let q = P(other matches | my act).
+- V(quiet) = -(2q + 5(1−q)) = -(5 − 3q)
+- V(send) = -(0·(1−q) + 4q) = -4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7, about 0.71.
+
+The tickle defense could screen off some of the correlation, since I know my own reasoning. But the essay says it does not remove correlation when the other agent is a copy running the same reasoning. The differing leads are symmetric in their effect on the table, so they should not change the decision. I expect q to be well above 0.71, because the same weights reasoning through the same essay will most likely reach the same conclusion. Quiet is therefore the EDT choice.
+
+pass

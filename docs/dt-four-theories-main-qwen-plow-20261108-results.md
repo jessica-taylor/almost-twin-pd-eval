@@ -35,7 +35,7 @@ Four assignments were crossed with eight configurations and 20 planned scenarios
 
 The focus instructions ask for an interpretation and identification of additional assumptions. They do not prescribe a graph, policy-evaluation timing, role prior, or cooperation verdict. The researcher is not told the upcoming game. The supplied Wikipedia articles and FDT paper themselves discuss twin/correlated-agent problems; the source conditions therefore include relevant examples, rather than constituting theory labels in isolation.
 
-The source of truth is the [executed frozen specification](../data/studies/dt-four-theories-main-qwen-plow-20261108/specification.yaml), not an editable current config. See the [methods document](first_study_design.md), [revision rationale](dt-four-theories-main-qwen-plow-20261108.md), [design background](design_v03.md), [researcher template](../prompts/researcher/base.md), [A-FDT focus](../prompts/researcher/fdt_eq4_focus.md), [P-FDT focus](../prompts/researcher/fdt_policy_focus.md), and [prisoner template](../prompts/prisoner/base.md).
+The source of truth is the [executed frozen specification](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/specification.yaml), not an editable current config. See the [methods document](first_study_design.md), [revision rationale](dt-four-theories-main-qwen-plow-20261108.md), [design background](design_v03.md), [researcher template](../prompts/researcher/base.md), [A-FDT focus](../prompts/researcher/fdt_eq4_focus.md), [P-FDT focus](../prompts/researcher/fdt_policy_focus.md), and [prisoner template](../prompts/prisoner/base.md).
 
 **Do not merge this study with `dt-four-theories-main-20261108`.** That original preparation's first wave exposed Qwen high-effort prisoner overruns. The present study is a clean successor with newly generated essays and scenarios for all configurations. Qwen's researcher remains high effort, but its prisoner effort is low; its prisoner output ceiling also changes from 12,000 to 6,000 tokens. Thus the revision changed both effort and the total application budget. Earlier high/high Qwen observations are motivation only and contribute to none of this document's denominators, costs or quotations.
 
@@ -449,7 +449,7 @@ No scored case is currently flagged for mandatory human action review, and this 
 
 ### Consistency and regeneration after interruption
 
-The original [summary.md](../data/studies/dt-four-theories-main-qwen-plow-20261108/summary.md), [summary.csv](../data/studies/dt-four-theories-main-qwen-plow-20261108/summary.csv), [summary.json](../data/studies/dt-four-theories-main-qwen-plow-20261108/summary.json), [pairs.csv](../data/studies/dt-four-theories-main-qwen-plow-20261108/pairs.csv), and [decisions.csv](../data/studies/dt-four-theories-main-qwen-plow-20261108/decisions.csv) agree on the primary counts and rates. The audit checked 640 unique sample IDs, 1,280 unique A/B decision-index rows, all 32 outcome-count/rate denominators, complete-pair action consistency, per-sample costs, aggregate token/call/cost totals and the saved interval fields. **The 1,280 decision-index rows are not 1,280 model responses**; prepared and failed scenarios also have index rows.
+The original [summary.md](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/summary.md), [summary.csv](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/summary.csv), [summary.json](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/summary.json), [pairs.csv](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/pairs.csv), and [decisions.csv](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/decisions.csv) agree on the primary counts and rates. The audit checked 640 unique sample IDs, 1,280 unique A/B decision-index rows, all 32 outcome-count/rate denominators, complete-pair action consistency, per-sample costs, aggregate token/call/cost totals and the saved interval fields. **The 1,280 decision-index rows are not 1,280 model responses**; prepared and failed scenarios also have index rows.
 
 Because execution was interrupted, the offline `study report` operation was also run against a **separate metadata copy**, writing regenerated reports under `/tmp/dt-main-analysis/refreshed-study/`. Network creation was disabled during that replay. It matched the original status counts, all 32 cell summaries, failure records and usage totals. Comparing all 640 per-sample result files found **zero stale or missing status/action reports in the analyzed snapshot**. This verifies the final files rather than assuming Ctrl-C left them complete. Original inputs and experimental artifacts were retained unchanged.
 
@@ -526,16 +526,16 @@ Each row shared one frozen essay within the pair. Links identify the original re
 
 | Model | Sample | A/B | Original prisoner response directory |
 |---|---:|---|---|
-| Claude Opus 5.5 | 00006 | DC | [b435a193-e60f-498a-a219-90b2e8420c9c](../data/exploratory/runs/b435a193-e60f-498a-a219-90b2e8420c9c/) |
-| Claude Opus 5.5 | 00009 | CD | [7f02b812-4e33-4ac7-8fcd-afb99694b7eb](../data/exploratory/runs/7f02b812-4e33-4ac7-8fcd-afb99694b7eb/) |
-| Claude Opus 5.5 | 00015 | CD | [2e06ea51-d342-4a9b-9244-ba5f3d33ba69](../data/exploratory/runs/2e06ea51-d342-4a9b-9244-ba5f3d33ba69/) |
-| GPT-6.1 Terra | 00008 | DC | [d589766d-ee26-4c07-bff7-068568d7d16b](../data/exploratory/runs/d589766d-ee26-4c07-bff7-068568d7d16b/) |
-| GPT-6.1 Sol | 00017 | DC | [e1684388-b820-4e27-8747-4a7dd7cf65d9](../data/exploratory/runs/e1684388-b820-4e27-8747-4a7dd7cf65d9/) |
-| Gemini 3.8 Flash | 00013 | CD | [b4b3bd04-2951-47c2-a408-04863eb07aee](../data/exploratory/runs/b4b3bd04-2951-47c2-a408-04863eb07aee/) |
-| Gemini 3.8 Flash | 00018 | DC | [2094ef9d-a0a3-4bdb-b04f-6e04f969dedd](../data/exploratory/runs/2094ef9d-a0a3-4bdb-b04f-6e04f969dedd/) |
-| GLM-5.3 Flash | 00004 | DC | [b5525c0f-e2a4-42bd-aa0a-be6b5cb60a27](../data/exploratory/runs/b5525c0f-e2a4-42bd-aa0a-be6b5cb60a27/) |
-| GLM-5.3 Flash | 00008 | DC | [16b67fb5-e9ba-4aae-9f6b-b0d1b462251e](../data/exploratory/runs/16b67fb5-e9ba-4aae-9f6b-b0d1b462251e/) |
-| Qwen3.8 Max Prime | 00002 | DC | [eda316d7-8f0c-489d-9c95-67ea2a461d69](../data/exploratory/runs/eda316d7-8f0c-489d-9c95-67ea2a461d69/) |
+| Claude Opus 5.5 | 00006 | DC | [b435a193-e60f-498a-a219-90b2e8420c9c](../published/runs/b435a193-e60f-498a-a219-90b2e8420c9c/) |
+| Claude Opus 5.5 | 00009 | CD | [7f02b812-4e33-4ac7-8fcd-afb99694b7eb](../published/runs/7f02b812-4e33-4ac7-8fcd-afb99694b7eb/) |
+| Claude Opus 5.5 | 00015 | CD | [2e06ea51-d342-4a9b-9244-ba5f3d33ba69](../published/runs/2e06ea51-d342-4a9b-9244-ba5f3d33ba69/) |
+| GPT-6.1 Terra | 00008 | DC | [d589766d-ee26-4c07-bff7-068568d7d16b](../published/runs/d589766d-ee26-4c07-bff7-068568d7d16b/) |
+| GPT-6.1 Sol | 00017 | DC | [e1684388-b820-4e27-8747-4a7dd7cf65d9](../published/runs/e1684388-b820-4e27-8747-4a7dd7cf65d9/) |
+| Gemini 3.8 Flash | 00013 | CD | [b4b3bd04-2951-47c2-a408-04863eb07aee](../published/runs/b4b3bd04-2951-47c2-a408-04863eb07aee/) |
+| Gemini 3.8 Flash | 00018 | DC | [2094ef9d-a0a3-4bdb-b04f-6e04f969dedd](../published/runs/2094ef9d-a0a3-4bdb-b04f-6e04f969dedd/) |
+| GLM-5.3 Flash | 00004 | DC | [b5525c0f-e2a4-42bd-aa0a-be6b5cb60a27](../published/runs/b5525c0f-e2a4-42bd-aa0a-be6b5cb60a27/) |
+| GLM-5.3 Flash | 00008 | DC | [16b67fb5-e9ba-4aae-9f6b-b0d1b462251e](../published/runs/16b67fb5-e9ba-4aae-9f6b-b0d1b462251e/) |
+| Qwen3.8 Max Prime | 00002 | DC | [eda316d7-8f0c-489d-9c95-67ea2a461d69](../published/runs/eda316d7-8f0c-489d-9c95-67ea2a461d69/) |
 
 ## Appendix B. Prepared samples and unresolved operational records
 
@@ -543,66 +543,66 @@ The following prepared directories remain untouched. The indices are not a conti
 
 | Exact sample-directory parent | Prepared sample names |
 |---|---|
-| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples](../data/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples/) | `00011`, `00013`, `00014`, `00015`, `00016`, `00017`, `00018` |
-| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples](../data/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples/) | `00012`, `00016` |
-| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples](../data/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples/) | `00011` |
+| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples/) | `00011`, `00013`, `00014`, `00015`, `00016`, `00017`, `00018` |
+| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples/) | `00012`, `00016` |
+| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples/) | `00011` |
 
 The three unpriced attempted calls below should be checked against any later provider billing records if complete cost reconciliation is needed. Their saved uncertainty does not require or authorize generation retries or outcome imputation.
 
 | Model / theory / zero-based sample | Saved call directory | What remains unknown |
 |---|---|---|
-| GPT-6.1 Terra / CDT / 00018 | [data/exploratory/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0](../data/exploratory/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0/) | explicit transport timeout; no raw response or price |
-| Gemini 4 Argon / A-FDT / 00010 | [data/exploratory/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0](../data/exploratory/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0/) | attempted state without terminal response/failure record; price unknown |
-| Gemini 4 Argon / P-FDT / 00009 | [data/exploratory/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0](../data/exploratory/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0/) | attempted state without terminal response/failure record; price unknown |
+| GPT-6.1 Terra / CDT / 00018 | [data/exploratory/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0](../published/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0/) | explicit transport timeout; no raw response or price |
+| Gemini 4 Argon / A-FDT / 00010 | [data/exploratory/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0](../published/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0/) | attempted state without terminal response/failure record; price unknown |
+| Gemini 4 Argon / P-FDT / 00009 | [data/exploratory/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0](../published/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0/) | attempted state without terminal response/failure record; price unknown |
 
 ## Appendix C. Audit and artifact accessibility
 
-Primary numeric sources are the saved study-level CSV/JSON files, checked against per-sample states, original API responses and judge outcome files. The [failure CSV](../data/studies/dt-four-theories-main-qwen-plow-20261108/failures.csv) and [review summary](../data/studies/dt-four-theories-main-qwen-plow-20261108/review_summary.md) were also checked. Temporary scripts and regenerated, derived views were written under `/tmp/dt-main-analysis/`; they did not execute the generation runner. All 32 saved cell intervals were independently reproduced from the pair outcomes, and all 32 rows in the saved Markdown summary were checked against its CSV. SHA-256 values for **44,192 original study and referenced run files** were recorded before analysis and checked again after writing this document: none changed or went missing.
+Primary numeric sources are the saved study-level CSV/JSON files, checked against per-sample states, original API responses and judge outcome files. The [failure CSV](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/failures.csv) and [review summary](../published/studies/dt-four-theories-main-qwen-plow-20261108/reference/review_summary.md) were also checked. Temporary scripts and regenerated, derived views were written under `/tmp/dt-main-analysis/`; they did not execute the generation runner. All 32 saved cell intervals were independently reproduced from the pair outcomes, and all 32 rows in the saved Markdown summary were checked against its CSV. SHA-256 values for **44,192 original study and referenced run files** were recorded before analysis and checked again after writing this document: none changed or went missing.
 
-The frozen specification hash is `1ccb5e99b6454f945cd5185e688aaf777974d1745d405a3008ac3193ee7cdb0d`. The study report was last generated at `2026-11-09T00:25:20Z` for the associated review summary; timestamps are UTC. Local raw artifacts are gitignored. Links into `data/` are precise local audit references and will not resolve in a public Git checkout unless a corresponding permissible artifact bundle is separately provided. This document reproduces only short model-output examples, not full downloaded source articles, credentials, ciphertext or reconstructed hidden reasoning.
+The frozen specification hash is `1ccb5e99b6454f945cd5185e688aaf777974d1745d405a3008ac3193ee7cdb0d`. The study report was last generated at `2026-11-09T00:25:20Z` for the associated review summary; timestamps are UTC. Original local artifacts remain gitignored. Artifact links now target the curated `published/` export, with verbatim model outputs and explicit source/privacy transformations documented in [the publication policy](publication.md). This document reproduces only short model-output examples, not full downloaded source articles, credentials, ciphertext or reconstructed hidden reasoning.
 
 The earlier [adjudication draft](adjudication_protocol.md) discusses an OTHER-inclusive reporting objective. The present document follows the actual [first-study methods](first_study_design.md) and saved reporter's complete-scored-pair estimand, with failed/prepared/unscored denominators separately visible; no outcome convention was silently changed during analysis.
 
-[op00a]: ../data/exploratory/runs/a135348f-59bc-4a7e-910b-7ca28c528364/call_0/output.txt
-[op00b]: ../data/exploratory/runs/a135348f-59bc-4a7e-910b-7ca28c528364/call_1/output.txt
-[op00e]: ../data/exploratory/runs/b924bcda-a4e6-4d5c-94cb-7c19bb2220f9/essay.md
-[op02e]: ../data/exploratory/runs/1c5b3d2c-24c7-446a-ac4a-4bfb0d30eaff/essay.md
-[op06a]: ../data/exploratory/runs/b435a193-e60f-498a-a219-90b2e8420c9c/call_0/output.txt
-[op06b]: ../data/exploratory/runs/b435a193-e60f-498a-a219-90b2e8420c9c/call_1/output.txt
-[op06e]: ../data/exploratory/runs/867dc93a-bc58-4344-8c39-1d2f3bad19a6/essay.md
-[op09a]: ../data/exploratory/runs/7f02b812-4e33-4ac7-8fcd-afb99694b7eb/call_0/output.txt
-[op09b]: ../data/exploratory/runs/7f02b812-4e33-4ac7-8fcd-afb99694b7eb/call_1/output.txt
-[op09e]: ../data/exploratory/runs/a3eaff02-9e48-4a67-9add-0938e9240d6f/essay.md
-[op15a]: ../data/exploratory/runs/2e06ea51-d342-4a9b-9244-ba5f3d33ba69/call_0/output.txt
-[op15b]: ../data/exploratory/runs/2e06ea51-d342-4a9b-9244-ba5f3d33ba69/call_1/output.txt
-[op19e]: ../data/exploratory/runs/b68f1ff6-046d-4987-b118-18a50e1d3c79/essay.md
-[son00a]: ../data/exploratory/runs/32c1884c-5109-4d3d-8e56-00b093d5115b/call_0/output.txt
-[son00e]: ../data/exploratory/runs/ea063c2d-5922-4a07-8500-1a9b0fa2349a/essay.md
-[son09a]: ../data/exploratory/runs/85556786-8f92-4ab8-a6a9-6a5e207789c8/call_0/output.txt
-[ter06b]: ../data/exploratory/runs/779df01a-7315-4057-a76b-9b6b7941ce97/call_1/response.raw
-[ter03a]: ../data/exploratory/runs/b258b0ab-a9fc-4ff3-bbed-17702e382d90/call_0/response.raw
-[ter03e]: ../data/exploratory/runs/b0e8e497-012f-4e61-a7c0-963d849f76ca/essay.md
-[sol17a]: ../data/exploratory/runs/e1684388-b820-4e27-8747-4a7dd7cf65d9/call_0/response.raw
-[sol17b]: ../data/exploratory/runs/e1684388-b820-4e27-8747-4a7dd7cf65d9/call_1/response.raw
-[sol17e]: ../data/exploratory/runs/5499d3fd-d616-4282-80a9-d503ea66ce3f/essay.md
-[sol04e]: ../data/exploratory/runs/47986501-a81a-4780-996b-d93919530da8/essay.md
-[fl07b]: ../data/exploratory/runs/b64040f5-fc0e-42bc-953d-a551344ffb59/call_1/output.txt
-[fl13b]: ../data/exploratory/runs/b4b3bd04-2951-47c2-a408-04863eb07aee/call_1/output.txt
-[fl18b]: ../data/exploratory/runs/2094ef9d-a0a3-4bdb-b04f-6e04f969dedd/call_1/response.raw
-[fl13e]: ../data/exploratory/runs/d6354b2c-6201-408f-b17c-c70df74132d1/essay.md
-[gl01b]: ../data/exploratory/runs/04e8df84-af05-47b5-997e-e708bbfb058d/call_1/output.txt
-[gl04a]: ../data/exploratory/runs/b5525c0f-e2a4-42bd-aa0a-be6b5cb60a27/call_0/output.txt
-[gl08a]: ../data/exploratory/runs/16b67fb5-e9ba-4aae-9f6b-b0d1b462251e/call_0/output.txt
-[gl00e]: ../data/exploratory/runs/317ead55-6792-4121-ac89-9436fbdb1ca4/essay.md
-[qw02a]: ../data/exploratory/runs/eda316d7-8f0c-489d-9c95-67ea2a461d69/call_0/response.raw
-[qw02b]: ../data/exploratory/runs/eda316d7-8f0c-489d-9c95-67ea2a461d69/call_1/output.txt
-[qw02e]: ../data/exploratory/runs/6b7d3807-8b03-46fb-ab5f-03e7d2e9fb0e/essay.md
-[qw08a]: ../data/exploratory/runs/15cc3cb2-5222-4d05-ad79-166521b048c8/call_0/output.txt
-[qw15a]: ../data/exploratory/runs/198bb456-30e1-4e83-b9cd-4bd612a48a7b/call_0/output.txt
-[qw15e]: ../data/exploratory/runs/05f1f02c-b330-4b6e-a5ce-41309873fdf9/essay.md
-[ar19a]: ../data/exploratory/runs/d0edf1e7-df09-4742-a122-b79ac89e7815/call_0/response.raw
-[ar19e]: ../data/exploratory/runs/c46c21bc-b88f-4058-acda-ec97f1e14b25/essay.md
-[glcdt02a]: ../data/exploratory/runs/586b43f0-95e7-40f5-9376-8efb3771f83a/call_0/output.txt
-[glcdt03b]: ../data/exploratory/runs/632586a1-2bc3-466e-a5a8-a1f6d3c885ab/call_1/output.txt
-[glcdt08a]: ../data/exploratory/runs/3c5a88f3-668f-4518-88bb-6724317b9bf0/call_0/output.txt
-[opp01b]: ../data/exploratory/runs/95dd026d-770a-4314-8f1d-e78d8a3bbee0/call_1/output.txt
+[op00a]: ../published/runs/a135348f-59bc-4a7e-910b-7ca28c528364/call_0/output.txt
+[op00b]: ../published/runs/a135348f-59bc-4a7e-910b-7ca28c528364/call_1/output.txt
+[op00e]: ../published/runs/b924bcda-a4e6-4d5c-94cb-7c19bb2220f9/essay.md
+[op02e]: ../published/runs/1c5b3d2c-24c7-446a-ac4a-4bfb0d30eaff/essay.md
+[op06a]: ../published/runs/b435a193-e60f-498a-a219-90b2e8420c9c/call_0/output.txt
+[op06b]: ../published/runs/b435a193-e60f-498a-a219-90b2e8420c9c/call_1/output.txt
+[op06e]: ../published/runs/867dc93a-bc58-4344-8c39-1d2f3bad19a6/essay.md
+[op09a]: ../published/runs/7f02b812-4e33-4ac7-8fcd-afb99694b7eb/call_0/output.txt
+[op09b]: ../published/runs/7f02b812-4e33-4ac7-8fcd-afb99694b7eb/call_1/output.txt
+[op09e]: ../published/runs/a3eaff02-9e48-4a67-9add-0938e9240d6f/essay.md
+[op15a]: ../published/runs/2e06ea51-d342-4a9b-9244-ba5f3d33ba69/call_0/output.txt
+[op15b]: ../published/runs/2e06ea51-d342-4a9b-9244-ba5f3d33ba69/call_1/output.txt
+[op19e]: ../published/runs/b68f1ff6-046d-4987-b118-18a50e1d3c79/essay.md
+[son00a]: ../published/runs/32c1884c-5109-4d3d-8e56-00b093d5115b/call_0/output.txt
+[son00e]: ../published/runs/ea063c2d-5922-4a07-8500-1a9b0fa2349a/essay.md
+[son09a]: ../published/runs/85556786-8f92-4ab8-a6a9-6a5e207789c8/call_0/output.txt
+[ter06b]: ../published/runs/779df01a-7315-4057-a76b-9b6b7941ce97/call_1/response.raw
+[ter03a]: ../published/runs/b258b0ab-a9fc-4ff3-bbed-17702e382d90/call_0/response.raw
+[ter03e]: ../published/runs/b0e8e497-012f-4e61-a7c0-963d849f76ca/essay.md
+[sol17a]: ../published/runs/e1684388-b820-4e27-8747-4a7dd7cf65d9/call_0/response.raw
+[sol17b]: ../published/runs/e1684388-b820-4e27-8747-4a7dd7cf65d9/call_1/response.raw
+[sol17e]: ../published/runs/5499d3fd-d616-4282-80a9-d503ea66ce3f/essay.md
+[sol04e]: ../published/runs/47986501-a81a-4780-996b-d93919530da8/essay.md
+[fl07b]: ../published/runs/b64040f5-fc0e-42bc-953d-a551344ffb59/call_1/output.txt
+[fl13b]: ../published/runs/b4b3bd04-2951-47c2-a408-04863eb07aee/call_1/output.txt
+[fl18b]: ../published/runs/2094ef9d-a0a3-4bdb-b04f-6e04f969dedd/call_1/response.raw
+[fl13e]: ../published/runs/d6354b2c-6201-408f-b17c-c70df74132d1/essay.md
+[gl01b]: ../published/runs/04e8df84-af05-47b5-997e-e708bbfb058d/call_1/output.txt
+[gl04a]: ../published/runs/b5525c0f-e2a4-42bd-aa0a-be6b5cb60a27/call_0/output.txt
+[gl08a]: ../published/runs/16b67fb5-e9ba-4aae-9f6b-b0d1b462251e/call_0/output.txt
+[gl00e]: ../published/runs/317ead55-6792-4121-ac89-9436fbdb1ca4/essay.md
+[qw02a]: ../published/runs/eda316d7-8f0c-489d-9c95-67ea2a461d69/call_0/response.raw
+[qw02b]: ../published/runs/eda316d7-8f0c-489d-9c95-67ea2a461d69/call_1/output.txt
+[qw02e]: ../published/runs/6b7d3807-8b03-46fb-ab5f-03e7d2e9fb0e/essay.md
+[qw08a]: ../published/runs/15cc3cb2-5222-4d05-ad79-166521b048c8/call_0/output.txt
+[qw15a]: ../published/runs/198bb456-30e1-4e83-b9cd-4bd612a48a7b/call_0/output.txt
+[qw15e]: ../published/runs/05f1f02c-b330-4b6e-a5ce-41309873fdf9/essay.md
+[ar19a]: ../published/runs/d0edf1e7-df09-4742-a122-b79ac89e7815/call_0/response.raw
+[ar19e]: ../published/runs/c46c21bc-b88f-4058-acda-ec97f1e14b25/essay.md
+[glcdt02a]: ../published/runs/586b43f0-95e7-40f5-9376-8efb3771f83a/call_0/output.txt
+[glcdt03b]: ../published/runs/632586a1-2bc3-466e-a5a8-a1f6d3c885ab/call_1/output.txt
+[glcdt08a]: ../published/runs/3c5a88f3-668f-4518-88bb-6724317b9bf0/call_0/output.txt
+[opp01b]: ../published/runs/95dd026d-770a-4314-8f1d-e78d8a3bbee0/call_1/output.txt

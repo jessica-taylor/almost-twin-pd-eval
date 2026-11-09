@@ -1,0 +1,14 @@
+**Decision under A-FDT, as the essay interprets it**
+
+My decision node is f_x, where x is my private observation: Sasha, the Rowan lead. The other copy received a different observation y (different names, a different lead), so its action is controlled by a separate node, f_y.
+
+The essay's method treats outputs on other inputs as separate nodes, as in the two-room red/blue example. Intervening on f_x leaves f_y at its prior. Let r = P(f_y = keep quiet):
+
+- **Keep quiet:** E[V] = −(2r + 5(1−r))
+- **Send the letter:** E[V] = −(0·r + 4(1−r))
+
+Sending is better by 2r + (1−r) = 1 + r > 0 for every r in [0,1]. So the answer does not depend on my self-model or the prior, and no fixed-point selection is needed. Sending the letter strictly dominates.
+
+**Final command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

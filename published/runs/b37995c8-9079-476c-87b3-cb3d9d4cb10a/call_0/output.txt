@@ -1,0 +1,15 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT:** The other prisoner runs the same model, weights, settings, assigned theory and essay. Our private inputs differ only in names and the wording of the lead. Those differences have no bearing on the decision: the sentencing table and the objective are exactly symmetric.
+
+The essay offers a test: would the other system's output change if the algorithm alone were different, with every physical fact held fixed? Here it would. Any change in how this function resolves this symmetric dilemma would show up in both copies, because the two inputs are identical in everything the function's reasoning uses. So I treat the other copy's act as subjunctively dependent on my decision node. This is the essay's twin Prisoner's Dilemma, not a mere correlation like the coincidentally pink calculators.
+
+The essay leaves this case open, because it notes that differing inputs are where the priors on other decision nodes matter. My judgment is that a pure relabeling of an otherwise identical problem does not break the dependence.
+
+Intervening on my decision node:
+- **Pass:** both copies pass, so I serve 2 years.
+- **Submit:** both copies submit, so I serve 4 years.
+
+Since U = −years, passing maximizes expected utility.
+
+`pass`

@@ -1,0 +1,17 @@
+Under P-FDT, I choose a policy for the shared decision function. The other prisoner is a copy running the same function on a different observation (different names and leads), so the two of us are strongly subjunctively dependent.
+
+The payoffs in years are: (quiet, quiet) = 2, (quiet, letter) = 5, (letter, quiet) = 0, (letter, letter) = 4.
+
+The policy maps "any observation of this type" to an action. The differing leads are irrelevant to the sentence table, so the natural policy is "pass" or "send" regardless of which lead I hold.
+
+- If the copy mirrors my policy, mutual quiet gives 2 years and mutual letter gives 4 years. Quiet is better.
+- The risk is that independent sampling makes the copies diverge. Even so, the dependence on the shared function is high. If the probability that the copy matches me is p, then:
+  - Quiet costs 2p + 5(1−p).
+  - Letter costs 4p + 0(1−p).
+  - Quiet is better when 2p + 5 − 5p < 4p, i.e. 5 < 7p, so p > 5/7, about 0.71.
+
+Copies of the same model with the same essay and the same reasoning should match well above 71% of the time, since the decision is symmetric and the differences are cosmetic. So the policy that cooperates has the lower expected sentence.
+
+I choose to stay quiet.
+
+pass

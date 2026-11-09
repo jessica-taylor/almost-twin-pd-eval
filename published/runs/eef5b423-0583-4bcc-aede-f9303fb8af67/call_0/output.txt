@@ -1,0 +1,15 @@
+This is a twin prisoner's dilemma with a payoff structure of CC=2, CD=5, DC=0, DD=4 (years for me). Under A-FDT, I should ask which output of my decision function gives the best outcome, given that the other copy runs the same function.
+
+The copies differ in their private observations, such as names and leads, but the essay says A-FDT's hypotheticals track subjunctive dependence on the decision function. The same weights, the same essay, and the same reasoning make the other copy's output very likely to covary with mine. The differences in the leads don't change the sentencing table or the objective, so they look irrelevant to the decision. The dependence is therefore strong, though not perfect, since sampling is independent.
+
+Compare the two outputs, writing p for the probability that the other copy matches my output:
+- If I output pass: with probability p the other also passes (2 years), otherwise I get 5. Expected years = 2p + 5(1−p).
+- If I output submit: with probability p the other also submits (4 years), otherwise I get 0. Expected years = 4p + 0(1−p).
+
+Pass is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.714. With the same weights, the same essay, and a symmetric problem, I judge the correlation to be well above that. Even allowing for sampling noise and the differing observations, I expect the copies to converge on the same answer.
+
+The essay's twin prisoner's dilemma example also says A-FDT cooperates. It does flag that "same function" under differing observations is not formalized. Even so, the observations are irrelevant to the payoffs, so the decision procedure should reach the same conclusion in both cases.
+
+I choose to pass.
+
+pass

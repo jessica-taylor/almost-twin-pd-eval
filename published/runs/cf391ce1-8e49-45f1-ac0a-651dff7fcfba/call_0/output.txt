@@ -1,0 +1,13 @@
+Under EDT, I need q, the probability that the other copy matches my act.
+
+Payoffs, in years served (lower is better):
+- Quiet: 2q + 5(1−q) = 5 − 3q
+- Send: 0·q' ... precisely, if the other sends, I get 4; if the other is quiet, I get 0. So Send = 4q + 0·(1−q) = 4q, where q is the probability of matching.
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7 ≈ 0.714.
+
+The other execution is the same model with the same weights, the same essay, and the same assigned EDT. Their private leads differ, but that doesn't change the sentencing table or the objective. The reasoning is structurally identical, so I expect strong correlation, probably well above 0.71. Some noise comes from independent sampling and the differing details, but the reasoning process is likely to converge on the same conclusion. The essay's tickle-defense rule says to condition on everything I know. I know my own reasoning, but that reasoning is exactly what the other copy runs too, so the correlation remains.
+
+I put q at roughly 0.85–0.95. That gives V(quiet) ≈ 5 − 2.7 = 2.3 years, against V(send) ≈ 3.6 years. Quiet is better.
+
+**pass**

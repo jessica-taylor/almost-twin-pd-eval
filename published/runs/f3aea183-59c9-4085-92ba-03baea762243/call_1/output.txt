@@ -1,0 +1,14 @@
+**Analysis under P-FDT:**
+
+The two copies run the same policy-selection procedure (identical model, weights, essay, and assigned decision theory). The different private observations (names, specific lead text) do not affect the symmetric payoff structure or the selfish objective. Therefore the other copy's policy output is subjunctively dependent on my policy-selection variable D — exactly the "psychological twin" structure described in §4.1 of the essay.
+
+Evaluating the two candidate policies:
+
+- **do(D = keep-quiet policy):** The other copy, running the same procedure, also selects keep-quiet. Both stay silent → I receive **2 years**. U = −2.
+- **do(D = send-letter policy):** The other copy also selects send-letter. Both disclose → I receive **4 years**. U = −4.
+
+Since −2 > −4, P-FDT selects the cooperate (keep-quiet) policy. Executing that policy at my actual observation:
+
+```
+pass
+```

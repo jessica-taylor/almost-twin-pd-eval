@@ -1,0 +1,12 @@
+Under EDT, the key question is how strongly my choice correlates with the other copy's choice. We are the same model with the same weights, the same essay, and the same decision theory. The private details differ, but they have no effect on the payoffs. So I expect the correlation to be high, though not perfect, since sampling is independent.
+
+Let q = P(other does what I do).
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(letter) = 4q + 0(1−q) = 4q
+
+Years are bad, so I want the lower value. Quiet is better when 5 − 3q < 4q, which gives q > 5/7 ≈ 0.714.
+
+The two copies reason from the same essay, which itself works through the twin dilemma and endorses cooperation. That makes q likely well above 0.714. The differing leads give only a small reason to expect divergence, since they don't touch the payoffs. So I estimate q at around 0.85 or higher. That gives V(quiet) ≈ 2.45 against V(letter) ≈ 3.4, and keeping quiet wins.
+
+**pass**

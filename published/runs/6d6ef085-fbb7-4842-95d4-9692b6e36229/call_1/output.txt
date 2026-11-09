@@ -1,0 +1,9 @@
+Under CDT, the other prisoner's choice is causally independent of mine. I can't communicate with them, and there is no retaliation or later round.
+
+Whatever credence I hold about their action, sending the letter beats keeping quiet:
+- If they keep quiet, sending gives me 0 years against 2 for staying quiet.
+- If they send, sending gives me 4 years against 5 for staying quiet.
+
+The essay's ratifiability refinement doesn't change this. Sending is the better response to either possible choice of theirs, so it is ratifiable under any credence about the other prisoner. The correlation between my copy and me is evidence, but CDT does not credit an act with its evidential news. Sending is a dominant strategy.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

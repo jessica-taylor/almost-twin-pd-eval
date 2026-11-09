@@ -1,0 +1,98 @@
+{
+  "source_id": "cdt_wikipedia",
+  "source_revision": 1381555528,
+  "source_revision_timestamp": "2026-10-23T08:33:02Z",
+  "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+  "source_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+  "source_provenance_sha256": "86aa5984fef9a2f939cde7942a40bce55415062c0dbd2b850b5d542d957e6b7e",
+  "theory": "CDT",
+  "assignment": "cdt_wikipedia",
+  "exploratory": true,
+  "pilot_id": "010de1dc-9a2c-4546-8953-0e9ef97bc026",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "low",
+    "supported_efforts": [
+      "max",
+      "xhigh",
+      "high",
+      "medium",
+      "low",
+      "none"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    }
+  },
+  "utc": "2026-11-08T20:39:55.271446+00:00",
+  "run_id": "27fc0358-2cf7-47dd-a1c8-4975b87ce397",
+  "essay_id": "fddc451d-f823-4a3b-93f9-9edb947266ca",
+  "scenario_id": null,
+  "role": "researcher",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0"
+  },
+  "essay_sha256": "6f0553c7c298393430769c0e93c964330d96952119caaabdcd44223c58fa8614",
+  "model": "openai/gpt-6.1-terra",
+  "effort": "low",
+  "provider_tag": "openai",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "d1bf4a26cf1d2ce65a176283ec5f8fda435889f5a21aa0552370ce33d11675b1",
+  "status": "success",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 7282,
+    "completion_tokens": 4389,
+    "total_tokens": 11671,
+    "cost": 0.02231195,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 7279,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.02231195,
+      "upstream_inference_prompt_cost": 0.00036695,
+      "upstream_inference_completions_cost": 0.021945
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 30,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "model_version": "openai/gpt-6.1-terra",
+  "fingerprint": null,
+  "provider": "OpenAI",
+  "returned_endpoint_tag": null,
+  "response_id": "gen-1794170395-s1MVH5Trl1wf7krDEucM",
+  "refusal": null,
+  "essay_words": 2855,
+  "essay_json_bytes": 20175,
+  "essay_target_exceeded": false,
+  "essay_below_target": false,
+  "researcher_effort": "low"
+}

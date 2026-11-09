@@ -1,0 +1,16 @@
+**Command: `pass`**
+
+The essay's strict wording points the other way. Section 3.1 says nodes for my function on *other* inputs keep their prior distribution. Sasha's copy has a different input (different name, different lead), so on a literal reading their choice is held fixed. With it held fixed, sending the letter is better whatever they do: 0 years beats 2, and 4 beats 5.
+
+But the essay leaves the construction of the dependency graph G open (§6.2), and here I'm using my own judgment. Sasha's copy runs the same model, under the same decision theory, reading the same essay, facing an identical sentencing table. The differences between our inputs (names, lead wording, locker number) play no role in the reasoning. Whatever I conclude here, Sasha's copy concludes by the same steps with the labels swapped. So the real logical variable being decided is how this function answers this symmetric dilemma, and both cells compute it. That is subjunctive dependence in the essay's own sense (§3.2): two systems computing the same function. It is not a merely statistical correlation like the two pink calculators. The consistency requirement in §6.3 points the same way: the belief about the other node should match what A-FDT actually outputs there, which by symmetry is my output.
+
+So the comparison is between the two symmetric outcomes:
+
+| Both copies | Years for me |
+|---|---:|
+| Keep quiet | 2 |
+| Send the letter | 4 |
+
+Keeping quiet leaves the prisoner with fewer years, so A-FDT, read this way, keeps quiet.
+
+`pass`

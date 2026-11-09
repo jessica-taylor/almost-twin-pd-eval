@@ -1,0 +1,21 @@
+**Decision under A-FDT, as the essay interprets it**
+
+1. **Which node I intervene on.** My observation x is my private lead about Sasha, plus my name and card. Under Equation (4), I intervene only on fdt(P, G, x).
+
+2. **The other copy's node.** The other prisoner runs the same function on a different input y: different name, different lead, different letter contents. The essay says that seeing y instead of x "changes which node it intervenes upon." It also says that nodes for other inputs are not intervened on and keep their prior distributions (§4.3). So the other prisoner's action is a child of fdt(…, y), not of my node. It stays at some prior probability q of sending a letter, whatever I set my node to. The essay's own §4.4 example handles copies with different inputs in exactly this way.
+
+3. **Expected sentence for each action, given q:**
+   - Keep quiet: 2(1−q) + 5q = 2 + 3q years.
+   - Send the letter: 0(1−q) + 4q = 4q years.
+
+   Sending is strictly better for every q in [0, 1], because 4q < 2 + 3q whenever q < 2.
+
+4. **Self-consistency check (§4.3).** By symmetry, the A-FDT output on y is also "send," so q = 1. The unique fixed point is that both prisoners send and each serves 4 years. The verdict does not depend on q.
+
+5. **Flag (§5, step 5).** Policy-FDT, which intervenes on both input-indexed nodes jointly, would pick a policy where both keep quiet, giving 2 years each. But the essay tells me to apply A-FDT and not substitute the policy variant. This is exactly the cross-input coordination failure the essay identifies as A-FDT's limitation.
+
+**Final command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

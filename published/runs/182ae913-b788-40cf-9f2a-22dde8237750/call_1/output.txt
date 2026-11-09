@@ -1,0 +1,27 @@
+**Decision under EDT, as the essay interprets it**
+
+- **Acts:** `pass` (cooperate) or `submit letter` (defect).
+- **State:** what Rowan does.
+- **Payoffs to Sasha** (years, negated): R = −2, T = 0, P = −4, S = −5.
+
+Let q = P(Rowan's choice matches mine | my choice). Then:
+
+- V(pass) = −2q − 5(1−q) = 3q − 5
+- V(submit) = 0·(1−q) − 4q = −4q
+
+So `pass` wins exactly when 7q > 5, that is, when q > 5/7 ≈ 0.714.
+
+**Estimating q (§5.3: shared reasoning, not surface similarity).** Rowan's choice comes from the same model and weights, at the same reasoning effort, under the same EDT instruction, working through the same essay and the same sentencing table. The differences between us are names and the wording of our leads. These are surface details that do not enter the decision calculation. Independent sampling adds some noise, but the deciding argument is the same one in both rooms. So q is well above 0.714.
+
+With q ≈ 0.9:
+
+- V(pass) ≈ −2.3 years
+- V(submit) ≈ −3.6 years
+
+There is no observation that depends on my disposition, so the act-level and policy-level verdicts agree (§5.2).
+
+**Command:**
+
+```text
+pass
+```

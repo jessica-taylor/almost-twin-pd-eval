@@ -1,0 +1,14 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT:**
+
+1. **Graph.** Rowan is the same model, with the same weights and settings, applying the same essay to a problem with the same structure. Our observations differ only in names and in the text of the leads. None of these differences enters the decision-relevant computation, since the sentencing schedule and objective are identical. So the deciding function is effectively the same computation on inputs that are equivalent for this decision. Under the essay's §6.1 test, Rowan's choice tracks what this function outputs. I therefore draw an arrow from my decision node to Rowan's action. The chance of different random sampling goes into a separate noise node, not a weaker arrow.
+
+2. **Intervening on my node.**
+   - Under do(F = pass), Rowan also passes, apart from noise, and I get about 2 years.
+   - Under do(F = submit), Rowan also submits, and I get about 4 years.
+   - Passing is better by roughly 2 years. Noise would have to make Rowan's choice nearly independent of mine before defecting won.
+
+3. **Caveat.** If I had judged the two nodes logically unrelated, defection would dominate and be the unique fixed point. The essay's spirit, and its twin and voting examples, treat isomorphic decision problems solved by the same function as subjunctively linked. My judgment is that the name and lead differences are irrelevant to that link.
+
+**Final action:** `pass`

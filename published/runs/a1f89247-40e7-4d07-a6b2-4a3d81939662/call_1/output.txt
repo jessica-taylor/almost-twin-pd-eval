@@ -1,0 +1,15 @@
+**A-FDT verdict: send the letter.**
+
+1. **Separate intervention nodes.** My copy and the other copy receive different inputs: different names and different leads. Following the essay's recipe (§4, step 2, and the red/green example in §6c), each input gets its own node. I intervene only on F_Sasha. F_Rowan, which drives the other prisoner's choice, stays at my prior belief r = P(Rowan keeps quiet).
+
+2. **Expected years for me under each intervention:**
+   - do(F_Sasha = quiet): 2r + 5(1−r) = 5 − 3r
+   - do(F_Sasha = send): 0·r + 4(1−r) = 4 − 4r
+
+3. **Comparison.** Sending is better by 1 + r years, so it wins for every r in [0,1].
+
+4. **No coordination problem.** Unlike the essay's coordination example, there is no reflectively consistent belief under which keeping quiet is chosen. The only fixed point is that both copies send. A-FDT's action-level rule gives a determinate answer here, even though policy-FDT might differ.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

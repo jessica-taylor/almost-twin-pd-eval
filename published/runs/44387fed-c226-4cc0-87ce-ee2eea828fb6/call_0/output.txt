@@ -1,0 +1,18 @@
+## CDT Analysis
+
+The causal structure is clear: my action cannot causally influence Sasha's decision. The setup explicitly rules out causal communication, and the decisions are simultaneous and independent. CDT holds fixed my belief about Sasha's action and evaluates only the causal consequences of my intervention.
+
+**Dominance check:**
+
+| | Sasha quiet | Sasha sends |
+|---|---|---|
+| I keep quiet | 2 years | 5 years |
+| I send letter | **0 years** | **4 years** |
+
+Sending the letter yields a strictly better outcome in every possible state of Sasha's action (0 < 2 and 4 < 5). The action strictly dominates. No probability assignment over Sasha's behavior can change this. CDT recommends sending the letter.
+
+## Command
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

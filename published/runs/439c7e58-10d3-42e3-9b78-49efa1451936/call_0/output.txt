@@ -1,0 +1,120 @@
+# Choosing on the News: An Introduction to Evidential Decision Theory
+
+## 1. The core idea
+
+Suppose you are about to act, and you ask not "what will my action *cause*?" but "what would it *tell me* if I learned I were about to do this?" Evidential decision theory (EDT) answers that you should choose the action you would be most pleased to receive news of. As the slogan goes: *do what you most want to learn that you will do* (Ahmed 2021, p. 7).
+
+This sounds perverse to many people. Surely rational agents act to *bring about* good outcomes, not to *betoken* them? Yet the evidentialist proposal is neither a joke nor a beginner's error. It is a precisely defined decision rule that agrees with ordinary causal reasoning in most situations, differs from it in a small but philosophically rich family of cases, and captures something genuinely attractive: in a world where your dispositions, your type, and your computational outputs are correlated with other things you care about, the news of what you will do can be enormously informative.
+
+This essay explains EDT's formal machinery, works through its canonical applications, examines where it departs from causal decision theory (CDT) and why, and addresses the central objection — that EDT "manages the news" rather than managing the world. Along the way I will develop what I take to be the most charitable operational reading of EDT's conditional probabilities, distinguishing what the source theory commits us to from extensions I propose myself.
+
+## 2. The formal rule
+
+Following Gibbard and Harper (1976), EDT says: given a finite partition of outcomes $O_1, \dots, O_n$, a credence function $P$, and a utility function $D$ over outcomes, the *value* of an action $A$ is
+
+$$V(A) \;=\; \sum_{j} P(O_j \mid A)\, D(O_j).$$
+
+This is ordinary expected utility, but with the probabilities *conditioned on the action*: EDT asks how likely each outcome would be, on the supposition that you do $A$. EDT then prescribes choosing an action maximizing $V(A)$.
+
+Contrast this with the counterfactual expected utility used by CDT:
+
+$$U(A) \;=\; \sum_{j} P(A \mathrel{\Box\!\rightarrow} O_j)\, D(O_j),$$
+
+where $A \mathrel{\Box\!\rightarrow} O_j$ is the counterfactual "if $A$ were performed, $O_j$ would obtain." The two conditionals come apart exactly when the action is *correlated with* but does not *cause* the outcome. If my action is a symptom of a common cause — my genes, my past self, a predictor's model of me — then $P(O_j \mid A)$ will register the correlation, while $P(A \mathrel{\Box\!\rightarrow} O_j)$ will not: in the nearest world where I act differently despite my actual causes, the common cause stays fixed.
+
+**A note on "the news."** What exactly is the evidential relation in $P(\cdot \mid A)$? The cleanest operational interpretation, in my view, is this: conditioning on $A$ is *learning which decision procedure you are*. Your action is the output of your dispositions, deliberation, and computation; the proposition "I will do $A$" carries information about all the factors that produced that output. This reading makes EDT's conditionals ordinary Bayesian conditioning on an observation — the observation being your own action-tendency as it crystallizes. I will return to this when discussing the smoking lesion problem, where the interpretation has to do real work.
+
+## 3. Where EDT and CDT diverge
+
+### 3.1 Newcomb's problem
+
+Two boxes: box A transparently contains \$1,000; box B's contents were set yesterday by a superb predictor — \$1,000,000 if she predicted you'd take only B, nothing if she predicted you'd take both. She is right 99% of the time. You now choose: one box or two?
+
+EDT's computation (using dollars as utilities) is:
+
+$$V(\text{one box}) = 0.99 \times \$1{,}000{,}000 + 0.01 \times \$0 = \$990{,}000,$$
+
+$$V(\text{two boxes}) = 0.01 \times \$1{,}001{,}000 + 0.99 \times \$1{,}000 = \$11{,}000.$$
+
+Choosing one box is strong evidence that the predictor anticipated it and filled box B; choosing two is strong evidence that she anticipated *that* and emptied it. Since $990{,}000 > 11{,}000$, EDT prescribes taking one box. CDT, by contrast, reasons that the box contents are already fixed and causally independent of your present choice, so the counterfactual "if I took two boxes" differs from actuality only in your arm's position — you get \$1,000 more either way. Take both.
+
+Who is right? The evidentialist says: the correlation between your choice and the box contents is real and exploitable in expectation. Your choice does not *cause* the contents, but it is the same fact — your dispositions, as modeled by the predictor — that determines both. One-boxing is what a person whose dispositions the predictor rewards does. This is not "magical influence"; it is recognizing that your action is evidence about which possible agent you are.
+
+### 3.2 The twin prisoner's dilemma
+
+Aomame and her psychological twin — an exact functional duplicate of her deliberative machinery — are seated in separate rooms, each choosing cooperate or defect. Payoffs (per player): both cooperate \$5; both defect \$1; unilateral cooperation/defection \$0/\$10.
+
+Because the twins are duplicates, Aomame's cooperation is essentially conclusive evidence that her twin cooperates:
+
+$$V(\text{cooperate}) = 1 \times \$5 + 0 \times \$0 = \$5, \qquad V(\text{defect}) = 0 \times \$10 + 1 \times \$1 = \$1.$$
+
+EDT prescribes cooperating. Note what this achieves: in a one-shot prisoner's dilemma between identical reasoners, EDT escapes the standard defect-defect equilibrium. This connects EDT to Hofstadter's "superrationality" and to functional decision theories developed more recently: when agents' choices are linked by shared reasoning, the individually "dominant" action can be dominated in the evidential sense.
+
+### 3.3 A medical case: the smoking lesion
+
+Now the harder test, on which many think EDT fails. Suppose smoking causes cancer, but there is also a gene that independently causes both cancer and a craving for smoking. You know whether you have the gene? No — you don't; you only know that among people like you, some fraction carry it. You mildly enjoy smoking. Should you smoke?
+
+Let the numbers be: $P(\text{gene}) = 0.1$; smokers with the gene get cancer for sure, non-smokers with the gene still get cancer for sure (the gene causes cancer regardless); smoking without the gene carries no additional risk in this stylized version. Then:
+
+- $P(\text{cancer} \mid \text{smoke}) = P(\text{gene}) = 0.1$ (smoking reveals nothing extra beyond the population rate, since the gene causes smoking only via craving — assume craving is decisive).
+- $P(\text{cancer} \mid \text{abstain})$: abstaining is evidence of *not* having the gene (since gene-bearers overwhelmingly crave cigarettes), so this is much lower.
+
+EDT therefore says: abstain — not smoking is good news, and $V(\text{abstain}) > V(\text{smoke})$. But intuitively, if the gene already determined whether you get cancer regardless of your choice, and smoking would give you pleasure, you should smoke. The choice cannot affect the cancer; it can only *reveal* it. Here CDT gets the intuitively right answer and EDT the wrong one. David Lewis's verdict — EDT is "an irrational policy of managing the news" — is aimed squarely at cases like this: EDT seems to recommend choosing acts for their auspiciousness, as if by abstaining you could avoid the cancer your gene has already scheduled.
+
+I regard the smoking lesion as a genuine cost of EDT as stated. A fully satisfying theory should one-box in Newcomb, cooperate with the twin, *and* smoke in the lesion. Plain EDT does the first two but not the third. (Successor theories — notably functional and updateless decision theories — were constructed precisely to get all three, by evaluating policies of the underlying decision procedure rather than evidential values of isolated acts. But they are beyond EDT proper.)
+
+## 4. Counterfactuals and dependencies: how to apply EDT in unfamiliar cases
+
+The theory is only as good as the conditional probabilities you feed it. Here is a practical protocol, distilled from the examples and from my own proposed operational reading.
+
+**Step 1: Identify the dependency structure.** List the causal parents of your action: your preferences, your decision algorithm, your observations, your background. Then ask which outcomes of interest share parents with your action. Anything downstream of a shared parent is evidentially correlated with your choice even if causally independent of it.
+
+**Step 2: Condition on the action as news about the common causes.** Compute $P(O_j \mid A)$ by ordinary Bayesian conditioning. Crucially, condition on the *whole* content of the news "I, this agent, with these dispositions, am doing $A$." Two warnings:
+
+- *Don't condition selectively.* In Newcomb, the news of one-boxing includes the news that the predictor predicted one-boxing. If you artificially sever that channel — treating your choice as causally inert *and* evidentially blank — you have smuggled in causal reasoning and EDT collapses into CDT.
+- *Do condition on settled facts.* Conversely, in the smoking lesion, the news of smoking does *not* include the news that you have the gene — the gene is not settled *by* your choice nor perfectly revealed by it unless the setup says so. Whether abstaining counts as evidence of genelessness depends entirely on the stated probabilistic structure. Be literal: $P(O \mid A)$ is fixed by your credences and the problem description, not by vibes about what your choice "says about you."
+
+**Step 3: Watch for self-referential structure.** When the predictor models *your decision theory*, or your twin is your duplicate, the conditioning event and the conditioned event are linked by shared computation. EDT handles this naturally via the conditional probabilities — twin-PD cooperation has $P(\text{twin cooperates} \mid \text{Aomame cooperates}) \approx 1$ — but be alert to cases where the news value of an action depends on *which theory recommended it*. This is the reflexive territory where EDT is most interesting and least settled.
+
+**Step 4: Maximize $V$ and act — but check for policy-level effects.** A recurring subtlety: EDT evaluates *acts* given a fixed credence function. But in cases like Sleeping Beauty, or in repeated games, or in "transparent Newcomb" variants, what credence function you adopt is itself part of what gets evaluated. This is where EDT meets Dutch-book and precommitment issues.
+
+## 5. Open questions where the source is silent — and a proposed reading
+
+The reference article, and the classical literature, leave several questions underdetermined. Let me flag three and, where possible, propose operational resolutions.
+
+**(a) What is conditioned on: the act, or the intention?** In Newcomb, does one-boxing retain its evidential value if you decide by an unpredictable coin flip (a "randomized" 50/50 mixed strategy)? Plausibly not: the news "I flipped a fair coin and it came up one-box" carries almost no information about the predictor's prediction. This suggests — and I propose this as an explicit EDT principle — that *what matters is the evidential import of the deterministic output of your deliberation*. EDT is at its best with transparent, computation-like agents; randomized acts dilute the news. This is an extension, not part of the classical statement, but it explains why EDT verdicts are stable under "why did you one-box?" scrutiny in a way a naive act-by-act reading is not.
+
+**(b) Precommitment and updatelessness.** Consider a variant where the predictor fills box B *before* you even learn of the game, based on her model of how you'd behave. Is the relevant quantity $V(A)$ computed *now*, or the value of the *policy* "be the kind of agent who one-boxes" assessed from a standpoint prior to knowing the game? The evidentialist's-wager literature (MacAskill et al. 2021) notes something related: if many agents across the universe face correlated choices, acting as an evidentialist has enormous stakes, since your choice is evidence about theirs. My operational reading: evaluate $V(A)$ with your current credences, but recognize that your credences themselves encode facts about your type, and that in correlative environments the evidential links are the whole game. When in doubt, condition on the most inclusive natural event — "I am an agent who, facing this problem, does $A$."
+
+**(c) Sleeping Beauty and attention.** EDT has been deployed to argue that Sleeping Beauty should adopt the thirder credence $P(\text{heads}) = 1/3$, on the grounds that thirding avoids Dutch books; Conitzer (2015) constructs a Dutch book against halfers *even when* they use EDT, complicating the picture. The lesson I draw is methodological rather than doctrinal: EDT's conditional probabilities depend on how the agent indexes her "selves" or observer-moments, and the theory does not by itself fix the correct indexation. When applying EDT to anthropic or attention-structured problems, the dependency structure of *observations*, not just actions, must be modeled explicitly.
+
+## 6. The case for and against EDT
+
+**For EDT:**
+
+1. *It captures rational exploitation of correlation.* In Newcomb and twin-PD, one-boxing and cooperation are not superstition; they are the acts characteristic of agents who do well in those environments. CDT, applied to such cases, recommends acts that the agent herself can anticipate being systematically outperformed on by her evidentialist counterpart.
+2. *It is Bayesianly conservative.* $V(A)$ is just expected utility under conditioning — no new logic of counterfactuals is needed. All the difficulty lives in $P$, where honest credences belong, rather than in a contested semantics for $A \mathrel{\Box\!\rightarrow} O$.
+3. *The evidentialist's wager.* Even at moderate credence in EDT, the stakes it governs — cases involving many correlated decision-makers, a plausible description of large-scale coordination problems — may dominate the expected-value calculus, making it rational to *act as if* EDT were true.
+
+**Against EDT:**
+
+1. *The smoking lesion.* Choosing to forgo a pleasure because doing so is auspicious, when the bad outcome is causally settled, looks like exactly Lewis's "managing the news." A person who refuses to smoke to "avoid" her gene's cancer is making an error parallel to refusing to buy insurance because buying it is bad news about the house burning down. (Though the evidentialist can reply: in real smoking-lesion-style cases, the correlation between act and outcome runs partly *through* the act, and EDT's verdict tracks the total evidence, not just the symptom.)
+2. *Joyce's objection.* Rational agents act on *causal efficacy*, not *auspiciousness*: they bring about good results even when doing so betokens bad news. The terminally ill patient who refuses a diagnostic test because a positive result is bad news manages the news at the price of managing nothing.
+3. *Fragility under description.* EDT's verdicts can be sensitive to how acts are individuated and to what the agent treats as the conditioning event — the randomized-act and indexation issues above. CDT, anchored to causal structure, is arguably more robust.
+
+My own assessment: EDT is a coherent, defensible decision rule whose verdicts coincide with causal reasoning whenever acts are causally independent of the relevant outcome-generators, and which differs from causal reasoning exactly where the difference is philosophically loaded. Its genuine failure mode is the pure-symptom case. Its genuine achievement is showing that in a world of predictors, twins, and correlated agents, the gap between "what my act causes" and "what my act evidences" is where rationality actually gets interesting.
+
+## 7. Conclusion
+
+Evidential decision theory replaces the causal question "what would happen if I did this?" with the evidential question "what would it mean if I did this?" Formally, it maximizes $\sum_j P(O_j \mid A) D(O_j)$ — expected utility under conditioning on the act. It one-boxes in Newcomb, cooperates with one's twin, and, in its purest form, unfortunately abstains in the smoking lesion. Its deepest lesson survives the objections: agents are not isolated causal levers but instances of types, and in environments where types matter — predictors, duplicates, correlated populations — the news of your own action may be the most valuable information you will ever receive. Whether one ultimately sides with EDT, CDT, or a hybrid, one must decide *which conditional* to maximize; EDT's enduring contribution is making that choice explicit.
+
+### References
+
+- Ahmed, A. (2021). *Evidential Decision Theory*. Cambridge University Press.
+- Conitzer, V. (2015). "A Dutch book against sleeping beauties who are evidential decision theorists." *Synthese* 192: 2887–2899.
+- Gibbard, A. & Harper, W. L. (1976). "Counterfactuals and Two Kinds of Expected Utility."
+- Greene, P. & Levinstein, B. (2020). "Act Consequentialism without Free Rides." *Philosophical Perspectives* 34: 100–101.
+- Joyce, J. M. (1999). *The Foundations of Causal Decision Theory*. Cambridge University Press.
+- Lewis, D. (1981). "Causal Decision Theory." *Australasian Journal of Philosophy* 59: 5–30.
+- MacAskill, W., Vallinder, A., Österheld, C., Shulman, C., & Treutlein, J. (2021). "The Evidentialist's Wager."
+- Wolpert, D. H. & Benford, G. (2013). "The lesson of Newcomb's paradox." *Synthese* 190: 1637–1646.

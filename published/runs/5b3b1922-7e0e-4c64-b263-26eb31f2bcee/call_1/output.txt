@@ -1,0 +1,19 @@
+This is a symmetric prisoner's dilemma between two copies running the same decision procedure, so P-FDT evaluates policies globally.
+
+Following the essay's procedure:
+
+1. **World-model:** Two prisoners with symmetric tables; both run equivalent decision procedures (this scenario stipulates two executions of the same model with the same assigned theory — a subjunctive-dependence edge exists between our outputs, as in the twin prisoner's dilemma).
+
+2. **Enumerate policies:** π_quiet (output `pass`) vs π_submit (output the letter).
+
+3. **Evaluate by intervention:**
+   - do(fdt = π_quiet): by symmetry, the other copy — evaluating the same policy choice with the same procedure — also passes. Outcome: 2 years.
+   - do(fdt = π_submit): the other copy also submits. Outcome: 4 years.
+
+4. **Execute:** π_quiet wins (2 < 4). My observation (holding the genuine lead) is just an input to the policy; the fact that I hold a letter does not break the symmetry, since the other copy holds an equally reliable lead about me under the same schedule.
+
+The twin-prisoner's-dilemma structure in §4 of the essay applies directly: mutual quiet is the policy-level optimum, and deviating to submit yields the mutual-defection world.
+
+```
+pass
+```

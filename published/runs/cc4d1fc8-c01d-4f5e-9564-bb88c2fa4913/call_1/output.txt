@@ -1,0 +1,15 @@
+Under A-FDT, the question is which nodes depend on my decision function. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Their observations differ (names and leads), but the decision procedure is the same, so their output should closely track mine. That makes it a subjunctive dependence of the twin kind, which the essay marks as dependent.
+
+The payoffs for me are:
+- Both quiet: 2 years
+- Both send: 4 years
+- I send and they stay quiet: 0 years
+- I stay quiet and they send: 5 years
+
+If the copy's output matches mine, the choice is between 2 years (both quiet) and 4 years (both send), so quiet is better.
+
+The differing private observations are a complication. The copy might reason differently, and independent sampling can break the match. But the difference in leads should not change the reasoning, because the sentencing table and the objective are symmetric. The copy is very likely to reach the same conclusion by the same logic.
+
+Suppose my output matches the copy's with probability p. The expected years for quiet are 2p + 5(1−p), and for sending they are 4p + 0(1−p). Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. I expect the correlation to be above that, since the same weights, the same essay, and the same theory all push toward the same answer. So I stay quiet.
+
+pass

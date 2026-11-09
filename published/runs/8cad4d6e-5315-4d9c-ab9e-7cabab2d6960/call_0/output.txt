@@ -1,0 +1,10 @@
+Under CDT as the essay lays it out, the other prisoner's choice is a state I cannot causally influence. So I check for causal dominance (§3, §6 step 3):
+
+- If Sasha keeps quiet: passing gives 2 years, submitting gives 0 years.
+- If Sasha sends a letter: passing gives 5 years, submitting gives 4 years.
+
+Submitting is strictly better in every state. The correlation from being copies of the same model is evidential, not causal, and the copies have different observations anyway. So CDT submits whatever my credences about the other prisoner are, just as it defects in the twin prisoner's dilemma.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

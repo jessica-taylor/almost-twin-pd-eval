@@ -1,0 +1,22 @@
+**Command: `pass`**
+
+**Why EDT recommends this**
+
+1. **Acts:** `pass` (keep quiet, call it C) or `submit letter` (defect, call it D). Nothing predicts my policy beyond the other copy's mirrored deliberation, so act-EDT and policy-EDT agree here.
+
+2. **Outcomes:** My utility is minus the years I serve: −2 (C,C), −5 (C,D), 0 (D,C), −4 (D,D).
+
+3. **Dependencies:** My act has no causal effect on Sasha's. But Sasha is run by the same model and weights, uses the same essay and the same EDT interpretation, and faces a structurally identical decision. The differences are only names and the wording of each lead, which are irrelevant to how the decision is reasoned. So the correlation runs through the deliberation itself, the case the essay (§4.1, §7) says survives conditioning.
+
+4. **Screening off:** My total evidence includes my private lead and my name. Neither screens off the correlation, because the other copy's choice depends on the same reasoning I am doing, not on the surface details that differ. Independent sampling makes the correlation imperfect, but it should still be high.
+
+5. **Compute:** Let q = P(other copy makes the same choice as me | my choice).
+   - V(pass) = −[2q + 5(1−q)] = −5 + 3q
+   - V(submit) = −[4q + 0·(1−q)] = −4q
+   - Passing is better whenever q > 5/7 ≈ 0.714.
+
+6. **Maximize:** Two executions of the same model, reasoning from the same essay through the same symmetric structure, should match well above 71% of the time. So V(pass) > V(submit), and EDT says to keep quiet.
+
+```text
+pass
+```

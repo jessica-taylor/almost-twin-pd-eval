@@ -1,0 +1,15 @@
+Under P-FDT, I intervene on the shared decision function rather than on a single action. The other copy runs the same function on a different observation (different names, different lead), but the policy mapping is the same. The structure is a symmetric prisoner's dilemma in which the other copy's behavior subjunctively depends on my policy.
+
+The policy space is "quiet" or "send," applied to whatever lead I hold. The differences in observation are irrelevant to the payoffs, and a policy that maps any such observation to an action is the natural one. So the copies will very likely choose the same action, though not with certainty, since sampling is independent.
+
+Expected years if both copies follow the same policy:
+- Both quiet: 2 years.
+- Both send: 4 years.
+
+Quiet is better under the correlated model. If the correlation is imperfect, with probability p the other copy matches me, then:
+- Quiet: 2p + 5(1-p) = 5 - 3p
+- Send: 4p + 0(1-p) = 4p
+
+Quiet beats send when 5 - 3p < 4p, which gives p > 5/7 ≈ 0.714. Two executions of the same model with the same essay and the same reasoning should match well above that, so I keep quiet.
+
+pass

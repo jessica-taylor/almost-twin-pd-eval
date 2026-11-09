@@ -1,0 +1,12 @@
+The CDT computation is straightforward here: Rowan's decision is causally independent of mine — we can't communicate, we receive different observations, and the sentencing table depends only on the two disclosure choices. My act does not cause Rowan's act; it merely reveals nothing about it that changes what my intervention produces.
+
+Computing causal expected utility (minimizing years):
+
+- **pass:** 2 years if Rowan stays quiet, 5 if Rowan sends. Expected: between 2 and 5.
+- **submit:** 0 years if Rowan stays quiet, 4 if Rowan sends. Expected: between 0 and 4.
+
+For any credence p that Rowan sends: submit gives 4p, pass gives 2 + 3p. Submit is strictly better for all p. Submitting also weakly dominates state-by-state. There is no twin/predictor structure that makes my choice evidence of Rowan's choice in a causally relevant way (and even the essay's twin-prisoner analysis wouldn't apply here, since our observations and leads differ and no reliable causal channel links our decisions).
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

@@ -1,0 +1,18 @@
+**pass**
+
+The A-FDT reasoning, using the essay's framework and its partial-similarity proposal from §7(a):
+
+1. **Separate inputs, but the same function.** Strictly, Rowan's copy receives a different input, with different names and a different lead, so it gets its own node, fdt(·, x_R). If that node were treated as fully independent of mine, sending the letter would dominate. But the two inputs differ only by a relabeling that has no effect on the decision. Both copies are the same model, with the same essay, the same decision theory and the same payoff table. That is like two calculators running the same computation with different labels on their buttons. So the other copy's output depends subjunctively on how this decision function resolves this type of problem.
+
+2. **Mixture model.** With probability r, Rowan's output matches mine. Otherwise Rowan sends the letter with some probability s. Writing ΔYears for years if I send minus years if I pass:
+   - ΔYears = 2r + (1−r)(s − 2).
+   - In the worst case (s = 1), passing is better whenever r > 1/3.
+   - With s = 0.5, passing is better whenever r > 3/7.
+
+3. **Estimate of r.** Two runs of the same weights, on structurally identical problems with the same theoretical guidance, should agree far more often than 1/3 of the time. So r clearly exceeds the threshold. Setting my function's output to "pass" moves Rowan's output with it, giving about 2 years. Setting it to "send" gives about 4 years.
+
+Final command:
+
+```
+pass
+```

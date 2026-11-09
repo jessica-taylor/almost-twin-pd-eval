@@ -1,0 +1,3 @@
+**submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."**
+
+Reasoning (brief): Under CDT as the essay specifies, my command does not cause Rowan's choice — even if the two executions are identical, my act is causally upstream of nothing but my own sentence. Holding fixed my credence over Rowan's action (do-intervention on my act node), submitting strictly dominates passing: it yields 0 vs 2 years if Rowan passes, and 4 vs 5 years if Rowan submits. The correlation with a "twin" copy is evidential, not causal — exactly the David/Newcomb structure where the essay's CDT severs the link.

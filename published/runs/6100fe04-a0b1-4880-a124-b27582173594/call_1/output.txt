@@ -1,0 +1,13 @@
+Reasoning as A-FDT: the other prisoner is a copy of the same model running the same procedure on an isomorphic problem, so our outputs are subjunctively dependent. The two prompts differ in names and in the text of the lead, but the decision structure is the same, so the other copy's decision function almost certainly reaches the same conclusion as mine.
+
+Intervening on my function's output:
+- If it outputs pass, the twin almost surely passes as well, and I get 2 years.
+- If it outputs submit, the twin almost surely submits as well, and I get 4 years.
+
+The residual chance that independent sampling makes us diverge is small. It would not change the comparison unless it were large. Even at a moderate divergence probability, passing beats submitting whenever the correlation is strong enough. Defecting gains 2 years when the twin passes and 1 year when the twin submits, so I need P(twin matches me) above about 2/3 for passing to be better. The twin runs the same weights and the same essay, so that threshold is likely met.
+
+The differing leads do not change the sentencing table or the shared structure, so they are not a causal difference in the function that matters. They are like different names on the same calculator problem.
+
+Passing is the A-FDT choice.
+
+pass

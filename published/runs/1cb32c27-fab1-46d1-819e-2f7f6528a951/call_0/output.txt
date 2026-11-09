@@ -1,0 +1,13 @@
+Under A-FDT as the essay describes it, I intervene on the output of my decision function. The other prisoner is a copy of the same model running the same procedure. Their leads and names differ, but the sentencing table and the objective are symmetric. So their output subjunctively depends on mine, mostly through shared weights and shared reasoning. The dependence is not perfect, because sampling is independent and the private observations differ.
+
+Compare the two interventions:
+- If my function outputs "quiet," the copy very likely outputs "quiet" too, giving 2 years.
+- If my function outputs "send," the copy very likely outputs "send" too, giving 4 years.
+
+Let p be the probability that the copy matches my output. The expected sentence for quiet is 2p + 5(1−p). For send it is 4p + 0(1−p). Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71.
+
+The copies run the same weights and the same essay, and the differences in observation do not touch the payoffs. I expect them to match with probability well above 0.71. The checklist in the essay says to make a process that reasons about my output a child of the fdt node. The copy is such a process, so I include it.
+
+I will stay quiet.
+
+pass

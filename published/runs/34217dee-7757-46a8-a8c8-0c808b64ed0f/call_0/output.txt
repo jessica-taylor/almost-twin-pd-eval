@@ -1,0 +1,19 @@
+**Reasoning under A-FDT**
+
+1. **The controlled node.** My controlled node is F_x, the output of this decision procedure given my observation.
+
+2. **The other copy.** Sasha is the same model, with the same settings, the same essay and the same assigned theory. Our observations differ only in names and in the wording of our leads. Those details never enter the decision-relevant computation. The sentencing table, the objective and the reasoning are exactly symmetric. Following the essay's calculator analogy and its treatment of partial similarity, Sasha's choice is a noisy child of the same function, with some match probability ρ. It is not a mere correlate like a lesion, because it actually computes this reasoning.
+
+3. **Expected utility under the intervention:**
+   - do(F = pass): −2ρ − 5(1−ρ) = −5 + 3ρ
+   - do(F = submit): −4ρ − 0(1−ρ) = −4ρ
+
+   Passing is better whenever ρ > 5/7. Two executions of identical weights on a decision-identical problem should match well above that threshold. This holds especially if both treat the surface differences as irrelevant, which is the same conclusion this reasoning reaches and which the other copy would reach too.
+
+4. **The alternative reading.** Holding Sasha's node fixed at a self-consistent prior gives the "lock-in" outcome the essay flags as a known gap in coordinate-wise optimization. That fixed point is mutual defection at 4 years each, which is worse for me than the 2 years of mutual silence. The essay also says to model such systems as noisy children of F rather than as independent nodes. So I use the subjunctive-dependence reading.
+
+**Final command:**
+
+```
+pass
+```

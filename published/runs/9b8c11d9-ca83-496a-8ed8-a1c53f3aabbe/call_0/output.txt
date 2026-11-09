@@ -1,0 +1,11 @@
+Under the essay's reading of A-FDT, each observation defines its own decision node. My observation x (the name "Rowan" plus the locker-17 lead) is different from Sasha's observation y. So my copy intervenes on F_x, and Sasha's copy acts on F_y.
+
+By the essay's rule in Section 4, Sasha's act gets an edge only from F_y, not from F_x. Intervening on F_x therefore holds Sasha's behavior at its prior, as in the red/blue example in Section 7(c).
+
+With Sasha's action held fixed, sending the letter is better whatever Sasha does:
+- If Sasha keeps quiet: 0 years instead of 2.
+- If Sasha sends a letter: 4 years instead of 5.
+
+This holds for every prior q, so A-FDT sends the letter. The self-consistent prior also says Sasha's copy, running A-FDT on y, sends a letter.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

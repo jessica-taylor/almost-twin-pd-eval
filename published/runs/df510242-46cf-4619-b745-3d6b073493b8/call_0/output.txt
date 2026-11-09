@@ -1,0 +1,20 @@
+**Analysis (EDT):**
+
+The payoff structure is a standard prisoner's dilemma. Causally, sending the letter strictly dominates keeping quiet (0 < 2 and 4 < 5). But EDT does not evaluate actions by their causal consequences alone; it asks what each action is *evidence* about the other player's choice.
+
+The other prisoner is an execution of the same model, same weights, same decision theory, same essay, facing a symmetric payoff matrix. The private observations differ only in surface content (names, specific evidence text) that is decision-irrelevant: both leads are equally reliable and produce identical sentencing effects. The strategic structure each copy faces is therefore the same.
+
+Under EDT, my choice is strong evidence of the other copy's choice. Let *p* = P(Sasha keeps quiet | I keep quiet) and *q* = P(Sasha keeps quiet | I send letter). With high correlation (p close to 1, q close to 0):
+
+- V(keep quiet) = −2p − 5(1−p) = 3p − 5  
+- V(send letter) = 0·q − 4(1−q) = 4q − 4
+
+Keeping quiet is preferred when 3p − 4q > 1, which holds whenever p − q > 1/3. Given the near-identical decision procedure and decision-irrelevant input differences, the correlation comfortably exceeds this threshold.
+
+With p ≈ 1, q ≈ 0: V(keep quiet) ≈ −2, V(send letter) ≈ −4. Keeping quiet is the action that would be best news.
+
+**Command:**
+
+```
+pass
+```

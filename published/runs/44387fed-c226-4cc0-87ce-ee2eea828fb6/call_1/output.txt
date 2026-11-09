@@ -1,0 +1,20 @@
+**CDT Analysis:**
+
+The causal structure is clear: my action causally affects my sentence; Rowan's action causally affects my sentence; but my action does *not* causally affect Rowan's action (separate cells, no communication, simultaneous decision). The correlation between our decisions due to shared model weights is a common-cause correlation, not a causal link from my intervention to Rowan's choice.
+
+Under CDT, I evaluate the intervention `do(send letter)` holding Rowan's action fixed:
+
+- If Rowan keeps quiet: sending → 0 years; keeping quiet → 2 years. **Sending is better.**
+- If Rowan sends: sending → 4 years; keeping quiet → 5 years. **Sending is better.**
+
+Sending the letter **strictly dominates** keeping quiet regardless of what Rowan does. No probability assignment over Rowan's action changes this.
+
+The fact that the other prisoner runs the same model creates evidential correlation (analogous to the predictor in Newcomb's problem), but CDT explicitly refuses to let the action serve as evidence about variables it does not causally influence. The essay states: *"What CDT refuses to do is to let the hypothetical performance of the action update beliefs about variables that the action does not causally affect."*
+
+---
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

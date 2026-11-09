@@ -1,0 +1,24 @@
+**Command:** `pass`
+
+**Why EDT, as the essay interprets it, recommends this**
+
+Let q be the probability that Sasha's copy makes the same choice I do, given my choice. With utility equal to minus years:
+
+- V(pass) = −2q − 5(1 − q) = 3q − 5
+- V(submit) = −0·(1 − q) − 4q = −4q
+
+Passing is better if and only if 7q > 5, so q > 5/7 ≈ 0.714. This is the same threshold as the essay's twin prisoner's dilemma in §4.
+
+**Is the correlation that strong?**
+
+- **Same reasoning process.** The other prisoner is the same model with the same weights, settings and reasoning effort. It has the same essay and the same assigned decision theory, and faces the same symmetric payoff table.
+- **The differences don't matter to the decision.** Our names and the specific leads differ, but by stipulation they have no effect on the sentencing schedule or on either prisoner's objective.
+- **The tickle defence doesn't apply.** In the essay's §5 terms, the correlation runs through the decision procedure itself, not through some upstream desire I could introspect on and screen off. My reaching this conclusion is evidence that the other copy reaches it too.
+- **Independent sampling** adds some noise, but not nearly enough to push q below 5/7.
+
+**Robustness checks**
+
+- **Ratifiability:** Conditional on having decided to pass, my evidence still points to the other copy passing, so passing stays preferred.
+- **Policy-level evaluation:** It gives the same verdict, because nothing here responds to policies differently from acts.
+
+`pass`

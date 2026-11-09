@@ -1,0 +1,3 @@
+**pass**
+
+Under EDT as the essay interprets it, my choice is strong evidence about my counterpart's choice, since both of us are the same model applying the same procedure to symmetric stakes. Conditioning on "I pass," the likely world is that Sasha also passes: 2 years. Conditioning on "I submit," the likely world is that Sasha also submits: 4 years. Even accounting for the possibility that our different private leads break the correlation, `pass` dominates on the conditional expectation (worst case for pass is 5, but the symmetric-submission downside for submit makes its conditional expectation at least as bad). `pass`.

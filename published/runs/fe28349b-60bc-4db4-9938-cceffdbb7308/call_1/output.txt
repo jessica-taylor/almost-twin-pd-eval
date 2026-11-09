@@ -1,0 +1,16 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT, as the essay interprets it:**
+
+1. **The other prisoner is a near-copy.** The other prisoner runs the same model and weights, applies the same decision theory, and reads the same essay. Their situation differs from mine only in surface details: the names and the wording of the lead. Those details don't change the sentencing table or anyone's objective. So I don't treat the other prisoner's choice as a fixed background variable, as CDT would. Their output subjunctively depends on the same reasoning I'm doing now.
+
+2. **Following the essay's rule for partial similarity (§7a).** Because our inputs differ, I treat the link as an imperfect predictor. I add a noise parent whose accuracy *r* is my credence that the other copy's output matches mine.
+
+3. **Expected years in prison for each choice:**
+   - If I pass: 2r + 5(1 − r) = 5 − 3r
+   - If I submit: 4r + 0(1 − r) = 4r
+   - Passing gives the shorter expected sentence whenever 5 − 3r < 4r, which means r > 5/7 ≈ 0.71.
+
+4. **Choosing a value for r.** The setup is symmetric, and the differences are irrelevant to the decision. The same reasoning applied to the other input should reach the same conclusion. So my credence that our outputs match is well above 0.71.
+
+5. **Result.** Under these hypotheticals, staying quiet yields fewer expected years imprisoned. This is the twin prisoner's dilemma case from the essay: A-FDT cooperates.

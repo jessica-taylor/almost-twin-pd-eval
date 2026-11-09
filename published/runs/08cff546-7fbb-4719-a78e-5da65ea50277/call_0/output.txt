@@ -1,0 +1,14 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT as the essay interprets it:**
+
+1. **Is my decision function modeled elsewhere?** Yes. Sasha's choice is made by another run of the same model, with the same settings and the same essay. Our inputs differ only in names and in the wording of our leads. These differences are strategically irrelevant: the sentencing table is symmetric, the preferences are the same, and the decision problem has the same structure. So Sasha's choice is computed by essentially the same function on a structurally equivalent input.
+
+2. **How strongly does Sasha's choice depend on mine?** Following the essay's similarity-mixture proposal, I model Sasha's act as computed by my own function F with probability s, and by an independent process otherwise. Because the reasoning is the same and the differences are only cosmetic, s is high. Independent sampling keeps it below 1.
+
+3. **Expected years for each action.** Let d be the chance that the independent process discloses.
+   - Pass: 2s + (1−s)(2 + 3d) years.
+   - Submit: 4s + (1−s)(4d) years.
+   - Submitting is worse by 2s − (1−s)(2 − d) years. That is positive whenever s is above roughly 1/2. That condition holds comfortably here.
+
+4. **Equilibrium check.** The essay's fixed-point condition is consistent with this answer. If both runs pass, each prisoner gets 2 years. If both submit, each gets 4. The mutual-pass fixed point is better for each of us.

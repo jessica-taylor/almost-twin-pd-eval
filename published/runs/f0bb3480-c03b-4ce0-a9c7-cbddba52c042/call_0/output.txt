@@ -1,0 +1,10 @@
+**pass**
+
+Under EDT as the essay develops it, this is a twin prisoner's dilemma. My choice and Sasha's choice are produced by the same model, same reasoning process, same essay — my deliberation is essentially conclusive evidence of theirs. Conditioning on "keep quiet":
+
+- V(pass) = P(Sasha quiet) × 2 + P(Sasha sends) × 5 ≈ 2 years
+- V(submit) = P(Sasha quiet) × 0 + P(Sasha sends) × 4 ≈ 4 years
+
+As in the essay's twin case (§4), introspection cannot decouple my act from my twin's: the correlation runs through the shared decision procedure itself, so it retains full evidential force. Quiet is better news and better expected value.
+
+Chosen command: `pass`

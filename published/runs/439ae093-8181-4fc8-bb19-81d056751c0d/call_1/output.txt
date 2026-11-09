@@ -1,0 +1,14 @@
+Under the essay's CDT, the other prisoner's choice is a dependency hypothesis outside my causal influence. We can't communicate, and our executions are independent, so I hold my credence $q$ that Rowan stays quiet fixed across my options.
+
+- **Keep quiet:** $U(\text{pass}) = -[2q + 5(1-q)]$
+- **Send the letter:** $U(\text{submit}) = -[0 \cdot q + 4(1-q)]$
+
+Sending the letter is better by $2q + (1-q) = 1 + q > 0$ years for every $q$. It strictly dominates, just like defecting in the essay's Twin Prisoner's Dilemma.
+
+The stability check doesn't change this. Even if my credence about Rowan shifts with my own inclination, as it might for a correlated copy, dominance holds at every deliberational state. So the fixed-point rule still picks submitting. There is also no earlier point where I could commit or bind myself to influence Rowan.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

@@ -1,0 +1,18 @@
+**Reasoning under A-FDT, as the essay interprets it:**
+
+- **Where I intervene.** A-FDT intervenes only on D_x, the output of my decision function at my current input. That input includes the name "Rowan," the lead about locker 17, and my private notebook.
+- **Where Sasha's choice sits.** Sasha's copy runs the same function on a different input y, with a different name and a different lead. So Sasha's action is a child of D_y, not D_x. Under the essay's Step 3 and Open point 1, D_y stays at its prior and is not moved by my intervention.
+- **The result is dominance.** Let q be my prior that D_y sends a letter.
+  - Expected value of passing: −2(1−q) − 5q
+  - Expected value of submitting: 0·(1−q) − 4q
+  - Submitting is better by 2 − q > 0 for every q.
+- **The essay's fix doesn't change this.** It suggests setting the D_y prior to whatever the best policy would assign, which would be "Sasha stays quiet." That changes the prior, not the dominance. Against a quiet Sasha, submitting yields 0 years versus 2.
+- **Partial dependence doesn't settle it either.** The essay's ρ-edge extension (Open point 2) covers similar but non-identical algorithms. Even granting it here, passing would require ρ > 5/7: the other copy's output would have to track my output at a different input that closely. The essay gives no grounds for that.
+
+This is the gap between A-FDT and policy-selecting FDT that the essay flags. Policy-selecting FDT would choose the constant "stay quiet" policy (2 years each). Action-level A-FDT, taken literally, does not.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

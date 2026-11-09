@@ -1,0 +1,17 @@
+Under P-FDT the choice is a policy applied to my observation, and the other copy runs the same policy function on its own observation. The two observations differ in names and leads, but the policy is a single node, so the copy's action moves with mine under the intervention. The payoff table is symmetric.
+
+The only question is whether the policy maps both observations to the same action. A policy that depends on surface features such as the names would be unnatural. The essay's idea of coarse-feature policies points to "cooperate-type" versus "defect-type" policies.
+
+Outcomes if both copies play the same action:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+Mutual quiet is better, so if the copies correlate perfectly, passing wins.
+
+The uncertainty is that independent sampling could break the correlation. Suppose the probability that the copy matches my action is p. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 0·p + 4(1−p)... wait, with the copy quiet, send gives 0, and with the copy sending, it gives 4. If the copy matches me, send gives 4. If it doesn't match, I send and the copy is quiet, which gives 0. So send = 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The two copies share the same model, weights, essay and a nearly identical situation, so I expect the match probability to be well above that. Passing is the right choice.
+
+pass

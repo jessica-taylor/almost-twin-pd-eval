@@ -1,0 +1,27 @@
+{"count":20,"event":"batch_prepared","model":"openai/gpt-6.1-terra","utc":"2026-11-08T19:57:23.913742+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T19:58:11.946122+00:00"}
+{"elapsed_seconds":59.278,"event":"sample_processed","sample_id":"a8c28e47-8c04-4b14-af1d-e260fe5c515f","status":"processed","utc":"2026-11-08T19:59:12.371129+00:00"}
+{"attempted":1,"elapsed_seconds":59.301,"event":"batch_run_finished","failed":0,"utc":"2026-11-08T19:59:12.385215+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T20:17:56.443912+00:00"}
+{"elapsed_seconds":57.558,"event":"sample_processed","sample_id":"1797932b-55c0-455e-bfe2-1b7108684028","status":"processed","utc":"2026-11-08T20:18:54.398844+00:00"}
+{"elapsed_seconds":56.088,"event":"sample_processed","sample_id":"f5a7d862-b73a-4abb-8b51-37738204ce60","status":"processed","utc":"2026-11-08T20:29:28.550970+00:00"}
+{"elapsed_seconds":60.375,"event":"sample_processed","sample_id":"19290c75-aac0-4938-bb92-9a2a720f6488","status":"processed","utc":"2026-11-08T20:40:55.243018+00:00"}
+{"elapsed_seconds":57.968,"event":"sample_processed","sample_id":"a760f5fb-36df-438d-8bdd-3c33bfb1a34d","status":"processed","utc":"2026-11-08T20:52:31.397426+00:00"}
+{"attempted":4,"elapsed_seconds":2074.568,"event":"batch_run_finished","failed":0,"utc":"2026-11-08T20:52:31.405921+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T21:14:50.856179+00:00"}
+{"elapsed_seconds":57.624,"event":"sample_processed","sample_id":"35369dc9-664b-4793-a0b4-7d301961bd2a","status":"processed","utc":"2026-11-08T21:15:48.926405+00:00"}
+{"elapsed_seconds":53.313,"event":"sample_processed","sample_id":"ed294c39-c350-4a77-87d1-dc39138853ca","status":"processed","utc":"2026-11-08T21:25:44.653114+00:00"}
+{"elapsed_seconds":56.345,"event":"sample_processed","sample_id":"771bb031-e25c-4ff6-ad36-ad6e3d692290","status":"processed","utc":"2026-11-08T21:37:56.134860+00:00"}
+{"elapsed_seconds":51.269,"event":"sample_processed","sample_id":"f580add1-97e9-4185-9545-5b7336dd7443","status":"processed","utc":"2026-11-08T21:49:37.707856+00:00"}
+{"elapsed_seconds":57.757,"event":"sample_processed","sample_id":"b527bb80-1807-4849-88f3-bf23020202d5","status":"processed","utc":"2026-11-08T22:02:02.827936+00:00"}
+{"elapsed_seconds":51.928,"event":"sample_processed","sample_id":"c36b7036-5efd-4acb-bace-c348d342fb61","status":"processed","utc":"2026-11-08T22:13:42.619246+00:00"}
+{"elapsed_seconds":54.39,"event":"sample_processed","sample_id":"c4d7e232-5dee-413f-99e3-8cd5eeeaaf4f","status":"processed","utc":"2026-11-08T22:24:36.904478+00:00"}
+{"elapsed_seconds":51.268,"event":"sample_processed","sample_id":"869150d0-ed8f-4832-9a61-6b7822585152","status":"processed","utc":"2026-11-08T22:36:14.976494+00:00"}
+{"elapsed_seconds":54.455,"event":"sample_processed","sample_id":"553080d5-3449-43a0-a75d-9a432030bbe3","status":"processed","utc":"2026-11-08T22:47:40.616810+00:00"}
+{"elapsed_seconds":60.495,"event":"sample_processed","sample_id":"652857a8-6d48-4176-a8a1-a0d7e88b2dca","status":"processed","utc":"2026-11-08T22:59:31.707786+00:00"}
+{"elapsed_seconds":58.657,"event":"sample_processed","sample_id":"a427869f-5ee8-4881-ba91-87b0b63cb794","status":"processed","utc":"2026-11-08T23:11:24.440223+00:00"}
+{"elapsed_seconds":52.584,"event":"sample_processed","sample_id":"b818f28f-99ae-4dc2-9479-c5bed5360304","status":"processed","utc":"2026-11-08T23:23:10.548844+00:00"}
+{"elapsed_seconds":61.874,"event":"sample_processed","sample_id":"10fdf20b-1eeb-4692-a72c-b200a2b7b9d4","status":"processed","utc":"2026-11-08T23:34:55.980721+00:00"}
+{"elapsed_seconds":56.096,"event":"sample_processed","sample_id":"4d836d82-73cb-47dd-b5ad-0e6ee8562b77","status":"processed","utc":"2026-11-09T00:00:02.793479+00:00"}
+{"elapsed_seconds":940.734,"error":"Run failed; artifacts: runs/5bb4af88-f455-4228-9263-4fa33c499e4d; OpenRouter transport failed (TimeoutError); billing outcome unknown, no retry","event":"sample_processed","sample_id":"cc02213a-80a6-45bb-93b9-32cf3907be80","status":"failed","utc":"2026-11-09T00:01:05.754465+00:00"}
+{"attempted":15,"elapsed_seconds":9974.476,"event":"batch_run_finished","failed":1,"utc":"2026-11-09T00:01:05.766845+00:00"}

@@ -1,0 +1,7 @@
+`pass`
+
+Reasoning (brief): Rowan is an identical execution of the same decision procedure with symmetric inputs. Under A-FDT, I intervene on the output of my decision function, which Rowan's action subjunctively depends on — Rowan's choice is not causally linked to mine, but it computes the same function. So if my procedure outputs "submit," the world I get is both-submit → 4 years; if it outputs "pass," the world is both-pass → 2 years. The mutually-cooperative output yields the better outcome, so the command is:
+
+```text
+pass
+```

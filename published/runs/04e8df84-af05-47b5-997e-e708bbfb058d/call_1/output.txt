@@ -1,0 +1,10 @@
+`pass`
+
+**Reasoning (A-FDT):** Rowan is an execution of the same model, same settings, same decision theory, same essay—functionally a twin running the same decision procedure. My graph G therefore contains a subjunctive-dependence edge from the output of my decision function to Rowan's corresponding output, exactly as in the twin prisoner's dilemma and the voting example in §7.
+
+Evaluating via Equation (4), intervening on the node `afdt(P, G, x)`:
+
+- **do(afdt = pass):** by the subjunctive edge, Rowan's procedure also outputs pass. Outcome: 2 years. U = −2.
+- **do(afdt = submit):** Rowan's procedure also submits. Outcome: 4 years. U = −4.
+
+The differences in our private observations don't break the dependence: both of us know the observations differ, and the symmetric payoff table means the procedure's recommendation is the same either way—this is the same input to the decision function for both copies. Keeping quiet is the best output of this procedure; hereby outputting it.

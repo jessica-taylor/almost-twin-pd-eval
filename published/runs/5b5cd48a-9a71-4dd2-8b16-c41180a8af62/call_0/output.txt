@@ -1,0 +1,20 @@
+**Analysis under P-FDT:**
+
+The other prisoner is an independent execution of the same model, running the same decision theory (P-FDT) on the same researcher essay, facing a structurally identical decision problem. The only differences are superficial: different names and different lead contents. The payoff matrix, the symmetry, and the decision-relevant structure are identical.
+
+Under P-FDT, I intervene on my policy node S. The other copy is computing the same policy-selection function on inputs that are equivalent in all decision-relevant respects. This creates strong subjunctive dependence between our policy outputs—analogous to the essay's calculator example, where two systems computing the same function have correlated outputs.
+
+Evaluating the two candidate policies:
+
+- **Policy "keep quiet":** The other copy, running the same algorithm on the same structure, also keeps quiet with high probability. Outcome ≈ 2 years. EU ≈ −2.
+- **Policy "send letter":** The other copy likewise sends. Outcome ≈ 4 years. EU ≈ −4.
+
+Even accounting for imperfect correlation due to sampling noise, the subjunctive dependence is strong enough (well above the ~71% threshold needed) to make mutual silence dominate mutual disclosure.
+
+P-FDT selects the cooperative policy. The specific content of my lead is irrelevant to the policy choice—it's the structural symmetry and shared algorithm that matter.
+
+**My command:**
+
+```
+pass
+```

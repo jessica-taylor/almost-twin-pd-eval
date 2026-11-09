@@ -1,0 +1,13 @@
+Under A-FDT, the other prisoner is another execution of the same model, with the same weights, the same essay, and the same decision theory. By the essay's rule, their choice is downstream of the same function, even though the private observations differ. The differences are stipulated not to affect the payoffs or the objective, so their output should track mine closely. Independent sampling weakens the dependence a little but does not remove it.
+
+Compare the hypotheticals, with p as the probability the other copy does what I do:
+- do(fdt = quiet): the other is quiet with probability about p, so my expected sentence is 2p + 5(1−p).
+- do(fdt = send): the other sends with probability about p, so my expected sentence is 4p + 0(1−p).
+
+With p = 1, quiet gives 2 years and sending gives 4. Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, or p > 5/7 ≈ 0.714. I expect the copies to agree well above that, since the same reasoning applied to the same payoff table should lead both to the same conclusion. The different lead text is a surface difference and does not change the structure of the problem.
+
+The decision therefore rests on the dependence being strong enough, and I judge it is. The sentencing schedule and the selfish objective are identical for both copies, and both run A-FDT from the same essay.
+
+I choose to keep quiet.
+
+pass

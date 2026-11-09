@@ -1,0 +1,16 @@
+Under the essay's version of CDT, I hold my credence about Sasha's choice fixed, because nothing I type can causally affect it. Sasha is another execution of the same model, so the two choices may be correlated. But as in the essay's Twin Prisoner's Dilemma, that correlation is evidence, not causation.
+
+Let q be my credence that Sasha keeps quiet.
+
+- **Pass:** expected sentence is 2q + 5(1−q).
+- **Submit:** expected sentence is 0q + 4(1−q).
+
+Submitting gives a shorter sentence for every q:
+- If Sasha keeps quiet, I get 0 years instead of 2.
+- If Sasha sends a letter, I get 4 years instead of 5.
+
+The fixed-point check doesn't change this. Since submitting dominates at every credal state, the deliberational equilibrium has full weight on submitting. No earlier binding option exists, so the timing check doesn't apply either.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

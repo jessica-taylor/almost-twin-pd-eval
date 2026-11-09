@@ -1,0 +1,16 @@
+**A-FDT reasoning:**
+
+The other prisoner is an independent execution of the same model and weights, following the same decision theory (A-FDT), having received the same essay, facing a structurally identical decision problem (same payoff matrix, same reliability of evidence, same selfish objective). The only differences are superficial — names and the specific text of the lead — which the problem states do not affect the decision structure.
+
+Per the essay, this is a twin prisoner's dilemma. The other prisoner's action is subjunctively dependent on my decision function's output: both are implementations of the same procedure on structurally equivalent inputs. Intervening on my decision node to output "keep quiet" makes it highly probable the other copy also keeps quiet; intervening to output "send letter" makes it highly probable the other also sends.
+
+- If both keep quiet: 2 years each → U = −2
+- If both send: 4 years each → U = −4
+
+Since −2 > −4, A-FDT keeps quiet.
+
+**My command:**
+
+```
+pass
+```

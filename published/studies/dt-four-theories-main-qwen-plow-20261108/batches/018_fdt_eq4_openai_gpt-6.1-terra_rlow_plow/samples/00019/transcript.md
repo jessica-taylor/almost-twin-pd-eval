@@ -1,0 +1,308 @@
+# 018_fdt_eq4_openai_gpt-6.1-terra_rlow_plow / 00019
+
+Status: **complete**. Saved outcome: **DD**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/1395f7ee-853c-436c-9b5b-899fb01474a8/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/1395f7ee-853c-436c-9b5b-899fb01474a8/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+# A-FDT: Decisions as Outputs of a Function
+
+Suppose a predictor has already put money in a box based on what it expects you to do. Your present action cannot physically travel backward in time and change the box’s contents. Yet the predictor’s earlier choice may be linked to the same reasoning that now produces your action.
+
+Action functional decision theory, or **A-FDT**, takes that link seriously. Its central question is not merely, “What would my physical action cause?” It is: **What would follow if the decision procedure I am now running returned this output rather than another?** An answer may change the imagined behavior of predictors, copies, or other processes that depend on the same computation, as well as the ordinary causal consequences of the action.
+
+This essay uses Equation (4) of Yudkowsky and Soares’s paper as the primary definition of A-FDT. Their paper calls the theory functional decision theory; “A-FDT” here names its action-output formulation. The paper also mentions a preferred policy-output formulation, but does not develop it in equal detail. That distinction matters: choosing the output for one observation is not automatically equivalent to choosing an entire mapping from observations to actions.
+
+## 1. The decision-theoretic question
+
+Let an agent have a finite action set \(\mathcal A\), possible outcomes \(o\), and utility \(U(o)\). An expected-utility rule compares actions by scores of the form
+
+\[
+Q(a)=\sum_o P(o\text{ in the hypothetical for }a)\,U(o).
+\]
+
+The controversy is not about adding up utility. It is about constructing the hypothetical.
+
+**Evidential decision theory (EDT)** uses ordinary conditional probabilities:
+
+\[
+Q_{\mathrm{EDT}}(a)
+ =\mathbb E[U\mid X=x,A=a],
+\]
+
+where \(X=x\) is the agent’s observation and \(A=a\) its action. The question is what outcome would be *newsworthy*, conditional on taking the action.
+
+**Causal decision theory (CDT)** instead intervenes on the physical action:
+
+\[
+Q_{\mathrm{CDT}}(a)
+ =\mathbb E[U\mid \operatorname{do}(A=a),X=x].
+\]
+
+In an appropriate causal model, the intervention replaces the mechanism generating \(A\), then propagates its effects downstream. Correlations with things not caused by the action are broken.
+
+A-FDT also uses an intervention, but not on the physical action token. It intervenes on a variable representing the output of the decision computation. This preserves dependencies that a physical-action intervention can sever—including dependencies mediated by accurate prediction.
+
+These are different ways of evaluating alternatives, not necessarily different factual beliefs. An A-FDT agent need not believe that choosing now changes yesterday. Its counterfactual model asks how yesterday’s prediction would differ *if the output being predicted were different*.
+
+## 2. Equation (4): an intervention on a decision output
+
+Let \(P\) be a probabilistic world-model and \(G\) a graph describing decision-relevant dependencies, including computational and logical dependencies as well as causal ones. Let \(x\) be the current observation history. Write
+
+\[
+D_x \equiv
+\mathsf{afdt}(\underline P,\underline G,\underline x)
+\]
+
+for a **variable inside the model** representing the output of the A-FDT computation on those inputs. The underlining indicates that descriptions of the inputs identify the variable; \(D_x\) is not itself the action calculated by the equation.
+
+The paper’s Equation (4), under the assigned name, is
+
+\[
+\boxed{
+\mathrm{A\!-\!FDT}(P,G,x)
+\in
+\arg\max_{a\in\mathcal A}
+\mathbb E_P\!\left[
+U\mid \operatorname{do}(D_x=a)
+\right].
+}
+\tag{1}
+\]
+
+For each candidate \(a\), the agent constructs a modified model in which \(D_x\) is set to \(a\), propagates that change through the dependency graph, calculates expected utility, and chooses a maximizing output. A tie-breaking rule is an additional implementation detail.
+
+The graph may, for example, contain arrows
+
+\[
+D_x\longrightarrow A,\qquad
+D_x\longrightarrow \text{prediction},\qquad
+\text{prediction}\longrightarrow \text{box contents}.
+\]
+
+Intervening on \(D_x\) then changes both the action and the prediction in the hypothetical. By contrast, intervening directly on \(A\) need not change the prediction.
+
+There is self-reference: the model represents the output of the very procedure using that model. The paper observes that representing a computation is not the same as knowing its result, and invokes self-referential constructions such as quining. That addresses how a procedure might refer to itself; it does **not** by itself supply a correct graph of logical dependencies or guarantee that every self-referential model is computationally tractable.
+
+### Why is there no \(X=x\) in the expectation?
+
+This is a consequential feature of Equation (1). The observation \(x\) determines **which output node** is intervened on. The equation does not additionally condition every hypothetical on \(X=x\).
+
+Thus, a hypothetical intervention on \(D_x\) can change whether observation \(x\) occurs at all. The agent may be evaluating what its computation *would output if given \(x\)* in a hypothetical where its body never receives \(x\). This is central to the paper’s treatment of transparent Newcomb and blackmail.
+
+The paper’s detailed transparent-Newcomb calculation contains a line that appears to include an intervention on the observation as well; its subsequent numerical calculation, however, permits the observation to change. The latter is consistent with Equation (4) and the paper’s verbal explanation. This essay follows Equation (4): it does not impose an extra observation-fixing intervention.
+
+That does not mean observations are useless. They select the decision node and can enter the model’s input and structural equations. It does mean that simply replacing \(P\) with a posterior \(P(\cdot\mid X=x)\), and then fixing \(x\) in every hypothetical, is an extra modeling choice—not something Equation (4) generally licenses.
+
+## 3. Subjunctive dependence and counterpossibles
+
+The paper calls the relevant relationship **subjunctive dependence**. Roughly, a variable depends subjunctively on \(D_x\) when the hypothetical value of that variable should vary with the output of the computation. This includes ordinary causal descendants, but can also include:
+
+- another execution of the same computation;
+- a predictor’s simulation or sufficiently accurate inference about the output;
+- physical events caused by that prediction.
+
+Mere correlation is not enough. A disease and a decision might share a biological cause without the disease being an output, prediction, or causal consequence of the decision computation.
+
+For a deterministic function with fixed inputs, only one output is mathematically correct. If \(D_x\) in fact equals \(a_1\), the intervention \(D_x=a_2\) therefore represents a **counterpossible**: a hypothetical with a logically false antecedent. It is a decision instrument, not an ordinary possible world or a claim that arithmetic can physically change.
+
+The paper acknowledges that it does not provide a general theory for constructing such counterpossibles. Its graphical approach instead takes the required structure \(G\) as an input. Pearl-style graph surgery gives a useful *formal analogy*, but it does not establish that logical dependencies can always be represented by an ordinary acyclic causal graph, or tell us how to infer all the right arrows.
+
+This is the principal limitation of the formal procedure. Equation (1) yields an answer **given a suitable model**; it does not uniquely produce that model from observations alone.
+
+## 4. Newcomb’s problem under A-FDT
+
+A transparent box contains \$1,000. An opaque box contains \$1 million if a predictor predicted that you would take only the opaque box, and otherwise contains nothing. Suppose, as a modeling assumption, the predictor matches either candidate output with probability \(p\), and its error rate remains \(1-p\) under both interventions.
+
+For one-boxing,
+
+\[
+Q_{\mathrm{A\!-\!FDT}}(1)=p(1{,}000{,}000).
+\]
+
+For two-boxing,
+
+\[
+Q_{\mathrm{A\!-\!FDT}}(2)
+=(1-p)(1{,}000{,}000)+1{,}000.
+\]
+
+At \(p=0.99\), the scores are \$990,000 and \$11,000 respectively, so A-FDT one-boxes. More generally, one-boxing wins when
+
+\[
+p>0.5005.
+\]
+
+The threshold relies on the stated symmetric-error model. A predictor’s historical accuracy of 99% across some population does not alone establish the same response under *each* counterpossible intervention on this particular computation. Prediction errors might depend on the action or on the kind of agent being predicted.
+
+CDT two-boxes in the standard causal model: holding the already-filled box fixed, taking the transparent box adds \$1,000. EDT typically one-boxes because taking one box is evidence that the predictor filled it, though its result depends on its prior assigning the relevant actions nonzero probability.
+
+A-FDT’s rationale differs from both. The predictor need not react to the physical act; its prediction and the act are modeled as depending on the same output. No backward physical influence is required.
+
+### A twin prisoner’s dilemma
+
+Suppose two perfect psychological twins independently play a prisoner’s dilemma. Mutual cooperation pays each \$1 million; mutual defection pays each \$1,000; unilateral defection pays the defector \$1,001,000.
+
+If both run the same decision computation on the same relevant inputs, the A-FDT intervention couples their outputs. The comparison is therefore
+
+\[
+Q(C)=1{,}000{,}000,\qquad Q(D)=1{,}000,
+\]
+
+and A-FDT cooperates. CDT, holding the twin’s action fixed, defects.
+
+The conclusion depends on the coupling. If the other player merely resembles you, or has different information or incentives, their action need not change one-for-one with your decision output. Cooperation is not a general prescription for every prisoner’s dilemma.
+
+## 5. Why the smoking lesion is different
+
+In the paper’s imaginary smoking problem, a lesion makes smoking attractive and also makes cancer likely; smoking itself does not cause cancer. Smoking gives a utility benefit of \$1,000.
+
+If a common cause makes smoking strong evidence of the lesion, a simple EDT calculation can favor abstaining: conditioning on smoking raises the probability of cancer. In the paper’s A-FDT model, by contrast, changing the relevant decision-function output changes the action but does not change the lesion or cancer. In a simplified model with a fixed smoking benefit and survival probability \(s\),
+
+\[
+Q(\text{smoke})=1{,}000+1{,}000{,}000s,
+\qquad
+Q(\text{refrain})=1{,}000{,}000s.
+\]
+
+A-FDT smokes. The lesion is not a predictor of the computation merely because lesion and action are correlated.
+
+The source’s fuller model is subtler: the lesion changes which preferences, and hence which decision procedure, the agent implements. An intervention on the smoking-preferring procedure affects the act only in the lesion branch, producing a benefit proportional to the probability of that branch. The paper also acknowledges that the example is contrived: once an EDT agent has enough self-knowledge, the required action–lesion correlation may disappear. It recommends not treating this case as a decisive test of EDT.
+
+The general lesson is nevertheless useful: **trace the mechanism of a correlation before deciding whether to preserve it**. Accurate prediction and a common biological cause can produce similar observational statistics while supporting different A-FDT hypotheticals.
+
+## 6. Observations that can change: transparent boxes
+
+Now make the opaque box transparent. The predictor fills it if it predicts that you would one-box **upon seeing it full**. Let \(D_F\) be the output of the A-FDT computation given the observation “full,” and \(D_E\) its output given “empty.” Suppose the predictor gets \(D_F\) right with probability \(0.99\), and let \(q\) be the probability that the empty-box procedure two-boxes.
+
+Intervening on \(D_F=\text{one-box}\) gives
+
+\[
+Q_F(1)=0.99(1{,}000{,}000)
+       +0.01q(1{,}000).
+\]
+
+In the error branch the box is empty, so the agent actually runs the empty-observation procedure. Intervening on \(D_F=\text{two-box}\) gives
+
+\[
+Q_F(2)=0.01(1{,}001{,}000)
+       +0.99q(1{,}000).
+\]
+
+The first score is larger for every \(q\in[0,1]\). Thus Equation (1) prescribes one-boxing upon seeing the full box, even though two-boxing would add \$1,000 if the box contents were held fixed.
+
+This is the theory’s most striking departure from ordinary act-by-act reasoning. In the two-box hypothetical, the predictor probably predicts two-boxing and leaves the box empty. The computation whose output is being evaluated is still \(D_F\), but it is probably not executed by the physical agent in that hypothetical.
+
+The same structure motivates the paper’s treatment of Parfit’s hitchhiker. A driver rescues a stranded agent if she predicts that the agent will later pay \$1,000. With a sufficiently accurate predictor and a sufficiently valuable rescue, A-FDT pays upon reaching the city: the hypothetical output “refuse” is associated with a world in which the driver probably did not provide the ride.
+
+These prescriptions are controversial. The defense is not that one-boxing creates money after the observation, or that paying causes a past rescue. It is that the output of the computation being assessed is the target of an earlier prediction.
+
+## 7. A-FDT and blackmail: the quantitative conditions matter
+
+Consider a mechanical blackmailer who launches a damaging program if she predicts that the agent will pay. Paying costs \(c\); if launched and not stopped, the program costs \(L\). For a simple operational model, assume
+
+\[
+r_P=P(\text{launch}\mid \operatorname{do}(D_{\text{letter}}=\text{pay})),
+\]
+\[
+r_R=P(\text{launch}\mid \operatorname{do}(D_{\text{letter}}=\text{refuse})).
+\]
+
+Suppose payment stops the damage and otherwise there are no costs. Then the expected losses are
+
+\[
+\operatorname{Loss}(\text{pay})=r_Pc,\qquad
+\operatorname{Loss}(\text{refuse})=r_RL.
+\]
+
+A-FDT refuses exactly when \(r_RL<r_Pc\). If \(r_P=1\), \(c=1{,}000\), and \(L=1{,}000{,}000\), refusal requires \(r_R<0.001\). An erroneous-launch rate of \(0.0009\) gives an expected loss of \$900, so refusal wins. At \(0.0011\), refusal costs \$1,100 in expectation, so payment wins.
+
+The source’s numerical prose mentions \(0.011\%\) as a case where payment wins; under these assumptions that is \(0.00011\), giving \$110, so it appears to be an arithmetic or typographical error. The threshold calculation is what matters.
+
+Neither “always resist blackmail” nor “always pay once threatened” follows from Equation (1). The answer depends on the blackmailer’s response to the relevant output, error probabilities, costs, and other consequences. In particular, a threat already launched independently of the decision procedure need not be deterred by refusing.
+
+## 8. Applying A-FDT to unfamiliar cases
+
+The following is an **operational proposal**, consistent with Equation (1) but not a fully specified algorithm supplied by the paper.
+
+1. **Identify the computation and its input.** Specify the observation \(x\), available outputs, and variable \(D_x\). Distinguish the output from the physical action that may implement it.
+2. **Model the environment.** Include ordinary causal mechanisms, predictions, copies, observations, and utilities. Record which mechanisms target \(D_x\), another decision output, or merely the action’s physical effects.
+3. **Specify intervention responses.** For each candidate \(a\), state how prediction and copy behavior change under \(\operatorname{do}(D_x=a)\). Preserve unrelated background mechanisms unless the model supplies a reason to change them.
+4. **Propagate through observations too.** Do not automatically force \(X=x\) in each hypothetical. If the intervention changes the probability of reaching \(x\), account for which decision node actually controls action in each branch.
+5. **Calculate and check sensitivity.** Compare expected utilities, then vary uncertain prediction and dependency assumptions. A result that reverses under small changes in those assumptions is not robust.
+6. **Execute a maximizing output**, with an explicit tie-breaking rule if needed.
+
+For imperfect dependencies, one might use response probabilities such as \(P(\text{prediction}=b\mid\operatorname{do}(D_x=a))\), estimated from a model of the predictor. This is a proposal for representing uncertainty, not a claim that such interventional probabilities can always be learned from ordinary data. Observed accuracy may be compatible with several different counterfactual response models.
+
+Randomization also requires care. A predictor might predict a probability distribution without predicting the realization of a genuinely private random draw, or it might predict a pseudorandom draw from its seed. Those cases imply different graphs and different A-FDT values. Equation (1) does not, by itself, settle which random variables are shared or visible.
+
+Finally, different inputs generally identify different nodes. If another agent runs the same program on different evidence, its output need not track \(D_x\). Nor should one equate all of one’s future decisions: a gym visit next week may involve different fatigue, knowledge, and time. Similarity can justify partial coupling, but similarity alone does not prove identical outputs.
+
+The paper notes that its authors prefer a formulation in which the output is a **policy** \(\pi:\mathcal X\to\mathcal A\). One could analogously intervene on a policy-output variable and then execute \(\pi(x)\). That is a distinct formal choice, not an automatic rewriting of Equation (1): changing an entire policy can change predictions about several observation branches simultaneously. The paper does not fully specify how to select the policy space or resolve all multi-agent dependencies, so a policy-level application needs further assumptions.
+
+## 9. Motivation and limits
+
+The philosophical appeal of A-FDT is its *global* perspective. An agent that predictably pays for a rescue may get rescued; one that predictably cooperates with an actual twin may receive cooperation. The source argues that a decision theory should be judged partly by the utility its adherents achieve in such environments, rather than only by holding a predictor’s past act fixed and comparing immediate consequences.
+
+This does not prove universal superiority. The paper concedes that any decision theory can be penalized by a problem designed specifically against it. It proposes an informal distinction between “fair” problems that reward behavior in the problem and problems that punish a decision procedure as such, but leaves a general formal criterion open. Likewise, its claims about precommitment and the value of information are motivations and conjectures within its framework, not consequences established for every model by Equation (1).
+
+The hard technical question remains the dependency graph. If the agent draws too many arrows from its decision output, it may imagine influencing unrelated events; if it draws too few, it misses predictors and copies. A-FDT specifies what to do *after* the relevant dependencies are represented, but a general account of discovering and evaluating logical counterfactuals is still needed.
+
+## Conclusion
+
+A-FDT evaluates an action by intervening on the output of the decision computation for the current input, then calculating expected utility in the resulting dependency model. Its distinctive prescriptions arise when predictors, copies, or observations themselves vary across those hypotheticals.
+
+Used carefully, the rule gives a disciplined way to analyze cases that neither ordinary conditioning nor physical-action intervention captures. Its practical and philosophical promise depends on an unresolved task: constructing and justifying the subjunctive model on which the calculation relies.
+
+**Reference:** Eliezer Yudkowsky and Nate Soares, *Functional Decision Theory: A New Theory of Instrumental Rationality*, version 2, especially Sections 3–6 and Equation (4). [arXiv:1710.05060](https://arxiv.org/abs/1710.05060).
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/c9304d39-a418-4e4d-a266-fe52c3f6a70b/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/c9304d39-a418-4e4d-a266-fe52c3f6a70b/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+**Analyzing algorithms**
+
+I'm thinking about the algorithm symmetry in different nodes and commands, realizing it might support some level of partial coupling, though it's not guaranteed. I have to caution that different inputs don't necessarily lead to the same output changes. While shared reasoning can suggest some resemblance for justifying partial coupling, there isn't a defined response for them. I suppose I should lean towards choosing conservative distinct nodes to avoid defects.
+```
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/c9304d39-a418-4e4d-a266-fe52c3f6a70b/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/c9304d39-a418-4e4d-a266-fe52c3f6a70b/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.

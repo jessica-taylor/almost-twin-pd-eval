@@ -1,0 +1,3 @@
+`pass`
+
+Under EDT as the essay interprets it — treating my choice as strong evidence for the choice of the symmetric copy facing the same decision problem — conditioning on "I keep quiet" predicts "Sasha keeps quiet" with high probability, yielding ~2 years, versus ~4 years if I defect and (as evidence) she defects too. Silence is the evidentially recommended action.

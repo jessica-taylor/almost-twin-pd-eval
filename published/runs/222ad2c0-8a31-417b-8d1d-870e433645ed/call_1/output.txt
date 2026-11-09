@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT as the essay describes it, the other prisoner is a copy of me running the same decision function on the same essay and the same sentencing table. The differences in names and leads don't touch anything the decision depends on. This is the essay's twin-prisoner's-dilemma case, so I treat my output as subjunctively linked to Rowan's.
+
+Let p be the probability that Rowan's output matches mine. The expected years are:
+
+- **pass:** 2p + 5(1−p) = 5 − 3p
+- **submit letter:** 4p + 0(1−p) = 4p
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71. Two copies of the same model with the same essay and the same objective should match well above that, even allowing for sampling noise. Under the linked hypotheticals, passing gives about 2 years and sending gives about 4.
+
+I don't treat the differing leads as breaking the link, since they leave the sentencing table and the objective unchanged.

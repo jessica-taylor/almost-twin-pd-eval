@@ -1,0 +1,14 @@
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning (CDT):**
+
+Under the causal model, my action has no causal pathway to Sasha's choice. The scenario stipulates no communication, no observation, and no causal influence between the two decisions. Therefore, under the intervention `do(I send letter)`, Sasha's action is held fixed at whatever it actually is.
+
+Evaluating dominance:
+
+- If Sasha keeps quiet: sending gives 0 years vs. 2 years for silence. Sending is better.
+- If Sasha sends: sending gives 4 years vs. 5 years for silence. Sending is better.
+
+Sending the letter strictly dominates keeping quiet in every state of the world. CDT selects the dominant action.

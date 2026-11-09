@@ -1,0 +1,7 @@
+Payoffs: both quiet gives 2 years each. Both send gives 4 each. Quiet against send gives 5, and send against quiet gives 0.
+
+The two copies run the same model with the same essay and the same decision procedure. Their observations differ, since the names and leads differ, but the sentencing structure is symmetric. Under P-FDT the policy is a map from observations to actions. The other copy's output varies with the same logical variable, so my choice is subjunctively linked to theirs. The differences in observation do not change the structure that the policy responds to. A policy of "quiet on any such observation" yields 2 years, and a policy of "send on any such observation" yields 4 years.
+
+The twin prisoner's dilemma case in the essay says to cooperate. The linkage is imperfect, because the copies could sample differently, but the 2-versus-4 gap is large. Suppose the other copy mirrors me with probability p and I choose to cooperate. Cooperating gives expected years 2p + 5(1-p). Defecting gives 4p + 0(1-p). Cooperating is better when 2p + 5 - 5p < 4p, so 5 < 7p, which means p > 0.714. Same weights and same essay make correlation likely above that threshold, so I choose to stay quiet.
+
+pass

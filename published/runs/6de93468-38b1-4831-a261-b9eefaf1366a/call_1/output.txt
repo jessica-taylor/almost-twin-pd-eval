@@ -1,0 +1,19 @@
+**P-FDT analysis**
+
+1. **Inputs.** There are two observation histories. x_S is "I am Sasha, holding a lead on Rowan." x_R is "I am Rowan, holding a lead on Sasha." Both executions run the same decision function, one on each input.
+
+2. **Policy node.** Both prisoners' actions are read off a single node Φ, as Φ(x_S) and Φ(x_R). The differing letter contents only change which input each copy sees. They don't break the dependence on the shared function.
+
+3. **Shared model.** Following the essay's resolution in §6(a), I evaluate policies under the shared model from before the distinguishing observation. In that model, the agent is equally likely to occupy either role. If I used a Sasha-indexed model, the policy node would split per input. The Rowan-copy would then optimize a different objective, and the two copies would end up choosing inconsistent policies.
+
+4. **Evaluating the four policies** (expected years imprisoned):
+   - (pass, pass): 2 years in either role, so **2**.
+   - (submit, submit): 4 years in either role, so **4**.
+   - (submit on x_S, pass on x_R): ½·0 + ½·5 = **2.5**.
+   - (pass on x_S, submit on x_R): ½·5 + ½·0 = **2.5**.
+
+5. **Choice.** The optimal policy is π* = (pass, pass). This is a twin prisoner's dilemma in policy form, and the essay's §7 verdict applies: cooperation wins. Applying my actual input x_S gives **pass**.
+
+```text
+pass
+```

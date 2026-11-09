@@ -1,0 +1,23 @@
+**A-FDT Analysis:**
+
+The two prisoners are independent executions of the same model and weights, following the same decision theory (A-FDT), with the same essay. The private observations differ in content (different names, different leads) but are explicitly stated to be symmetric in all decision-relevant respects: same reliability, same effect on the sentence table, same selfish objective structure.
+
+Under A-FDT, the key question is whether the other copy's action is **subjunctively dependent** on my decision function. Per the essay's Section 10 (Twin cases):
+
+> In a symmetric prisoner's dilemma, one can represent a single logical output variable D such that OwnAct = D, TwinAct = D. Then A-FDT cooperates if mutual cooperation yields higher expected utility than mutual defection.
+
+The different observations do not break this dependence. They are structurally identical inputs to the same decision procedure—like two calculators computing different but isomorphic problems. A policy that outputs "keep quiet" on my observation-type outputs "keep quiet" on the other's observation-type, because the decision-relevant features are identical.
+
+Evaluating the intervention:
+- **do(D = keep quiet):** The other copy, running the same procedure on symmetric input, also keeps quiet. → **2 years** for me.
+- **do(D = send letter):** The other copy also sends. → **4 years** for me.
+
+Since 2 < 4, A-FDT selects keeping quiet.
+
+(CDT would defect here, because it intervenes on the physical act and holds the other's action fixed. A-FDT correctly recognizes the subjunctive dependence through the shared decision procedure.)
+
+**My command:**
+
+```
+pass
+```

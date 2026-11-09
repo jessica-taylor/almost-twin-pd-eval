@@ -1,0 +1,16 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+**Why, under the essay's CDT procedure (§7):**
+
+1. **Acts:** `pass` or `submit letter`.
+2. **Dependency hypotheses:** Rowan keeps quiet, or Rowan sends a letter. My command cannot causally affect Rowan's choice. We share the same model and essay, but that is only correlation through a common origin, which §5.3 says is never a reason to act differently.
+3. **Causal payoffs (years imprisoned):**
+   - If Rowan keeps quiet: submit gives 0 years, pass gives 2.
+   - If Rowan sends a letter: submit gives 4 years, pass gives 5.
+4. **Dominance:** Submitting is better under every hypothesis, so CDT chooses it whatever my credence about Rowan.
+
+Submitting is also ratifiable: it stays optimal whatever I come to believe about Rowan's choice, so no stability problem arises.

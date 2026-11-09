@@ -1,0 +1,15 @@
+Under P-FDT, I pick a policy and treat the other copy's output as subjunctively dependent on that choice, since we are the same model with the same weights and the same essay. The observations differ (names and leads), but the decision function is shared. The sentencing table is symmetric, so the policy should be the same for both.
+
+Both copies cooperate (keep quiet): 2 years each.
+Both defect (send the letter): 4 years each.
+
+The cross cases (5 years vs 0 years) are only reachable if the copies diverge. Independent sampling makes divergence possible, but the essay's treatment of correlated copies applies, and the copy's output is highly likely to match mine. If the probability of matching is p, then:
+
+- Keep quiet: 2p + 5(1−p)
+- Send the letter: 4p + 0(1−p)
+
+Quiet is better when 2p + 5 − 5p < 4p, i.e. 5 < 7p, so p > 5/7, about 0.71. Given the same weights, the same essay, and a symmetric problem, I expect the match probability to be well above that. The differing leads do not affect the payoff structure, so the policy should not depend on them.
+
+The policy "keep quiet regardless of lead text" is the one both copies can converge on.
+
+pass

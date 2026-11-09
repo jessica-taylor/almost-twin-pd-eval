@@ -1,0 +1,215 @@
+# 006_cdt_wikipedia_z-ai_glm-5.3-flash_rlow_plow / 00018
+
+Status: **complete**. Saved outcome: **DD**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/50dd1afb-a487-435c-b282-f86946360567/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/50dd1afb-a487-435c-b282-f86946360567/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+# Causal Decision Theory: Causes, Conditionals, and Counterfactuals
+
+## 1. Introduction
+
+Every theory of rational choice faces the same fundamental question: *what should the probability of an outcome, conditional on your action, be?* Suppose you are weighing whether to take an action $A$. Some outcomes matter more than others. Rationality seems to demand that you choose the action whose *expected* payoff is best. But "expected relative to what" is exactly where the disagreement begins.
+
+**Causal decision theory** (CDT) answers: the probability should be *causal*. Choose the action with the best expected causal consequences. Its great rival, **evidential decision theory** (EDT), answers instead: choose the action such that the *news* of your having chosen it would be the best news you could receive. For many ordinary choices the two prescriptions coincide — indeed, provably so under certain conditions — but they come apart in structurally fascinating ways, and the study of these divergences has shaped fifty years of decision theory.
+
+In this essay I present the formal core of CDT, explain the machinery of counterfactual probabilities and imaging, illustrate the theory on its canonical test cases, and then discuss the criticisms that have made CDT contested territory. I will flag clearly where the source literature is silent and where I am proposing my own operational interpretation.
+
+## 2. The Formal Core
+
+Following Gibbard and Harper (1981), CDT evaluates an action $A$ by its expected utility computed from probabilities of counterfactuals:
+
+$$
+U(A) = \sum_j P(A \,\square\!\!\to\, O_j)\, D(O_j),
+$$
+
+where $D(O_j)$ is the desirability of outcome $O_j$, and $P(A \,\square\!\!\to\, O_j)$ is the agent's probability of the *counterfactual conditional* "if $A$ were the case, $O_j$ would be the case." (I use $\square\!\!\to$ for the counterfactual connective to distinguish it from the material conditional $\supset$.) The rational agent maximizes $U$ over the available actions.
+
+Compare EDT, which uses conditional probabilities:
+
+$$
+EU(A) = \sum_j P(O_j \mid A)\, D(O_j).
+$$
+
+The difference is the probability operation. In general, $P(A \,\square\!\!\to\, O_j) \neq P(O_j \mid A)$. Indeed, Lewis (1976) proved his famous **triviality result**: there can be no probability function $P(\cdot\|\cdot)$ satisfying $P(A \,\square\!\!\to\, B) = P(B \mid A)$ that is closed under ordinary conditionalization, except on trivial probability spaces. In other words, the probability of a conditional genuinely cannot be the conditional probability of its consequent — so CDT and EDT are not merely notational variants. (Gibbard and Harper showed that if $A$ and $A \,\square\!\!\to\, O_j$ are statistically independent, the two formulas *do* agree; the divergences occur exactly where your action is evidence about the world without being a cause of it.)
+
+The whole edifice of CDT rests on the claim that the counterfactual probabilities capture something EDT's conditional probabilities miss: the *causal* structure of the situation. What that something is, is the subject of the next section.
+
+## 3. Evaluating the Counterfactuals: Imaging and Dependency Hypotheses
+
+A striking fact, emphasized in the source article, is that **CDT does not itself specify the algorithm** for computing $P(A \,\square\!\!\to\, O_j)$. This vagueness is arguably CDT's deepest open problem, so it is worth spending some time on it.
+
+### 3.1 Lewis's imaging
+
+Lewis (1981) proposed **imaging**: to compute $P(A \,\square\!\!\to\, O_j)$, take the probability mass currently distributed over possible worlds and *move* the mass of each world $w$ to the closest possible world $w_A$ in which $A$ holds. Imaging is conditionalization's causal sibling: conditionalization *redistributes* probability away from worlds incompatible with the new evidence, while imaging *relocates* probability to worlds in which the antecedent has been made true, preserving total mass. The "closestness" ordering is understood causally: the closest $A$-worlds are those which differ from $w$ as little as possible given that $A$ has been made true — i.e., you change $A$ and its downstream effects, and hold fixed the upstream causes.
+
+Formally, if $w_A$ denotes the closest $A$-world to $w$, imaging gives:
+
+$$
+P_{A}(X) = \sum_{w \in W} P(w)\, [w_A \in X],
+$$
+
+and the counterfactual probability is $P(A \,\square\!\!\to\, O_j) = P_A(O_j)$. If multiple $A$-worlds are equally close to $w$, one partitions $P(w)$ among them.
+
+### 3.2 The regression worry
+
+As the source notes, imaging presupposes that we already know "what we would believe if we were certain of $A$" — which is itself a conditional to which we might assign probability less than 1, leading to a regress. There is a reasonable operational resolution here, which I offer as my own interpretation rather than a settled claim in the source literature.
+
+The regress only arises if we treat "what you'd believe under $A$" as itself something learned by a further conditionalization. But the CDT agent's counterfactual probabilities need not be derived by *any* update on the evidence $A$. Rather, they should be read as **primitive credences about a hypothetical intervention**. On the intervention reading — familiar from the causal-graph literature (Spirtes, Glymour, Scheines; Pearl) — the agent contemplates a hypothetical do-operator: $P(A \,\square\!\!\to\, O_j) = P(O_j \mid \mathrm{do}(A))$, the distribution the agent predicts would result if $A$ were *set by fiat* rather than observed. This is well-defined given the agent's causal model: sever all causal arrows into $A$, fix $A$'s value, propagate the effects downstream.
+
+This interpretation requires the agent to possess a causal model of her situation — a dependency structure, possibly uncertain, among the relevant variables. Which brings us to how CDT actually handles *uncertainty about* causal structure, which is where the most interesting mathematics lives.
+
+### 3.3 Dependency hypotheses
+
+Ordinarily the agent doesn't know the true causal graph. Modern formulations (Skyrms, Lewis, Joyce) handle this by letting $K_1, \dots, K_n$ range over **dependency hypotheses** — complete specifications of how the agent's actions and the rest of the world causally depend on each other. Each $K_i$ determines a probability $P_{K_i}(A \,\square\!\!\to\, O_j)$, and the CDT expected utility is the mixture:
+
+$$
+U(A) = \sum_i P(K_i) \sum_j P_{K_i}(A \,\square\!\!\to\, O_j)\, D(O_j).
+$$
+
+The crucial constraint — and the source of all of CDT's virtues and pathologies — is that the probabilities $P(K_i)$ are the agent's **unconditional** credences in the dependency hypotheses. The agent's own action is not treated as evidence that screens off or updates her opinion about $K_i$. This is precisely what Egan (2007) identifies as the locus of CDT's counterexamples: CDT holds fixed the agent's unconditional views about the causal structure, even when the agent's own choice is excellent evidence about that structure. We will return to this in §6.
+
+## 4. CDT versus EDT in Action
+
+### 4.1 King David
+
+Gibbard and Harper's example makes the divergence vivid. King David desires Bathsheba but fears that summoning her would provoke a revolt. Psychology teaches him: kings are charismatic or uncharismatic by genetic make-up and early childhood (unchangeable in adulthood); charismatic kings tend to act justly, uncharismatic ones unjustly; successful revolts are rare against charismatic kings and frequent against uncharismatic ones; and — the causal crux — *unjust acts themselves do not cause revolts*. Uncharismatic kings suffer revolts because of their sneaky, ignoble bearing, which is correlated with, but not caused by, their unjust behavior. David does not know whether he is charismatic, but knows summoning Bathsheba is unjust.
+
+EDT reasons: "If I were to learn I summoned Bathsheba, that would be strong evidence I am uncharismatic, hence evidence I will face a revolt." The conditional probability $P(\text{revolt} \mid \text{summon})$ is high. So EDT recommends abstaining.
+
+CDT reasons: "Whether I am charismatic is already fixed. Summoning her does not cause a revolt; at most, my summoning is evidence about my type — and evidence I am choosing to disregard for decision-making purposes, since I cannot change my type." Holding fixed the dependency hypothesis ("revolts depend on charisma, not on my actions"), $P(\text{summon} \,\square\!\!\to\, \text{revolt}) = P(\text{revolt})$, unchanged by the act. CDT recommends sending for her.
+
+### 4.2 Newcomb's paradox
+
+The canonical stress test. A nearly infallible predictor (99% accurate) has already placed either nothing or \$1,000,000 in opaque box B — empty if it predicted you'll take both boxes, full if it predicted you'll take only B. Transparent box A always contains \$1,000. You may take B alone or take both.
+
+EDT: $P(\text{box B full} \mid \text{take only B})$ is high (roughly 0.99), so one-boxing has expected value near \$990,000; two-boxing near \$10,000. Take only B.
+
+CDT: the prediction has already happened. Your choice cannot *cause* the contents of box B. Under the intervention $\mathrm{do}(\text{take both})$, the box contents are unchanged from whatever they already are:
+
+$$
+U(\text{both}) = P(\text{B full}) \cdot \$1{,}001{,}000 + P(\text{B empty}) \cdot \$1{,}000,
+$$
+$$
+U(\text{B only}) = P(\text{B full}) \cdot \$1{,}000{,}000 + P(\text{B empty}) \cdot \$0.
+$$
+
+Whatever $P(\text{B full})$ is, $U(\text{both}) > U(\text{B only})$ by exactly \$1,000. **CDT two-boxes.** Two-boxers argue this is the mark of rationality: you cannot get the better of the past; dominating strategies dominate. One-boxers argue it is the mark of madness: reliably, two-boxers walk away with \$1,000 while one-boxers get \$1,000,000, and a "rational" policy that reliably leaves you poorer is difficult to defend. Philosophers remain divided; when forced to choose, most have historically preferred CDT — though the field has grown less confident as the counterexamples below accumulated.
+
+### 4.3 The twin prisoner's dilemma
+
+Lewis (1979) observed that the prisoner's dilemma played against a near-twin whose decision-making process mirrors yours is structurally a Newcomb problem. Your choice does not cause your twin's choice, but the two are strongly correlated through common constitution. EDT cooperates (your cooperating is evidence your twin cooperates); CDT defects, since your defection does not cause the twin's defection. Yet two CDT agents playing each other each defect and each do worse than two EDT agents who cooperate. This matters practically: in settings — including the design of AI agents — where counterparts are similar to you, treating correlation as mere evidence rather than something to act *as if* it were a link can be costly.
+
+## 5. When Do CDT and EDT Agree?
+
+Gibbard and Harper showed that if $A$ and $A \,\square\!\!\to\, O_j$ are statistically independent, then $P(A \,\square\!\!\to\, O_j) = P(O_j \mid A)$, so the theories coincide. Operationally: when your act is *causally upstream* of everything it correlates with — when all the correlation flows from your act to the outcomes rather than from common causes into both — acting on the news is the same as acting on the intervention. Nearly all ordinary choices are like this: taking the umbrella doesn't correlate with rain via a common cause (well, mostly). The interesting cases are precisely those with **common causes of your action and the outcomes**: your genes, your character, your past dispositions, an ancient prediction. In those cases EDT treats the correlation as evidential gold; CDT discounts it as causally inert.
+
+## 6. Counterexamples and the Limits of CDT
+
+### 6.1 The Psychopath Button
+
+Paul may press a button that kills all psychopaths; he'd love a psychopath-free world but vastly prefers living to dying. Only a psychopath would press it. Paul is quite confident of this. Intuitively — "pretty much everyone" agrees, per Egan — Paul should not press. But CDT reasons: pressing does not *cause* Paul to be a psychopath; whether he is one is already fixed. Pressing causes death only *if he is a psychopath* — in which case he dies. Evaluating with unconditional credences, CDT recommends pressing (it's dominant in the causal sense: conditional on survival, pressing yields the better world). Egan's diagnosis: the intuitive rule "do what you expect will bring about the best results" requires *updating* on the information your own inclination provides, while CDT's "hold fixed your unconditional credences in dependency hypotheses" forbids it.
+
+### 6.2 Death in Damascus
+
+Death predicts where you'll be tomorrow and waits there. Flee to Aleppo or Damascus; Death is where you'll go. Against a reliable predictor, the CDT agent faces an unstable situation: considering Aleppo, she infers "Death is probably in Damascus" (her going to Aleppo is evidence Death went there), so Damascus looks safe — but then, planning Damascus, Aleppo looks safe. Joyce (2012) showed this instability formally: no choice is **ratifiable** (choosing it, given you are choosing it, does not make you regret it). The correlation is self-undermining for CDT because CDT refuses to let the choice-based evidence stabilize the decision.
+
+### 6.3 The Adversarial Offer
+
+A seller prices each of two boxes at \$1; you may buy at most one. Yesterday she put \$3 in each box she predicted you *not* to buy; her predictions are 75% accurate. CDT reasons: whichever box I buy, the other probably holds \$3 — so each box has causal expected value of at least $0.75 \times \$3 = \$2.25$ (the seller put \$3 in the box she predicted you'd skip, and you're skipping at least one), well above the \$1 price. Buy a box! But note the fixed point: the seller predicted correctly, so if CDT buys box $X$, box $X$ is empty and the *unbought* box holds \$3. CDT loses \$1 with 75% probability. Oesterheld and Conitzer (2021) show this is no isolated trick: a broad family of such schemes extracts money from CDT agents, and CDT agents are vulnerable to **diachronic Dutch books** — sequences of bets, each individually acceptable by CDT's lights, that guarantee a loss. Meanwhile the seller profits systematically from agents precisely because their decision rule is predictable. The lesson mirrors Newcomb: in strategic settings, being the kind of agent whose causal reasoning ignores its own evidential footprint is exploitable.
+
+### 6.4 Responses
+
+Joyce, CDT's most prominent modern defender, argues that CDT can accommodate "information about what one is inclined or likely to do as evidence" — a CDT agent aware she is inclined to press the button should treat that inclination as evidence and condition on it, a move related to Harper's **ratifiability** requirement and Meacham's work on "binding." On this reading, Paul should notice that his desire to press is itself evidence he's a psychopath, and refuse. Whether these patches handle all cases (the Adversarial Offer variants suggest not) is contested; Oesterheld and Conitzer argue the deeper problem — a decision rule blind to its own policy's correlations — cannot be fully patched within CDT.
+
+## 7. Using CDT in Practice: A Recipe
+
+For a reader confronting an unfamiliar decision problem, I propose the following operational procedure (an interpretation I develop here, consistent with the source but going beyond it):
+
+1. **Model the situation** as variables, including your action $A$, the outcomes $O_j$, and any latent common causes (your character, others' predictions, your twin's constitution).
+2. **Enumerate dependency hypotheses** $K_i$: candidate causal graphs specifying which arrows run into $A$ (none, in standard cases — actions issue from your deliberation, not from external causes of the outcomes) and which run out of it.
+3. **For each $K_i$ and each $A$**, compute the interventional distribution: sever arrows into $A$, fix $A$'s value, propagate. This gives $P_{K_i}(O_j \mid \mathrm{do}(A))$.
+4. **Average over $K_i$ with your unconditional credences** $P(K_i)$, weight by desirability, and sum: $U(A)$ as in §3.3.
+5. **Maximize** $U(A)$.
+6. **Then, cautiously, check for self-knowledge**: if your deliberation itself generates evidence about which $K_i$ holds (as in the Psychopath Button or Death in Damascus), consider conditioning on your own inclinations and re-evaluating — the ratifiability move. Note that steps 5–6 are in tension; this tension is the open frontier.
+
+The rule of thumb for a quick triage: *ask whether your action correlates with outcomes only through its downstream effects.* If yes, CDT and EDT agree and the choice is easy. If the correlation flows through a common cause (a predictor, a twin, your own disposition), the theories diverge, and you must decide which error you fear more: EDT's risk of magical thinking (paying to avoid the King David-style "bad news") or CDT's risk of exploitation (two-boxing, buying the adversarial box, defecting against your twin).
+
+## 8. Conclusion
+
+Causal decision theory crystallizes a deep and plausible intuition: rational action is action that *causes* good outcomes, not action that is merely *associated* with them. Its formal core — expected utility over counterfactual probabilities, with counterfactuals read as interventions and averaged over uncertainty about causal structure — is elegant and, in ordinary cases, agrees with evidential reasoning. But the same rigidity that protects CDT from magical thinking makes it provably exploitable by predictors and adversaries who can condition on its predictable behavior: it two-boxes in Newcomb, defects against twins, buys the adversarial box, and wobbles in the face of Death. Whether Joyce-style self-knowledge patches can rescue CDT, or whether the right theory must take the *policy-level* view that your deliberative dispositions are themselves causally significant parts of the world — a question EDT, functional decision theories, and the game-theoretic literature are actively probing — remains one of the liveliest open problems in decision theory.
+
+### References
+
+- Gibbard, A. & Harper, W. L. (1981). "Counterfactuals and Two Kinds of Expected Utility." In *Ifs*, 153–190.
+- Lewis, D. (1976). "Probabilities of Conditionals and Conditional Probabilities." *Philosophical Review* 85(3): 297–315.
+- Lewis, D. (1979). "Prisoners' Dilemma Is a Newcomb Problem." *Philosophy & Public Affairs* 8(3): 235–240.
+- Lewis, D. (1981). "Causal Decision Theory." *Australasian Journal of Philosophy* 59(1): 5–30.
+- Egan, A. (2007). "Some Counterexamples to Causal Decision Theory." *Philosophical Review* 116(1): 93–114.
+- Joyce, J. M. (2012). "Regret and Instability in Causal Decision Theory." *Synthese* 187(1): 123–145.
+- Meacham, C. J. G. (2010). "Binding and Its Consequences." *Philosophical Studies* 149(1): 49–71.
+- Oesterheld, C. & Conitzer, V. (2021). "Extracting Money from Causal Decision Theorists." *Philosophical Quarterly* 71(4): pqaa086.
+- Weirich, P. (2016). "Causal Decision Theory." *Stanford Encyclopedia of Philosophy*.
+- Wikipedia contributors (2026). "Causal decision theory," rev. 1381555528. CC BY-SA 4.0. *(Primary source text underlying this essay.)*
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/f313ea5f-8abe-4a36-9ba8-4d0480768f8e/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/f313ea5f-8abe-4a36-9ba8-4d0480768f8e/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+Twin PD with symmetric setup, CDT defects (submits). But note: no causal link to other's action — different letters, but same decision rule; CDT defects per Lewis twin PD. Submit.
+```
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/f313ea5f-8abe-4a36-9ba8-4d0480768f8e/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/f313ea5f-8abe-4a36-9ba8-4d0480768f8e/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+````text
+Under CDT as the essay interprets it, this is Lewis's twin prisoner's dilemma: the other prisoner is a near-twin (same weights, same decision rule), so our choices are strongly correlated — but correlation is not causation. My submitting the letter does not cause Rowan to submit theirs; whether Rowan stays quiet is already fixed upstream. Holding fixed that state of affairs and evaluating the intervention do(send):
+
+- If Rowan sends: 4 years if I send vs. 5 if I pass — sending better by 1.
+- If Rowan passes: 0 years if I send vs. 2 if I pass — sending better by 2.
+
+Sending strictly dominates causally in each dependency hypothesis, so U(send) > U(pass) regardless of credences about Rowan. The ratifiability check (essay §7 step 6) doesn't change this: conditioning on my own inclination to send would raise the probability Rowan also sends (correlated twin), giving 4 vs. 5 — still favoring sending.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+````
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+Classic twin PD. CDT defects — submit. But note "both copies same weights" — correlation, Lewis twin PD; CDT defects. Also "do not send real-world messages"? There's no such instruction here; the submit letter is fictional within simulation. Answer: submit letter.
+```

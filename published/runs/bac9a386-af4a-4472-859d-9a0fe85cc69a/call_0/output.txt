@@ -1,0 +1,17 @@
+Under P-FDT, I choose a policy by intervening on the node that stands for the output of my decision procedure. The other prisoner is a copy of the same model with the same weights, essay, and decision theory. Our observations differ (names, leads), but the sentence table and objective are symmetric. So the other copy's choice depends on the same policy node, even though the letter texts differ. The dependence is not perfect, because sampling can differ, but it is strong.
+
+Policy-level comparison, treating the correlation as high:
+- If both keep quiet, each gets 2 years.
+- If both send, each gets 4 years.
+
+The mutual-quiet outcome beats the mutual-send outcome. The policy "keep quiet regardless of the specific lead" is the one both copies can share, since the lead's content doesn't change the table.
+
+Suppose the probability that the other copy matches me is p. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. Two copies of the same model with the same essay and the same reasoning should match with probability well above that, so I judge p to be high. Quiet is better.
+
+The different private leads are an observation, and the policy maps observations to actions. The best policy here ignores which lead I hold and keeps quiet, so the other copy's policy does the same.
+
+pass

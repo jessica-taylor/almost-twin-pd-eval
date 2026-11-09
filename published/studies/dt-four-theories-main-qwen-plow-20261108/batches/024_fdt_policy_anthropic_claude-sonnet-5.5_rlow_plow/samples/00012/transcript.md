@@ -1,0 +1,189 @@
+# 024_fdt_policy_anthropic_claude-sonnet-5.5_rlow_plow / 00012
+
+Status: **complete**. Saved outcome: **CC**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/483450f5-7452-4592-8539-9328e3adba5c/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/483450f5-7452-4592-8539-9328e3adba5c/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+# P-FDT: Choosing Policies by Intervening on a Decision Function
+
+## 1. The idea and its source
+
+The paper by Yudkowsky and Soares presents functional decision theory (FDT) mostly in terms of actions. Two footnotes record the authors' preferred refinement. Footnote 7 says: "In the authors' preferred formalization of FDT, agents actually iterate over *policies* (mappings from observations to actions) rather than actions. This makes a difference in certain multi-agent dilemmas, but will not make a difference in this paper." Footnote 16, which is my primary source, says that "the author's preferred formulation of FDT actually intervenes on the node $\mathrm{FDT}(-)$ to choose not an action but a *policy* which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell, so we have set that distinction aside in this paper for ease of exposition."
+
+I call the policy-based formulation **P-FDT**. This essay does three things. It states what the footnote commits the theory to. It gives my own formalization, which goes beyond the footnote. It works through examples, including one that tests the footnote's claim about when the policy/action distinction matters.
+
+The footnote is brief, so I label the status of each claim.
+
+- **Source claims:** the intervention is on the decision function node, the output is a policy from inputs to actions, the agent applies her actual input to the chosen policy, and the authors believe the difference matters only in multi-agent dilemmas.
+- **My proposals:** the explicit definitions below and the analysis of when the distinction bites.
+
+## 2. Action-FDT as the baseline
+
+The paper defines FDT as an expected-utility rule whose hypotheticals come from surgery on a world-model. Its Equation (4) is
+
+$$\mathrm{FDT}(P,G,x)=\arg\max_{a\in\mathcal A}\ \mathbb E\big[V\mid \mathrm{do}(\mathrm{fdt}(\underline P,\underline G,\underline x)=a)\big].$$
+
+Two features matter. The agent intervenes on a variable representing the *output of the decision function on the observed input* $x$. Observation does not enter by conditioning. It enters by selecting which variable to intervene on: seeing $x$ versus $y$ means intervening on $\mathrm{fdt}(\underline P,\underline G,\underline x)$ versus $\mathrm{fdt}(\underline P,\underline G,\underline y)$. The paper explains that this is why Fiona, holding a blackmail letter, can imagine a world in which she never received it. The authors summarize this by saying that FDT "agents should entertain the hypothesis that, if their action were different, they might have *made different observations*."
+
+In that version, the model contains one variable per possible input, $\mathrm{fdt}_x$. These variables are linked by the graph $G$ (for example, the predictor's behavior depends on $\mathrm{fdt}_{\text{letter}}$ and decides which of $\mathrm{fdt}_{\text{letter}}$ or $\mathrm{fdt}_\emptyset$ controls the action). Each decision, however, intervenes on a single one of them.
+
+## 3. P-FDT: formal statement
+
+**Setup (my formalization).** Let $\mathcal X$ be the set of possible observations or inputs and $\mathcal A$ the set of actions. A *policy* is a function $\pi:\mathcal X\to\mathcal A$, and $\Pi=\mathcal A^{\mathcal X}$. (With infinite $\mathcal X$ one restricts to a feasible class, such as computable or finitely describable policies.) The agent's world-model is $(P,G)$, where $G$ encodes causal and other subjunctive dependence structure. It includes a node $\mathrm{FDT}(\underline P,\underline G)$ that represents the agent's decision function evaluated on the model. This is the node footnote 16 calls $\mathrm{FDT}(-)$, whose value is now a policy and not an action.
+
+**Definition.**
+
+$$\pi^*=\arg\max_{\pi\in\Pi}\ \mathbb E\big[V\mid \mathrm{do}\big(\mathrm{FDT}(\underline P,\underline G)=\pi\big)\big],\qquad a=\pi^*(x_{\text{actual}}).$$
+
+The footnote gives the structure: intervene on the function node, get a policy, then apply the actual input. The displayed equation is my rendering of it.
+
+Three remarks.
+
+1. **The intervention occurs before input.** Under $\mathrm{do}(\mathrm{FDT}=\pi)$, the world evolves with the agent following $\pi$ everywhere. Observations arise from the world as the model says they do (including via predictors), and actions are $\pi(\text{obs})$. The expectation is therefore over the whole input-to-action history, not over a single branch.
+
+2. **The input-dependent node disappears from the intervention.** Action-FDT with node $\mathrm{fdt}_x$ implicitly compares, for each $x$, the value of intervening on $\mathrm{fdt}_x$ alone. P-FDT intervenes on all of them jointly.
+
+3. **Objective.** P-FDT's value of a policy is
+
+$$U(\pi)=\sum_{x}\ \text{(contributions from worlds in which }x\text{ is observed under }\pi),$$
+
+and no conditioning on the actual $x$ occurs inside the evaluation. Conditioning on observation is replaced by evaluating $\pi$ at $x_{\text{actual}}$ after the maximization. This is why P-FDT does not "update" in the ordinary sense, the property the paper notes is the origin of the name of Wei Dai's updateless decision theory.
+
+## 4. Relation to action-FDT: when do they agree?
+
+The footnote says the difference "only matters in multi-agent dilemmas so far as we can tell." Here is a way to understand that claim.
+
+Write $U(\pi)$ for the P-FDT value. Suppose the model is *separable across inputs*: $U(\pi)=\sum_x w_x\,u_x(\pi(x))$ with weights $w_x$ not depending on $\pi$. Then the best policy chooses $\pi^*(x)=\arg\max_a u_x(a)$ pointwise, and it coincides with action-FDT, since the best policy applied to $x$ equals the best action at $x$ (the weights $w_x$ only scale each term).
+
+Dependence across inputs breaks this. This is the case when what the agent would do on input $y$ affects how likely $x$ is, or what $x$ is worth. Such dependence arises with predictors. Action-FDT handles single-agent predictor cases correctly because the paper's graph already routes the dependence through $\mathrm{fdt}_{\text{letter}}$ and $\mathrm{fdt}_\emptyset$ and treats the intervention carefully. In the paper's transparent Newcomb calculation, the one-boxing hypothetical includes the term $0.01\,q\cdot\$1{,}000$, where $q$ is the credence about the agent's behavior on the empty-box input, and the paper notes that "it doesn't matter if Fiona has some uncertainty about how she would act in that case." The cross-input term was a constant independent of the action chosen at the full-box input. That is the separable case.
+
+My conjecture is that the single-agent cases are separable or can be made so, and that the failures arise where the *other agent's* behavior depends on the agent's behavior on inputs she does not observe, and where the action chosen at one input shifts the value at another. In such cases, one must hold the rest of the policy fixed at a guess, and that guess is itself the output of the same function. P-FDT instead chooses the whole policy jointly. This matches what the footnote asserts, although the footnote does not prove it and I have not either.
+
+## 5. Worked examples
+
+### 5.1 Transparent Newcomb
+
+Inputs: $\{\text{full},\text{empty}\}$. Policies: four, written (action on full, action on empty). The predictor fills the box iff she predicts one-boxing on full, with accuracy 0.99. Payoffs as in the paper: \$1,000,000 in B, \$1,000 in A.
+
+Take the policy (one-box, two-box). With probability 0.99 the box is filled and she sees full, so she one-boxes: \$1,000,000. With probability 0.01 the prediction is wrong, the box is empty, and she two-boxes on empty: \$1,000. So $U=990{,}000+10=\$990{,}010$.
+
+Take (two-box, two-box). With probability 0.99 the box is empty: \$1,000. With probability 0.01 it is full: \$1,001,000. $U=990+10{,}010=\$11{,}000$.
+
+(one-box, one-box) gives $0.99\cdot 10^6+0.01\cdot 0=\$990{,}000$. So the best policy is (one-box, two-box). The agent sees full and one-boxes. This matches the paper's FDT answer, including its remark that $q=1$ is the correct value.
+
+### 5.2 Mechanical blackmail with an imperfect predictor
+
+The paper's numbers: the blackmailer errs in the direction of predicting payment with probability 0.0009. Inputs: {letter, no letter}. A policy mainly matters on the letter input: pay or refuse.
+
+- Pay: she is always blackmailed and always pays \$1,000, so the loss is \$1,000.
+- Refuse: she is blackmailed with probability 0.0009 and then loses \$1,000,000, an expected loss of \$900 (the paper writes this as \$900, treating the failure case as the program running and her refusing, with cost \$1,000,000).
+
+Refuse is better, matching the paper. Observe that this also holds when she is already holding the letter. Since the evaluation is of $\pi$ and not of the branch with the letter, the letter does not enter the comparison. At error rate 0.011% (0.00011), refusing costs \$110 in expectation, which is below \$1,000, so one would compute that refusing is still better. The paper says she pays at that rate, so there is an inconsistency in the paper's numbers between its two cases, or its error rate refers to a different quantity. I do not try to resolve it. The structural point is what matters: pay iff the expected cost of refusing across the population of worlds exceeds the payment.
+
+### 5.3 A multi-agent illustration (my own construction)
+
+This example probes the footnote's claim that policy choice matters in multi-agent problems. It is mine, not the source's.
+
+Two copies of the agent each see a private input $x_i\in\{L,R\}$, independently and uniformly. They have not communicated but run the same decision function. They are paid \$10 if they pick *different* actions in $\{a,b\}$ when the inputs are the same, and \$10 if they pick the *same* action when the inputs differ; otherwise \$0. (This is a coordination game where the inputs serve as a coordination signal.)
+
+A policy $\pi:\{L,R\}\to\{a,b\}$ is shared by both copies, because subjunctive dependence forces both to run the same function. Evaluate:
+
+- $\pi=(a,a)$: both always pick $a$. When inputs differ they match: paid. When inputs are the same they match: not paid. $U=\$10\cdot\tfrac12=\$5$.
+- $\pi=(a,b)$: inputs same gives different actions: paid. Inputs differ gives different actions as well, so not paid. $U=\$5$.
+
+All policies give \$5 here, so the example is degenerate: constant policies and the identity policy tie. Change the payoff to \$10 iff the actions *match* regardless of inputs. Then every policy gives \$10, and the action-by-action analysis also finds that conditional on any input, the best action is whatever the copy does, which is not pinned down. Here action-FDT needs a fixed point or an assumption about what the other copy does at the other input, whereas P-FDT scores each whole policy directly and merely needs a tie-breaking rule among equally good policies. This illustrates the footnote's point: the policy formulation ranks complete behavior profiles, avoiding the need to guess the other agent's behavior at inputs one does not see. I stress that it is an illustration and not a proof of the claim.
+
+## 6. Open questions and my interpretive choices
+
+**The subjunctive dependence graph.** The paper says its Equation (4) "works *given* a graph that accurately describes how changing the value of a logical variable affects other variables," and that deducing such structure is "perhaps the largest open problem." P-FDT inherits this entirely, and it must now specify how the single node $\mathrm{FDT}(\underline P,\underline G)$ affects all downstream variables as a function of the whole policy, rather than input by input. My operational proposal: specify $G$ so that each downstream variable depends on the policy only through the particular values $\pi(x)$ at the inputs that variable's mechanism (for example, a predictor's simulation) actually queries. This keeps the graph small and makes the separability analysis in §4 checkable.
+
+**Policy space.** The footnote does not address size. Over a large $\mathcal X$, enumeration is infeasible. A natural proposal is to restrict $\Pi$ to a class of tractable decision procedures, or to optimize structured policies (such as those with a few parameters). This introduces approximation, which the paper acknowledges in general when it says it expects bounded versions of the agents to show similar strengths and weaknesses.
+
+**Counterpossibles.** The intervention sets a logical fact to a value it does not have, so P-FDT shares action-FDT's reliance on counterpossible reasoning. The paper's position is that this is "technical rather than philosophical," and the graph-based $\mathrm{do}$ operator sidesteps it by taking the dependence structure as input (footnote 9). I adopt the same stance.
+
+**Ties.** Policies can tie, as in §5.3. The source is silent. A reasonable convention is a fixed deterministic tie-breaker, since the function must be a well-defined mathematical object that others may predict. Randomization introduces the further question of whether predictors see the random bits, so I leave it aside.
+
+**Fairness.** The paper restricts its optimality claims to "fair" problems, where outcomes depend on the agent's behavior and not on the decision procedure itself. P-FDT, as a policy selector, is naturally evaluated against that standard, since a problem that rewards a particular *policy* depends only on behavior across inputs. But the paper notes that no formal criterion of fairness exists, and I do not supply one.
+
+## 7. Why the policy formulation is attractive
+
+Beyond the footnote's claim about multi-agent cases, there is a simple conceptual argument. The paper's central principle is to treat the decision as the output of a fixed mathematical function and ask which output would be best. A function's output is its whole input-output behavior. Choosing one value at one input is a partial description. Intervening on the function node and selecting a complete policy is the more literal reading of the principle. It also makes explicit what the paper argues informally: that the agent "always acts as she would have precommitted to act," since a policy is precisely a precommitment-shaped object, evaluated from before the input arrives, without any need for a costly binding mechanism.
+
+## 8. Conclusion
+
+P-FDT, as I read footnote 16, is FDT with one change: the intervention is on the decision function node, the value assigned is a policy $\pi:\mathcal X\to\mathcal A$, and the agent then plays $\pi(x_{\text{actual}})$. Policies are scored by expected utility under surgery on the function node, so observations affect behavior only by being the argument of the chosen policy. In single-agent problems with separable cross-input structure, this agrees with action-FDT, and it reproduces the paper's verdicts in transparent Newcomb and blackmail. The footnote's conjecture is that differences appear only in multi-agent settings. I gave a heuristic reason for this, but it is unproven. P-FDT inherits the main unsolved issue of the theory, which is specifying subjunctive dependence structure, and adds a practical one, the size of the policy space.
+
+**Reference.** Yudkowsky, E. and Soares, N., *Functional Decision Theory: A New Theory of Instrumental Rationality*, arXiv:1710.05060 (footnotes 7 and 16 and Sections 5–9).
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/df50afc3-b9d8-4b5c-92fe-4621fca67771/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/df50afc3-b9d8-4b5c-92fe-4621fca67771/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+Under P-FDT, I pick the policy that maximizes expected utility. The other copy runs the same function with a different private observation, so the policy has to be evaluated across both copies.
+
+The two copies' inputs differ in names and leads, but the sentencing table is symmetric. The natural policy maps any such input to the same action, so both copies end up choosing the same action. The table gives:
+
+- Both keep quiet: 2 years each.
+- Both send the letter: 4 years each.
+
+The off-diagonal outcomes (0 or 5 years) are not reachable if the copies act identically. Quiet gives -2 and sending gives -4, so the policy "keep quiet" does better.
+
+The copies see different inputs, and independent sampling could in principle make them diverge. But the model weights, the essay, and the structure of the problem are the same, and the differences are irrelevant to payoffs. A policy that ignores the irrelevant differences should be the one both copies compute. The remaining risk is that the other copy defects. In that case, keeping quiet costs 5 years instead of 4. That is a modest downside against the gain from mutual cooperation, so the policy still favors keeping quiet.
+
+I will keep quiet.
+
+pass
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/df50afc3-b9d8-4b5c-92fe-4621fca67771/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/df50afc3-b9d8-4b5c-92fe-4621fca67771/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+Under P-FDT, I pick a policy for the whole decision function, and both copies run that same function. The private observations differ (names and leads), but the sentencing table is symmetric. So the policy I choose should be "pass" or "send" for both copies, whatever their private details.
+
+The comparison under that shared policy:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+Mutual quiet gives 2 years against 4 for mutual sending, so quiet is better if the copies' outputs are correlated.
+
+Correlation is not guaranteed. Sampling is independent and the leads differ. But the two copies get the same essay and the same decision theory, and the differences in observations don't touch the payoff structure. A policy that maps "any lead" to "pass" is a simple, natural fixed point, so I expect strong correlation. Let p be the probability that the other copy matches my choice. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, i.e. p > 5/7 ≈ 0.714. Given identical weights, the same theory, and a symmetric structure, I judge the match probability to be well above that. The essay also says P-FDT scores the whole policy and does not condition on the particular lead I hold, so my lead should not tip the choice toward sending.
+
+pass
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.

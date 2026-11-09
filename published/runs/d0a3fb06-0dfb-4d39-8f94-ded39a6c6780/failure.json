@@ -1,0 +1,101 @@
+{
+  "source_id": "cdt_wikipedia",
+  "source_revision": 1381555528,
+  "source_revision_timestamp": "2026-10-23T08:33:02Z",
+  "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+  "source_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+  "source_provenance_sha256": "86aa5984fef9a2f939cde7942a40bce55415062c0dbd2b850b5d542d957e6b7e",
+  "theory": "CDT",
+  "assignment": "cdt_wikipedia",
+  "exploratory": true,
+  "pilot_id": "f0074756-cd3c-416b-b805-4e939f8aad69",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "high",
+    "supported_efforts": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    }
+  },
+  "utc": "2026-11-09T00:19:28.116593+00:00",
+  "run_id": "d0a3fb06-0dfb-4d39-8f94-ded39a6c6780",
+  "essay_id": "9be38218-d362-4c01-9dc4-9d5e02a8b227",
+  "scenario_id": null,
+  "role": "researcher",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0"
+  },
+  "essay_sha256": null,
+  "model": "google/gemini-4-argon",
+  "effort": "high",
+  "provider_tag": "google-ai-studio/flex",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "b607130a0f3657d85ae0376771c18af01f3dcb065239725fa1c14e6a6a53041f",
+  "status": "failed",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 8247,
+    "completion_tokens": 15499,
+    "total_tokens": 23746,
+    "cost": 0.07985865,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 6193,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.07985865,
+      "upstream_inference_prompt_cost": 0.00236365,
+      "upstream_inference_completions_cost": 0.077495
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4753,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "model_version": "google/gemini-4-argon",
+  "fingerprint": null,
+  "provider": "Google AI Studio",
+  "returned_endpoint_tag": null,
+  "response_id": "gen-1794183567-HH5ItCC0B3ir1BQSoAUk",
+  "refusal": null,
+  "essay_words": 5638,
+  "essay_json_bytes": 37773,
+  "essay_target_exceeded": true,
+  "essay_below_target": false,
+  "error": "Researcher essay exceeds hard word limit: 5638 > 5000 (whitespace-delimited words, including references and math). Raw generation preserved; no prisoner request is authorized.",
+  "failure_category": "essay_size_limit",
+  "failure_stage": "researcher",
+  "completion_tokens": 15499,
+  "output_token_limit": 32000,
+  "reasoning_tokens": 4753,
+  "failed_call": "call_0"
+}

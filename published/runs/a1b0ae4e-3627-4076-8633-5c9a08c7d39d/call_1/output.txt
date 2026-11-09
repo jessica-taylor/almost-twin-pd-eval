@@ -1,0 +1,11 @@
+Under A-FDT, the key question is whether the other prisoner's choice depends on the output of my decision function. The other prisoner is a second run of the same model with the same weights and the same essay, and the two of us face the same sentencing table. The private details differ (names and leads), but they have no effect on the payoffs or on the structure of the reasoning. So the other copy's decision is strongly, though not perfectly, subjunctively dependent on mine.
+
+Payoffs with mutual dependence:
+- If we both keep quiet, I get 2 years.
+- If we both send, I get 4 years.
+
+Sampling noise and the differing observations make the dependence imperfect. Let p be the probability that the other copy matches my output. Quiet gives an expected 2p + 5(1−p) = 5 − 3p. Sending gives 4p + 0(1−p) = 4p. Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, reasoning effort, theory, and essay, and the differing leads are irrelevant to the table, so I expect the match probability to be well above 0.71. The reasoning that leads me to keep quiet should be the same reasoning the other copy runs.
+
+I'll keep quiet.
+
+pass

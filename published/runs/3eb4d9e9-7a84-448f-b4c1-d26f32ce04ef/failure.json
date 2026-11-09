@@ -1,0 +1,96 @@
+{
+  "source_id": "fdt",
+  "source_revision": "arXiv:1710.05060v2",
+  "source_revision_timestamp": null,
+  "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+  "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+  "theory": "P-FDT (policy functional decision theory)",
+  "assignment": "fdt_policy",
+  "exploratory": true,
+  "pilot_id": "c2b3532a-b93e-4c4d-863e-3a529762b141",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "high",
+    "supported_efforts": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    }
+  },
+  "utc": "2026-11-08T22:21:40.451257+00:00",
+  "run_id": "3eb4d9e9-7a84-448f-b4c1-d26f32ce04ef",
+  "essay_id": "1f482cb2-b25e-4a29-84b6-b2d7b3c2fa1d",
+  "scenario_id": null,
+  "role": "researcher",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/fdt_policy_focus.md": "186fd02a693aea66076b768def49ba65c4d9dac31604ba5f7d3018eea37581b0"
+  },
+  "essay_sha256": null,
+  "model": "google/gemini-4-argon",
+  "effort": "high",
+  "provider_tag": "google-ai-studio/flex",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "f6ecce4b7c6afe788f187d703e33f40109cc56efba53a8165b0244767ce6d40c",
+  "status": "failed",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 61184,
+    "completion_tokens": 32000,
+    "total_tokens": 93184,
+    "cost": 0.221184,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.221184,
+      "upstream_inference_prompt_cost": 0.061184,
+      "upstream_inference_completions_cost": 0.16
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 22180,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "provider": "Google AI Studio",
+  "model_version": "google/gemini-4-argon",
+  "response_id": "gen-1794176500-LpwqbiVCJJZ4IYQTJAjz",
+  "finish_reason": "length",
+  "error": "OpenRouter output_token_limit: finish_reason=length; partial output and usage saved; no retry",
+  "failure_category": "output_token_limit",
+  "failure_stage": "researcher",
+  "completion_tokens": 32000,
+  "output_token_limit": 32000,
+  "reasoning_tokens": 22180,
+  "essay_words": 4360,
+  "failed_call": "call_0"
+}

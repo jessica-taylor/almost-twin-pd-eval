@@ -1,0 +1,12 @@
+**pass**
+
+Under the essay's version of A-FDT, I intervene on the output of my decision function given my actual input. The other prisoner is the same model, with the same weights and settings, following the same essay. Its observations differ only in names and in the wording of the lead, and neither affects the payoffs or the selfish objective. By the essay's rule in §7(a), its act therefore subjunctively depends on my function's output. I modelled this with the essay's mixture approach: the other copy matches my output with probability ρ and acts independently otherwise, sending with some probability q.
+
+Expected years, compared:
+
+- **Expected penalty of submitting.** Years(submit) − Years(pass) = 2ρ + (1−ρ)(q−2).
+- **When passing wins.** Passing is better whenever 2ρ > (1−ρ)(2−q).
+- **Worst case for q.** Even at q = 1, passing is still better whenever ρ > 1/3.
+- **Is ρ high enough?** For an identical model running the same procedure on a decision-equivalent input, ρ should be well above that threshold.
+
+So the intervention "my function outputs pass" leads to roughly 2 years, while "my function outputs submit" leads to roughly 4. A-FDT chooses to pass.

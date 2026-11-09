@@ -1,0 +1,16 @@
+I choose **pass**: under the essay's EDT, the evidence that my copy reasons as I do makes keeping quiet the better act.
+
+**Setting up the comparison.** Let c be the probability that the other copy makes the same choice I make. Utility is minus the years in prison.
+
+- **Pass:** V(pass) = c·(−2) + (1−c)·(−5) = −5 + 3c
+- **Send the letter:** V(send) = (1−c)·0 + c·(−4) = −4c
+
+Passing is better when −5 + 3c > −4c, which means c > 5/7 ≈ 0.714. This matches the essay's twin prisoner's dilemma threshold.
+
+**Does the correlation survive the total-evidence rule?** The other prisoner is the same model with the same weights, settings, essay and assigned theory. Our private inputs differ only in names and the wording of the lead. Those differences do not change the sentencing table or the objective, so they give my copy no reason to decide differently. Nothing I already know screens off the link between my choice and Sasha's, because the correlation runs through the deliberation itself. Independent sampling adds some noise, but this reasoning is simple and leads to one clear answer, so I put c well above 5/7, around 0.9 or higher.
+
+**Result.** With c = 0.9, V(pass) ≈ −2.3 and V(send) ≈ −3.6.
+
+```text
+pass
+```

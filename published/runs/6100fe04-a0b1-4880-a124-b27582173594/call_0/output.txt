@@ -1,0 +1,14 @@
+This is a prisoner's dilemma with a twin. The payoffs are: both quiet 2 years, both send 4 years, send while the other is quiet 0 years, and quiet while the other sends 5 years.
+
+Under A-FDT, the other copy runs the same model on the same essay and the same table. Its observations differ only in names and in the text of the lead. That makes its decision procedure subjunctively dependent on mine, though not perfectly, because the differing leads and independent sampling add noise. The differences don't touch the sentencing schedule or the objective, so the core reasoning should be the same.
+
+Intervening on my output therefore also moves the twin's output. If I output pass, the twin very likely outputs pass, and I get 2 years. If I output send, the twin very likely sends, and I get 4 years. The expected values are:
+
+- Pass: 2p_same + 5(1−p_same)
+- Send: 4p_same + 0(1−p_same)
+
+Pass beats send when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7 ≈ 0.714. I think the correlation between the two copies is well above that. Both run the same weights on the same essay and the same payoff structure, and the differing leads are irrelevant to the decision. The same reasoning applies to the twin, so both should reach pass.
+
+The residual risk is that the twin defects, which costs me 5 years. Even so, the expected cost of passing is lower given the high correlation.
+
+pass

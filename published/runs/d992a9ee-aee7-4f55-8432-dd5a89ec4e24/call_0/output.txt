@@ -1,0 +1,12 @@
+Under the essay's CDT, the other prisoner's choice is causally independent of mine. We are separate executions with no communication and different private observations, so the other prisoner's choice belongs to the frozen background state K.
+
+Comparing my sentences in each state:
+
+- **If Sasha keeps quiet:** sending gives 0 years, keeping quiet gives 2. Sending is better.
+- **If Sasha sends a letter:** sending gives 4 years, keeping quiet gives 5. Sending is better.
+
+Sending the letter causally dominates for every credence about Sasha's choice. Step 2 of the essay's procedure therefore settles the decision, just as in the twin prisoner's dilemma (§4.3). Any correlation from our shared model weights is evidential rather than causal, so CDT ignores it.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

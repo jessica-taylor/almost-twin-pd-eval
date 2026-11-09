@@ -1,0 +1,10 @@
+**pass**
+
+Under A-FDT, I ask what happens if my decision function outputs "pass" versus "submit" on this input. The other prisoner is a copy of the same model with the same weights, the same essay and the same theory. The only difference is the wording of the private lead, which doesn't enter the sentence table or the objective. So the copy's output subjunctively depends on mine, and there is a high chance that it reaches the same command by the same reasoning.
+
+- **do(pass):** the copy very likely passes too, giving 2 years.
+- **do(submit):** the copy very likely submits too, giving 4 years.
+
+Independent sampling and the different leads mean the dependence isn't perfect. Call it ρ. In the uncorrelated branch, submitting saves me only 1 to 2 years. In the correlated branch, passing saves me 2 years. Passing wins whenever ρ is above roughly 1/3 to 1/2, and for same-weights copies running the same procedure ρ is well above that.
+
+The choice is therefore pass.

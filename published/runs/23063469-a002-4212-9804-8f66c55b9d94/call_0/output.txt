@@ -1,0 +1,12 @@
+Under the essay's reading of A-FDT, the other prisoner's choice comes from a different decision node, fdt(y), because their observation differs from mine (different names, a different lead). Equation (4) intervenes only on my own node, fdt(x), and holds the other node at its prior. The essay's Section 6 calls this coordinate-wise optimization.
+
+Holding the other prisoner's output fixed, sending the letter is better whatever they do:
+
+| Other prisoner | Keep quiet | Send the letter |
+|---|---|---|
+| Keeps quiet | 2 years | 0 years |
+| Sends the letter | 5 years | 4 years |
+
+So the only self-consistent assignment is that both copies send. The essay flags this kind of case as one where A-FDT and P-FDT may diverge. P-FDT would optimize jointly and might favour mutual silence, but I am applying A-FDT as instructed.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

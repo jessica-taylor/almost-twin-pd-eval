@@ -1,0 +1,8 @@
+Under CDT as the essay describes it, the other prisoner's choice is causally independent of mine. In each dependency hypothesis, sending the letter does better than keeping quiet:
+
+- If the other prisoner keeps quiet, sending gives 0 years and keeping quiet gives 2.
+- If the other prisoner sends, sending gives 4 years and keeping quiet gives 5.
+
+Sending dominates in both cases. The deliberational test from §6.2 gives the same result, because sending is the best response whatever credence I hold about the other copy's choice, so it is ratifiable. The essay says explicitly that CDT defects even against a twin, so the correlation between our two executions does not change the answer.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

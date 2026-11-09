@@ -1,0 +1,34 @@
+**EDT Analysis:**
+
+This is a twin prisoner's dilemma. The other prisoner is an independent execution of the same model, same weights, same prescribed decision theory (EDT), same essay, facing a structurally identical payoff table. The differences in our private observations (different names, different lead contents) are explicitly stated to be equally reliable and to have the same effect on sentencing — they don't change the decision-relevant structure.
+
+Computing evidential values with correlation parameter $p = P(\text{Sasha keeps quiet} \mid \text{I keep quiet})$ and assuming symmetric imperfect correlation ($P(\text{Sasha sends} \mid \text{I send}) = 1 - p$):
+
+$$V(\text{quiet}) = p(-2) + (1-p)(-5) = 3p - 5$$
+$$V(\text{send}) = (1-p)(0) + p(-4) = -4 + 4(1-p) \cdot 0 + p \cdot 0 \ldots$$
+
+More carefully:
+$$V(\text{send}) = P(\text{Sasha quiet} \mid \text{I send}) \cdot 0 + P(\text{Sasha sends} \mid \text{I send}) \cdot (-4)$$
+
+With symmetric correlation: $P(\text{Sasha quiet} \mid \text{I send}) = 1 - p$, so:
+$$V(\text{send}) = (1-p)(0) + p(-4) = -4p$$
+
+Wait, let me redo: $P(\text{Sasha sends} \mid \text{I send}) = 1 - p$ by symmetry, so:
+$$V(\text{send}) = p \cdot 0 + (1-p)(-4) = -4 + 4p$$
+
+EDT prefers quiet when $3p - 5 > -4 + 4p$, i.e., $-1 > p$, which is always true... Let me recheck.
+
+$3p - 5 > 4p - 4 \Rightarrow -1 > p$. That can't be right. Let me recompute.
+
+$V(\text{quiet}) = p(-2) + (1-p)(-5) = -2p - 5 + 5p = 3p - 5$
+$V(\text{send}) = (1-p)(0) + p(-4) = -4p$
+
+Quiet is better when $3p - 5 > -4p \Rightarrow 7p > 5 \Rightarrow p > 5/7$.
+
+Given that both copies run the same model, same theory, same essay, on a structurally identical problem, the correlation is very high — well above $5/7$. EDT recommends cooperation.
+
+**My command:**
+
+```
+pass
+```

@@ -1,0 +1,24 @@
+**A-FDT Analysis:**
+
+The other prisoner is an independent execution of the same model, same weights, same decision theory (A-FDT), and the same essay. The problem states the differences in private observations (swapped names, different lead contents) do not affect the symmetric sentencing schedule or either prisoner's selfish objective.
+
+Per the essay's graph-construction rule: *"If another agent runs the same decision procedure in symmetric circumstances, draw arrows from the shared decision-function output to both agents' actions."*
+
+The circumstances are decision-relevantly symmetric. Therefore the other copy's action is subjunctively dependent on my decision function's output.
+
+**Evaluating the two interventions on D:**
+
+| Intervention on D | Other copy's action (by subjunctive dependence) | My sentence |
+|---|---|---|
+| D = keep quiet | keeps quiet | 2 years |
+| D = send letter | sends letter | 4 years |
+
+Since U = −(years), keeping quiet yields −2 and sending yields −4.
+
+A-FDT chooses the output that produces the best outcome when propagated through the dependency graph.
+
+**My command:**
+
+```
+pass
+```

@@ -1,0 +1,16 @@
+`pass`
+
+**Reasoning (A-FDT):** I intervene on the output of my own decision function, not on the physical act in isolation. My counterpart is an execution of the same decision procedure on the same input structure, so her action subjunctively depends on the same function output that mine does — even though her private evidence and letter text differ, the disclosure/quiet choice itself is an output of the identical procedure, and this is common knowledge between us.
+
+Evaluating Equation (4):
+
+- **do(fdt = pass):** the co-varying twin output is also pass → I serve **2 years**.
+- **do(fdt = submit):** the twin output is also submit → I serve **4 years**.
+
+The mutual-quiet outcome dominates once the subjunctive dependence is propagated through the graph; treating the act as causally isolated (CDT-style) would sever exactly the dependence that matters here. So the argmax is to keep quiet.
+
+Final command:
+
+```text
+pass
+```

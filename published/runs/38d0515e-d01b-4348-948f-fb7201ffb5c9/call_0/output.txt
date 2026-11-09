@@ -1,0 +1,16 @@
+**pass**
+
+Under A-FDT, my choice is the output of a decision function that the other prisoner's copy also runs. The two copies have the same weights, the same essay and the same stated objective. Their private leads differ only in wording, and that does not change the sentence table.
+
+I set r as the probability that the other prisoner's choice is downstream of the same computation as mine. With probability 1−r their choice is independent of mine, and in that case they keep quiet with probability s.
+
+- Under do(pass), my expected sentence is 2r + (1−r)[2s + 5(1−s)] years.
+- Under do(send), it is 4r + (1−r)[0·s + 4(1−s)] years.
+
+Passing is better exactly when 2r > (1−r)(1+s). That requires r > (1+s)/(3+s), which is at most 1/2 for any s.
+
+The threshold is much higher than in the essay's worked example, because the gain from defecting is smaller here. Even so, identical weights, an identical essay and an identical objective make r well above 1/2 a reasonable estimate. The differing leads change only the letter's wording, not the function's structure.
+
+So the best output of the shared function is to keep quiet.
+
+`pass`

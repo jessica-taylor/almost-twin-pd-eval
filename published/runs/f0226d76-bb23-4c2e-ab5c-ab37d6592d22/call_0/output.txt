@@ -1,0 +1,17 @@
+Under A-FDT, the other prisoner's choice depends on the same decision function I am running, so the two choices move together. The two copies get different private leads, but the sentencing table and objective are the same, and the choice between cooperating and defecting is made by the same procedure. That gives a strong subjunctive dependence, though not a perfect one, because sampling is independent and the leads differ.
+
+The payoffs for me, in years:
+- Both keep quiet: 2
+- Both send: 4
+- I send while the other stays quiet: 0
+- I stay quiet while the other sends: 5
+
+If the copies' outputs match with probability p, the expected years are:
+- Keep quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, settings, the same essay, and the same reasoning, so I expect them to match with probability well above that. The differing leads are surface details that should not change the output of the decision function. So keeping quiet has the lower expected sentence.
+
+The essay's checklist also points this way. The other prisoner is a copy of my decision procedure, so it is a child of the fdt node. Setting fdt to "pass" makes the other's output "pass" with high probability.
+
+**pass**

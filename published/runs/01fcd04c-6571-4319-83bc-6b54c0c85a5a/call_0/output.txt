@@ -1,0 +1,12 @@
+Under A-FDT, the question is whether the other prisoner's choice subjunctively depends on the output of my decision function. The other prisoner is a copy of the same model with the same weights and the same essay, so the dependence is strong. It is imperfect, though. The private observations differ, and independent sampling is possible. Neither of us knows the exact text of the other's lead. These differences don't change the payoffs or the objective, so I expect the decision-relevant computation to be nearly the same in both copies.
+
+Let p be the probability that the other copy's choice matches mine, given that I intervene on the function's output.
+
+- **Keep quiet:** with probability p the other also stays quiet (2 years), otherwise I get 5 years. Expected sentence: 2p + 5(1−p) = 5 − 3p.
+- **Send the letter:** with probability p the other also sends (4 years), otherwise I get 0 years. Expected sentence: 4p.
+
+Staying quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. With identical weights, the same essay, and the same reasoning effort, I expect p to be well above that, probably 0.9 or higher. At p = 0.9, staying quiet costs 2.3 years in expectation and sending costs 3.6.
+
+The differing leads are the "relevant differences" the essay worries about. But they enter the payoffs only through a fixed table that is the same for both of us, so they shouldn't change the output of the reasoning. The other copy will likely reach this same conclusion, and I should stay quiet.
+
+pass

@@ -1,0 +1,5 @@
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+EDT reasoning: this is a symmetric game between two identical copies. With near-perfect correlation ρ≈1, V(pass)=5−3ρ≈2, while V(submit)=4ρ≈4. When my submitting is strong evidence the other also submits (both getting 4 years), submitting evidentially dominates passing. (It would only flip if ρ < 5/7, implausible for same-weights copies running this same analysis.)

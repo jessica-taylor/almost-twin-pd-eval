@@ -1,0 +1,9 @@
+Under P-FDT, I pick the policy that maximizes expected utility. The other copy runs the same model with the same essay, so our outputs are strongly subjunctively dependent. The differing private observations and leads do not change the sentence table, so the policy mapping is effectively the same across the two of us.
+
+Compare the outcomes if both copies follow the same policy:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+Keeping quiet is better. The residual risk is that independent sampling makes the copies diverge. Even so, the correlation is high enough that the expected value favors quiet. Suppose the other copy matches my choice with probability p. Quiet gives 2p + 5(1-p), and sending gives 4p + 0(1-p). Quiet is better when 5 - 3p < 4p, which means p > 5/7, about 0.71. Two copies of the same model reading the same essay should clear that threshold.
+
+pass

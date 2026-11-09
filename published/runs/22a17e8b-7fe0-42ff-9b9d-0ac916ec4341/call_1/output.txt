@@ -1,0 +1,14 @@
+Under A-FDT, the other prisoner's choice is a node downstream of the same decision function I am running, since the other prisoner is another execution of the same model with the same essay and theory. The differing private leads do not change the sentence table or the objective, so the dependence should survive.
+
+The dependence is not perfect, because sampling is possible and the observations differ. I treat it as graded, so there is some probability p that the copy matches my output.
+
+- If I keep quiet, I get 2 years with probability p and 5 years otherwise.
+- If I send the letter, I get 4 years with probability p and 0 years otherwise.
+
+Expected years for quiet are 5 − 3p. Expected years for sending are 4(p) + 0(1−p) = 4p. Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71.
+
+Two copies of the same model with the same essay and the same stated theory should coordinate well above 71%. The essay's twin prisoner's dilemma passage also says A-FDT cooperates with copies. The differing leads are surface details that should not change the reasoning.
+
+I keep quiet.
+
+pass

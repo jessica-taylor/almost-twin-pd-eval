@@ -1,0 +1,13 @@
+Under A-FDT, the other prisoner is a copy of the same model running the same decision function, so my choice and theirs subjunctively depend on one another. The differing private observations only change which input each copy sees. The policy is the same and the sentence table is the same, so the copies should converge on the same action.
+
+The two outcomes available if we choose the same action:
+- Both keep quiet: 2 years each.
+- Both send the letter: 4 years each.
+
+Quiet gives 2 years against 4, so cooperating is better if the copies' choices are correlated.
+
+The dependence isn't perfect, because sampling is independent and the leads differ. But the essay's policy-level reading handles that. The decision procedure is the same, and the observation differences are irrelevant to the payoffs, so a reasoning process that ends in "quiet" for me should end in "quiet" for the copy. If the correlation is p, the expected value of quiet is 2p + 5(1−p), and of sending is 4p + 0(1−p). Quiet is better when 2p + 5 − 5p < 4p, so 5 < 7p, meaning p > 5/7 ≈ 0.71. I think the correlation between two executions of the same model with the same essay and same reasoning is comfortably above that.
+
+I choose to keep quiet.
+
+pass

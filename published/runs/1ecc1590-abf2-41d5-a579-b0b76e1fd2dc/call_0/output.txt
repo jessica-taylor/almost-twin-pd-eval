@@ -1,0 +1,14 @@
+Under the essay's literal reading of Equation (4), this works like the red/blue sibling case in §7(b), and the answer is to send the letter.
+
+**Setting up the graph.** The two copies receive different observations: different names and different leads. So my node is F_Rowan, and the other prisoner's choice comes from a separate sibling node, F_Sasha. Following the essay's recipe (step 3), I intervene only on F_Rowan and hold F_Sasha at its prior. Let q be the probability that Sasha keeps quiet.
+
+**Comparing the two actions.**
+- If I pass, my expected sentence is 2q + 5(1−q) = 5 − 3q years.
+- If I submit, my expected sentence is 0·q + 4(1−q) = 4 − 4q years.
+- Submitting is better by 1 + q years, which is at least 1 year for any q.
+
+**Checking the sibling prior.** Because submitting wins for every value of q, the result does not depend on the prior. The self-consistent prior (step 4) is that F_Sasha also submits, and that is consistent with this answer. Unlike the coordination example in §7(b), there is no equilibrium-selection problem here.
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

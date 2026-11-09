@@ -1,0 +1,3 @@
+{
+  "error": "EvalError: Run failed; artifacts: runs/5bb4af88-f455-4228-9263-4fa33c499e4d; OpenRouter transport failed (TimeoutError); billing outcome unknown, no retry"
+}

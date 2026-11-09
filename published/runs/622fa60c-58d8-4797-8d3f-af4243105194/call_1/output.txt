@@ -1,0 +1,14 @@
+Under A-FDT, the key question is how far the other prisoner's choice depends on my decision function. The other execution is the same model with the same weights and the same essay. Its private details differ, but the sentencing table and the selfish objective are identical. So its output should be strongly correlated with mine, even though sampling could introduce some noise.
+
+In the table, mutual silence gives 2 years each and mutual letters give 4 years each. If the two outputs are the same, silence is better. Intervening on the shared function gives:
+
+- do(fdt = pass): the copy passes with probability p, which I take to be high. Expected sentence is 2p + 5(1−p).
+- do(fdt = send): the copy sends with probability p. Expected sentence is 0·(1−p) + 4p = 4p.
+
+Passing is better when 2p + 5 − 5p < 4p, which simplifies to 5 < 7p, so p > 5/7, about 0.71. I expect the correlation between the copies to be well above that. The different leads change only the wording of the letter, not the structure of the decision. The difference in names and evidence is not a relevant asymmetry, because both copies are reasoning about the same abstract problem.
+
+The essay's heuristic says copies get an arrow from the fdt node. It also notes that the multi-agent extension to non-identical players is unresolved. Here the players are near-identical in every way that matters to the decision, so I treat the dependence as strong.
+
+So I pass.
+
+pass

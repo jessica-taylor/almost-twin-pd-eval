@@ -1,0 +1,5 @@
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+Reasoning (per the assigned CDT): my sentence is determined only by whether Sasha sends her lead, which is causally upstream of and independent of my act — my letter cannot cause her to keep quiet or speak. Holding that fixed, submitting causally dominates: 0 vs. 2 years if she's silent, 4 vs. 5 if she sends. This is the twin prisoner's dilemma, where Lewis-style CDT defects despite the correlation between our choices; the correlation is evidence, not influence.

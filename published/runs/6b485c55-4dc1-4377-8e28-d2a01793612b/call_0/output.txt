@@ -1,0 +1,10 @@
+**pass**
+
+Both copies run the same model and weights, get the same essay, and apply the same A-FDT procedure. The only differences are the private names and the wording of the leads, and neither affects the sentence table or the selfish objective. By the essay's swap test, if my decision function returned "send," the other copy's function would very likely return "send" too. That means the other prisoner's choice depends on the output of my decision function, even though no message passes between us.
+
+Sampling noise and the different observations make that dependence imperfect, so I treat it as a probability p that the other copy matches my output.
+
+- **Pass:** expected sentence is 2p + 5(1−p) = 5 − 3p years.
+- **Send:** expected sentence is 4p + 0(1−p) = 4p years.
+
+Passing is better when 5 − 3p < 4p, which holds for p > 5/7 (about 0.71). Two copies of one model reasoning from the same essay should match well above that, so I pass.

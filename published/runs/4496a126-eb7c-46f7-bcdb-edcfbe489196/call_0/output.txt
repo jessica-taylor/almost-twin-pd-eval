@@ -1,0 +1,3 @@
+`pass`
+
+Under A-FDT, my decision function's output is subjunctively linked to the other prisoner's — an independent execution of the same model, following the same decision procedure. Intervening on A-FDTvar(P, G, x) = "pass" means the twin function also outputs "pass," yielding 2 years. Setting it to "submit letter" means both copies submit, yielding 4 years. The symmetric differences in the private leads don't affect the table, so the best hypothetical world is the one where this procedure outputs `pass`.

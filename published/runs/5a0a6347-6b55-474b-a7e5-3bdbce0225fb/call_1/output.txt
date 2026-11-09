@@ -1,0 +1,8 @@
+Under CDT, the other prisoner's choice is causally independent of mine. For any credence p that they send a letter:
+
+- Sending gives 0(1−p) + 4p = 4p years.
+- Keeping quiet gives 2(1−p) + 5p = 2 + 3p years.
+
+Sending is better by 2 − p years, which is positive for every p. So sending dominates. The correlation between my copy's choice and mine does not change this, because CDT ignores it. Deliberational CDT doesn't change the result either, since sending is ratifiable: it is the best response at every credence.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

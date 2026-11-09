@@ -1,0 +1,10 @@
+Under CDT as the essay interprets it, the other prisoner's choice is causally independent of mine. We cannot communicate, and no retaliation or later contact is possible. The other prisoner's choice is the dependency hypothesis K. Whatever credence p I hold that Rowan sends a letter, sending dominates:
+
+- Sending gives 0 years if Rowan is quiet and 4 years if Rowan sends.
+- Keeping quiet gives 2 years if Rowan is quiet and 5 years if Rowan sends.
+
+Sending is better by 2 years in the first case and 1 year in the second, for every p. So the verdict does not depend on p.
+
+The essay does say CDT intervenes at the output, not at the algorithm, so the twin-correlation reasoning that might favor passing is not available. The two copies also have different leads, so my choice is not a perfect logical mirror of theirs. Even if my inclination is evidence about the other copy's choice, that is evidential. It does not change the causal effect of my act, and sending is dominant under any stable credence.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

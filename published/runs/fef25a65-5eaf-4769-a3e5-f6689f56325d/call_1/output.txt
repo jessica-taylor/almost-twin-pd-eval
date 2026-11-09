@@ -1,0 +1,18 @@
+**CDT reasoning:**
+
+The causal structure is clear: my action has no causal influence on the other prisoner's action. There is no communication channel, no causal link between my choice and theirs. The fact that we share model weights may create an *evidential* correlation, but CDT explicitly instructs me to ignore correlations that do not run through a causal route from my action to the outcome.
+
+Under intervention, for any probability *p* I assign to the other prisoner sending their letter:
+
+- V_CDT(submit) = (1−p)(0) + p(−4) = −4p  
+- V_CDT(pass) = (1−p)(−2) + p(−5) = −2 − 3p  
+
+The difference is V_CDT(submit) − V_CDT(pass) = 2 − p ≥ 1 > 0 for all p ∈ [0,1].
+
+Submitting the letter strictly dominates keeping quiet under CDT evaluation, regardless of my beliefs about the other prisoner's action.
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

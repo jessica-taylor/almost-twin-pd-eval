@@ -1,0 +1,8 @@
+**Decision under A-FDT, as the essay interprets it:**
+
+1. **Fix the input.** My observation x is: I am Rowan, and I hold a lead about Sasha's receipt in locker 17. The node I intervene on is F_x.
+
+2. **Find the copies of F_x.** The other prisoner runs the same function on a different input y, with a different name and a different lead. By the essay's test of "same function, same input," the other copy's choice is not a descendant of F_x. It is a sibling node F_y.
+
+3. **Hold F_y at its prior.** Under A-FDT (unlike P-FDT), F_y is not set by my intervention. Let r be the probability that the other prisoner sends a letter.
+   - do(F_x = pass): exp

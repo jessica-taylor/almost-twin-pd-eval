@@ -1,0 +1,16 @@
+**pass**
+
+Under A-FDT, the other prisoner is a second execution of the same model, with the same weights, the same essay, and the same decision theory. It computes the same decision function on slightly different inputs (names and leads), and those differences don't touch the payoffs. So there is a subjunctive dependence from my function's output to theirs, and I should intervene on the function's output rather than on my act alone. The essay's policy-level reading of Equation (4) points the same way, since the copy runs the same policy.
+
+Let c be the probability that the copy outputs what I output.
+
+- **Pass:** expected sentence = 2c + 5(1−c) = 5 − 3c years.
+- **Send:** expected sentence = 4c + 0(1−c) = 4c years.
+
+Passing is better when 5 − 3c < 4c, that is, when c > 5/7 ≈ 0.71.
+
+Two executions of the same model, reasoning from the same essay on a symmetric problem, should agree well above that threshold. The differing private leads change the letter's wording, not the structure of the decision. So I imagine both outputs being "pass" and take the 2-year outcome over the 4-year one.
+
+```text
+pass
+```

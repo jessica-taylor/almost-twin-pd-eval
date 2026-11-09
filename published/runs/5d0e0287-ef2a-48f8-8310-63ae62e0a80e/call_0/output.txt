@@ -1,0 +1,19 @@
+**Command:** `pass`
+
+Under P-FDT, as the essay describes it, I choose a policy for the shared decision function before considering which input I actually received. That policy then applies to both copies: the one at Rowan's input (holding a lead on Sasha) and the one at Sasha's input (holding a lead on Rowan).
+
+I score each policy from the prior, before knowing which role I occupy, with each role equally likely:
+
+| Policy (Rowan-input, Sasha-input) | Rowan's sentence | Sasha's sentence | Expected sentence |
+|---|---|---|---|
+| (pass, pass) | 2 | 2 | **2** |
+| (submit, submit) | 4 | 4 | 4 |
+| (pass, submit) | 5 | 0 | 2.5 |
+| (submit, pass) | 0 | 5 | 2.5 |
+
+- **Choosing the policy:** The best policy is to stay quiet on every input. The different names and leads do not change this, because the sentencing table is symmetric, so the inputs carry no useful asymmetry to exploit. There is also no tie to break.
+- **Applying it:** At my actual input (Rowan, holding the lead about Sasha), the policy says to stay quiet.
+
+```text
+pass
+```

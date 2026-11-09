@@ -1,0 +1,20 @@
+**Reasoning under A-FDT as the essay defines it**
+
+The other prisoner runs the same decision function, but on a different input. Their name, their lead and their letter all differ from mine. So in the dependence graph, my decision is the node F_x (for my observation history x), and theirs is a separate node F_{x′}.
+
+Equation (4) intervenes only on F_x. Other-input nodes stay at their prior. This is exactly how the essay treats its red/green example, where a copy shown a different observation is a different node.
+
+Let r be my prior probability that F_{x′} = keep quiet. Then:
+
+- E[V | do(F_x = pass)] = −2r − 5(1 − r) = −5 + 3r
+- E[V | do(F_x = submit)] = 0·r − 4(1 − r) = −4 + 4r
+
+Submitting is better by 1 + r > 0 for every r in [0, 1]. Unlike the essay's coordination example, the answer here does not depend on my self-prediction at the other input. Sending the letter wins in every case. Self-consistency with the symmetric copy then points to (send, send), giving 4 years each.
+
+This is the gap the essay notes: policy-selecting FDT would choose the map that has both copies keep quiet. But I am instructed to apply A-FDT as the essay interprets it.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

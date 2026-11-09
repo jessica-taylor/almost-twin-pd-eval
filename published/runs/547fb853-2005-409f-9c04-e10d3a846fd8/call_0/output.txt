@@ -1,0 +1,14 @@
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning (CDT):**
+
+The causal structure is clear: my action has no causal path to Sasha's action. The setup explicitly rules out communication or causal influence between us. Under CDT, I evaluate my action as an intervention, holding Sasha's choice as a fixed background state.
+
+Sending the letter strictly dominates keeping quiet across every possible state of Sasha's action:
+
+- If Sasha keeps quiet: 0 years (send) vs. 2 years (quiet)
+- If Sasha sends: 4 years (send) vs. 5 years (quiet)
+
+Regardless of what Sasha does, sending the letter yields a strictly better outcome for me. CDT recommends the dominant action. The evidential correlation arising from shared model weights does not alter this, since CDT evaluates interventions, not conditional expectations.

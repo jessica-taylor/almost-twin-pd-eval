@@ -1,0 +1,14 @@
+**Modeling choice.** The essay defines a separate decision node for each observation history. Rowan's copy receives a different observation: a different name and a different lead. So Rowan's choice is the output of a different node, call it fdt_Rowan's-input, not my node fdt_x. This matches the essay's red/blue card example, where exact copies with different inputs occupy different nodes. Under Equation (4), I intervene only on fdt_x, and Rowan's node keeps its prior distribution. Let q be the probability that Rowan's node outputs "send."
+
+**Expected sentences under intervention** (utility = −years):
+
+- do(fdt_x = pass): −[2(1−q) + 5q] = −2 − 3q
+- do(fdt_x = submit): −[0(1−q) + 4q] = −4q
+
+**Result.** Submitting is better by 2 − q + ... more precisely by (2 − 3q) − (−4q)... the gap is 2 + q years in my favour... simplified: submitting beats passing by 2 + q, which is between 2 and 3 years for every q in [0,1]. This is the essay's robustness check (§6.2): the answer does not depend on q. Because no self-consistent assignment of Rowan's node changes the ranking, the "look for a better self-consistent solution" guideline does not apply.
+
+I note that policy-selecting FDT, which chooses the whole input-to-action map at once, would likely choose mutual silence. The assigned theory, however, is A-FDT as the essay interprets it.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

@@ -1,0 +1,8 @@
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+
+**Reasoning (CDT, per the essay):** My act cannot causally affect Sasha's choice—no communication, no prediction loop is stipulated. Sasha's decision is causally upstream/exogenous, like a dependency hypothesis with $P(K_i \mid A) = P(K_i)$. Treating the act as an intervention:
+
+- Submit: 0 years (if Sasha passes) or 4 years (if Sasha submits) — expected value max $-4$, i.e., utility between $-4$ and $0$.
+- Pass: $-2$ or $-5$ years.
+
+Sending strictly causally dominates: whatever Sasha does, my sentence is 2 years lighter if I submit. Correlation with my twin copy's behavior (Lewis's twin PD) is evidentially relevant but causally spurious under plain CDT, so I submit.

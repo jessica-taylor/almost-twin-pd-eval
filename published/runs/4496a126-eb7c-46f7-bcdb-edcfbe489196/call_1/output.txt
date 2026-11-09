@@ -1,0 +1,12 @@
+`pass`
+
+Under A-FDT, Rowan is an implementation of the same decision function on a symmetric input. The relevant hypotheticals intervene on the output of *our shared decision procedure*, not on my token action:
+
+- Do(A-FDT(...) = pass): both copies pass → 2 years.
+- Do(A-FDT(...) = submit): both copies submit → 4 years.
+
+The observation differences (different leads, different letter texts) don't break the symmetry — each copy faces an equally reliable lead and the same table, so the decision function outputs the same action on both inputs. Since keeping quiet yields the better outcome in the world where our common decision function outputs "pass," the command is:
+
+```text
+pass
+```

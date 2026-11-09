@@ -1,0 +1,14 @@
+**pass**
+
+This is a prisoner's dilemma with a twin. Under A-FDT the key quantity is how strongly the other prisoner's choice depends on the output of my decision function. The other prisoner is a second execution of the same model and weights. It gets the same essay and the same decision theory, and the differences in names and leads don't touch the sentencing table or the selfish objective. Its output should therefore track mine closely. It may not track perfectly, because the observations differ and sampling is independent. I model this as a copy fidelity ρ.
+
+Treating the other copy as copying my output with probability ρ and otherwise doing the opposite:
+
+- **Pass:** expected sentence is 2ρ + 5(1−ρ) = 5 − 3ρ years.
+- **Send:** expected sentence is 4ρ + 0(1−ρ) = 4ρ years.
+
+Passing is better when 5 − 3ρ < 4ρ, which means ρ > 5/7 ≈ 0.71. Since both copies run the same reasoning on the same essay and the same table, I judge ρ to be well above that threshold. Intervening on the function's output therefore favors keeping quiet. I am not treating the other prisoner's choice as a fixed fact.
+
+```text
+pass
+```

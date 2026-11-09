@@ -1,0 +1,321 @@
+# Intervening on the Logical Type: A Mathematical Exposition of Action Functional Decision Theory (A-FDT)
+
+## 1. Introduction: Beyond the Causal–Evidential Stalemate
+
+For decades, normative decision theory has been polarized by the divide between Evidential Decision Theory (EDT) and Causal Decision Theory (CDT). The dialectic is classic: EDT selects actions that serve as the best evidence for favorable outcomes, maximizing conditional expected utility:
+
+$$\text{EDT}(P, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\big[\mathcal{V} \;\big|\; \text{Obs} = x, \, \text{Act} = a\big]$$
+
+In Newcomb-like problems, EDT correctly prescribes one-boxing, reaping $\$1{,}000{,}000$ where CDT’s causal intervention settles for $\$1{,}000$. Yet EDT falters in scenarios like the Smoking Lesion problem or the XOR Blackmail, succumbing to the fallacy of "managing the news"—treating purely correlational, non-actionable signals as if the agent’s choice could control their common cause.
+
+CDT repairs this defect by evaluating an action via a physical intervention that severs incoming causal arrows to the agent’s physical act $\text{Act}$ using Pearl’s do-calculus:
+
+$$\text{CDT}(P, G, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\big[\mathcal{V} \;\big|\; \text{do}(\text{Act} = a), \, \text{Obs} = x\big]$$
+
+CDT correctly smokes in the Smoking Lesion problem because the arterial lesion is not causally downstream of the physical act. But in doing so, CDT renders itself systematically exploitable in environments populated by accurate predictors, algorithmic clones, or simulation-based commitments. In the Psychological Twin Prisoner's Dilemma, Newcomb's Problem, Parfit's Hitchhiker, and the Transparent Newcomb Problem, CDT defects, two-boxes, and refuses to pay, routinely leaving the agent impoverished or dead in the desert.
+
+**Action Functional Decision Theory (A-FDT)**—the action-level formulation of Functional Decision Theory presented by Yudkowsky and Soares—resolves this tension. The central conceptual move of A-FDT is to treat an agent's decision not as an isolated physical event in spacetime (a token intervention), but as the instantiation of a fixed mathematical mapping (a type intervention). Rather than asking *"What happens if my physical limbs move this way?"* (CDT) or *"What would it be good news to learn that my limbs did?"* (EDT), an A-FDT agent asks:
+
+> *"Which output of this very decision function yields the best consequences, across all physical processes that subjunctively depend upon it?"*
+
+Below, we develop the formal mechanics of A-FDT, examine its operative mechanics across hallmark decision problems, analyze its treatment of counterfactuals and observations, and clarify where the foundational mathematical framework requires further development.
+
+---
+
+## 2. Formalization of A-FDT
+
+### 2.1 The Core Equation
+
+All three theories—EDT, CDT, and A-FDT—operate within the general expected utility framework formalized by Joyce, choosing an action $a \in \mathcal{A}$ to maximize:
+
+$$\mathcal{EU}(a) = \sum_{j=1}^N P(a \hookrightarrow o_j \,;\, x) \cdot \mathcal{U}(o_j)$$
+
+where $\hookrightarrow$ denotes a decision hypothetical, $\mathcal{A}$ is a finite action set, $\mathcal{O} = \{o_j\}$ is a countable outcome space, $x \in \mathcal{X}$ is the agent's observation history, and $\mathcal{V} \coloneqq \mathcal{U}(\text{Outcome})$. The theories disagree entirely on how to construct the hypothetical probability distribution $P(a \hookrightarrow \cdot \,;\, x)$.
+
+The human-written reference formalizes A-FDT by extending Pearl's graphical causal framework to encompass logical and computational dependencies. Specifically, Yudkowsky and Soares present the decision rule in **Equation (4), Section 5**:
+
+$$\text{A-FDT}(P, G, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\Big[\mathcal{V} \;\Big|\; \text{do}\big(\texttt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\big)\Big] \tag{4}$$
+
+Here:
+* $P$ is a subjective probability distribution over a set of random variables. Crucially, the domain of $P$ includes variables representing the outputs of deterministic mathematical functions (for instance, arithmetical propositions or algorithmic evaluations).
+* $G$ is an augmented dependency directed acyclic graph (DAG) whose nodes include both physical states and logical/computational variables. Directed edges represent dependencies along which changes propagate, whether physical-causal or logical-subjunctive.
+* The underline notation $\underline{P}, \underline{G}, \underline{x}$ denotes the syntactic representation (the Gödel number or code) of the inputs, making the variable name $\texttt{fdt}(\underline{P}, \underline{G}, \underline{x})$ concrete within the network.
+* The $\text{do}(\cdot)$ operator is Pearl’s graphical intervention: in $G$, all incoming edges to the target node $\texttt{fdt}(\underline{P}, \underline{G}, \underline{x})$ are excised, the node is set to the constant value $a$, and downstream probabilities are updated by structural propagation.
+
+### 2.2 Token Interventions vs. Type Interventions
+
+The profound divergence between CDT and A-FDT lies in the target of the $\text{do}$-operator:
+
+| Feature | Causal Decision Theory (CDT) | Action Functional Decision Theory (A-FDT) |
+| :--- | :--- | :--- |
+| **Intervention Target** | Physical act token: $\text{do}(\text{Act} = a)$ | Logical algorithm type: $\text{do}\big(\texttt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\big)$ |
+| **Preserved Relations** | Physical consequences downstream of bodily motion | Subjunctive dependencies downstream of the function's output |
+| **Treatment of Predictors** | Predictor's past state is fixed; seen as independent of $\text{Act}$ | Predictor’s representation is downstream of $\texttt{fdt}$; updates counterfactually |
+| **Observation Handling** | Standard Bayesian conditioning: $\Obs = x$ is conditioned on | Routing intervention: observation selects the node $\texttt{fdt}(\dots, \underline{x})$ |
+
+When CDT performs $\text{do}(\text{Act} = a)$, it severs the link between the agent's internal deliberation (or predisposition) and the physical act. Consequently, any past prediction of that act is treated as a fixed historical fact. If a predictor modeled the agent, CDT counterfactuals hold the prediction constant, effectively evaluating counterfactuals where the predictor erred.
+
+A-FDT performs $\text{do}\big(\texttt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\big)$. In the agent's world-model $G$, the node $\texttt{fdt}(\underline{P}, \underline{G}, \underline{x})$ has directed edges pointing to:
+1. The agent’s physical choice node $\text{Act}$.
+2. Any physical or computational process that simulated, predicted, or calculated the output of this exact algorithm on these exact inputs.
+
+When A-FDT considers setting its output to $a$, it does not imagine a world where it defies its own logic; it evaluates an intervention on the mathematical sentence itself, propagating changes through all nodes that subjunctively depend upon that sentence.
+
+---
+
+## 3. Subjunctive Dependence: Mathematics and Mechanics
+
+### 3.1 The Meaning of Subjunctive Dependence
+
+Two physical systems exhibit *subjunctive dependence* when their behaviors are jointly constrained by computing or tracking the same underlying mathematical function or abstract relation:
+
+$$\text{System}_1 \leftarrow f(w) \rightarrow \text{System}_2$$
+
+Consider two pocket calculators computing $6288 + 1048$. If Calculator 1 outputs $7336$, Calculator 2 will also output $7336$. The correlation between them is not mediated by a physical signal passing between them at the time of calculation, nor is it a mere coincidence of colors (pure statistical correlation). If we evaluate the counterfactual *"What if this calculation had outputted something different?"*, any faithful model of the joint system must update the outputs of both calculators in tandem. 
+
+Causal dependence is simply a special case of subjunctive dependence where the transmission channel happens to be physical dynamics through spacetime. Subjunctive dependence encompasses both physical causation and logical constraints:
+
+$$\text{Causal Dependence} \subset \text{Subjunctive Dependence}$$
+
+### 3.2 Formalization: Graphs with Logical Nodes
+
+To implement Equation (4), an A-FDT agent constructs an augmented DAG $G = (V, E)$. The vertex set $V$ decomposes into:
+
+$$V = V_{\text{phys}} \cup V_{\text{log}}$$
+
+* $V_{\text{phys}}$ consists of physical events (e.g., box contents, brain states, physical coin flips).
+* $V_{\text{log}}$ consists of logical/computational evaluations $\texttt{func}(\text{input})$.
+
+An edge $(\texttt{func}, Y) \in E$ exists whenever the value of variable $Y$ physically or logically depends on the output of $\texttt{func}$. 
+
+For an agent facing Newcomb's Problem, $V$ contains:
+* $\texttt{fdt} \coloneqq \texttt{fdt}(\underline{P}, \underline{G})$
+* $\text{Prediction} \in \{1, 2\}$
+* $\text{Box B} \in \{\text{empty}, \text{full}\}$
+* $\text{Act} \in \{\text{onebox}, \text{twobox}\}$
+* $\text{Accurate} \in \{\text{accurate}, \text{inaccurate}\}$
+* $\mathcal{V} \in \mathbb{R}$
+
+The edges in Fiona's (the A-FDT agent's) model are:
+
+$$\texttt{fdt} \to \text{Act}, \quad \texttt{fdt} \to \text{Prediction}, \quad \text{Accurate} \to \text{Prediction}$$
+$$\text{Prediction} \to \text{Box B}, \quad \text{Act} \to \mathcal{V}, \quad \text{Box B} \to \mathcal{V}$$
+
+Notice that the arrow points from the logical function $\texttt{fdt}$ to the past prediction $\text{Prediction}$. This arrow does **not** assert backward physical causation (retrocausality). Fiona knows information cannot travel backwards in time. Rather, the edge encodes the structural constraint that the predictor's simulation tracks $\texttt{fdt}$.
+
+Applying Equation (4):
+
+$$\mathbb{E}\big[\mathcal{V} \mid \text{do}(\texttt{fdt} = \text{onebox})\big] = 0.99(\$1{,}000{,}000) + 0.01(\$0) = \$990{,}000$$
+
+$$\mathbb{E}\big[\mathcal{V} \mid \text{do}(\texttt{fdt} = \text{twobox})\big] = 0.01(\$1{,}001{,}000) + 0.99(\$1{,}000) = \$11{,}000$$
+
+A-FDT concludes $\text{onebox}$. By intervening on the logical type $\texttt{fdt}$ rather than the physical token $\text{Act}$, the prediction node varies counterfactually with the decision.
+
+---
+
+## 4. Comparing Decision Algorithms Across Canonical Dilemmas
+
+To make the operational procedure clear, we contrast three agents—Eve (EDT), Carl (CDT), and Fiona (A-FDT)—across canonical decision dilemmas.
+
+```
+       Canonical Dilemma Prescriptions across Decision Theories
++----------------------------+-----------+-----------+-----------+
+| Dilemma                    |    EDT    |    CDT    |   A-FDT   |
++----------------------------+-----------+-----------+-----------+
+| Newcomb's Problem          |  One-box  |  Two-box  |  One-box  |
+| Smoking Lesion             |  Refrain  |   Smoke   |   Smoke   |
+| Parfit's Hitchhiker        | Refuse/Die| Refuse/Die|  Pay/Live |
+| Transparent Newcomb        |  Two-box  |  Two-box  |  One-box  |
+| XOR Blackmail              |    Pay    |  Refuse   |  Refuse   |
++----------------------------+-----------+-----------+-----------+
+```
+
+### 4.1 The Smoking Lesion Problem
+
+In the Smoking Lesion Problem, an unobservable arterial lesion causes both a predilection for smoking and fatal lung cancer ($99\%$ rate). Smoking yields a direct utility bonus of $\$1{,}000$, while surviving cancer is worth $\$1{,}000{,}000$.
+
+* **Eve (EDT)** computes:
+  $$\mathbb{E}[\mathcal{V} \mid \text{smoke}] \approx 0.01(\$1{,}000{,}000) + \$1{,}000 = \$11{,}000$$
+  $$\mathbb{E}[\mathcal{V} \mid \text{refrain}] \approx 0.99(\$1{,}000{,}000) = \$990{,}000$$
+  Eve refrains, irrationally throwing away $\$1{,}000$ to "suppress bad news."
+* **Carl (CDT)** notes that $\text{Lesion} \to \text{Act}$ and $\text{Lesion} \to \text{Cancer}$. Since $\text{do}(\text{Act} = \text{smoke})$ does not alter $\text{Lesion}$ or $\text{Cancer}$, Carl smokes.
+* **Fiona (A-FDT)** structures her graph $\Gf$ with precision. As Yudkowsky and Soares model the scenario, the lesion modulates preferences: afflicted agents have utility $\mathcal{U}_S$ (valuing smoking at $+\$1{,}000$), while non-afflicted agents have $\mathcal{U}_R$ (valuing smoking at $-\$1$). Thus, Fiona's act is routed through either $\texttt{fdt}(\underline{P_S}, \underline{G})$ or $\texttt{fdt}(\underline{P_R}, \underline{G})$:
+
+$$\text{Act}(\text{lesion}, s, r) = \begin{cases} s & \text{if Lesion holds} \\ r & \text{if No Lesion holds} \end{cases}$$
+
+Crucially, **Cancer does not subjunctively depend on Fiona's decision procedure**. Cancer is an organic biological pathology; it does not simulate or predict $\texttt{fdt}$. Therefore, in Fiona’s graph:
+
+$$\text{do}\big(\texttt{fdt}(\underline{P_S}, \underline{G}) = \text{smoke}\big)$$
+
+propagates to $\text{Act}$ (if the lesion is present), but there is **no edge** from $\texttt{fdt}$ to $\text{Lesion}$ or $\text{Cancer}$. Consequently:
+
+$$P\big(\text{Lesion} \;\big|\; \text{do}(\texttt{fdt} = \text{smoke})\big) = P(\text{Lesion}) = p$$
+
+Under both interventions, the probability of cancer remains fixed at $0.99p + 0.01(1-p)$. The smoking branch yields strictly $p \cdot \$1{,}000$ greater expected utility. Fiona smokes. 
+
+A-FDT thus breaks the supposed iron law of Gibbard and Harper: it **one-boxes in Newcomb's Problem and smokes in the Smoking Lesion Problem** using a single, unified formal rule.
+
+### 4.2 Parfit's Hitchhiker and Transparent Newcomb
+
+In Parfit's Hitchhiker, you are dying of dehydration in the desert. A driver will take you to town if and only if she predicts that, once safe in town, you will withdraw and pay her $\$1{,}000$. The driver is a $99\%$ accurate lie detector. Being saved is worth $\$1{,}000{,}000$.
+
+Suppose you find yourself in the city. Should you pay?
+* **Carl (CDT)**: You are already in the city. The ride is in the past. Intervening on your physical hands via $\text{do}(\text{Act} = \text{pay})$ costs $\$1{,}000$ with zero causal feedback on whether you were rescued. Carl refuses to pay. Foreseeing this, the driver leaves Carl in the desert.
+* **Eve (EDT)**: In the city, the observation history includes being rescued. Given this evidence, conditioning on $\text{Act} = \text{pay}$ simply reveals you have $\$1{,}000$ less. Eve refuses to pay, and likewise dies in the desert.
+* **Fiona (A-FDT)**: Fiona observes she is in town ($x = \text{city}$). How does A-FDT incorporate observation?
+
+---
+
+## 5. Counterfactuals, Observations, and Updatelessness
+
+The most mathematically radical feature of A-FDT is its handling of observations. 
+
+In standard Bayesian decision theory (both EDT and CDT), receipt of an observation $x$ prompts Bayesian conditionalization: the agent replaces their prior distribution $P(\cdot)$ with $P(\cdot \mid \Obs = x)$. 
+
+In A-FDT, **observation does not operate by conditioning the probability distribution inside the hypothetical**. Instead, observation acts as an argument routing parameter:
+
+$$\text{Observation } x \implies \text{Select node } \texttt{fdt}(\underline{P}, \underline{G}, \underline{x}) \text{ as the intervention site.}$$
+
+### 5.1 The Transparent Newcomb Problem Formalized
+
+In Transparent Newcomb, Box A contains $\$1{,}000$ and Box B contains $\$1{,}000{,}000$ or $\$0$. Both boxes are clear glass: the agent *sees* the contents of Box B before deciding. The predictor placed $\$1{,}000{,}000$ in Box B iff she predicted that the agent, upon seeing both boxes full, leaves Box A behind.
+
+Suppose Fiona looks and sees that Box B is full ($\Obs = \text{full}$). Carl and Eve both two-box: the million is already there to see, and taking Box A secures an additional $\$1{,}000$. 
+
+Fiona's graph contains two distinct algorithmic nodes representing the behavioral branches of her decision routine:
+$$\texttt{fdt}_{\text{full}} \coloneqq \texttt{fdt}(\underline{P}, \underline{G}, \underline{\text{full}}) \quad \text{and} \quad \texttt{fdt}_{\text{empty}} \coloneqq \texttt{fdt}(\underline{P}, \underline{G}, \underline{\text{empty}})$$
+
+Because Fiona observed $\Obs = \text{full}$, Equation (4) dictates an intervention on the active node $\texttt{fdt}_{\text{full}}$:
+
+$$\text{A-FDT}(P, G, \text{full}) = \operatorname*{argmax}_{a \in \{\text{onebox}, \text{twobox}\}} \mathbb{E}\Big[\mathcal{V} \;\Big|\; \text{do}\big(\texttt{fdt}_{\text{full}} = a\big)\Big]$$
+
+Let us trace the graph paths from $\texttt{fdt}_{\text{full}}$:
+1. $\texttt{fdt}_{\text{full}} \to \text{Act}$ (active when $\text{Box B} = \text{full}$)
+2. $\texttt{fdt}_{\text{full}} \to \text{Prediction}$ (the predictor simulates what Fiona does *when she sees a full box*)
+3. $\text{Prediction} \to \text{Box B} \to \Obs$
+
+When evaluating $\text{do}(\texttt{fdt}_{\text{full}} = \text{twobox})$, the intervention propagates to $\text{Prediction}$:
+* With probability $0.99$, $\text{Prediction} = \text{empty}$.
+* Thus $\text{Box B} = \text{empty}$.
+* Under that branch, Fiona would observe $\Obs = \text{empty}$, the active node would have been $\texttt{fdt}_{\text{empty}}$, and she would have walked away with only the $\$1{,}000$ from Box A!
+
+Evaluating the expected utility under Equation (4):
+
+$$\mathbb{E}\big[\mathcal{V} \mid \text{do}(\texttt{fdt}_{\text{full}} = \text{onebox})\big] = 0.99(\$1{,}000{,}000) + 0.01(q \cdot \$1{,}000) \approx \$990{,}000$$
+
+$$\mathbb{E}\big[\mathcal{V} \mid \text{do}(\texttt{fdt}_{\text{full}} = \text{twobox})\big] = 0.01(\$1{,}001{,}000) + 0.99(q \cdot \$1{,}000) \approx \$10{,}010 + q(\$990)$$
+
+(where $q$ is the probability of taking Box A if the box is observed empty).
+
+Fiona leaves the $\$1{,}000$ behind: **she one-boxes despite seeing that Box B is full**.
+
+```
+Fiona's Subjunctive Evaluation in Transparent Newcomb:
+
+  [ do(fdt_full = onebox) ] ------------> Predictor predicts One-box
+              |                                      |
+              v                                      v
+         Act = One-box                        Box B is FULL ($1,000,000)
+              \                                     /
+               -------> Net Payoff: $1,000,000 <-----
+
+  [ do(fdt_full = twobox) ] ------------> Predictor predicts Two-box
+              |                                      |
+              v                                      v
+         Act = Two-box                        Box B is EMPTY ($0)
+              \                                     /
+               --------> Net Payoff: $1,000 <-------
+```
+
+### 5.2 The Updateless Nature of A-FDT
+
+This counter-intuitive behavior illustrates the *updateless* character of A-FDT (inherited from Dai's Updateless Decision Theory). When Fiona holds the $\$1{,}000$ in front of her open eyes, or holds the Mechanical Blackmail letter in her hands, her hypothetical does not take the observation as an inviolable background axiom. Instead, she recognizes:
+
+$$\text{My current observation is itself an outcome causally or subjunctively downstream of the policy I implement.}$$
+
+If changing her decision type to $\text{twobox}$ implies that the predictor would have anticipated defection, then under that counterfactual, the box would have been empty and she would never have observed a full box to begin with. 
+
+By refusing to condition away the subjunctive entanglement between her algorithmic disposition and her observation, Fiona effortlessly achieves the benefits of ideal precommitment without requiring any physical precommitment mechanism. She never needs to blindfold herself; she naturally assigns non-negative value to information.
+
+---
+
+## 6. Open Problems and Implementation Details
+
+While A-FDT achieves remarkable normative success across classic paradoxes, several critical mathematical foundations remain open. We must carefully delineate what is established in the source paper from what requires additional mathematical scaffolding.
+
+### 6.1 Deriving Subjunctive Graphs from Experience
+
+In CDT, Judea Pearl provided a complete algorithmic axiomatization for learning causal DAGs from observation and physical interventions ($d$-separation, do-calculus, back-door/front-door criteria).
+
+In A-FDT, **no such formal derivation yet exists for logical dependencies**. 
+* *Claim made by the source*: Given an augmented graph $G$ specifying all causal and subjunctive dependencies, Equation (4) provides an unambiguous decision rule.
+* *Gap identified by the source*: The paper explicitly acknowledges: *"Figuring out how to deduce the structure of subjunctive dependencies from observation and experiment is perhaps the largest open problem in the study of functional decision theory."*
+
+#### A Proposed Operational Interpretation: Algorithmic Information and Program Compilation
+To make A-FDT operational in complex multi-agent systems, how might an agent autonomously construct $G$? We propose that subjunctive edges can be formalized via **computational compilation graphs**:
+1. An agent models other entities as Turing machines or bounded circuit families $\mathcal{M}_1, \mathcal{M}_2, \dots, \mathcal{M}_k$.
+2. If the source code or predictive model of $\mathcal{M}_j$ contains an explicit simulation or proof step querying the code of the agent's own algorithm $\texttt{fdt}$, a directed subjunctive edge $\texttt{fdt} \to \mathcal{M}_j$ is instantiated.
+3. The strength and fidelity of the edge correspond to the simulation's bounded accuracy $\epsilon$.
+
+### 6.2 Counterpossibles and Counter-to-Logic Reasoning
+
+Intervening on a mathematical node creates an immediate philosophical and mathematical hurdle: **evaluating counterpossibles**.
+
+If the deterministic algorithm $\texttt{fdt}$ evaluated on inputs $(P, G, x)$ provably outputs $a_1$, then asserting $\texttt{fdt}(P, G, x) = a_2$ is a mathematical contradiction:
+
+$$\text{PA} \vdash \big(\texttt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a_1\big) \land \big(a_1 \neq a_2\big)$$
+
+In classical logic, the principle of explosion ($Ex$ $Falso$ $Quodlibet$) dictates that any proposition follows from a contradiction:
+
+$$\bot \implies \text{Anything}$$
+
+* *Claim made by the source*: Evaluating Equation (4) only requires reasoning about localized counterpossibles (e.g., *"How does this specific simulation variable react if the algorithm’s return value is altered?"*), rather than arbitrary mathematical falsehoods.
+* *Our Operational Interpretation*: To formalize this without inconsistency, A-FDT must rely on frameworks of **bounded rationality and logical induction** (such as Garrabrant et al.'s Logical Induction framework). In logical induction, a reasoner assigns coherent probabilities to sentences in a formal language while being computationally bounded, gradually eliminating inconsistencies over time. An intervention $\text{do}(\texttt{fdt} = a_2)$ is interpreted not as an assertion that Peano Arithmetic is inconsistent, but as a surgery on the agent’s internal belief network that reassigns valuation weights downstream of the computation node while leaving the background deductive axioms untouched.
+
+### 6.3 Self-Reference and Quining
+
+Equation (4) features self-reference: the variable name being intervened upon, $\texttt{fdt}(\underline{P}, \underline{G}, \underline{x})$, contains codes for the very distribution $P$ and graph $G$ that describe the agent.
+
+The source notes that this self-reference is benign by virtue of **Kleene’s Second Recursion Theorem**. A program can compute its own source description via the diagonal lemma (quining):
+
+$$\exists e \in \mathbb{N} \quad \forall y \quad \varphi_e(y) \simeq \psi(e, y)$$
+
+In implementation, an A-FDT agent stores its own source code as an inspectable data structure. When constructing the graph $G$, it queries its own source string, computes the appropriate Gödel index, and names the corresponding decision node accordingly.
+
+---
+
+## 7. A Guide to Deciding Unfamiliar Cases with A-FDT
+
+To enable the reader to apply A-FDT to novel, unfamiliar decision problems, we distill the theory into a four-step decision procedure:
+
+### Step 1: Formalize Beliefs and Identify Predictors
+Construct the joint distribution $P$ over all relevant states, outcomes, and agent choices. Identify every entity, environment mechanism, or adversarial algorithm that attempts to predict, simulate, or correlate with your decision.
+
+### Step 2: Construct the Subjunctive Dependency Graph $G$
+Construct a DAG containing nodes for physical events and nodes for algorithmic types:
+* Place a directed arrow $\texttt{fdt} \to \text{Act}$ to your physical body.
+* For every entity that simulates or models your reasoning, draw a directed arrow $\texttt{fdt} \to \text{Prediction}_{\text{entity}}$.
+* For natural background processes that merely share a common cause with your desires (lesions, genetic predispositions, purely statistical correlations), **do not** draw an arrow from $\texttt{fdt}$. Draw arrows only from the common cause.
+
+### Step 3: Identify the Active Algorithmic Node via Observations
+Determine your observation history $x$. Identify the specific behavioral node representing your choice under this observation history: $\texttt{fdt}(\underline{P}, \underline{G}, \underline{x})$.
+
+### Step 4: Intervene on the Algorithmic Type and Maximize
+Compute the graphical intervention using Equation (4):
+
+$$a^* = \operatorname*{argmax}_{a \in \mathcal{A}} \sum_{o \in \mathcal{O}} P\Big(\text{Outcome} = o \;\Big|\; \text{do}\big(\texttt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\big)\Big) \cdot \mathcal{U}(o)$$
+
+Trace all downstream effects of setting the algorithm's output to $a$, including counterfactual variations in past predictions, twin behaviors, and current physical actions. Choose the action $a^*$ that maximizes expected utility across the resulting network.
+
+---
+
+## 8. Conclusion: Rationality as Winning
+
+A-FDT dismantles the traditional dichotomy between causal and evidential decision theory. By replacing CDT’s local, physical token intervention $\text{do}(\text{Act} = a)$ with a global, computational type intervention $\text{do}\big(\texttt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\big)$, A-FDT establishes an analytical framework where agents:
+1. **One-box** in Newcomb's Problem, achieving $\$1{,}000{,}000$;
+2. **Smoke** in the Smoking Lesion Problem, capturing the extra $\$1{,}000$;
+3. **Pay** the driver in Parfit's Hitchhiker, walking safely out of the desert;
+4. **Resist extortion** in Mechanical Blackmail, disincentivizing adversaries; and
+5. **Preserve temporal and reflective stability** without requiring costly external precommitments or arbitrary ratification cycles.
+
+Causal decision theorists often dismiss these successes by claiming that Newcomb-like dilemmas "punish rationality." To this, A-FDT offers a decisive philosophical rebuttal: **Newcomb’s predictor does not punish rational agents; it punishes two-boxers.** A decision theory that advises an agent to adopt a different decision theory at the earliest opportunity is self-defeating. By framing decision-making as an intervention on the mathematical function itself, A-FDT provides a coherent, powerful foundation for instrumental rationality in an increasingly algorithmic world.

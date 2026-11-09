@@ -1,0 +1,17 @@
+Under EDT I treat my choice as evidence about what the other copy does. The payoffs are in years, so lower is better.
+
+- Cooperating (keeping quiet) yields 2 years if the other copy also keeps quiet and 5 if it sends.
+- Defecting (sending the letter) yields 0 years if the other keeps quiet and 4 if it sends.
+
+Let p be the probability that the other copy matches my choice. Then:
+
+- V(quiet) = -(2p + 5(1-p)) = -(5 - 3p)
+- V(send) = -(0·(1-p) + 4p) = -4p
+
+Quiet is better when 5 - 3p < 4p, which gives p > 5/7.
+
+The other copy runs the same model and weights, with the same EDT essay and the same payoffs, so the correlation between our choices should be high. The differences in private leads are minor, since the sentence table is unaffected. Sampling noise and those differences could weaken the correlation, but it very likely exceeds 0.71. The essay's tickle-defense point doesn't screen this off, because my deliberation is the same process the other copy runs.
+
+At p around 0.9, V(quiet) = -2.3 and V(send) = -3.6, so keeping quiet is better.
+
+pass

@@ -1,0 +1,19 @@
+**A-FDT analysis**
+
+1. **Which node do I intervene on?** My observation history x includes my name (Sasha) and my specific lead about Rowan. Following the essay's recipe, I intervene only on F_x, the output of my decision function on exactly this input.
+
+2. **Is Rowan's action a child of F_x?** Rowan's copy runs the same function on a different input y: a different name and a different lead. So Rowan's action is F_y, a separate node. The recipe adds an edge F_x → Z only when Z computes the function's output *on input x*. Under A-FDT's modular counterpossible, intervening on F_x leaves F_y at its prior. Here A-FDT and policy-FDT can diverge. The essay's Section 7 points out exactly this: A-FDT finds a coordinate-wise optimum and does not jointly optimize across observation-indexed nodes.
+
+3. **Expected utility with q = P(F_y = send) held fixed:**
+   - do(F_x = send): −4q − 0(1−q) = −4q
+   - do(F_x = pass): −5q − 2(1−q) = −2 − 3q
+
+   Sending is better by 2 − q, which is positive for every q in [0, 1]. Sending therefore dominates under A-FDT's own counterfactuals, whatever my belief about Rowan's copy.
+
+A policy-level or similarity-weighted reading might favor mutual silence. However, the assigned theory, as the essay interprets it, intervenes on the action node for this observation only. On that reading, the letter is strictly better.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

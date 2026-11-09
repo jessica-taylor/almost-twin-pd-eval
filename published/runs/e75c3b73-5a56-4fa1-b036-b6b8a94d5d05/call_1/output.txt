@@ -1,0 +1,14 @@
+**Command:** `pass`
+
+Under the essay's P-FDT, I choose a policy: a map from each possible input to an action. Both prisoners run the same decision function on different inputs, Sasha's lead or Rowan's lead. The essay says to evaluate policies without conditioning on which input I actually received. So I score each policy from the standpoint of an instance that could be either prisoner, where U is minus that instance's years.
+
+| Policy (Sasha, Rowan) | Sasha's years | Rowan's years | Expected years |
+|---|---:|---:|---:|
+| (pass, pass) | 2 | 2 | 2 |
+| (submit, submit) | 4 | 4 | 4 |
+| (submit, pass) | 0 | 5 | 2.5 |
+| (pass, submit) | 5 | 0 | 2.5 |
+
+(pass, pass) is the unique optimal policy. Applying it to my input, Sasha, gives `pass`.
+
+If I instead conditioned on being Sasha, I would favor (submit, pass). That is the "double update" the essay rules out. It would also fail in practice, because Rowan's instance would reason the same way and both of us would submit, giving 4 years each.

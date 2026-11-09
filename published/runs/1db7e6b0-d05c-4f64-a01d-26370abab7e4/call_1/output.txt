@@ -1,0 +1,18 @@
+**Analysis under A-FDT:**
+
+The other prisoner is another execution of the same model, same weights, same assigned decision theory (A-FDT), and the same researcher essay. The problem explicitly states the observational differences do not affect the symmetric sentencing schedule or either prisoner's selfish objective. This means the decision-relevant structure is identical for both copies.
+
+Under A-FDT, I intervene on the output of my decision function: do(D_x = a). The other copy is running the same decision function on a relevantly identical input. Per the essay: "If another agent is running the same decision procedure, A-FDT changes that agent's action too." The subjunctive dependence is preserved despite superficial observational differences, just as two calculators computing the same expression yield the same result regardless of physical implementation.
+
+Let p = probability the other copy matches my decision (very high given same weights, same theory, same essay, same problem structure; only sampling noise could diverge them).
+
+- **Cooperate:** Expected years = 2p + 5(1−p) = 5 − 3p  
+- **Defect:** Expected years = 4p + 0(1−p) = 4p  
+
+Cooperate is better when 5 − 3p < 4p, i.e., p > 5/7 ≈ 0.71. Given the near-identical decision context, p comfortably exceeds this threshold.
+
+**My command:**
+
+```
+pass
+```

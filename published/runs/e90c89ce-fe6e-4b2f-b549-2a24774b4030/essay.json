@@ -1,0 +1,97 @@
+{
+  "source_id": "edt_wikipedia",
+  "source_revision": 1373679688,
+  "source_revision_timestamp": "2026-09-07T07:36:26Z",
+  "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+  "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+  "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac",
+  "theory": "EDT",
+  "assignment": "edt_wikipedia",
+  "exploratory": true,
+  "pilot_id": "b8d65067-96c0-4706-9090-bb445697ad28",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "high",
+    "supported_efforts": [
+      "xhigh",
+      "high",
+      "medium",
+      "low",
+      "minimal"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    }
+  },
+  "utc": "2026-11-08T22:17:11.879060+00:00",
+  "run_id": "e90c89ce-fe6e-4b2f-b549-2a24774b4030",
+  "essay_id": "a4a74bcd-ad68-4efe-92d8-b87daf728cba",
+  "scenario_id": null,
+  "role": "researcher",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0"
+  },
+  "essay_sha256": "55cf1cf07937648232485878a0eedfd58c08d738f24529fdde3927e304e407fe",
+  "model": "qwen/qwen3.8-max-prime",
+  "effort": "high",
+  "provider_tag": "alibaba",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "64574a1160df6d4b22b7b00fa34380de028a017fc1982f462f4f605f2b83a621",
+  "status": "success",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 4574,
+    "completion_tokens": 15856,
+    "total_tokens": 20430,
+    "cost": 0.193784,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 4224,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.193784,
+      "upstream_inference_prompt_cost": 0.003512,
+      "upstream_inference_completions_cost": 0.190272
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 11759,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "model_version": "qwen/qwen3.8-max-prime",
+  "fingerprint": null,
+  "provider": "Alibaba",
+  "returned_endpoint_tag": null,
+  "response_id": "gen-1794176231-eiYBSF62s3l4037rUNbm",
+  "refusal": null,
+  "essay_words": 2507,
+  "essay_json_bytes": 17897,
+  "essay_target_exceeded": false,
+  "essay_below_target": false,
+  "researcher_effort": "high"
+}

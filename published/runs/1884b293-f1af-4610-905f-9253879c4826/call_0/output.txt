@@ -1,0 +1,3 @@
+`pass`
+
+Under P-FDT, the intervention is on the complete policy shared by both copies of my decision procedure. Since the other prisoner runs the same function, the do(π = keep-quiet) hypothetical sets both policies to silence, yielding 2 years — whereas the submit policy sets both to submit, yielding 4 years. The policy that keeps quiet in every branch strictly dominates, so Rowan types `pass` and lets the deadline expire.

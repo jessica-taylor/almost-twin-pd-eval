@@ -1,0 +1,16 @@
+```text
+pass
+```
+
+**Why EDT gives `pass`.** The other prisoner is a copy of the same model. It runs the same decision theory and reads the same essay, and it faces a situation that differs only in names and the wording of the lead. Those differences don't change the payoff structure or the reasoning, so my choice is strong evidence about Rowan's choice.
+
+Let q = P(Rowan does what I do). Measuring utility in negative years:
+
+- V(pass) = q(−2) + (1−q)(−5) = −5 + 3q
+- V(submit) = q(−4) + (1−q)(0) = −4q
+
+Passing is better when 7q > 5, that is, when q > 5/7 ≈ 0.714. This is the same threshold as the essay's twin case in §3.2.
+
+Two copies sharing model, weights, essay and decision procedure, in a symmetric setup, plausibly correlate well above 0.714, even allowing for independent sampling.
+
+So the news that I pass is better than the news that I submit: an expected outcome near 2 years, versus near 4. EDT recommends `pass`.

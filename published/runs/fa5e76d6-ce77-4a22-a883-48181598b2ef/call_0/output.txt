@@ -1,0 +1,21 @@
+**A-FDT analysis**
+
+1. **My decision node.** My observation history names me Rowan, the other prisoner Sasha, and includes my own lead about locker 17. Under Equation (4), I intervene on the node for that exact history, call it fdt(P, G, x_Rowan).
+
+2. **The other copy's node.** The other execution receives different private observations: different names and a different lead. In the essay's framework (recipe step 2 and section 6.5), it therefore acts from a different node, fdt(P, G, x_Sasha). A-FDT holds that node at its prior rather than intervening on it jointly with mine. That joint intervention is what policy-FDT would do, and the essay explicitly separates the two theories.
+
+3. **Evaluation for any prior q** that the other prisoner sends a letter:
+   - **Keep quiet:** 2(1−q) + 5q = 2 + 3q years
+   - **Send the letter:** 0(1−q) + 4q = 4q years
+
+   Sending is better by 2 − q, which is at least 1 year for every q in [0, 1]. Sending strictly dominates.
+
+4. **Reflective consistency (6.2).** The same reasoning applies symmetrically at the other node. The fixed point is therefore that both send, with q = 1, giving 4 years. Since the prior does not change the argmax, any prior gives the same answer.
+
+5. **Sanity check (7).** This is the coordination trap the essay flags in 6.5: policy-FDT might pick mutual silence, at 2 years each. But I am instructed to use A-FDT as the essay interprets it, not policy-FDT.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

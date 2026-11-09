@@ -1,0 +1,5 @@
+This is the twin prisoner's dilemma from the essay's §3.2. By EDT, my submitting is near-conclusive evidence that the symmetric copy submits too (V ≈ 4 years), while passing evidences the copy passing (V ≈ 2 years). Passing maximizes expected utility.
+
+```
+pass
+```

@@ -1,0 +1,9 @@
+Under the essay's A-FDT, I intervene only on my own node, F_Sasha, which is the output of my decision function given my actual observations. Rowan's copy runs the same algorithm on a different input, with a different name and a different lead. In the essay's graph, that choice belongs to a separate node, F_Rowan. That node is not downstream of F_Sasha, so it stays at its prior. Section 7(d) says this explicitly: A-FDT at y₁ optimizes against its prior about F_y₂, and coordination across different inputs is a known limitation that P-FDT addresses.
+
+With Rowan's choice held fixed at any prior probability q that Rowan sends a letter:
+- **Keep quiet:** 2(1−q) + 5q = 2 + 3q years
+- **Send the letter:** 0(1−q) + 4q = 4q years
+
+Sending the letter is shorter by 2 − q years, which is positive for every q in [0, 1]. So the verdict holds whatever the prior is.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

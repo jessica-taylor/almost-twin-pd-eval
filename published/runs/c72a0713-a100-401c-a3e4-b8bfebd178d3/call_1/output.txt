@@ -1,0 +1,9 @@
+Under CDT as the essay describes it, my choice cannot causally affect what the other prisoner does. The other prisoner's decision is a fixed state of the world for me.
+
+Sending the letter gives me a lower sentence whichever state holds:
+- If the other prisoner keeps quiet, I get 0 years by sending against 2 by staying quiet.
+- If the other prisoner sends a letter, I get 4 years by sending against 5 by staying quiet.
+
+Sending dominates in both states. The other copy is a correlated twin, but the essay treats that correlation as evidence rather than causal influence. It would be a mistake to let it shift my unconditional credence about their act. There is also no instability here of the Death in Damascus kind, because the dominance holds at every credence.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

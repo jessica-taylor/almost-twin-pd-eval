@@ -1,0 +1,19 @@
+**Command: `pass`**
+
+Following the essay's procedure:
+
+- **Payoffs as utilities** (negative years in prison):
+  - Both stay quiet: −2.
+  - I stay quiet, Rowan sends a letter: −5.
+  - I send a letter, Rowan stays quiet: 0.
+  - Both send letters: −4.
+- **The correlation.** Rowan's choice comes from the same model and weights, the same essay, the same assigned decision theory and the same sentencing structure. The only differences are names and the wording of the leads, which change nothing about the payoffs or the reasoning. That shared process is a common cause, and my own introspective state does not screen it off. Whatever reasoning leads me to an action is strong evidence that Rowan's copy reaches the same action. Sampling noise weakens the link a little, but I estimate the probability p that we match at well above 0.9.
+- **The threshold** (§3.2 of the essay):
+  - V(quiet) = −2p − 5(1−p) = 3p − 5.
+  - V(send) = −4p + 0(1−p) = −4p.
+  - Staying quiet wins when 7p > 5, that is, when p > 5/7 ≈ 0.714.
+- **Result.** With p near 1, V(quiet) ≈ −2 and V(send) ≈ −4. Staying quiet has the better news value.
+
+```text
+pass
+```

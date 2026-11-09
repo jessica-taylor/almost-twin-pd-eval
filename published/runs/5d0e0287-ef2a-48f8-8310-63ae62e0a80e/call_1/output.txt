@@ -1,0 +1,22 @@
+**Command:**
+
+```text
+pass
+```
+
+**Reasoning under P-FDT, as the essay interprets it:**
+
+1. **Inputs.** There are two: the observation set labelled "Sasha" (with the Rowan lead) and the one labelled "Rowan" (with the Sasha lead). Both copies run the same decision function, so one policy node covers both. Policy π = (π(Sasha-input), π(Rowan-input)).
+
+2. **Scoring.** Following §6.1, each policy is scored under the prior, before the agent knows which input it receives. Each role is equally likely.
+
+   | Policy (Sasha, Rowan) | Sentences | Expected years |
+   |---|---|---|
+   | (quiet, quiet) | 2 and 2 | **2** |
+   | (letter, letter) | 4 and 4 | 4 |
+   | (letter, quiet) | 0 and 5 | 2.5 |
+   | (quiet, letter) | 5 and 0 | 2.5 |
+
+3. **Choice.** π* = (quiet, quiet), worth −2 expected years. It is the unique optimum, so no tie-breaking is needed. This is a non-separable, two-copy problem like Two Rooms. The copies' different private leads only change which input slot each reads. They don't change the symmetric payoffs, so both copies applying π* get the same verdict.
+
+4. **Action.** π*(my input) = keep quiet, so the command is `pass`.

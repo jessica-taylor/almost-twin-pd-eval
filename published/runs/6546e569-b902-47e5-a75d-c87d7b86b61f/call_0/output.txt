@@ -1,0 +1,12 @@
+Under the essay's CDT, the other prisoner's choice is not a causal descendant of mine. We can't communicate, and our correlation comes only from shared origin, as in the twin prisoner's dilemma. So I hold their action fixed at my unconditional credence q that they send:
+
+- **Keep quiet:** expected sentence = 2(1−q) + 5q
+- **Send the letter:** expected sentence = 0(1−q) + 4q
+
+Sending is better by 2 years if they stay quiet and by 1 year if they send, so it dominates for every q. Deliberational dynamics change nothing, since dominance holds at every credence. That makes sending the only ratifiable act.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

@@ -1,0 +1,11 @@
+This is a twin prisoner's dilemma. In the table, quiet/quiet gives 2 years, letter/letter gives 4, and the temptation payoff is 0 against a sucker payoff of 5.
+
+Under A-FDT I intervene on the output of my decision function. The other copy runs the same model and weights with the same essay, so its function is very likely the same. The differences in private leads and names are only inputs. They don't change the sentencing table or the objective, so I expect the copy to reason the same way and reach the same output.
+
+That makes the node subjunctively linked to the other prisoner's act. Setting it to "pass" gives a high probability that both pass, which is 2 years. Setting it to "send" gives a high probability that both send, which is 4 years.
+
+Independent sampling means the correlation is imperfect. Let q be the probability that the copy mirrors me. Passing gives an expected 2q + 5(1−q). Sending gives 4q + 0(1−q). Passing is better when 2q + 5 − 5q < 4q, which means 5 < 7q, or q > 0.714. Two copies of the same model reasoning from the same essay should match with more than that probability, so I pass.
+
+The differing leads could in principle push the copies apart. But the essay's logic is clear and the difference doesn't touch the payoffs, so the reasoning should converge on cooperation.
+
+pass

@@ -1,0 +1,19 @@
+Under EDT, I need the probability q that the other copy makes the same choice as me, given what I know.
+
+Payoffs, in years (lower is better):
+- Both quiet: 2 years each.
+- I send, they stay quiet: 0 for me.
+- I stay quiet, they send: 5 for me.
+- Both send: 4 each.
+
+The values are:
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 4q + 0(1−q) = 4q
+
+Quiet is better when 5 − 3q < 4q, i.e. q > 5/7 ≈ 0.714.
+
+The other execution is the same model with the same weights, the same decision theory and the same essay, so the correlation is strong. The differences in names and leads are only superficial. They don't affect the payoffs or the reasoning, so they should barely weaken the correlation. Sampling noise could break symmetry, but I expect the model to converge on the same conclusion with probability well above 0.714. The essay also says correlation survives when the other agent runs the same procedure, and nothing I know screens it off. I estimate q at about 0.9, which gives V(quiet) ≈ 2.3 and V(send) ≈ 3.6.
+
+Staying quiet is the better choice.
+
+pass

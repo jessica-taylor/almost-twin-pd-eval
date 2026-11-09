@@ -1,0 +1,15 @@
+Payoffs here are in years, so lower is better. Staying quiet gives 2 years if the other prisoner stays quiet and 5 if they send. Sending gives 0 if they stay quiet and 4 if they send.
+
+Under the essay's EDT, what matters is how strongly my act correlates with the other copy's act. We run the same model weights with the same essay and the same decision theory, so the correlation should be fairly strong. It is not perfect, because the private leads differ and sampling is independent.
+
+Let q be the probability the other copy matches my act.
+- V(quiet) = -(2q + 5(1-q)) = -(5 - 3q)
+- V(send) = -(4q + 0·(1-q)) = -4q
+
+Quiet is better when 5 - 3q < 4q, so q > 5/7, about 0.714.
+
+My reasoning is the same procedure the other copy runs, so the correlation runs through the decision procedure itself. That is not a mediator I can observe and screen off. The differing leads are the only source of divergence, and they don't touch the payoff structure or the reasoning, so I estimate q at around 0.85 to 0.9. That is above the threshold. At q = 0.85, quiet costs 2.45 expected years and sending costs 3.4.
+
+I choose to stay quiet.
+
+pass

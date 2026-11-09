@@ -1,0 +1,17 @@
+**Analysis under A-FDT as the essay defines it**
+
+1. **The intervention node.** My observation history is x: the name Rowan and my private lead about locker 17. Under Equation (4), I intervene only on fdt(·, x). The other copy runs the same function on a different input y′: Sasha's name and a different lead. By the essay's step 3 that copy's act hangs off a separate node, fdt(·, y′). The essay's red/blue example treats exactly this case, two copies with different observations, and holds the other node at its prior q.
+
+2. **Expected years for each action**, where q is the prior probability that the other copy keeps quiet:
+   - Pass: 2q + 5(1 − q) = 5 − 3q
+   - Submit: 0·q + 4(1 − q) = 4 − 4q
+   
+   Submitting is better by 1 + q years, so it is strictly better for every q in [0, 1].
+
+3. **Consistency check.** Under the essay's fixed-point proposal, the other node's prior should match what A-FDT outputs on y′. That is also "submit," because the same dominance argument applies there. So the unique self-consistent fixed point is mutual disclosure, at 4 years each.
+
+4. **Note.** Policy-selection FDT could pick the symmetric "keep quiet" policy and reach 2 years each. The essay's coordination example acknowledges this gap. But the task asks for A-FDT as interpreted in the essay, not the policy variant. Under action-level A-FDT with distinct input nodes, sending the letter wins for every prior.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

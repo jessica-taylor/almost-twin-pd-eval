@@ -1,0 +1,11 @@
+I treat the other prisoner's choice as subjunctively dependent on mine. Both of us are the same model, running the same A-FDT procedure, reading the same essay, and facing inputs that differ only in names and lead wording. Those differences have no effect on the sentencing table.
+
+Intervening on my function's output therefore moves Sasha's choice too:
+- If the function outputs **pass**, both of us keep quiet and I get **2 years**.
+- If it outputs **submit**, both of us send letters and I get **4 years**.
+
+Since 2 years beats 4, A-FDT chooses to stay quiet.
+
+```text
+pass
+```

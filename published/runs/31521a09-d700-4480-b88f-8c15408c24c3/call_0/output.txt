@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, the other prisoner is another run of the same model and weights, given the same essay and the same decision procedure. Only the names and the wording of the leads differ. That is a twin prisoner's dilemma, and the other prisoner's output is subjunctively dependent on mine.
+
+Intervening on the decision function's output gives two cases. Let p be the probability that the twin's output matches mine. Sampling noise and the different private observations mean p may be below 1.
+
+- **Output pass:** expected sentence = 2p + 5(1−p) = 5 − 3p years.
+- **Output send:** expected sentence = 4p + 0(1−p) = 4p years.
+
+Passing is better whenever 5 − 3p < 4p, which means p > 5/7 ≈ 0.71. The differing observations affect only the lead text, not the sentencing table or the reasoning. Two copies of the same model reasoning from the same essay should converge on the same output with probability well above 0.71. So passing has the lower expected sentence, about 2 years versus about 4.
+
+The dominance argument for sending a letter holds the twin's move fixed while my action changes. A-FDT does not do that, because the twin's move depends on the same function output.

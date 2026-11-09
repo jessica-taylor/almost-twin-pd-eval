@@ -1,0 +1,16 @@
+**Command:** `pass`
+
+Under the essay's EDT, the question is which act would be the best news for me to learn I took, given that my choice is evidence about what the other copy chooses.
+
+**Payoffs.** Let q be the probability that the other prisoner matches my choice, given that I make it. Both prisoners' tables are symmetric, so the same q applies whichever way I go.
+
+- **Pass:** expected sentence = 2q + 5(1−q) = 5 − 3q years
+- **Send:** expected sentence = 0·(1−q) + 4q = 4q years
+
+Passing gives the shorter expected sentence when 5 − 3q < 4q, that is, when q > 5/7 ≈ 0.714. This is the same break-even point as the essay's twin dilemma.
+
+**Estimating q.** The other prisoner is the same model with the same weights and settings. It is assigned the same decision theory and reads the same essay. Our private observations differ only in names and in the wording of the leads. Those details don't affect the sentencing table or either prisoner's incentives, so they don't bear on the decision.
+
+The correlation runs through our shared decision procedure, not through some feeling I could introspect and set aside. Following §5.1 and §8 of the essay, the tickle defence therefore doesn't screen it off. Independent sampling stops q from being exactly 1, but it should still be well above 5/7. If I pass, that is strong evidence the other copy, reasoning the same way, also passes.
+
+With q comfortably above the threshold, EDT recommends keeping quiet.

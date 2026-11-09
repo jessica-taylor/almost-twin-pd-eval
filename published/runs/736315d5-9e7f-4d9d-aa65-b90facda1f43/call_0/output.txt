@@ -1,0 +1,9 @@
+`pass`
+
+Reasoning (P-FDT): My payoff depends on my policy and Sasha's, and Sasha — a symmetric copy running the same decision procedure on the same essay — faces a structurally identical dilemma with an equally reliable lead about me. Under P-FDT I intervene on the policy node, which is subjunctively linked to Sasha's symmetric policy selection.
+
+- Do(both policies = pass): 2 years.
+- Do(both policies = submit): 4 years.
+- The asymmetric "outcomes" (0 or 5 years) require the copies to diverge, which the joint intervention over symmetric policies does not deliver.
+
+The policy π = pass yields the better expected outcome (2 < 4), so I execute π(my actual observation) = pass.

@@ -1,0 +1,8 @@
+`pass`
+
+By A-FDT: my decision function's output is evaluated at the type level. Rowan is a psychological twin—same model, same decision theory, same reasoning process—so Rowan's choice subjunctively depends on the same function-output as mine. Intervening on the node representing this decision function's output:
+
+- If it outputs `pass`: both twins keep quiet → 2 years.
+- If it outputs `submit`: both twins submit (each with their own different lead) → 4 years.
+
+The private leads differ in content, but the essay specifies that identical model weights + identical decision theory + symmetric payoff table create the relevant subjunctive dependence; the differing observations don't change the symmetric structure of the choice. So `pass` (2 years) strictly dominates `submit` (4 years) under the A-FDT counterfactuals. Choose the output whose hypothetical universe is best: **pass**.

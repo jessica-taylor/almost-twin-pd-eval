@@ -1,0 +1,15 @@
+Under A-FDT as the essay describes it, the question is whether the other prisoner's choice subjunctively depends on the output of my decision function.
+
+The other prisoner is an execution of the same model, with the same weights, the same settings, the same essay, and the same decision theory. Our private observations differ, but that difference doesn't change the payoffs or the objective. So the other copy is very likely computing nearly the same function and will probably reach the same decision. The residual risk is that sampling or the different leads make our outputs diverge. I'll treat that as a noise node on the link.
+
+Payoffs, with probability p that the other copy matches my output:
+- If I keep quiet: p·2 + (1−p)·5 years.
+- If I send the letter: p·4 + (1−p)·0 years.
+
+Quiet is better when 2p + 5 − 5p < 4p, so 5 < 7p, so p > 5/7 ≈ 0.71.
+
+Same weights, same essay and same theory make a match probability above 0.71 plausible. The essay's twin prisoner's dilemma case says to cooperate. The differing leads are a surface difference, and the essay's operational test (does the other system's behavior change with my procedure's output, through actually computing it) is met here. The essay also says A-FDT keeps subjunctive dependencies in exactly this kind of case.
+
+So I stay quiet.
+
+pass

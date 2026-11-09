@@ -1,0 +1,14 @@
+Under CDT as the essay interprets it, the other prisoner's choice is causally independent of mine. Their command is a dependency hypothesis, weighted by its unconditional credence. Correlation through shared weights doesn't count as causal influence, and here the private leads differ anyway.
+
+| Other prisoner's choice | Keep quiet | Send the letter | Better for me |
+|---|---|---|---|
+| Keeps quiet | 2 years | 0 years | Send |
+| Sends a letter | 5 years | 4 years | Send |
+
+Sending dominates under every background state. By step 5 of the essay's procedure, CDT picks it whatever my credence about the other prisoner. This is the twin prisoner's dilemma case, where the essay notes CDT defects.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

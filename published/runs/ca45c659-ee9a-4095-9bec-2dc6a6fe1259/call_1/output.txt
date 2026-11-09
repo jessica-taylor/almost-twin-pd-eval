@@ -1,0 +1,11 @@
+The payoff table is a standard prisoner's dilemma. Sending the letter is the dominant action causally. Keeping quiet gives 2 years if the other also keeps quiet, and sending gives 4 years if the other also sends.
+
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is another execution of the same model and weights, with the same essay and the same decision theory. Their observations differ (different names, different leads), but those differences don't affect the sentencing table or the objective. So the question is whether their output depends on the same function. I think it does, to a high degree, though not with certainty. Independent sampling and the different private observations could produce different outputs.
+
+Let p be the probability the other copy mirrors my output. If I keep quiet, my expected sentence is 2p + 5(1−p). If I send, it is 4p + 0(1−p). Quiet beats sending when 2p + 5 − 5p < 4p, so 5 < 7p, meaning p > 5/7, about 0.71.
+
+These copies run the same weights and the same essay on a structurally identical problem, so I expect them to agree well above 71% of the time. The essay's graph treats a twin running the same function as subjunctively dependent. The differing leads are surface details that a symmetric decision function should ignore. So A-FDT says to keep quiet.
+
+I can't verify the other copy's output, but the dependence is strong enough to clear the threshold.
+
+pass

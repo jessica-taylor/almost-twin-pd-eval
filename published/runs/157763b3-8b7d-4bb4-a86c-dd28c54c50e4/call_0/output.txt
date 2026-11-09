@@ -1,0 +1,10 @@
+Under CDT as the essay interprets it, the other copy's choice is causally independent of mine, so I hold my credence about it fixed (steps 2–3 of the essay's recipe). Then I check for dominance (step 5):
+
+- If Sasha keeps quiet: sending gives 0 years, keeping quiet gives 2 years.
+- If Sasha sends: sending gives 4 years, keeping quiet gives 5 years.
+
+Sending the letter is strictly better in every state, so it maximizes causal expected utility for any credence about Sasha's choice. This is the essay's Twin Prisoner's Dilemma verdict. The two copies' observations differ, which weakens any correlation between them, but that doesn't matter here because the dominance argument never relied on it.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

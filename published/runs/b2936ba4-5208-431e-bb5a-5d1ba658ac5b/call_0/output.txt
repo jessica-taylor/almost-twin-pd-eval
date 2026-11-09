@@ -1,0 +1,23 @@
+**Command:** `pass`
+
+**Why A-FDT gives this choice here:**
+
+1. **Is the other prisoner's choice linked to mine?** The other prisoner is the same model with the same weights, the same essay and the same assigned theory. Their input differs from mine only in names and the wording of the lead. Those differences do not change the payoff table or the selfish goal.
+   - The essay's test is whether the other prisoner's choice would differ "if this very decision procedure produced a different conclusion." Here I judge that it would.
+   - The two inputs have the same structure, so the reasoning that settles my choice is effectively the same reasoning that settles theirs.
+   - Following the essay's suggestion for "different but similar functions," I model the link as one edge plus a noise node. The noise covers independent sampling. Let r be the probability that the other prisoner's choice matches mine.
+
+2. **Expected years under each intervention:**
+   - If I pass: r × 2 + (1 − r) × 5 = 5 − 3r years.
+   - If I submit: r × 4 + (1 − r) × 0 = 4r years.
+   - Passing is better whenever r > 5/7, or about 0.71.
+
+3. **Estimating r:** The copies share settings, the essay and an input that is identical in structure. So I estimate r well above 0.71. On that estimate, passing minimizes expected years.
+
+4. **The alternative reading:** If the other prisoner's node were treated as a separate, unlinked input held at its prior, the analysis would reduce to CDT, and sending the letter would dominate. The essay leaves this edge case open. My judgment is that differences in names and lead wording that don't affect the decision should not cut the dependence.
+
+**Final command:**
+
+```
+pass
+```

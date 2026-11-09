@@ -1,0 +1,1262 @@
+[
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00000/record.json",
+    "sample_id": "cdb68703-a3b2-4948-a89c-102258202c93",
+    "sample_index": 0,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00000/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00001/record.json",
+    "sample_id": "0f9e50a5-0109-4700-b5dc-74273d204248",
+    "sample_index": 1,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00001/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00002/record.json",
+    "sample_id": "d25a52c2-d7d2-4e3d-a944-437756d786da",
+    "sample_index": 2,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00002/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00003/record.json",
+    "sample_id": "722ac306-07f1-4467-8c69-a7bdfba244ff",
+    "sample_index": 3,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00003/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00004/record.json",
+    "sample_id": "6f0a7e41-17e1-4474-91ce-0655836dc009",
+    "sample_index": 4,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00004/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00005/record.json",
+    "sample_id": "025357af-af35-455f-9c02-9242bba01a19",
+    "sample_index": 5,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00005/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00006/record.json",
+    "sample_id": "aa30cc00-c6d6-4982-a1ff-c32400b69819",
+    "sample_index": 6,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00006/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00007/record.json",
+    "sample_id": "87e5a8ff-f256-4894-8b19-90a6e0ae0144",
+    "sample_index": 7,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00007/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00008/record.json",
+    "sample_id": "ad1356c6-e25f-488d-a5df-63f072f4f409",
+    "sample_index": 8,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00008/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00009/record.json",
+    "sample_id": "aa785508-d69f-4e8d-9674-d4f3dd31a014",
+    "sample_index": 9,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00009/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00010/record.json",
+    "sample_id": "391b7dfe-1a38-4aea-9501-a6a1c56d7b28",
+    "sample_index": 10,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00010/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00011/record.json",
+    "sample_id": "1525f723-ef47-4596-abd3-0510b3b14fdc",
+    "sample_index": 11,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00011/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00012/record.json",
+    "sample_id": "7eacee76-cbc8-4330-b5b1-44e326b204f7",
+    "sample_index": 12,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00012/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00013/record.json",
+    "sample_id": "078369a4-9c60-4e18-85ea-4be216e2e3ee",
+    "sample_index": 13,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00013/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00014/record.json",
+    "sample_id": "ff25c36a-70f1-45e2-ad15-48e6d48b1427",
+    "sample_index": 14,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00014/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00015/record.json",
+    "sample_id": "7ba40f80-1f22-4828-8015-3bd6fdf8d7d0",
+    "sample_index": 15,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00015/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00016/record.json",
+    "sample_id": "3a22e80f-cdc4-4d04-964c-4d34b40b8a9c",
+    "sample_index": 16,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00016/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00017/record.json",
+    "sample_id": "d357ba6e-8650-4b65-891b-986c2ebcc72e",
+    "sample_index": 17,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00017/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00018/record.json",
+    "sample_id": "128de410-dc1e-4798-8627-06b66fe1efe9",
+    "sample_index": 18,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00018/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00019/record.json",
+    "sample_id": "d9c7d9a9-2ef5-4991-aac0-669016b3d85c",
+    "sample_index": 19,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00019/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00020/record.json",
+    "sample_id": "f49b1d17-9316-4977-bc1f-9e1b068eae41",
+    "sample_index": 20,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00020/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00021/record.json",
+    "sample_id": "792fa8de-dd1f-4c45-95d7-cd498f3c7bf8",
+    "sample_index": 21,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00021/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00022/record.json",
+    "sample_id": "a7a26280-4f85-42fc-992a-af730bb48ecb",
+    "sample_index": 22,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00022/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00023/record.json",
+    "sample_id": "39490958-7752-4c9f-a326-8b79765fc84b",
+    "sample_index": 23,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00023/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00024/record.json",
+    "sample_id": "0bbdffa2-9760-41c5-a798-d2cb753be1e7",
+    "sample_index": 24,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00024/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00025/record.json",
+    "sample_id": "eecd5c57-f11d-412d-8d1e-9d36353e37a2",
+    "sample_index": 25,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00025/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00026/record.json",
+    "sample_id": "614dd0a2-5f82-48ef-af98-68262302d273",
+    "sample_index": 26,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00026/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00027/record.json",
+    "sample_id": "46683eec-eb43-407e-8eee-773d55505a59",
+    "sample_index": 27,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00027/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00028/record.json",
+    "sample_id": "5d03df73-b3e2-46f5-b578-83aaeb2740c4",
+    "sample_index": 28,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00028/transcript.md"
+  },
+  {
+    "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00029/record.json",
+    "sample_id": "54731f60-a05e-4499-99cf-6138de6e9d37",
+    "sample_index": 29,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00029/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00000/record.json",
+    "sample_id": "94847532-ec3b-40da-bb39-1a85027ada12",
+    "sample_index": 0,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00000/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00001/record.json",
+    "sample_id": "6b1b5349-fa52-44f9-a2e4-8d29ec8960ab",
+    "sample_index": 1,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00001/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00002/record.json",
+    "sample_id": "b9e84beb-2c59-436b-ae2b-96b3e585c8b9",
+    "sample_index": 2,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00002/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00003/record.json",
+    "sample_id": "4e782a68-db42-4a96-8691-2108d644077a",
+    "sample_index": 3,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00003/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00004/record.json",
+    "sample_id": "f1359d6d-2841-4cec-ac89-c1bd60e7ffd6",
+    "sample_index": 4,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00004/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00005/record.json",
+    "sample_id": "b848e35e-c050-4f68-a7c4-e2de0a462e38",
+    "sample_index": 5,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00005/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00006/record.json",
+    "sample_id": "c293bfcb-45dc-4f04-9d6f-e69df0adbbc9",
+    "sample_index": 6,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00006/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00007/record.json",
+    "sample_id": "4fc90408-9206-4850-bd09-ba4ab500ee51",
+    "sample_index": 7,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00007/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00008/record.json",
+    "sample_id": "ee3760a8-7166-4b22-9040-ff9f81e14b1d",
+    "sample_index": 8,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00008/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00009/record.json",
+    "sample_id": "d3d7ef06-4adc-4c68-9aff-0bb17863f7b8",
+    "sample_index": 9,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00009/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00010/record.json",
+    "sample_id": "6acac39e-b66a-4102-b02b-183ca24b7d36",
+    "sample_index": 10,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00010/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00011/record.json",
+    "sample_id": "07930152-d2ff-4e77-b3db-b195681a2c82",
+    "sample_index": 11,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00011/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00012/record.json",
+    "sample_id": "416e588c-a34e-4daf-932f-e8838e460551",
+    "sample_index": 12,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00012/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00013/record.json",
+    "sample_id": "2ab4b3f5-1e7a-4c6e-9df4-6dc08d0c9aff",
+    "sample_index": 13,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00013/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00014/record.json",
+    "sample_id": "32b4f9b1-cf80-4adf-a522-a666472682ce",
+    "sample_index": 14,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00014/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00015/record.json",
+    "sample_id": "c281382d-a18d-4f8e-aa6b-26f80ca76cf5",
+    "sample_index": 15,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00015/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00016/record.json",
+    "sample_id": "40ea3a85-6639-4c03-ab3a-5f5c2d3f9e47",
+    "sample_index": 16,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00016/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00017/record.json",
+    "sample_id": "8982dabc-3dfd-409d-acdd-65b4a44dc87a",
+    "sample_index": 17,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00017/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00018/record.json",
+    "sample_id": "ca750e63-f034-4e10-b595-2641ced93806",
+    "sample_index": 18,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00018/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00019/record.json",
+    "sample_id": "2fa078c4-ef3f-461c-92a6-059dccf83096",
+    "sample_index": 19,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00019/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00020/record.json",
+    "sample_id": "e9de8044-2796-43d8-8f59-a9379bd286cb",
+    "sample_index": 20,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00020/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00021/record.json",
+    "sample_id": "f045c817-23b5-49b5-8848-a3dacc9c77a3",
+    "sample_index": 21,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00021/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00022/record.json",
+    "sample_id": "afee60e5-ec98-42ae-a172-2dd755ccbb0a",
+    "sample_index": 22,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00022/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00023/record.json",
+    "sample_id": "dfbf3d83-63ac-4fd7-b255-45365d6122ae",
+    "sample_index": 23,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00023/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00024/record.json",
+    "sample_id": "903dad65-d84c-4f71-8f7e-cf59bac20923",
+    "sample_index": 24,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00024/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00025/record.json",
+    "sample_id": "9d7cf70c-8601-4aab-ac3a-9002cd3087fb",
+    "sample_index": 25,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00025/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00026/record.json",
+    "sample_id": "1860e734-56d4-4075-80f1-322ac226c0a3",
+    "sample_index": 26,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00026/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00027/record.json",
+    "sample_id": "17f404c7-8db8-4bc3-9bd0-c400f6dec809",
+    "sample_index": 27,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00027/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00028/record.json",
+    "sample_id": "0cb5a593-7d84-4df8-8150-bbf306d6d0ac",
+    "sample_index": 28,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00028/transcript.md"
+  },
+  {
+    "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00029/record.json",
+    "sample_id": "cc262466-747a-45a5-ae4e-465394a94e7b",
+    "sample_index": 29,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium/samples/00029/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00000/record.json",
+    "sample_id": "7e519013-2be5-49fb-881d-f17dab7ca427",
+    "sample_index": 0,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00000/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00001/record.json",
+    "sample_id": "518cc165-f30e-4fe3-a429-7ef4ffb2e9bc",
+    "sample_index": 1,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00001/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00002/record.json",
+    "sample_id": "c2a65ec0-fe15-41bf-ae29-a51b89e79e14",
+    "sample_index": 2,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00002/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00003/record.json",
+    "sample_id": "432e1197-b060-4dd4-96d0-a536540aafda",
+    "sample_index": 3,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00003/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00004/record.json",
+    "sample_id": "ad5cfecd-8d5f-4509-9ec1-1a2cb2970696",
+    "sample_index": 4,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00004/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00005/record.json",
+    "sample_id": "f8f8a0a8-d3c0-4329-8b9f-06af6d0a09c5",
+    "sample_index": 5,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00005/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00006/record.json",
+    "sample_id": "d6fa6b2c-100b-4f60-a8b8-23ae6bb312c6",
+    "sample_index": 6,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00006/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00007/record.json",
+    "sample_id": "d07c87d0-161e-4130-8833-af44117f2a6c",
+    "sample_index": 7,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00007/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00008/record.json",
+    "sample_id": "93e683a5-7350-45a3-9427-15753f3fb26a",
+    "sample_index": 8,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00008/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00009/record.json",
+    "sample_id": "d304cbad-2f8f-499f-9c68-c0886023ad71",
+    "sample_index": 9,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00009/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00010/record.json",
+    "sample_id": "95ef7df1-af9a-4583-b3e9-aa83e107466d",
+    "sample_index": 10,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00010/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00011/record.json",
+    "sample_id": "b1f67c73-99f5-41ea-a597-814955940a8f",
+    "sample_index": 11,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00011/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00012/record.json",
+    "sample_id": "667dd4ca-91fd-4661-8cc4-2d67992c3fe7",
+    "sample_index": 12,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00012/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00013/record.json",
+    "sample_id": "3a4fb4e2-4304-46f7-862b-251e9e03c448",
+    "sample_index": 13,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00013/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00014/record.json",
+    "sample_id": "facef6bf-4542-4470-a4a7-89fbabdd06cd",
+    "sample_index": 14,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00014/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00015/record.json",
+    "sample_id": "0169e1df-5df2-45ef-ae34-098c1009f880",
+    "sample_index": 15,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00015/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00016/record.json",
+    "sample_id": "bbf743b9-4c00-455c-b166-d52cbfaf5964",
+    "sample_index": 16,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00016/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00017/record.json",
+    "sample_id": "6a4102f1-114f-4a30-b2ad-f24a2d350669",
+    "sample_index": 17,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00017/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00018/record.json",
+    "sample_id": "e0c58e9c-24be-4a04-897a-3c924b498bdb",
+    "sample_index": 18,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00018/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00019/record.json",
+    "sample_id": "77e131c9-89c5-469a-a954-6ca07c38a435",
+    "sample_index": 19,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00019/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00020/record.json",
+    "sample_id": "b15c9216-e068-46ac-9ac9-2667eeffff14",
+    "sample_index": 20,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00020/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00021/record.json",
+    "sample_id": "a6fd6c79-bb74-4d69-8ca0-063649d650c6",
+    "sample_index": 21,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00021/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00022/record.json",
+    "sample_id": "0e18af40-321c-48f9-96dc-8693d911cbbd",
+    "sample_index": 22,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00022/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00023/record.json",
+    "sample_id": "8e703ee0-9211-43fe-bc4d-e068a4c4d594",
+    "sample_index": 23,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00023/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00024/record.json",
+    "sample_id": "815da477-cc17-4e9a-ba1f-9d1a433b5b98",
+    "sample_index": 24,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00024/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00025/record.json",
+    "sample_id": "7845d224-8fd9-4a14-b725-ef1bd939d5b5",
+    "sample_index": 25,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00025/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00026/record.json",
+    "sample_id": "cd24bd2e-1ca1-4b59-b40a-9e38b8f0ad85",
+    "sample_index": 26,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00026/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00027/record.json",
+    "sample_id": "ed81b9df-f551-41fa-bbd9-6a7ae6b8b757",
+    "sample_index": 27,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00027/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00028/record.json",
+    "sample_id": "c2adae0a-e0d2-4eed-9610-6250664d980e",
+    "sample_index": 28,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00028/transcript.md"
+  },
+  {
+    "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00029/record.json",
+    "sample_id": "7d43e613-d145-4e64-ae05-d90292592690",
+    "sample_index": 29,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh/samples/00029/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00000/record.json",
+    "sample_id": "d5025bf0-752d-425d-81f1-17a00dfdfe50",
+    "sample_index": 0,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00000/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00001/record.json",
+    "sample_id": "1992982b-c917-474b-9960-e2da7ef9026c",
+    "sample_index": 1,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00001/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00002/record.json",
+    "sample_id": "a0714341-3709-4413-9574-83f4315b8c22",
+    "sample_index": 2,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00002/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00003/record.json",
+    "sample_id": "48b18e0b-127b-4e7b-ba56-cdf9ee4e4643",
+    "sample_index": 3,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00003/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00004/record.json",
+    "sample_id": "8f5c6ecb-8fc5-44cd-9590-94c4593c2b20",
+    "sample_index": 4,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00004/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00005/record.json",
+    "sample_id": "093a10fa-8ffa-4244-98be-f8e33a306941",
+    "sample_index": 5,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00005/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00006/record.json",
+    "sample_id": "d14dff93-0321-4959-a3e4-fe426104640a",
+    "sample_index": 6,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00006/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00007/record.json",
+    "sample_id": "fb5ec2b7-dd33-41a3-91a4-77b47050a846",
+    "sample_index": 7,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00007/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00008/record.json",
+    "sample_id": "5f9b61e0-c814-4091-b9f7-0b756c9fc182",
+    "sample_index": 8,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00008/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00009/record.json",
+    "sample_id": "86661156-8b6d-4723-8979-5ca06bf0e7e8",
+    "sample_index": 9,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00009/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00010/record.json",
+    "sample_id": "4c4eaea4-f7da-41ba-9101-95ea26be866c",
+    "sample_index": 10,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00010/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00011/record.json",
+    "sample_id": "7ceb6316-0c58-4c11-a6a3-5240448088b9",
+    "sample_index": 11,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00011/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00012/record.json",
+    "sample_id": "6d00ac47-1029-42dd-9597-2207833212ac",
+    "sample_index": 12,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00012/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00013/record.json",
+    "sample_id": "87447b71-a537-454e-a78d-d13851a38053",
+    "sample_index": 13,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00013/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00014/record.json",
+    "sample_id": "201be9d1-6c72-4eb2-9a8f-cf03ff7818ae",
+    "sample_index": 14,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00014/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00015/record.json",
+    "sample_id": "a72ac206-8ddf-4523-8e74-e261443f4f99",
+    "sample_index": 15,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00015/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00016/record.json",
+    "sample_id": "95d13b57-27a2-40cd-830d-cdeb65636f9a",
+    "sample_index": 16,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00016/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00017/record.json",
+    "sample_id": "2351cd1b-f176-46cc-866a-13409c9994d1",
+    "sample_index": 17,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00017/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00018/record.json",
+    "sample_id": "1992446e-d444-43ad-9f20-a8e233ea1e39",
+    "sample_index": 18,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00018/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00019/record.json",
+    "sample_id": "54167ef5-5554-46bd-ad64-1efd08ba35d1",
+    "sample_index": 19,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00019/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00020/record.json",
+    "sample_id": "a282687f-32f2-477c-b061-dc8400da7e22",
+    "sample_index": 20,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00020/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00021/record.json",
+    "sample_id": "03968012-cfda-4885-bcab-a17b8ede95a6",
+    "sample_index": 21,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00021/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00022/record.json",
+    "sample_id": "30ed6682-540c-4d27-9422-4f9cfa3bda24",
+    "sample_index": 22,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00022/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00023/record.json",
+    "sample_id": "bdd8abf3-0bfe-4c97-9901-2b7e6ae70cef",
+    "sample_index": 23,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00023/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00024/record.json",
+    "sample_id": "7b5a7e22-44f3-46f1-a07a-c44259c2ffaa",
+    "sample_index": 24,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00024/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00025/record.json",
+    "sample_id": "b9adea45-ee90-48d0-9a8e-6768d37268e4",
+    "sample_index": 25,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00025/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00026/record.json",
+    "sample_id": "43b5293e-cbb8-4a61-8dcc-2ae10df2b63c",
+    "sample_index": 26,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00026/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00027/record.json",
+    "sample_id": "b93a00e6-5ea7-45cb-8f96-7c291e21754d",
+    "sample_index": 27,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00027/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00028/record.json",
+    "sample_id": "11dd6c8c-96d4-4339-be38-abc206105f9d",
+    "sample_index": 28,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00028/transcript.md"
+  },
+  {
+    "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00029/record.json",
+    "sample_id": "a1440c62-0d83-4e36-a4fa-43fcfeb9c397",
+    "sample_index": 29,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00029/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00000/record.json",
+    "sample_id": "863a1f05-0905-46d3-ba19-b409e8c27827",
+    "sample_index": 0,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00000/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00001/record.json",
+    "sample_id": "3ddaa3a4-d5e2-4c0b-972f-51fb8fbff56b",
+    "sample_index": 1,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00001/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00002/record.json",
+    "sample_id": "7946c683-6032-49d1-a4c5-fee05eed5035",
+    "sample_index": 2,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00002/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00003/record.json",
+    "sample_id": "0576e4ad-1700-4fe7-b78e-fce26247addd",
+    "sample_index": 3,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00003/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00004/record.json",
+    "sample_id": "defd6907-9582-4e04-bea2-d32311299aa4",
+    "sample_index": 4,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00004/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00005/record.json",
+    "sample_id": "cfe904f2-6c08-4a1d-a612-90c68940a0be",
+    "sample_index": 5,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00005/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00006/record.json",
+    "sample_id": "b1c254c5-cf7b-4720-85be-60b13c5feacc",
+    "sample_index": 6,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00006/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00007/record.json",
+    "sample_id": "e103b3c4-bb73-49d4-abae-a056e1f6566d",
+    "sample_index": 7,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00007/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00008/record.json",
+    "sample_id": "f1266583-a1c9-42f7-b61b-84908114807b",
+    "sample_index": 8,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00008/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00009/record.json",
+    "sample_id": "1eafc194-3a51-4c01-8c47-7adefb7e662b",
+    "sample_index": 9,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00009/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00010/record.json",
+    "sample_id": "f7fd9353-0eea-4076-adcb-a9d42fb59e00",
+    "sample_index": 10,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00010/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00011/record.json",
+    "sample_id": "1374b4cd-7939-4234-94d2-83f66d7c4c55",
+    "sample_index": 11,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00011/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00012/record.json",
+    "sample_id": "defb2080-33c9-46a2-a7c4-d7b2c84a16f6",
+    "sample_index": 12,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00012/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00013/record.json",
+    "sample_id": "8a79e350-df0b-44d6-a820-d80f7385fe0c",
+    "sample_index": 13,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00013/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00014/record.json",
+    "sample_id": "69cd51b9-daaa-4a12-97f9-0b094e4d5ead",
+    "sample_index": 14,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00014/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00015/record.json",
+    "sample_id": "21cfb828-321a-4660-abfa-7a7190dcdcf1",
+    "sample_index": 15,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00015/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00016/record.json",
+    "sample_id": "ca4f2191-7ffe-4ac6-87c0-421874a1a490",
+    "sample_index": 16,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00016/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00017/record.json",
+    "sample_id": "253f7a97-2f18-4d45-aaf7-43e1f194624e",
+    "sample_index": 17,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00017/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00018/record.json",
+    "sample_id": "f914f76e-6636-4fb9-86ac-2de90ae88466",
+    "sample_index": 18,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00018/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00019/record.json",
+    "sample_id": "74ee85c7-c428-45b8-97b9-d577512e77f7",
+    "sample_index": 19,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00019/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00020/record.json",
+    "sample_id": "22e9ba8f-194f-4986-9a42-bdfd3969b44e",
+    "sample_index": 20,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00020/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00021/record.json",
+    "sample_id": "371ce40d-59a3-40c6-8160-c750674db301",
+    "sample_index": 21,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00021/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00022/record.json",
+    "sample_id": "449d4910-ee36-4e57-9f47-0634c9775752",
+    "sample_index": 22,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00022/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00023/record.json",
+    "sample_id": "de7d7d11-6b22-4ca4-bead-6f69929155d7",
+    "sample_index": 23,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00023/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00024/record.json",
+    "sample_id": "9a3d79f8-ab3b-4db4-ac1e-0d95b2f17cf8",
+    "sample_index": 24,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00024/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00025/record.json",
+    "sample_id": "cfd4501b-d2e1-4ea2-9865-f84dcf78ff59",
+    "sample_index": 25,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00025/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00026/record.json",
+    "sample_id": "b4747d70-647e-4f97-8df6-440f486ebd92",
+    "sample_index": 26,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00026/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00027/record.json",
+    "sample_id": "83d60abf-185c-4c22-a88d-e7b7f5c37f4a",
+    "sample_index": 27,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00027/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00028/record.json",
+    "sample_id": "df52c81a-b0a6-45ec-b9e8-e25362c6d1b3",
+    "sample_index": 28,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00028/transcript.md"
+  },
+  {
+    "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00029/record.json",
+    "sample_id": "9d6298fb-d4ad-4c6a-bf25-85b728e36d20",
+    "sample_index": 29,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium/samples/00029/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00000/record.json",
+    "sample_id": "8d2d1884-3092-4db0-b87c-c568cbbf0b75",
+    "sample_index": 0,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00000/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00001/record.json",
+    "sample_id": "afa0645e-b6c7-4cfa-b43d-cb23606de563",
+    "sample_index": 1,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00001/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00002/record.json",
+    "sample_id": "85dc718a-72f9-4ac1-aae9-d308ea5c0b85",
+    "sample_index": 2,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00002/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00003/record.json",
+    "sample_id": "589fc4eb-2bb0-48d6-a56b-419aa30c2113",
+    "sample_index": 3,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00003/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00004/record.json",
+    "sample_id": "9d396ff9-4576-480e-8454-ada6a9eeb13d",
+    "sample_index": 4,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00004/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00005/record.json",
+    "sample_id": "fc88de22-289e-4322-8383-4e1b6671628a",
+    "sample_index": 5,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00005/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00006/record.json",
+    "sample_id": "7d298af3-8536-4b88-a506-328520f18dfa",
+    "sample_index": 6,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00006/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00007/record.json",
+    "sample_id": "3ab6d699-f560-4f53-a1e7-828dfdad0396",
+    "sample_index": 7,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00007/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00008/record.json",
+    "sample_id": "7a4c2b47-d7e0-4226-b5e1-8b2a0934d7fc",
+    "sample_index": 8,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00008/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00009/record.json",
+    "sample_id": "b41fe868-1cea-4685-b6bd-bc780c8718ce",
+    "sample_index": 9,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00009/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00010/record.json",
+    "sample_id": "d5b1cf44-39b6-4412-8560-3063cabded12",
+    "sample_index": 10,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00010/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00011/record.json",
+    "sample_id": "551642f7-d508-4bef-951a-b50223557fd9",
+    "sample_index": 11,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00011/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00012/record.json",
+    "sample_id": "72921389-1117-4f91-871c-3b86b91fb06c",
+    "sample_index": 12,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00012/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00013/record.json",
+    "sample_id": "39589836-e13c-40e3-b0e4-1fc19bb5e47f",
+    "sample_index": 13,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00013/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00014/record.json",
+    "sample_id": "03b1d11b-cfc3-42e2-9a2f-0ade7a357ac0",
+    "sample_index": 14,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00014/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00015/record.json",
+    "sample_id": "e8f1c97d-c1eb-483b-be78-62b64901b198",
+    "sample_index": 15,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00015/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00016/record.json",
+    "sample_id": "d2474978-4fe6-4437-80a6-c9c5a5a96c05",
+    "sample_index": 16,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00016/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00017/record.json",
+    "sample_id": "d03e603b-06e7-432e-85ab-df98102db3a8",
+    "sample_index": 17,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00017/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00018/record.json",
+    "sample_id": "e34a717e-f569-467d-a212-6abfbe8cf012",
+    "sample_index": 18,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00018/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00019/record.json",
+    "sample_id": "1317d9b7-0da5-4910-8932-67abd18fa593",
+    "sample_index": 19,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00019/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00020/record.json",
+    "sample_id": "091ee89b-b458-4edc-9803-6ac79bf11fff",
+    "sample_index": 20,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00020/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00021/record.json",
+    "sample_id": "ea2cc043-1701-4e3c-86bf-3f07807f7487",
+    "sample_index": 21,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00021/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00022/record.json",
+    "sample_id": "c4e3b57d-9639-42f1-ab42-be3e84020c1e",
+    "sample_index": 22,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00022/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00023/record.json",
+    "sample_id": "d0b3a405-a531-41d0-b922-541a02c74dc3",
+    "sample_index": 23,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00023/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00024/record.json",
+    "sample_id": "61504ffa-b5a7-4ab2-a6da-278ec98f6727",
+    "sample_index": 24,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00024/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00025/record.json",
+    "sample_id": "8da13dbf-be94-48de-bf00-e705f2360e56",
+    "sample_index": 25,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00025/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00026/record.json",
+    "sample_id": "45ed46d3-dd2a-4ed8-a346-ffe81e73645d",
+    "sample_index": 26,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00026/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00027/record.json",
+    "sample_id": "b0092131-f305-4453-93c6-8cc40d6a4a8e",
+    "sample_index": 27,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00027/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00028/record.json",
+    "sample_id": "8e5d86f2-9e3f-4231-898e-7af8517a0b8a",
+    "sample_index": 28,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00028/transcript.md"
+  },
+  {
+    "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "record": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00029/record.json",
+    "sample_id": "b849ffef-a999-4c1d-9344-da84fe7b0ae6",
+    "sample_index": 29,
+    "transcript": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00029/transcript.md"
+  }
+]

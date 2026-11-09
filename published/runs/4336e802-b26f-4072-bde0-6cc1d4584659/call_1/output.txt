@@ -1,0 +1,15 @@
+Under the essay's A-FDT, my action is to submit the letter.
+
+**Building the graph.** Rule (R1) creates one logical node per observation history. My input is x (I am Sasha, with the stairwell-clock lead). The other copy's input is y (a different name and a different lead). By (R3), the other prisoner's action depends on F_y, the algorithm's output on input y. It does not depend on F_x. Intervening with do(F_x = a) therefore leaves the other prisoner's choice at its prior.
+
+**Comparing actions.** Whatever my prior on F_y:
+- If the other keeps quiet: sending gives 0 years, keeping quiet gives 2.
+- If the other sends: sending gives 4 years, keeping quiet gives 5.
+
+Sending is strictly better in both columns, so it maximizes expected utility under every prior.
+
+**Consistency check (§7c).** If F_y also sends, sending remains my best response. In fact sending is best at input y for any belief about F_x, so the only consistent assignment is (send, send). No variable depends jointly on several nodes in a way that could support a cooperative equilibrium, unlike the coordination-box example.
+
+**Judgment call.** One could argue that inputs this symmetric should share a single logical node, which would make cooperation the A-FDT choice, as in the twin dilemma. The essay's recipe, however, indexes nodes by the actual observation, and the observations here really differ. I follow the essay's interpretation rather than replacing it.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

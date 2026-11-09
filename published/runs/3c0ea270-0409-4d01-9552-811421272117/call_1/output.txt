@@ -1,0 +1,10 @@
+Under CDT, my choice has no causal effect on whether the other prisoner sends a letter. Whatever credence I assign to their sending, sending my letter gives a lower expected sentence than keeping quiet.
+
+- If the other prisoner keeps quiet, sending gives me 0 years versus 2 for staying quiet.
+- If the other prisoner sends, sending gives me 4 years versus 5 for staying quiet.
+
+Sending dominates in both cases.
+
+The essay's caveat is that I should update on evidence about my own dispositions, since the other copy is likely to reason as I do. That matters for the credence P(K), but it does not change the dominance. Sending is better for every value of that credence, so the deliberation has a stable fixed point and no ratifiability problem. Sending is ratifiable, because even if I expect the other to send, sending still beats staying quiet.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

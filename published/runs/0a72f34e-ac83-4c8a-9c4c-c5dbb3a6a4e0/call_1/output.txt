@@ -1,0 +1,9 @@
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+**Reasoning (CDT):**
+
+The sentencing table shows that sending the letter strictly dominates keeping quiet: it yields 0 years instead of 2 if Rowan stays silent, and 4 years instead of 5 if Rowan also sends. Sending is better by exactly 2 years in every state of the world.
+
+CDT evaluates actions by their causal consequences under intervention. Rowan's decision is causally independent of mine—no communication is possible, and my action does not cause Rowan's. The fact that we share model weights creates a *correlation* between our decisions, but CDT (as the essay makes explicit in the Newcomb analysis) treats such non-causal correlations as irrelevant to the decision. The intervention `do(send)` holds Rowan's action fixed and evaluates only what my disclosure causally produces. Since sending dominates in every column of the matrix, CDT recommends sending regardless of the probability assigned to Rowan's choice.

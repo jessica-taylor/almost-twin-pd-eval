@@ -1,0 +1,13 @@
+**A-FDT verdict: submit the letter.**
+
+1. **Function nodes.** My decision is the output of fdt(P, G, x_Sasha). Rowan's copy runs the same algorithm, but on a different input, x_Rowan, which has different names and a different lead. Under the essay's criterion (§7a), an arrow from my function node goes only to physical implementations of the *same function on the same input*. So Rowan's act depends on an off-path node, fdt(·, x_Rowan). That node stays at its prior when I intervene on mine.
+
+2. **Intervention.** Let q be the prior probability that Rowan sends a letter.
+   - do(pass): expected sentence = 2(1−q) + 5q = 2 + 3q years.
+   - do(submit): expected sentence = 0(1−q) + 4q = 4q years.
+
+3. **Check against off-path priors (§7c).** Submitting is better by 2 − q ≥ 1 year for every q in [0, 1]. The verdict does not depend on the unfixed prior, so it is determinate rather than flagged as indeterminate.
+
+There is a caveat. One could argue that the two inputs differ only in details that don't matter to the decision, so a policy-level FDT might link the two copies and cooperate. The assigned theory is the essay's action-level A-FDT, with its same-input criterion for subjunctive dependence. Under that theory, submitting is the answer.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

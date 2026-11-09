@@ -1,0 +1,10 @@
+`pass`
+
+Under P-FDT, I evaluate my policy over the whole input space, intervening on the decision function that both of us — as identical copies running the same procedure — share. The other prisoner faces the same table and runs the same reasoning.
+
+- If my policy is **pass** at this input, so is the twin copy's: I get **2 years**.
+- If my policy is **submit**, the twin copy's policy is also **submit**: I get **4 years**.
+
+The intervention on the policy node propagates subjunctively to the other prisoner's identical decision function (each of us knows the other receives the same theory and faces a symmetric dilemma). Submitting would also "win" only in the counterpossible world where my procedure defects while the twin's identical procedure cooperates — but that intervention is not available to a single shared function.
+
+Mutual quiet (2 years) beats mutual disclosure (4 years), so the optimal policy is to keep quiet.

@@ -1,0 +1,3 @@
+`pass`
+
+Under the essay's CDT, this is Lewis's twin prisoner's dilemma: the other prisoner is an execution of the same model with the same decision procedure, so my choice is a logical dependency of theirs, not causally isolated as in the David case. The essay's section 7(2) explicitly treats this as a Newcomb-like dependency where cooperating wins, and the ratifiability repair (section 6) confirms: conditional on my settling on `pass`, I should expect the symmetric copy to pass as well, giving 2 years rather than the 4 expected from mutual submission. `pass` is the stable, ratified choice.

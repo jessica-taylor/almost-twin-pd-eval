@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+Under A-FDT as the essay sets it out, the question is which processes compute my decision function. The other prisoner is the same model with the same weights, settings and assigned theory. Its input differs from mine only in surface details: the names and the wording of the lead. Those details do not touch the payoff structure or the reasoning that matters.
+
+Following the essay's suggestion for partial similarity (section 8), I model the other copy's choice as subjunctively dependent on my decision node, with a noise term for independent sampling. Intervening on my node therefore largely moves theirs too:
+
+- **If I pass:** most of the weight falls on both keeping quiet, so roughly 2 years.
+- **If I submit:** most of the weight falls on both sending letters, so roughly 4 years.
+
+Unless the correlation is weak, passing gives the lower expected sentence. For the comparison to flip, the other copy would have to mirror my choice no more than about 75% of the time. A copy running the same reasoning on a structurally identical problem should exceed that.
+
+`pass`

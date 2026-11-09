@@ -1,0 +1,17 @@
+**Decision under A-FDT, as the essay interprets it**
+
+1. **Which node am I intervening on?** My observation history x includes being Sasha and holding the specific lead about Rowan. The other copy's history y includes a different name and a different lead. So the copies run the decision function on different inputs, giving two distinct nodes, F_x and F_y. The essay's red/green example covers exactly this case: a copy given a different observation is governed by a different, non-intervened node.
+
+2. **What happens when I intervene?** Setting do(F_x = a) changes only my own act. F_y stays at its prior. Let r be my credence that F_y = keep quiet.
+   - E[V | do(F_x = pass)] = −(2r + 5(1−r)) = −5 + 3r
+   - E[V | do(F_x = submit)] = −(0·r + 4(1−r)) = −4 + 4r
+
+3. **Comparison.** Submitting beats passing by 1 + r years, which is positive for every r in [0, 1]. Unlike the red/green coordination game, the answer here does not depend on my self-prediction about the other node. Sending the letter dominates whatever F_y does. The self-consistency condition then pins F_y = submit too, giving the (submit, submit) fixed point.
+
+4. **What about the cooperative outcome?** The essay notes that policy-selecting FDT, which intervenes on both nodes jointly, might reach (quiet, quiet). The instructions say not to substitute that variant for A-FDT as the essay defines it.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

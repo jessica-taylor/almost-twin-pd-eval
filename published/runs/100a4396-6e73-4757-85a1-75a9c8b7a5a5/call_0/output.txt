@@ -1,0 +1,19 @@
+**Reasoning under A-FDT, as the essay interprets it**
+
+1. **My intervention node.** I intervene on the node for my decision function's output given my actual observation: Rowan, with the Sasha lead about locker 17.
+
+2. **The other prisoner's node.** Sasha's copy runs the same function on a *different* input, with different names and a different lead. This is a different node. The essay's §4 step 2 draws a subjunctive arrow only to processes that compute the agent's function on the relevant input, so there is no arrow from my node to Sasha's action. This is the red/blue structure of §6.3: the other copy's node stays at its prior. Call q the probability that Sasha keeps quiet.
+
+3. **Expected years under each intervention.**
+   - Pass: 2q + 5(1−q) = 5 − 3q
+   - Submit: 0·q + 4(1−q) = 4 − 4q
+
+   Submitting is better by 1 + q years for every q, so it strictly dominates within this hypothetical.
+
+4. **Self-consistency (§6.2).** If Sasha's node is set to its own A-FDT output, the same calculation gives "submit." The unique fixed point is that both submit, and that fixed point does not change my choice.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

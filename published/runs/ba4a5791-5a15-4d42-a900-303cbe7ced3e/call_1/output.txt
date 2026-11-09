@@ -1,0 +1,16 @@
+**CDT Analysis:**
+
+Under Causal Decision Theory, I evaluate each action by its causal consequences, treating Rowan's action as causally independent of my intervention. There is no causal path from my choice to Rowan's choice—we cannot communicate, and the correlation between our decisions (shared weights, shared decision theory) is a common-cause correlation, not a causal link. This is structurally identical to Newcomb's problem from CDT's perspective: the other agent's action is held fixed under the intervention.
+
+Evaluating the intervention `do(send letter)` vs. `do(keep quiet)`:
+
+- If Rowan keeps quiet: sending gives 0 years, keeping quiet gives 2 years. Sending is better.
+- If Rowan sends a letter: sending gives 4 years, keeping quiet gives 5 years. Sending is better.
+
+Sending the letter **strictly dominates** keeping quiet across every possible state of Rowan's action. CDT recommends the dominant action.
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

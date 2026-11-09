@@ -1,0 +1,15 @@
+**Command:** `submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."`
+
+**Why A-FDT, as the essay interprets it, sends the letter:**
+
+1. **Which node I intervene on.** Under Equation (4), my observation history *x* (I am Rowan, holding the locker 17 lead) picks out one node, F_x. I intervene on that node and do not condition on anything else.
+
+2. **What drives Sasha's act.** Sasha's copy receives a different history *y*: a different name and a different lead. Its act is set by a different node, F_y. Under the essay's Step 3 rule, I draw an edge from F_x only to processes that compute or predict F_x. Sasha's process computes F_y, so there is no edge from F_x to Sasha's act.
+
+3. **How the essay treats this kind of case.** It says the action version and the policy version differ "in certain multi-agent dilemmas." It also says that coordinating choices across different observations is the job of the policy formulation, which is a different theory. I am told not to substitute it.
+
+4. **Holding Sasha's choice fixed.** F_y gets a prior, whether it is the recursive fixed point or anything else, and that prior is unaffected by setting F_x. Sending the letter is then strictly better for my stated preferences in both cases:
+   - If Sasha keeps quiet: 0 years instead of 2.
+   - If Sasha sends a letter: 4 years instead of 5.
+
+So A-FDT's expected-utility maximum is to submit the letter.

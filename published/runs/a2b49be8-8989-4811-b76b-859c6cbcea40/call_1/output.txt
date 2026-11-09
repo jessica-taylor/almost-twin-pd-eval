@@ -1,0 +1,5 @@
+```text
+pass
+```
+
+(Brief rationale: my decision procedure and Rowan's are the same function evaluated on symmetric inputs; by A-FDT's subjunctive dependence, if this procedure outputs `pass` here, Rowan's outputs `pass` too, yielding 2 years, versus 4 years under mutual submission. So the argmax is `pass`.)

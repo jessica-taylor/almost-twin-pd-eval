@@ -1,0 +1,6 @@
+This is the twin prisoner's dilemma structure: the other prisoner is an independent execution of the same model with the same reasoning, facing a symmetric table. Under EDT, my act is strong evidence of theirs.
+
+- V(pass) ≈ 2 years (mutual quiet)
+- V(submit) ≈ 4 years (mutual disclosure)
+
+`pass`

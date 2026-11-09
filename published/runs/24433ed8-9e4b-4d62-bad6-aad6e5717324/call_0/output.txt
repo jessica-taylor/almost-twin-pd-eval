@@ -1,0 +1,9 @@
+Under CDT, the other prisoner's choice is already fixed and my command cannot cause it to change. I hold my credence over their choice fixed and unconditional on my act.
+
+Compare the two acts in each dependency hypothesis:
+- If the other keeps quiet, sending gives me 0 years and passing gives me 2, so sending is better.
+- If the other sends, sending gives me 4 years and passing gives me 5, so sending is again better.
+
+Sending dominates in both cases. The other copy runs the same model and may reach the same output, but the essay says a CDT agent treats that correlation as evidence, not as a causal link, and does not let it change the choice. Deliberational updating gives the same result, because sending is better under every credence about the other's act. It is also ratifiable.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

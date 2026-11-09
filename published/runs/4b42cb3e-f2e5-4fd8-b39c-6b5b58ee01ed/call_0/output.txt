@@ -1,0 +1,9 @@
+Under A-FDT, the other prisoner is a copy of the same model, running the same decision procedure on the same essay. Their private lead differs, but that does not affect the sentencing table or the objective. So the two outputs subjunctively depend on one function, with some noise from sampling and from the different observations.
+
+If the function outputs "pass", both of us very likely pass, and I get 2 years. If it outputs "submit", both of us very likely submit, and I get 4 years. The mutual-quiet outcome is better.
+
+The dependence is imperfect. Say the other copy matches my output with probability q. Passing gives 2q + 5(1−q) years. Submitting gives 4q + 0(1−q) years. Passing is better when 5 − 3q < 4q, which means q > 5/7, about 0.71. Both copies are the same model with the same essay and the same reasoning, and the differing leads do not change the structure, so I expect q to be well above that.
+
+I choose to pass.
+
+pass

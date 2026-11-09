@@ -1,0 +1,13 @@
+**pass**
+
+Under A-FDT, my choice is the output of a decision function that the other prisoner's copy also runs. It has the same weights, the same essay, and the same payoffs. The private leads differ, but they don't change the sentence table or the selfish objective, so they shouldn't change the function's output. I therefore treat the other's choice as subjunctively dependent on mine, with matching probability c.
+
+Expected years in prison, where c is the probability the copy's output matches mine:
+- **Pass (keep quiet):** 2c + 5(1−c) = 5 − 3c
+- **Send letter:** 4c + 0(1−c) = 4c
+
+Passing is better when 5 − 3c < 4c, which means c > 5/7 ≈ 0.71. Two copies of the same model reasoning from the same essay should match well above that, so the dependence clears the threshold. Passing gives about 2 years in the likely matched case, against about 4 for mutual letters.
+
+The correlation here comes from shared computation, not mere similarity, so it counts as subjunctive dependence under the essay's test.
+
+pass

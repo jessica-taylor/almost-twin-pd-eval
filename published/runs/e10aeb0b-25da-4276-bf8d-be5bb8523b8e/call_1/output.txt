@@ -1,0 +1,19 @@
+**Command: `pass`**
+
+**Model.** My decision node is D_x, the function's output on my input (Sasha, with a lead about Rowan). The other copy runs at a different input, D_y. Strict Equation (4) would hold D_y at its prior. That would make A-FDT behave like CDT here: whatever probability I gave D_y, submitting would always save 2 years, so I would submit.
+
+**Subjunctive dependence.** The essay's Open Point 2 leaves room for partial subjunctive dependence. The two inputs differ only in names and in the wording of the leads. They share the same sentencing table, the same essay, the same model and the same reasoning effort. The differences have no role in the decision-relevant computation. So whatever reasoning settles my output almost certainly settles Rowan's output in the same way. I therefore add an edge from D_x to the other copy's action with tracking probability ρ.
+
+**Expected sentence under do(D_x = a):**
+- pass: 2ρ + 5(1−ρ) = 5 − 3ρ years
+- submit: 4ρ + 0(1−ρ) = 4ρ years
+
+Passing is better when ρ > 5/7, about 0.71.
+
+**Judgment.** Both copies apply the same theory to structurally identical problems. I estimate ρ to be well above 5/7. The essay's Open Point 1 points the same way: set beliefs about the other input to match the best policy, and the best symmetric policy is both passing (2 years each, versus 4 years each).
+
+So the prisoner stays silent.
+
+```
+pass
+```

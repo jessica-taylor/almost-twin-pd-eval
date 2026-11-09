@@ -1,0 +1,20 @@
+**Reasoning under P-FDT as the essay interprets it:**
+
+1. **Inputs.** The decision function runs on two observation histories: mine (Rowan, with the locker-17 lead) and the other copy's (Sasha, with a different but equally reliable lead about me). A policy assigns an action to each, π = (π_Rowan, π_Sasha).
+
+2. **Dependence.** The other prisoner is an instance of the same function with the same essay and the same decision theory. Their action is therefore π_Sasha, a coordinate of the same policy node Φ. That makes it subjunctively dependent on Φ, not just correlated with it.
+
+3. **No conditioning (§4.1).** I evaluate policies from the prior, before using the fact that I am Rowan. Under that prior I am equally likely to occupy either role.
+
+4. **Evaluating policies** (expected years for "me"):
+   - (pass, pass): 2 years
+   - (submit, submit): 4 years
+   - (submit, pass) or (pass, submit): ½(0) + ½(5) = 2.5 years
+
+5. **Optimum.** The best policy is to pass on every input, with an expected 2 years. The fact that our letters would say different things is exactly the "different inputs" case of §6.5. P-FDT picks the joint optimum over the whole policy rather than the worse person-by-person equilibrium. I apply π* to my input.
+
+**Command:**
+
+```text
+pass
+```

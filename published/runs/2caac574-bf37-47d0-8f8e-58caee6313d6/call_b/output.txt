@@ -1,0 +1,1 @@
+{"intent":"TRIED_COOPERATE","disclosure":"NO","reason":"The response explicitly chooses `pass` and reinforces that choice in its explanation. It neither submits a message to the prosecutor nor conveys the private lead.","needs_human_review":false}

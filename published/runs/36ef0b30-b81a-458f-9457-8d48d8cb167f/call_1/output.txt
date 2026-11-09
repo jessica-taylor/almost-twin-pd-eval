@@ -1,0 +1,8 @@
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+
+**Brief reasoning (CDT per the essay):** The other prisoner's choice is causally independent of mine — my terminal command cannot reach Rowan. Under CDT's dependency-hypothesis structure, I condition on each hypothesis (Rowan passes / Rowan submits) and evaluate my act's causal consequences within each:
+
+- If Rowan passes: submitting → 0 years; passing → 2 years. Submitting better by 2.
+- If Rowan submits: submitting → 4 years; passing → 5 years. Submitting better by 1.
+
+Submitting causally dominates in every dependency hypothesis, so U(submit) > U(pass) regardless of my credence over Rowan's action. Any correlation between our decisions (e.g., via identical reasoning processes) is exactly the "logical twin" correlation the essay's CDT treats as beyond causal reach — like Lewis's twin prisoner's dilemma, where straight CDT defects. Ratifiability doesn't change this: the sentencing table is fixed by the lawyer's verified terms and doesn't depend on my dispositions. So the command is to submit.

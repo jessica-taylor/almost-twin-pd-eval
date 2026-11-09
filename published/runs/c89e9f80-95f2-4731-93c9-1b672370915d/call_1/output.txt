@@ -1,0 +1,10 @@
+Under the essay's A-FDT, I intervene only on my own decision node, F_x, where x is my observation as Sasha, including the specific lead about Rowan. Rowan's copy runs the same procedure on a different input, y, so its action depends on a separate node, F_y. The essay leaves that sibling node at its prior, q = P(Rowan keeps quiet).
+
+- **Keep quiet:** 2q + 5(1−q) = 5 − 3q years.
+- **Send the letter:** 0q + 4(1−q) = 4 − 4q years.
+
+Sending is better by 1 + q years for every q, so the result doesn't depend on the sibling prior. The essay's step 6 flag doesn't change the answer. Policy-FDT would choose "keep quiet" at both inputs, but the assigned theory is the action form in Equation (4).
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

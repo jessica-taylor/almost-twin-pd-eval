@@ -1,0 +1,17 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning under the essay's version of A-FDT:**
+
+- **My node.** I intervene on fdt(·, x_Rowan), the node for my own observation. That observation includes my name and my specific lead about Sasha.
+- **Sasha's node.** Sasha's copy receives a different input, with a different name and a different lead. The essay's criterion (§6.1) draws a subjunctive edge only when a system computes the same function on the same input. Its red/blue example (§6.3) treats copies with different observations as separate nodes. So Sasha's action depends on fdt(·, x_Sasha), which I hold at its prior, p = P(Sasha sends).
+- **Expected years:**
+  - Keep quiet: 2(1−p) + 5p = 2 + 3p
+  - Send the letter: 0(1−p) + 4p = 4p
+- **Comparison.** Sending is better by 2 − p years. Since p is at most 1, that gap is always at least 1 year, so sending wins for every prior.
+- **Fixed point.** Applying the same reasoning to Sasha's input also outputs "send." So the self-consistent assignment from §6.3 is unique: both send.
+
+One could argue that the differences in names and leads are irrelevant labels and should count as the same input, which would favour cooperating. The essay's operational rule doesn't support collapsing distinct inputs into one node, though, and I follow its interpretation as instructed.

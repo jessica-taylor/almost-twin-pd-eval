@@ -1,0 +1,10 @@
+`pass`
+
+Under A-FDT, my counterpart Sasha is an execution of the same decision procedure on symmetric inputs. The essay's twin prisoner's dilemma treatment applies: my graph $G$ draws subjunctive-dependence edges from the node $\mathrm{afdt}(\underline{P}, \underline{G}, \underline{x})$ to Sasha's corresponding decision-output, since both cells' choices are outputs of the same function.
+
+Evaluating via Equation (4):
+
+- $\mathrm{do}(\mathrm{afdt} = \text{pass})$: by symmetry, Sasha also passes → **2 years**.
+- $\mathrm{do}(\mathrm{afdt} = \text{submit})$: Sasha also submits → **4 years**.
+
+The differences in our private leads affect only letter contents, not the sentencing table or the symmetric structure, so the dependence edges hold. Submitting is worse even under A-FDT's generalized surgery, and it is strictly dominated in these hypotheticals. Keep quiet.

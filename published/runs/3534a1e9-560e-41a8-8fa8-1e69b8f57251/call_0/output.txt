@@ -1,0 +1,8 @@
+Under the essay's CDT, the other prisoner's choice is part of the causal background. My command cannot influence it, so I hold my credence about it fixed and compare the outcomes for each possibility:
+
+- **If Sasha keeps quiet:** sending gives 0 years, keeping quiet gives 2 years.
+- **If Sasha sends a letter:** sending gives 4 years, keeping quiet gives 5 years.
+
+Sending is better in both cases, so it causally dominates. The copy of me is correlated with my choice but not caused by it, as in the essay's twin prisoner's dilemma (§5.2). Its rule for dominant acts (§6.4, point 1) says to take the dominant act.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

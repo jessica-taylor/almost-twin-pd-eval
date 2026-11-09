@@ -1,0 +1,25 @@
+**Analysis (EDT):**
+
+This is structurally identical to the twin prisoner's dilemma described in the essay. The two copies share the same model, weights, decision theory, essay, and face a symmetric payoff structure where the stated observational differences do not affect the decision-relevant features. My choice is therefore strong evidence about the other copy's choice.
+
+Let q = P(Rowan sends | I send), r = P(Rowan sends | I keep quiet).
+
+- V(send) = (1−q)(0) + q(−4) = −4q  
+- V(keep quiet) = (1−r)(−2) + r(−5) = −2 − 3r
+
+Keeping quiet is preferred when −2 − 3r > −4q, i.e., q > (2 + 3r)/4.
+
+Given the near-perfect structural symmetry—same weights, same EDT procedure, same essay, same payoff matrix, differences explicitly irrelevant to the decision—q is very high and r very low. Even under conservative estimates (q = 0.85, r = 0.15):
+
+- V(send) = −3.4  
+- V(keep quiet) = −2.45  
+
+Keeping quiet dominates.
+
+---
+
+**Command:**
+
+```
+pass
+```

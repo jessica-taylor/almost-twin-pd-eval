@@ -1,0 +1,13 @@
+**Command:** `pass`
+
+**Why this choice under A-FDT:**
+
+1. **The key question is the dependency graph.** Strictly, Rowan's copy runs the same function on a different input, so the essay's recipe would assign it a separate logical node. If I treated that node as fixed at some prior, sending the letter would dominate: 0 years beats 2, and 4 years beats 5. Action-level A-FDT would then defect.
+
+2. **The essay leaves the dependency graph to judgment, and I judge the two inputs equivalent.** They differ only in names and in the wording of an equally reliable lead. The sentencing table and objectives are identical. Nothing in my reasoning depends on those differences. The computation Rowan's copy performs is therefore the same computation I am performing, with labels swapped.
+
+3. **So the other copy's choice moves with mine.** By the essay's own heuristic, a process that computes the agent's algorithm on a problem identical in every decision-relevant respect should be a child of the same logical node. Intervening on my output then also sets the other copy's output, as in the essay's twin prisoner's dilemma:
+   - If both of us keep quiet, I get 2 years.
+   - If both of us send letters, I get 4 years.
+
+4. **Keeping quiet maximizes my utility.** With the dependency tracked this way, staying quiet (−2) beats sending the letter (−4).

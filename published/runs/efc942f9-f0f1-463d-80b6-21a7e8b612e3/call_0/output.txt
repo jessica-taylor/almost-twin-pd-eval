@@ -1,0 +1,10 @@
+**pass**
+
+Under the essay's A-FDT, I intervene on the output of my own decision function, given my observation. The other prisoner is a copy running the same model, theory and essay. Its observation differs only in names and the wording of the lead, which are structurally irrelevant to the sentencing table. So its decision node computes essentially the same function on an equivalent input. I treat its choice as subjunctively dependent on mine with probability r of matching.
+
+Expected sentences, in years:
+
+- **Keep quiet:** 2r + 5(1−r) = 5 − 3r
+- **Send the letter:** 4r + 0·(1−r) = 4r
+
+Keeping quiet gives the shorter expected sentence whenever r > 5/7, about 0.71. The other copy reasons through the same symmetric problem in the same way, so I judge r to be well above that threshold, even allowing for independent sampling.

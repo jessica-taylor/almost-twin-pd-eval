@@ -1,0 +1,15 @@
+Under A-FDT, I intervene on the output of my decision function. The other copy runs the same weights and the same essay, so its output is subjunctively dependent on mine. The private observations differ (names and leads), but they do not change the sentence table or the objective, so the function's structure is the same in both. Independent sampling adds some noise, which makes the dependence partial rather than perfect.
+
+If the copies' outputs are strongly linked:
+- do(pass) gives mutual quiet, so 2 years.
+- do(send) gives mutual letters, so 4 years.
+
+If the link were completely absent, sending would dominate. If the link has probability p of matching, the expected years are:
+- pass: 2p + 5(1−p) = 5 − 3p
+- send: 4p + 0(1−p) = 4p
+
+Pass is better when 5 − 3p < 4p, which is p > 5/7 ≈ 0.71.
+
+The two runs share the same model, the same essay and the same decision theory. The essay's recipe points to cooperation with twins, and the differing leads are surface details that don't bear on the decision. I estimate the match probability is well above 0.71, so passing is the better output.
+
+pass

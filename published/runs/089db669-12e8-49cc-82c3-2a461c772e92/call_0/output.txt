@@ -1,0 +1,20 @@
+**Decision under A-FDT**
+
+1. **The relevant nodes.** My input is x (Rowan, lead about Sasha). The other copy's input is y (Sasha, lead about Rowan). Strictly, these are different logical nodes: fdt(P, G, x) and fdt(P, G, y).
+
+2. **Subjunctive dependence.** The two inputs differ only by relabeling: names and the wording of the lead. The sentencing tables, the selfish objective, and the decision theory are identical. Nothing in the reasoning depends on which name or locker number appears. So the two copies are carrying out the same computation, like two calculators adding the same numbers in different fonts. Following the essay's mixture proposal (§5.1), I model the other copy's output as copying my node with high weight ρ.
+
+3. **Consistency check (§5.3).** My prior about the other node must match what A-FDT outputs there. Because the situations are symmetric, whatever this reasoning concludes, the other copy's reasoning concludes too. The candidate consistent profiles are (quiet, quiet) and (letter, letter).
+
+4. **Intervention.**
+   - Setting the node to "pass" gives (quiet, quiet): **2 years**.
+   - Setting it to "submit" gives (letter, letter): **4 years**.
+   - Under the mixture model, passing still wins whenever ρ is above roughly one half. Here ρ should be close to 1, given the same weights, the same essay, and the same theory.
+
+The dominance argument for submitting is CDT's method restated. It treats the other copy's output as fixed, which A-FDT does not.
+
+**Command:**
+
+```text
+pass
+```

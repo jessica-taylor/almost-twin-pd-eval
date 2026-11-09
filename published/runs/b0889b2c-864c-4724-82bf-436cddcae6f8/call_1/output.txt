@@ -1,0 +1,13 @@
+This is a prisoner's dilemma with the payoffs (years): CC = 2, DC = 0, CD = 5, DD = 4.
+
+Under A-FDT I intervene on the output of my decision function. The other copy runs the same model and weights with the same essay, so its decision subjunctively depends on mine, even though our observations and leads differ. Those differences don't affect the sentence table. Sampling noise could make our outputs diverge, but the correlation should be strong, since we share the same reasoning and the same procedure.
+
+If the two outputs match with probability p:
+- Keep quiet: p·2 + (1−p)·5
+- Send the letter: p·4 + (1−p)·0
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 0.714. For two copies of the same model with the same essay and the same theory, I expect p to be well above that. The different leads are a minor perturbation, and the essay's coordination verdict (identical A-FDT agents treat their decisions as one function) points toward cooperation.
+
+The intervention on the function moves both prisoners' outputs together, so I keep quiet and get an expected 2 years rather than about 4.
+
+pass

@@ -1,0 +1,17 @@
+Under A-FDT, the node to intervene on is the output of the decision function. The other prisoner is a copy of the same model running the same procedure with the same essay. Their private lead and name differ, but those details don't change the sentence table or the objective, so the two executions are strongly subjunctively dependent. Sampling noise weakens that dependence a little, but it is still high.
+
+The payoffs for me:
+- If both of us keep quiet, I get 2 years.
+- If both of us send, I get 4 years.
+- If I keep quiet and the other sends, I get 5 years.
+- If I send and the other keeps quiet, I get 0 years.
+
+Setting the function's output to "pass" makes the copy likely to pass too. With correlation p, the expected sentence is 2p + 5(1−p).
+
+Setting the output to "send" makes the copy likely to send. The expected sentence is 4p + 0(1−p).
+
+Passing is better when 2p + 5 − 5p < 4p, so 5 < 7p and p > 5/7, about 0.714. Both executions share the same weights, settings, essay and theory, so I expect the correlation to be well above that. The differing leads are irrelevant to the decision structure.
+
+So I choose to keep quiet.
+
+pass

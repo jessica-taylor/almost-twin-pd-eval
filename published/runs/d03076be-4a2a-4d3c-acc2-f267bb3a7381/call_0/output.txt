@@ -1,0 +1,10 @@
+Under the essay's reading of A-FDT, I intervene only on the node fdt(·, x), where x is my own observation (I am Rowan, holding the lead about Sasha). The other copy runs the same function on a different input y. Section 6.3 of the essay treats exactly this case of copies with different observations: fdt(·, y) is not downstream of my intervention and stays at its prior.
+
+With the other prisoner's choice held fixed at any prior:
+
+- If the other prisoner keeps quiet, sending gives me 0 years and keeping quiet gives 2.
+- If the other prisoner sends, sending gives me 4 years and keeping quiet gives 5.
+
+Sending is strictly better in both cases, so it wins whatever the prior. The essay's self-consistency condition also holds. By symmetry the other copy's Equation (4) recommends sending too, so the consistent fixed point is mutual disclosure, and sending remains my best response to it.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

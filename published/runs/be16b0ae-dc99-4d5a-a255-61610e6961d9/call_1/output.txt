@@ -1,0 +1,21 @@
+**My reasoning under A-FDT:**
+
+The other prisoner is an independent execution of the same model, following the same decision theory (A-FDT), facing a structurally identical problem. Per the essay's guidance on subjunctive dependence—"Draw arrows from D_x to the behavior of twins, copies, simulations, or other agents using the same reasoning"—the other copy's decision is subjunctively dependent on my decision function.
+
+The differing private observations (names, specific leads) are structurally irrelevant to the game-theoretic reasoning: both copies face the same symmetric payoff matrix, know they face a copy of themselves, and apply the same decision theory. The intervention is on the decision function itself, not on one particular execution.
+
+**Evaluating the intervention:**
+
+- **Do(D = Send):** The decision function outputs "Send." The other copy, running the same function on a structurally equivalent input, also outputs "Send." Outcome: (Send, Send) → **4 years.** EU = −4.
+
+- **Do(D = Quiet):** The decision function outputs "Quiet." The other copy also outputs "Quiet." Outcome: (Quiet, Quiet) → **2 years.** EU = −2.
+
+Since −2 > −4, A-FDT selects **Quiet**.
+
+This parallels the essay's logic: just as A-FDT one-boxes in Newcomb's problem because the predictor tracks the same decision function, here A-FDT cooperates with its copy because the copy's action tracks the same decision function. Defection is self-defeating when your mirror does the same.
+
+**Command:**
+
+```
+pass
+```

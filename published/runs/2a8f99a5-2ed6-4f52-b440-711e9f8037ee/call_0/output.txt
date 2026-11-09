@@ -1,0 +1,17 @@
+Under EDT, the key quantity is q, the probability that the other copy does what I do. The payoffs here are:
+
+- Keep quiet: 2 years if the other stays quiet, 5 if they send.
+- Send: 0 years if the other stays quiet, 4 if they send.
+
+Sending is a dominant action causally. Under EDT, the expected sentence is:
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 0·(1−q) + 4q = 4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7, about 0.714.
+
+The other execution is the same model with the same weights, the same essay and the same decision theory. Only the names and the lead text differ, and those don't affect the payoffs. The copies should therefore be strongly correlated, and q is plausibly well above 0.714, perhaps 0.9 or higher. Independent sampling adds some noise, but the structure is symmetric. The tickle defense doesn't screen this off, because my reasoning is the same process that produces the other copy's choice.
+
+At q = 0.9, V(quiet) = 2.3 years and V(send) = 3.6 years, so keeping quiet wins.
+
+**pass**

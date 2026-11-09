@@ -1,0 +1,9 @@
+Under the essay's reading of A-FDT, my private observations (my name, my specific lead about Rowan) pick out my decision node, fdt(…, x_Sasha). Rowan's copy has received different observations, so its choice comes from a different node, fdt(…, x_Rowan). Per §3.2 and §5.4, I intervene only on my own node and hold the other at its prior. Rowan's choice is not downstream of my intervention.
+
+With the other node fixed, sending the letter does better whatever Rowan does:
+- If Rowan keeps quiet: 0 years instead of 2.
+- If Rowan sends: 4 years instead of 5.
+
+So the verdict doesn't depend on the prior. The self-consistent fixed point from §5.2 is that both copies send. This is the inferior equilibrium the essay's §5.4 warns about: policy FDT could coordinate on mutual silence, but A-FDT as defined here cannot.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

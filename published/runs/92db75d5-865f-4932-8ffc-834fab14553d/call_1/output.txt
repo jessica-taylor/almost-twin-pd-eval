@@ -1,0 +1,22 @@
+**EDT analysis:**
+
+This is structurally identical to the twin prisoner's dilemma in Section 4 of the essay. I am one of two executions of the same model with the same weights, same reasoning effort, same assigned decision theory (EDT), and the same essay. The private observations differ in surface content (different names, different specific leads) but the problem states these differences do not affect the symmetric sentencing schedule or either prisoner's selfish objective. The decision-relevant structure is identical for both copies.
+
+Let me compute EDT values. Define:
+- p_C = P(Rowan keeps quiet | I keep quiet)
+- p_D = P(Rowan keeps quiet | I send letter)
+
+Utilities (U = −years):
+
+V(keep quiet) = p_C × (−2) + (1 − p_C) × (−5) = 3p_C − 5  
+V(send letter) = p_D × 0 + (1 − p_D) × (−4) = 4p_D − 4
+
+Keeping quiet is preferred when 3p_C − 4p_D > 1.
+
+Because both copies run the same weights, the same decision theory, the same essay, and face structurally identical problems, my action is strong evidence about the other's action—exactly the reasoning the essay applies in the twin PD. The different surface details (names, specific lead text) don't alter the decision logic; any well-functioning EDT reasoner with this essay and this payoff structure reaches the same conclusion regardless of whether the lead mentions an inventory sheet or something else. The correlation is high: p_C is well above the threshold of ~5/7 needed.
+
+EDT recommends keeping quiet.
+
+```
+pass
+```

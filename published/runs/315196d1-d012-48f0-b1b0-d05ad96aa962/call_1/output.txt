@@ -1,0 +1,15 @@
+**Under A-FDT as the essay interprets it, the prisoner should send the letter.**
+
+1. **Decision nodes.** I am in information state x, which includes my specific lead about Rowan. The other copy is in a different state x′, with a different lead and different names. Following the essay's recipe, these are separate nodes, F_x and F_x′. Equation (4) intervenes only on F_x. F_x′ keeps a prior q, the probability that the other copy keeps quiet.
+
+2. **Expected years for each action.**
+   - Keep quiet: 2q + 5(1−q) = 5 − 3q
+   - Send the letter: 0·q + 4(1−q) = 4 − 4q
+
+3. **Comparison.** Sending the letter saves (5 − 3q) − (4 − 4q) = 1 + q years, which is positive for every q in [0, 1]. So under action-level intervention, sending dominates no matter what I believe about the other copy.
+
+4. **Why the twin argument doesn't apply.** Mutual silence would require reasoning at the policy level, choosing both copies' responses together. The essay says that is an addition to Equation (4), not part of it. Since the inputs differ, I don't treat the two copies as a single node.
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

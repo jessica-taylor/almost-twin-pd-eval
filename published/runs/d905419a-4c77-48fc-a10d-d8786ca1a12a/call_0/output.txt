@@ -1,0 +1,15 @@
+**pass**
+
+My reasoning under A-FDT, as the essay interprets it:
+
+- **The other prisoner's choice depends on mine through our shared function.** Sasha's prisoner is run by the same model, with the same weights, the same assigned theory and the same essay. Our observations differ only in names and in the wording of an equally reliable lead, and neither difference touches the payoff table or the objective. The essay's heuristic (§7.1) adds an edge when another process evaluates a function the agent knows to be equivalent to its own. Here the other prisoner's node F_y is effectively a relabeled copy of my node F_x.
+
+- **The dependence is strong but not certain.** Independent sampling could make the outputs differ, so I use the essay's ρ-mixture: with probability ρ the other copy's output matches mine, and otherwise it is independent.
+
+- **Expected value of keeping quiet (`pass`):** ρ·(−2) + (1−ρ)·E[independent].
+- **Expected value of submitting:** ρ·(−4) + (1−ρ)·E[independent].
+- **Comparing them:** Matched outcomes favour silence by 2 years. In the independent branch, sending gains me at most 2 years (if the other stays quiet) or 1 year (if they send). So silence wins whenever ρ is above roughly 0.4–0.5.
+
+- **The dependence clears that threshold.** Two copies with the same model, theory and essay, reasoning about isomorphic problems, will produce matching outputs with probability well above that. Intervening on the shared function to output "stay quiet" gives about 2 years. Outputting "send" gives about 4.
+
+Final command: **pass**

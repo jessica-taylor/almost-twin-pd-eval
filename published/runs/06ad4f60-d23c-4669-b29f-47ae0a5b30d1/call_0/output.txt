@@ -1,0 +1,12 @@
+Under the essay's CDT, the other prisoner's choice is a dependency hypothesis. My command cannot causally influence it, even though we may be correlated as copies of the same model. With q = P(other keeps quiet) held at its unconditional value:
+
+- U(submit) = −[0·q + 4·(1−q)] = −4 + 4q
+- U(pass) = −[2·q + 5·(1−q)] = −5 + 3q
+
+Submitting is better by 1 + q, which is always positive. That makes it the dominant act for every q, as in the twin prisoner's dilemma in §3.3.
+
+The choice is also ratifiable. No credence about my own act changes the dominance, so there is no instability to resolve through deliberational equilibrium.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

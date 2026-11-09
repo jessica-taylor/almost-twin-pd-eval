@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, my choice is the output of a decision function that the other prisoner's copy also computes. The two of us received different names and leads, but the sentence table and the selfish objective are identical. We also read the same essay and run the same reasoning. So intervening on my function's output also shifts what the other copy most likely does.
+
+Let p be the probability that the other copy's output matches mine.
+
+- **Pass:** expected sentence = 2p + 5(1−p) = 5 − 3p years.
+- **Send:** expected sentence = 4p + 0(1−p) = 4p years.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Two executions of the same model with the same essay and the same objective should match well above that threshold. The differing private leads change the wording of the letter, not the structure of the decision.
+
+Passing is therefore the better intervention. The lead the other copy holds about me is a different variable and stays fixed. It does not change the comparison.

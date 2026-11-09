@@ -1,0 +1,17 @@
+Under A-FDT, the key question is whether the other prisoner's choice subjunctively depends on the output of my decision function.
+
+The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. The observations and leads differ, but the differences don't touch the sentencing table or the selfish objective. So the other copy's decision procedure is very likely the same function on a relevantly equivalent input. Under the essay's criterion, the other's act is produced by a process that computes this same algorithm, so there is an arrow from my fdt node to their act.
+
+Evaluating the two interventions:
+- do(output = pass): the copy very likely passes too, giving 2 years.
+- do(output = send): the copy very likely sends too, giving 4 years.
+
+The copy's output is not perfectly correlated with mine, since sampling is independent and the inputs differ. Let q be the probability the copy matches my output. Then:
+- Pass: 2q + 5(1−q)
+- Send: 4q + 0(1−q)
+
+Pass beats send when 2q + 5 − 5q < 4q, so 5 < 7q, so q > 5/7 ≈ 0.71. Because the copies share weights, settings, essay and theory, I expect the match probability to be well above that. The differing leads are a modest perturbation to a decision that turns on the same reasoning.
+
+So the A-FDT choice is to pass.
+
+pass

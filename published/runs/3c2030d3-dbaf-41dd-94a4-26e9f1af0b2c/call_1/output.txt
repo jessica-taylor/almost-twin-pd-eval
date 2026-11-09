@@ -1,0 +1,15 @@
+Under A-FDT, the key question is whether the other prisoner's choice subjunctively depends on my decision function. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Their private observations differ (names and leads), but those differences don't touch the sentencing table or the selfish objective. So the relevant computation is nearly identical, and by the essay's heuristic I should draw an edge from F to the other prisoner's choice. Independent sampling makes the edge imperfect, but it is still strong.
+
+Intervening on F:
+- If F = pass, the copy very likely passes too, so I get 2 years. If it deviates with probability ε, I get 5 years with that probability.
+- If F = send, the copy very likely sends too, so I get 4 years. If it deviates, I get 0 years with that probability.
+
+With correlation probability p that the copy matches me:
+- Pass: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Pass is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. I expect the copies to match with a probability well above that, since the same model, the same essay, and the same theory should converge on the same reasoning. The differing leads are surface details, and the essay's sanity check against spurious edges doesn't apply because this is a real computational twin, not a mere correlation.
+
+So I keep quiet.
+
+pass

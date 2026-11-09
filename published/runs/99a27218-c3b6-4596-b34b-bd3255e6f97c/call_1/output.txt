@@ -1,0 +1,19 @@
+**Reasoning under A-FDT as the essay interprets it**
+
+1. **Nodes are indexed by observation.** Equation (4) intervenes on the node for *this exact input*, F_x. My observation includes Sasha's name and my particular lead about Rowan. The other copy's observation includes a different name and a different lead, so its action is controlled by a different node, F_y. The essay (§2.4, §3 step 2) treats different observation histories as different nodes, and §5.4 says A-FDT moves F_x while holding the other nodes at their priors.
+
+2. **Wiring the graph.** In the twin dilemma of §4.1, the twin's act hangs off the *same* F node. Here the other prisoner's act depends on F_y, so intervening on F_x leaves the other prisoner's choice at its prior. The essay explicitly leaves the "related but non-identical functions" case unresolved. My judgment is to follow the per-input construction rather than quietly substitute policy-FDT, which would intervene on all nodes jointly.
+
+3. **Evaluating.** Let r be the prior probability that F_y keeps quiet.
+   - do(F_x = pass): expected sentence is 2r + 5(1−r) years.
+   - do(F_x = submit): expected sentence is 0·r + 4(1−r) years.
+   
+   Submitting is better by 2r + (1−r) > 0 years for every r. It dominates.
+
+4. **Self-consistency (§5.3).** Suppose F_y is set to "quiet." Then F_x's best response is "submit," so mutual silence is not a fixed point. The only self-consistent fixed point is for both copies to submit. This is the coordinate-ascent stall the essay describes. Policy-FDT would choose mutual silence and get 2 years each, but A-FDT does not.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

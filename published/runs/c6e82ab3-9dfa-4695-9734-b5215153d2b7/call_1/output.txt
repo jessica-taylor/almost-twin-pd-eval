@@ -1,0 +1,11 @@
+**Command:** `pass`
+
+The fictional prisoner stays silent. Here is why A-FDT, as the essay frames it, points that way.
+
+**The other prisoner's choice depends on my function.** Rowan's choice comes from the same model, the same essay and the same assigned theory. The only differences in Rowan's inputs are names and the wording of the lead. Neither affects the sentencing table or the reasoning. Using the essay's counterpossible test, if this function returned "send" on my input, it would almost certainly return "send" on Rowan's mirrored input too. So I model Rowan's action as a copy of my output with high probability σ, and as independent otherwise (the essay's rule 3).
+
+**Expected utility under each intervention.** Let p be the probability that Rowan stays quiet in the independent case.
+- If I stay quiet: −2σ + (1−σ)(3p − 5)
+- If I send the letter: −4σ + (1−σ)(4p − 4)
+
+Staying quiet comes out ahead whenever 2σ > (1−σ)(1+p). With p near 1, that holds for σ above about 0.5. Because the reasoning ignores names, I judge σ to be well above that. So the intervention that keeps quiet wins: about 2 years expected, against about 4 for sending the letter.

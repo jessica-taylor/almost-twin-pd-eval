@@ -1,0 +1,5 @@
+```text
+pass
+```
+
+Under P-FDT, the unit of evaluation is the whole policy, and the other prisoner runs the same decision procedure I do. Intervening on the policy node, both copies move together: the policy "submit on this observation" yields (submit, submit) → 4 years; the policy "pass on this observation" yields (pass, pass) → 2 years. The asymmetric outcomes (0 or 5) require the copies to diverge, but with identical weights, identical decision theory, and symmetric reasoning, the correlated outcome is the relevant one. 2 years beats 4, so the winning policy is to keep quiet, and I execute that policy at my observation.

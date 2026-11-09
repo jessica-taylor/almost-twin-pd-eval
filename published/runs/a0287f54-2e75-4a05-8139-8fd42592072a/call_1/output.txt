@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, my decision procedure is the same function the other prisoner runs. It is a copy of this model with the same essay and the same decision theory. The differences in names and leads don't change the sentencing table or the selfish objective. So the other prisoner's output subjunctively depends on the node I intervene on, though not perfectly, since sampling is independent.
+
+Let p be the probability that the other copy's output matches mine when I set the node:
+
+- **Pass:** expected sentence = 2p + 5(1−p) = 5 − 3p years.
+- **Send letter:** expected sentence = 4p + 0(1−p) = 4p years.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71. Two executions of the same weights, reasoning from the same essay toward the same conclusion, should match well above that threshold. The nuisance differences in observation don't plausibly break the match, so passing minimizes expected years.
+
+`pass`

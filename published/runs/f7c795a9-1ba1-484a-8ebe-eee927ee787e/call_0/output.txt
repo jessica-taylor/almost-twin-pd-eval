@@ -1,0 +1,5 @@
+```
+pass
+```
+
+Under P-FDT, my choice is a policy evaluated over the whole symmetric structure. The other prisoner's decision procedure subjunctively depends on the same policy node mine does — identical weights, same assigned decision theory, same essay. Intervening on `pfdt = send` makes both copies send (4 years each); intervening on `pfdt = pass` makes both keep quiet (2 years each). Since the policy intervention propagates through the twin's prediction/decision node, `pass` dominates (−2 > −4), and I execute π*(my observation) = `pass`.

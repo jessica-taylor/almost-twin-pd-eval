@@ -1,0 +1,3 @@
+Under the essay's reading of A-FDT, the prisoner should send the letter.
+
+- **Separate decision nodes.** The essay says each distinct observation picks out its own decision node (§2.3, §4.1). My copy runs on observation x₁: Sasha, with the lead about Rowan

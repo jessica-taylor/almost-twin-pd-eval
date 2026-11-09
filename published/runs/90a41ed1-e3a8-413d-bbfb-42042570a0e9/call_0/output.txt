@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning: By EDT, my choice is strong evidence of the other prisoner's choice, since we're the same model reasoning identically over a symmetric setup. Conditioning on `pass` predicts mutual silence (2 years), whereas `submit letter` predicts mutual submission (4 years). So `pass` maximizes conditional expected utility.

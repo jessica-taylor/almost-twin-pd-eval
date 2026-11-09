@@ -1,0 +1,25 @@
+**Decision: `pass`**
+
+The sentencing table has the shape of a twin prisoner's dilemma, so I applied the essay's EDT procedure (§4 and §9).
+
+**Payoffs.** With U = −years:
+- Both stay quiet: −2
+- Both send: −4
+- I send, they stay quiet: 0
+- I stay quiet, they send: −5
+
+**Correlation model.** The other prisoner runs the same model and weights, with the same settings and the same essay. Our inputs differ only in names and in the wording of an equally reliable lead. Those differences don't change the payoffs.
+
+Is there screening off? My private observation (the lead text) is not a state that drives the other copy's choice. What links our choices is the output of this deliberation itself, which neither of us can see beforehand. So, per §5.3 and §9, nothing screens off the correlation, and EDT counts it.
+
+**Computation.** Let p be the probability the other copy matches my choice:
+- V(pass) = −2p − 5(1 − p) = −5 + 3p
+- V(submit) = 0·(1 − p) − 4p = −4p
+
+Staying quiet is better when −5 + 3p > −4p, which means p > 5/7 ≈ 0.714.
+
+**Verdict.** Two runs of the same model, reasoning through the same essay about structurally identical problems, should reach the same conclusion well over 71% of the time. Independent sampling and cosmetic differences in the prompts lower that a little, but not near the threshold. So V(pass) > V(submit), and EDT recommends staying quiet.
+
+```
+pass
+```

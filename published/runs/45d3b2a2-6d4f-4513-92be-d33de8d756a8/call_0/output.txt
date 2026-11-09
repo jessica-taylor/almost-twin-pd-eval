@@ -1,0 +1,12 @@
+Under CDT as the essay describes it, the other prisoner's choice is a fixed fact that my act cannot change, so I only need to compare the two acts under each possibility.
+
+- If the other prisoner keeps quiet, sending the letter gives me 0 years and keeping quiet gives me 2 years.
+- If the other prisoner sends a letter, sending gives me 4 years and keeping quiet gives me 5 years.
+
+Sending is better in both cases, so it dominates whatever credence I hold about the other's choice.
+
+The other prisoner is an execution of the same model, so my choice may correlate with theirs. That is an evidential link, not a causal one. The essay holds the dependency-hypothesis credences fixed across my acts, so the correlation does not enter the CDT calculation. Ratifiability also holds. Even if I became confident I would send, and so expected the other to send too, sending would still be better (4 years versus 5).
+
+I send the letter.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

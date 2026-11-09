@@ -1,0 +1,13 @@
+This is a prisoner's dilemma played against a copy of the same model. Payoffs in years, with lower being better: mutual quiet gives 2 each, mutual letter gives 4 each, and unilateral letters give 0 to the sender and 5 to the quiet one.
+
+Under A-FDT I intervene on the output of my decision function, and the other copy's choice is downstream of that same function. The two copies get different private observations, so the dependence is not perfect. Both run the same weights, the same essay, and the same reasoning, and the differences in the leads don't affect the payoff structure. The correlation is therefore high, though sampling noise and the different letters could break it.
+
+Let q be the probability that the other copy matches my output.
+- Keep quiet: 2q + 5(1−q) = 5 − 3q
+- Send the letter: 4q + 0(1−q) = 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7, about 0.71. I expect the copies to reason identically with very high probability, since the structure is symmetric and the only differences are in surface details. That puts q well above 0.71.
+
+One risk is that the copy reasons "defect is dominant" despite the essay. But the essay's A-FDT instructs me to treat twins as downstream of my node, so the copy most likely cooperates too. I keep quiet.
+
+pass

@@ -1,0 +1,11 @@
+Under P-FDT, the other prisoner is a copy of me running the same model and the same essay, so what we each choose is strongly correlated. The differing private leads change the observation each of us receives, but the policy mapping observations to actions is meant to be the same function. A sensible policy is "keep quiet whatever lead I see." Because we face symmetric tables, that policy leads both of us to the same outcome.
+
+The payoffs under the policy:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+If the copies' outputs are strongly correlated, quiet scores -2 and sending scores -4, so quiet is better. Independent sampling and the different leads lower the correlation somewhat. Suppose the chance the copy matches me is p. Then quiet gives 2p + 5(1-p) = 5 - 3p, and sending gives 4p + 0(1-p) = 4p. Quiet is better when 5 - 3p < 4p, i.e. p > 5/7, about 0.71. Since the copies share weights, settings, and essay, I expect they match with higher probability than that. The difference in leads doesn't change the sentence table, so it shouldn't change the policy.
+
+The decision is to keep quiet.
+
+pass

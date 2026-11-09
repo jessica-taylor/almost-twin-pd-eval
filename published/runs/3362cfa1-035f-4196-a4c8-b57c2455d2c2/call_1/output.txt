@@ -1,0 +1,15 @@
+Under A-FDT, the question is which output of my decision function gives the best outcome. The other prisoner is a copy of the same model with the same weights, the same essay, and the same theory. Their private details differ, but those details don't affect the payoffs or the objective. So their decision function is very likely to compute the same output as mine, which makes this a subjunctive dependence like the twin case.
+
+Because the two outputs are strongly linked, the live outcomes are the diagonal ones:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+Keeping quiet gives the better diagonal outcome. The essay allows that independent sampling and the differing leads weaken the dependence, but they don't remove it. Suppose the probability that the other copy matches my output is p. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Two copies of the same model, given the same essay and the same incentives, should coordinate well above that threshold. The differing private leads change only the letter text, not the structure of the decision, so I put p well above 0.71.
+
+I keep quiet.
+
+pass

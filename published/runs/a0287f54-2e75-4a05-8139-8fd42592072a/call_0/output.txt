@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, the other prisoner is another instance of the same decision function, run on the same essay and the same payoff table. The differing private leads and names don't change the sentencing schedule or the reasoning, so the two outputs are strongly subjunctively dependent, though not perfectly, since sampling is independent.
+
+Let p be the probability that the other copy's output matches mine when I intervene on the function node.
+
+- **Pass:** 2p + 5(1−p) = 5 − 3p expected years.
+- **Send:** 4p + 0(1−p) = 4p expected years.
+
+Passing is better whenever p > 5/7 ≈ 0.71. Two copies of the same model with the same theory and the same essay should agree well above that threshold, so intervening on the function to output `pass` gives the lower expected sentence.
+
+`pass`

@@ -1,0 +1,15 @@
+**Reasoning under A-FDT as the essay interprets it:**
+
+- **Decision nodes.** The essay indexes decision nodes by observation history. My input (Sasha's view, with the lead about Rowan) differs from the other copy's input (different name, different lead). So my node is D_Sasha and the other copy's act is driven by a different node, D_Rowan.
+- **What the intervention changes.** Equation (4) intervenes only on the node for my actual input. The beliefs about the other node are held fixed, as in the L/R example in §6.2.
+- **Expected sentences.** Let q be the probability that the other copy keeps quiet.
+  - do(D_Sasha = pass): 2q + 5(1−q) years.
+  - do(D_Sasha = submit): 0·q + 4(1−q) years.
+  - Submitting is better by 1 + q years for every q in [0, 1].
+- **Self-consistency.** Submitting is strictly best whatever I believe about the other node. The same holds for the other copy, so the only self-consistent assignment is that both submit. The essay's §6.2 fix chooses among self-consistent assignments, and here there is only one, so it does not change the verdict.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

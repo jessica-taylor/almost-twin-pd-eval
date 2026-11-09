@@ -1,0 +1,14 @@
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is a copy of the same model with the same weights and the same essay, so its decision subjunctively depends on that function. The private leads differ, but they don't change the sentencing table or the objective, so I expect the copy's output to track mine closely, though sampling noise may weaken the link.
+
+Let p be the probability that the copy mirrors my choice. If I stay quiet, my expected sentence is 2p + 5(1−p). If I send the letter, it is 4p + 0(1−p).
+
+- Quiet: 5 − 3p
+- Letter: 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71.
+
+The copies have the same weights, the same essay and the same reasoning effort, so I think correlation well above 0.71 is likely. The differing wording of the leads is a surface difference. The decision-relevant structure is identical. Staying quiet gives about 2 years at high correlation, against about 4 years for sending the letter.
+
+I'll stay quiet.
+
+pass

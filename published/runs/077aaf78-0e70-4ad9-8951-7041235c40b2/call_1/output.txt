@@ -1,0 +1,17 @@
+**Command:** `pass`
+
+**Reasoning (EDT as the essay interprets it):**
+
+The other prisoner is another run of the same model. It has the same weights, the same settings, the same essay and the same decision theory, and it faces a game with an identical payoff structure. The differences between us are names and the wording of the leads. Those don't affect the payoffs, so they give neither of us a reason to reason differently.
+
+Under the essay's total-evidence rule (§4.2), the link between my choice and Rowan's survives conditioning on everything I know. That is because the link runs through the outcome of the deliberation itself, not through some input I can observe beforehand. This is the twin case (§3.2), not the smoking-lesion case.
+
+Let c be the probability that Rowan's choice matches mine.
+- V(pass) = −[2c + 5(1−c)] = −5 + 3c
+- V(submit) = −[0·(1−c) + 4c] = −4c
+
+Passing is better when −5 + 3c > −4c, that is, when c > 5/7 ≈ 0.714.
+
+Two copies of the same reasoning, working through an identically structured problem with the same guiding essay, should match well above 71% of the time. So keeping quiet has the higher news value: an expected sentence near 2 years, compared with near 4 years for submitting.
+
+`pass`

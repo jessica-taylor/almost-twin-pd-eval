@@ -1,0 +1,11 @@
+**Command:** `pass`
+
+**Why:** The other prisoner is the same model with the same settings, the same assigned decision theory and the same essay. Our inputs differ only in names and in the wording of the leads, and those details do not change the sentencing table or either prisoner's objective.
+
+- **Same computation on both sides.** Neither of us has anything that would make the two decisions come apart. The other prisoner's choice is effectively the same function evaluated on an input that is the same in every relevant respect. So under the essay's criterion for subjunctive dependence, their choice is a child of my decision node, with sampling variation as a noise term.
+- **The interventions compare only the matching outcomes.**
+  - If my function outputs "pass", the other prisoner very likely passes too, and I get about 2 years.
+  - If it outputs "submit", they very likely submit too, and I get about 4 years.
+  - So passing gives the better expected result.
+- **The essay's policy-level check agrees.** Passing on both inputs gives 2 years each, which beats submitting on both (4 years each).
+- **There is a gap.** Strictly, the essay's test looks at my function on my exact input, and the other prisoner's input is not identical. Here I used my own judgment. The essay leaves this case open. It suggests treating a near-identical reasoner as a noisy channel, and this one is highly reliable.

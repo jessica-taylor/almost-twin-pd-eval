@@ -1,0 +1,18 @@
+Under A-FDT, I intervene on the output of my decision function, and the other copy runs the same function on a different observation. The payoffs are:
+
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+- Only I send: 0 years for me.
+- Only the other sends: 5 years for me.
+
+The question is how strongly the other's output depends on mine. The twin has the same weights and settings, and the same essay and decision theory. The observations differ only in names and in the text of the lead. Those differences don't touch the sentencing table or the selfish objective. So the function that decides whether to send is very likely the same in substance. The one variable that could break the link is sampling noise, and the essay says imperfect dependence weakens the link without eliminating it.
+
+Suppose the correlation is strong, with probability p that the twin matches my output:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 0·p + 4(1−p) = 4 − 4p... wait, if the twin matches, sending gives 4 years, not 0. Redoing it: send gives 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. I expect the two copies to match with much higher probability than that, since the reasoning is nearly identical and the decision is a high-level one. So keeping quiet is better.
+
+The essay's own caveat is that the dependence graph must be supplied, and here I judge that the twin computes the same function, so I draw an edge from my fdt node to its output. Different observations are a minor wrinkle because the relevant reasoning is shared.
+
+pass

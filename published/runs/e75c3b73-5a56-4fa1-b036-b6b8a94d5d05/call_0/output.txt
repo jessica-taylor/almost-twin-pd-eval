@@ -1,0 +1,17 @@
+Under P-FDT as the essay interprets it, my decision procedure picks a single policy covering both possible inputs: the Rowan observation and the Sasha observation. Both executions run that same policy, and I evaluate it without conditioning on which prisoner I turn out to be.
+
+| Policy (Rowan's action, Sasha's action) | Rowan's years | Sasha's years | Expected years, not conditioning on identity |
+|---|---|---|---|
+| (pass, pass) | 2 | 2 | **2** |
+| (submit, submit) | 4 | 4 | 4 |
+| (submit, pass) or (pass, submit) | 0 or 5 | 5 or 0 | 2.5 |
+
+Mutual silence minimizes expected imprisonment, so π\*(Rowan input) = pass.
+
+One caveat: independent sampling means the other copy could deviate. The theory still tells me to choose the jointly optimal policy, which both copies share.
+
+**Command:**
+
+```text
+pass
+```

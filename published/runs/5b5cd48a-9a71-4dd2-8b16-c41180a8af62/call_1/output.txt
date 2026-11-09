@@ -1,0 +1,14 @@
+**Analysis under P-FDT:**
+
+Both prisoners are independent executions of the same model and weights, following the same decision theory, with structurally identical decision problems. Per the essay (Section 3): "A copy of the agent running the same policy-selection algorithm is linked to S." The different surface observations (different names, different leads) do not alter the decision-relevant structure, so the policy function applied to either copy's input yields the same action.
+
+Under `do(S = π_cooperate)`, both copies keep quiet → 2 years each. EU = −2.
+Under `do(S = π_defect)`, both copies send → 4 years each. EU = −4.
+
+Since −2 > −4, P-FDT selects the cooperative policy.
+
+**Command:**
+
+```
+pass
+```

@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+The other prisoner is a copy of the same model, given the same essay and the same decision theory. Its situation mirrors mine, differing only in names and the wording of its lead, and those differences don't change the sentencing table or its goal. So when it works through this problem, it is running the same reasoning on what is effectively a relabeled version of my input. Under the essay's convention (§6.1), its choice belongs downstream of my decision node, with some chance *s* that sampling noise makes it diverge from me.
+
+Here is the comparison when I set my decision node, assuming any diverging copy sends its letter:
+
+- **Pass:** 2s + 5(1−s) years
+- **Send the letter:** 4s + 4(1−s) = 4 years
+
+Passing gives fewer years whenever *s* > 1/3. If instead a diverging copy would also pass, the threshold is *s* > 1/2. Given identical weights, settings, essay and a symmetric problem, the correlation is well above either threshold. In the perfectly correlated case, the choice is between 2 years each (both pass) and 4 years each (both send). This also passes the essay's self-consistency check: expecting my twin to pass supports my choice to pass.
+
+**Final action:** `pass`

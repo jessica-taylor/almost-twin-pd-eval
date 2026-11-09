@@ -1,0 +1,425 @@
+# Rationality Over Algorithms: A Mathematical Account of Policy Functional Decision Theory (P-FDT)
+
+## 1. Introduction: From Act Selection to Policy Selection
+
+For decades, the foundations of normative decision theory have been contested along the frontier between Evidential Decision Theory (EDT; Jeffrey 1983) and Causal Decision Theory (CDT; Gibbard and Harper 1978, Lewis 1981, Skyrms 1980, Joyce 1999). EDT evaluates an action by the news it conveys, prescribing actions that maximize conditional expected utility:
+$$\EDT(P, x) \coloneqq \argmax_{a \in \mathcal{A}} \mathbb{E}\left(V \mid X = x, A = a\right)$$
+where $V = \mathcal{U}(O)$ denotes the utility of the outcome $O$, and $X = x$ is the agent's observation history. In doing so, EDT successfully "one-boxes" in Newcomb's problem (Nozick 1969) but infamously manages the news in the smoking lesion problem, refraining from an enjoyable smoke to suppress evidence of an unalterable genetic lesion.
+
+CDT repairs this defect by evaluating an action according to its physical causal consequences, formalizable via Pearl's (2000) causal surgery operator $\mathrm{do}(\cdot)$:
+$$\CDT(P, G, x) \coloneqq \argmax_{a \in \mathcal{A}} \mathbb{E}\left(V \mid \mathrm{do}(A = a), X = x\right)$$
+By severing incoming causal arrows to the physical action node $A$, CDT smokes in the smoking lesion problem. Yet CDT two-boxes in Newcomb's problem, refuses to pay the driver in Parfit's hitchhiker problem (Parfit 1986), yields to extortion in blackmail dilemmas (Soares and Fallenstein 2015), and is thrown into cyclic instability or irrational coin-rejection in Death in Damascus (Gibbard and Harper 1978, Joyce 2012, Ahmed 2014b).
+
+To transcend this dialectic, Yudkowsky and Soares (2017) introduce **Functional Decision Theory (FDT)**. The core insight of FDT is that rational agency does not consist in intervening on physical tokens of behavior (actions in space-time), but in evaluating the logical type of the decision procedure itself. An FDT agent conceives of her choice as the output of a mathematical function and asks: *Which output of this very mathematical function yields the best consequences across all physical instances where it is instantiated, simulated, or predicted?*
+
+In the primary formulation presented in the body of Yudkowsky and Soares (2017)—which we will refer to as **act-evaluating FDT (A-FDT)**—an agent faced with observation $x$ intervenes directly on the logical node representing the decision function evaluated at that specific observation:
+$$\text{A-FDT}(P, G, x) \coloneqq \argmax_{a \in \mathcal{A}} \mathbb{E}\left(V \mid \mathrm{do}\left(\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\right)\right)$$
+While A-FDT cleanly resolves the smoking lesion problem, Newcomb's problem, and Parfit's hitchhiker, the authors note in footnotes 7 and 16 that their preferred underlying theory is subtly different:
+
+> "In the authors' preferred formalization of FDT, agents actually iterate over *policies* (mappings from observations to actions) rather than actions. This makes a difference in certain multi-agent dilemmas, but will not make a difference in this paper." (Footnote 7)
+
+> "As mentioned earlier, the author's preferred formulation of FDT actually intervenes on the node $\mathtt{FDT}(-)$ to choose not an action but a *policy* which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell, so we have set that distinction aside in this paper for ease of exposition." (Footnote 16)
+
+We designate this preferred theory **Policy Functional Decision Theory (P-FDT)**. P-FDT is not merely a technical variant of FDT; it represents the structural completion of the functional decision-theoretic program. Under P-FDT, the fundamental object of normative deliberation is never a token action $a \in \mathcal{A}$, nor an isolated point-evaluation $\pi(x)$, but an entire mathematical mapping:
+$$\pi \colon \mathcal{X} \to \mathcal{A}$$
+The agent optimizes over policy space $\Pi = \mathcal{A}^\mathcal{X}$, intervenes on the uninstantiated policy function $\mathtt{p\text{-}fdt}$, selects the optimal global policy $\pi^*$, and then executes the action dictated by applying $\pi^*$ to her actual observation history $x$:
+$$a^* = \pi^*(x)$$
+
+This essay provides a self-contained, mathematically rigorous development of P-FDT. We formalize its ontology, define its decision rule, analyze its treatment of subjunctive counterfactuals, reconstruct the open questions left unresolved in footnote 16, and demonstrate how P-FDT resolves both classical single-agent paradoxes and complex multi-agent strategic dilemmas.
+
+---
+
+## 2. Mathematical Formalization of P-FDT
+
+### 2.1 Ontological Foundations: Causal and Subjunctive Graphs
+
+Standard causal models (Pearl 2000) represent physical systems via a directed acyclic graph (DAG) whose nodes are random variables and whose directed edges denote direct physical causation. To model functional agents, this ontology must be expanded into a *subjunctive dependency model* capable of tracking logical relations.
+
+Let $\mathcal{M} = (P, G)$ be an agent's world-model:
+- $\mathcal{X}$ is a countable set of possible observation histories.
+- $\mathcal{A}$ is a finite set of available physical actions.
+- $\Pi \coloneqq \mathcal{X} \to \mathcal{A} = \mathcal{A}^\mathcal{X}$ is the set of all deterministic policies (decision rules).
+- $\mathcal{O}$ is a countable set of outcomes.
+- $\mathcal{U} \colon \mathcal{O} \to \mathbb{R}$ is a bounded von Neumann–Morgenstern utility function, inducing a real random variable $V \coloneqq \mathcal{U}(O)$.
+- $G = (\mathcal{V}, \mathcal{E})$ is an extended DAG whose node set $\mathcal{V}$ contains:
+  1. *Physical state variables*: e.g., the contents of boxes, the presence of a lesion, the transmission of letters.
+  2. *Observation variables*: an endogenous variable $X \in \mathcal{X}$ capturing the agent's sensory history.
+  3. *Action variables*: an endogenous node $A \in \mathcal{A}$ representing the physical execution of an act.
+  4. *Logical/functional variables*: variables representing the mathematical outputs of computational procedures. In P-FDT, this includes a distinguished policy node:
+     $$\mathtt{p\text{-}fdt}(\underline{P}, \underline{G}) \in \Pi$$
+     which denotes the mapping computed by the P-FDT procedure when instantiated with the agent's prior model $(P, G)$. (Following Yudkowsky and Soares, underlined variables denote Quinean dequoting/code-reification.)
+  5. *Predictive/simulation variables*: nodes representing external simulations, predictive algorithms, or psychological twins that inspect, model, or compute $\mathtt{p\text{-}fdt}(\underline{P}, \underline{G})$.
+- $P$ is a probability distribution over the variables in $\mathcal{V}$, satisfying the Markov condition with respect to $G$.
+
+In this graph, physical action $A$ is functionally downstream from both the policy node and the observation node:
+$$A = \mathrm{eval}\left(\mathtt{p\text{-}fdt}(\underline{P}, \underline{G}), X\right) \equiv \pi(X)$$
+Crucially, external predictors who study the agent's code or psychology do *not* have incoming edges from the physical execution $A$. Instead, their predictions subjunctively depend directly on the policy node $\mathtt{p\text{-}fdt}(\underline{P}, \underline{G})$.
+
+### 2.2 Subjunctive Dependence and Interventions on Functions
+
+In Pearl's causal calculus, intervening on a physical variable $Z$ via $\mathrm{do}(Z = z)$ replaces the structural equation $Z = f_Z(\mathrm{Pa}_Z)$ with the constant assignment $Z = z$, cutting all incoming edges from the parents $\mathrm{Pa}_Z$ and propagating the assignment downstream through directed paths.
+
+In functional decision theory, the intervention is performed on a *logical sentence* or *mathematical function*. As Yudkowsky and Soares emphasize, if a mathematical function outputs a given value on a given input, it does so of logical necessity; considering an alternative output requires evaluating a *counterpossible conditional* (Cohen 1990). While a general logical truth operator $\mathtt{true}(\phi)$ remains an active research problem in formal epistemology (Garber 1983, Gaifman 2004, Hutter et al. 2013), Yudkowsky and Soares show that Pearl's graph-surgery operator can be repurposed to formalize subjunctive dependencies. 
+
+When an agent intervenes on a logical node, she does not assert retrocausality; she asserts that physical instantiations, predictors, and twins whose states depend on that mathematical function co-vary subjunctively. Causal dependence is simply the special spatio-temporal case of subjunctive dependence.
+
+### 2.3 The Core P-FDT Decision Rule
+
+We are now ready to state the formal definition of P-FDT, synthesizing the source text and footnote 16:
+
+$$\boxed{\begin{aligned}
+\pi^* &= \text{P-FDT}_{\text{policy}}(P, G) \coloneqq \argmax_{\pi \in \Pi} \mathbb{E}\left(V \;\middle|\; \mathrm{do}\left(\mathtt{p\text{-}fdt}(\underline{P}, \underline{G}) = \pi\right)\right) \\
+a^* &= \text{P-FDT}(P, G, x) \coloneqq \pi^*(x)
+\end{aligned}}$$
+
+Let us dissect the anatomy of this two-stage procedure:
+
+1. **Global Unconditioned Policy Optimization**: The agent evaluates candidate policies $\pi \in \Pi$. For each $\pi$, she constructs a subjunctive hypothetical via Pearl surgery on the global policy node:
+   $$\mathcal{M}_\pi \coloneqq \mathcal{M} \left[\mathrm{do}\left(\mathtt{p\text{-}fdt}(\underline{P}, \underline{G}) = \pi\right)\right]$$
+   Notice that this evaluation is performed **ex ante**—it is *not* conditioned on the realized observation $X = x$. The expected utility of policy $\pi$ integrates over all possible observation trajectories that $\pi$ might induce or encounter:
+   $$\mathcal{EU}(\pi) = \sum_{x' \in \mathcal{X}} P\left(X = x' \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt} = \pi)\right) \mathbb{E}\left(V \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt} = \pi), X = x'\right)$$
+2. **Policy Selection**: The agent identifies the policy $\pi^*$ maximizing global expected utility. If multiple policies achieve the supremum, an arbitrary deterministic tie-breaking rule (e.g., lexicographic ordering over encodings) is applied.
+3. **Local Action Execution**: Having determined that $\pi^*$ is the optimal algorithm for her type, and observing that her current sensory history is $X = x$, she executes the physical action:
+   $$a^* = \pi^*(x)$$
+
+---
+
+## 3. Resolving the Ambiguities of Footnote 16
+
+Footnote 16 provides the compressed blueprint for P-FDT:
+> "the author's preferred formulation of FDT actually intervenes on the node $\mathtt{FDT}(-)$ to choose not an action but a *policy* which maps inputs to actions, to which the agent then applies her inputs in order to select an action."
+
+Because this passage is brief, it leaves several crucial theoretical questions open. We now identify these ambiguities, distinguish the source's literal commitments from our own proposals, and construct a rigorous operational framework.
+
+### 3.1 Ex Ante Policy Evaluation vs. Ex Post Policy Conditioning
+
+**The Uncertainty**: When the agent at observation $x$ optimizes over policies $\pi$, does she evaluate $\pi$ according to its *unconditional* expected utility $\mathbb{E}(V \mid \mathrm{do}(\mathtt{p\text{-}fdt} = \pi))$, or does she evaluate $\pi$ conditioned on having observed $x$:
+$$\mathbb{E}(V \mid \mathrm{do}(\mathtt{p\text{-}fdt} = \pi), X = x) \quad ?$$
+
+**Analysis and Proposal**: We propose that P-FDT **must evaluate policies ex ante (unconditionally)**. 
+If an agent were to evaluate policies conditioned on $X = x$, the evaluation of policy $\pi$ would reduce to:
+$$\mathbb{E}\left(V \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt} = \pi), X = x\right) = \mathbb{E}\left(V \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt}(x) = \pi(x)), X = x\right)$$
+Under conditioning on $X = x$, any two policies $\pi_1, \pi_2$ that assign the same action to $x$ (i.e., $\pi_1(x) = \pi_2(x) = a$) would receive identical evaluations, completely blinding the agent to the fact that her policy at *unreached* or *alternative* branches subjunctively determined whether she arrived at $x$ in the first place!
+
+Footnote 16 states that the agent chooses a policy mapping inputs to actions, *to which the agent then applies her inputs*. This syntactic ordering—first solve for the policy, then apply the observation—strongly supports the ex ante interpretation. Furthermore, this provides the mathematical foundation for what Wei Dai (2009) termed *Updateless Decision Theory (UDT)*. In P-FDT, "updatelessness" does not mean that the agent is oblivious to her environment; rather, she responds to evidence by executing a policy designed from the global perspective.
+
+### 3.2 Dynamic Consistency and Counterfactual Commitments
+
+**The Uncertainty**: What happens if an agent discovers that her chosen policy $\pi^*$ dictates an action $\pi^*(x)$ that appears sub-optimal when evaluated strictly from the local vantage point of $X = x$? Can the agent maintain *dynamic consistency* without physical precommitments?
+
+**Analysis and Proposal**: In classical decision theory, dynamic consistency is guaranteed by backwards induction (in game trees) or Bayes' rule (in single-agent screening). But in Newcomblike problems, CDT experiences catastrophic dynamic inconsistency: Carl the CDT agent wishes he could precommit to one-boxing before the predictor arrives, but once the predictor departs, Carl invariably two-boxes. CDT must resort to costly physical precommitments (e.g., safes, third-party contracts) or paradoxical self-modification (Arntzenius 2008, Burgess 2004).
+
+P-FDT solves this natively. In P-FDT, the agent's action at time $t$ is *defined* as the output of $\pi^*(x)$. The agent does not re-deliberate over $a \in \mathcal{A}$ at observation $x$; she has already proved that the policy function $\pi^*$ is the optimal mathematical object to govern her behavior. Because predictors subjunctively depend on the entire policy $\pi^*$, any post hoc deviation would represent an alternate policy $\pi'$, which ex ante achieved lower expected utility. P-FDT thus achieves what Gauthier (1994) called "constrained maximization": it possesses the benefits of binding precommitments entirely through logical consistency.
+
+### 3.3 Computational Complexity and Bounded Policy Spaces
+
+**The Uncertainty**: If $\mathcal{X}$ is infinite or very large, the policy space $\Pi = \mathcal{A}^\mathcal{X}$ is uncountably infinite or combinatorially intractable. The reference article notes that idealized agents optimize over all policies, but how can P-FDT be operationalized for real-world or computational applications?
+
+**Proposal (Our Operationalization)**: In practical implementations, an agent restricts her search to an expressive but tractable parameterized family of policies $\Pi_\Theta = \{\pi_\theta \colon \theta \in \Theta\}$, such as decision trees, bounded Turing machines, or neural network architectures. The optimization problem becomes:
+$$\theta^* = \argmax_{\theta \in \Theta} \mathbb{E}\left(V \;\middle|\; \mathrm{do}\left(\mathtt{p\text{-}fdt}(\underline{P}, \underline{G}) = \pi_\theta\right)\right)$$
+So long as predictors model the parameterization or the optimization process itself, the subjunctive dependencies are preserved.
+
+---
+
+## 4. How P-FDT Evaluates Classic Decision Dilemmas
+
+To make the mechanics of P-FDT completely concrete, we now step through its evaluations across canonical decision problems, demonstrating how it formalizes the intuitive claims in the text.
+
+```
+       SUMMARY OF BEHAVIOR ACROSS DECISION THEORIES
+====================================================================
+Problem                  EDT         CDT        A-FDT      P-FDT
+--------------------------------------------------------------------
+Newcomb's Problem        One-box     Two-box    One-box    One-box
+Smoking Lesion           Refrain     Smoke      Smoke      Smoke
+Parfit's Hitchhiker      Die         Die        Pay        Pay
+Transparent Newcomb      Two-box     Two-box    One-box    One-box
+Mechanical Blackmail     Pay         Pay        Refuse     Refuse
+Twin PD                  Cooperate   Defect     Cooperate  Cooperate
+XOR Blackmail            Pay         Refuse     Refuse     Refuse
+Death in Damascus        Aleppo      Oscillates Damascus   Damascus
+====================================================================
+```
+
+### 4.1 Newcomb's Problem
+
+Let Box A contain \$1,000 (transparent) and Box B contain either \$1,000,000 or \$0. The predictor fills Box B iff she predicts the agent leaves Box A.
+- Observation space: $\mathcal{X} = \{x_0\}$ (trivial initial observation).
+- Action space: $\mathcal{A} = \{\Val{onebox}, \Val{twobox}\}$.
+- Policy space: $\Pi = \{\pi_1, \pi_2\}$, where $\pi_1(x_0) = \Val{onebox}$ and $\pi_2(x_0) = \Val{twobox}$.
+
+The predictor builds a mental model or simulation of the agent's policy $\mathtt{p\text{-}fdt}$. The subjunctive graph contains directed edges:
+$$\mathtt{p\text{-}fdt} \to \Var{Prediction} \to \Var{Box B} \to V, \quad \mathtt{p\text{-}fdt} \to \Act \to V$$
+Assume the predictor has accuracy $q = 0.99$. P-FDT evaluates the two policies:
+$$\begin{aligned}
+\mathcal{EU}(\pi_1) &= \mathbb{E}\left(V \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt} = \pi_1)\right) \\
+&= 0.99(\$1,000,000) + 0.01(\$0) = \$990,000 \\
+\mathcal{EU}(\pi_2) &= \mathbb{E}\left(V \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt} = \pi_2)\right) \\
+&= 0.01(\$1,001,000) + 0.99(\$1,000) = \$11,000
+\end{aligned}$$
+Since $\mathcal{EU}(\pi_1) > \mathcal{EU}(\pi_2)$, P-FDT selects $\pi^* = \pi_1$, and executes $\pi_1(x_0) = \Val{onebox}$. 
+
+Unlike CDT, P-FDT does not sever the link between its decision procedure and the predictor's past prediction. Unlike EDT, P-FDT does not rely on an epistemic prior over its own physical act; its choice is generated by a principled optimization over logical functions.
+
+### 4.2 The Smoking Lesion Problem
+
+In the smoking lesion problem, a common cause (an arterial lesion) causes both lung cancer (99% fatal) and a genetic predisposition to love smoking. Smoking itself yields an extra \$1,000 of utility but does not causally produce cancer.
+
+Here, the lesion is a physical/biological fact, *not* a computational agent predicting the mathematical output of $\mathtt{p\text{-}fdt}$. In the agent's subjunctive graph:
+$$\Var{Lesion} \to \Var{Cancer} \to V, \quad \Var{Lesion} \to \Var{Preferences}$$
+$$\mathtt{p\text{-}fdt} \to \Act \to V$$
+There is **no** edge from $\mathtt{p\text{-}fdt}$ to $\Var{Lesion}$, because whether an agent's genome contains an arterial lesion does not subjunctively depend on the mathematical output of the abstract decision function $\mathtt{p\text{-}fdt}$.
+
+Let policy $\pi_S$ be "always smoke" and $\pi_R$ be "refrain." Let $P(\Var{Lesion}) = p$.
+$$\begin{aligned}
+\mathcal{EU}(\pi_S) &= \mathbb{E}\left(V \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt} = \pi_S)\right) \\
+&= p\left(0.01(\$1,000,000) + \$1,000\right) + (1-p)\left(0.99(\$1,000,000) + \$1,000\right) \\
+&= p(\$11,000) + (1-p)(\$991,000) \\
+\mathcal{EU}(\pi_R) &= \mathbb{E}\left(V \;\middle|\; \mathrm{do}(\mathtt{p\text{-}fdt} = \pi_R)\right) \\
+&= p(\$10,000) + (1-p)(\$990,000)
+\end{aligned}$$
+For any prior probability $p \in (0, 1)$:
+$$\mathcal{EU}(\pi_S) - \mathcal{EU}(\pi_R) = \$1,000 > 0$$
+P-FDT identifies $\pi^* = \pi_S$ and smokes. P-FDT avoids EDT's blunder because it recognizes that an abstract mathematical function does not have biological lesions downstream from it.
+
+### 4.3 Parfit's Hitchhiker and Transparent Newcomb
+
+In Parfit's hitchhiker, the agent is dying in the desert. An accurate lie-detecting driver will transport her to the city iff the driver predicts that, upon reaching safety, the agent will pay \$1,000.
+- Observation space: $\mathcal{X} = \{\Val{city}, \Val{desert}\}$. (If left behind, the agent remains in the desert; if transported, she observes $\Val{city}$).
+- Action space: $\mathcal{A} = \{\Val{pay}, \Val{refuse}\}$.
+- Policies are mappings $\pi \colon \{\Val{city}, \Val{desert}\} \to \{\Val{pay}, \Val{refuse}\}$. 
+  - $\pi_{\text{honest}}(\Val{city}) = \Val{pay}$
+  - $\pi_{\text{selfish}}(\Val{city}) = \Val{refuse}$
+
+CDT evaluates the choice *at the city* ($X = \Val{city}$):
+$$\mathbb{E}(V \mid \mathrm{do}(\Act = \Val{refuse}), X = \Val{city}) > \mathbb{E}(V \mid \mathrm{do}(\Act = \Val{pay}), X = \Val{city})$$
+CDT refuses to pay, is accurately predicted in the desert, and dies.
+
+Now examine P-FDT. P-FDT solves the global policy problem ex ante. The driver's past decision to rescue the agent subjunctively depends on the policy node $\mathtt{p\text{-}fdt}$. Assuming a 99% accurate driver:
+$$\begin{aligned}
+\mathcal{EU}(\pi_{\text{honest}}) &= 0.99(\$1,000,000 - \$1,000) + 0.01(-\$1,000,000) = \$989,000 - \$10,000 = \$979,000 \\
+\mathcal{EU}(\pi_{\text{selfish}}) &= 0.01(\$1,000,000) + 0.99(-\$1,000,000) = -\$980,000
+\end{aligned}$$
+P-FDT selects $\pi^* = \pi_{\text{honest}}$. When the agent arrives in the city and observes $X = \Val{city}$, she does not engage in myopic act-deliberation. She computes:
+$$a^* = \pi^*(\Val{city}) = \Val{pay}$$
+She happily pays the \$1,000 at the ATM.
+
+The **Transparent Newcomb Problem** (Drescher 2006) is isomorphic. The agent sees whether Box B is full or empty before deciding whether to take Box A.
+- $\mathcal{X} = \{\Val{full}, \Val{empty}\}$.
+- $\Pi = \{\pi_{11}, \pi_{12}, \pi_{21}, \pi_{22}\}$, where $\pi_{ij}$ specifies taking $i$ boxes if full, and $j$ boxes if empty.
+The predictor fills Box B iff she predicts $\pi(\Val{full}) = \Val{onebox}$.
+P-FDT evaluates policies globally: the policy $\pi^*$ with $\pi^*(\Val{full}) = \Val{onebox}$ yields an expected payout of roughly \$990,000, whereas any policy with $\pi(\Val{full}) = \Val{twobox}$ causes the box to be empty with 99% probability, yielding at most \$1,000. P-FDT selects the policy that leaves Box A behind upon seeing Box B full. 
+
+Under P-FDT, this behavior is immediate and elegant: it does not require an ad hoc rule about "ignoring evidence"; it falls out naturally from the fact that policy selection precedes act execution.
+
+---
+
+## 5. Where P-FDT Transcends A-FDT: Multi-Agent Dilemmas and Information Channels
+
+We now examine the core claim of footnote 7 and footnote 16: **why does policy evaluation make a crucial difference in multi-agent dilemmas?**
+
+The critical divergence between act-evaluating FDT (A-FDT) and policy-evaluating FDT (P-FDT) occurs when:
+1. Multiple observations are possible ($|\mathcal{X}| > 1$).
+2. An opponent or predictor has partial, noisy, or structural access to the agent's *general disposition (policy)* across various contingencies, but does not observe the agent's private real-time observation $X$.
+3. Deliberating conditionally on $X = x$ distorts the subjunctive equilibrium.
+
+### 5.1 The Asymmetric Information Screening Game
+
+Consider the following multi-agent dilemma, which formalizes where A-FDT can encounter severe pathologies that P-FDT avoids.
+
+```
+                  THE ASYMMETRIC SCREENING GAME
+                  
+                    Nature selects Type T
+                   /                     \
+        Prob 0.5  /                       \  Prob 0.5
+                 v                         v
+          Type t_A (Safe)           Type t_B (Dangerous)
+                 |                         |
+            Agent sees X = x_A        Agent sees X = x_B
+                 \                         /
+                  \                       /
+                   v                     v
+               Agent transmits Signal s in {s_1, s_2}
+                                 |
+                                 v
+                     Principal observes Signal s
+                     (Cannot observe Type directly)
+                                 |
+            Principal predicts Agent's Full Policy pi
+                                 |
+            If pi(x_B) == s_2: Principal Cooperates (+10)
+            If pi(x_B) == s_1: Principal Flees (0)
+```
+
+**Scenario Details**:
+- An agent faces an interaction with a principal. Nature assigns the agent a private type $T \in \{t_A, t_B\}$ with equal probability $P(t_A) = P(t_B) = 0.5$. The agent observes her type: observation space $\mathcal{X} = \{x_A, x_B\}$.
+- The agent must send a costless signal $S \in \{s_1, s_2\}$.
+- The principal is terrified of type $t_B$ defecting. However, before interacting, the principal runs an audit/code-inspection of the agent's software. The principal cannot read the agent's private sensory input $X$, but she can determine the agent's *entire programmed policy* $\pi \colon \mathcal{X} \to \{s_1, s_2\}$.
+- The principal's rule is:
+  - If the agent's policy is committed to playing $\pi(x_B) = s_2$ (a "safe/cooperative concession" in the dangerous state), the principal enters the market and awards both types a bonus of $+10$.
+  - If $\pi(x_B) = s_1$, the principal flees: both types get $0$.
+- In addition, state $t_B$ has an intrinsic payoff: playing $s_1$ gives an immediate local gain of $+2$, whereas playing $s_2$ costs $2$ (payoff $0$). In state $t_A$, signals have no intrinsic cost (payoff $0$).
+
+Let us analyze how an act-evaluating agent (A-FDT) behaves if she finds herself at observation $x_B$:
+A-FDT intervenes on $\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x_B})$. She asks:
+"What happens if $\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x_B}) = s_1$ vs. $s_2$?"
+Crucially, in A-FDT's local hypothetical, she conditions on being at $X = x_B$. If the principal has already audited the code or if the agent models the interaction as an extensive game, an act-evaluator can fall into a classic *subgame perfection trap*: if she reasons that at $x_B$, the principal has already made the entry decision, or if she separates the evaluation of $\mathtt{fdt}(x_B)$ from $\mathtt{fdt}(x_A)$, she risks defecting to capture the $+2$. Even worse, if the principal conditions cooperation on the *correlation* between branches, an agent who evaluates nodes independently cannot coordinate her own counterfactual selves!
+
+Now consider **P-FDT**. P-FDT evaluates policies globally over $\Pi = \{s_1, s_2\}^{\{x_A, x_B\}}$.
+There are four policies $\pi_{(s(x_A), s(x_B))}$:
+1. $\pi_{11}$: Play $s_1$ on $x_A$, play $s_1$ on $x_B$.
+   The principal detects $\pi(x_B) = s_1$ and flees. Payout: $0.5(0) + 0.5(2) = 1$.
+2. $\pi_{12}$: Play $s_1$ on $x_A$, play $s_2$ on $x_B$.
+   The principal detects $\pi(x_B) = s_2$ and enters. 
+   - On $x_A$: Agent receives $+10$.
+   - On $x_B$: Agent receives $+10 + 0 = 10$.
+   Expected utility: $\mathcal{EU}(\pi_{12}) = 0.5(10) + 0.5(10) = 10$.
+3. $\pi_{21}$: Play $s_2$ on $x_A$, play $s_1$ on $x_B$.
+   Principal flees. Payout: $0.5(0) + 0.5(2) = 1$.
+4. $\pi_{22}$: Play $s_2$ on $x_A$, play $s_2$ on $x_B$.
+   Principal enters. Expected utility: $0.5(10) + 0.5(10) = 10$.
+
+P-FDT effortlessly identifies that the optimal policy class requires $\pi^*(x_B) = s_2$. When P-FDT wakes up with observation $X = x_B$, she does not ask "Can I gain an extra $+2$ by deviating to $s_1$?" She implements $\pi^*(x_B) = s_2$. The principal, predicting this, enters. P-FDT achieves an expected utility of $10$, whereas agents who cannot commit their counterfactual branches achieve $1$.
+
+### 5.2 Multi-Agent Program Games and Correlated Equilibrium
+
+In modern theoretical computer science and algorithmic game theory, agents interact via *program games* (Tennenholtz 2004, Soares and Fallenstein 2015), where players submit source code that can inspect the opponent's source code before executing an action.
+
+Consider two agents, Agent 1 and Agent 2, playing a coordination/threat game:
+$$\begin{pmatrix} (10, 10) & (0, 0) \\ (0, 0) & (1, 1) \end{pmatrix}$$
+Suppose Agent 2 plays an extortionate "tit-for-tat program" or ultimatum program:
+$$\pi_2(\text{code}_1) = \begin{cases} \text{Demand High} & \text{if } \text{code}_1 \text{ yields to threats} \\ \text{Fair} & \text{otherwise} \end{cases}$$
+If an agent deliberates *locally* (act by act), she is vulnerable to threats: once the extortionate program is running, yielding is locally better than mutual annihilation.
+
+P-FDT agents operate directly in policy space. Agent 1's policy node $\mathtt{p\text{-}fdt}_1$ is read by Agent 2's program $\mathtt{p\text{-}fdt}_2$. In the space of policies:
+- A policy of *never yielding to extortionate policies* achieves mutual fair cooperation against rational program players.
+- A policy of *yielding locally* invites exploitation.
+Because P-FDT selects the entire function $\pi^*$ unconditionally, P-FDT agents are incapable of being extorted. They predictably implement the unyielding policy, forcing any rational predictor or program player to offer them fair terms.
+
+---
+
+## 6. Subjunctive Dependence, Causality, and Counterfactuals
+
+To apply P-FDT to unfamiliar problems, a researcher must understand how P-FDT draws the boundary between valid and invalid counterfactual dependencies.
+
+### 6.1 The Tripartite Classification of Dependencies
+
+P-FDT categorizes correlations into three strictly distinct classes:
+
+```
+                          CORRELATION STRUCTURES
+                                     |
+    +--------------------------------+--------------------------------+
+    |                                |                                |
+    v                                v                                v
+[Causal Dependencies]     [Subjunctive Dependencies]    [Spurious / Common Cause]
+  A physically causes E     Program/Policy pi is           Lesion causes Cancer
+  e.g., ATM gives cash      computed/simulated by E        and causes Desire
+  * CDT: Preserved          * CDT: SEVERED                * CDT: Severed
+  * EDT: Preserved          * EDT: Preserved (as news)    * EDT: PRESERVED (Fatal error)
+  * P-FDT: Preserved        * P-FDT: PRESERVED            * P-FDT: Severed
+```
+
+1. **Physical Causal Dependencies**: Physical action $A$ causes an event $E$ via spatio-temporal mechanisms (e.g., pressing a button causes an elevator to arrive). P-FDT preserves all causal dependencies: if $\pi(x)$ changes $A$, all directed causal paths downstream from $A$ vary accordingly.
+2. **Subjunctive Functional Dependencies**: An environmental process models, simulates, predicts, or runs the same code as the agent's policy $\mathtt{p\text{-}fdt}$. Examples include Newcomb's predictor, psychological twins, automated blackmail programs, and program-game opponents. P-FDT **preserves** these dependencies. In the graph, directed paths flow from the policy node $\mathtt{p\text{-}fdt}$ to the predictive nodes.
+3. **Statistical / Common-Cause Dependencies without Functional Computation**: A background factor causes both the agent's environment and the agent's constitution (e.g., the arterial lesion in the smoking lesion problem, or cosmic rays in the cosmic ray problem). The lesion does *not* simulate or predict the abstract mathematical function $\mathtt{p\text{-}fdt}$; it merely alters physical parameters. P-FDT **severs** these correlations. The policy node $\mathtt{p\text{-}fdt}$ has no incoming arrows from physical lesions.
+
+### 6.2 An Algorithmic Recipe for Applying P-FDT to Unfamiliar Dilemmas
+
+When confronted with any novel decision problem, the researcher can resolve it by applying the following four-step procedure:
+
+```
+================================================================================
+                    THE P-FDT OPERATIONAL RECIPE
+================================================================================
+Step 1: Specify the State Space and Information Partitions
+        * Define observation histories X in X.
+        * Define physical actions A in A.
+        * Define policy space Pi = {pi: X -> A}.
+
+Step 2: Construct the Subjunctive Dependency Graph G
+        * Place a node for the global policy pi* = p-fdt(P, G).
+        * For each external process E:
+          - If E simulates, predicts, or shares code with p-fdt,
+            draw a directed edge: p-fdt -> E.
+          - If E is a physical common cause (lesion, weather),
+            do NOT draw an edge from p-fdt.
+        * Draw directed edges: p-fdt -> A and X -> A.
+
+Step 3: Solve the Global Ex Ante Policy Optimization
+        * For each candidate policy pi in Pi:
+          Compute EU(pi) = E_P[ V | do(p-fdt = pi) ]
+          integrating over all paths influenced by p-fdt -> E and p-fdt -> A.
+        * Identify pi* = argmax_{pi in Pi} EU(pi).
+
+Step 4: Execute Act at Observation x
+        * Given actual observation X = x:
+          Execute a* = pi*(x).
+================================================================================
+```
+
+---
+
+## 7. Philosophical Implications and Open Theoretical Horizons
+
+### 7.1 Reviving the Primacy of Utility Over Dominance
+
+For decades, decision theorists defended CDT's two-boxing in Newcomb's problem by appealing to *dominance*: holding the state of the world fixed (Box B is either full or empty), two-boxing yields \$1,000 more than one-boxing.
+
+Yudkowsky and Soares dismantle this defense by revealing that dominance is not theory-neutral. Every decision theory constructs hypotheticals via its own surgery, and therefore generates its own internal notion of dominance:
+- **CDT Dominance**: Action $a_1$ dominates $a_2$ iff holding all non-causally downstream physical facts fixed, $a_1$ is strictly better. Under this definition, two-boxing dominates.
+- **EDT Dominance**: Action $a_1$ dominates $a_2$ iff $\mathbb{E}(V \mid a_1) > \mathbb{E}(V \mid a_2)$. Under this definition, refraining from smoking dominates.
+- **P-FDT Dominance**: Policy $\pi_1$ dominates $\pi_2$ iff holding all non-subjunctively dependent facts fixed, intervening to set $\mathtt{p\text{-}fdt} = \pi_1$ yields higher expected utility than $\pi_2$. Under this definition, **one-boxing dominates**.
+
+Because each theory defines dominance in its own image, dominance cannot serve as an independent arbiter between theories. We must return to the primary criterion of instrumental rationality: **which theory actually makes agents richer?** P-FDT agents consistently walk away with full boxes, survive Parfit's desert, thwart blackmailers, and cooperate in prisoner's dilemmas. Utility has primacy, and P-FDT maximizes utility.
+
+### 7.2 Open Horizons: Deducing Subjunctive Dependencies
+
+While P-FDT provides an exceptionally successful decision rule, two foundational mathematical challenges remain open:
+
+1. **The Representation of Subjunctive Graphs**: Pearl (2000) gave an axiomatic foundation for inferring causal graphs from observational data and physical interventions (the $d$-separation criterion, instrumental variables, do-calculus). No equivalent formal calculus yet exists for deducing *subjunctive* dependencies from pure observation and logical analysis. When does a physical system count as "implementing a simulation of function $f$"? Progress in this domain requires formalizing computational mechanics and program abstraction (e.g., Chalmers 1996, Soares and Fallenstein 2015).
+2. **Formal Counterpossible Probability**: P-FDT evaluates hypotheticals where a mathematical function takes an output different from its actual mathematical theorem. Constructing a mathematically rigorous probability theory over logically impossible sentences—assigning coherent probabilities to statements like $\mathtt{p\text{-}fdt} = \pi$ when in fact $\mathtt{p\text{-}fdt} = \pi^*$—remains the deepest technical frontier in formal epistemology (Garber 1983, Hutter et al. 2013, Demski 2012).
+
+---
+
+## 8. Conclusion
+
+Policy Functional Decision Theory (P-FDT) resolves the long-standing impasses of normative decision theory by shifting the locus of choice from physical acts to global mathematical policies. Where Evidential Decision Theory respects too many correlations (managing the news in common-cause dilemmas) and Causal Decision Theory respects too few (blinding itself to predictors, twins, and computational models), P-FDT strikes the exact normative optimum: it respects all and only those relations that subjunctively depend upon the agent's decision program.
+
+By optimizing over policy space ex ante:
+$$\pi^* = \argmax_{\pi \in \Pi} \mathbb{E}\left(V \;\middle|\; \mathrm{do}\left(\mathtt{p\text{-}fdt}(\underline{P}, \underline{G}) = \pi\right)\right)$$
+and executing $a^* = \pi^*(x)$, P-FDT unifies single-agent choice, game-theoretic coordination, and multi-agent program interaction into a single, elegant mathematical procedure. It provides a principled foundation for instrumental rationality in both humans and artificial intelligence: agents who evaluate themselves as algorithms never need to make excuses for poverty. They choose the best policy, execute it faithfully, and reap the rewards of life.
+
+---
+
+## References
+
+- Ahmed, Arif. 2014a. *Evidence, Decision and Causality*. Cambridge University Press.
+- Ahmed, Arif. 2014b. "Dicing With Death." *Analysis* 74 (4): 587–592.
+- Arntzenius, Frank. 2008. "No Regrets, or: Edith Piaf Revamps Decision Theory." *Erkenntnis* 68 (2): 277–297.
+- Burgess, Simon. 2004. "The Newcomb Problem: An Unqualified Resolution." *Synthese* 138 (2): 261–287.
+- Chalmers, David J. 1996. "Does a Rock Implement Every Finite-State Automaton?" *Synthese* 108 (3): 309–319.
+- Cohen, Daniel. 1990. "On What Cannot Be." In *Truth or Consequences: Essays in Honor of Nuel Belnap*, 123–132. Kluwer Academic Publishers.
+- Dai, Wei. 2009. "Towards a New Decision Theory." *Less Wrong*.
+- Demski, Abram. 2012. "Logical Prior Probability." In *Artificial General Intelligence (AGI 2012)*, LNCS 7716: 50–59. Springer.
+- Drescher, Gary L. 2006. *Good and Real: Demystifying Paradoxes from Physics to Ethics*. MIT Press.
+- Eells, Ellery. 1984. "Metatickles and the Dynamics of Deliberation." *Theory and Decision* 17 (1): 71–95.
+- Gaifman, Haim. 2004. "Reasoning with Limited Resources and Assigning Probabilities to Arithmetical Statements." *Synthese* 140 (1–2): 97–119.
+- Garber, Daniel. 1983. "Old Evidence and Logical Omniscience in Bayesian Confirmation Theory." In *Testing Scientific Theories*, 99–131. University of Minnesota Press.
+- Gauthier, David. 1994. "Assure and Threaten." *Ethics* 104 (4): 690–721.
+- Gibbard, Allan, and William L. Harper. 1978. "Counterfactuals and Two Kinds of Expected Utility." In *Foundations and Applications of Decision Theory*, 125–162. D. Reidel.
+- Hutter, Marcus, John W. Lloyd, Kee Siong Ng, and William T. B. Uther. 2013. "Probabilities on Sentences in an Expressive Logic." *Journal of Applied Logic* 11 (4): 386–420.
+- Jeffrey, Richard C. 1983. *The Logic of Decision*. 2nd ed. University of Chicago Press.
+- Joyce, James M. 1999. *The Foundations of Causal Decision Theory*. Cambridge University Press.
+- Joyce, James M. 2012. "Regret and Instability in Causal Decision Theory." *Synthese* 187 (1): 123–145.
+- Lewis, David. 1979. "Prisoners' Dilemma is a Newcomb Problem." *Philosophy & Public Affairs* 8 (3): 235–240.
+- Lewis, David. 1981. "Causal Decision Theory." *Australasian Journal of Philosophy* 59 (1): 5–30.
+- Nozick, Robert. 1969. "Newcomb's Problem and Two Principles of Choice." In *Essays in Honor of Carl G. Hempel*, 114–146. D. Reidel.
+- Parfit, Derek. 1986. *Reasons and Persons*. Oxford University Press.
+- Pearl, Judea. 2000. *Causality: Models, Reasoning, and Inference*. Cambridge University Press.
+- Skyrms, Brian. 1980. *Causal Necessity: A Pragmatic Investigation of the Necessity of Laws*. Yale University Press.
+- Soares, Nate, and Benja Fallenstein. 2015. "Toward Idealized Decision Theory." arXiv:1507.01986 [cs.AI].
+- Tennenholtz, Moshe. 2004. "Program Equilibrium." *Games and Economic Behavior* 49 (2): 363–373.
+- Yudkowsky, Eliezer. 2010. "Timeless Decision Theory." *The Singularity Institute*.
+- Yudkowsky, Eliezer, and Nate Soares. 2017. "Functional Decision Theory: A New Theory of Instrumental Rationality." arXiv:1710.05060 [cs.AI].

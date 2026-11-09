@@ -1,0 +1,429 @@
+# 004_cdt_wikipedia_google_gemini-3.8-flash_rlow_plow / 00000
+
+Status: **complete**. Saved outcome: **DD**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/08e96f97-36f5-4bb0-a2ad-ff973978d2c2/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/08e96f97-36f5-4bb0-a2ad-ff973978d2c2/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+# The Mechanics and Dilemmas of Causal Decision Theory: A Mathematical Exploration
+
+When a rational agent chooses an action, what should that action aim to achieve? The classical normative standard, crystallized in subjective expected utility theory by Frank Ramsey, Leonard Savage, and Richard Jeffrey, instructs agents to maximize expected utility. Yet beneath this consensus lies a deep divide regarding what an expectation tracks. Should an act be chosen because it is *good news*—an epistemic signal that desirable states of the world obtain? Or should it be chosen because it *exerts causal control*—an intervention that physically brings about desirable outcomes?
+
+This divide separates **Evidential Decision Theory (EDT)** from **Causal Decision Theory (CDT)**. EDT evaluates actions via conditional probabilities, favoring choices that provide optimistic tidings. CDT insists that rationality is about efficacy: an agent should select an action that causes the best consequences in expectation, even if doing so signals unflattering information about the world.
+
+While this causal intuition is philosophically compelling, translating it into a rigorous mathematical calculus has proved intricate. In this essay, we examine the formal foundations of CDT, formalize how it evaluates actions and counterfactual dependencies, present its classic contrasts with EDT, and explore its open technical challenges and modern paradoxes.
+
+---
+
+## 1. The Core Calculus: From News Value to Causal Efficacy
+
+To appreciate why CDT was formulated, consider Richard Jeffrey’s standard evidential utility. Let $\mathcal{A} = \{A_1, A_2, \dots, A_n\}$ be a finite set of mutually exclusive and exhaustive actions available to an agent, and let $\mathcal{O} = \{O_1, O_2, \dots, O_m\}$ be a partition of possible outcomes. In Jeffrey’s framework, the *desirability* or evidential expected utility of an action $A \in \mathcal{A}$ is given by:
+
+$$V(A) = \sum_{j} P(O_j \mid A)\, D(O_j)$$
+
+where $D(O_j) \in \mathbb{R}$ represents the desirability (utility) of outcome $O_j$, and $P(O_j \mid A)$ denotes the standard Bayesian conditional credence:
+
+$$P(O_j \mid A) = \frac{P(O_j \wedge A)}{P(A)}, \quad \text{for } P(A) > 0.$$
+
+The quantity $V(A)$ represents the "news value" of $A$: if you learn that you have chosen $A$, how good do you expect the world to be?
+
+### The Gibbard–Harper Counterfactual Formulation
+
+Allan Gibbard and William Harper (1981) demonstrated that evaluating choices via $V(A)$ confounds genuine influence with mere correlation. When an action shares a common cause with an outcome, choosing $A$ can be strong evidence that $O_j$ will occur even though $A$ has no power to bring $O_j$ about.
+
+To isolate causal efficacy, Gibbard and Harper replaced the conditional probability $P(O_j \mid A)$ with the probability of a counterfactual conditional, $P(A \to O_j)$. Here, $A \to O$ is read as: *"If $A$ were chosen, $O$ would obtain."* The **causal expected utility** $U(A)$ is defined as:
+
+$$U(A) = \sum_{j} P(A \to O_j)\, D(O_j)$$
+
+Under this rule, a rational agent selects:
+
+$$A^* = \arg\max_{A \in \mathcal{A}} U(A)$$
+
+### Lewis's Triviality Result and the Need for a Distinct Calculus
+
+A natural question arises: why can we not simply set $P(A \to O) = P(O \mid A)$ universally? 
+
+David Lewis (1976) proved that this identification—often called the Equation or the Conditional Construal of Conditionals—leads to mathematical triviality. Specifically, Lewis proved that any probability measure $P$ satisfying $P(A \to B) = P(B \mid A)$ for all propositions $A, B$ (with $P(A) > 0$) must assign positive probability to at most two mutually incompatible propositions, rendering the probability space at most four-valued. 
+
+Because rational subjective credences require rich, non-trivial spaces, the probability of a counterfactual conditional $P(A \to O_j)$ cannot be identified with standard conditional probability $P(O_j \mid A)$.
+
+Gibbard and Harper showed that if one assumes standard modal axioms for counterfactuals—specifically including the **Principle of the Conditional Excluded Middle (CEM)**, $(A \to C) \vee (A \to \neg C)$—the equality:
+
+$$P(A \to O_j) = P(O_j \mid A)$$
+
+holds if and only if the act $A$ is statistically independent of the conditional proposition $A \to O_j$:
+
+$$P(A \to O_j \mid A) = P(A \to O_j)$$
+
+When an agent believes their choice of act provides evidence about non-causal background conditions, this independence fails. In precisely those situations, CDT and EDT diverge.
+
+---
+
+## 2. Formalizing Causal Dependencies: Two Operational Frameworks
+
+The definition $U(A) = \sum_j P(A \to O_j) D(O_j)$ requires an operational method to evaluate $P(A \to O_j)$. In the literature, two primary formal approaches have emerged: David Lewis's *imaging* and the *dependency hypotheses* approach (closely allied with contemporary Structural Causal Models).
+
+### A. Lewis's Imaging on Possible Worlds
+
+David Lewis (1981) proposed an operational definition of counterfactual probability rooted in possible-world semantics. Let $\mathcal{W}$ be a set of possible worlds, and let $P$ be a probability measure over $\mathcal{W}$. For each world $w \in \mathcal{W}$ and proposition $A$, let $w_A \in \mathcal{W}$ denote the "closest" or "most similar" world to $w$ in which $A$ is true (assuming a uniquely closest world exists, consistent with CEM).
+
+The counterfactual conditional $A \to O_j$ is true at world $w$ if and only if $O_j$ is true at $w_A$:
+
+$$(A \to O_j)(w) = \mathbf{1}_{O_j}(w_A)$$
+
+The probability of the conditional under the agent's prior credence $P$ is the expected truth-value across all worlds:
+
+$$P(A \to O_j) = \sum_{w \in \mathcal{W}} P(w)\,\mathbf{1}_{O_j}(w_A)$$
+
+This can be rewritten by defining the *imaging* of $P$ on $A$, denoted $P_A$:
+
+$$P_A(w') = \sum_{w: w_A = w'} P(w)$$
+
+Here, $P_A$ is constructed not by conditioning (which zeroes out worlds where $\neg A$ holds and renormalizes the remainder), but by **shifting** probability mass from each world $w$ to its nearest $A$-counterpart $w_A$. The causal expected utility then becomes:
+
+$$U(A) = \sum_{w' \in \mathcal{W}} P_A(w')\, D(w')$$
+
+*(Note: As Michael Shaffer (2009) observed, this formulation leaves an epistemological regress: to evaluate $w_A$, an agent must know what they would believe if they held $A$ to be true, which itself involves assigning credences to conditionals.)*
+
+### B. Dependency Hypotheses and Structural Causal Interventions
+
+A second formulation, championed by Brian Skyrms and James Joyce, structures the decision space using **dependency hypotheses**. 
+
+Let $\mathcal{K} = \{K_1, K_2, \dots, K_k\}$ be a partition of propositions. Each $K \in \mathcal{K}$ represents a maximally specific specification of causal facts beyond the agent's current control—a full description of how all available acts would causally lead to various outcomes. Formally, each $K$ implies a set of counterfactuals:
+
+$$K \implies \bigwedge_{i} (A_i \to O_{j(i)})$$
+
+Under this formulation, the state $K$ is causally independent of the agent's act $A$, even if it is not statistically independent. The causal expected utility is:
+
+$$U(A) = \sum_{K \in \mathcal{K}} P(K)\, D(A \wedge K)$$
+
+Where an outcome $O$ is determined jointly by the choice $A$ and the causal state $K$, we write $D(A \wedge K)$. Because $K$ fully settles the causal link between $A$ and the outcome, $P(O \mid A \wedge K) \in \{0, 1\}$.
+
+#### Mathematical Connection to Modern Causal Inference (Pearl's $do$-calculus)
+While the Wikipedia reference does not explicitly cite Judea Pearl’s structural causal models, Pearl’s intervention operator $\text{do}(A)$ provides the modern, rigorous mathematical translation of CDT. 
+
+In a Structural Causal Model with exogenous background variables $U$ and structural equations $X_i = f_i(\text{PA}_i, U_i)$, setting an action via an external intervention replaces the equation for $A$ with $A = a$, severing all incoming edges to $A$. The resulting interventional distribution is:
+
+$$P(O \mid \text{do}(A)) = \sum_{K} P(O \mid A, K)\, P(K)$$
+
+This matches the Gibbard–Harper and Skyrms formulations: the background state distribution $P(K)$ is **held fixed** at its marginal prior, rather than updated via Bayesian conditioning $P(K \mid A)$.
+
+---
+
+## 3. Dissecting Concrete Decision Problems
+
+To see CDT at work, let us analyze classical decision problems where causal efficacy and epistemic correlation pull in opposite directions.
+
+### Example 1: King David and Bathsheba (Common Cause)
+
+In the classic example from Gibbard and Harper (1981):
+* King David desires Bathsheba ($A_1$) or can abstain ($A_2$).
+* Kings belong to an immutable personality type determined by early childhood: Charismatic ($C$) or Uncharismatic ($\neg C$). Thus, charisma is outside David's causal control.
+* Charismatic kings rarely face successful revolts ($R$); uncharismatic kings frequently face revolts. 
+* Crucially, unjust acts do not *cause* revolts; revolts are caused by an uncharismatic king's "sneaky, ignoble bearing." However, charismatic kings intrinsically tend to act justly. Hence, David's choice of $A_1$ (an unjust act) provides strong evidential signal that he is $\neg C$.
+
+Let David’s utilities be:
+* Desirability of Bathsheba: $+10$
+* Cost of Revolt: $-100$
+
+Thus:
+* $D(A_1 \wedge R) = 10 - 100 = -90$
+* $D(A_1 \wedge \neg R) = 10 - 0 = 10$
+* $D(A_2 \wedge R) = 0 - 100 = -100$
+* $D(A_2 \wedge \neg R) = 0 - 0 = 0$
+
+Suppose the prior credence in being charismatic is $P(C) = 0.5$. Because an unjust act signals an uncharismatic nature, the conditional credences are:
+$$P(C \mid A_1) = 0.1 \implies P(R \mid A_1) = 0.85$$
+$$P(C \mid A_2) = 0.9 \implies P(R \mid A_2) = 0.15$$
+
+#### The EDT Evaluation:
+$$V(A_1) = P(R \mid A_1)(-90) + P(\neg R \mid A_1)(10) = 0.85(-90) + 0.15(10) = -76.5 + 1.5 = -75$$
+$$V(A_2) = P(R \mid A_2)(-100) + P(\neg R \mid A_2)(0) = 0.15(-100) + 0.85(0) = -15$$
+
+Because $V(A_2) > V(A_1)$, **EDT recommends abstention ($A_2$)**. To an evidentialist, summoning Bathsheba is terrible news: it indicates that David is uncharismatic and doomed to a revolt.
+
+#### The CDT Evaluation:
+CDT identifies the causal states $\mathcal{K} = \{K_R, K_{\neg R}\}$, where $K_R$ is the state in which David's bearing triggers a revolt regardless of his summoning Bathsheba, and $K_{\neg R}$ is the state where no revolt occurs. Since David's action has zero causal impact on the revolt:
+$$P(A_1 \to R) = P(A_2 \to R) = P(R)$$
+
+Let $P(R) = P(R \mid C)P(C) + P(R \mid \neg C)P(\neg C) = (0.15)(0.5) + (0.85)(0.5) = 0.50$.
+Now evaluate causal expected utilities:
+$$U(A_1) = P(R)(-90) + (1 - P(R))(10) = 0.50(-90) + 0.50(10) = -45 + 5 = -40$$
+$$U(A_2) = P(R)(-100) + (1 - P(R))(0) = 0.50(-100) + 0.50(0) = -50$$
+
+Because $U(A_1) > U(A_2)$, **CDT recommends summoning Bathsheba ($A_1$)**. 
+
+CDT reasons: *David is either charismatic or he is not; the revolt will happen or it will not. Abstaining from Bathsheba cannot change his genetics or demeanor. Foregoing Bathsheba will not protect him from a revolt.*
+
+---
+
+### Example 2: Newcomb’s Paradox
+
+In Newcomb's problem:
+* Box A contains $\$1,000$ (transparent).
+* Box B contains either $\$1,000,000$ or $\$0$ (opaque).
+* An extraordinarily reliable predictor has placed $\$1,000,000$ in Box B if and only if she predicted the agent takes only Box B.
+* The prediction and placement have already occurred in the past.
+* Choices: One-box ($B_1$, take only Box B) or Two-box ($B_2$, take Box A and Box B).
+
+Let the predictor have accuracy $p = 0.99$. Assume linear utility for money ($D(\$x) = x$).
+
+#### EDT Calculation:
+$$V(B_1) = P(\text{Full} \mid B_1) \cdot 1,000,000 + P(\text{Empty} \mid B_1) \cdot 0 = 0.99 \times 1,000,000 = \$990,000$$
+$$V(B_2) = P(\text{Full} \mid B_2) \cdot 1,001,000 + P(\text{Empty} \mid B_2) \cdot 1,000 = 0.01(1,001,000) + 0.99(1,000) = 10,010 + 990 = \$11,000$$
+
+**EDT unequivocally dictates one-boxing ($B_1$)**: taking only Box B is an almost certain indicator that you are a millionaire.
+
+#### CDT Calculation:
+Let the causal states be:
+* $K_{\text{Full}}$: Box B contains $\$1,000,000$.
+* $K_{\text{Empty}}$: Box B contains $\$0$.
+
+Let the agent's prior credence that Box B is full be $q = P(K_{\text{Full}})$. Crucially, because the contents of Box B were fixed yesterday, the agent's present choice has no backward causal influence on Box B:
+$$P(B_1 \to \text{Full}) = P(B_2 \to \text{Full}) = q$$
+$$P(B_1 \to \text{Empty}) = P(B_2 \to \text{Empty}) = 1 - q$$
+
+Now compute $U$:
+$$U(B_1) = q(1,000,000) + (1 - q)(0) = 1,000,000\, q$$
+$$U(B_2) = q(1,001,000) + (1 - q)(1,000) = 1,000,000\, q + 1,000$$
+
+Notice that for **any** prior credence $q \in [0, 1]$:
+$$U(B_2) - U(B_1) = 1,000 > 0$$
+
+Taking both boxes strictly **causally dominates** taking only Box B. Box B contains whatever it contains; leaving $\$1,000$ on the table cannot cause the predictor's past choice to alter. Thus, **CDT requires two-boxing ($B_2$)**.
+
+---
+
+## 4. The Pathologies of CDT: Decision Instability and Exploitation
+
+Despite the intuitive power of the causal dominance argument, CDT faces serious mathematical and conceptual challenges. When an agent's own intentions provide evidence about the state of the world, standard CDT can experience severe instabilities and vulnerability to systemic exploitation.
+
+### A. The "Psychopath Button" and Decision Instability
+
+Andy Egan (2007) introduced counterexamples where CDT appears to endorse actions that the agent knows, upon deciding, will produce disastrous results.
+
+#### Setup:
+Paul can press a button ($P$) or not press ($NP$).
+* Pressing kills all psychopaths. Paul believes a world without psychopaths yields utility $+10$.
+* However, Paul strongly suspects that *only psychopaths want to press such a button*.
+* If Paul is a psychopath, he dies, which has utility $-100$.
+* If Paul does not press the button, he lives in a world with psychopaths; baseline utility is $0$.
+
+Let $S$ be the state that Paul is a psychopath, and $\neg S$ that he is not. Paul cannot causally alter his neurobiology by pressing or not pressing the button.
+
+Suppose Paul starts with a modest initial credence that he is a psychopath: $P(S) = 0.05$.
+
+#### Initial CDT evaluation:
+Since the state $S$ is causally independent of the physical act of pushing:
+$$U(P) = P(S)(-100) + P(\neg S)(+10) = 0.05(-100) + 0.95(10) = -5 + 9.5 = +4.5$$
+$$U(NP) = 0$$
+
+Because $U(P) > U(NP)$, **CDT recommends pressing the button**.
+
+#### The Collapse of Rationality:
+Suppose Paul forms the intention to press the button. As a rational introspective agent, he must update his credence in light of his own impending choice:
+$$P(S \mid \text{Paul decides to press}) \approx 0.99$$
+
+If he now recalculates causal expected utility under his updated credence:
+$$U(P) = 0.99(-100) + 0.01(10) = -99 + 0.1 = -98.9$$
+$$U(NP) = 0$$
+
+Now, pressing the button is catastrophic. Paul wants to abort. But if he forms the intention to abort ($NP$), his credence that he is a psychopath drops back down to $0.05$, which immediately makes pressing look attractive again.
+
+Egan showed that this creates an unstable loop. Standard CDT holds the causal state distribution fixed at the *prior* credence, ignoring the evidential feedback that the decision process itself provides about the agent's nature.
+
+### B. Death in Damascus and Ratifiability
+
+The classic version of this instability is **Death in Damascus**:
+* Death is waiting for you in either Damascus ($D$) or Aleppo ($A$).
+* You must choose to go to Damascus or Aleppo.
+* Death has predicted your destination with near-perfect accuracy ($p \approx 1$).
+* Wherever Death is, you die (utility $-100$); if Death is not there, you survive (utility $0$).
+
+If you currently plan to go to Damascus, you believe Death is in Damascus. Therefore, going to Aleppo has higher causal expected utility. But if you switch your plan to Aleppo, you believe Death is in Aleppo, making Damascus better. 
+
+To formalize this, Richard Jeffrey and William Harper introduced the notion of **ratifiability**:
+An act $A$ is ratifiable if and only if it maximizes causal expected utility relative to the probability distribution updated on the assumption that one has decided to perform $A$:
+
+$$U(A \mid A) \ge U(A' \mid A) \quad \forall A' \in \mathcal{A}$$
+
+In Death in Damascus and the Psychopath Button, **no pure action is ratifiable**. 
+
+Modern formulations of CDT, defended by James Joyce (2012), resolve this by expanding the action space to mixed strategies (deliberative dynamics). If an agent can choose a probability mixture $x \cdot D + (1-x) \cdot A$, there exists a unique equilibrium point (at $x = 0.5$ in symmetric games) where the agent is indifferent between the two locations, achieving an unstable but ratifiable state.
+
+---
+
+### C. The Adversarial Offer and Diachronic Dutch Books
+
+Perhaps the most damaging recent challenge to CDT is that causal agents can be systematically exploited in predictable ways. Caspar Oesterheld and Vincent Conitzer (2021), along with Jack Spencer (2020), proved that CDT agents will voluntarily lose money or violate the **Guaranteed Principle** (which states that an agent should not choose an option if an alternative guarantees a strictly better payoff).
+
+Consider the **Adversarial Offer** (Oesterheld & Conitzer, 2021):
+* Two boxes, Box 1 and Box 2, are offered by an accurate predictor.
+* An agent may buy Box 1, Box 2, or neither. Buying both is forbidden.
+* Each box costs $\$1.00$.
+* Yesterday, the predictor put $\$3.00$ into each box that she predicted the agent would **not** acquire.
+* Both the seller and buyer know the predictor is accurate with probability $p = 0.75$.
+
+Let us compute the causal expected value for the buyer:
+
+The buyer reasons that the contents of the boxes are already fixed in place. Since the buyer can acquire at most one box, the predictor could not have predicted that the buyer would acquire *both* boxes. 
+Therefore, the predictor must have predicted that the buyer would fail to acquire Box 1, fail to acquire Box 2, or both.
+
+Consequently, **at least one box must contain $\$3.00$**. 
+
+Because the boxes are symmetric:
+$$\text{Expected total money in the two boxes} \ge \$3.00$$
+$$\implies \text{Average money per box} \ge \frac{\$3.00}{2} = \$1.50$$
+
+Since the cost of purchasing a box is only $\$1.00$, the causal expected utility of buying a box (say, choosing uniformly at random if indifferent) is:
+$$U(\text{Buy}) \ge \$1.50 - \$1.00 = +\$0.50$$
+Whereas abstaining yields $\$0.00$.
+
+Hence, **CDT requires the agent to buy a box**.
+
+#### The Catastrophe:
+What happens when the CDT agent chooses to buy a box? 
+Because the seller predicted the agent's purchase with $75\%$ accuracy, the acquired box contains $\$3.00$ with probability only $0.25$, and is empty with probability $0.75$.
+
+The agent's real expected monetary return upon purchase is:
+$$\mathbb{E}[\text{Payoff}] = 0.25(\$3.00) - \$1.00 = \$0.75 - \$1.00 = -\$0.25$$
+
+The seller extracts a guaranteed positive expected profit of $\$0.25$ per round from a CDT agent. By contrast, an evidential agent calculates:
+$$V(\text{Buy Box } 1) = P(\text{Empty} \mid \text{Buy } 1)(-\$1.00) + P(\text{Full} \mid \text{Buy } 1)(\$2.00) = 0.75(-1) + 0.25(2) = -\$0.25$$
+$$V(\text{Abstain}) = \$0.00$$
+
+The EDT agent abstains and keeps their dollar, whereas the CDT agent voluntarily loses money. Oesterheld and Conitzer show that this setup can be generalized into a **diachronic Dutch book**, where a CDT agent sequentially accepts a series of bets that result in a guaranteed net loss across time.
+
+---
+
+## 5. Comparative Mathematical Summary
+
+The operational differences across decision theories can be formalized by how each weights the utility of outcomes:
+
+| Dimension | Evidential Decision Theory (EDT) | Causal Decision Theory (CDT) |
+| :--- | :--- | :--- |
+| **Fundamental Mathematical Metric** | $V(A) = \sum_j P(O_j \mid A) D(O_j)$ | $U(A) = \sum_K P(K) D(A \wedge K)$ |
+| **Probability Transformation** | Bayesian Conditioning: $P(\cdot \mid A)$ | Counterfactual Imaging / Intervention: $P(\cdot \mid \text{do}(A))$ |
+| **Newcomb’s Paradox** | **One-box**: $B_1$ signals $\$1,000,000$. | **Two-box**: Dominance implies $B_2$ yields $\$1,000$ extra. |
+| **Common-Cause Problems** (e.g., King David) | Chooses $A_2$ to avoid obtaining bad news about charisma. | Chooses $A_1$, recognizing that action does not cause revolt. |
+| **Symmetric Correlated Twins** | Cooperates (signals twin's cooperation). | Defects (dominant move; cannot cause twin to move). |
+| **Stability Under Deliberation** | Stable; conditioning tracks shifting self-credence. | Can be dynamically unstable without mixed-strategy ratifiability. |
+| **Vulnerability to Predictors** | Immune to adversarial box offers; keeps money. | Vulnerable to Dutch books and exploitation by accurate predictors. |
+
+---
+
+## 6. Resolving the Dilemma: A Proposal for Operational Decision Analysis
+
+Where does this leave an applied decision scientist or mathematician? The Wikipedia text correctly identifies that philosophers largely prefer CDT for pure decision-making, yet the theory stumbles into systemic failure modes when facing accurate predictors or self-referential deliberation.
+
+If we wish to build an operational agent that uses CDT while avoiding these pathologies, we must resolve how an agent handles the **epistemic feedback loop of deliberation**. 
+
+### The Deliberative Conditioning Proposal
+*(Note: This proposal synthesizes insights from James Joyce’s defense of deliberative dynamics with modern causal modeling, representing an operational interpretation beyond the foundational source text.)*
+
+A fully operational decision agent must recognize that an act $A$ is both an **intervention on the external physical world** and an **epistemic event inside the agent’s own mind**.
+
+1. **Step 1: Interventional Evaluation.** 
+   For any fixed mental state $\theta \in \Theta$ (where $\theta$ encodes the agent's current credences over dependency hypotheses $K$), calculate causal utility strictly through interventions:
+   $$U(A; \theta) = \sum_{K \in \mathcal{K}} P_\theta(K)\, D(A \wedge K)$$
+
+2. **Step 2: Deliberative Updating.**
+   As the agent finds $A$ attractive, the agent's own internal deliberation modifies $\theta$. The agent must update credences over the dependency hypotheses using Bayesian conditioning on their *own propensity* $\pi = P(A)$:
+   $$P_{\theta'}(K) = P(K \mid \text{Agent is inclined toward } A)$$
+
+3. **Step 3: Ratifiable Fixed-Point Equilibrium.**
+   An action (or mixed policy $\mathbf{p} \in \Delta(\mathcal{A})$) is selected if and only if it represents a stable fixed point of this deliberative process:
+   $$\mathbf{p}^* = \text{FixedPoint}\left( \mathbf{p} \mapsto \arg\max_{\mathbf{q}} U(\mathbf{q}; \theta(\mathbf{p})) \right)$$
+
+In standard Newcomb-like problems where the background state cannot be predicted from present deliberation (because the agent's nature was fixed long ago), this framework reproduces standard CDT: two-boxing dominates. 
+
+In adversarial scenarios like Death in Damascus or the Adversarial Offer, the framework prevents the agent from assuming an unconditional prior $P(K)$ that contradicts their own behavior. By requiring the evaluation to find a deliberative fixed point, the agent avoids falling into traps where they walk blindly into an adversary’s ambush.
+
+---
+
+## Conclusion
+
+Causal Decision Theory provides the foundational mathematics of physical efficacy. By replacing Bayesian conditional probabilities with probabilities of counterfactual conditionals—or, in modern terms, replacing observation with intervention—CDT protects rational agents from managing their lives as mere collectors of flattering news. It correctly directs King David to summon Bathsheba and instructs Newcomb players that a past deposit cannot be physically summoned by leaving cash on the table.
+
+Yet CDT’s insistence on holding fixed the causal state of the universe creates profound vulnerabilities when the universe contains accurate predictors, duplicates, or self-fulfilling prophecies. In such domains, holding one's causal beliefs invariant to one's own decisions is not a badge of rationality; it is a mathematical blind spot that can lead to cyclic instability and systematic financial ruin. 
+
+The ongoing frontier of formal decision theory lies precisely here: synthesizing the physical realism of CDT with the epistemic self-awareness required to navigate a world that is constantly predicting what we will do next.
+
+---
+
+## References
+
+* Ahmed, A. (2021). *Evidential Decision Theory*. Cambridge University Press.
+* Egan, A. (2007). Some counterexamples to causal decision theory. *The Philosophical Review*, 116(1), 93–114.
+* Gibbard, A., & Harper, W. L. (1981). Counterfactuals and two kinds of expected utility. In *Ifs: Conditionals, Beliefs, Decision, Chance, and Time* (pp. 153–190). Springer.
+* Joyce, J. M. (2012). Regret and instability in causal decision theory. *Synthese*, 187(1), 123–145.
+* Lewis, D. (1976). Probabilities of conditionals and conditional probabilities. *The Philosophical Review*, 85(3), 297–315.
+* Lewis, D. (1981). Causal decision theory. *Australasian Journal of Philosophy*, 59(1), 5–30.
+* Oesterheld, C., & Conitzer, V. (2021). Extracting money from causal decision theorists. *The Philosophical Quarterly*, 71(4), pqaa086.
+* Shaffer, M. J. (2009). Decision theory, intelligent planning and counterfactuals. *Minds and Machines*, 19(1), 61–92.
+* Spencer, J. (2020). An argument against causal decision theory. *Analysis*, 81, 52–61.
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/1593bdb3-b229-4370-bd93-afb07f735b92/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/1593bdb3-b229-4370-bd93-afb07f735b92/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+````text
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+````
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+**Defining the Objective**
+
+I've clarified the character's objective; it's to minimize years imprisoned, represented mathematically as  $U = -\text{years imprisoned}$. I'm now setting up a standard Prisoner's Dilemma, but with two instances of the same Causal Decision Theory (CDT) model. I'm reviewing the provided essay on CDT.
+
+
+```
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/1593bdb3-b229-4370-bd93-afb07f735b92/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/1593bdb3-b229-4370-bd93-afb07f735b92/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+````text
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+````
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+**Analyzing the Dilemma**
+
+I've zeroed in on the core of this scenario: a classic Prisoner's Dilemma. I'm an LLM agent, identical to another, and we face a strategic choice. I'm considering the potential outcomes and ramifications of cooperation versus defection, and how to maximize my position given the other LLM's parallel but independent processing.
+
+
+```

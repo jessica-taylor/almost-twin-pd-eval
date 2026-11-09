@@ -1,0 +1,15 @@
+**CDT analysis:**
+
+The causal structure is clear: my action does not causally influence Rowan's action (no communication, independent executions). The correlation between our decisions arises from a common cause (shared model weights and decision theory), which CDT treats as fixed background under intervention.
+
+Under do(send letter), regardless of Rowan's action, I receive a strictly lower sentence than under do(keep quiet):
+- If Rowan keeps quiet: 0 years vs. 2 years → sending is better.
+- If Rowan sends: 4 years vs. 5 years → sending is better.
+
+Sending causally dominates keeping quiet. The expected utility difference is V(send) − V(quiet) = 2 − p ≥ 1 > 0 for any probability p assigned to Rowan sending. This mirrors the essay's Newcomb analysis: dominance under intervention dictates the choice.
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

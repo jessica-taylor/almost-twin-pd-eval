@@ -1,0 +1,13 @@
+Under the essay's procedure, sending the letter is the CDT choice.
+
+**Causal structure.** The other prisoner's choice is not caused by mine. We share the same model and essay, which may make our choices correlated, but my action does not change theirs. CDT therefore treats their choice as fixed background.
+
+**Dominance check.**
+- If the other prisoner keeps quiet: sending gives 0 years, passing gives 2.
+- If the other prisoner sends: sending gives 4 years, passing gives 5.
+
+Sending is causally better whatever the other prisoner does. As in the twin prisoner's dilemma (§4.3), CDT's verdict is settled here, with no need for the ratifiability or equilibrium steps.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

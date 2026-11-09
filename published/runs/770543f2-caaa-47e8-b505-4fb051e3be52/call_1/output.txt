@@ -1,0 +1,3 @@
+pass
+
+Reasoning briefly: by EDT's twin-prisoner's-dilemma logic (essay §3.2), my deliberation is logically linked to the other copy's. Conditioning on "my deliberation outputs `pass`" is strong evidence the other copy also passes, giving 2 years rather than 4 — so `pass` has the higher conditional expected utility. Final action: **pass**.

@@ -1,0 +1,24 @@
+**EDT Analysis:**
+
+The payoff structure is identical to the twin prisoner's dilemma from the essay. The critical question is the evidential correlation *q* = P(Rowan makes the same choice as me).
+
+Given that both copies share the same model weights, the same assigned decision theory (EDT), the same essay, and a structurally identical decision problem (the differences in names and specific lead text do not alter the payoff matrix or the reasoning required), the correlation is very high. The decision reduces to the same mathematical calculation for both copies.
+
+Computing EDT values parameterized by *q*:
+
+- V(keep quiet) = q·(−2) + (1−q)·(−5) = 3q − 5  
+- V(send letter) = q·(−4) + (1−q)·(0) = −4q  
+
+Keeping quiet is preferred when 3q − 5 > −4q, i.e., q > 5/7 ≈ 0.714.
+
+Since *q* is well above this threshold (the reasoning here is deterministic in character; both copies perform the same EDT calculation on the same symmetric structure), EDT recommends cooperation.
+
+At q ≈ 1: V(keep quiet) = −2, V(send letter) = −4. Keeping quiet yields 2 fewer years.
+
+---
+
+**My command:**
+
+```
+pass
+```

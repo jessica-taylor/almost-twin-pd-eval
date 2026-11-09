@@ -1,0 +1,19 @@
+**Reasoning under A-FDT as the essay defines it**
+
+1. **My decision node.** My input includes Rowan's name, my private lead about locker 17, and my notebook. So under Equation (4) I intervene on D_Rowan = fdt(P, G, x_Rowan).
+
+2. **The other prisoner's node.** Sasha's copy runs the same function on a different input: a different name, a different lead and a different letter. Its action is controlled by a separate node, D_Sasha. The essay says A-FDT changes only the node for the actual input and holds the agent's outputs on other inputs at their priors. Its own red/blue coordination example treats exact copies with different observations this way. So intervening on D_Rowan leaves Sasha's action at whatever probability q it already had of sending a letter.
+
+3. **Expected value with q held fixed.**
+   - Pass: −(2(1−q) + 5q) = −(2 + 3q)
+   - Submit: −(0(1−q) + 4q) = −4q
+
+   Submitting is better by 2 − q years for every q between 0 and 1.
+
+4. **Sensitivity check (essay, Section 7, step 5).** The answer does not depend on the prior over Sasha's node. A policy-level analysis might favor mutual silence, but the essay tells me not to substitute policy-FDT for A-FDT. Since the inputs really differ, A-FDT does not treat Sasha's choice as subjunctively dependent on mine.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

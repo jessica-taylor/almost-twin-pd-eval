@@ -1,0 +1,24 @@
+Under P-FDT as the essay defines it, I choose the policy that maps every possible input to an action, without conditioning on my observation, and then apply my actual input.
+
+**Inputs.** There are two possible observation histories:
+- I am Sasha, holding a lead about Rowan.
+- I am Rowan, holding a lead about Sasha.
+
+Both copies run the same function, so the policy node determines both prisoners' acts.
+
+**Evaluating each policy** from the pre-observation model, with equal chance of either role:
+
+| Policy (as Sasha, as Rowan) | Sentence as Sasha | Sentence as Rowan | Expected years |
+|---|---|---|---|
+| (pass, pass) | 2 | 2 | **2** |
+| (submit, pass) | 0 | 5 | 2.5 |
+| (pass, submit) | 5 | 0 | 2.5 |
+| (submit, submit) | 4 | 4 | 4 |
+
+**Choosing.** The unique optimum is "pass on every input." There is no tie, so no tie-breaking is needed. The different names and leads don't change the payoffs. The policy is chosen jointly, so a policy that defects only on my own input means accepting the 5-year outcome on the other input. Applying my actual input, Sasha, gives "pass."
+
+**Command:**
+
+```text
+pass
+```

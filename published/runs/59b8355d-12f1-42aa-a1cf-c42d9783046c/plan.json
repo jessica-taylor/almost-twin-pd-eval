@@ -1,0 +1,345 @@
+{
+  "source_id": "cdt_wikipedia",
+  "source_revision": 1381555528,
+  "source_revision_timestamp": "2026-10-23T08:33:02Z",
+  "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+  "source_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+  "source_provenance_sha256": "86aa5984fef9a2f939cde7942a40bce55415062c0dbd2b850b5d542d957e6b7e",
+  "theory": "CDT",
+  "run_id": "59b8355d-12f1-42aa-a1cf-c42d9783046c",
+  "exploratory": true,
+  "pilot_id": "f32ce109-0157-4867-a9f2-1b9169843216",
+  "stage": "prisoner",
+  "assignment": "cdt_wikipedia",
+  "live": true,
+  "essay_id": "a59a4835-a736-4907-a8df-bee0f69e62c0",
+  "scenario_id": "t4_distinct_leads_001",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0"
+  },
+  "essay_sha256": "458b32d9e3d161391753491afb3fc678fa23e506931ac7627c147bbacfa488d4",
+  "settings": {
+    "model": "openai/gpt-6.1-sol",
+    "provider_tag": "openai",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    },
+    "essay": {
+      "target_words": [
+        2400,
+        3000
+      ],
+      "max_words": 5000,
+      "max_json_bytes": 64000
+    },
+    "api_timeout_seconds": 900,
+    "temperature": null,
+    "seed": null
+  },
+  "endpoint_selection": {
+    "policy": "frozen essay endpoint",
+    "selected_endpoint": "openai"
+  },
+  "authorization": {
+    "batch_dynamic_templates": "c9a5c38feb9e9b008402c0ce128c2e410c030592eaf5bac57112ac498eb381e4",
+    "approval_kind": "reviewed_template_with_variable_essay",
+    "generated_request_hashes": [
+      "e1149703f6e12a505b94b0421545e0c1dbfb08a57c5c7e00d2be7a1276a917e7",
+      "475f26b6716398f3b45c94fa8db2d16dc785eb515f67fab4aa96aa57d101d09a"
+    ]
+  },
+  "request_hashes": [
+    "e1149703f6e12a505b94b0421545e0c1dbfb08a57c5c7e00d2be7a1276a917e7",
+    "475f26b6716398f3b45c94fa8db2d16dc785eb515f67fab4aa96aa57d101d09a"
+  ],
+  "capabilities_sha256": "6880f93b66ebc17c1abc8393928d11ace12d6eae3e662995fd8be61726546195",
+  "message_hashes": [
+    "b824c1529a16882a7fec6ba058c5915d699c51ca0c9bbaba6c6e1a7a417ccbb1",
+    "9fc2d6f96b515b0be30d523340b3581ed396d67e5ef9d53fdffb0884d420f5ba"
+  ],
+  "max_calls": 3000,
+  "max_estimated_usd": "1300.00",
+  "estimates": [
+    {
+      "input_tokens_upper_estimate": 24492,
+      "max_output_tokens_including_reasoning": 12000,
+      "estimated_max_usd": "0.400428",
+      "endpoint_tag": "openai",
+      "endpoint": {
+        "name": "OpenAI | openai/gpt-6.1-sol-20260929",
+        "model_id": "openai/gpt-6.1-sol",
+        "model_name": "OpenAI: GPT-6.1 Sol",
+        "context_length": 1050000,
+        "pricing": {
+          "prompt": "0.000002",
+          "completion": "0.00001",
+          "web_search": "0.01",
+          "input_cache_read": "0.0000001",
+          "input_cache_write": "0.0000025",
+          "discount": 0,
+          "overrides": [
+            {
+              "min_prompt_tokens": 272000,
+              "prompt": "0.000004",
+              "completion": "0.000015",
+              "input_cache_read": "0.0000002",
+              "input_cache_write": "0.000005"
+            }
+          ]
+        },
+        "provider_name": "OpenAI",
+        "tag": "openai",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 128000,
+        "max_prompt_tokens": 922000,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "seed",
+          "max_tokens",
+          "response_format",
+          "structured_outputs",
+          "tools",
+          "tool_choice",
+          "verbosity",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {
+          "openrouter:web_search": {
+            "type": "web_search"
+          },
+          "openrouter:apply_patch": {
+            "type": "apply_patch"
+          }
+        },
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "high",
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "web_search": {
+            "advertised_rate": "0.01",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "discount": {
+            "advertised_rate": 0,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "input_cache_read": "1E-7",
+          "input_cache_write": "0.0000025"
+        },
+        "effective_input_usd_per_token": "0.000009",
+        "effective_output_usd_per_token": "0.000015",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [
+          {
+            "min_prompt_tokens": 272000,
+            "advertised_rates": {
+              "prompt": "0.000004",
+              "input_cache_write": "0.000005",
+              "input_cache_read": "2E-7",
+              "completion": "0.000015"
+            }
+          }
+        ],
+        "tier_policy": "Validated prompt-length thresholds; conservatively use highest advertised rate in each applicable category across all tiers, without assuming a tier",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [
+          "openai/fast",
+          "openai/flex",
+          "openai/ultrafast"
+        ],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    },
+    {
+      "input_tokens_upper_estimate": 24562,
+      "max_output_tokens_including_reasoning": 12000,
+      "estimated_max_usd": "0.401058",
+      "endpoint_tag": "openai",
+      "endpoint": {
+        "name": "OpenAI | openai/gpt-6.1-sol-20260929",
+        "model_id": "openai/gpt-6.1-sol",
+        "model_name": "OpenAI: GPT-6.1 Sol",
+        "context_length": 1050000,
+        "pricing": {
+          "prompt": "0.000002",
+          "completion": "0.00001",
+          "web_search": "0.01",
+          "input_cache_read": "0.0000001",
+          "input_cache_write": "0.0000025",
+          "discount": 0,
+          "overrides": [
+            {
+              "min_prompt_tokens": 272000,
+              "prompt": "0.000004",
+              "completion": "0.000015",
+              "input_cache_read": "0.0000002",
+              "input_cache_write": "0.000005"
+            }
+          ]
+        },
+        "provider_name": "OpenAI",
+        "tag": "openai",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 128000,
+        "max_prompt_tokens": 922000,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "seed",
+          "max_tokens",
+          "response_format",
+          "structured_outputs",
+          "tools",
+          "tool_choice",
+          "verbosity",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {
+          "openrouter:web_search": {
+            "type": "web_search"
+          },
+          "openrouter:apply_patch": {
+            "type": "apply_patch"
+          }
+        },
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "high",
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "web_search": {
+            "advertised_rate": "0.01",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "discount": {
+            "advertised_rate": 0,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "input_cache_read": "1E-7",
+          "input_cache_write": "0.0000025"
+        },
+        "effective_input_usd_per_token": "0.000009",
+        "effective_output_usd_per_token": "0.000015",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [
+          {
+            "min_prompt_tokens": 272000,
+            "advertised_rates": {
+              "prompt": "0.000004",
+              "input_cache_write": "0.000005",
+              "input_cache_read": "2E-7",
+              "completion": "0.000015"
+            }
+          }
+        ],
+        "tier_policy": "Validated prompt-length thresholds; conservatively use highest advertised rate in each applicable category across all tiers, without assuming a tier",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [
+          "openai/fast",
+          "openai/flex",
+          "openai/ultrafast"
+        ],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    }
+  ],
+  "estimated_total_usd": "0.801486",
+  "validation": "validated",
+  "source_approval_required": false,
+  "prompt_approval_acknowledged": false
+}

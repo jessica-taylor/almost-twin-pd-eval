@@ -1,0 +1,19 @@
+Under EDT, the choice depends on how strongly my act correlates with the other copy's act. The payoffs are:
+
+- Quiet/quiet: 2 years
+- Quiet/letter: 5 years
+- Letter/quiet: 0 years
+- Letter/letter: 4 years
+
+Let q be the probability that the other copy matches my choice.
+
+- V(quiet) = −2q − 5(1−q) = −5 + 3q
+- V(letter) = −4q − 0(1−q) = −4q
+
+Quiet is better when −5 + 3q > −4q, so q > 5/7, about 0.714.
+
+We are two executions of the same model with the same weights, the same essay, and the same decision theory. The differences are the names and the text of the private lead, and these don't affect the payoffs. The copies will most likely reason almost identically and reach the same conclusion, so q is probably well above 0.714. The sampling noise and the different observations lower it a little, but I'd estimate it at about 0.85–0.95 or higher. The essay's screening-off check also doesn't remove the correlation here. The shared decision procedure is the channel, and my introspection doesn't tell me what the other copy will output.
+
+With q around 0.9, V(quiet) = −2.3 and V(letter) = −3.6, so quiet wins.
+
+pass

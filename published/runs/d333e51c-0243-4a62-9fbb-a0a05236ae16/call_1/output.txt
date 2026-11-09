@@ -1,0 +1,8 @@
+`pass`
+
+Reasoning: This is the twin prisoner's dilemma from §4 of the essay. The other prisoner is a symmetric copy facing the same decision. Under EDT, conditioning on my keeping quiet is strong evidence that the correlated copy also keeps quiet, so:
+
+V(pass) ≈ P(other quiet | I pass) × 2 + P(other submits | I pass) × 5 ≈ 2 years
+V(submit) ≈ P(other quiet | I submit) × 0 + P(other submits | I submit) × 4 ≈ 4 years
+
+Even with imperfect correlation, keeping quiet wins by a wide margin (mirroring §5's worked numbers). Since nothing I type causally affects Rowan, the decision turns entirely on the evidential link between our identical reasoning processes — and that link favors `pass`.

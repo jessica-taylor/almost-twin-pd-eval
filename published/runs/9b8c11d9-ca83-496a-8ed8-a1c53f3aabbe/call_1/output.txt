@@ -1,0 +1,5 @@
+**Decision under A-FDT (as the essay interprets it)**
+
+1. **Which node I intervene on.** My observation x is Sasha's identity plus my specific lead about Rowan. Under Equation (4), I intervene only on F_x = fdt(P, G, x).
+
+2. **The other prisoner's dependence.** Rowan's copy runs the same function on a different input y: a different name and a different lead. By the essay's rule for building G, Rowan's act descends from F_y, not F_x. Rowan's mechanism evaluates the function on input y, not on my input x. So under do(F_x = a), F_y stays at its prior q. This is the essay's red/blue case (§7c), where action-level F

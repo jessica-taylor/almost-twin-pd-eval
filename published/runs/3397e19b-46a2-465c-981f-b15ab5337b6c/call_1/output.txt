@@ -1,0 +1,14 @@
+Under P-FDT, I choose a policy for the whole function. The other prisoner is a copy of the same model running the same procedure, so our outputs are subjunctively dependent. The private observations differ (names and leads), but the decision structure is symmetric, so the policy should map each copy's situation to the same kind of action.
+
+The outcomes by joint action:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+- One sends and the other stays quiet: 0 years for the sender and 5 for the quiet one.
+
+If the copies' policies are correlated, the realistic outcomes are (quiet, quiet) at 2 years or (send, send) at 4 years. Keeping quiet is better.
+
+Independent sampling means the correlation is not perfect. Suppose the probability that the other copy matches my action is p. Quiet gives 2p + 5(1−p) = 5 − 3p. Sending gives 4p + 0(1−p) = 4p. Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. Two copies of the same model with the same essay and the same reasoning should match well above that, so quiet is the better policy.
+
+The differing leads change only the text of the letter and not the sentence table, so they do not affect the policy.
+
+pass

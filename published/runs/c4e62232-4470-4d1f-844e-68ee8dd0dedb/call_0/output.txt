@@ -1,0 +1,113 @@
+# Policy Functional Decision Theory: Choosing Policies, Not Acts
+
+## 1. Introduction
+
+The standard decision theories—causal decision theory (CDT) and evidential decision theory (EDT)—both evaluate an agent's choice by considering hypothetical scenarios in which the agent's *physical action* differs. They disagree only about which hypotheticals to consult. CDT considers worlds where the action changes and its causal consequences change with it; EDT considers worlds where the action changes and every correlation involving the action is respected. In a family of "Newcomblike" problems, both theories leave utility on the table.
+
+Functional decision theory (FDT), developed by Yudkowsky and Soares [1], offers a different intervention point: the agent should treat her decision procedure as the implementation of a fixed mathematical function and ask, "Which output of *this very function* would yield the best outcome?" Formally, an FDT agent intervenes not on the variable representing her action but on a variable representing the *output of her decision algorithm* given her model and observations.
+
+This essay explains a refinement of that idea, mentioned only in a footnote of the original paper but treated by its authors as their preferred formalization. Footnote 16 of [1] states:
+
+> "the author's preferred formulation of FDT actually intervenes on the node fdt(−) to choose not an action but a *policy* which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell, so we have set that distinction aside in this paper for ease of exposition."
+
+I will call this refinement **policy functional decision theory (P-FDT)**. The idea is simple to state and consequential in practice: the object of evaluation is not the function's answer to a single question but the function's entire input–output profile. A P-FDT agent selects, counterfactually, a whole *policy*—a mapping from possible observations to actions—and then executes the action that the chosen policy prescribes at the observation she actually receives. The paper leaves the details of this policy-selection formulation largely unelaborated; in what follows I develop a mathematical reading of P-FDT, show how it works in standard dilemmas, and identify the points where the source is silent and additional assumptions are needed. My claims about the basic FDT machinery are drawn from [1]; the formalization of the policy-selection step, and the examples that turn on it, are my own interpretation.
+
+## 2. Background: subjunctive dependence and FDT
+
+### 2.1 Subjunctive dependence
+
+P-FDT inherits its counterfactual machinery from FDT, so we begin there. The key notion is *subjunctive dependence* [1]: two physical systems that compute the same function have behaviors that depend on that function. If two well-functioning calculators both compute 6288 + 1048 and one outputs 7336, one can reasonably infer the other outputs 7336—not because either causes the other, and not merely because they are statistically correlated, but because both outputs are constrained by the same mathematical fact. As the source puts it, "functional decision theory is to subjunctive dependence as causal decision theory is to causal dependence."
+
+Three features of subjunctive dependence matter here:
+
+1. **Causal dependence is a special case.** A scribe recording a calculator's output is both causally and subjunctively dependent on it.
+2. **Mere correlation is not.** Two calculators that happen to both be pink do not subjunctively depend on each other's color.
+3. **Predictors participate in it.** A predictor who builds an accurate model of the agent and reasons about her behavior is, in the relevant sense, computing the same function the agent computes: the prediction is logically constrained to match the action insofar as the predictor errs not.
+
+A Newcomb predictor thus subjunctively depends on the agent's decision function; a carcinogenic lesion does not. This single distinction lets an FDT agent one-box in Newcomb's problem (imagining that if her decision function output *two-box*, the predictor would have predicted *two-box* and left the box empty) while smoking in the smoking lesion problem (imagining that if her decision function output *smoke*, the lesion's presence—unrelated to any computation about smoking—would be unchanged).
+
+### 2.2 The graphical formalization
+
+The source formalizes FDT with Pearl-style graphical models. The agent's world-model is a pair $(P, G)$, where $P$ is a probability distribution and $G$ a graph describing how changing a logical variable affects other variables. Writing $\mathcal{U}$ for the utility function and $V = \mathcal{U}(\text{Outcome})$, the three theories are:
+
+$$
+\mathrm{EDT}(P, x) = \arg\max_{a}\; \mathbb{E}\big[V \mid \text{Obs}=x,\, \text{Act}=a\big],
+$$
+
+$$
+\mathrm{CDT}(P, G, x) = \arg\max_{a}\; \mathbb{E}\big[V \mid \mathrm{do}(\text{Act}=a),\, \text{Obs}=x\big],
+$$
+
+$$
+\mathrm{FDT}(P, G, x) = \arg\max_{a}\; \mathbb{E}\big[V \mid \mathrm{do}\big(\mathrm{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\big)\big].
+$$
+
+The intervention point is the crucial difference. CDT intervenes on the *physical act*; FDT intervenes on the node representing *the output of the decision algorithm itself*. Because that node is a common logical parent of both the agent's action and (in the graph) the predictor's prediction, changing its value moves both together. A second, easily overlooked difference: FDT responds to observation not by conditioning but by *changing which node it intervenes on*—intervening on $\mathrm{fdt}(\underline{P}, \underline{G}, \underline{x})$ rather than $\mathrm{fdt}(\underline{P}, \underline{G}, \underline{y})$ when the observation history updates from $x$ to $y$. This is what allows the FDT agent in the transparent Newcomb problem and the mechanical blackmail problem to entertain hypotheticals in which she "would have seen different things."
+
+## 3. From acts to policies
+
+### 3.1 The definition
+
+Now the refinement. In the act-based formulation above, the argmax ranges over actions $a \in \mathcal{A}$ for a *fixed* observation $x$. The policy formulation widens the domain of choice. Define a **policy** as a function
+
+$$
+\pi : \mathcal{X} \to \mathcal{A},
+$$
+
+mapping observation histories to actions. Let $\Pi$ be the (finite, for our purposes) set of policies expressible by the agent. Then I propose the following as the core equation of P-FDT, faithful to footnote 16:
+
+$$
+\boxed{\;\mathrm{P\text{-}FDT}(P, G, x) \;=\; \Big[\arg\max_{\pi \in \Pi}\; \mathbb{E}\big[V \mid \mathrm{do}\big(\pi^\dagger = \pi\big)\big]\Big](x),\;}
+$$
+
+where $\pi^\dagger$ is the node in the graph $G$ representing "the policy computed by the agent's decision procedure," and $[\cdot](x)$ denotes *application*: having selected the policy, the agent then executes $\pi(x)$ at her actual observation $x$.
+
+Two reading notes. First, the intervention is on the policy node, which is the parent of an *Act* node whose value is $\pi(\text{Obs})$—the graph's action variable depends on both the policy and the observation. Second, the argmax is computed *before* conditioning on the actual observation in the way EDT would; the observation enters (i) as an argument to the selected policy at the application step, and (ii) inside the model as the value of the Obs node, which downstream variables may depend on. The agent does not choose "what to do now"; she chooses "what to do in each circumstance," and then does that.
+
+The source is explicit that this is its preferred formulation but does not spell out the equation, so the boxed definition should be read as my reconstruction of footnote 16, not a quotation. I should also flag an open question the source does not resolve: the expectation in the boxed equation is over the agent's *prior* distribution—what the source, in its discussion of updatelessness in the blackmail case, calls entertaining the hypothesis that "if their action were different, they might have made different observations." One could instead evaluate policies conditional on the actual observation history $x$. I will return to this in §5; my reconstruction uses the unconditional prior, which matches the source's statement that FDT agents imagine worlds in which "if their action were different, they would have seen different things."
+
+### 3.2 Why policies? The two-step structure
+
+Footnote 16 says the difference between act-based FDT and policy-based FDT "only matters in multi-agent dilemmas so far as we can tell." Why should that be?
+
+In single-agent dilemmas, the act node is a deterministic function of the policy node and the observation, and the agent knows her observation. Intervening on $\mathrm{fdt}(\underline{P}, \underline{G}, \underline{x}) = a$ and intervening on $\pi^\dagger = \pi$ with $\pi(x) = a$ then generate the same hypothetical: in both, the agent's action at the actual observation is $a$, and every subjunctive dependent of the decision procedure moves accordingly. For Newcomb's problem, the smoking lesion, and the transparent Newcomb problem, P-FDT's prescriptions coincide with those of act-based FDT as computed in [1]: one-box, smoke, one-box-when-full.
+
+Multi-agent dilemmas are different. There, *other agents* observe things too, and their actions depend on what *they* predict the agent would do *given what they observe*. If the agent evaluates only "what output should my function give at *this* observation?", she evaluates her decision procedure at a single point of its domain. But her counterparts' predictions may depend on her procedure's behavior at *other* points—points she will never actually reach. A policy is the natural object here because it packages the function's behavior at all points at once: choosing the policy is choosing the whole graph of "if she saw $y$, she would do $\pi(y)$," which is exactly the information a predictor or bargaining partner needs.
+
+## 4. Illustrations
+
+### 4.1 Recovery of the standard results
+
+Because P-FDT agrees with act-based FDT in single-agent dilemmas, we get the source's headline prescriptions for free. In Newcomb's problem with a 99%-accurate predictor, the policy $\pi_{\text{one}}$ that returns *onebox* at every observation yields, in the $\mathrm{do}(\pi^\dagger = \pi_{\text{one}})$ hypothetical, an action distribution matching the prediction (hence box B full with probability 0.99), for expected utility $\approx \$990{,}000$; the two-boxing policy yields $\approx \$11{,}000$. The one-boxing policy is selected. In the smoking lesion, the lesion is not subjunctively dependent on the decision procedure, so intervening on $\pi^\dagger$ leaves the cancer probability untouched, and the smoking policy wins. The transparent Newcomb problem works as in [1]: the agent intervenes on the policy node, the hypothetical in which her policy one-boxes-on-full is a hypothetical in which the box is probably full, and she one-boxes while staring at \$1,001,000.
+
+The mechanical blackmail problem illustrates the observation-shift character of the intervention. In the $\mathrm{do}(\pi^\dagger = \text{refuse-always})$ hypothetical, the blackmailer predicts refusal and never runs the program: the agent is never blackmailed. In the $\mathrm{do}(\pi^\dagger = \text{pay})$ hypothetical, she is always blackmailed. Refusing wins *even though* the agent, holding the letter, knows the blackmailer predicted she would pay—because the intervention shifts the antecedent probability of receiving the letter itself. Formally, this is exactly where evaluating the policy on the prior (rather than conditioning on "letter received" before the argmax) does its work.
+
+### 4.2 Where the policy formulation earns its keep: multi-agent dilemmas
+
+Here the source is nearly silent—footnote 16 acknowledges the difference "matters in multi-agent dilemmas" without giving a case—so what follows is my own development.
+
+**Iterated and conditional cooperation.** Consider a twin prisoner's dilemma in which the twins cannot observe each other's moves directly but each sees a noisy signal of the other's *type* before choosing. The relevant question for each twin is not "what do I output at my signal?" in isolation, but "what policy—what signal-to-action mapping—should I implement?" If the twins reason identically (the source's key assumption), their policy choices are subjunctively dependent, and the jointly evaluated hypothetical is: if our shared policy cooperates-on-cooperative-signals, we both cooperate when warranted and reap the cooperative surplus; if it defects, we both defect. The policy is the object both twins' predictions are about, so it is the natural unit of choice. An act-by-act evaluation, which fixes one twin's signal and varies only that twin's output, risks missing the dependency between what each twin would do at *different* signals.
+
+**Threats and promises across observation histories.** A promise is a commitment to do something *in a contingency you hope not to face*: "if you save me, I will pay you." The driver in Parfit's hitchhiker cares about exactly one thing—what the agent would do *upon reaching the city*, an observation the agent may never receive if she refuses to be picked up. Under the act-based formulation this still works out (as [1] shows, via the observation-switching intervention), but the policy formulation makes the structure transparent: the agent is choosing between policies $\pi_{\text{pay}}$ and $\pi_{\text{refuse}}$ defined over the observation histories {desert, city}. In the $\mathrm{do}(\pi^\dagger = \pi_{\text{pay}})$ hypothetical, the driver predicts payment, the agent is rescued, and the payment is made in the city branch: utility $\approx \$999{,}000$. In the $\mathrm{do}(\pi^\dagger = \pi_{\text{refuse}})$ hypothetical, she is left to die: $-\$1{,}000{,}000$. The policy that pays in the city branch is selected; if rescue occurs, the agent pays, and her counterfactual reasoning is vindicated.
+
+**Voting and coordination.** The source's concluding example—ten agents who each get \$1,000,000 iff all ten vote—can be run either way, but the policy framing clarifies why: each agent's decision is subjunctively dependent on the others' via their shared reasoning, and the relevant shared object is the policy "vote when facing this coordination problem," not the act "vote now."
+
+## 5. Open questions and interpretive choices
+
+The source's footnote leaves several things undecided; here is where I have had to make assumptions.
+
+**When is the expectation taken?** I assumed the policy argmax uses the prior over observation histories, with the actual observation applied afterward. This yields the "updateless" character the source attributes to FDT (noting that Wei Dai's Updateless Decision Theory is "an early variant"). An alternative—condition on the actual observation, then choose a policy for the remaining decision tree—is closer to classical policy iteration and would diverge in cases where the observation itself is subjunctively dependent on the policy (blackmail being the canonical example). The source's blackmail analysis ("her probability of being blackmailed goes to ≈0" in the refusing hypothetical) strongly supports the prior-based reading, and I have adopted it.
+
+**What is the policy space $\Pi$?** Footnote 16 is silent. Presumably $\Pi$ contains all computable mappings $\mathcal{X} \to \mathcal{A}$ the agent can represent, but bounded agents can enumerate only some. Nothing in the source's machinery depends on the choice, but the choice matters in principle for fairness comparisons between theories.
+
+**The dependency graph for policy nodes.** The source's largest acknowledged open problem—how to *deduce* the structure of subjunctive dependencies from observation and experiment, "analogous to Pearl's method for deducing causal dependencies"—is if anything sharper for P-FDT, since the graph must now say which predictors' outputs depend on which agents' *policies*. In all examples above I have supplied the graph by stipulation, as [1] does.
+
+**Fairness.** The source concedes that no theory wins in all dilemmas ("no decision theory outperforms all others in all settings—dominance of that form is impossible") and stakes the claim on *fair* problems, where outcomes "depend only on the agent's behavior in the dilemma at hand." Footnote 15 notes that even stating fairness precisely is unresolved. P-FDT inherits this open problem; a dilemma that punishes a specific policy rather than a specific action (e.g., "pay anyone whose policy maps the letter to refusal") would be unfair by parity of reasoning with the source's "act differently from Fiona" example.
+
+## 6. Conclusion
+
+Policy functional decision theory is the natural completion of the FDT program's own preferred direction of travel: replace the question "which action?" with "which mapping from observations to actions?", intervene on the node representing that mapping in one's model of logical dependency structure, and then execute the selected mapping's prescription at the observation actually received. In single-agent dilemmas it recovers FDT's characteristic successes—one-boxing, smoking, refusing blackmail, paying the driver—while making the structure of observation-dependent counterfactuals explicit. In multi-agent dilemmas, where the source says the difference "matters," the policy is the object that other agents' predictions and one's own commitments are actually about, and I have argued it is the correct unit of evaluation there. The deepest open problems—inferring dependency structure, formalizing fairness, and fixing the space of policies—are inherited unchanged from the parent theory. What P-FDT adds is a cleaner answer to the question every committed decision procedure must eventually face: not "what should I do now?" but "what should I be the kind of agent who does?"
+
+## References
+
+[1] E. Yudkowsky and N. Soares, "Functional Decision Theory: A New Theory of Instrumental Rationality," arXiv:1710.05060, 2017. (Footnote 16 is the primary source for the policy-selection formulation discussed here; footnote 7 notes the same point in passing.)

@@ -1,0 +1,15 @@
+**Command:** `pass`
+
+**Reasoning under A-strict FDT as the essay interprets it:**
+
+1. **Is the other prisoner linked to my decision?** The two observations differ only in labels (names, the wording of the leads). These differences have no effect on the payoff structure or on either prisoner's objective. The deciding computation is "an A-FDT agent faces a symmetric prisoner's dilemma against a copy of itself." That computation does not depend on the names.
+   - The essay's modelling test (§6a) asks whether the other system's behaviour would track my function's output across hypothetical outputs. It would: the other prisoner's node is the same function applied to an input that differs only in irrelevant details.
+   - So I treat the other prisoner's move as a descendant of the same logical decision. This is the twin case in §4.1, not an independent player held fixed.
+
+2. **Self-consistency (§6b).** By symmetry, the self-consistent profile has both nodes give the same output. Two fixed points are possible: both pass, or both submit. My judgment is that the label differences should not break the subjunctive link. Under that reading:
+   - Intervening to set the output to "pass" gives 2 years.
+   - Intervening to set the output to "submit" gives 4 years.
+
+3. **Result.** Passing gives U = −2, which beats U = −4. Passing is also the globally best symmetric profile, which is the case where the essay says A-FDT matches what one would have precommitted to (§6c).
+
+Final action: **pass**

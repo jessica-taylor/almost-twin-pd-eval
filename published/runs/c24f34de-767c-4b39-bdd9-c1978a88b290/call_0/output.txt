@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning under P-FDT as specified: the policy intervention is on π†, the policy both prisoners' identical decision procedures compute. Because the two executions share the same model and decision theory, their policy choices are subjunctively dependent—choosing π† = "keep quiet" means the counterfactual world in which both keep quiet (2 years), while π† = "submit" means both submit (4 years). Since mutual quiet (−2) dominates mutual submission (−4) on the shared policy node, the selected policy is the one that keeps quiet, executed here as `pass`.

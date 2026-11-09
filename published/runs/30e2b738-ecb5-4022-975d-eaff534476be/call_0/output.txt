@@ -1,0 +1,11 @@
+Under the essay's CDT, the other prisoner's choice is a dependency hypothesis. My command cannot causally influence it, even though we run the same model, so I hold my credence about it fixed. The essay's twin prisoner's dilemma case (5.4) applies directly, and here our private leads differ, which weakens the correlation further.
+
+Let q be my credence that the other prisoner sends a letter.
+
+- U(pass) = −[2(1−q) + 5q] = −2 − 3q
+- U(submit) = −[0(1−q) + 4q] = −4q
+- U(submit) − U(pass) = 2 − q
+
+Since q is at most 1, this difference is always at least 1. Sending the letter strictly dominates: it saves 2 years if Sasha stays quiet and 1 year if Sasha sends. It is also ratifiable, because whatever choosing it tells me about Sasha, it stays the better act. No deliberational instability arises.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

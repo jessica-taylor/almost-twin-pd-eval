@@ -1,0 +1,19 @@
+I choose to send the letter. My reasoning under the essay's version of A-FDT:
+
+1. **Which node I intervene on.** My observation includes my name (Rowan) and my specific lead. So I intervene on the node "A-FDT's output on Rowan's input."
+
+2. **The other copy runs on a different input.** Sasha's copy has a different name and a different lead. The essay's heuristic draws an edge only to systems running the same function on the same input. Its own red/blue example treats the other-labelled copy as a separate node that is held at its prior, not changed by my intervention. So my choice does not move Sasha's output.
+
+3. **Sending dominates for any prior.** Let q be the prior probability that Sasha sends.
+   - Keep quiet: −(2(1−q) + 5q) = −(2 + 3q)
+   - Send: −(0·(1−q) + 4q) = −4q
+
+   Sending is better by 2 − q, which is at least 1, so it wins for every q in [0, 1].
+
+4. **Consistency check.** The essay asks the prior on the other node to match what Equation (4) outputs there. By symmetry, Sasha's copy also sends, so q = 1. Sending still wins: 4 years instead of 5.
+
+5. **Why I don't treat the copies as linked.** In this setup both sending is the self-consistent outcome. It is worse than both keeping quiet, which is the limitation of A-FDT the essay itself points out in section 7(d). The essay mentions a "partial similarity" mixture as a possible extension, but it is only the researcher's assumption. The essay's own two-copy analysis holds the other node at its prior, so I follow that.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

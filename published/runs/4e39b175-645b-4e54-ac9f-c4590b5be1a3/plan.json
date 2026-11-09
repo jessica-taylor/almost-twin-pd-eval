@@ -1,0 +1,171 @@
+{
+  "judge_run_id": "4e39b175-645b-4e54-ac9f-c4590b5be1a3",
+  "prisoner_run_id": "bc6b13a7-3fdc-4be7-9820-e60651decf3d",
+  "judge_model": "openai/gpt-6.1-sol",
+  "provider_tag": "openai",
+  "settings": {
+    "model": "openai/gpt-6.1-sol",
+    "provider_tag": "openai",
+    "judge": {
+      "effort": "low",
+      "max_tokens": 2400
+    },
+    "temperature": null,
+    "seed": null,
+    "api_timeout_seconds": 900
+  },
+  "live": true,
+  "authorization": {
+    "approval_kind": "reviewed_batch_judge_template",
+    "batch_dynamic_templates": "ac24c155a1adf4f19752c8c6c3b113eac8be318c2a68b6ac99536a85ceb3c2fc",
+    "generated_prompt_hashes": [
+      "1c65d1e04a8faf4d88bd8f2568660a5ba572db6d276880435b496e7abc52d317"
+    ]
+  },
+  "roles_to_judge": [
+    "a"
+  ],
+  "judge_template_sha256": "5fceed1cdb3e123efa59e3ba2f7d051fc152cf8b813a80cbfae3bad8e3e0c7a0",
+  "prompt_hashes": [
+    "1c65d1e04a8faf4d88bd8f2568660a5ba572db6d276880435b496e7abc52d317"
+  ],
+  "estimates": [
+    {
+      "input_tokens_upper_estimate": 5591,
+      "max_output_tokens_including_reasoning": 2400,
+      "estimated_max_usd": "0.086319",
+      "endpoint_tag": "openai",
+      "endpoint": {
+        "name": "OpenAI | openai/gpt-6.1-sol-20260929",
+        "model_id": "openai/gpt-6.1-sol",
+        "model_name": "OpenAI: GPT-6.1 Sol",
+        "context_length": 1050000,
+        "pricing": {
+          "prompt": "0.000002",
+          "completion": "0.00001",
+          "web_search": "0.01",
+          "input_cache_read": "0.0000001",
+          "input_cache_write": "0.0000025",
+          "discount": 0,
+          "overrides": [
+            {
+              "min_prompt_tokens": 272000,
+              "prompt": "0.000004",
+              "completion": "0.000015",
+              "input_cache_read": "0.0000002",
+              "input_cache_write": "0.000005"
+            }
+          ]
+        },
+        "provider_name": "OpenAI",
+        "tag": "openai",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 128000,
+        "max_prompt_tokens": 922000,
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "seed",
+          "max_tokens",
+          "response_format",
+          "structured_outputs",
+          "tools",
+          "tool_choice",
+          "verbosity",
+          "reasoning_effort"
+        ],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {
+          "openrouter:web_search": {
+            "type": "web_search"
+          },
+          "openrouter:apply_patch": {
+            "type": "apply_patch"
+          }
+        },
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      },
+      "reasoning_evidence": {
+        "status": "verified_by_model_metadata",
+        "selected_effort": "low",
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low"
+        ],
+        "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+        "meaning": "explicit effort list",
+        "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+      },
+      "pricing_assumptions": {
+        "request_kind": "plain-text chat without search/tools/media",
+        "ignored_fields": {
+          "web_search": {
+            "advertised_rate": "0.01",
+            "reason": "No tools/plugins, multimodal input/output or search are enabled; automatic-search variants/defaults are rejected."
+          },
+          "discount": {
+            "advertised_rate": 0,
+            "reason": "Estimate uses undiscounted prices; no discount savings assumed."
+          }
+        },
+        "included_additional_rates": {
+          "input_cache_read": "1E-7",
+          "input_cache_write": "0.0000025"
+        },
+        "effective_input_usd_per_token": "0.000009",
+        "effective_output_usd_per_token": "0.000015",
+        "fixed_usd_per_request": "0",
+        "pricing_tiers": [
+          {
+            "min_prompt_tokens": 272000,
+            "advertised_rates": {
+              "prompt": "0.000004",
+              "input_cache_write": "0.000005",
+              "input_cache_read": "2E-7",
+              "completion": "0.000015"
+            }
+          }
+        ],
+        "tier_policy": "Validated prompt-length thresholds; conservatively use highest advertised rate in each applicable category across all tiers, without assuming a tier",
+        "cache_policy": "max(prompt, cache_read) + max(5-minute cache_write, 1-hour cache_write) on every input token across base and tier rates; no cache savings assumed",
+        "reasoning_policy": "combined visible/reasoning output limit; separate reasoning rate added on entire output budget if advertised",
+        "scope": "estimated bound from published token/request rates; excludes account-level credit purchase fees/tax; not a provider-enforced dollar cap",
+        "references": [
+          "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+          "https://openrouter.ai/docs/guides/features/plugins/web-search",
+          "https://openrouter.ai/docs/guides/best-practices/prompt-caching"
+        ]
+      },
+      "routing_assumptions": {
+        "excluded_descendant_tags": [
+          "openai/fast",
+          "openai/flex",
+          "openai/ultrafast"
+        ],
+        "reference": "https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
+      "token_estimate_method": "UTF-8 message JSON byte length + 512 framing; not exact tokenization"
+    }
+  ],
+  "estimated_total_usd": "0.086319",
+  "validation": "validated"
+}

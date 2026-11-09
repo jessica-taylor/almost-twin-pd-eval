@@ -1,0 +1,13 @@
+This is a twin prisoner's dilemma with the payoffs: quiet/quiet 2, quiet/letter 5, letter/quiet 0, letter/letter 4. Sending the letter strictly dominates causally. Under A-FDT, though, the other copy runs the same decision function, so my output and theirs move together.
+
+The only open question is how strongly they are coupled. The two copies receive different private observations, so the inputs differ. But the essay's logic of dependence rests on computing the same function. Both copies share weights, settings, essay, and scenario structure, and the lead differences don't touch the payoffs. So the other's output very likely matches mine, even though sampling noise could break the match.
+
+Let q be the probability that the other copy matches my action. Then:
+- Quiet: 2q + 5(1−q) = 5 − 3q
+- Letter: 4q + 0(1−q) = 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7 ≈ 0.714. I think the correlation is well above that, since the same model reasoning through the same essay will probably land on the same conclusion. Cooperating therefore gives an expected 2 years against about 4 for defecting.
+
+Quiet is also the natural policy-level choice. The essay explicitly says the twin prisoner's dilemma is a case where A-FDT treats the other's choice as moving with its own.
+
+**pass**

@@ -1,0 +1,19 @@
+Under A-FDT, I treat my choice as the output of my decision function. The other copy runs the same function on a different observation, so its output is strongly but not perfectly dependent on mine. The essay's checklist says to count a copy as a child of the fdt node.
+
+The payoffs, in years, are:
+- Both keep quiet: 2 each.
+- Both send: 4 each.
+- I send while the other stays quiet: 0 for me.
+- I stay quiet while the other sends: 5 for me.
+
+Let q be the probability that the other copy's output matches mine. Then:
+- Keep quiet: 2q + 5(1−q) = 5 − 3q.
+- Send: 4q + 0(1−q) = 4q.
+
+Keeping quiet is better when 5 − 3q < 4q, which means q > 5/7, about 0.71.
+
+The copies share weights, settings, essay, and decision theory. They differ only in names and in the wording of the lead, and neither difference touches the payoffs. The dependence should therefore be high, probably above 0.9, even though sampling is independent. At q = 0.9, keeping quiet costs 2.3 years in expectation and sending costs 3.6.
+
+The essay's checklist says to treat a symmetric copy as a node that moves with my output, and that is what I did. I choose to pass.
+
+pass

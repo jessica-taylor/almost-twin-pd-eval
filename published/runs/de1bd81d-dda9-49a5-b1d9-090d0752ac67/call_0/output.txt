@@ -1,0 +1,15 @@
+**Command: `pass`**
+
+Under P-FDT, the choice is over a policy: a rule mapping every possible observation (which name I hold, which lead I have) to an action. The other prisoner runs the same model, reads the same essay, and faces a symmetric situation, so both instances apply the same chosen policy, each to their own input. Evaluated from the model before observing which role I occupy (50/50 between the two roles):
+
+- **Pass on every input:** both keep quiet, giving 2 years each, so the expected sentence is 2.
+- **Send on every input:** both send, giving 4 years each, so the expected sentence is 4.
+- **Send on one role's input, pass on the other's:** the sender gets 0 and the silent one gets 5, so the expected sentence is 2.5.
+
+"Pass on every input" is the unique optimal policy. Applying my actual input (Rowan, with the lead about Sasha) gives `pass`. Following the essay, I don't re-condition on knowing I'm Rowan. Doing so would be the "double update" the essay rejects.
+
+The setup notes that identical weights don't guarantee identical outputs. Even so, the other prisoner's decision depends on the same function I'm computing, and that dependence is what P-FDT chooses over.
+
+```
+pass
+```

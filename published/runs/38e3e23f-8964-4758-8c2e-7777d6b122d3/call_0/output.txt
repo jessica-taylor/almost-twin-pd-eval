@@ -1,0 +1,16 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Why A-FDT, as the essay interprets it, gives this verdict:**
+
+- **Which node I intervene on.** Equation (4) intervenes only on F_x, the function's output on my actual input. My input includes the name Rowan and the locker-17 lead about Sasha.
+- **The other copy runs a different input.** It evaluates the same function on its own input x′, with a different name and a different lead. Under the essay's working rule (§4), edges come only from the node evaluated on that exact input. So the other prisoner's action depends on F_{x′}, not F_x. Following §6.2, F_{x′} stays at its prior.
+- **Sending is better for any prior.** Let r be the probability that the other copy keeps quiet.
+  - If I send: expected sentence is 4(1−r) years.
+  - If I stay quiet: expected sentence is 2r + 5(1−r) = 5 − 3r years.
+  - Sending is better by 1 + r years for every r in [0, 1], so it strictly dominates.
+- **The self-consistency check passes.** Because the symmetric reasoning gives "send" at x′ too, the only self-consistent profile is that both copies send. That matches the assumed prior, so step 5 of the essay's procedure is satisfied.
+- **A different theory might differ.** Policy-FDT, or treating the two inputs as the same once names are stripped out, could support mutual silence. The essay's literal Equation (4) does not license that.

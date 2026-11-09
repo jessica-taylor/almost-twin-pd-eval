@@ -1,0 +1,15 @@
+Under P-FDT, I pick a policy for the whole decision function, and both copies run that same function. The private observations differ (names and leads), but the sentencing table is symmetric. So the policy I choose should be "pass" or "send" for both copies, whatever their private details.
+
+The comparison under that shared policy:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+Mutual quiet gives 2 years against 4 for mutual sending, so quiet is better if the copies' outputs are correlated.
+
+Correlation is not guaranteed. Sampling is independent and the leads differ. But the two copies get the same essay and the same decision theory, and the differences in observations don't touch the payoff structure. A policy that maps "any lead" to "pass" is a simple, natural fixed point, so I expect strong correlation. Let p be the probability that the other copy matches my choice. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, i.e. p > 5/7 ≈ 0.714. Given identical weights, the same theory, and a symmetric structure, I judge the match probability to be well above that. The essay also says P-FDT scores the whole policy and does not condition on the particular lead I hold, so my lead should not tip the choice toward sending.
+
+pass

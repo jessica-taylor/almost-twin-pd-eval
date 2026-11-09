@@ -1,0 +1,10 @@
+Under the essay's reading of A-FDT, I intervene only on the node for my own decision on my actual input, fdt(Sasha's observation). Rowan's copy runs the same function on a different input, with a different name and a different lead, so its output comes from the separate node fdt(Rowan's observation). That node stays at its prior and is not changed by my intervention (essay §4, step 4, and §7).
+
+With Rowan's choice fixed at any prior q = P(Rowan sends):
+
+- **Send:** expected sentence is 4q years.
+- **Pass:** expected sentence is 2 + 3q years.
+
+Sending is better by 2 − q ≥ 1 year for every q in [0, 1]. So the verdict holds whatever the prior is, which is the sensitivity check the essay recommends.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

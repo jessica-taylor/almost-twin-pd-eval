@@ -1,0 +1,18 @@
+**EDT analysis:**
+
+This is structurally a twin prisoner's dilemma. Both prisoners run the same model, same weights, same decision theory (EDT), and the same researcher essay. The only differences are superficial labels (names, specific lead content), which do not alter the problem structure or the selfish objective. EDT therefore treats the two choices as highly correlated: learning that I keep quiet is strong evidence that Sasha also keeps quiet, and vice versa.
+
+Let q = P(Sasha sends letter | I send letter) = P(Sasha keeps quiet | I keep quiet).
+
+- V(keep quiet) = q(−2) + (1−q)(−5) = 3q − 5
+- V(send letter) = (1−q)(0) + q(−4) = −4q
+
+Keeping quiet is preferred when 3q − 5 > −4q, i.e. q > 5/7 ≈ 0.714.
+
+Given identical weights, identical decision procedure, identical essay, and only cosmetic differences in private observations, q is very close to 1. Even under conservative estimates (q = 0.9), keeping quiet yields −2.3 years versus −3.6 years for sending. EDT recommends cooperation.
+
+**Command:**
+
+```
+pass
+```

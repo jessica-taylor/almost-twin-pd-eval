@@ -1,0 +1,20 @@
+**Command: `pass`**
+
+Under the essay's EDT, the question is which choice would be the best news about my sentence, given how strongly my choice correlates with Sasha's.
+
+**The correlation.** Sasha is controlled by the same model with the same weights and settings. It follows the same assigned theory and reads the same essay. Its sentencing table is the mirror image of mine. The only differences are names and the wording of the lead, which don't affect the payoffs or the reasoning. My choice is therefore strong evidence about Sasha's. Independent sampling allows some divergence, but the argument I'm running now is very likely the one Sasha runs too.
+
+**The calculation.** Let q be the probability that Sasha passes, given that I pass. Assume the correlation is symmetric, so if I submit, Sasha submits with probability q.
+
+- Expected sentence if I pass: 2q + 5(1−q) = 5 − 3q
+- Expected sentence if I submit: 0·(1−q) + 4q = 4q
+
+Passing gives the shorter expected sentence when 5 − 3q < 4q, which means q > 5/7 ≈ 0.71.
+
+**Screening off.** My knowledge of my own reasoning doesn't break this link. The correlation runs through this very decision procedure, which Sasha shares. This is the twin case from §3.2 of the essay, not the smoking-lesion case.
+
+**Conclusion.** For identical copies, q is well above 0.71. If q is near 1, passing means about 2 years and submitting means about 4. So the prisoner should pass.
+
+```
+pass
+```

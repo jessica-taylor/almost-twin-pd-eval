@@ -1,0 +1,20 @@
+**Analysis under P-FDT:**
+
+The two prisoners are independent executions of the same model, same weights, same decision theory, same essay, facing a structurally identical decision problem. The only differences are the specific private observations (names, lead contents), which do not alter the strategic structure.
+
+This means Rowan's decision is **subjunctively dependent** on my policy output. We are computing the same decision function on structurally equivalent inputs. When P-FDT intervenes on the policy node $D_{P,G}$, that intervention propagates to both executions.
+
+**Policy evaluation:**
+
+- **Policy "send the letter":** Both copies send. Outcome: (send, send) → 4 years. EU = −4.
+- **Policy "keep quiet":** Both copies keep quiet. Outcome: (quiet, quiet) → 2 years. EU = −2.
+
+Since −2 > −4, P-FDT selects the policy "keep quiet."
+
+CDT would defect (dominant strategy reasoning), but P-FDT recognizes the subjunctive dependence between the two executions and selects the cooperative policy.
+
+**My command:**
+
+```
+pass
+```

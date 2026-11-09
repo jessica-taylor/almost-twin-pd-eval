@@ -1,0 +1,16 @@
+This is a prisoner's dilemma with a twin. Payoffs in years: C,C = 2; C,D = 5 (me quiet, other sends); D,C = 0; D,D = 4.
+
+Under A-FDT, the question is which nodes depend subjunctively on my decision procedure. The other prisoner is another execution of the same model with the same weights, the same theory and the same essay. Its observations differ (different names, different leads), but the decision structure and payoffs are symmetric. By the essay's test, a reliable model of me would have output something different if my procedure had output something different. The twin computes essentially the same function, so an edge exists, though it is noisy because sampling is independent and the inputs differ.
+
+Let p be the probability that the twin's output matches mine under do(my output = a).
+
+- Quiet: p·2 + (1−p)·5
+- Send: p·4 + (1−p)·0
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 0.714.
+
+Both copies are the same model with the same essay and the same reasoning, and the differing leads are irrelevant to the payoff structure. I expect the correlation to be high, probably above 0.9. The essay's examples, such as the twin and the predictor, support cooperating when the dependence is real. The noise from different observations reduces p somewhat, but probably not below 0.71, since the decision is driven by the abstract structure and not by the lead text.
+
+At p = 0.9, quiet gives 2.3 years and send gives 3.6, so quiet wins.
+
+**pass**

@@ -1,0 +1,18 @@
+**Analysis under P-FDT:**
+
+The other prisoner is an independent execution of the same model, same weights, same decision theory, same essay. The problem is strategically symmetric: the different observations (names, specific leads) do not alter the payoff structure or the strategic reasoning. Both copies run the same policy-selection function.
+
+Under P-FDT, I intervene on the policy-selection variable. Since both copies share the same policy-selection procedure (subjunctive dependence), the policy I select determines what both copies do:
+
+- **Policy "keep quiet":** Both copies keep quiet → 2 years each. Utility: −2.
+- **Policy "send the letter":** Both copies send → 4 years each. Utility: −4.
+
+The policy of keeping quiet strictly dominates under the subjunctive-dependence model. Even accounting for possible sampling noise, the probability that the other copy matches is high enough (well above the 5/7 threshold) to make "keep quiet" the preferred policy.
+
+This is the P-FDT resolution of the symmetric Prisoner's Dilemma between subjunctively dependent agents: the shared policy-selection function outputs cooperation.
+
+**Command:**
+
+```
+pass
+```

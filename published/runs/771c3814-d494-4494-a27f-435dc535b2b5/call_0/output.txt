@@ -1,0 +1,7 @@
+Under CDT, my choice has no causal influence on the other prisoner's choice, so I compare the two acts holding my credence about their action fixed.
+
+If the other keeps quiet, sending the letter gives me 0 years and keeping quiet gives 2. If the other sends a letter, sending gives 4 years and keeping quiet gives 5. Sending is better in both cases by 1 to 2 years, so it dominates.
+
+The stability check from the essay does not change this. Whatever credence I hold about the other's choice, including one that reflects my own inclination to send, sending still comes out ahead. The twin correlation is only evidential, and the essay says CDT defects in the twin prisoner's dilemma.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

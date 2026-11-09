@@ -1,0 +1,11 @@
+Under CDT, the other prisoner's choice is causally independent of mine. We cannot communicate, and the sentencing table depends only on what each of us submits. So I hold my credence about their action fixed, whatever it is.
+
+Sending the letter dominates keeping quiet in both states:
+- If the other keeps quiet, sending gives 0 years against 2 for staying quiet.
+- If the other sends, sending gives 4 years against 5 for staying quiet.
+
+The other copy may well reason the same way, which is evidential correlation. CDT, as the essay describes it, ignores that, because my act does not cause their act. Nothing here is unstable either. The dominance argument holds for every credence, so no ratifiability problem arises.
+
+The essay also notes that CDT's verdicts are driven by causal structure. Here sending is strictly better in each causally independent state, so CDT picks it.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

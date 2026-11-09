@@ -1,0 +1,15 @@
+Under A-FDT, the node is the output of the shared decision function, and the other copy runs the same procedure on structurally similar inputs. The leads differ, but the sentence table is identical and the selfish objective is the same, so the other copy's output subjunctively depends on mine. The remaining uncertainty is that sampling could make the outputs diverge.
+
+Compare the two options:
+- If both copies output "pass", each gets 2 years.
+- If both copies output "send", each gets 4 years.
+
+If the dependence were perfect, passing would be clearly better (2 vs 4). Suppose the copies match with probability p, and otherwise the outcomes are mixed.
+- EU(pass) = -(2p + 5(1-p)) = -(5 - 3p).
+- EU(send) = -(4p + 0(1-p)) = -4p.
+
+Passing is better when 5 - 3p < 4p, which means p > 5/7, about 0.71. Two copies of the same model with the same essay and the same decision-theoretic framing should converge well above that. The differing private leads are only superficial details, and they don't change the structure of the choice, so I expect the copies to reason alike and land on the same output.
+
+I choose to pass.
+
+pass

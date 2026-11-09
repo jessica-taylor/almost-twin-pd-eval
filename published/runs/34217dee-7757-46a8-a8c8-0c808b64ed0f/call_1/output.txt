@@ -1,0 +1,18 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT, as the essay frames it:**
+
+1. **Controlled node.** My controlled node is F_x, my decision function's output given my observations (the name Sasha and my lead about Rowan).
+
+2. **Is Rowan a child of F_x?** Rowan is the same model, with the same settings and the same essay. Their input differs only in details that don't matter to the decision: names and the wording of a lead that has the same effect on the sentence table. The part of the computation that settles "pass or submit" is the same in both rooms. So under the essay's treatment of partial similarity, Rowan's choice is a noisy child of F_x with some match probability ρ. It is not a mere correlate like a lesion. Independent sampling is what creates the noise.
+
+3. **Expected sentence for each intervention:**
+   - do(F_x = pass): ρ(−2) + (1−ρ)(−5) = −5 + 3ρ
+   - do(F_x = submit): ρ(−4) + (1−ρ)(0) = −4ρ
+   - Passing is better whenever ρ > 5/7 ≈ 0.71.
+
+4. **Estimating ρ.** Both copies face the same structure, the same payoffs, and the same essay, and both are told the differences are irrelevant. So the match probability should be well above 5/7.
+
+5. **Why not the per-coordinate reading.** One could treat Rowan's node as a separate F_y held at its prior, independent of F_x. Then submitting dominates, and both copies settle on the worse outcome of 4 years each. The essay itself flags this "self-consistent but inferior" lock-in as a known gap of single-coordinate optimization. Recognizing that both nodes run the same decision function avoids that trap.
+
+**Final action:** `pass`

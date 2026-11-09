@@ -1,0 +1,3 @@
+`pass`
+
+Under P-FDT, the policy choice is evaluated at the level of the whole function. My counterpart is an execution of the same policy-selection procedure facing a symmetric dilemma, so the intervention on the policy node varies both prisoners' behavior together: a policy of disclosing yields (4, 4)-type outcomes for me, while a policy of remaining quiet yields (2, 2). Since the other copy's action subjunctively depends on the same policy, quiet wins (2 years vs. 4 years expected), so the selected policy prescribes `pass` here.

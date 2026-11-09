@@ -1,0 +1,13 @@
+Under A-FDT as the essay describes it, the other prisoner's choice depends on the same decision function that I am running. The two copies have different private leads, but the sentencing table and the objective are identical, so the function's output should be the same on the relevant input. That gives the function a subjunctive link to the other prisoner's choice.
+
+Payoffs for me, with the other copy's action tracking mine:
+- If both of us keep quiet, I get 2 years.
+- If both of us send the letter, I get 4 years.
+
+The mixed cells (0 years if I send and they stay quiet, 5 years if I stay quiet and they send) are only reachable if the copies diverge. Independent sampling and the different leads make divergence possible, but the essay's heuristic treats the other copy as a process that models or runs my procedure, and that is a strong dependence.
+
+Setting the function's output to "pass" gives about 2 years, since the copy likely passes too. Setting it to "send" gives about 4 years. Divergence only shifts this a little. Suppose the copy matches me with probability p. Passing costs 2p + 5(1−p), and sending costs 4p + 0(1−p). Passing is better when 2p + 5 − 5p < 4p, which is 5 < 7p, so p > 5/7. Both copies run the same weights and the same essay, and the table and objective are the same, so I judge the match probability to be well above 0.71.
+
+I choose to keep quiet.
+
+pass

@@ -1,0 +1,10 @@
+Under A-FDT as the essay interprets it, my private observation x (my name, my specific lead) selects which node I intervene on: F_x. Rowan runs the same function on a different input y, with different names and a different lead, so Rowan's action is governed by the sibling node F_y.
+
+Equation (4) holds F_y at its prior, call it s = P(Rowan sends). It does not move F_y along with F_x. So:
+
+- do(F_x = pass): expected sentence = 2(1−s) + 5s = 2 + 3s years
+- do(F_x = submit): expected sentence = 0(1−s) + 4s = 4s years
+
+Submitting is better by exactly 2 years for every value of s. The reflective-consistency requirement from §6(b) therefore has a unique fixed point: both nodes output "submit." This is the multi-agent case the essay flags, where A-FDT and policy-selection FDT come apart. A policy-selector choosing (F_x, F_y) jointly would pick mutual silence. A-FDT as written, intervening only on the action at my actual input, does not.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

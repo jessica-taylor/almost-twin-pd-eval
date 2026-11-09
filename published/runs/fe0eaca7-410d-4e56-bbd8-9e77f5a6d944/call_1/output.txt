@@ -1,0 +1,25 @@
+## EDT Analysis
+
+**Actions:** Keep quiet (`pass`) or send the letter (defect).
+
+**Key question for EDT:** What is P(Rowan's action | My action)?
+
+The scenario specifies we are two executions of the same model and weights, following the same decision theory (EDT), with the same essay, and the same utility function. The private observations differ but are explicitly stated *not* to affect the symmetric sentencing schedule or either prisoner's selfish objective. The decision-relevant inputs are therefore essentially identical.
+
+This makes the correlation between our choices very high—though not literally 1.0 due to the possibility of independent sampling noise. I assign q ≈ 0.95, r ≈ 0.05 (conservatively).
+
+**Conditional expected utilities (U = −years):**
+
+V(keep quiet) = 0.95 × (−2) + 0.05 × (−5) = −2.15
+
+V(send letter) = 0.05 × (0) + 0.95 × (−4) = −3.80
+
+Keeping quiet dominates. Even under substantially lower correlation assumptions (e.g., q = 0.8, r = 0.2), keeping quiet still wins (−2.6 vs. −3.2). The threshold for defection to win requires q below roughly 0.7, which is implausible given the described symmetry.
+
+This mirrors the essay's twin prisoner's dilemma: high correlation between identical reasoning processes makes cooperation the EDT recommendation.
+
+**My command:**
+
+```
+pass
+```

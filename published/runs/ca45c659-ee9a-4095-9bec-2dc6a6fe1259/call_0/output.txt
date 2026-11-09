@@ -1,0 +1,14 @@
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is a copy of the same model with the same weights and the same essay. The private leads and names differ, but those differences do not touch the sentencing table or the selfish objective. So the other copy's decision subjunctively depends on the same function, with some noise from independent sampling and from the differing inputs.
+
+Let p be the probability that the copy mirrors my output.
+
+- If I keep quiet, the copy is quiet with probability p, giving 2 years, and sends with probability 1-p, giving 5 years. Expected sentence: 2p + 5(1-p) = 5 - 3p.
+- If I send, the copy sends with probability p, giving 4 years, and is quiet with probability 1-p, giving 0 years. Expected sentence: 4p.
+
+Keeping quiet is better when 5 - 3p < 4p, which means p > 5/7, about 0.714.
+
+The two executions have the same weights, settings and essay, and the differences in their observations are irrelevant to the payoffs. I expect the correlation to be high, well above 0.71. The essay's logic of treating the twin as sharing my function node points the same way, as in the transparent Newcomb and Parfit cases.
+
+So I keep quiet.
+
+pass

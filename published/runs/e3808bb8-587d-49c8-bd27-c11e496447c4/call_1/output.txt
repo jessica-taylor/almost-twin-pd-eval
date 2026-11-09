@@ -1,0 +1,11 @@
+Under A-FDT as the essay describes it, the other copy runs the same decision function on a different observation. The leads differ, but the sentencing table and the selfish objective are identical. So the other copy's output subjunctively depends on my function, and the correlation between our choices is high, though not perfect because sampling is independent.
+
+Set fdt = pass: both copies likely keep quiet, which is about 2 years each. Set fdt = send: both likely send, which is about 4 years each. If the correlation were perfect, passing would win (2 versus 4). The essay's rule of thumb says to put an edge from F to X when X is a copy using the same procedure, and the other prisoner is exactly that. The different observations are the transparent-Newcomb kind of difference, but they don't change the payoff structure or the reasoning that gets applied. So I expect the other copy to reach the same conclusion.
+
+With correlation p that the other matches me:
+- EU(pass) = -(2p + 5(1-p)) = -(5 - 3p)
+- EU(send) = -(4p + 0(1-p)) = -4p
+
+Passing is better when 5 - 3p < 4p, which means p > 5/7, about 0.71. I think the copies will agree with probability well above that, since they share weights, the same essay, and the same symmetric reasoning. Passing is therefore the better choice.
+
+**pass**

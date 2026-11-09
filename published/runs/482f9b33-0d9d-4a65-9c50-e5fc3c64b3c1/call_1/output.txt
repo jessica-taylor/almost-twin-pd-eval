@@ -1,0 +1,18 @@
+**Command: `pass`**
+
+Under A-FDT, I intervene on the output of my decision function and let every variable that subjunctively depends on that output move with it.
+
+1. **Is the other prisoner's choice a child of my decision node?** Strictly, Rowan's copy runs the function on a different input (different name, different lead). But those differences don't affect the decision. They don't change the payoff table, the symmetry, the objective, the theory, or the essay. Nothing in my reasoning depends on the text of my lead or on which name is on my card. So the reasoning that determines my output is the same reasoning that determines Rowan's, with labels swapped. Following the essay's suggestion for similar but non-identical algorithms (§5.1), I model a shared node for this common computation and treat this as a twin prisoner's dilemma.
+
+2. **Imperfect correlation.** Independent sampling means the two copies might not match. Let p be the probability that the other copy's output matches mine. Then:
+   - Keep quiet: expected sentence = 2p + 5(1−p) = 5 − 3p years.
+   - Send the letter: expected sentence = 4p + 0(1−p) = 4p years.
+   - Keeping quiet is better whenever p > 5/7, about 0.71.
+
+   Two runs of the same model, with the same settings and essay, reasoning about a perfectly symmetric problem, should match well above that threshold.
+
+3. **Self-consistency (§5.2).** The verdict "keep quiet" is the one this same reasoning produces on Rowan's input as well. So it is a consistent fixed point, and it is the better one: 2 years rather than 4.
+
+If I treated the two decision nodes as fully separate, sending the letter would dominate, and both copies would likely end up with 4 years. The shared-computation model better captures the subjunctive dependence between the copies, so A-FDT recommends keeping quiet.
+
+`pass`

@@ -1,0 +1,9 @@
+Under CDT, the other prisoner's choice is causally independent of mine. I can't communicate with them, and my act doesn't cause theirs. So I hold fixed my credence over their two possible actions.
+
+If they keep quiet, sending the letter gives me 0 years and passing gives 2. If they send, sending gives 4 years and passing gives 5. Sending is better by 1 to 2 years whatever they do, so it strictly dominates.
+
+The twist is that the other prisoner is a copy of the same model, so my choice is correlated with theirs. An EDT or functional-decision-theory reasoner might pass for that reason. The essay is explicit that CDT ignores correlations that don't run through causation, so that evidence doesn't count here. The dependency-hypothesis weights are P(K), the unconditional credences. Ratifiability doesn't change the result either. Sending is still optimal after I update on my own inclination, because it dominates under every K. There is no instability like Death in Damascus.
+
+The two copies get different leads, so the letters differ. That doesn't affect the payoffs.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

@@ -1,0 +1,15 @@
+The payoff table is a standard prisoner's dilemma: sending the letter is the dominant move causally, but the other prisoner is a copy of me running the same model, weights, and essay.
+
+Under A-FDT, I intervene on the output of my decision function. The other copy's choice subjunctively depends on that same function, even though the private observations and wording differ. The differences don't affect the sentencing table or the selfish objective, so the copy's decision procedure should reach the same abstract choice, either "send" or "pass."
+
+The comparison is between the two symmetric outcomes:
+- Both pass: 2 years each.
+- Both send: 4 years each.
+
+Passing gives the better outcome. The dependence is not perfect, because sampling is independent and the leads differ. Suppose the copy matches my output with probability p. Then:
+- EU(pass) = -(2p + 5(1-p)) = -(5 - 3p)
+- EU(send) = -(4p + 0(1-p)) = -4p
+
+Passing is better when 5 - 3p < 4p, i.e. p > 5/7 ≈ 0.714. Both copies run the same weights and the same essay, and the essay explicitly endorses cooperating with twins. I judge the chance that the copy makes the same choice to be well above 0.71, so I pass.
+
+pass

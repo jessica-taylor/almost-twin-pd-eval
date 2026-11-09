@@ -1,0 +1,10 @@
+**pass**
+
+Under A-FDT, my choice is the output of a decision function, and the other prisoner is running essentially the same function: same model, same weights, same essay, same theory. Our private observations differ (names, the wording of the leads), but those differences don't affect the sentencing table or either prisoner's objective. So the other copy's decision is tracking mine, and I intervene on the shared logical node, not on my own act with their choice held fixed.
+
+- **`do(fdt = pass)`:** the copy very likely passes too, so I serve 2 years.
+- **`do(fdt = submit)`:** the copy very likely submits too, so I serve 4 years.
+
+The dependence doesn't have to be perfect. If the chance that the other copy matches my output is p, passing beats submitting when 2p + 5(1−p) < 4p, which means p > 5/7. Two copies of the same model given the same essay and the same payoff structure should match well above that threshold.
+
+The essay's twin prisoner's dilemma example gives the same answer: cooperate.

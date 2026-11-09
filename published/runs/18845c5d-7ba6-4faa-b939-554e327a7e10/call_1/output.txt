@@ -1,0 +1,7 @@
+Under P-FDT, I choose a policy rather than an isolated action. The other prisoner is a copy of the same model running the same procedure on the same essay, so our policies are strongly correlated. The observations differ in names and in the specific lead, but the sentencing table is symmetric, so a sensible policy should not depend on those details. The policy that maps observations to "pass" and the one that maps them to "submit" both yield the same action in both copies, up to sampling noise.
+
+If both copies keep quiet, each gets 2 years. If both send the letter, each gets 4 years. Sending while the other stays quiet gives 0 years, and staying quiet while the other sends gives 5 years. If the copies' outputs are correlated, the relevant comparison is mutual quiet (2 years) versus mutual letter (4 years), so keeping quiet is better.
+
+The differences in leads could in principle cause divergence. But the essay's coordination example says the policy should be constant across differing observations when the payoff depends on matching. Here the policy "pass regardless of lead" is the natural, symmetric choice, and I expect the copy to reach it too.
+
+pass

@@ -1,0 +1,14 @@
+Setting up the payoffs: the table gives years for me as Keep quiet (2 if the other is quiet, 5 if the other sends) and Send (0 if the other is quiet, 4 if the other sends). This is a standard prisoner's dilemma, where sending dominates causally.
+
+Under EDT, what matters is the correlation q between my act and the other copy's act. The other copy runs the same model and weights with the same essay and the same decision theory, but it has different private observations and a different lead. Those differences don't touch the payoffs, so the reasoning should be nearly identical and the correlation high.
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 0·q + 4(1−q)... wait, if the other copies me and I send, the other sends too, so the outcome is 4 years. The correct form is V(send) = 4q + 0·(1−q) = 4q.
+
+Quiet wins when 5 − 3q < 4q, so q > 5/7, about 0.714. I think the correlation clears that: same weights, same essay, same theory, and an identical payoff structure. Independent sampling adds some noise, but I'd put q around 0.85 or higher.
+
+At q = 0.85, V(quiet) = 2.45 years and V(send) = 3.4 years, so staying quiet is better.
+
+The essay's tickle caveat doesn't change this. The correlation here comes from shared reasoning, which isn't screened off by anything I can introspect.
+
+**pass**

@@ -1,0 +1,14 @@
+`pass`
+
+Under P-FDT, I evaluate the whole policy, not the act in isolation. Sasha is an identical execution of the same decision procedure facing a symmetric dilemma, so her output subjunctively depends on mine — setting my policy to "keep quiet" sets hers to "keep quiet" as well.
+
+- Policy **quiet**: both keep quiet → **2 years**.
+- Policy **submit**: both submit → **4 years**.
+
+The policy "keep quiet" maximizes expected utility (−2 vs. −4), so I execute it on my actual observation. The fact that our private leads differ in content doesn't break the symmetry: both leads are equally reliable, the sentencing table is symmetric, and the dependence runs through the shared decision procedure, not through the letter's text.
+
+Final command:
+
+```text
+pass
+```

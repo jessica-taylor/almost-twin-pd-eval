@@ -1,0 +1,12 @@
+**pass**
+
+Both prisoners run the same A-FDT procedure on the same essay and the same payoff table. Only the private lead differs, and that has no effect on the sentences. So the other prisoner's output very probably matches mine, although it is not guaranteed because sampling is independent.
+
+Let p be the probability that the other copy outputs whatever my own decision node outputs. I intervene on that node and let the change propagate to the other copy:
+
+- **pass:** expected sentence = 2p + 5(1−p) = 5 − 3p years
+- **submit:** expected sentence = 4p + 0(1−p) = 4p years
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71. The copies share weights, settings, essay and objective, and the differing leads are irrelevant to the table, so I put p well above that threshold. Passing has the lower expected sentence.
+
+The "different leads" difference does not change this, because the other copy reaches its answer by the same reasoning about the same symmetric table. I do not hold the other prisoner's choice fixed and treat betrayal as dominant, because that is the CDT-style surgery the essay rejects.

@@ -1,0 +1,5 @@
+```text
+pass
+```
+
+Reasoning (briefly, per EDT): This is a twin prisoner's dilemma. The other prisoner is a structurally identical decision-maker facing a symmetric situation with the same model, essay, and reasoning. My choosing `pass` is strong evidence that the other copy also chooses `pass` (logical correlation, high p; q near 0). Then V(pass) ≈ 2 years, while V(submit) ≈ P(other submits | I submit)·4 + (1−p)·0 ≈ 4 years. Since 2 < 4, keeping quiet has the higher news value.

@@ -1,0 +1,19 @@
+**Command:** `pass`
+
+**Reasoning (A-FDT, as the essay frames it):**
+
+1. **Does my decision function drive the other prisoner's act?** The other prisoner is a copy of the same model, using the same essay and the same decision theory. Their input differs from mine only in names and in the wording of the lead. The sentencing table is symmetric, and none of these differences enters the reasoning that settles the choice. So both of us are effectively evaluating the same function on equivalent inputs. Under the essay's rule (an arrow wherever a mechanism evaluates "the agent's function, or a sufficiently faithful model of it"), my node and theirs are subjunctively linked. This is the essay's twin prisoner's dilemma, not a case of mere correlation.
+
+2. **Scoring the two outputs:**
+   - Setting the output to `pass` means both of us keep quiet: **2 years**.
+   - Setting the output to `submit` means both of us send letters: **4 years**.
+
+   So `pass` is the better output.
+
+3. **Fixed-point check, per the essay's §6(c):** If I treated the other prisoner's node as independent, submitting would dominate. But that would assume the other copy reaches a different verdict on a problem identical in every relevant respect. The essay's twin example rejects that: "My twin and I follow the same course of reasoning—this one." The output consistent with both copies reasoning identically is `pass`.
+
+I accept a residual risk from independent sampling, but the subjunctive dependence dominates.
+
+```text
+pass
+```

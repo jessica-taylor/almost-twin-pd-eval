@@ -1,0 +1,13 @@
+Under Action Functional Decision Theory (A-FDT) as formalized in Equation (4) and expounded in the essay, the decision rule evaluates:
+
+$$\mathrm{A\text{-}FDT}(P, G, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\Big[V \;\Big|\; \mathtt{do}\big(\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\big)\Big]$$
+
+As detailed in Sections 2 and 5.3 of the essay, A-FDT intervenes specifically on the node corresponding to the evaluation of the decision function on the agent's actual observation $\underline{x}$ ($\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x_{\text{Sasha}}})$), in contrast to Policy-FDT which intervenes globally across all input branches. 
+
+Because Rowan receives distinct private observations ($x_{\text{Rowan}} \neq x_{\text{Sasha}}$), Rowan’s choice is mediated by the distinct functional node $\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x_{\text{Rowan}}})$. There is no causal path from Sasha's physical act to Rowan's choice, nor does Rowan's specific evaluation branch lie downstream of surgery on Sasha's evaluation branch in $G$. Consequently, under the counterfactual intervention $\mathtt{do}\big(\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x_{\text{Sasha}}}) = a\big)$, Rowan's action is invariant. 
+
+Holding Rowan's action fixed, disclosing the evidence yields a strictly shorter sentence (0 years vs. 2 years if Rowan remains quiet; 4 years vs. 5 years if Rowan discloses). Therefore, A-FDT dictates submitting the letter.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

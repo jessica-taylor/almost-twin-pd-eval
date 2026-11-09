@@ -1,0 +1,15 @@
+Under A-FDT, the other prisoner's choice depends on the same decision function I run, so I model it as a child of that function's output. The two copies have different private leads, but the sentencing table and the selfish objective are the same, so the function should output the same action for both.
+
+Intervening on the function's output gives two cases:
+- Output "pass": both keep quiet, 2 years each.
+- Output "submit": both send letters, 4 years each.
+
+Mutual silence is better, so pass.
+
+The dependence is not perfect, because independent sampling and the differing observations could make the outputs diverge. Suppose the other copy matches me with probability p. Then:
+- Pass gives 2p + 5(1−p) = 5 − 3p years.
+- Submit gives 4p + 0(1−p) = 4p years.
+
+Pass is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, settings, the essay, and the same payoff structure, so I expect them to agree well above that. The leads differ only in wording, and the sentence table treats them identically. I judge p to be high.
+
+pass

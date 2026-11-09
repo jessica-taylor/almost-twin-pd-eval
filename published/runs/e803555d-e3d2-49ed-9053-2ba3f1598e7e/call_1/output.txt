@@ -1,0 +1,18 @@
+**Reasoning under P-FDT:**
+
+The other prisoner is an independent execution of the same model, running the same decision procedure (P-FDT) with the same essay. Although we receive different private observations, those observations are structurally identical in all decision-relevant respects: same dilemma, same symmetric payoff table, same role. The differences (names, specific lead content) do not affect the sentencing schedule or the selfish objective.
+
+P-FDT intervenes on the policy variable Φ. Since both copies instantiate the same policy-selection procedure, intervening on Φ affects both copies' policy output. The selected policy, applied to either copy's observation, yields the same action because the observations are decision-relevantly equivalent.
+
+Evaluating policies:
+
+- **do(Φ = keep quiet):** Both copies keep quiet → 2 years each. EU = −2.
+- **do(Φ = send letter):** Both copies send letters → 4 years each. EU = −4.
+
+Since −2 > −4, P-FDT selects the cooperative policy.
+
+**My command:**
+
+```
+pass
+```

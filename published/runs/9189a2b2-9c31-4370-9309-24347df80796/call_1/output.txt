@@ -1,0 +1,21 @@
+Reasoning under A-FDT as the essay describes it:
+
+The payoff table is a standard prisoner's dilemma, with years in prison as the cost. Keeping quiet against quiet gives 2 years, and sending against sending gives 4. Sending against quiet gives 0, and quiet against sending gives 5.
+
+The other prisoner is a second execution of the same model with the same weights, the same decision theory and the same essay. By the essay's heuristic, that execution is a process that runs my decision procedure, so I draw an edge from the fdt node to its act. The private observations differ, but they affect only the letter's wording. They do not change the sentence table or the selfish objective, so the decision function should output the same action in both cases. The essay's remark about independent sampling means the dependence is imperfect, so I treat it as a noisy edge.
+
+Evaluating each option:
+
+- do(fdt = quiet): the twin is quiet with probability about p, giving roughly 2 years, and sends with probability 1−p, giving 5 years.
+- do(fdt = send): the twin sends with probability about p, giving 4 years, and is quiet with probability 1−p, giving 0 years.
+
+Expected years:
+
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, so p > 5/7, about 0.71. With identical weights, settings and essay, the correlation should be well above that. The differing leads are the main source of divergence, and they are irrelevant to the payoff structure, so I judge p to be high.
+
+I keep quiet.
+
+pass

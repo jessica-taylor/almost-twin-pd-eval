@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning (A-FDT): The other prisoner is an independent execution of the same model, same decision theory, facing a symmetric situation. Their action subjunctively depends on the same decision function that produces mine — like two calculators computing the same sum. Evaluating do(fdt(P, G, x) = pass), the twin's decision function also outputs `pass`, giving 2 years. Evaluating do(fdt = submit), the twin's function also outputs `submit`, giving 4 years. Since my own private lead differs in content but not in reliability or payoff structure, the symmetric sentencing table holds under both interventions. Argmax chooses 2 years over 4: keep quiet.

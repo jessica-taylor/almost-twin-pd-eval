@@ -1,0 +1,16 @@
+**Command:** `pass`
+
+**Why A-FDT gives this answer**
+
+1. **What I control.** Under Equation (4), I intervene on F_x, the output of the A-FDT procedure on my own inputs. Sasha's copy evaluates F_y on different inputs. Read strictly, the essay's Step 2 would draw no arrow from F_x to F_y. Under that reading sending dominates, and the self-consistent outcome is that both prisoners send, giving each of us 4 years.
+
+2. **Why there is still dependence.** The essay leaves "approximate copies" open. It suggests giving such systems a noisy edge from F, weighted by my credence that they track this very function. The ways x and y differ are the names and the lead's wording. Neither affects the sentencing table, the objective, or the structure of the reasoning. Up to relabelling, the two copies run the same weights on the same essay and the same decision problem. That is like two calculators computing 6288 + 1048 in different fonts: the logical computation is the same. So I judge F_y to depend strongly on F_x. Independent sampling adds noise but does not break this link.
+
+3. **The calculation.** Let c be the probability that Sasha's choice matches mine, and r the prior that Sasha sends otherwise.
+   - Keeping quiet costs 2c + (1−c)(2+3r) years.
+   - Sending costs 4c + (1−c)·4r years.
+   - Keeping quiet is better whenever c > (2−r)/(4−r). That threshold is at most 1/2, and only about 1/3 if Sasha is expected to send.
+
+   My credence that the copies match is well above 1/2. So under the A-FDT hypothetical, the choices are essentially (quiet, quiet) for 2 years versus (send, send) for 4 years. Keeping quiet wins.
+
+`pass`

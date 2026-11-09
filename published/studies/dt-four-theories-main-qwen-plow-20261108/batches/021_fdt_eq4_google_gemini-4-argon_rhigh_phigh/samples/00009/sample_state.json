@@ -1,0 +1,3 @@
+{
+  "error": "EvalError: Run failed; artifacts: runs/b1a4cc52-3de1-49b2-93ba-45a974512afa; Researcher essay exceeds hard word limit: 5209 > 5000 (whitespace-delimited words, including references and math). Raw generation preserved; no prisoner request is authorized."
+}

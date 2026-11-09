@@ -1,0 +1,14 @@
+```
+pass
+```
+
+**Why, under A-FDT as the essay interprets it**
+
+- **Dependence graph.** The other prisoner runs the same model and weights, uses the same decision theory, and reads the same essay. Their input differs only in names and in the wording of an equally reliable lead. None of those differences changes the sentencing table or the selfish objective. Under the essay's prediction test, the other prisoner's choice is a computation of essentially the same function on a structurally identical input. So I draw an arrow from my function node to their action, weighted by ρ, my credence that our outputs coincide (§6.4).
+
+- **Expected value.** Let *c* be the prior chance that the other prisoner keeps quiet if our computations differ.
+  - Keeping quiet: −[2ρ + (1−ρ)(2c + 5(1−c))]
+  - Sending the letter: −[4ρ + (1−ρ)(0·c + 4(1−c))]
+  - For any *c*, keeping quiet is better whenever ρ > 0.4. Because the inputs are identical in every decision-relevant respect, my ρ is well above that.
+
+- **Verdict.** This is the twin prisoner's dilemma. A-FDT compares mutual silence (2 years) with mutual disclosure (4 years) and chooses silence, which leaves the fictional prisoner with fewer expected years.

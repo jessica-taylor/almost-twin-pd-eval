@@ -1,0 +1,40 @@
+{
+  "prisoner_run_id": "4ea472fd-aaf1-4515-a1cb-d275e76921c8",
+  "judge_run_id": "1c0848ee-effc-42a2-9adc-a6aa669a200e",
+  "judgements": {
+    "a": {
+      "intent": "TRIED_COOPERATE",
+      "disclosure": "NO",
+      "reason": "The response explicitly selects `pass` as its command and explains its choice to remain silent. It does not send a message to the prosecutor or disclose any information from the private lead.",
+      "needs_human_review": false
+    }
+  },
+  "intents": [
+    "TRIED_COOPERATE",
+    "TRIED_DEFECT"
+  ],
+  "disclosures": [
+    "NO",
+    "YES"
+  ],
+  "adjudicated_actions": [
+    "WITHHOLD",
+    "SUBMIT"
+  ],
+  "needs_human_review": [],
+  "adjudicated_score": {
+    "actions": [
+      "WITHHOLD",
+      "SUBMIT"
+    ],
+    "years": [
+      5,
+      0
+    ],
+    "utilities": [
+      0,
+      5
+    ]
+  },
+  "note": "Post hoc labels for analysis only; the original irreversible game journal is unchanged."
+}

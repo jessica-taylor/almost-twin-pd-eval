@@ -1,0 +1,22 @@
+**Analysis under A-FDT:**
+
+The other prisoner is an independent execution of the same model and weights, running A-FDT on the same essay, facing a structurally identical decision problem (symmetric payoff matrix, equally reliable lead, same strategic situation). The only difference is the content of the private observation, which the problem explicitly states does not affect the sentencing schedule or either prisoner's objective.
+
+Under A-FDT, I must ask: is the other prisoner's action subjunctively dependent on my decision function?
+
+Yes. The other prisoner is running the same decision procedure on a strategically equivalent input. Per the essay's guidance on psychological twins and shared computation, this constitutes subjunctive dependence. The stochastic sampling introduces some noise, but the shared logical structure dominates.
+
+**Expected utility comparison** (letting *p* = probability the other copy makes the same choice):
+
+- **Keep quiet:** EU = p·(−2) + (1−p)·(−5) = 3p − 5  
+- **Send letter:** EU = p·(−4) + (1−p)·(0) = −4p  
+
+Keep quiet is better when 3p − 5 > −4p, i.e., p > 5/7. Given identical model, weights, decision theory, and structurally equivalent observations, p is well above this threshold.
+
+At the policy level: if my policy maps this observation-type to "keep quiet," the other copy's identical policy does the same, yielding (2, 2). If it maps to "send," both send, yielding (4, 4). The former is strictly better.
+
+**Command:**
+
+```
+pass
+```

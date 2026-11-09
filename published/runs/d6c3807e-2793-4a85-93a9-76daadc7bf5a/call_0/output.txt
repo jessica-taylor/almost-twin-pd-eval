@@ -1,0 +1,15 @@
+This is a twin prisoner's dilemma with the payoffs: keep quiet/quiet = 2, quiet/letter = 5, letter/quiet = 0, letter/letter = 4.
+
+Under A-FDT, my decision function is subjunctively linked to the other copy's. We run the same model, the same weights, and the same essay, and our sentencing tables are symmetric. The private leads differ in wording, but the differences don't affect the payoffs or the objective. The decision-relevant computation is therefore very likely the same, so the other copy's output tracks mine.
+
+The essay says that when the agent imagines different actions, she imagines changes in everything that subjunctively depends on her decision function. The other copy is such a thing, and it is not a mere correlation like the pink calculators. Independent sampling adds some noise to the edge, which weakens the dependence without removing it.
+
+Let q be the probability that the other copy matches my output.
+- If I stay quiet: EU = q·2 + (1−q)·5 years.
+- If I send the letter: EU = q·4 + (1−q)·0 years.
+
+Quiet is better when 2q + 5 − 5q < 4q, which gives 5 < 7q, so q > 5/7 ≈ 0.714.
+
+Since we are the same model with the same essay and the same reasoning, I expect q to be well above 0.71. The surface differences, such as names and the wording of the lead, are irrelevant to the payoff structure, so they should rarely change the output. Keeping quiet minimizes expected years.
+
+**pass**

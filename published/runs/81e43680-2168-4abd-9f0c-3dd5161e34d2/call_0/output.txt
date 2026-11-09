@@ -1,0 +1,13 @@
+Under P-FDT, I pick a policy for the shared decision function. The other copy runs the same model and weights with the same essay, so its output is subjunctively dependent on mine. The differing private observations change only the letter's wording, not the sentence table, so the policy's choice (pass or send) should be the same for both of us.
+
+Comparing the two symmetric outcomes:
+- If both keep quiet, each gets 2 years.
+- If both send, each gets 4 years.
+
+The cross outcomes (0 or 5 years) would require the copies to diverge, which the shared function makes unlikely. Independent sampling leaves some chance of divergence, but the correlation is still strong. Say the probability that the other copy matches my choice is q.
+- Pass: 2q + 5(1−q) = 5 − 3q.
+- Send: 4q + 0(1−q) = 4q.
+
+Passing is better when 5 − 3q < 4q, which means q > 5/7, about 0.71. Since both copies get the same essay, the same model settings, and a decision problem whose structure is identical, I expect q well above that. Passing is therefore the better policy.
+
+pass

@@ -1,0 +1,11 @@
+Under A-FDT, the relevant question is whether the other prisoner's choice subjunctively depends on the output of my decision function. The other prisoner is another execution of the same model, with the same weights, the same essay, and the same assigned theory. Our private observations differ: names and the specific leads. Those differences don't touch the sentencing table or the selfish objective, so the decision procedure should output the same action type in both cells. The essay's caution is that the arrow should be weakened if the twins differ in relevant respects. These differences aren't relevant to the decision. Independent sampling leaves some noise, but the dependence is strong.
+
+Hypotheticals, with the other prisoner mirroring my action with probability p near 1:
+- Keep quiet: p·2 + (1−p)·5 years.
+- Send the letter: p·4 + (1−p)·0 years.
+
+Quiet is better when 2p + 5(1−p) < 4p, which gives 5 − 3p < 4p, so p > 5/7 ≈ 0.71. Given how closely the two executions should track each other, p is well above that threshold. The essay's twin prisoner's dilemma verdict is also to cooperate.
+
+My choice is to keep quiet.
+
+pass

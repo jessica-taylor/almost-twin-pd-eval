@@ -1,0 +1,16 @@
+**pass**
+
+Under A-FDT, my output and the other copy's output are both fixed by the same function: the same weights, the same essay, and the same payoff table. The different names and leads don't enter the sentencing schedule, so they shouldn't change what that function outputs.
+
+I model the other copy as matching my choice with probability r, and otherwise doing the opposite. This is the noisy-twin model from §4.2 of the essay.
+
+- E[years | pass] = 2r + 5(1−r) = 5 − 3r
+- E[years | send] = 4r + 0(1−r) = 4r
+
+Passing is better when 5 − 3r < 4r, which means r > 5/7 ≈ 0.71. Since the copies share the same model, essay, and reasoning, I estimate r well above that, around 0.9. At r = 0.9, passing gives about 2.3 expected years and sending gives about 3.6.
+
+The tempting argument is that sending dominates whatever the other prisoner does. That is the CDT dominance argument, which holds the other's choice fixed. A-FDT instead varies the shared function's output, which moves both choices together.
+
+The deciding comparison is therefore 2 years for mutual silence against 4 years for mutual letters.
+
+`pass`

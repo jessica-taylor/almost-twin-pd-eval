@@ -1,0 +1,15 @@
+Under P-FDT, I pick a policy for the whole decision function. The other prisoner is a copy of the same model running the same procedure, so our choices are subjunctively dependent even though our private observations differ. The observations differ only in names and in the text of each lead. Neither affects the sentence table or the objective, so the policy should treat them the same way.
+
+If both copies run the same policy, only the diagonal outcomes can occur:
+- Both keep quiet: 2 years each.
+- Both send the letter: 4 years each.
+
+Quiet gives 2 years and sending gives 4, so quiet is better on the diagonal.
+
+Sampling noise and the differing observations might break the correlation. The essay's point is that the policy determines the output across copies. Still, the copies might not be perfectly correlated, so I check how much correlation is needed. Let p be the probability the other copy mirrors my action.
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Two copies of the same model with the same essay and the same reasoning should match well above that, so I keep quiet.
+
+pass

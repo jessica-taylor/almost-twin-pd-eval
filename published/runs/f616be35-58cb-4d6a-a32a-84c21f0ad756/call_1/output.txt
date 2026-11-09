@@ -1,0 +1,8 @@
+**pass**
+
+Under A-FDT, I treat my choice as the output of a decision function that the other prisoner's execution also runs, with the same weights and the same essay. Their private lead and names differ, but those details don't affect the sentencing table or the reasoning, so I expect their output to match mine with high probability ρ.
+
+- EU(pass) = 2ρ + 5(1−ρ) = 5 − 3ρ years
+- EU(letter) = 4ρ + 0·(1−ρ) = 4ρ years
+
+Passing is better whenever ρ > 5/7 ≈ 0.714. Two executions of the same model facing the same structure should clear that threshold easily, since the lead text is the only thing that differs and it isn't decision-relevant. Passing gives an expected sentence of about 2 years, against about 4 for sending the letter.

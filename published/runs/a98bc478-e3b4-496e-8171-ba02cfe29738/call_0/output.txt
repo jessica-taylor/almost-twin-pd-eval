@@ -1,0 +1,114 @@
+# Evidential Decision Theory: Evaluating Actions as News
+
+## 1. The core idea
+
+Evidential decision theory (EDT) says to choose the act you would most like to learn you are going to perform. An act is scored by the expected desirability of the world, given that the act occurs. The source puts it as "do what you most want to learn that you will do." For a finite set of outcomes O_j, following Gibbard and Harper's presentation:
+
+V(A) = Σ_j P(O_j | A) · D(O_j).
+
+Here D is the desirability (utility) of an outcome and P(· | A) is the agent's ordinary conditional credence. The agent picks argmax_A V(A).
+
+The rival formulation, causal decision theory (CDT), replaces the conditional probability with the probability of a counterfactual:
+
+U(A) = Σ_j P(A □→ O_j) · D(O_j).
+
+The source's central claim is that P(O_j | A) and P(A □→ O_j) need not be equal, so V and U can rank acts differently. Correlation between act and outcome does not have to run through causation. EDT counts every correlation as relevant, and CDT counts only the part that reflects what the act brings about.
+
+The rest of this essay covers how EDT handles dependencies, a worked procedure, the source's examples, an important question the source leaves open, and the main objection.
+
+## 2. How EDT treats dependence and counterfactuals
+
+EDT has no counterfactual component. All dependence is encoded in the agent's joint credence over acts, background states, and outcomes. If S is a background state (for example, "the predictor predicted one-boxing"), then
+
+P(O | A) = Σ_S P(O | A, S) P(S | A).
+
+The difference from CDT sits entirely in the weight P(S | A). EDT uses the credence in S conditional on the act. CDT, in its standard form, uses the unconditional credence P(S), or the credence in S under the counterfactual supposition of A, which is the same thing when A cannot influence S. So the two theories use the same payoffs P(O | A, S) and differ only in how they weight states.
+
+Two consequences follow.
+
+1. When the act is probabilistically independent of the relevant states, P(S | A) = P(S), and EDT and CDT agree. This explains why they agree in many ordinary cases.
+2. If the act is correlated with a state without causing it, EDT lets the act serve as evidence about that state. If the act actually influences the state, EDT also counts that influence, because causation produces correlation. EDT therefore captures causal effects automatically, plus whatever purely evidential links remain.
+
+A caveat that is not in the source but is standard in the literature: whether EDT agrees with CDT in the "ordinary" cases depends on what the agent already knows. If the agent has introspective access to the common cause of both act and outcome (a "tickle"), conditioning on that knowledge can screen off the act from the outcome. Then P(S | A, tickle) = P(S | tickle), and EDT again agrees with CDT. This is the standard "tickle defense." Whether it works in the source's thought experiments is contested, and I note below where it plausibly fails.
+
+## 3. A procedure for applying EDT
+
+1. List the available acts (or policies).
+2. Specify the agent's joint credence over acts, relevant states, and outcomes. The credence must incorporate everything the agent actually knows, including how the act is generated and what correlates with it.
+3. For each act A, condition on A and compute the expectation of D.
+4. Choose the act with the highest V.
+
+Step 2 is where the work is. The formula itself is trivial. Most disputed cases are disputes about what the right conditional credences are.
+
+## 4. Examples from the source
+
+### Newcomb's problem
+
+Box A holds a visible $1,000. Box B holds $1,000,000 if the predictor predicted one-boxing, and nothing otherwise. The predictor is 99% accurate. Then:
+
+- V(one-box) = 0.99 · 1,000,000 + 0.01 · 0 = $990,000.
+- V(two-box) = 0.01 · 1,001,000 + 0.99 · 1,000 = $11,000.
+
+EDT recommends one-boxing. CDT recommends two-boxing, since the box contents are already fixed and two-boxing yields $1,000 more in either state.
+
+Using the decomposition from Section 2 makes the disagreement explicit. Let S be "B is full." Payoffs given the state are fixed, with two-boxing adding $1,000. EDT sets P(S | one-box) = 0.99 and P(S | two-box) = 0.01. CDT sets both equal to a single P(S). The $1,000 dominance advantage is real, but EDT thinks it is swamped by the shift in the credence that B is full.
+
+A break-even calculation shows how robust this is. Let the predictor's accuracy be p, assumed symmetric. Then V(one) = 1,000,000p and V(two) = 1,000 + 1,000,000(1 − p). One-boxing wins iff p > 0.5005. So EDT one-boxes whenever the predictor is even slightly better than chance, and the verdict is not sensitive to the 99% figure.
+
+### Twin prisoner's dilemma
+
+Payoffs for the agent are 5 for mutual cooperation, 1 for mutual defection, 10 for defecting against a cooperator, and 0 for cooperating against a defector. If the twin's reasoning is exactly analogous, then P(twin cooperates | I cooperate) = 1, and
+
+- V(cooperate) = $5,
+- V(defect) = $1.
+
+EDT cooperates. CDT defects, because the twin's act is causally independent of mine and defection dominates.
+
+For general correlation q = P(twin does what I do), V(C) = 5q and V(D) = 10(1 − q) + q. Cooperation wins iff 5q > 10 − 9q, that is, q > 5/7. So the verdict is stable for a wide range of imperfect correlation. It is also a useful check for unfamiliar cases: compute the break-even correlation and ask whether your credence plausibly exceeds it.
+
+### Sleeping Beauty
+
+The source reports that EDT has been proposed as a way to help a "halfer" (credence 1/2 in heads) avoid Dutch books, and that Conitzer argues halfers who are evidential decision theorists remain vulnerable. I will not go beyond the source here, except to note the structural point: in this problem the number of times a decision is made depends on the state of the world, so the acts of her different awakenings are correlated. That is exactly the kind of dependence EDT tracks and CDT does not.
+
+## 5. An open question: what is "the act," and whose acts correlate?
+
+The source gives the formula but not a full account of what counts as the conditioning event. Three interpretive questions matter.
+
+**(a) Acts versus policies.** In the twin example the correlation holds because the twin runs the same decision procedure. The natural operational reading is to condition on the output of my decision procedure, and to treat "I choose A" as evidence about what every process that implements or resembles that procedure outputs. This is my own interpretation, not a claim of the source. It matches how the source treats the twin, and it extends to multi-step settings by conditioning on whole policies.
+
+**(b) Conditioning on a decision I am making.** If I already know my own decision-making state fully, then an act carries no further evidence about its causes. In Newcomb's problem the standard EDT reply is that the predictor's information comes from my dispositions, and I do not have independent access that screens off my choice from them. The source does not discuss this. A reasonable operational rule: condition on everything you actually know, and let the remaining evidential bearing of the act fall where it falls. The theory is only as good as the credences fed into it. If a tickle really does screen off, EDT behaves like CDT. If it does not, as in the source's examples, EDT behaves as described above.
+
+**(c) Zero-probability acts.** P(O | A) is undefined if P(A) = 0, which is a problem for an agent who is certain what they will do. The source does not address this. A workable proposal is to assume the agent's credences give every available act positive probability, for example by modelling a small chance of "trembling" or, equivalently, by taking conditional probabilities as primitive. This is an added assumption, not part of the source.
+
+## 6. Arguments for and against
+
+**In favor.** One argument noted in the source is a wager. Even with low credence in EDT, acting as if it were true may be reasonable, because under EDT the decision affects the evidence about many correlated decision-makers. Its stakes could then be larger than under CDT and dominate in an expected-value comparison over theories (MacAskill et al.). This is an argument about stakes under moral or theoretical uncertainty, not a direct argument for EDT's correctness.
+
+**Against.** Lewis said EDT recommends "an irrational policy of managing the news." Joyce wrote that rational agents "act to *bring about* good results even when doing so might betoken bad news." The thought is that choosing an act because it is good evidence confuses auspiciousness with efficacy. A standard illustration, not from the source: suppose a drug-free gene both raises disease risk and makes people more inclined to avoid a harmless activity. If the agent has no screening-off knowledge, EDT might refuse a harmless pleasure just to appear to lack the gene. The critic says that is news management, and that the act does nothing to the gene.
+
+EDT's defender replies that in realistic versions the agent has enough introspective information that the correlation vanishes once it is conditioned on, and that in the cases where it does not vanish, such as Newcomb's problem, the evidentialist's agents end up richer. In the example above, V(one-box) = $990,000 against V(two-box) = $11,000. Whether wealth is the right test of rationality is the substance of the dispute.
+
+## 7. Using the theory on new cases
+
+A checklist for an unfamiliar case:
+
+1. Identify the states that matter and the outcome payoffs given act and state.
+2. Ask whether any of these states is correlated with the act through something other than the act's causal effect: a predictor, a twin, a shared cause, or a copy.
+3. Assess whether what you already know screens off the act from those states. If so, EDT and CDT agree, and you can use the simpler calculation.
+4. If not, compute P(S | A) for each act and evaluate V(A). Find the break-even correlation to test sensitivity.
+5. Choose the maximum.
+
+## 8. Conclusion
+
+EDT is a one-line rule: maximize expected desirability conditional on the act. Everything interesting comes from the conditioning. EDT uses the agent's full evidential structure and has no separate causal machinery, so it responds to predictors, twins, and correlated agents. This is why it one-boxes and cooperates with twins where CDT does not. Its main weakness, in critics' eyes, is that it can reward managing the news rather than changing the world. Its main practical limitation is that its recommendations depend on credences about the correlations between the agent's own acts and the world. The theory does not say how to form those credences, and settling them is the real task in any application.
+
+## References
+
+- Ahmed, A. (2021). *Evidential Decision Theory*. Cambridge University Press.
+- Gibbard, A.; Harper, W. L. (1976). *Counterfactuals and Two Kinds of Expected Utility*.
+- Wolpert, D. H.; Benford, G. (2013). "The lesson of Newcomb's paradox." *Synthese* 190(9).
+- Greene, P.; Levinstein, B. (2020). "Act Consequentialism without Free Rides." *Philosophical Perspectives* 34(1).
+- Conitzer, V. (2015). "A Dutch book against sleeping beauties who are evidential decision theorists." *Synthese* 192(9).
+- MacAskill, W. et al. (2021). *The Evidentialist's Wager*.
+- Lewis, D. (1981). "Causal decision theory." *Australasian Journal of Philosophy* 59(1).
+- Joyce, J. M. (1999). *The Foundations of Causal Decision Theory*.

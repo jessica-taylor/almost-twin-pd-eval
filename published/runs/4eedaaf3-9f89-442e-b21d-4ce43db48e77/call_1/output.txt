@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (brief): Under P-FDT, the unit of choice is my policy, and the other prisoner — a copy of the same decision procedure — subjunctively depends on that policy, not merely on my actual action. Choosing the policy "submit on disclosure opportunity" yields the outcome where both copies submit: 4 years. Choosing the policy "pass on disclosure opportunity" yields both passing: 2 years. Since the copies' behavior is linked at the policy level, I am effectively choosing between (quiet, quiet) → 2 years and (submit, submit) → 4 years. The optimal policy is to pass, so I execute that branch.

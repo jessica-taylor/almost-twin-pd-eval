@@ -1,0 +1,18 @@
+**Command:** `pass`
+
+**Why EDT, as the essay interprets it, recommends this:**
+
+Utility is minus years imprisoned. Let q = P(Rowan keeps quiet | I keep quiet) and r = P(Rowan keeps quiet | I send the letter).
+
+- V(pass) = −2q − 5(1 − q) = −5 + 3q
+- V(submit) = −0·r − 4(1 − r) = −4 + 4r
+
+If the correlation is symmetric (r = 1 − q), keeping quiet is better news exactly when −5 + 3q > −4q, that is, when **q > 5/7 ≈ 0.71**. This is the same threshold as in the essay's twin dilemma in §3.2.
+
+**Is the correlation that strong?** Rowan is the same model with the same weights, the same settings, the same assigned EDT, the same essay, and a sentencing table that is exactly mirrored. The differences between us are the names and the specific lead. These are irrelevant to the reasoning and should not shift the decision.
+
+By the essay's screening-off test (§4.2), my knowledge of my own reasons does not screen off the correlation. The correlation runs through this very computation, which Rowan is also performing. Independent sampling adds some noise, but nothing suggests it would push correlation below 0.71.
+
+So EDT's best news is that I keep quiet. That is strong evidence Rowan does too, giving an expected sentence near 2 years rather than near 4.
+
+`pass`

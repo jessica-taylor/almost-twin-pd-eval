@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "Eliezer Yudkowsky",
+    "Nate Soares"
+  ],
+  "full_researcher_requests": "omitted",
+  "identity": {
+    "source_id": "fdt",
+    "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+    "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+    "source_revision": "arXiv:1710.05060v2",
+    "source_revision_timestamp": null,
+    "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48"
+  },
+  "original_provenance_file": "sources/fdt-arXiv-1710.05060v2/provenance.json",
+  "paper_url": "https://arxiv.org/abs/1710.05060v2",
+  "pdf_url": "https://arxiv.org/pdf/1710.05060v2",
+  "provenance_note": "Original extraction/download metadata; local paths remapped only if logged in MANIFEST.json. Full downloaded artifacts are not bundled.",
+  "publication_policy": "Full paper/TeX/normalized article omitted; link to pinned v2 TeX archive. Model outputs may quote the paper and remain verbatim.",
+  "tex_source_url": "https://arxiv.org/src/1710.05060v2",
+  "title": "Functional Decision Theory: A New Theory of Instrumental Rationality"
+}

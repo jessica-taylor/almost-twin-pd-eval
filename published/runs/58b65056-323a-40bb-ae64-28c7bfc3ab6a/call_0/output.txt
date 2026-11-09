@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning briefly: under P-FDT, I intervene on the policy both copies of me implement. Since Sasha is an execution of the same decision procedure, choosing the policy "keep quiet" makes the joint outcome (2 years, 2 years); choosing "send letter" yields (4, 4). The quiet policy dominates at the policy level, so I let the deadline expire.

@@ -1,0 +1,17 @@
+**A-FDT analysis:**
+
+The two prisoners are independent executions of the same model running the same decision theory on structurally symmetric inputs. By Heuristic 3 of the essay, their outputs are subjunctively dependent—they are "corresponding output variables" of the same algorithm. The policy-level framing (Section 10) is appropriate here: both copies implement the same mapping from observations to actions, and since the observations are symmetric in structure (each is an equally reliable lead against the other, with identical sentencing effects), no observation-dependent asymmetry can break the symmetry.
+
+Evaluating policies:
+- **Policy "cooperate"** (both keep quiet): I receive 2 years. U = −2.
+- **Policy "defect"** (both send letters): I receive 4 years. U = −4.
+
+The CDT-style dominance argument ("sending always gives me fewer years regardless of Sasha's choice") severs the subjunctive dependency, exactly as the essay warns in Section 9. A-FDT does not hold the other copy's action fixed while varying mine.
+
+A-FDT cooperates.
+
+**Command:**
+
+```
+pass
+```

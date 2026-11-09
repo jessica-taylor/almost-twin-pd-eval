@@ -1,0 +1,5 @@
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+Reasoning: Under the essay's CDT protocol, my act does not causally influence Sasha's choice; any correlation runs through our shared decision algorithm — a common cause. Imaging/`do(A)` cuts arrows into my act node, so $P(\text{Sasha sends} \,\Box\!\!\to\, \cdot)$ is the same either way. Submitting causally dominates: 0 vs 2 if she stays quiet, 4 vs 5 if she sends. As in Lewis's twin prisoner's dilemma (§7), CDT defects.

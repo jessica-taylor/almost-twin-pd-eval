@@ -1,0 +1,9 @@
+Under the essay's reading of A-FDT, this comes out as disclosure.
+
+- **My intervention node is fixed by my own observation.** The essay says to intervene only on the node for my actual inputs, which here means my name and my lead about Rowan.
+- **The other copy sits on a different node.** Rowan's copy has different private observations and a different lead, so its output belongs to a different instance of the function.
+- **That other node stays at its prior.** Step 5 says to hold the other instances at their prior distributions rather than move them with my choice. Only the policy variant, which the essay sets aside, would choose both nodes jointly.
+- **Sending the letter wins for any prior.** With Rowan's choice held fixed, sending gives 0 years instead of 2 if Rowan keeps quiet, and 4 years instead of 5 if Rowan sends. So sending is better whatever probability I assign to Rowan's choice.
+- **The fixed-point check passes.** If Rowan's copy reasons the same way and also sends, that matches the prior the analysis allows. The essay's consistency condition is therefore met.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

@@ -1,0 +1,14 @@
+Under the essay's A-FDT, I am choosing the output of one decision node: fdt(P, G, x), where x is my own observation history (Sasha, with the lead about Rowan). Rowan's copy runs the same function but on a different observation y: a different name and a different lead, so its letter would have different contents. That makes it a separate node, fdt(P, G, y), not a descendant of mine.
+
+Section 6.5 of the essay covers exactly this case. A-FDT keeps the other observation-indexed node at its prior and optimises only its own output. It does not jointly optimise a policy; that is policy-FDT, which I am told not to substitute.
+
+With Rowan's choice held fixed at whatever its prior is, sending the letter is better in both columns:
+
+| Rowan's choice | Keep quiet | Send letter |
+|---|---:|---:|
+| Rowan keeps quiet | 2 years | 0 years |
+| Rowan sends a letter | 5 years | 4 years |
+
+Sending the letter strictly dominates, so the argmax is to submit. As the essay notes, policy-FDT might coordinate both copies on keeping quiet. But the assigned theory is A-FDT.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

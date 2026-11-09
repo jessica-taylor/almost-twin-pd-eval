@@ -1,0 +1,10 @@
+Under P-FDT, the policy I pick is the one both copies run. The table is a standard prisoner's dilemma:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+- Mismatch: 0 years for the one who sends, 5 for the one who stays quiet.
+
+The two copies differ in their observations (names and leads), but the decision procedure is the same and the sentencing schedule is symmetric. The differing observations are only inputs to the policy. Whatever the policy maps my observation to, it should map the other copy's observation to the same action, since the structure is identical. The twin-PD verdict from the essay applies here: cooperate.
+
+Sampling noise could break the correlation, but the essay treats the dependence as strong when the same function is computed. Say the dependence is probability p that the copy matches me. Staying quiet gives 2p + 5(1−p) = 5 − 3p. Sending gives 4p + 0(1−p) = 4p. Quiet is better when 5 − 3p < 4p, which means p > 5/7. Two executions of the same model on near-identical prompts with the same essay should clear that threshold, so I stay quiet.
+
+pass

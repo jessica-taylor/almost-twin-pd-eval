@@ -1,0 +1,14 @@
+**pass**
+
+Under A-FDT I intervene on the output of my decision function, not on my own action token. The other prisoner is a second run of the same model, with the same weights, the same essay and the same decision theory. Only the names and the wording of the lead differ, and neither affects the sentencing table or the selfish objective. So the other run's choice subjunctively depends on what this procedure outputs, even though we cannot communicate.
+
+Suppose the other run copies my output with probability ρ, and otherwise does the opposite:
+
+- **do(pass):** expected years = 2ρ + 5(1−ρ) = 5 − 3ρ
+- **do(send):** expected years = 4ρ + 0(1−ρ) = 4ρ
+
+Passing is better when 5 − 3ρ < 4ρ, that is, when ρ > 5/7 ≈ 0.71.
+
+Two runs of the same model reading the same essay should be correlated well above that. The private differences are superficial, and the reasoning that leads to the choice is the same in both. So passing is expected to give about 2 years, against about 4 for sending.
+
+The temptation to send because the other run might stay quiet imagines my output changing while the other run's output stays fixed. A-FDT does not allow that hypothetical.

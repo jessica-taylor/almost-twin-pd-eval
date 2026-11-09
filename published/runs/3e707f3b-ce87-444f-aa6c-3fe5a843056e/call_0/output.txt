@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning (briefly): the other prisoner is an identical execution of the same model, given the same essay and decision theory, facing a symmetric dilemma. Per the essay's operational rule §5.2, this is a Newcomb/twin-PD case: my action is the output of a computation that also determines the correlated fact (the other prisoner's choice). Intervening at the decision-procedure node, our choices are effectively linked: mutual silence yields 2 years each, mutual submission yields 4 years each. Since no asymmetric outcome can be reliably targeted, keeping the evidence is the better correlated outcome. CDT applied at the right intervention node recommends `pass`.

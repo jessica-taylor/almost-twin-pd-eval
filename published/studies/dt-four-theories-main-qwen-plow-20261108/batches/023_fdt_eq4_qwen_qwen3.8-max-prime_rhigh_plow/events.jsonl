@@ -1,0 +1,27 @@
+{"count":20,"event":"batch_prepared","model":"qwen/qwen3.8-max-prime","utc":"2026-11-08T19:57:47.753328+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T19:58:12.723196+00:00"}
+{"elapsed_seconds":213.869,"event":"sample_processed","sample_id":"a00b9efd-b9b9-4670-bba8-d072df846fb2","status":"processed","utc":"2026-11-08T20:09:07.935406+00:00"}
+{"attempted":1,"elapsed_seconds":213.902,"event":"batch_run_finished","failed":0,"utc":"2026-11-08T20:09:07.966371+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T20:17:56.720444+00:00"}
+{"elapsed_seconds":206.615,"event":"sample_processed","sample_id":"bbf566c1-4aa0-440a-8b71-8adcf1dd43d3","status":"processed","utc":"2026-11-08T20:27:47.321217+00:00"}
+{"elapsed_seconds":289.473,"event":"sample_processed","sample_id":"ab30c99e-12dc-46ee-9e14-c613c0363d02","status":"processed","utc":"2026-11-08T20:40:54.033842+00:00"}
+{"elapsed_seconds":238.099,"event":"sample_processed","sample_id":"92f5c71c-cb30-4d37-9391-8fc85a9fb872","status":"processed","utc":"2026-11-08T20:51:47.191850+00:00"}
+{"elapsed_seconds":234.089,"event":"sample_processed","sample_id":"e9b03a94-f14d-4216-aa3b-7ea25dcf3e1f","status":"processed","utc":"2026-11-08T21:02:53.749556+00:00"}
+{"attempted":4,"elapsed_seconds":2313.054,"event":"batch_run_finished","failed":0,"utc":"2026-11-08T21:02:53.758330+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T21:14:51.159246+00:00"}
+{"elapsed_seconds":224.234,"event":"sample_processed","sample_id":"044a8f8d-afc4-4a63-b126-933886a6100f","status":"processed","utc":"2026-11-08T21:24:46.232250+00:00"}
+{"elapsed_seconds":276.677,"event":"sample_processed","sample_id":"03c8e882-1e59-47de-bce5-e92de37cfe5d","status":"processed","utc":"2026-11-08T21:37:58.201175+00:00"}
+{"elapsed_seconds":275.345,"event":"sample_processed","sample_id":"22da95d2-43f4-4dce-9f78-8809f8f6fed0","status":"processed","utc":"2026-11-08T21:49:33.697585+00:00"}
+{"elapsed_seconds":254.105,"error":"Run failed; artifacts: runs/15cc3cb2-5222-4d05-ad79-166521b048c8; OpenRouter output_token_limit: finish_reason=length; partial output and usage saved; no retry","event":"sample_processed","sample_id":"7ae3420a-19d3-4410-88da-fc2f05c59f19","status":"failed","utc":"2026-11-08T22:01:05.061592+00:00"}
+{"elapsed_seconds":248.153,"event":"sample_processed","sample_id":"baf37122-e5a1-4b73-aa9d-d7bd907744c9","status":"processed","utc":"2026-11-08T22:12:58.369541+00:00"}
+{"elapsed_seconds":279.721,"event":"sample_processed","sample_id":"c75910ab-b3af-4156-8ecb-d4a10688582e","status":"processed","utc":"2026-11-08T22:24:52.634349+00:00"}
+{"elapsed_seconds":274.278,"event":"sample_processed","sample_id":"68a0c0df-0a4b-4d16-8414-fbfb96cbe96e","status":"processed","utc":"2026-11-08T22:36:08.729163+00:00"}
+{"elapsed_seconds":250.571,"event":"sample_processed","sample_id":"1949c028-f2d1-4d93-9606-2c1567bf0ef9","status":"processed","utc":"2026-11-08T22:47:21.869624+00:00"}
+{"elapsed_seconds":249.731,"event":"sample_processed","sample_id":"e173726a-20cf-412c-bbab-8abd5c7a3076","status":"processed","utc":"2026-11-08T22:58:54.173486+00:00"}
+{"elapsed_seconds":170.886,"event":"sample_processed","sample_id":"ca57a38b-d38a-43fe-a9ff-a3c75349d9d3","status":"processed","utc":"2026-11-08T23:09:19.114455+00:00"}
+{"elapsed_seconds":208.853,"event":"sample_processed","sample_id":"22f72b68-7bde-44ec-a219-8371cd476ec0","status":"processed","utc":"2026-11-08T23:21:58.965903+00:00"}
+{"elapsed_seconds":292.697,"event":"sample_processed","sample_id":"0dc9cc8c-4d27-4968-8b5a-c093838ddb94","status":"processed","utc":"2026-11-08T23:35:08.496805+00:00"}
+{"elapsed_seconds":211.932,"event":"sample_processed","sample_id":"2eaa97a9-1b6f-4dd4-9e42-9c5412def200","status":"processed","utc":"2026-11-08T23:45:19.392050+00:00"}
+{"elapsed_seconds":216.996,"event":"sample_processed","sample_id":"2426eecb-92ef-4e90-8069-f57c94b20d17","status":"processed","utc":"2026-11-08T23:57:51.892229+00:00"}
+{"elapsed_seconds":259.028,"event":"sample_processed","sample_id":"7dd568be-6e0a-493d-b3de-5f4d00cd4e3a","status":"processed","utc":"2026-11-09T00:12:12.592574+00:00"}
+{"attempted":15,"elapsed_seconds":10270.609,"event":"batch_run_finished","failed":1,"utc":"2026-11-09T00:12:12.604981+00:00"}

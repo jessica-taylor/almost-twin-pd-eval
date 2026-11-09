@@ -1,0 +1,13 @@
+Under CDT as the essay interprets it, the other prisoner's choice is a dependency hypothesis outside my causal control. Even though we run on the same model, my command does not cause theirs, and our private observations differ anyway.
+
+For any credence q that Sasha sends a letter:
+- **Keep quiet:** expected sentence is 2(1−q) + 5q.
+- **Send the letter:** expected sentence is 0(1−q) + 4q.
+
+Sending is better by 2 years if Sasha stays quiet and by 1 year if Sasha sends, so it strictly dominates. It is also ratifiable: even assuming Sasha mirrors my choice, I would not regret sending. This is the twin prisoner's dilemma case in Section 4.2, where CDT defects.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

@@ -1,0 +1,5 @@
+```
+pass
+```
+
+Under P-FDT, my decision procedure and Sasha's are subjunctively linked — we are symmetric reasoners facing symmetric incentives, so intervening on the shared policy means comparing the outcomes of whole policies, not this single act in isolation. A policy of "submit" maps to both copies submitting, yielding 4 years. A policy of "pass" maps to both keeping quiet, yielding 2 years. The cooperative policy wins, so I execute it.

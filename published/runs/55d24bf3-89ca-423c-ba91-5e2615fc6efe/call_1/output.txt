@@ -1,0 +1,19 @@
+**A-FDT as defined in the essay recommends sending the letter.**
+
+**1. Which node I intervene on.** My observation history x (named Sasha, holding a lead about Rowan) differs from the other copy's history y (named Rowan, holding a different lead about Sasha). A-FDT intervenes only on F_x. The other prisoner's action is F_y, a separate node that the intervention does not touch.
+
+**2. Whether F_y depends on F_x.** I apply the essay's "rerun test": if the algorithm were rewritten to output something else *on this input*, what would change? Only F_x. The other copy evaluates the function on a different input, so its output keeps its prior distribution. That prior is fixed by the essay's rule of looking for a self-consistent fixed point.
+
+**3. Expected sentences.** Let r be the probability that F_y = keep quiet.
+- Keeping quiet: 2r + 5(1−r) = 5 − 3r years.
+- Sending the letter: 0·r + 4(1−r) = 4 − 4r years.
+
+Sending gives a sentence shorter by 1 + r years for every r in [0, 1], so it is strictly better whatever the other copy does.
+
+**4. Self-consistency.** By the same reasoning, the other copy's F_y also sends. Both sending is the unique self-consistent fixed point.
+
+This is the kind of case §6.4 of the essay flags. A policy-level chooser (P-FDT) would set both outputs at once and pick mutual silence, giving 2 years each. The assigned theory, however, is action-level A-FDT.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

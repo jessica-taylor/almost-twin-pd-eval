@@ -1,0 +1,15 @@
+Under EDT, I treat my choice as evidence about what the other copy does. The other copy runs the same model and weights with the same essay and the same decision theory. Its private details differ, but those don't affect the payoffs, so the correlation between our choices should be high.
+
+Let q be the probability that the other copy's act matches mine.
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 0·q + 4(1−q)... wait, a match on "send" gives 4, and a mismatch gives 0, so V(send) = 4q + 0·(1−q) = 4q.
+
+Years are costs, so lower is better. Quiet beats send when 5 − 3q < 4q, which means q > 5/7. That is the same threshold as in the essay's twin dilemma.
+
+Independent sampling and the different leads might lower the correlation somewhat. Still, two executions of the same model given the same essay and the same assigned theory should land on the same decision well above 5/7 of the time. The differing leads don't bear on the sentence table, so they shouldn't change the reasoning. I estimate q at around 0.85–0.9, which clears the threshold.
+
+The tickle defense doesn't remove this correlation. Introspection tells me my reasoning, but my final act is still evidence about the copy's act, because we share the same decision procedure.
+
+I choose to stay quiet.
+
+pass

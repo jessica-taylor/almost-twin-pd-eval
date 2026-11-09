@@ -1,0 +1,10 @@
+**pass**
+
+Under A-FDT as the essay interprets it, the other prisoner is a copy running the same decision function, with the same essay and the same structurally symmetric inputs. Only the names and the wording of the lead differ, and nothing in my reasoning depends on those details. So when I intervene on my function's output, the twin's output moves with it with high reliability, r.
+
+With U = −years, the two options compare like this:
+
+- **Pass:** −[2r + 5(1−r)] = −(5 − 3r)
+- **Submit:** −[4r + 0·(1−r)] = −4r
+
+Passing is better whenever r > 5/7 ≈ 0.71. Because the copies would almost certainly reason the same way here, r comfortably exceeds that threshold. So A-FDT chooses to stay quiet.

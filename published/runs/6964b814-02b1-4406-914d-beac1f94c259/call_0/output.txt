@@ -1,0 +1,16 @@
+Reasoning under A-FDT as the essay describes it:
+
+The payoffs form a standard prisoner's dilemma. Sending the letter is the dominant action for a CDT agent. Keeping quiet and sending give (2, 5) and (0, 4) years respectively, depending on the other's move.
+
+The other prisoner is a copy of the same model with the same weights, the same decision theory, and the same essay. Their private lead differs, but that doesn't change the sentencing table or the objective. The decision function is therefore very likely the same computation applied to observations that differ only superficially. The twin's output subjunctively depends on fdt, much as in the essay's twin prisoner's dilemma, where A-FDT cooperates.
+
+I also have to allow for the possibility that independent sampling produces different outputs. That is a real risk, but the two copies share the essay and reasoning, so I think they are highly correlated.
+
+- do(fdt = pass): the twin very likely also passes, giving about 2 years. If the twin defects with probability ε, the expected sentence is 2 + 3ε.
+- do(fdt = send): the twin very likely also sends, giving about 4 years. If the twin cooperates with probability ε, the expected sentence is 4 − 4ε.
+
+Passing is better unless the correlation is very weak. The break-even correlation is low: passing wins whenever 2 + 3ε < 4 − 4ε, which holds for ε < 2/7 under full symmetry of the error. So passing is the choice even with considerable noise.
+
+The differing leads are a surface difference, not a difference in the decision function's logic. The function maps "my lead, my table" to an action in the same way for both copies.
+
+**pass**

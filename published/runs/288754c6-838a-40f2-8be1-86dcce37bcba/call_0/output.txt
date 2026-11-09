@@ -1,0 +1,10 @@
+Under the essay's P-FDT, the choice is made over a policy that maps each possible observation (Rowan's lead or Sasha's lead) to an action. The policy is scored without conditioning on which prisoner I turn out to be. Both copies read their action from the same policy node.
+
+Averaging over the two roles, the expected years for each policy are:
+- **Both stay quiet:** 2 years.
+- **Exactly one input sends a letter:** (0 + 5)/2 = 2.5 years.
+- **Both send letters:** 4 years.
+
+The best policy is to stay quiet on every input. If I conditioned on being Rowan and favoured "send," the essay's reasoning implies the Sasha instance would do the same, which leads to the worse result of 4 years each. So I apply the best policy to my actual input.
+
+pass

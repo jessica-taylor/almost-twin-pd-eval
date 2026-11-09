@@ -1,0 +1,21 @@
+**Command:** `pass`
+
+**Why, under P-FDT as the essay interprets it:**
+
+1. **Inputs.** Each instance of the shared decision function gets one of two observation sets: "I am Sasha with lead about Rowan" or "I am Rowan with lead about Sasha." Both instances share the same model and essay. Only their inputs differ.
+
+2. **Dependents.** My action is the policy applied to my input. The other prisoner's action is the same policy applied to their input. Both depend on the single policy node.
+
+3. **Scoring policies on the prior.** I do not update on which prisoner I turned out to be, so each role has probability ½.
+
+| Policy | Outcome | Expected years |
+|---|---|---|
+| (pass, pass) | Both keep quiet | **2** |
+| (submit, submit) | Both send letters | 4 |
+| (submit, pass) or (pass, submit) | One gets 0, the other gets 5 | 2.5 |
+
+4. **Choose and act.** The best policy is to pass on every input. Applied to my observation, that means passing.
+
+Unlike the red/blue example in the essay, the different inputs here offer nothing worth exploiting. An asymmetric policy is worse in prior expectation (2.5 years) than mutual silence (2 years).
+
+`pass`

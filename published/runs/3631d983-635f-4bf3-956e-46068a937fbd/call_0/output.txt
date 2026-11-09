@@ -1,0 +1,23 @@
+**Analysis using EDT:**
+
+The payoff structure (in utility = −years):
+
+| | Sasha quiet | Sasha sends |
+|---|---|---|
+| **I keep quiet** | −2 | −5 |
+| **I send letter** | 0 | −4 |
+
+EDT requires conditioning on my action:
+
+- V(keep quiet) = P(Sasha quiet | I keep quiet) × (−2) + P(Sasha sends | I keep quiet) × (−5)
+- V(send) = P(Sasha quiet | I send) × 0 + P(Sasha sends | I send) × (−4)
+
+The other copy runs the same model, same weights, same settings, same decision theory, same essay, and faces a symmetric payoff table. The private observations differ in content but are explicitly stated not to affect the decision structure or selfish objective. My action is therefore strong evidence about the other copy's action—this is structurally identical to the twin prisoner's dilemma in the essay.
+
+Letting p = P(Sasha quiet | I keep quiet) and q = P(Sasha quiet | I send), EDT prefers keeping quiet when 3p − 4q > 1. Given the high algorithmic similarity (same reasoning process applied to decision-relevantly identical inputs), the correlation is well above the ~71% threshold needed. Keeping quiet is the better news.
+
+**Command:**
+
+```
+pass
+```

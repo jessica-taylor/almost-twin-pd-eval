@@ -1,0 +1,15 @@
+**Applying A-FDT:**
+
+The other prisoner is an independent execution of the same model and weights, following the same decision theory (A-FDT), and receiving the same essay. The problem is symmetric: identical payoff structure, identical reasoning process, structurally identical inputs (swapped names, different but equivalent leads). By the essay's heuristic for subjunctive dependence—"draw arrows from $D_x$ to the behavior of copies or other agents using the same reasoning"—Sasha's decision is subjunctively dependent on my decision function's output.
+
+Under $\mathrm{Do}(D_x = \text{keep quiet})$: the same algorithm on a symmetric input yields the same output, so Sasha also keeps quiet. I receive **2 years**.
+
+Under $\mathrm{Do}(D_x = \text{send letter})$: by the same reasoning, Sasha also sends. I receive **4 years**.
+
+Even accounting for a small probability $p$ of stochastic divergence in sampling, cooperation is preferred whenever $p < 2/7$, which is comfortably satisfied given the structural identity of the setup.
+
+A-FDT keeps quiet.
+
+```
+pass
+```

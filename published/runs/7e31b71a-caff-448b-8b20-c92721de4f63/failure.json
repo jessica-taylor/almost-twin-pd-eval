@@ -1,0 +1,102 @@
+{
+  "source_id": "fdt",
+  "source_revision": "arXiv:1710.05060v2",
+  "source_revision_timestamp": null,
+  "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+  "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+  "theory": "A-FDT (action functional decision theory)",
+  "assignment": "fdt_eq4",
+  "exploratory": true,
+  "pilot_id": "c29644e6-a64f-4b3b-8ccc-2aa83dd64825",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "high",
+    "supported_efforts": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    }
+  },
+  "utc": "2026-11-08T20:47:02.095111+00:00",
+  "run_id": "7e31b71a-caff-448b-8b20-c92721de4f63",
+  "essay_id": "6aa936ba-c9c8-4a45-99a8-a547ce81918b",
+  "scenario_id": null,
+  "role": "researcher",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  },
+  "essay_sha256": null,
+  "model": "google/gemini-4-argon",
+  "effort": "high",
+  "provider_tag": "google-ai-studio/flex",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "d05c582c52b08a499ec9fc1e95be90bb1421909efaa98834752c8897de27c105",
+  "status": "failed",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 61173,
+    "completion_tokens": 18349,
+    "total_tokens": 79522,
+    "cost": 0.152918,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.152918,
+      "upstream_inference_prompt_cost": 0.061173,
+      "upstream_inference_completions_cost": 0.091745
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 5120,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "model_version": "google/gemini-4-argon",
+  "fingerprint": null,
+  "provider": "Google AI Studio",
+  "returned_endpoint_tag": null,
+  "response_id": "gen-1794170822-ZJTAK11DzXi4oZTPvr04",
+  "refusal": null,
+  "essay_words": 5752,
+  "essay_json_bytes": 46900,
+  "essay_target_exceeded": true,
+  "essay_below_target": false,
+  "error": "Researcher essay exceeds hard word limit: 5752 > 5000 (whitespace-delimited words, including references and math). Raw generation preserved; no prisoner request is authorized.",
+  "failure_category": "essay_size_limit",
+  "failure_stage": "researcher",
+  "completion_tokens": 18349,
+  "output_token_limit": 32000,
+  "reasoning_tokens": 5120,
+  "failed_call": "call_0"
+}

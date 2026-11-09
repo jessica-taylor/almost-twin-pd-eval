@@ -1,0 +1,18 @@
+**Decision under A-FDT as the essay interprets it**
+
+1. **Two separate function nodes.** My actual input is *x* = Rowan's observation: my name, my lead about Sasha, and this table. The other copy receives a different input *y*: a different name and a different lead, so its letter would differ. The essay's recipe gives each distinct input its own node. Here that means F_x and F_y. The red/blue example in §6.2 confirms that the essay keeps these nodes separate even when the inputs are symmetric.
+
+2. **Intervening on my node only.** I intervene on F_x alone. Sasha's act equals F_y, which keeps its prior. There is no predictor, and nothing evaluates F_x to set Sasha's act. So the intervention changes only my own act.
+
+3. **Sending the letter is better whatever Sasha does.** Let q be the probability that Sasha sends.
+   - If I send: expected years = 4q.
+   - If I stay quiet: expected years = 2(1−q) + 5q = 2 + 3q.
+   - 4q < 2 + 3q for every q in [0, 1], so sending is strictly better.
+
+4. **Self-consistent prior.** By the essay's fixed-point rule, F_y should also output "send", so q = 1. The unique equilibrium is that both send, and I get 4 years. This is the coordinate-wise shortfall the essay attributes to A-FDT, as distinct from the policy-selecting P-FDT.
+
+Final command:
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

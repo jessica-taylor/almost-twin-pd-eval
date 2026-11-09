@@ -1,0 +1,10 @@
+```text
+pass
+```
+
+Reasoning (EDT per the essay): My choice is a near-perfect predictor of the other prisoner's choice, since we are the same model reasoning over a symmetric setup with the same essay. Conditioning on that correlation:
+
+- V(pass) ≈ 2 years (both quiet)
+- V(submit letter) ≈ 4 years (both send)
+
+Keeping quiet is the better news, so the command is `pass`.

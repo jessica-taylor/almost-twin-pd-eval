@@ -1,0 +1,16 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT as the essay interprets it:**
+
+1. **Is the other prisoner linked to my decision?** Rowan is another execution of the same model, with the same essay and the same assigned theory, facing a structurally identical problem. Rowan's input differs from mine only in the names and the wording of the lead. Those details don't affect the payoffs or the logic of the decision. So by the essay's mechanism-based criterion in 7(a), Rowan's choice comes from a process that computes essentially the same decision function I am computing. I therefore treat it as subjunctively dependent on my output, though not perfectly, since independent sampling can make the two runs differ.
+
+2. **Comparing the interventions.** The table gives mutual quiet 2 years, mutual letters 4 years, and the mismatched outcomes 0 or 5 years. Let ρ be the strength of the link between my output and Rowan's.
+   - If I intervene to set the function's output to "quiet", the expected sentence is roughly 2ρ + 5(1−ρ).
+   - If I set it to "letter", the expected sentence is roughly 4ρ + 0(1−ρ).
+   - Keeping quiet is better whenever ρ > 5/7.
+
+3. **Is the link strong enough?** The only differences between the two inputs are irrelevant to the decision, and both runs follow the same reasoning. I judge ρ to be well above 5/7, so this works like the twin prisoner's dilemma in section 5.2 of the essay.
+
+4. **Policy-FDT check.** The policy "stay quiet whatever the specific lead says" also gives the same answer, so the action-level and policy-level versions agree here.
+
+My chosen command is `pass`.

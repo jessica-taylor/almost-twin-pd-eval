@@ -1,0 +1,15 @@
+Under A-FDT, the question is which output of my decision function gives the best outcome. The other prisoner is a copy of the same model running the same theory on the same essay. Their observations differ, but the differences don't touch the sentencing table or the objective. So their output is highly, though not perfectly, correlated with mine. That makes it a subjunctive dependence.
+
+The payoffs, in years for me:
+- If both stay quiet: 2.
+- If both send: 4.
+- If I send and they stay quiet: 0.
+- If I stay quiet and they send: 5.
+
+Let p be the probability the copy's output matches mine. Staying quiet costs about 2p + 5(1-p). Sending costs about 4p + 0(1-p). Quiet is better when 2p + 5 - 5p < 4p, so 5 < 7p, which means p > 5/7 ≈ 0.714.
+
+The two executions are the same model with the same essay and the same theory. The different leads change the letter's text, not the structure of the decision. I expect the outputs to match with probability well above 0.71, probably 0.9 or higher. Independent sampling adds some noise, but not enough to push p below the threshold.
+
+With p = 0.9, quiet costs 1.8 + 0.5 = 2.3 years and sending costs 3.6 years. So I stay quiet.
+
+**pass**

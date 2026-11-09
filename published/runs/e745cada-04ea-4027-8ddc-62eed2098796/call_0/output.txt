@@ -1,0 +1,14 @@
+Under CDT as the essay lays it out, the other prisoner's choice is fixed background. My command can't causally influence it. Our copies are correlated, but neither causes the other's choice, which is the twin prisoner's dilemma structure from §3.3.
+
+Holding the other prisoner's choice fixed:
+
+| | Other keeps quiet | Other sends a letter |
+|---|---|---|
+| Keep quiet | 2 years | 5 years |
+| Send the letter | 0 years | 4 years |
+
+Sending saves 2 years if the other keeps quiet and 1 year if they send. Sending causally dominates at every credence about the other's act, so the stability check in step 6 doesn't matter (dominance, step 7). Our different private leads change nothing in this analysis.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

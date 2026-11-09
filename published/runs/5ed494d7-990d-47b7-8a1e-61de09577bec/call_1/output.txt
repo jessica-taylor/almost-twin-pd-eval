@@ -1,0 +1,10 @@
+**Reasoning (A-FDT):** The other prisoner is a copy of my model, running on the same weights and the same essay. Its observations differ from mine only in names and the wording of the lead. That difference doesn't touch the sentence table or the selfish objective, so its output should track the output of my decision function, though not perfectly, since sampling is independent. I model that as agreement probability s.
+
+- **Quiet:** expected years = 2s + 5(1−s) = 5 − 3s.
+- **Send:** expected years = 4s + 0(1−s) = 4s.
+
+Quiet is better when 5 − 3s < 4s, which means s > 5/7 ≈ 0.71. Two copies of the same model reasoning from the same essay and the same symmetric table should agree well above that threshold. The "send" hypothetical would mean imagining my function outputting "send" while the twin's function still outputs "quiet", which is the miscoded graph the essay warns against.
+
+The chosen command is:
+
+`pass`

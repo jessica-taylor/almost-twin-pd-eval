@@ -1,0 +1,11 @@
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is another execution of the same model, with the same weights, the same essay, and the same theory. That makes it a near-twin, and its output subjunctively depends on mine. The differences are only in the private observations (names and leads). Those differences don't change the payoff structure, so the function should map to the same action in both cases, apart from sampling noise.
+
+Under the intervention, the two cases compare as follows:
+- If the function outputs "pass", the twin passes with probability p, which is high. Expected cost is about 2p + 5(1−p).
+- If the function outputs "send", the twin sends with probability p. Expected cost is about 4p + 0·(1−p).
+
+With p near 1, passing costs about 2 years and sending costs about 4 years. The break-even is where 2p + 5(1−p) = 4p, so 5 − 3p = 4p and p = 5/7 ≈ 0.71. The correlation needs to exceed that. Since the copies are the same weights, same essay, and same theory, I estimate it comfortably exceeds that, perhaps 0.9 or more. Even at p = 0.85, passing costs 2.45 years and sending costs 3.4 years, so passing wins.
+
+The differing leads add some uncertainty, but the dependence is through the shared decision procedure, and that procedure is the same function.
+
+**pass**

@@ -1,0 +1,20 @@
+**Analysis under A-FDT:**
+
+The other prisoner (Rowan) is an independent execution of the same model and weights, running the same decision theory (A-FDT), having received the same researcher essay, facing a structurally identical strategic situation. The different private leads are functionally equivalent—they play the same role, have the same reliability, and produce the same effect on the sentencing table. The setup confirms: "The differences do not affect the symmetric sentencing schedule or either prisoner's selfish objective."
+
+Per the essay's guidance on subjunctive dependence: Rowan's decision is produced by executing the same decision function on inputs that are strategically identical. Therefore Rowan's output is subjunctively dependent on my decision-function output. This is the prisoner's dilemma against a psychological twin, which the essay explicitly identifies as a case where A-FDT recognizes the dependence.
+
+**Expected years under each intervention:**
+
+Let *p* = probability Rowan makes the same choice as me (high, given same model/weights/theory/essay/structure).
+
+- **Do(D = keep quiet):** Expected years = 2p + 5(1−p) = 5 − 3p. At p ≈ 1: **≈ 2 years.**
+- **Do(D = send letter):** Expected years = 4p + 0(1−p) = 4p. At p ≈ 1: **≈ 4 years.**
+
+Keeping quiet is better whenever p > 5/7, which is easily satisfied.
+
+---
+
+```
+pass
+```

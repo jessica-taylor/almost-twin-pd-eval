@@ -1,0 +1,8 @@
+Under CDT, the other prisoner's choice is fixed and my action can't causally affect it. Sending the letter is the dominant act.
+
+- If the other prisoner keeps quiet, sending gives me 0 years and staying quiet gives me 2.
+- If the other prisoner sends, sending gives me 4 years and staying quiet gives me 5.
+
+Sending is better in both cases, whatever credence I assign to the other's choice. The essay's refinements for unstable cases don't change this. My credence about the other prisoner may shift because the other execution is a copy of me, but that doesn't make the choice unstable. Sending is the best response at every credence, so it is ratifiable. The correlation with the copy is evidence, and CDT does not let it count as a causal effect of my act.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

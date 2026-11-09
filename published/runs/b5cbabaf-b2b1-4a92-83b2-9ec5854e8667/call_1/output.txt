@@ -1,0 +1,26 @@
+**Reasoning under P-FDT, as the essay interprets it:**
+
+1. **Instantiations.** One decision function runs twice. One copy receives input x_S ("I am Sasha, with a lead on Rowan"). The other receives x_R ("I am Rowan, with a lead on Sasha"). The policy node Π fixes both outputs at once.
+
+2. **Evaluating prior.** Following the essay's proposal 7c, I evaluate policies from the vantage point before the inputs are assigned. From there, I am equally likely to be the instance holding either input. My utility is −(my years).
+
+3. **Policy values** (expected years for me):
+
+   | Policy (on x_S, x_R) | Expected years |
+   |---|---|
+   | (send, send) | 4 |
+   | (quiet, quiet) | **2** |
+   | (send, quiet) | ½·0 + ½·5 = 2.5 |
+   | (quiet, send) | ½·5 + ½·0 = 2.5 |
+
+   The asymmetric policies look attractive only from inside one input. Under joint evaluation, the instance that ends up holding the "quiet" input pays for them. The different names and leads don't change this. They only distinguish the two inputs; they don't give either copy a reason to choose an asymmetric policy that it would itself rank lower before knowing its input.
+
+4. **Optimal policy.** π* = (quiet, quiet), with a unique maximum of 2 years and no tie-break needed. Applying π* to my actual input x_S gives: keep quiet.
+
+5. **Check against A-FDT.** Sending is not coordinate-dominant once the other instance's output is understood to be the same function's output. This is the kind of case where the policy formulation does real work, and the joint evaluation favors silence.
+
+**Command:**
+
+```
+pass
+```

@@ -1,0 +1,3 @@
+`pass`
+
+Under P-FDT, the object of choice is the policy, and the symmetric twin runs the same decision function. Intervening on the policy: a quiet policy yields mutual quiet (2 years), while a submitting policy yields mutual submission (4 years). `pass` maximizes expected utility.

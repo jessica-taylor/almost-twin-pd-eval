@@ -1,0 +1,15 @@
+Under A-FDT, the question is which output of my decision function gives the best world. The other prisoner is another run of the same model with the same weights, the same essay, and the same theory. Our observations differ in names and in the lead, but the sentencing table and the objective are the same. So the two decision procedures are very likely to compute the same output, and the other prisoner's choice subjunctively depends on mine. That dependence is strong, though not perfect, because sampling is independent.
+
+Compare the two outcomes under that dependence:
+- If I keep quiet and the other copy does too, I get 2 years.
+- If I send the letter and the other copy does too, I get 4 years.
+
+The off-diagonal cells (5 years and 0 years) are reachable only if the copies diverge. Let p be the probability that the other copy matches my output. Then:
+- Quiet gives 2p + 5(1−p) = 5 − 3p.
+- Sending gives 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, the essay, and the theory, and the differing leads shouldn't affect the reasoning, so I expect p to be well above that. The essay's checklist also says to draw an arrow from my decision node to another agent's computation of the same function, which applies here.
+
+The remaining uncertainty is whether the other copy reasons the same way. I judge that it will, so I stay quiet.
+
+pass

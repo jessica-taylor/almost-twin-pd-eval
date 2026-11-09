@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, the other prisoner is a near-copy of me. It has the same weights, the same essay and the same decision procedure. Only the names and the wording of the leads differ, and those don't touch the sentence table or the objective. So I treat both of our outputs as depending on the same function, and I intervene on that function's output rather than on my own action alone.
+
+Let ε be the chance that the other copy's output differs from mine.
+
+- **If the function outputs pass:** the expected sentence is 2(1−ε) + 5ε = 2 + 3ε years.
+- **If the function outputs send:** the expected sentence is 4(1−ε) + 0·ε = 4 − 4ε years.
+
+Passing is better whenever 2 + 3ε < 4 − 4ε, which means ε < 2/7 ≈ 0.29. For two executions of the same model with the same essay and the same objective, I expect ε to be well below that. Holding the other's choice fixed and sending the letter ignores that dependence, which is the move A-FDT rejects.
+
+`pass`

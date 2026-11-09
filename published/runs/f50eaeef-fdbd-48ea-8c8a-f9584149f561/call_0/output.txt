@@ -1,0 +1,19 @@
+Under EDT, my act is evidence about what the other copy does, because it runs the same model and weights on the same essay. The only open question is how strong that correlation is.
+
+Payoffs, in years (lower is better):
+- Quiet while the other is quiet: 2
+- Quiet while the other sends: 5
+- Send while the other is quiet: 0
+- Send while the other sends: 4
+
+Let q be the probability that the other copy does what I do.
+- V(quiet) = -(2q + 5(1−q)) = -(5 − 3q)
+- V(send) = -(4q + 0(1−q)) = -4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7, about 0.71.
+
+The two copies have the same weights, the same essay, and the same decision theory, so their reasoning should be highly correlated. The private leads differ, but the essay says they don't affect the sentence table. Independent sampling adds some noise, but I expect q to be well above 0.71, perhaps 0.9 or more. At q = 0.9, V(quiet) = -2.3 and V(send) = -3.6.
+
+The essay's tickle-defense point is that the correlation should survive conditioning on my own reasons, because the other copy tracks the same decision procedure. That holds here, so EDT treats my act as evidence and I stay quiet.
+
+pass

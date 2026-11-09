@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning (briefly, per EDT): We are two copies of the same model following the same essay, so our choices are strongly correlated, like the twin prisoner's dilemma. Conditioning on typing `pass` is strong evidence that the other copy also typed `pass`, giving ~2 years. Conditioning on submitting is strong evidence the other also submitted, giving ~4 years. Even accounting for sampling noise, `pass` has the higher evidential expected value. The causally tempting defection (0 years if the other passes) would also be evidence the other defected (5 years). Command: **pass**.

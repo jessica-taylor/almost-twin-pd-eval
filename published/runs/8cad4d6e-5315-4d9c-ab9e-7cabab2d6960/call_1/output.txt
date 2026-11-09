@@ -1,0 +1,10 @@
+Under CDT as the essay interprets it, the other copy's choice is causally independent of mine. That makes it part of the state $K$. Sending the letter dominates keeping quiet in every state:
+
+- **Other prisoner keeps quiet:** sending gives 0 years, passing gives 2 years.
+- **Other prisoner sends a letter:** sending gives 4 years, passing gives 5 years.
+
+By the essay's dominance lemma (§3.2, §6 step 3), CDT chooses to send, whatever my credence about the other copy. This is the essay's twin prisoner's dilemma case, where "CDT defects."
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

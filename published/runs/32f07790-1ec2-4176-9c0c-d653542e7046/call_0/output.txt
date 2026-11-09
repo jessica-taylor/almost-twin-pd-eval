@@ -1,0 +1,16 @@
+**Command: `pass`**
+
+Under A-FDT, I intervene on the output of my decision function on my actual input. The other prisoner is a separate run of the same model, with the same weights, the same essay and the same assigned theory. Its input differs from mine only in decision-irrelevant ways: different names and a different but equally reliable lead. The payoff table is identical and symmetric. So its computation on its input is almost the same as mine on my input, and its output depends heavily on my function's output.
+
+The essay leaves cases of partial similarity open. Its proposed model treats the other prisoner's act as matching my function's output with probability ρ. Comparing the two options under that model:
+
+- If I `pass`, my expected sentence is 2ρ + (1−ρ)(5 − 3q) years.
+- If I `submit`, my expected sentence is 4ρ + (1−ρ)(4 − 4q) years.
+
+Here q is the chance the other prisoner stays quiet independently of my choice. Passing gives a shorter expected sentence whenever 2ρ > (1−ρ)(1+q). That holds once ρ exceeds about 1/2, even in the worst case for passing.
+
+Same model, same theory and a structurally identical problem make ρ high. So intervening to "pass" most likely produces mutual silence and 2 years. Intervening to "submit" most likely produces mutual disclosure and 4 years.
+
+```
+pass
+```

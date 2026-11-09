@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning (P-FDT): My counterpart is the same decision procedure, evaluating the same policy. Intervening on the policy node co-varies with the other prisoner's output via our subjunctive dependence. Comparing policies: π_pass yields ~2 years each (both quiet); π_submit yields ~4 years each (both send). The intervention treats our two outputs as one logical fact, so submitting drags the other's submission along with mine. π_pass dominates under the policy-level intervention. Executing it at my observation: `pass`.

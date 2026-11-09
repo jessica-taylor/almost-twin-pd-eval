@@ -1,0 +1,15 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+**Why A-FDT, as the essay frames it, gives this answer:**
+
+- **Which node I control.** Under Equation (4), my observation picks the node I intervene on: F_x, the output of the A-FDT function on my exact inputs (Sasha, with this lead). Rowan runs the same function on different inputs (a different name and a different lead), so Rowan's act is set by a different node, F_y.
+- **No dependence edge.** Under the essay's Step 3, I draw an edge only to processes that compute F_x itself. Nothing in the setup computes or predicts my output on my specific input, so intervening on F_x leaves Rowan's act unchanged. The essay notes that this is where A-FDT and the policy variant come apart in multi-agent dilemmas. The policy variant might link us; the essay tells me not to substitute it.
+- **Rowan's likely choice.** Step 5 sets the prior on Rowan's node to what A-FDT itself would output on Rowan's input. Rowan faces a symmetric situation, so that output matches mine.
+- **Comparing my options with Rowan's choice held fixed.** Sending the letter is better whatever Rowan does:
+  - If Rowan stays quiet: 0 years if I send, 2 if I pass.
+  - If Rowan sends: 4 years if I send, 5 if I pass.
+- **Consistency.** Since sending is better in both cases, the consistent fixed point is that both of us submit. Submitting is therefore the A-FDT choice.

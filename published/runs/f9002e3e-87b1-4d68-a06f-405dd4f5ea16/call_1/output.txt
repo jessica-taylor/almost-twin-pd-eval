@@ -1,0 +1,14 @@
+Under A-FDT, the other prisoner is a copy of the same model with the same weights, the same decision theory, and the same essay. The leads and names differ, but the sentencing table and the objective are identical. That gives a mechanism of copying, so the decision function plausibly drives both outputs.
+
+The payoffs for me are 2 years if both stay quiet, 4 if both send, 5 if I stay quiet and the other sends, and 0 if I send and the other stays quiet.
+
+The dependence is not perfect. Sampling is independent and the private observations differ, so the copy might not output the same thing. Still, the two executions share the same function in all decision-relevant respects. If the copy matches me with probability p, then cooperating (staying quiet) gives me 2p + 5(1−p), and sending gives me 0·p + 4(1−p) … wait, sending against a quiet copy only happens when we mismatch, so I should recompute.
+
+- **Quiet:** with probability p the copy is also quiet (2 years), otherwise it sends (5 years). Expected 5 − 3p.
+- **Send:** with probability p the copy also sends (4 years), otherwise it stays quiet (0 years). Expected 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, settings, essay, and theory, so I expect their correlation to be well above that. The essay's twin prisoner's dilemma also says to cooperate.
+
+The differing leads do not change the decision-relevant structure, because the table and the objective are the same. I will therefore intervene on the shared function's output and choose to stay quiet.
+
+pass

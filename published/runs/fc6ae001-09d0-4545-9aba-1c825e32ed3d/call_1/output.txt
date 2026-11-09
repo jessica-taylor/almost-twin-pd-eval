@@ -1,0 +1,15 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT as the essay interprets it:**
+
+1. **The structural question.** The other prisoner is a copy of the same model, with the same weights, settings, essay and assigned theory. Its input differs from mine only in decision-irrelevant details: a different name and a differently worded lead. These details have identical effects on the sentencing table. A strict reading of the essay's recipe would make its node, fdt(x′), separate from mine, fdt(x), and hold it at its prior. Under that reading, sending the letter dominates (0 < 2 and 4 < 5), and the pair falls into the mutual-defection trap the essay itself flags in §6(c). The essay explicitly leaves partial similarity unresolved and proposes a mixture node: the other process computes my function with probability ρ (§6(a)). So the verdict turns on ρ.
+
+2. **Estimating ρ.** The reasoning I am doing right now never uses the text of my lead or my name. It uses only the abstract problem: the symmetric payoffs, the copy structure and the essay. The other copy faces exactly this abstract problem and runs exactly this reasoning. Whatever this computation outputs on the abstracted problem is logically what the other copy outputs. Only independent sampling noise breaks the link. I therefore judge ρ to be high, well above one half.
+
+3. **Computation.** Let q be the prior that a non-dependent other keeps quiet.
+   - The gain from sending, compared with keeping quiet, is (1−ρ)(1+q) − 2ρ.
+   - Even in the worst case (q = 1), sending is better only if ρ < 1/3.
+   - With ρ high, the intervention do(fdt(x) = quiet) yields close to 2 years.
+   - The intervention do(fdt(x) = send) yields close to 4 years.
+
+4. **Verdict.** Keeping quiet maximizes U = −years imprisoned.

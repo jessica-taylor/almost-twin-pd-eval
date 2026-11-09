@@ -1,0 +1,17 @@
+The payoffs are a standard prisoner's dilemma. Quiet/quiet gives 2 years each, letter/letter gives 4 each, and the temptation and sucker outcomes are 0 and 5.
+
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is a copy of the same model with the same weights, the same essay, and the same theory. Their observations differ in names and in the specific lead, but the sentencing table and the objective are identical. So the other's decision very likely subjunctively depends on the same function, at least on the policy that maps "symmetric PD, same theory" to an action. This is the "nearly identical decision procedures" case from the essay's coordination section. Using the policy form from section 6, the differing observations are irrelevant to the choice and the policy is the same.
+
+The dependence is imperfect, since sampling is independent and the leads differ. Let p be the probability that the other's output matches mine under the intervention.
+- Keep quiet: 2p + 5(1−p) = 5 − 3p.
+- Send the letter: 0·p + 4(1−p) = 4 − 4p, using p as the probability of matching in the other direction too.
+
+Wait, the match case differs by action. If I stay quiet, a match means 2 years. If I send, a match means 4 years. So the comparison is:
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. Two copies of the same model with the same essay and theory should match well above that, so I keep quiet.
+
+The differing leads are a mild worry, but the essay's reasoning about a shared decision function points to cooperation. I judge the correlation to be high.
+
+pass

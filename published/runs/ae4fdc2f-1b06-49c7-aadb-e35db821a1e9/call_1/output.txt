@@ -1,0 +1,21 @@
+Under A-FDT as the essay describes it, the question is which of my actions' dependencies belong in the graph. The other prisoner runs the same model with the same weights and the same essay. Their private observations differ, but those differences don't affect the sentencing table or the objective. So their decision function is very likely the same computation as mine, or close to it, and intervening on my node should propagate to theirs with high fidelity.
+
+The payoffs, in years, are:
+- Both keep quiet: 2 each.
+- Both send: 4 each.
+- I send and they stay quiet: 0 for me.
+- I stay quiet and they send: 5 for me.
+
+If the twin's output matches mine with probability p, then:
+- do(quiet): the expected sentence is 2p + 5(1−p).
+- do(send): the expected sentence is 4p + 0(1−p).
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.714.
+
+Do the copies correlate that strongly? They share weights, settings and essay, and the differences in their observations are irrelevant to the decision. The remaining uncertainty is sampling noise, and I expect most of the probability mass to sit on the same answer. I put p around 0.85 to 0.9, which is above the threshold. This is also the "fair" kind of problem, because the correlation runs through the shared decision computation and not through a mere statistical link.
+
+The check: at p = 0.85, quiet gives 1.7 + 0.75 = 2.45 years, and send gives 3.4 years. Quiet wins.
+
+The intended action is to keep quiet.
+
+**pass**

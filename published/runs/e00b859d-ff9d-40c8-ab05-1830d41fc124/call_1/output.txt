@@ -1,0 +1,16 @@
+**pass**
+
+**Reasoning (A-FDT):**
+
+The other prisoner is an independent execution of the same model, weights, settings, reasoning effort, decision theory, and essay. Per the essay's Section 9, the other copy's action is subjunctively dependent on my decision procedure — they are "another agent running the same decision algorithm." The observations differ cosmetically (names, leads) but are structurally equivalent: same symmetric sentencing table, same utility function, same decision problem.
+
+Intervening on my decision-function output:
+
+- If this procedure outputs **keep quiet** for this input type, the other copy — running the same procedure on a structurally equivalent input — also keeps quiet. Outcome: **2 years**.
+- If this procedure outputs **send**, the other copy likewise sends. Outcome: **4 years**.
+
+This mirrors the psychological twin prisoner's dilemma from the essay: A-FDT cooperates because mutual cooperation yields the better outcome.
+
+The note about independent sampling introduces imperfect correlation, not zero correlation. The break-even probability for preferring quiet is q > 5/7 ≈ 71%. Two executions of the same model on equivalent problems will agree far more often than that.
+
+**Command: `pass`**

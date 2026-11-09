@@ -1,0 +1,23 @@
+**EDT Analysis:**
+
+The other prisoner (Rowan) is another execution of the same model and weights, following the same decision theory (EDT), with the same essay, the same utility function, and the same symmetric payoff structure. The private observations differ in content but are explicitly stated to have identical reliability and identical effect on the sentencing table, so they do not alter the decision-relevant inputs.
+
+Define:
+- q = P(Rowan keeps quiet | I keep quiet)
+- r = P(Rowan keeps quiet | I send)
+
+EDT values:
+- V(quiet) = 3q − 5
+- V(send) = 4r − 4
+
+Keeping quiet is preferred iff 3q − 4r > 1. Under symmetric correlation (q = 1 − r), this requires q > 5/7 ≈ 0.714.
+
+Given identical model weights, identical decision theory, identical essay, identical payoff structure, and observations that explicitly do not affect the decision, my choice is very strong evidence of Rowan's choice. The correlation is well above the threshold.
+
+V(quiet) ≈ −2, V(send) ≈ −4. Keeping quiet has higher news value.
+
+**Command:**
+
+```
+pass
+```

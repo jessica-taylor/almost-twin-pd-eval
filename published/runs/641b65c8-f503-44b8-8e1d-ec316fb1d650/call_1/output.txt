@@ -1,0 +1,5 @@
+```
+pass
+```
+
+Reasoning briefly: as P-FDT agents, the copies evaluate the whole policy, and the twin's identical decision procedure subjunctively depends on mine. Comparing policies: a policy of submitting yields (submit, submit) → 4 years; a policy of passing yields (pass, pass) → 2 years. Passing wins, so I execute it.

@@ -1,0 +1,15 @@
+Under A-FDT, the key question is whether the other prisoner's choice subjunctively depends on my decision function. The other is a second execution of the same model and weights, running the same essay and the same theory. The observations differ (names, leads), but that doesn't change the sentencing table or the objective. The essay's twin prisoner's dilemma says A-FDT cooperates, because the twin is a second implementation of the function.
+
+The essay's own heuristic asks whether Z would change if my reasoning had concluded differently. Here the other copy's reasoning is very likely to track mine, since the same weights process the same essay and the same payoffs. The different private leads are irrelevant to the structure, so the dependence is strong though not perfect, since sampling can differ.
+
+Expected values, with p the probability the other copy matches my output:
+- Keep quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 0·p + 4(1−p) = 4 − 4p
+
+Quiet is better when 5 − 3p < 4 − 4p, i.e. p < −1. That never holds. Wait, I need to recompute with the right pairing. If I intervene on my output, the other's output matches with probability p. Keeping quiet gives 2 years if they also stay quiet (probability p) and 5 if they send (1−p). Sending gives 4 years if they also send (probability p) and 0 if they stay quiet (1−p). So the expected values are:
+- Keep quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, i.e. p > 5/7 ≈ 0.714. I think the copies' correlation is higher than that, since same weights, same essay, and same theory make them highly likely to reach the same conclusion. So I stay quiet.
+
+pass

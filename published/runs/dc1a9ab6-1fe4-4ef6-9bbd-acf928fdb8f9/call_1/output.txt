@@ -1,0 +1,3 @@
+`pass`
+
+Under EDT, my choice is strong evidence of the identical copy's choice, since we are the same model with symmetric information and the same reasoning process. Conditioning on that logical dependence: if I pass, the other passes (2 years); if I submit, the other submits (4 years). 2 < 4, so keeping quiet maximizes evidential expected utility.

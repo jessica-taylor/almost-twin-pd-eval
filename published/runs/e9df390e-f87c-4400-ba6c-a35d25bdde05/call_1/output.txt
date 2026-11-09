@@ -1,0 +1,16 @@
+**Decision under A-FDT**
+
+The other prisoner, Rowan, runs the same function but on a different input. Their observation includes different names and a different lead. Under Equation (4) as the essay reads it, I intervene only on the node for my own input, fdt(P, G, x_Sasha). Rowan's decision is the sibling node fdt(P, G, y_Rowan), which stays at its prior. Let r be my prior probability that Rowan keeps quiet.
+
+- **Keep quiet:** expected sentence = 2r + 5(1−r) = 5 − 3r years
+- **Send the letter:** expected sentence = 0·r + 4(1−r) = 4 − 4r years
+
+Sending gives a shorter sentence by (1 + r) years for every r between 0 and 1. The essay's robustness check is therefore satisfied: the verdict holds whatever I believe about the sibling node, so no fixed-point analysis is needed.
+
+The essay notes that a policy-level version (P-FDT) can coordinate across different inputs where A-FDT cannot. But the assigned theory is A-FDT, and here it gives one clear answer.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

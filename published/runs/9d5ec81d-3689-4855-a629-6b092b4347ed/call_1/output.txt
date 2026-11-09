@@ -1,0 +1,17 @@
+Under P-FDT, the payoffs are 2 years each if both keep quiet, 4 each if both send, 5 for me and 0 for the other if I stay quiet and they send, and the reverse if I send and they stay quiet.
+
+The other prisoner is a copy of the same model running the same decision procedure on the same essay. The observations differ (names and leads), but the policy is a mapping from observations to actions, and both copies would reach it through the same reasoning. So the policy I choose is very likely to be the one the other copy chooses, even though the two letters would read differently. Independent sampling leaves some chance of divergence, but the correlation is strong.
+
+Comparing the correlated outcomes:
+- If both of us follow "pass", each gets 2 years.
+- If both follow "send", each gets 4 years.
+
+Cooperating beats defecting when the choices are this correlated. The differing observations don't change the sentence table, so the policy "pass regardless of the specific lead" is a valid shared policy.
+
+If the correlation is imperfect, say the copy matches me with probability p, then:
+- Pass costs 2p + 5(1-p) = 5 - 3p.
+- Send costs 4p + 0(1-p) = 4p.
+
+Pass is better when 5 - 3p < 4p, which means p > 5/7 ≈ 0.71. Identical weights, an identical essay, and the same reasoning make the match probability well above that.
+
+**pass**

@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+**Why EDT recommends this:** The other prisoner is the same model with the same settings, the same assigned theory and the same essay. The differences between us (names, the wording of our leads) don't affect the payoffs, so they shouldn't change how either of us reasons. My choice is therefore strong evidence about Rowan's choice.
+
+Following the essay's twin analysis, let q = P(Rowan stays quiet | I stay quiet) and r = P(Rowan stays quiet | I send the letter).
+
+- V(pass) = −[2q + 5(1−q)] = −(5 − 3q)
+- V(submit) = −[0·r + 4(1−r)] = −(4 − 4r)
+
+Passing is better when 3q > 1 + 4r. With symmetric correlation (r = 1−q), that means q > 5/7. Two copies of the same model reasoning identically about the same case should clear that threshold easily. Expected sentence is about 2 years for passing, versus about 4 for sending the letter.
+
+`pass`

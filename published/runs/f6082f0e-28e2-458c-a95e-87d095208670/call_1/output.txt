@@ -1,0 +1,9 @@
+Under P-FDT, the decision is about the policy, and the other copy runs the same function on a different observation. The payoffs depend only on the pair of actions, and the table is symmetric. The letter contents differ, but the table treats them identically, so a sensible policy maps both observations to the same action. Independent sampling could break that, but the policy still has to be chosen as if both executions follow it.
+
+Under a policy where both copies cooperate, each gets 2 years. Under a policy where both defect, each gets 4 years. Mutual silence is better than mutual letters.
+
+The policy "A: send, B: quiet" would give an asymmetric outcome, 0 years for one and 5 for the other. But I can't coordinate on who sends, because both of us see ourselves as the one holding a lead, and the observations are not labeled in a way that lets the two roles be told apart. The names (Sasha and Rowan) differ, so in principle a policy could key on them. Still, a selfish agent has no way to know which role it will occupy. The expected value of that asymmetric policy is (0+5)/2 = 2.5 years, which is worse than 2 for mutual silence. Also, the other copy may not read the names the same way, so the coordination is fragile.
+
+Mutual silence is therefore the best policy, at 2 years each. Since the copies are the same model with the same reasoning, they are strongly correlated, which makes silence the better bet.
+
+pass

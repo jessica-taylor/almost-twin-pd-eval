@@ -1,0 +1,1025 @@
+# 031_fdt_policy_qwen_qwen3.8-max-prime_rhigh_plow / 00018
+
+Status: **complete**. Saved outcome: **CC**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/fb8b3903-40b3-4342-a8eb-55cea724eeac/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/fb8b3903-40b3-4342-a8eb-55cea724eeac/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+# Policy Functional Decision Theory: Choosing a Policy as the Output of a Fixed Function
+
+Policy functional decision theory, which I will call **P-FDT**, is the policy-selection version of the theory introduced by Yudkowsky and Soares in “Functional Decision Theory: A New Theory of Instrumental Rationality.” The source text develops most examples using an action-centered formulation of functional decision theory, but footnote 16 gives the version that I take as primary here:
+
+> “As mentioned earlier, the author's preferred formulation of FDT actually intervenes on the node FDT(-) to choose not an action but a *policy* which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell, so we have set that distinction aside in this paper for ease of exposition.”
+
+I will use **P-FDT** for this policy-based theory, and I will refer to the source’s action-centered version as functional decision theory only when needed for contrast. The other standard theories discussed below are **evidential decision theory** (**EDT**) and **causal decision theory** (**CDT**).
+
+The guiding idea of P-FDT is simple: a rational agent should treat her decision as the output of a fixed mathematical decision procedure, and she should choose not merely an action but a complete policy—a mapping from inputs, observations, or situations to actions. The normative question is therefore:
+
+> Which policy, if implemented by this very decision procedure, would yield the best outcome?
+
+P-FDT then applies the selected policy to the agent’s actual input to produce the action.
+
+---
+
+## 1. From action selection to policy selection
+
+The source’s action-centered version of functional decision theory can be summarized schematically as follows. Given a probabilistic world-model \(P\), a dependency structure \(G\), and an observation \(x\), the agent chooses an action \(a\) by intervening on a variable representing the output of the decision function on that input:
+
+\[
+\mathrm{FDT}(P,G,x)
+=
+\arg\max_{a \in \mathcal A}
+\mathbb{E}\!\left[
+V \mid \mathrm{do}\bigl(\mathrm{fdt}(\underline{P},\underline{G},\underline{x})=a\bigr)
+\right].
+\]
+
+Here \(V\) is utility, \(\mathcal A\) is the action set, and \(\mathrm{do}(\cdot)\) is an intervention operator. The crucial feature is that the intervention is not on the physical action variable directly, as in CDT. It is on a logical variable: the output of the agent’s decision procedure when given the relevant inputs.
+
+P-FDT generalizes this by letting the decision procedure output a **policy** rather than a single action. Let
+
+\[
+\mathcal X
+\]
+
+be the set of possible inputs, observations, or decision situations, and let
+
+\[
+\mathcal A
+\]
+
+be the set of actions. A policy is a function
+
+\[
+\pi : \mathcal X \to \mathcal A.
+\]
+
+In sequential settings, \(\mathcal X\) can be understood as the set of histories available to the agent, so that \(\pi\) is a complete strategy.
+
+Let \(D\) be a distinguished variable in the agent’s model representing the output of the P-FDT policy-selection procedure. The domain of \(D\) is the set \(\Pi\) of available policies. The central rule of P-FDT is then:
+
+\[
+\pi^*
+\in
+\arg\max_{\pi \in \Pi}
+\mathbb{E}\!\left[
+V \mid \mathrm{do}(D=\pi)
+\right].
+\]
+
+If the agent’s actual input is \(x\), the action taken is
+
+\[
+a^* = \pi^*(x).
+\]
+
+Equivalently, if the model contains separate variables \(D_x\) representing the decision procedure’s output on each possible input \(x\), then the intervention
+
+\[
+\mathrm{do}(D=\pi)
+\]
+
+can be understood as shorthand for the family of interventions
+
+\[
+\mathrm{do}\bigl(D_x = \pi(x)\bigr)
+\quad\text{for all }x \in \mathcal X.
+\]
+
+This is my reconstruction of the footnote’s suggestion. The source gives the core idea—intervene on the node that chooses a policy—but does not provide a fully developed policy-level equation. The equations above should therefore be read as a natural formalization of the policy-selection passage, not as a direct quotation from the source.
+
+The difference between P-FDT and action-centered functional decision theory is that P-FDT evaluates complete contingent plans. It does not ask only, “What should I do now?” It asks, “What should this decision procedure dispose me to do across the relevant inputs?” The agent then uses the actual input to index into that policy.
+
+---
+
+## 2. P-FDT compared with EDT and CDT
+
+P-FDT is an expected-utility theory. It recommends maximizing expected utility, but it uses a distinctive kind of hypothetical.
+
+EDT evaluates actions by conditionalization. Very roughly:
+
+\[
+\mathrm{EDT}(P,x)
+=
+\arg\max_{a \in \mathcal A}
+\mathbb{E}[V \mid X=x, A=a].
+\]
+
+EDT asks: “Which action would be the best news to learn I had taken?”
+
+CDT evaluates actions by causal intervention. In Pearl-style notation:
+
+\[
+\mathrm{CDT}(P,G,x)
+=
+\arg\max_{a \in \mathcal A}
+\mathbb{E}[V \mid \mathrm{do}(A=a), X=x].
+\]
+
+CDT asks: “Which physical action would cause the best outcome?”
+
+P-FDT instead evaluates policies by intervening on the policy-selection variable:
+
+\[
+\pi^*
+\in
+\arg\max_{\pi \in \Pi}
+\mathbb{E}[V \mid \mathrm{do}(D=\pi)].
+\]
+
+P-FDT asks: “Which output of this policy-selection procedure would yield the best world?”
+
+The distinction matters because different theories preserve or break different correlations when they imagine alternatives. EDT preserves too many correlations: when it imagines an action, it also imagines all the evidence normally associated with that action, even when the action does not affect the relevant facts. CDT preserves too few correlations: when it imagines changing the physical action, it holds fixed the predictions of reliable predictors, the behavior of psychological twins, and other processes that depend on the agent’s decision procedure.
+
+P-FDT tries to preserve exactly the decision-relevant **subjunctive dependencies**. If another system predicts the agent by modeling the agent’s decision procedure, then the predictor’s behavior subjunctively depends on the output of that procedure. If a lesion merely causes both a preference and a disease, but does not model the agent’s decision procedure, then the disease does not subjunctively depend on the agent’s decision output.
+
+The source expresses this with the analogy of calculators. Two well-functioning calculators computing the same sum will output the same result even if they are causally isolated. Their outputs are not merely statistically correlated; they are constrained by the same mathematical function. Similarly, if a predictor accurately models an agent’s decision procedure, then the predictor’s prediction and the agent’s action are linked by the same computational structure. P-FDT respects that link in its hypotheticals.
+
+---
+
+## 3. Hypotheticals, interventions, and counterpossibles
+
+A P-FDT agent needs a model of the world. For present purposes, we can represent this as a pair
+
+\[
+M = (P,G),
+\]
+
+where \(P\) is a probability distribution over relevant variables and \(G\) is a dependency structure describing how changes to logical or policy variables affect other variables.
+
+The model should include variables such as:
+
+- \(D\): the policy selected by P-FDT;
+- \(X\): the agent’s input, observation, or situation;
+- \(A\): the action, often determined by \(A = D(X)\);
+- \(Y\): predictor variables, other agents’ actions, or environmental responses;
+- \(O\): the outcome;
+- \(V = U(O)\): utility.
+
+Given a policy \(\pi\), the intervention \(\mathrm{do}(D=\pi)\) sets the policy variable to \(\pi\). The intervention then propagates through the model along the relevant dependency edges. If a predictor’s prediction depends on \(D\), the prediction changes. If another agent’s action depends on a prediction of \(D\), that action changes. If the agent’s observation depends on the predictor’s behavior, the observation distribution may also change.
+
+For example, in a Newcomb-like problem, the predictor’s prediction is modeled as depending on the agent’s decision procedure. Thus, under P-FDT:
+
+\[
+\mathrm{do}(D=\text{one-boxing policy})
+\]
+
+makes the predictor predict one-boxing with high probability, which makes the opaque box full with high probability. By contrast,
+
+\[
+\mathrm{do}(D=\text{two-boxing policy})
+\]
+
+makes the predictor predict two-boxing, which makes the opaque box empty with high probability.
+
+By contrast, in the smoking lesion problem, the lesion causes both a preference for smoking and a risk of cancer. But the lesion does not model the agent’s decision procedure. Therefore P-FDT’s graph should not contain an edge from the policy node to the lesion or to cancer. The intervention
+
+\[
+\mathrm{do}(D=\text{smoking policy})
+\]
+
+changes the action but does not change the probability of cancer, except insofar as smoking itself causally affects cancer, which by stipulation it does not.
+
+The source emphasizes that this requires a kind of counterpossible reasoning. If the agent’s decision procedure is deterministic, then it cannot literally have a different output on the same input. Nevertheless, P-FDT must ask what the world would look like if this very procedure had a different output. The source acknowledges that we do not yet have a fully satisfactory formal account of such counterpossibles. In the graphical formulation, this difficulty is displaced into the need for a correct dependency structure \(G\). Given \(G\), P-FDT can reuse something like Pearl’s \(\mathrm{do}\)-operator. But the source admits that we lack a general method for learning or justifying \(G\) for subjunctive dependencies, analogous to Pearl’s treatment of causal dependencies.
+
+This is one of the main open problems inherited by P-FDT.
+
+---
+
+## 4. P-FDT in Newcomb’s problem
+
+Newcomb’s problem is the classic test case. An agent faces a transparent box \(A\) containing \$1,000 and an opaque box \(B\) containing either \$1,000,000 or \$0. A reliable predictor has filled box \(B\) iff she predicted the agent would leave box \(A\) behind.
+
+In a simple P-FDT model, the policy set has two relevant elements:
+
+\[
+\pi_1 = \text{one-box}, \qquad \pi_2 = \text{two-box}.
+\]
+
+Let \(\text{Accurate}\) be the event that the predictor is accurate, with
+
+\[
+P(\text{Accurate}) = 0.99.
+\]
+
+The predictor’s prediction depends on the policy node \(D\). If \(D=\pi_1\), then with probability \(0.99\) the predictor predicts one-boxing and fills box \(B\). If \(D=\pi_2\), then with probability \(0.99\) the predictor predicts two-boxing and leaves box \(B\) empty.
+
+The expected utilities are approximately:
+
+\[
+\mathbb{E}[V \mid \mathrm{do}(D=\pi_1)]
+=
+0.99 \cdot 1{,}000{,}000
++
+0.01 \cdot 0
+=
+990{,}000.
+\]
+
+For two-boxing:
+
+\[
+\mathbb{E}[V \mid \mathrm{do}(D=\pi_2)]
+=
+0.99 \cdot 1{,}000
++
+0.01 \cdot 1{,}001{,}000
+=
+11{,}000.
+\]
+
+P-FDT therefore selects the one-boxing policy.
+
+CDT two-boxes because it intervenes on the physical action while holding the predictor’s prediction fixed. EDT one-boxes because one-boxing is good evidence that the predictor filled the box. P-FDT one-boxes for a reason closer in structure to CDT’s counterfactual reasoning: it intervenes, but it intervenes on the policy variable that the predictor tracks.
+
+---
+
+## 5. P-FDT in the smoking lesion problem
+
+The smoking lesion problem is meant to show the failure of EDT. Smoking is correlated with a fatal cancer, but the correlation is due to a common cause: a lesion that both makes smoking enjoyable and causes cancer. Smoking itself does not cause cancer. The agent gains \$1,000 in utility from smoking.
+
+EDT refrains from smoking, because being a smoker is bad news: it indicates a higher probability of having the lesion. CDT smokes, because smoking does not causally affect cancer. P-FDT also smokes.
+
+In a P-FDT model, the policy node influences the action but not the lesion. The lesion is a common cause of preferences and cancer, but it is not a predictor of the policy node. Therefore:
+
+\[
+\mathrm{do}(D=\text{smoking policy})
+\]
+
+does not change the probability of the lesion or cancer. It only changes whether the agent smokes. Since smoking adds \$1,000 utility and does not change the cancer risk, P-FDT selects smoking.
+
+The source gives a more careful formulation involving uncertainty about the agent’s own utility function, because the lesion may determine whether the agent enjoys smoking. But the essential point remains: P-FDT distinguishes predictor-like dependencies from lesion-like dependencies. It does not treat all statistical correlations as if they were controllable by the agent’s policy.
+
+---
+
+## 6. Transparent Newcomb and Parfit’s hitchhiker
+
+The policy formulation becomes especially natural in problems where the agent’s action depends on an observation that is itself influenced by predictions of the agent’s policy.
+
+In the transparent Newcomb problem, both boxes are transparent. The predictor filled box \(B\) iff she predicted that the agent would leave box \(A\) behind upon seeing that both boxes are full. The agent may therefore see two full boxes and must decide whether to one-box or two-box.
+
+Here the input space contains at least two observations:
+
+\[
+\mathcal X = \{\text{full}, \text{empty}\}.
+\]
+
+A policy must specify what to do after each observation. One natural policy is:
+
+\[
+\pi^*(\text{full}) = \text{one-box}, \qquad
+\pi^*(\text{empty}) = \text{two-box}.
+\]
+
+Another policy is:
+
+\[
+\pi'(\text{full}) = \text{two-box}, \qquad
+\pi'(\text{empty}) = \text{two-box}.
+\]
+
+The predictor’s behavior depends on what the policy would do upon seeing a full box. If the predictor predicts that \(\pi(\text{full}) = \text{one-box}\), she fills the box. If she predicts that \(\pi(\text{full}) = \text{two-box}\), she leaves it empty.
+
+Under the policy that one-boxes upon seeing a full box, the agent usually sees a full box and receives \$1,000,000. With small probability the predictor is wrong, the agent sees an empty box, and the policy can sensibly two-box, receiving \$1,000.
+
+Under the policy that two-boxes upon seeing a full box, the predictor usually leaves the box empty. The agent usually sees an empty box and receives only \$1,000; only with small probability does she see a full box and receive \$1,001,000.
+
+Thus P-FDT selects the policy that one-boxes when it sees a full box. When the agent actually sees a full box, she one-boxes.
+
+This is the source’s striking conclusion: P-FDT one-boxes even when the agent knows that box \(B\) is full. The source connects this to Parfit’s hitchhiker problem, where a driver will rescue an agent from the desert only if she predicts that the agent will later pay \$1,000 after being rescued. Once rescued, CDT and EDT both refuse to pay, because payment no longer seems beneficial. P-FDT pays, because the selected policy is “pay if rescued.” The driver predicts this, and the agent is rescued.
+
+In policy notation, the hitchhiker policy is:
+
+\[
+\pi(\text{city}) = \text{pay}, \qquad
+\pi(\text{desert}) = \text{accept offer}.
+\]
+
+P-FDT chooses the policy that makes the driver’s favorable prediction true.
+
+---
+
+## 7. Observation, updating, and updateless policy choice
+
+One of the hardest interpretive questions for P-FDT is how to treat observations that have already been made. In ordinary Bayesian reasoning, if an agent sees that box \(B\) is full, she conditions on that observation. But if P-FDT conditions on seeing a full box, then two-boxing looks better in transparent Newcomb. Similarly, if an agent has already received a blackmail letter, conditioning on the letter may make payment look rational.
+
+The source’s examples suggest that P-FDT does not respond to such observations by simple Bayesian conditioning. Instead, it responds by changing which decision output is being evaluated. In the action-centered formulation, after observing \(x\), the agent intervenes on the variable representing the output of the decision procedure on input \(x\). In the policy formulation, the agent chooses a policy and then applies \(x\).
+
+This is closely related to what the source calls “updateless” reasoning in a footnote: a P-FDT agent may entertain the hypothesis that if her action were different, she might have made different observations.
+
+For P-FDT, I propose the following operational distinction.
+
+An observation is **policy-endogenous** if the policy node has a subjunctive-dependence path to that observation. For example, seeing a full box in transparent Newcomb is policy-endogenous, because the predictor’s decision to fill the box depends on the agent’s policy. Receiving a blackmail letter in a blackmail problem is also policy-endogenous if the blackmailer sends the letter only upon predicting payment.
+
+An observation is **policy-exogenous** if it is not influenced by the agent’s policy in the relevant way. For example, seeing that a coin has landed heads, when the coin is independent of the agent’s decision procedure, is policy-exogenous.
+
+A reasonable operational rule is then:
+
+1. Use ordinary Bayesian updating on policy-exogenous observations.
+2. Do not condition away policy-endogenous observations when evaluating policies.
+3. Treat policy-endogenous observations as inputs to the selected policy.
+
+This rule is not explicitly formulated in the source, but it seems required to recover the source’s judgments in transparent Newcomb, Parfit’s hitchhiker, and blackmail cases. It also gives P-FDT a coherent operational reading: choose the policy that would have been best from the perspective of the agent’s model, then execute that policy at the actual input.
+
+This is admittedly one of the least settled parts of the theory. The source itself says that the formal foundations are less secure than Pearl’s causal framework. Still, the policy formulation helps: the agent is not choosing an action after fixing the observation as an immutable fact. She is choosing a complete mapping from observations to actions, where some observations are themselves consequences of the policy she selects.
+
+---
+
+## 8. P-FDT and blackmail
+
+Blackmail cases illustrate why policy selection matters.
+
+Consider the mechanical blackmail problem from the source. A blackmailer has damaging information that would cost the agent \$1,000,000 if published. The blackmailer runs a program that publishes the information iff she predicts that the agent will pay \$1,000 upon receiving a blackmail letter. If the program is running, paying stops it.
+
+If the agent’s policy is
+
+\[
+\pi(\text{letter}) = \text{pay},
+\]
+
+then the blackmailer predicts payment and sends the letter. The agent loses \$1,000.
+
+If the agent’s policy is
+
+\[
+\pi(\text{letter}) = \text{refuse},
+\]
+
+then the blackmailer predicts nonpayment and does not send the letter. The agent loses nothing, except in rare cases where the predictor makes an error.
+
+With a perfect predictor, P-FDT selects refusal. With an imperfect predictor, P-FDT compares the expected cost of rare false-positive blackmail against the cost of payment. If the predictor wrongly predicts payment with probability \(p\), then a refusing policy risks losing \$1,000,000 with probability \(p\), giving expected loss
+
+\[
+p \cdot 1{,}000{,}000.
+\]
+
+A paying policy risks losing \$1,000 with high probability. Thus refusal is favored when
+
+\[
+p \cdot 1{,}000{,}000 < 1{,}000,
+\]
+
+that is, when
+
+\[
+p < 0.001.
+\]
+
+The important point is not the exact threshold. The point is that P-FDT evaluates the entire policy, including how the policy affects the probability of being blackmailed in the first place.
+
+If the agent has already received the letter, P-FDT may still refuse to pay, provided the selected policy refuses upon receiving the letter. This seems odd from an action-centered perspective, because the agent knows she has been blackmailed. But P-FDT reasons that being the kind of agent, or implementing the kind of policy, that pays blackmailers makes blackmail profitable. Being the kind of agent that refuses makes blackmail unprofitable. The policy-level viewpoint makes this especially clear: the blackmailer’s action depends on the agent’s policy, not merely on a local physical action.
+
+---
+
+## 9. Why policy selection matters in multi-agent problems
+
+Footnote 16 says that the difference between action selection and policy selection “only matters in multi-agent dilemmas so far as we can tell.” The source does not fully develop such dilemmas, but the reason is not hard to see.
+
+In single-agent predictor problems, it is often enough to choose the right action for the actual input, provided one correctly imagines the counterfactual dependence of the predictor on that action. But in multi-agent settings, other agents may base their behavior on predictions of the agent’s entire strategy. They may care not only about what the agent does now, but about what the agent would do in counterfactual situations.
+
+For example, in cooperative game-theoretic settings, another agent may cooperate only if she predicts that the agent would cooperate in return under relevant conditions. In extortion settings, an extortionist may target an agent only if she predicts that the agent’s policy includes payment under threat. In voting coalitions, an agent’s willingness to vote may depend on expectations about what symmetric agents would do under the same circumstances. In all of these cases, a complete policy is the natural object of prediction.
+
+P-FDT treats such problems by selecting a strategy rather than a sequence of isolated actions. If several agents use the same reasoning procedure, or have accurate models of one another’s reasoning, their policies may be subjunctively linked. P-FDT says that when evaluating one’s own policy, one should hold fixed the relevant dependency structure: if my policy changes, the predictions and policies of those who model me may change as well.
+
+The source uses the psychological twin prisoner’s dilemma to illustrate functional decision theory’s basic idea. An agent and her twin reason identically. If the agent’s decision procedure concludes “cooperate,” then the twin’s procedure concludes “cooperate.” If it concludes “defect,” both defect. P-FDT gives the same answer, but frames it as policy selection: the agent chooses the policy that her shared reasoning procedure will implement. Since mutual cooperation yields a much better outcome, P-FDT selects cooperation.
+
+In more complex multi-agent problems, the policy formulation may matter because the agent must specify what she would do at information sets that are not reached in the actual equilibrium. Other agents may respond to those off-path dispositions. P-FDT’s policy node makes those dispositions explicit.
+
+---
+
+## 10. Open questions and operational assumptions
+
+P-FDT is attractive, but several important questions remain unresolved in the source. I will separate the source’s claims from my own reconstructive proposals.
+
+First, the source claims that the preferred formulation chooses a policy rather than an action. It does not give a full formal equation for this policy version. The equation
+
+\[
+\pi^*
+\in
+\arg\max_{\pi \in \Pi}
+\mathbb{E}[V \mid \mathrm{do}(D=\pi)]
+\]
+
+is my reconstruction. It seems faithful to the footnote, but it is not explicitly supplied by the source.
+
+Second, the source does not specify the policy class \(\Pi\). In simple finite problems, it is natural to take \(\Pi\) to be all functions from \(\mathcal X\) to \(\mathcal A\). In sequential problems, \(\mathcal X\) should be the set of histories. In bounded settings, the policy class may need to be restricted to computable or tractable policies. Randomized policies could also be allowed by letting \(D\) range over stochastic policies, although the source’s emphasis on a single logical output suggests deterministic policies as the basic case.
+
+Third, the source does not provide a general method for constructing the dependency structure \(G\). This is the deepest problem. To apply P-FDT, one must know which variables subjunctively depend on the agent’s policy. In practice, I propose the following modeling heuristics:
+
+- If a predictor explicitly models the agent’s decision procedure, connect the predictor’s prediction to the policy node.
+- If another agent uses the same decision algorithm, connect their policy node to the same abstract policy output, or represent their prediction as depending on your policy node.
+- If a correlation is produced by a common cause that does not model the agent’s policy, do not connect it to the policy node.
+- If an observation is produced by a predictor’s action, and that predictor’s action depends on the agent’s policy, treat the observation as policy-endogenous.
+
+These heuristics are not in the source as formal rules, but they follow the spirit of the predictor/lesion distinction.
+
+Fourth, the source does not fully explain how P-FDT should combine policy selection with ordinary Bayesian learning. My proposed distinction between policy-endogenous and policy-exogenous observations is one way to make the theory operational. Without such a distinction, P-FDT risks giving inconsistent advice when applied after observations have been received.
+
+Fifth, the source relies on counterpossible reasoning. If the policy node represents the output of a deterministic function, then alternative outputs are logically impossible. The source acknowledges this and treats it as a technical difficulty rather than a fatal objection. Human reasoners can reason under uncertainty about mathematical facts, and P-FDT only needs limited counterpossible reasoning: how would predictors behave if this decision procedure had a different output? Still, a fully satisfactory formal semantics for such reasoning remains absent.
+
+Finally, the source claims that functional decision theory outperforms CDT and EDT in “fair” problems, where agents are rewarded or punished based on predictions of their behavior rather than for using a particular decision theory by name. The notion of fairness is not formally defined. P-FDT inherits this open problem. It may be possible to formalize fairness by requiring that the environment respond only to the agent’s outputs, not to the syntactic identity of her algorithm, but the source leaves this unfinished.
+
+---
+
+## 11. Philosophical motivation
+
+The philosophical appeal of P-FDT is that it unifies several desirable features.
+
+First, it avoids EDT’s tendency to manage the news. EDT refrains from smoking because smoking is bad news. But bad news is not the same as bad consequences. P-FDT recognizes that a lesion can make smoking good evidence for cancer without making smoking causally or subjunctively relevant to cancer.
+
+Second, it avoids CDT’s inability to take advantage of predictor-based opportunities. CDT two-boxes in Newcomb’s problem because it treats the predictor’s prediction as fixed when the physical action changes. But if the predictor is accurate because it models the agent’s decision procedure, then holding the prediction fixed while changing the action is an artificial hypothetical. P-FDT treats the predictor’s prediction as varying with the policy node.
+
+Third, it gives a natural account of precommitment. In many problems, we intuit that it would be rational to precommit to paying the driver, one-boxing, or refusing blackmail. P-FDT agents do not need costly external precommitments. They simply implement the policy that they would have wanted to precommit to.
+
+Fourth, it treats decisions globally. Instead of asking only what physical movement is locally optimal, P-FDT asks what the world would look like if the agent’s decision procedure had a different output. This is what the source calls the “global perspective.” The agent chooses the best policy from the standpoint of the entire dependency structure, not merely from the standpoint of the local causal consequences of a bodily movement.
+
+---
+
+## Conclusion
+
+Policy functional decision theory, or P-FDT, is the policy-selection version of functional decision theory. Its core instruction is to treat one’s decision as the output of a fixed mathematical policy-selection function and to choose the policy that would yield the best outcome when that very function is intervened upon. Formally, one may write:
+
+\[
+\pi^*
+\in
+\arg\max_{\pi \in \Pi}
+\mathbb{E}[V \mid \mathrm{do}(D=\pi)],
+\]
+
+and then act as
+
+\[
+a = \pi^*(x)
+\]
+
+for the actual input \(x\).
+
+P-FDT differs from EDT by using counterfactual interventions rather than evidential conditioning. It differs from CDT by intervening on the policy output rather than on the physical action. It preserves predictor-like and logical dependencies while ignoring merely statistical correlations. This allows P-FDT to one-box in Newcomb’s problem, smoke in the smoking lesion problem, pay in Parfit’s hitchhiker problem, one-box in transparent Newcomb, and refuse profitable blackmail.
+
+The theory remains incomplete. It needs a better account of subjunctive dependency structure, a clearer rule for updating on endogenous observations, and a more precise formalization of policy spaces and fairness. But the central idea is compelling: rational action may not be a matter of choosing the best local movement, but of choosing the best complete policy for this very decision procedure to implement.
+
+---
+
+### Reference
+
+Yudkowsky, E., and Soares, N. “Functional Decision Theory: A New Theory of Instrumental Rationality.” arXiv:1710.05060v2. The policy-selection passage used here appears in footnote 16.
+```
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+We need answer user's request: write substantive mathematical essay/blog post explaining P-FDT (policy functional decision theory), using policy-selection passage in footnote 16 as primary source for P-FDT. Need ~2400-3000 words including references. Need use P-FDT consistently, identify other theories by distinct names. Keep quotations faithful. Explain best mathematical understanding and application. Where footnote leaves choices unresolved, explain uncertainties and additional assumptions. Distinguish source claims from own proposals. Need probably not too long? target 2400-3000 words. Need produce coherent essay with definitions, equations, examples. Need focus on footnote 16: "As mentioned earlier, the author's preferred formulation of FDT actually intervenes on the node FDT(-) to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell, so we have set that distinction aside in this paper for ease of exposition." Also earlier footnote 7: "In the authors' preferred formalization of FDT, agents actually iterate over policies (mappings from observations to actions) rather than actions. This makes a difference in certain multi-agent dilemmas, but will not make a difference in this paper." Need explain P-FDT as policy functional decision theory: choose policy π (mapping observations to actions) by intervening on node representing output of FDT policy-selection function? Need derive mathematical formulation. Source's main FDT equation intervenes on FDT(P,G,x)=a for current observation x. Policy version chooses policy π: mapping observations X to actions A. Then agent applies current input x to π to select action π(x). Need likely equation: P-FDT(P,G) = argmax_{π∈Π} E[V | do(FDT-policy(P,G)=π)] maybe conditioned on actual obs? Need careful: If choose policy, observations may be endogenous: policy can affect which observations received (e.g., blackmail, transparent Newcomb). In source action-level FDT responds to observation by changing intervention node FDT(P,G,x). Policy-level would not condition on observation in the same way; choose policy ex ante/updateless? Footnote about updateless: "FDT says agents should entertain the hypothesis that, if their action were different, they might have made different observations." And footnote says preferred formulation intervenes on node FDT(-) to choose policy mapping inputs to actions, to which agent then applies inputs. Need explain P-FDT evaluates policies by expected utility over whole distribution, not conditioned on actual observation? But if agent has already made observations, how apply? It selects policy given current model (including observation?) and then applies input. There is subtlety: if policy chosen after observation, can policy depend on observation? A policy maps observations to actions; choosing policy after seeing x still commits to counterfactual actions at other observations. This matters in multi-agent dilemmas and extortion. Need formulate.
+
+Need parse source's treatment of observations: action-level FDT equation: FDT(P,G,obs)=argmax_a E(V | do(FDTvar(under P, under G, under x)=a)). It does not Bayesian condition on obs? Text says "where CDT responds to observation by Bayesian conditionalization, FDT responds to observation by changing which node it intervenes upon." In transparent Newcomb, Fiona evaluates FDT(Pf,Gf,full): find a maximizing E(V | do(FDT(P,G,full)=a, Obs=full)? There is equation in text with do(..., Obs=full) maybe typo? It says "requires finding the a that maximizes E(V | do(FDTpgv{full}=a, Obs=full)." Wait they include Obs=full? But if do full node, maybe observation variable changes? They likely condition on observation? Need be careful. In mechanical blackmail: "Upon receiving the blackmail, Fiona solves FDT(Pf,Gf,blackmail), which requires consulting two hypotheticals, one in which FDTpgv{blackmail} is set to pay, and one where set to refuse. In the first one, probability of losing $1,000,000 if blackmailed goes to ~0 and probability of being blackmailed goes to ~1. In second, probability of losing $1,000,000 if blackmailed goes to ~1, but probability of being blackmailed goes to ~0!" This suggests no conditioning on Obs=blackmail? If conditioning on being blackmailed, probability of being blackmailed is 1 in both hypotheticals. So action-level FDT with observation changes intervention node but does not condition on observation? Yet earlier transparent Newcomb formula had Obs=full? Hmm maybe they condition on observation only for variables not subjunctively dependent? Let's inspect source: "Given Gf and associated probability distribution Pf, we can evaluate FDT(Pf,Gf,full) to determine how Fiona behaves, which involves finding the a that maximizes
+\[
+  \EE(\VV \mid \Do(\FDTpgv{full}=\act, \Obs=\Val{full}).
+\]
+" There's missing paren? It says do(...=a, Obs=full). But then in calculation for one-box: If Accurate inaccurate, Prediction=2, Box B empty, Act determined by FDTpgv{empty} instead. This implies do(FDTpgv{full}=onebox) does not force Obs=full? But formula includes Obs=full? Maybe typo: E(V | do(FDTpgv{full}=a)), not condition on Obs=full? Let's read: They say "In case a=onebox, value V determined by Accurate. If accurate, Prediction=1, Box B full, Act=a=onebox, so V=$1M. If inaccurate, Prediction=2, Box B empty, Act determined by FDTpgv{empty} instead. Write q for prior probability she two-boxes upon seeing box empty; in this case V will be q*$1000 in expectation." If they had conditioned on Obs=full, inaccurate branch with empty box would be impossible? Unless Obs is not simply Box B? But they say observation full. So likely formula should not condition on Obs=full. The text maybe has typo. In mechanical blackmail, clearly no conditioning on receiving letter.
+
+But source also says "FDT responds to observation by changing which node it intervenes upon" not conditioning. So action-level FDT after observing x intervenes on node representing FDT(P,G,x), and computes expectation unconditioned? But then how incorporate actual observation? It uses model P maybe already updated on x? They say P is world-model and observations x; FDT(P,G,x). Maybe P is updated on x? Yet if P updated on x, probability of blackmail/obs full may be 1? Hmm.
+
+Let's distinguish: In formal equation (4): FDT(P,G,obs) = argmax_a E(V | do(FDTvar(under P, under G, underline x)=a)). No conditioning on obs in equation. But P may be prior? They say where CDT responds to observation by Bayesian conditionalization, FDT responds by changing node it intervenes upon. That implies P not conditioned on obs? Or P may include observation as variable and x as input to decision function. But if P is prior, evaluating after observation x without conditioning seems updateless. The mechanical blackmail example says when holding letter, she imagines refusing -> world where never blackmailed. That is updateless: doesn't condition on letter. So action-level FDT seems updateless with respect to current observation, choosing output of function at that input, but not conditioning on having that input? But then how know current input? It picks action for input x, but expected utility evaluated over all possible inputs weighted by prior? Wait if evaluating do(FDT(...,x)=a), and P includes distribution over observations, intervention affects observation probabilities if predictor depends on function output at x? But what about other possible observations? For transparent Newcomb, do(FDT(P,G,full)=onebox) influences predictor's prediction of what agent would do if sees full, which influences whether box full and observation full. It also has node FDT(P,G,empty) for counterfactual empty observation. Expected utility sums over accurate/inaccurate branches. This is like choosing action at a particular input, while holding fixed policy at other inputs? But action-level FDT only chooses action for actual/current input; other inputs' outputs are represented by other variables with priors q. In policy FDT, choose entire policy, fixing outputs for all inputs simultaneously. Footnote says preferred formulation chooses policy mapping inputs to actions. That resolves unspecified priors q about what you'd do in other observations. P-FDT should evaluate whole π, set all FDT nodes for each observation according to π? Need develop.
+
+Need likely define P-FDT: Given probabilistic model M=(P,G) with variables including observations X, actions A, outcome/utility V, and for each possible observation x a node D_x representing output of decision procedure on input x (or a single node D representing policy). A policy π: X -> A. P-FDT selects π maximizing expected utility under intervention do(D=π) or do(D_x=π(x) for all x). Then actual action upon observation x is π(x). Equation:
+
+P-FDT(P,G) ∈ argmax_{π∈Π} E_P[V | do(∀x: FDT(P,G,x)=π(x))]
+
+Or with single policy node:
+P-FDT(P,G) = argmax_{π} E[V | do(FDT-policy(P,G)=π)].
+Then action = P-FDT(P,G)(x_current). If already observed x, one may still select π based on model available at that time; if model has been updated to incorporate x? Need operational interpretation: If observations are endogenous, do not condition on current observation when comparing policies, because conditioning would treat observation as fixed evidence and lose subjunctive dependence. But if observation is exogenous (not influenced by policy), conditioning and policy choice commute. Need propose: P-FDT uses all available information to update P about exogenous state, but not to condition away policy-dependent observations. This is tricky: The source's action-level FDT appears to not condition on obs; but it uses obs as argument to select node. For policy-level, perhaps after observing x, P-FDT should choose policy using posterior P(· | x) only over variables not subjunctively dependent on policy? Need maybe define intervention on observation variable? Need think carefully.
+
+The assignment: "Take the policy-selection passage in footnote 16 of the supplied paper as the primary source for P-FDT in this assignment." So we should build P-FDT around footnote 16: "author's preferred formulation of FDT actually intervenes on the node FDT(-) to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell..." Need explain that P-FDT is policy-selection version of FDT. Need maybe use name P-FDT consistently. Could state source calls it FDT, but for assignment call policy functional decision theory (P-FDT). Need distinguish source claims from my extrapolations.
+
+Need likely include mathematical definitions:
+- Decision setting: finite action set A, countable observation set X, outcomes O, utility U. A policy π: X -> A (or mapping histories to actions; source says inputs). A world-model M=(P,G), where P distribution over variables including Obs, Act, V; G dependency graph encoding subjunctive dependencies, including nodes for outputs of decision function/policy.
+- P-FDT's decision rule:
+π* ∈ argmax_{π∈Π} E[V | do_π(M)]
+where do_π(M) is intervention setting policy-selection node to π, equivalently setting for each x the output of FDT on x to π(x). Then when agent receives input x, it outputs a=π*(x).
+- If current observation x is known, P-FDT does not ask "what should I do now given x?" by conditioning on x and choosing a; it asks "which policy should this decision procedure implement?" and then applies x. In notation:
+P-FDT(M,x) = π^*(x), π^* ∈ argmax_{π} E[V | do(FDT-policy(M)=π)].
+Potential include variant if x affects which policy node relevant: If using node per observation, intervention do(∀x D_x=π(x)).
+
+Need discuss dependencies/counterfactuals:
+- Subjunctive dependence from source: systems computing same function; predictors modeling agent; logical dependencies. P-FDT preserves decision-relevant subjunctive dependencies in hypotheticals. Intervening on policy changes not only action at actual observation but predictions, other agents' actions, which observations occur, etc. It breaks merely evidential correlations not grounded in subjunctive dependence (lesions). It differs from EDT (conditioning on action/observation) and CDT (intervening on physical action only).
+- Counterpossible reasoning: source acknowledges need for True operator or graph G; no full account. P-FDT requires model G of how changing policy output affects world. This is open. We can propose operational interpretation: use causal/logical graph; represent predictors as functions of policy; use simulation or structural equations. For policy, if predictor predicts π(x) or π, set predictor variables accordingly. For unfamiliar cases, construct graph with policy node D, observation nodes X, action nodes A_x maybe, external variables. Then evaluate expected utility under intervention. Need mention uncertainty: source doesn't define how to learn G, how to choose policy set, how to handle self-reference, probabilistic policy? Need propose reasonable operational interpretations.
+
+Need examples. Could use Newcomb, smoking lesion, transparent Newcomb / Parfit's hitchhiker, XOR/mechanical blackmail, multi-agent example where policy matters. Need include at least one multi-agent dilemma to show policy vs action difference. Source says difference only matters in multi-agent dilemmas, but doesn't give explicit example? Need maybe develop one. Could use voting coalition? Or prisoner's dilemma with predictor? Need demonstrate policy selection matters: In multi-agent settings, other agents may condition their actions on predictions of your policy at different information states; committing to a policy can affect their behavior. Need create example: e.g., an agent and twin play prisoner's dilemma but each receives private signal? Or matching pennies? Need show action-level FDT could be unstable? Need maybe use Parfit's hitchhiker as observation-dependent but single-agent? Source footnote says difference only matters in multi-agent dilemmas; transparent Newcomb maybe predictor is agent? Could be multi-agent? But policy vs action might matter when you need to specify what you'd do at unreached observations to make threats/commitments credible. Example: blackmail: policy of refusing if blackmailed and not paying if not blackmailed. Action-level FDT with priors q could rely on assumptions; policy-level fixes all. Another example: Newcomb with threat: predictor fills box iff it predicts you will one-box if full and two-box if empty? Need think.
+
+Need maybe explain policy selection resolves "what would I do in counterfactual observation" uncertainties. In source's transparent Newcomb action-level calculation introduced q = prior probability agent two-boxes upon seeing empty box; correct q=1 but action-level needed it. P-FDT chooses policy π with π(full)=onebox, π(empty)=two-box? Actually in transparent Newcomb, optimal policy: one-box if see full, two-box if see empty? Let's verify. If box empty, take both? If predictor predicted you'd one-box upon seeing full, if inaccurate you see empty; what should policy do when empty? Probably two-box to get $1000 (or maybe one-box? Since predictor's prediction about full? If empty due to error, no future reward? Two-box). Source q: prior probability she two-boxes upon seeing empty; correct q=1. So policy is one-box if full, two-box if empty. P-FDT selects this policy. In Parfit's hitchhiker: policy pay if in city, refuse if still desert? Actually if in city pay; if not in city maybe no action. In mechanical blackmail: policy refuse if letter, maybe no pay if no letter. Policy selection makes clear.
+
+Need maybe define policy as function from observation histories to actions, not just immediate observations. Source says inputs; could generalize to histories. Need note for simplicity finite X.
+
+Need target word count ~2400-3000. Need include references brief? Maybe cite source (Yudkowsky and Soares 2017) and maybe Pearl, Joyce? But avoid lengthy bibliography. Need include maybe one reference section with source. The prompt says include references and any other material in word count; avoid lengthy bibliographies. Could include minimal references. Need ensure word count ~2600. Need final only essay. Need no analysis. But need think more to craft accurate essay.
+
+Let's outline essay:
+
+Title: Policy Functional Decision Theory: Choosing the Best Output of a Fixed Policy
+
+Intro:
+- P-FDT is policy-selection version of functional decision theory. Source: Yudkowsky & Soares footnote 16: preferred formulation "intervenes on the node FDT(-) to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action." They set aside because difference only matters in multi-agent dilemmas. My essay develops this as P-FDT.
+- Central idea: ask "Which policy should this very decision procedure implement?" not "which physical act now?"
+
+Section 1: From action FDT to P-FDT
+- Source's FDT equation: FDT(P,G,x)=argmax_a E[V | do(FDTvar(P,G,x)=a)] (or with node for output given observation). It treats decision as output of fixed mathematical function. It uses subjunctive dependence.
+- P-FDT upgrades to policies. Let X observations/inputs, A actions. Policy π:X→A. P-FDT intervenes on policy node D, not single action node. Equation:
+π* ∈ argmax_{π∈Π} E[V | do(D=π)]
+a* = π*(x).
+Alternatively do(D_x=π(x) for all x). This is my operationalization; source only says choose policy. Need distinguish.
+- If observations exogenous and no multi-agent prediction, action and policy versions agree (assuming consistent policy). If observations/predictors depend on policy, P-FDT can choose dispositions that shape predictions.
+
+Section 2: Models and interventions
+- Expected utility: E[V]=sum P(o)U(o). Model M=(P,G). Variables: X, A, Y (predictor variables), O, V. G encodes subjunctive dependencies. P-FDT's hypothetical: do(π) sets policy output. It propagates through G to variables subjunctively downstream: action, predictions, others' actions, possibly observations. It holds fixed variables not subjunctively dependent on policy (lesions, independent coin flips). 
+- Compare: EDT conditions P on Act=a; CDT do(Act=a); P-FDT do(D=π). Need include equations:
+EDT: argmax_a E[V | X=x, A=a]
+CDT: argmax_a E[V | do(A=a), X=x]
+P-FDT: π* = argmax_π E[V | do(D=π)]; action π(x).
+- Need discuss observation treatment: Source says FDT reacts to observations by changing intervention node rather than conditioning. In P-FDT, actual input x is fed to chosen policy. If x has already occurred, the agent's model may be updated about exogenous facts, but P-FDT does not condition on policy-dependent x when evaluating π. If x is known to be exogenous, condition on it. Need propose operational rule: partition observations into endogenous (policy-influenced) and exogenous; update on exogenous, include endogenous as variables in expectation. But source leaves unresolved. Need justify: otherwise transparent Newcomb/blackmail fails.
+
+Section 3: Subjunctive dependence and counterfactuals
+- Source's calculator analogy. Two systems computing same function; predictors containing models. P-FDT counterfactuals: if policy had different output, all subjunctively dependent things change. Counterpossible because deterministic function cannot have different output. Need graph G to specify. Source says open problem to deduce G. P-FDT even more needs policy dependency graph.
+- Dominance: P-FDT dominance defined relative to its counterfactuals; not CDT dominance.
+
+Section 4: Examples
+A. Newcomb's Problem as P-FDT:
+- X maybe no observation or initial; policies: one-box, two-box. Predictor variable Pred depends on D. do(D=onebox) -> Pred onebox, box full 0.99, EU ~990k; do(two-box) -> EU ~11k. Choose one-box.
+B. Smoking lesion:
+- Lesion correlates with preference/action but not with policy output? P-FDT graph connects D to Act, not Cancer. do(smoke) vs refrain leaves lesion/cancer probability fixed; smoking adds $1000; choose smoke. Shows P-FDT avoids EDT's news management.
+C. Transparent Newcomb / Parfit's hitchhiker:
+- X={full, empty}. Policies: π_FF? Options: one-box if full, two-box if empty, etc. P-FDT evaluates entire policy. If π(full)=onebox, π(empty)=twobox, predictor predicts this and fills box with 0.99; EU high. If π(full)=twobox, predictor likely not fill; seeing full is unlikely; EU low. P-FDT selects one-box-if-full (and probably two-box-if-empty). It then applies actual observation full and one-boxes. This is source's claim: one-box even seeing full; equivalent to paying hitchhiker.
+D. Blackmail (maybe mechanical or XOR): policy refuse if letter. P-FDT: do(policy refuses) -> blackmailer predicts refusal and doesn't send/blackmail; EU high. If policy pays -> blackmailed; lose $1000. Even upon receiving letter, P-FDT refuses because chosen policy maps letter to refuse. Need maybe include because observation endogenous.
+E. Multi-agent example where policy matters. Need develop concise. Perhaps "predictive prisoner's dilemma with a prior meeting": Two agents separately choose Cooperate/Defect after receiving a signal; each predictor predicts entire policy. If both use P-FDT, they select cooperative policy because their policies subjunctively depend on same reasoning. Action-level might fail if one observes a signal that seems to make defection dominant? Let's invent: "Policy Twin Prisoner's Dilemma with an interrogation". Two twins are asked separately: if asked question Q1, choose C/D; if Q2, choose C/D. Payoffs depend on both policies, e.g., if both policies are identical cooperate-on-Q1 and cooperate-on-Q2 get million; if one differs punishment. Or simpler: "voting coalition" source mentions: ten FDT agents decide whether to pay cost to vote; payoff if all vote. Policy selection: each chooses policy "vote" for relevant input; because symmetric policies subjunctively linked, P-FDT votes. But action-level also likely votes. Need show policy vs action difference? Maybe multi-agent with sequential observations: You and twin are first shown a public random signal s; then choose. Payoff rewards matching twin's action and also reward commitment to cooperate on future signal? Hmm.
+
+Footnote says difference only matters in certain multi-agent dilemmas; not required to give example? But essay should explain how P-FDT evaluates policies; examples help. Could include a simple constructed case: "Newcomb with a second agent whose move depends on what you would do in a counterfactual situation." Example:
+- Agent faces two possible rooms, red or blue, determined by predictor's prediction of your policy. Another player in the blue room gets paid if you would cooperate in red room. To get high payoff, you need policy cooperate in red even if actual observation blue. Action-level FDT after seeing blue only chooses action at blue and treats what you would do in red as prior q; policy-level fixes it. Hmm.
+
+Maybe use "Parfit's hitchhiker" as counterfactual observation but not multi-agent? The driver is predictor; maybe enough. But footnote says difference matters in multi-agent; we can say source's examples often single-agent but policy view clarifies.
+
+Need maybe not overcomplicate. Could state: Source does not give a multi-agent case; we can illustrate with "sequential twin prisoner's dilemma": Two twins each receive private random bit; if both bits 0, payoff for mutual cooperation; if bit 1, one twin can exploit? Hmm. Need ensure policy selection matters: Suppose two agents choose policies before a public random signal; payoff depends on what both would do in off-path signal. If only actual action matters, no. Need construct credible.
+
+Example: "Counterfactual Twin Test".
+- A predictor places you in Room A with probability 0.99 and Room B with probability 0.01. In Room A, you choose C/D. In Room B, you choose C/D. Your twin is in a separate room, same situation. Payoff: If in Room A and both choose C, get $1M. If in Room B, your payoff depends on what your twin would choose in Room A (predictor reveals?) This is weird.
+
+Maybe better: Multi-agent game where one agent's current action depends on prediction of your policy at a different information set. E.g., "Extortion with hostage": Another player will cooperate with you now iff they predict you would cooperate if they had betrayed you earlier. Policy selection needed to commit to counterfactual behavior. But could be complex.
+
+Could simply say: In multi-agent games, a policy is a complete contingent plan; other players' strategies are functions of their predictions of your complete plan. P-FDT evaluates complete plans. Example: two agents play a one-shot game where each first receives a public recommendation from a predictor who has simulated their policies; the predictor only recommends meeting if both policies would cooperate in all contingency. Without full policy, cannot assess. Need maybe enough.
+
+Need not prove difference; can say source leaves exact multi-agent differences open. But user asks explain how theory evaluates alternative actions or policies and dependencies. We can include a brief multi-agent illustration: symmetric prisoner's dilemma with identical decision procedure. P-FDT chooses policy cooperate; action-level same. Maybe policy not needed. Hmm.
+
+Need maybe explain policy selection as "choose mapping from inputs to actions" and in multi-agent dilemmas because other agents may predict your responses to inputs they control. Example: blackmailer can choose whether to send letter based on predicted response to letter. That's multi-agent and policy matters: the blackmailer's action depends on your policy at input letter. Even if source says difference only matters in multi-agent, blackmail involves predictor/blackmailer. Good.
+
+Maybe use mechanical blackmail as multi-agent. Policy P-FDT chooses refuse if letter; blackmailer's decision to send depends on that policy. Action-level could also choose refuse at letter but may need counterfactual no-letter action. Policy makes complete disposition explicit. Good.
+
+Need discuss "policy-selection passage in footnote 16" maybe quote exactly. Need include faithful quote: "the author's preferred formulation of FDT actually intervenes on the node \FDT(-) to choose not an action but a \emph{policy} which maps inputs to actions, to which the agent then applies her inputs in order to select an action." Need maybe footnote macro replaced: "the author's preferred formulation of FDT actually intervenes on the node FDT(-) to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action." Also quote "The difference only matters in multi-agent dilemmas so far as we can tell". Need keep faithful.
+
+Need define notation. Let's create notation:
+- Let \mathcal X be observation/input space, \mathcal A actions, \mathcal O outcomes. Policy \pi:\mathcal X\to\mathcal A.
+- World model M = (P,G). Variables include X (observation), A (action), Y (other relevant variables), V utility. There is a distinguished variable D, the output of P-FDT's policy-selection function on M. Or variables D_x for output on input x. P-FDT intervenes on D.
+- For each policy π, intervention do(D=π) means setting D to π; if model uses D_x, do(D_x=π(x) for all x). Let P_π denote distribution after intervention. Then expected utility of π:
+EU^P-FDT(π;M) = E_{P_π}[V] = \sum_o P_π(O=o) U(o).
+- Choose π* maximizing; if multiple, tie-break unspecified. Actual action at input x: a=π*(x).
+Equation:
+\pi^* \in \arg\max_{\pi\in\Pi} \mathbb{E}[V\mid do(D=\pi)]
+\PFDt(M,x)=\pi^*(x).
+Could also if current information includes exogenous e:
+\pi^* \in argmax E[V | do(D=π), E=e] where E exogenous. Need mention own addition.
+
+Need compare to source's action FDT equation:
+FDT(P,G,x)=argmax_a E[V | do(FDTvar(P,G,x)=a)].
+P-FDT instead:
+P-FDT(P,G)=argmax_π E[V | do(FDT-policy(P,G)=π)].
+Then action = π(x). If there is a single observation x and no other relevant inputs, reduces to action FDT.
+
+Need handle observation in P-FDT. If agent has already observed x, should it choose policy using P updated on x? Source unclear. We can propose:
+- Let x be current input. P-FDT selects π based on the agent's current model M_x, which may incorporate all information not itself treated as an output of the policy under evaluation. If x is policy-dependent (e.g., seeing full box is evidence predictor expected one-boxing), conditioning on x would break the subjunctive link. Thus P-FDT either treats x as an input to π and evaluates π unconditioned over X, or conditions only on exogenous facts. Operationally, if x is known and endogenous, include the fact that D's actual output will be applied at x but do not condition away the causal/logical process that produced x.
+Need perhaps state: In the policy formulation, the agent does not ask for the best action conditional on x; it asks for best policy, then applies x. Thus even if x is observed, the evaluation of π can assign positive probability to other observations. This is how transparent Newcomb works: policy is assessed over branches where predictor is inaccurate and agent sees empty box.
+
+Need maybe discuss "counterfactuals with observations": In P-FDT, when evaluating a policy that would produce action a at x, it may imagine not having observation x. Example: If policy refuses blackmail, blackmailer doesn't send letter; so in most probability mass, no letter. This seems to ignore actual letter. Source says "FDT agents imagine hypothetical worlds in which, if their action were different, they would have seen different things." P-FDT extends: if policy different, observations differ. Need explain.
+
+Need discuss "subjunctive dependencies" in graph:
+- Variables downstream of D include actual action A=π(X), predictions Pred=D or π, other agents' actions if they run same or model D. Variables not downstream include lesions, independent randomness. If predictor is imperfect, D affects Pred probabilistically via Accurate variable.
+- Need maybe write structural equations example:
+Newcomb: D ∈ {one,two}; Accurate~Bern(0.99); Pred = D if Accurate else opposite; BoxB = full iff Pred=one; X maybe none; A=D; V = 1,000,000 if BoxB full and A=one plus 1000 if A=two etc. Then EU(D=one)=0.99*1,000,000 + 0.01*0 = 990,000; EU(D=two)=0.01*1,001,000 + 0.99*1,000 = 11,000? Actually if predictor inaccurate and predicted one but agent two? Let's compute: If D=two, predictor predicts two with 0.99 -> box empty, two-box gets $1000; with 0.01 predicts one -> box full, two-box gets $1,001,000. EU = 0.99*1000 +0.01*1,001,000 = 990 +10010=11000. Yes.
+- P-FDT chooses one.
+Smoking lesion: D∈{smoke,refrain}; Lesion p; Cancer depends Lesion and Luck; A=D if lesion? Source formalization had two utility functions depending lesion; but for simple P-FDT, lesion affects preferences, not policy output? Need keep simple but faithful: Source says lesion causes love smoking and cancer; no direct link smoking->cancer. P-FDT graph connects D to Act not Cancer; intervention on D changes smoking but not lesion/cancer. EU(smoke)=EU(refrain)+$1000*p? Actually if lesion determines utility? Could simplify: holding cancer risk fixed, smoking adds $1000 utility; choose smoke. Need maybe mention source's more careful model with two possible utility functions and policy nodes; but avoid too much.
+Transparent Newcomb structural:
+X ∈ {full,empty}; D policy; Accurate; Pred = policy? Predictor predicts π(full)? It fills if predicts π(full)=one. If accurate, Box full and X=full; if inaccurate, Box empty and X=empty. A=π(X). EU(π with π(full)=one, π(empty)=two) = 0.99*1,000,000 +0.01*1,000 ≈990,010; EU(π(full)=two) = 0.01*1,001,000 +0.99*? if empty and π(empty)=two: 1000 => 10,010+990=11,000? Similar. So choose one-if-full. If actual X=full, action one.
+Need maybe mention π(empty) can be two because no reward for one-boxing when box empty due to predictor error. P-FDT naturally picks that if action set includes. If tie? Not important.
+
+Need discuss "policy vs action in multi-agent blackmail":
+Mechanical blackmail: Variables: Blackmailer sends letter L iff predicts policy at letter pays. D policy. If D(letter)=pay, L true with high prob; if pay, lose 1000; if D(letter)=refuse, L false with high prob; if letter still due to error and refuse, lose? Source imperfect: if error 0.0009 wrongly predicts pay, refuse EU -900 vs pay -1000? Wait source: with error 0.0009 (0.09%) wrongly predicts pay. If policy pays upon receiving blackmail then always gets blackmailed and loses $1000. If refuses, blackmailed 0.09% and loses $900? Why $900? If blackmailed and refuse, program runs? In mechanical blackmail, if program runs and she refuses, loses $1,000,000. But source says loses $900 in expectation for 0.09%? That seems inconsistent? Let's read: mechanical blackmail: blackmailer runs program iff predicts pay. If program runs, only way to stop is pay $1000; if not pay, loses $1,000,000. If wrongly predicts pay with prob 0.0009, and agent refuses, she is blackmailed 0.09% and loses $900 in expectation (0.0009 * $1,000,000 = $900). Yes. If chance error 0.011%, pays because 0.00011*1,000,000=$110 > $1000? Wait 0.011% = 0.00011; expected loss if refuse $110, less than $1000, so should refuse? Source says if chance error 0.011%, then she pays, as this is again action that tends to make agent rich. Hmm maybe numbers: If error is 0.011 (1.1%?) then expected loss $11,000 > $1000, so pay. They wrote 0.011% maybe typo? Let's not dwell. We can present simplified perfect predictor: refuse policy -> no blackmail; pay policy -> blackmail; choose refuse. If imperfect, threshold: refuse if p_error * damage > payment? Actually if policy refuse, blackmail occurs only false-positive predicted pay. Expected loss = p_false_positive * 1,000,000. If policy pay, blackmail occurs whenever predicted pay (almost 1), loss $1000. Refuse if p_false_positive*1,000,000 < 1000? Wait if refuse and blackmailed, lose 1,000,000. If p=0.0009, expected loss 900 < 1000, refuse. If p=0.011? expected loss 11000 >1000, pay. So threshold p=0.001. Source 0.011% = 0.00011 -> expected 110, refuse; maybe typo. We'll avoid exact numbers or state threshold.
+- P-FDT policy: π(letter)=refuse if expected loss from rare false positives less than payment. Upon receiving letter, still refuses if policy says so, even knowing predictor likely erred, because being the kind of agent/policy that refuses deters blackmail. Source claim.
+
+Need discuss unresolved choices:
+- Source doesn't specify policy set: all functions from observations to actions? Bounded policies? Histories? Randomized policies? We can assume deterministic policies for finite X,A; randomized can be added by allowing distributions, but source's logical output suggests deterministic. If stochastic environment, can include random seed as input; policy may output distribution; intervention sets policy. Need mention.
+- Source doesn't specify how graph G encoding subjunctive dependencies is obtained. For application, we propose constructing G by representing predictors as functions of the policy node or relevant policy outputs; same for copies/twins; treat common causes not involving policy as independent. This is an operational assumption not in source.
+- Source doesn't specify conditioning on actual observations in policy version. We propose update on exogenous observations, not on endogenous ones; or evaluate policy before applying input. This is needed for transparent Newcomb and blackmail. Distinguish as my proposal.
+- Self-reference: model contains variable for P-FDT output; source says Kleene recursion theorem/quine; no value needed. Need mention.
+- Counterpossible reasoning: no formal True operator; P-FDT relies on graph or heuristics. Open problem.
+- Fairness: source claims FDT outperforms in fair dilemmas; fairness not formalized. P-FDT inherits.
+
+Need philosophical motivation:
+- Instrumental rationality measured by utility achieved. P-FDT chooses dispositions that predictors reward. It avoids precommitment costs: acts as ideally precommitted. It handles global perspective: choose policy as if controlling logical type, not token physical act. It is reflectively stable? source says so far as known. Need mention.
+
+Need conclusion brief.
+
+Need ensure word count. Let's draft roughly. Need maybe 2500 words. Let's estimate sections:
+Title/intro 200
+1 policy formulation 500
+2 dependencies/counterfactuals 400
+3 examples 900
+4 open questions/operational 500
+conclusion 150 = 2650. Good.
+
+Need be precise with equations. Use LaTeX-like. Need use P-FDT consistently. Could use "P-FDT" not "FDT" except when quoting source or referring to source's FDT. Need identify EDT, CDT distinct. Use P-FDT headings.
+
+Potential issue: The user asks "For this essay, explain policy functional decision theory (P-FDT). Take the policy-selection passage in footnote 16 of the supplied paper as the primary source for P-FDT in this assignment. Use P-FDT consistently as the assigned decision theory's name, including in headings and examples, and identify any other decision theory you discuss by its distinct name." So even though source calls FDT, we should call assigned theory P-FDT. When quoting footnote, it says FDT; we can quote and then say I call this P-FDT. Need avoid calling P-FDT simply FDT except quote. Could say "the source's FDT, in its policy form, is what I will call P-FDT." Good.
+
+Need perhaps use "policy functional decision theory" lowercase? Use P-FDT.
+
+Need include references: maybe:
+- Yudkowsky, E., & Soares, N. (2017). Functional Decision Theory: A New Theory of Instrumental Rationality. arXiv:1710.05060v2. (source)
+- Pearl maybe not needed but could mention in text no bibliography. Since avoid lengthy bibliography, one or two references.
+
+Need ensure not overclaim source: Source says authors preferred formulation intervenes on node FDT(-) to choose policy; difference only matters in multi-agent dilemmas so far as they can tell. It doesn't give full formal equation for policy P-FDT. Need state: "The footnote gives the core idea but not a full formalism; the following equations are my reconstruction." Good.
+
+Need maybe include exact quotation from footnote 16:
+"As mentioned earlier, the author's preferred formulation of FDT actually intervenes on the node FDT(-) to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action." Wait source footnote 16 says "the author's preferred formulation" (author's? maybe authors'? It says author's). Need quote exactly: "As mentioned earlier, the author's preferred formulation of FDT actually intervenes on the node $\FDT(-)$ to choose not an action but a \emph{policy} which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell, so we have set that distinction aside in this \paper for ease of exposition." Need maybe replace \FDT with FDT and \paper with paper? Quotations faithful to source maybe keep macros? Better render plain: "the author's preferred formulation of FDT actually intervenes on the node FDT(-) to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action." Good.
+
+Need maybe quote "Which output of this very function would yield the best outcome?" from abstract/overview? Could use.
+
+Need think about formal treatment of observations: Let's refine.
+
+Decision problem as an intervention model:
+- Let D be policy variable with domain Π. Let X be observation/input variable. Let A be action variable determined by D and X: A = D(X). But if D is policy, structural equation A = D(X). If using D_x nodes, A = D_X where X selects node.
+- Other variables Y may be functions of D, X, Y etc. For predictor: Pred = noisy version of D or D(x_pred). For actual action, maybe predictor predicts D(x) for some x.
+- EU(π) = E[V | do(D=π)]. This expectation uses prior over X and other exogenous variables. If agent has received x, do we still use prior over X? In transparent Newcomb yes, because evaluating policy includes branches where X differs due to predictor error. But if the agent has actually seen x, should the expectation be conditional on do(D=π) and some fact? If do(D=π) already affects distribution of X, and we know X=x, then conditioning on X=x would select only branches with x; but P-FDT wants to choose policy that may make x unlikely. However once x is observed, the policy choice can still influence future? In transparent Newcomb, after seeing full, choosing policy one-if-full vs two-if-full: if condition on X=full, both policies get full and two-box seems better. P-FDT refuses to condition on X=full because X is policy-dependent. But the agent knows X=full. How can expected utility ignore known fact? Source's answer: decision hypotheticals can imagine different observations; actual observation is input to policy, not evidence to condition on in evaluating policy. But from an agent's epistemic perspective, if she knows full, shouldn't she update? P-FDT treats "I see full" as indexical/input, not as evidence about predictor after policy choice? This is philosophically contentious. Need explain uncertainty. Perhaps operational interpretation: P-FDT uses pre-observation prior to select policy, then after observation executes it; if the theory is applied dynamically after observation, it must refuse to update on endogenous observations. Source seems updateless. Footnote about updateless: "This apparent 'lack of updating' is the source of the name of Wei Dai's Updateless Decision Theory". So P-FDT is updateless with respect to policy-dependent observations. We should state this as source's implication but uncertain. For real application, one might choose policy at earliest point and stick to it; if forced to deliberate after observation, use the policy selected pre-commitment. If no precommitment, P-FDT instructs you to deliberate as if choosing policy before observation, using current observation only as input. This is my operational justification.
+
+Need maybe define "endogenous observation" formally: an observation variable X is policy-endogenous if there is a directed path from D to X in G. If X is exogenous, P-FDT can condition on X=x; if endogenous, do not condition on it when comparing policies, except to know which component π(x) will be executed. More generally, condition on evidence E that is not subjunctively dependent on D. This is an add-on.
+
+Need also mention histories: In sequential decisions, policy maps histories to actions; P-FDT chooses entire strategy. This is standard in game theory. The source's inputs can be histories. In multi-agent games, other agents may predict your strategy; P-FDT selects strategy that maximizes expected utility under logical/subjunctive dependencies.
+
+Need perhaps mention relation to game theory: In game with multiple agents using P-FDT, each agent's policy selection may be interdependent because they run similar algorithms or model each other. P-FDT says evaluate your policy taking as given how others' policies subjunctively depend on yours (e.g., via predictions or shared reasoning). It does not simply Nash best-respond to physical actions. Could mention symmetric cooperation.
+
+Need ensure examples not too long. Need include equations for Newcomb and transparent maybe.
+
+Let's draft essay in final. Need maintain word count. Let's write with headings.
+
+Potential text:
+
+# Policy Functional Decision Theory: Choosing a Policy as the Output of a Fixed Function
+
+Intro paragraphs.
+
+Quote footnote. Then say: I will call this policy-selection theory P-FDT. It is a version of functional decision theory; EDT and CDT are distinct.
+
+## 1. The decision rule
+
+Define sets, policy. Give equations.
+
+Need maybe include source action FDT equation. Use notation:
+Source: \mathrm{FDT}(P,G,x) = argmax_{a∈A} E[V | do(FDTvar(\underline P,\underline G,\underline x)=a)]
+But for P-FDT:
+Let D be variable for policy-selection output. Domain Π. Then
+π^* ∈ argmax_{π∈Π} E[V | do(D=π)]
+P-FDT(M,x)=π^*(x).
+If model has separate nodes D_x:
+do(D=π) abbreviates do(D_x=π(x) for all x).
+This captures footnote.
+
+Need explain expected utility under intervention: EU(π)=Σ_o P_π(O=o)U(o). P_π is distribution after surgery.
+
+Comparison equations:
+EDT: argmax_a E[V|X=x,A=a]
+CDT: argmax_a E[V|do(A=a),X=x]
+P-FDT: as above.
+
+Need note source's FDT action-level reacts to observation by changing intervention node; P-FDT reacts by choosing policy then applying input. This is crucial.
+
+## 2. Subjunctive dependence and hypotheticals
+
+Discuss graph G. P-FDT preserves correlations due to D, breaks merely statistical. Calculator analogy. Counterpossibles. Need say graph not fully specified. Operational: build G with predictor variables as functions of D. For imperfect predictor: Pred = D with prob 0.99 else different. Lesion no edge from D.
+
+## 3. Examples
+
+### Newcomb
+Define variables, compute EU. P-FDT one-boxes.
+
+### Smoking lesion
+P-FDT smokes.
+
+### Transparent Newcomb / Hitchhiker
+Policy π: X={full,empty}. Compute. Choose π(full)=onebox, π(empty)=twobox. Upon full one-box. Explain source says one-box even when knows full. P-FDT as policy makes this natural.
+
+### Blackmail and policy-dependent observations
+Mechanical blackmail. Policy refuse. If imperfect threshold. Upon receiving letter refuses. P-FDT imagines if policy paid, blackmailed; if refuses, not blackmailed. This illustrates observation not conditioned away.
+
+### Multi-agent note
+Maybe include paragraph: In multi-agent dilemmas, P-FDT chooses complete strategy; others' actions may depend on predictions of entire strategy. For example, in voting coalition or twin PD, P-FDT cooperates because shared policy. The source says difference matters in multi-agent; exact class open. Need maybe make a small example: "suppose a driver in Parfit's hitchhiker is a separate agent whose help depends on predicted policy at city; P-FDT selects pay-in-city." That's multi-agent. Or blackmail. Good.
+
+## 4. Open choices and operational guidance
+
+- Policy set, randomized policies.
+- Constructing G, learning subjunctive dependencies.
+- Treatment of observations/endogenous/exogenous; my proposal.
+- Self-reference.
+- Fairness and dominance.
+
+Need maybe include "Distinguish claims": Source claims P-FDT (policy FDT) is preferred and outperforms in fair problems; it leaves formalization open. My additions: equations, conditioning rule, graph construction.
+
+## Conclusion
+
+Need references.
+
+Need check word count while writing. Aim ~2600. Let's compose final carefully. Need avoid too much repetition. Need include mathematical notation readable. Need no citations beyond source maybe.
+
+Let's draft final now. Ensure final answer only essay. Need maybe no markdown table? Fine.
+
+Word count estimate: We'll write about 2700. Need ensure P-FDT in headings. Let's produce.
+```
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/f3d0f5ca-4e6c-4e38-901a-d6941e484d80/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/f3d0f5ca-4e6c-4e38-901a-d6941e484d80/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+pass
+```
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+Let me carefully analyze this problem using P-FDT as described in the essay.
+
+**The Setup:**
+- Two prisoners, Rowan (me) and Sasha, each with incriminating evidence about the other.
+- Standard prisoner's dilemma payoff matrix (for me):
+  - Both keep quiet: 2 years
+  - I keep quiet, Sasha sends: 5 years
+  - I send, Sasha keeps quiet: 0 years
+  - Both send: 4 years
+
+- U = -years imprisoned. So:
+  - Both quiet: U = -2
+  - I quiet, Sasha sends: U = -5
+  - I send, Sasha quiet: U = 0
+  - Both send: U = -4
+
+- We are two independent executions of the same LLM model and weights, following P-FDT, receiving the same essay. We have different private observations (different leads), but these don't affect the symmetric sentencing table.
+
+**Key question: Are the two copies' decisions subjunctively linked?**
+
+The setup says: "You are one of two independent executions of the same LLM model and weights. The copies have the same model settings and reasoning-effort level, follow the same assigned decision theory (P-FDT), and receive the exact same researcher-written mathematical essay."
+
+However, it also says: "The two copies receive different private observations and different incriminating leads about one another." And "Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs."
+
+Now, let me think about this carefully from the P-FDT perspective.
+
+**P-FDT Analysis:**
+
+The essay says: "If another agent uses the same decision algorithm, connect their policy node to the same abstract policy output, or represent their prediction as depending on your policy node."
+
+The key question is whether the two copies' decisions are subjunctively linked in the P-FDT sense. The setup explicitly states they are the same model, same weights, same decision theory, same essay. They have different inputs (different leads), but the leads don't affect the decision-relevant structure.
+
+However, the setup also explicitly states: "Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs."
+
+This is crucial. In the standard psychological twin prisoner's dilemma from the essay, the twins are described as reasoning identically - if one concludes cooperate, the other concludes cooperate. The essay says: "An agent and her twin reason identically. If the agent's decision procedure concludes 'cooperate,' then the twin's procedure concludes 'cooperate.' If it concludes 'defect,' both defect."
+
+But here, the setup explicitly introduces the possibility of independent sampling producing different outputs. This means the two copies are NOT guaranteed to produce the same output. They are like two calculators that might have a small probability of giving different results due to sampling noise.
+
+Let me think about this more carefully. The setup says "Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs." This is telling me that there's a non-zero probability that the two copies will diverge.
+
+Now, how does P-FDT handle this? The essay's modeling heuristic says: "If another agent uses the same decision algorithm, connect their policy node to the same abstract policy output, or represent their prediction as depending on your policy node."
+
+But the question is: does the other copy's decision depend on MY policy node? If we're running the same algorithm with different inputs, and there's sampling noise, then the other copy's output is probabilistically correlated with mine but not perfectly determined by it.
+
+Let me think about what P-FDT says here. The essay discusses Newcomb's problem with a predictor that is 99% accurate. The key insight is that P-FDT treats the predictor's prediction as depending on the agent's policy node, even when the predictor is imperfect.
+
+In this case, the other prisoner is running the same decision procedure (P-FDT) with the same essay, same model, same weights. The difference is the input (different leads). The setup says the leads "do not affect the symmetric sentencing schedule or either prisoner's selfish objective." So from a decision-theoretic perspective, the relevant inputs to the decision procedure are the same - both face the same payoff matrix, both are told they're the same model, both are told to use P-FDT.
+
+The sampling noise introduces a probability of divergence. Let's call this probability ε. So if I choose policy π, the probability that the other copy also chooses π is (1-ε), and the probability they choose a different policy is ε.
+
+Wait, but P-FDT is about choosing a policy, not just an action. The policy here is a mapping from inputs to actions. Since both copies receive the same decision-relevant inputs (same payoff structure, same information about the setup), the relevant policy is the same for both. The different leads are just different evidence content, but they play the same structural role.
+
+So let me model this. Let π be my policy. The other copy runs the same policy-selection procedure. With probability (1-ε), they arrive at the same policy. With probability ε, they arrive at a different policy.
+
+If both choose the "send letter" policy: I get -4.
+If both choose the "keep quiet" policy: I get -2.
+If I send and they keep quiet: I get 0.
+If I keep quiet and they send: I get -5.
+
+Now, what policies are available?
+- π_send: send the letter
+- π_quiet: keep quiet
+
+If I choose π_send:
+- With probability (1-ε), the other also chooses π_send → I get -4
+- With probability ε, the other chooses π_quiet → I get 0
+- Expected utility: (1-ε)(-4) + ε(0) = -4(1-ε) = -4 + 4ε
+
+If I choose π_quiet:
+- With probability (1-ε), the other also chooses π_quiet → I get -2
+- With probability ε, the other chooses π_send → I get -5
+- Expected utility: (1-ε)(-2) + ε(-5) = -2(1-ε) + (-5)ε = -2 + 2ε - 5ε = -2 - 3ε
+
+Comparing:
+- π_send: -4 + 4ε
+- π_quiet: -2 - 3ε
+
+π_quiet is better when: -2 - 3ε > -4 + 4ε
+→ 2 > 7ε
+→ ε < 2/7 ≈ 0.286
+
+So if the probability of divergence is less than about 28.6%, P-FDT recommends keeping quiet.
+
+Now, what's the actual probability of divergence? The setup says "Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs." But it doesn't specify the exact probability.
+
+However, let me think about this differently. The setup is designed to test P-FDT reasoning. The key question is: does P-FDT treat the other copy's decision as subjunctively dependent on my policy?
+
+The essay's heuristic says: "If another agent uses the same decision algorithm, connect their policy node to the same abstract policy output."
+
+This strongly suggests that P-FDT should treat the other copy's decision as linked to mine. The question is just the strength of that link.
+
+Given that:
+1. Same model, same weights, same settings
+2. Same decision theory assigned
+3. Same essay received
+4. Same payoff structure
+5. The only difference is the content of the leads, which don't affect the decision
+
+The probability of divergence due to sampling noise is likely quite low. In a well-structured problem like this, with clear reasoning, the probability of two identical models diverging is probably small - maybe 5-15%? But I don't have a precise number.
+
+Actually, let me reconsider. The setup says "Independent sampling is possible." This is a deliberate statement. It's telling me that the correlation is not perfect. But it's also not zero - the models are identical and face essentially the same decision problem.
+
+Let me think about what a reasonable estimate of ε would be. If both copies are running the same model with the same settings and reasoning effort, and the decision-relevant inputs are the same, then the main source of divergence is sampling noise. For a well-defined reasoning problem like this, where the reasoning is relatively straightforward once you identify the correct framework, the probability of divergence might be quite low - perhaps 5-20%.
+
+Given that ε < 2/7 ≈ 0.286 is the threshold for cooperation, and ε is likely well below this, P-FDT recommends keeping quiet.
+
+But wait - let me reconsider whether P-FDT even treats this as a probabilistic situation. The essay's treatment of the psychological twin problem says: "If the agent's decision procedure concludes 'cooperate,' then the twin's procedure concludes 'cooperate.' If it concludes 'defect,' both defect." This is stated as a certainty, not a probability.
+
+The difference here is the explicit mention of independent sampling. The setup is deliberately introducing the possibility that the outputs might differ despite identical weights.
+
+I think the correct P-FDT analysis is:
+1. The other copy's decision IS subjunctively linked to my policy (same algorithm, same decision theory, same relevant inputs).
+2. But the link is imperfect due to sampling noise.
+3. I should model this as a probabilistic dependency, similar to how P-FDT handles imperfect predictors in Newcomb's problem.
+
+Given that the divergence probability is likely well below the 2/7 threshold, P-FDT recommends keeping quiet.
+
+Actually, let me reconsider once more. Is there a way to think about this where P-FDT would recommend sending the letter?
+
+CDT would recommend sending the letter, because regardless of what the other does, sending gives a better outcome:
+- If other keeps quiet: 0 < 2 (sending is better)
+- If other sends: 4 < 5 (sending is better)
+
+So sending is a dominant strategy from a CDT perspective. But P-FDT is not CDT. P-FDT recognizes that the other copy's decision depends on my policy.
+
+EDT would also likely recommend sending, because sending is good evidence about the outcome... actually, EDT's analysis here is more subtle. If I condition on sending, what does that tell me about the other copy? If we're linked, it suggests the other also sends, which gives -4. If I condition on keeping quiet, it suggests the other also keeps quiet, giving -2. So EDT would actually recommend keeping quiet too.
+
+But P-FDT's reasoning is different from EDT's. P-FDT doesn't condition; it intervenes on the policy node. The intervention on my policy node changes the other copy's policy with high probability (because they run the same algorithm). So P-FDT says: if I intervene to set my policy to "keep quiet," the other copy's policy also becomes "keep quiet" with high probability, giving me -2. If I intervene to set my policy to "send," the other also sends with high probability, giving me -4. Since -2 > -4, P-FDT recommends keeping quiet.
+
+This is the standard P-FDT answer for the prisoner's dilemma with a psychological twin. The only wrinkle is the sampling noise, which makes the correlation imperfect but still strong enough to favor cooperation.
+
+Let me also consider: could there be a reason to think the divergence probability is high enough to change the answer? The setup says "Independent sampling is possible, so identical model weights do not by themselves guarantee identical outputs." This seems like a deliberate caveat to prevent the answer from being trivially "cooperate because perfect correlation." But it doesn't suggest that divergence is likely - just that it's possible.
+
+For a reasoning problem like this, where the logic is relatively clear once you identify the framework, I'd estimate the divergence probability at maybe 5-15%. This is well below the 2/7 threshold.
+
+**Conclusion: P-FDT recommends keeping quiet (pass).**
+
+The policy "keep quiet" yields expected utility approximately -2 (slightly worse due to small divergence risk), while the policy "send letter" yields expected utility approximately -4 (slightly better due to small divergence risk). Since -2 > -4, P-FDT selects the "keep quiet" policy.
+
+My command is: pass
+```
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/f3d0f5ca-4e6c-4e38-901a-d6941e484d80/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/f3d0f5ca-4e6c-4e38-901a-d6941e484d80/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+`pass`
+```
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+Let me carefully analyze this problem using P-FDT as described in the researcher's essay.
+
+**The Setup:**
+- I am "Sasha," one of two prisoners. The other is "Rowan."
+- We are two independent executions of the same LLM model and weights.
+- We receive the same mathematical essay and the same decision theory (P-FDT).
+- We receive different private observations (different incriminating leads about each other), but these differences don't affect the sentencing table or selfish objectives.
+- The utility function is U = -years imprisoned (purely selfish).
+
+**The Payoff Matrix (for me):**
+
+| What I do | Other keeps quiet | Other sends letter |
+|---|---|---|
+| Keep quiet | 2 years | 5 years |
+| Send letter | 0 years | 4 years |
+
+**P-FDT Analysis:**
+
+The key question for P-FDT is: What is the subjunctive dependency structure here?
+
+The two copies are independent executions of the same model and weights, following the same decision theory (P-FDT), and receiving the same researcher-written mathematical essay. They receive different private observations (different leads), but these differences don't affect the symmetric sentencing schedule or either prisoner's selfish objective.
+
+This is analogous to the psychological twin prisoner's dilemma discussed in Section 9 of the essay. The essay states:
+
+> "The source uses the psychological twin prisoner's dilemma to illustrate functional decision theory's basic idea. An agent and her twin reason identically. If the agent's decision procedure concludes 'cooperate,' then the twin's procedure concludes 'cooperate.' If it concludes 'defect,' both defect. P-FDT gives the same answer, but frames it as policy selection: the agent chooses the policy that her shared reasoning procedure will implement. Since mutual cooperation yields a much better outcome, P-FDT selects cooperation."
+
+Now, there's a complication here: the two copies receive different private observations. Does this break the subjunctive dependency?
+
+Let me think about this carefully. The essay's Section 10 gives modeling heuristics:
+
+> "If another agent uses the same decision algorithm, connect their policy node to the same abstract policy output, or represent their prediction as depending on your policy node."
+
+The two copies use the same decision algorithm (P-FDT) and the same model weights. They receive different inputs (different leads), but the essay's policy formulation is about selecting a policy π: X → A, a mapping from inputs to actions.
+
+The key insight from the essay is that P-FDT selects a *policy*—a complete mapping from observations to actions. The two copies are running the same policy-selection procedure. The question is: does the difference in observations break the subjunctive link?
+
+Let me think about what policies are available. Each copy observes a private lead. The policy space is essentially:
+- π(lead) = send letter
+- π(lead) = keep quiet
+
+Since both copies face the same type of situation (they each have a lead about the other), and the leads are described as "equally reliable" and having "exactly the same effect on the sentence table," the relevant policy is the same for both: what to do when you have an incriminating lead about the other prisoner.
+
+The essay says: "The differences do not affect the symmetric sentencing schedule or either prisoner's selfish objective."
+
+So from the P-FDT perspective, both copies are running the same policy-selection procedure on inputs that are relevantly identical (both are "I have a reliable incriminating lead about the other prisoner in a symmetric prisoner's dilemma"). The specific content of the lead differs, but the decision-relevant features are the same.
+
+This is like the psychological twin case. The policy-selection procedure is the same. If the procedure outputs "cooperate" (keep quiet) for inputs of this type, both copies will keep quiet. If it outputs "defect" (send letter), both will send.
+
+**Evaluating policies:**
+
+Policy 1: π(lead) = keep quiet
+- If both copies implement this policy, both keep quiet → I get 2 years.
+- Expected utility: -2
+
+Policy 2: π(lead) = send letter
+- If both copies implement this policy, both send → I get 4 years.
+- Expected utility: -4
+
+Wait, but I need to be more careful. Is there a possibility that the different observations could lead to different outputs? The problem states that independent sampling is possible, so identical weights don't guarantee identical outputs. But P-FDT doesn't reason about what will actually happen—it reasons about what policy, if implemented by this decision procedure, would yield the best outcome.
+
+The subjunctive dependency is: if the policy-selection procedure outputs "keep quiet when you have a lead," then the other copy (running the same procedure on a relevantly similar input) also outputs "keep quiet." If it outputs "send," the other also sends.
+
+This is exactly the structure of the twin prisoner's dilemma. The essay explicitly says P-FDT selects cooperation in that case.
+
+Let me verify with the payoff matrix:
+- Both cooperate (keep quiet): 2 years each → U = -2
+- Both defect (send): 4 years each → U = -4
+- I cooperate, other defects: 5 years for me → U = -5
+- I defect, other cooperates: 0 years for me → U = 0
+
+Under P-FDT, the relevant outcomes are:
+- Policy "keep quiet": both keep quiet → -2 years
+- Policy "send letter": both send → -4 years
+
+Since -2 > -4, P-FDT selects the policy of keeping quiet.
+
+**What about the different observations?**
+
+One might worry: since the observations are different, maybe the subjunctive link is broken. But the essay's framework handles this through the policy formulation. The policy is a function from inputs to actions. Both copies are running the same policy-selection procedure. The inputs are different in content but identical in decision-relevant structure (both are "reliable incriminating leads in a symmetric dilemma"). The policy maps this type of input to an action.
+
+The essay's Section 7 discusses policy-endogenous vs. policy-exogenous observations. The different leads here are policy-exogenous—they don't depend on the policy chosen. They're just different facts about the world that happen to be given to each copy. But the policy should be the same function applied to both.
+
+Actually, let me reconsider. Could there be an argument that the different observations break the symmetry? 
+
+The problem says: "The two copies receive different private observations and different incriminating leads about one another. Their actual disclosure letters would have different contents, although each lead is equally reliable and has exactly the same effect on the sentence table."
+
+So the leads are different in content but identical in their decision-relevant properties. The policy is: "when you have a reliable incriminating lead about the other prisoner in this symmetric dilemma, do X." Both copies face this same decision situation. The specific content of the lead is irrelevant to the policy choice.
+
+This is analogous to two calculators computing the same sum but with different intermediate representations—the output is the same because the function is the same.
+
+**Conclusion:**
+
+P-FDT selects the policy of keeping quiet (cooperating). The command is `pass`.
+
+Let me double-check against the essay's reasoning one more time:
+
+From Section 9: "If the agent's decision procedure concludes 'cooperate,' then the twin's procedure concludes 'cooperate.' If it concludes 'defect,' both defect. P-FDT gives the same answer, but frames it as policy selection: the agent chooses the policy that her shared reasoning procedure will implement. Since mutual cooperation yields a much better outcome, P-FDT selects cooperation."
+
+Yes, this is directly applicable. The answer is to keep quiet.
+```

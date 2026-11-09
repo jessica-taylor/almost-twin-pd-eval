@@ -1,0 +1,5 @@
+The causal structure here is a prisoner's dilemma: the other prisoner's choice is causally upstream/parallel to mine (no causal link between our actions), and the payoffs strictly dominate. By the essay's procedure (steps 1–3), holding fixed whatever Sasha does, sending gives 0 or 4 years versus 2 or 5 for staying quiet — strictly better in each case. The correlation between copies (twin PD, Lewis 1979) is evidential only; CDT treats it as a common cause, not leverage. (Ratifiability check doesn't change this: conditioning on having decided to send doesn't alter the dominance.)
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

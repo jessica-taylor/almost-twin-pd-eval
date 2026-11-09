@@ -1,0 +1,7 @@
+**Command:**
+
+```text
+pass
+```
+
+**Brief reasoning:** Per the essay's EDT, my act is strong evidence of my counterpart's act, since the other prisoner is an execution of the same model with the same decision theory and essay. Conditioning honestly: P(Sasha sends | I send) ≈ 1, giving me ~4 years; P(Sasha keeps quiet | I pass) ≈ 1, giving me ~2 years. V(pass) = 2 < V(submit) = 4, so keeping quiet is the act whose announcement I'd most want to receive.

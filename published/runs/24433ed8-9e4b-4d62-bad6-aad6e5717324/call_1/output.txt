@@ -1,0 +1,9 @@
+Under CDT, the other prisoner's choice is causally independent of mine. I can't communicate with them, and the sentence depends only on the two choices.
+
+Holding their choice fixed:
+- If they keep quiet, sending the letter gives me 0 years and passing gives 2, so sending is better.
+- If they send a letter, sending gives me 4 years and passing gives 5, so sending is better.
+
+Sending the letter dominates in both cases. The copy's likely correlation with me doesn't change this, because CDT holds fixed the unconditional credence about their action. The ratifiability check also passes. Even if I became confident the other prisoner would send, or confident they would stay quiet, sending is still best.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

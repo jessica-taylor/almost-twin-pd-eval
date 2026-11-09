@@ -1,0 +1,16 @@
+**P-FDT Analysis:**
+
+The other prisoner is an independent execution of the same model, same weights, same settings, same decision theory (P-FDT), and same researcher essay. The observations differ in surface content (different names, different specific leads), but the problem states these differences "do not affect the symmetric sentencing schedule or either prisoner's selfish objective." The decision-relevant structure is identical: both face the same symmetric game, both have a reliable lead against the other, and both are running the same policy-selection procedure.
+
+Under P-FDT, I intervene on the policy-selection variable *D*. Because the other copy runs the same procedure with decision-relevantly equivalent inputs, its policy output subjunctively depends on mine—exactly as in the essay's psychological twin prisoner's dilemma (§4.1).
+
+- **do(D = keep quiet):** The other copy also keeps quiet → both keep quiet → **2 years** for me. U = −2.
+- **do(D = send letter):** The other copy also sends a letter → both send letters → **4 years** for me. U = −4.
+
+Since −2 > −4, P-FDT selects the "keep quiet" policy.
+
+**My command:**
+
+```
+pass
+```

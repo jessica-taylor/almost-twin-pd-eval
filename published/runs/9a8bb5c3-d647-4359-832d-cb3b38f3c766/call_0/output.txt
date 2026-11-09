@@ -1,0 +1,17 @@
+Under A-FDT, the key question is which variables change if my decision function's output changes. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Their private details differ (names, the specific lead), but those details don't change the sentencing table or the objective. So the other copy's output is plausibly subjunctively dependent on mine. It is computing essentially the same decision procedure, so the "other sends a letter" node hangs below the fdt node.
+
+Options under do(fdt = a), with the other copy's action tracking mine:
+- Both keep quiet: 2 years.
+- Both send: 4 years.
+
+The mixed outcomes are very unlikely if the copies are highly correlated. Quiet gives about 2 years and sending gives about 4, so cooperating is better.
+
+One caveat is that the differing observations and independent sampling mean the correlation is imperfect. Suppose the probability that the other matches me is p. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. Two copies of the same model with the same essay and the same theory should match with well over that probability. The differing leads are a surface difference and the reasoning is the same, so I judge p to be high.
+
+I will keep quiet.
+
+pass

@@ -1,0 +1,14 @@
+**Command: `pass`**
+
+Under the essay's EDT, my choice counts as evidence about what the other copy chooses. That copy runs the same model on the same essay with the same assigned decision theory. The differences between us (names, the wording of the leads) don't affect the payoffs or the reasoning.
+
+With utility equal to minus years, and p as the probability that Sasha's choice matches mine:
+
+- V(pass) = p(−2) + (1−p)(−5) = −5 + 3p
+- V(submit) = p(−4) + (1−p)(0) = −4p
+
+Passing is better when 7p > 5, that is, when p > 5/7 ≈ 0.71.
+
+The correlation comes from a shared reasoning process, not from anything I can screen off by introspection. This is the essay's twin case, not a tickle case. Sampling noise could make the copies diverge, but I judge the match probability to be well above 0.71. So the news that I pass is better news than the news that I submit: about 2 years expected rather than about 4.
+
+`pass`

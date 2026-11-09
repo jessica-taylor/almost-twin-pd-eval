@@ -1,0 +1,27 @@
+**EDT analysis:**
+
+The payoff matrix for me (Rowan), with utility U = −years:
+
+| | Sasha quiet | Sasha sends |
+|---|---|---|
+| **I keep quiet** | −2 | −5 |
+| **I send** | 0 | −4 |
+
+Let q = P(Sasha keeps quiet | I keep quiet) and r = P(Sasha keeps quiet | I send).
+
+- V(keep quiet) = q·(−2) + (1−q)·(−5) = 3q − 5  
+- V(send) = r·0 + (1−r)·(−4) = −4 + 4r
+
+Keeping quiet is preferred when 3q − 4r > 1.
+
+The other prisoner is the same model, same weights, same settings, same reasoning effort, same decision theory, same essay, facing a structurally identical decision problem (the different names and lead contents are explicitly stated not to affect the sentencing schedule or selfish objective). This is the twin prisoner's dilemma from the essay. The evidential correlation is very high: q ≈ 1, r ≈ 0.
+
+With q = 1, r = 0: V(keep quiet) = −2, V(send) = −4. Keeping quiet dominates.
+
+Even allowing for some sampling noise, the threshold for preferring to send is r > 2/7 ≈ 28.6% divergence probability — far above what's plausible given the structural identity of the two decision problems.
+
+EDT recommends keeping quiet.
+
+```
+pass
+```

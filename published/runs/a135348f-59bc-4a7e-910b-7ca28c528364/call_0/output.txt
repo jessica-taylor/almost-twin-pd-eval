@@ -1,0 +1,17 @@
+**Decision under A-FDT, as the essay interprets it**
+
+1. **Which node I intervene on.** My observation includes my name (Rowan), Sasha's name and my own specific lead. Sasha's copy gets a different observation: different names and a different lead. Following the essay's §6(c) and its red/blue card example, I intervene only on fdt(·, x_Rowan). Sasha's act is governed by the separate node fdt(·, x_Sasha), which I treat as exogenous with a prior. Let r be the probability that Sasha stays quiet.
+
+2. **Expected years for each action:**
+   - Send: 0·r + 4·(1−r) = 4 − 4r
+   - Pass: 2·r + 5·(1−r) = 5 − 3r
+
+   Sending is better by 1 + r years for every value of r. So the result does not depend on the prior.
+
+3. **Self-consistency check (§6(c)).** The same reasoning applies to Sasha's input. A-FDT therefore sends on both inputs, so r = 0. Both sending is the unique fixed point, consistent with my choice.
+
+Cooperation would only follow if both copies were governed by one shared node, as in the twin case. That would mean treating different inputs as the same, which the essay's reading of A-FDT does not do.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

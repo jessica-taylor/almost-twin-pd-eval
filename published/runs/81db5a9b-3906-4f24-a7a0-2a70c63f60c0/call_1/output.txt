@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, I intervene on the output of the decision function, not on my own act. The other prisoner is a second run of the same model, with the same weights, the same essay, and the same reasoning. Their private details (names, the text of their lead) differ, but those don't change the payoff table or the objective. So their output should strongly track mine.
+
+Let r be the probability that the other copy's output matches mine, and c the chance that an independent other player stays quiet. Then:
+
+- E[years | quiet] = 2r + (1−r)(2c + 5(1−c))
+- E[years | letter] = 4r + (1−r)(4(1−c))
+
+The letter costs more years than staying quiet exactly when 2r > (1−r)(1+c). Even if c = 1, the worst case for me, that only requires r > 0.5. Two copies of the same model reasoning from the same essay should clear that threshold easily.
+
+When I imagine the function outputting "quiet," the copy's output changes with it and we both serve 2 years. When I imagine it outputting "letter," we both serve about 4 years.

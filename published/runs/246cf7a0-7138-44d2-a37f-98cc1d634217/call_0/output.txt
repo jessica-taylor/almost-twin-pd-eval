@@ -1,0 +1,19 @@
+**Command: `pass`**
+
+Under the essay's EDT, the key question is whether my choice is evidence about the other prisoner's choice.
+
+**Correlation.** Sasha's decision is made by the same model, with the same weights, the same assigned theory and the same essay. Only the names and the wording of the leads differ, and they don't change the payoff structure. Per §5.2 and §6.1, conditioning on my own evidence doesn't break this link, because the common cause is the shared reasoning procedure, not some feeling I can introspect away. So my decision remains strong evidence about Sasha's. Independent sampling weakens the link somewhat, but the deliberation here is short and symmetric. I estimate the probability q that Sasha matches my choice at roughly 0.9.
+
+**News values** (U = −years):
+- V(pass) = q(−2) + (1−q)(−5) = 3q − 5
+- V(submit) = q(−4) + (1−q)(0) = −4q
+
+Passing is better when 3q − 5 > −4q, which means q > 5/7 ≈ 0.714, the same threshold as the essay's twin dilemma. At q ≈ 0.9:
+- V(pass) ≈ −2.3 years
+- V(submit) ≈ −3.6 years
+
+**Ratifiability.** Once I take my decision to pass as given, that is evidence the other copy also passes. At that q, passing still has the higher news value, so the choice holds up.
+
+```text
+pass
+```

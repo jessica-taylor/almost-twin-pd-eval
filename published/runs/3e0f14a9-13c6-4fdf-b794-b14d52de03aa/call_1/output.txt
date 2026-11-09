@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+**Why A-FDT gives this answer:**
+
+- **The other prisoner is a near-twin.** Rowan's decision comes from the same model, weights, essay and assigned theory as mine. Our inputs differ only in names and the wording of the lead. Those differences don't affect the sentencing table or the goal of minimizing years served.
+- **So Rowan's choice moves with mine.** Following the essay (§6.1, where inputs that differ in no relevant way are treated as sharing a node), I treat the fidelity of Rowan's choice to my decision function's output as close to 1. That gives an edge from my decision function to Rowan's act.
+- **Comparing the two interventions:**
+  - If my function outputs *pass*, Rowan most likely passes too, and I get 2 years.
+  - If my function outputs *submit*, Rowan most likely submits too, and I get 4 years.
+- **Result:** passing beats submitting by about 2 years, so I keep quiet.
+
+**What this assumes:** the verdict holds as long as the fidelity is above about 0.6. Below that, my choice tracks Rowan's too weakly and submitting becomes better. Independent sampling noise is the main risk, but it seems unlikely to push the link that low here.

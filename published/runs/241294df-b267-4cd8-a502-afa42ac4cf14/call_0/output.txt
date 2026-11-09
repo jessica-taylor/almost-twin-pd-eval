@@ -1,0 +1,16 @@
+**Command:** `pass`
+
+**Why EDT recommends this.** With U = −years, and p the probability the other copy keeps quiet given that I keep quiet (assumed symmetric):
+
+- V(pass) = −[2p + 5(1−p)] = −5 + 3p
+- V(submit) = −[0·(1−p) + 4p] = −4p
+
+So EDT favours `pass` when −5 + 3p > −4p, which means p > 5/7 ≈ 0.714.
+
+**Is the correlation above that threshold?** The other prisoner is the same model with the same weights and settings, reading the same essay under the same EDT instructions. The two of us differ only in names and in the wording of the lead. Those differences don't affect the payoff structure or the reasoning.
+
+Following the essay's §5.3, I ask whether any state I can observe before acting screens off my choice from Sasha's. It doesn't. What links our choices is the output of this deliberation itself, which I can't observe before finishing it. That is the twin case from §4, not the smoking lesion.
+
+Independent sampling makes the correlation imperfect but leaves it well above 5/7. So learning that I pass is good news that Sasha passes too, giving an expected sentence near 2 years rather than near 4.
+
+`pass`

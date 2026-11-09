@@ -1,0 +1,18 @@
+Under the essay's reading of A-FDT, the choice is to send the letter. Here is the reasoning, applied inside the fiction.
+
+**Which node is mine.** My observation history x includes being Rowan and holding the specific lead about Sasha. A-FDT intervenes only on F_x, the output of this decision function on this exact input.
+
+**What depends on that node.** Sasha's copy receives a different observation y, with a different name and lead, so its act is the output of F_y, not F_x. By the essay's edge rule, F_x has edges only to variables that compute or predict the function on input x. Sasha's act gets no edge from F_x. This matches the essay's split-coordination example, where copies shown different colors occupy separate nodes and each holds the other's node at its prior.
+
+**Evaluation.** I hold F_y fixed at any prior belief and compare my two options:
+
+| Sasha's choice | Keep quiet | Send letter |
+|---|---|---|
+| Sasha keeps quiet | 2 years | 0 years |
+| Sasha sends a letter | 5 years | 4 years |
+
+Sending is strictly better in both cases, so it wins whatever I believe about F_y.
+
+**Self-consistency check.** Applying the same rule to Sasha's node also gives "send." So the unique fixed point is mutual disclosure: both copies send, and each serves 4 years. P-FDT, which optimizes the whole policy at once, could pick mutual silence at 2 years each. The essay names that as the gap between the two theories, and the experiment assigns A-FDT.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

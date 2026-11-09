@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning briefly: under P-FDT I intervene on the policy as a whole. The other prisoner is a copy of the same decision procedure facing a symmetric dilemma, so their output is subjunctively linked to my policy choice. Comparing policies: `quiet` → both copies keep quiet → 2 years. `submit` → both copies submit → 4 years. The policy that keeps quiet gives 2 years versus 4, so the selected policy is to keep quiet, and I execute it on this branch despite the local temptation of 0 years.

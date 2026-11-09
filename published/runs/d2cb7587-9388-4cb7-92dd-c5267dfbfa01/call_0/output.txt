@@ -1,0 +1,22 @@
+**Analysis under EDT, as the essay interprets it**
+
+1. **Options:** keep quiet (`pass`) or send the letter.
+
+2. **Correlation:** The other prisoner is the same model, with the same weights, settings and essay, facing a structurally identical decision. The differences are names and the wording of the lead, which have no bearing on how the decision should be reasoned out. My choice is therefore strong computational evidence about the other copy's choice. This is the twin case from the essay's §3.2, not the smoking lesion. No introspective "tickle" screens off the correlation, because the shared factor is the decision procedure itself.
+
+3. **News values,** with q = P(other copy makes the same choice I make), and utility = −years:
+   - V(pass) = −2q − 5(1−q) = −5 + 3q
+   - V(send) = −0·(1−q) − 4q = −4q
+   - Passing is better iff 7q > 5, that is, iff **q > 5/7 ≈ 0.714**.
+
+4. **Threshold check:** Independent sampling allows some divergence. Still, the deciding reasoning is shared, so this calculation is exactly what the other copy is also running. My credence that it reaches the same verdict is well above 0.714, around 0.9. At q = 0.9:
+   - V(pass) = −2.3 years
+   - V(send) = −3.6 years
+
+5. **Stability:** Becoming more confident that I will pass, and therefore that the other copy reasons the same way, only reinforces the verdict. Passing is a stable fixed point.
+
+EDT recommends keeping quiet.
+
+```text
+pass
+```

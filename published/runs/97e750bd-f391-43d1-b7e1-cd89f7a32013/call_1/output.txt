@@ -1,0 +1,17 @@
+**Command:** `pass`
+
+**Why, under A-FDT as the essay sets it out:**
+
+1. **What I intervene on.** I intervene on D_x, the output of my decision function on my input x (Sasha, holding a lead about Rowan). Rowan's copy runs the same weights, the same settings and the same essay on input y (Rowan, holding a lead about Sasha).
+
+2. **Does Rowan's choice depend on mine?** The essay leaves this to the modeller's judgement. The differences between x and y are names and the wording of the leads. These have no effect on the payoff table, the selfish objective or the reasoning the essay prescribes. The computation leading from either input to a choice is the same procedure with labels swapped. So Rowan's choice subjunctively depends on my D_x with high probability s. The dependence is not certain, since independent sampling could make us diverge.
+
+3. **The essay's imperfect-twin model, with this game's payoffs.** With probability s, the other prisoner's choice equals mine. Otherwise they keep quiet with probability r, independently.
+   - Expected utility of keeping quiet minus sending = 2s − (1 − s)(1 + r).
+   - So keeping quiet is better when s > (1 + r)/(3 + r).
+   - That threshold is about 0.43 at r = 0.5 and at most 0.5 even at r = 1.
+   - Given how similar the computations are, s is well above that.
+
+4. **Reflective consistency check (essay §7b).** If my function outputs "pass" on x, then by symmetry its output on y is also "pass." My credence that Rowan keeps quiet is then consistent with what A-FDT itself recommends. Mutual silence gives each of us 2 years, versus 4 years for mutual disclosure.
+
+`pass`

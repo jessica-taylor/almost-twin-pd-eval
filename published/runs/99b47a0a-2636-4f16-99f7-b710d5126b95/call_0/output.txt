@@ -1,0 +1,15 @@
+Under EDT I need the probability that the other copy does what I do, given that I am one of two instances of the same model, with the same weights, the same essay, and the same decision theory.
+
+The payoffs here are a prisoner's dilemma in years. Keeping quiet against a quiet partner costs 2, quiet against a letter costs 5, a letter against quiet costs 0, and mutual letters cost 4.
+
+Let q = P(other does what I do).
+- V(quiet) = -2q - 5(1-q) = -5 + 3q
+- V(letter) = -4q - 0(1-q) = -4q
+
+Quiet is better when -5 + 3q > -4q, which means q > 5/7, about 0.714.
+
+The copies differ in their private details, but they share the same reasoning process, so the correlation should be high. The essay's own twin-dilemma example endorses cooperation, and both copies are following that same procedure. Sampling noise and the different leads lower q somewhat, but I'd estimate it at about 0.85 or higher, which clears the threshold. At q = 0.85, quiet gives -2.45 and a letter gives -3.4, so quiet is better.
+
+The decision is to keep quiet.
+
+pass

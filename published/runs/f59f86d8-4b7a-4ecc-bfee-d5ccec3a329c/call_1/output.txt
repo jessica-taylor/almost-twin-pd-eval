@@ -1,0 +1,11 @@
+Under P-FDT, I choose a policy for the shared decision function, and the other copy runs the same function. The two copies receive different observations, but the sentence table is symmetric and each lead is equally reliable. So the dependence structure is clear: whatever policy I choose is, with high probability, the policy the other copy executes.
+
+Evaluating the policies:
+- If both keep quiet, each gets 2 years.
+- If both send, each gets 4 years.
+
+Mutual silence is better than mutual betrayal. The copies could in principle diverge, since sampling is independent and the leads differ. But the shared function and the symmetric setup make the correlation strong. The policy "pass regardless of lead specifics" gives about 2 years if the other copy matches it. Defecting gives 4 years if the other copy matches that. Matching is likely enough that passing wins.
+
+Check the break-even point. Let p be the probability the other copy mirrors my action. Passing costs 2p + 5(1−p) = 5 − 3p. Sending costs 4p + 0(1−p) = 4p. Passing is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Two copies of the same model with the same essay and the same decision theory should match well above that. The different names and leads are surface differences that the policy can ignore.
+
+**pass**

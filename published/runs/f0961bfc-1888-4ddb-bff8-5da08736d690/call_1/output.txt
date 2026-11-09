@@ -1,0 +1,5 @@
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+Reasoning (CDT, per the essay): my command cannot causally influence Rowan's choice — there is no communication channel or causal path between us, so under do(submit) or do(pass), Rowan's action is held fixed. Comparing outcomes: submit gives 0 years if Rowan stays quiet vs. 2 for pass, and 4 years if Rowan sends vs. 5 for pass. Submit strictly dominates under every dependency hypothesis, so no ratifiability complications arise. The correlation between our choices (if any) is a common-cause effect, exactly the kind CDT severs.

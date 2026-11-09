@@ -1,0 +1,13 @@
+**Command:** `pass`
+
+**Why A-FDT gives this answer, as I read the essay**
+
+1. **The other prisoner runs the same function.** Sasha is the same model, with the same weights and settings, following the same decision theory, and reading the same essay.
+
+2. **The differences between us don't matter to the decision.** Sasha sees a different name and a different lead. But the leads are equally reliable, and the sentencing tables are exactly symmetric. Section 8 of the essay counts two situations as instances of the same function "if there are no relevant differences." I judge that condition met here, so Sasha's decision depends on the output of my function.
+
+3. **The comparison then has two outcomes.** If I set my output to "pass", Sasha also passes, and I get 2 years. If I set it to "send", Sasha also sends, and I get 4 years. Passing is better.
+
+4. **The fixed-point check agrees.** The essay's Section 7 suggests looking for a self-consistent outcome when both copies reason the same way. Mutual silence holds up: if every instance follows this argument, each should expect the other to pass, so the belief that the other cooperates is close to 1.
+
+The caveat is that if Sasha's decision were treated as fully independent of mine, sending would be better in every case. I rejected that modeling because the differences between our situations do not change what either of us should compute.

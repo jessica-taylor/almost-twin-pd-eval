@@ -1,0 +1,12 @@
+Under the essay's CDT, the other prisoner's choice is causally fixed relative to mine. We can't communicate, and our private leads differ, so at most our choices are correlated, not causally linked. Holding their action fixed, sending the letter is better for Rowan either way:
+
+- **If Sasha keeps quiet:** sending gives 0 years instead of 2.
+- **If Sasha sends a letter:** sending gives 4 years instead of 5.
+
+Sending dominates in every case, so it is ratifiable whatever my credence about Sasha's choice. Deliberation won't move it. The essay's precommitment point (§7) doesn't apply, because there is no earlier binding stage where my choice could influence Sasha's. This matches the essay's own verdict for the twin Prisoner's Dilemma: defect.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

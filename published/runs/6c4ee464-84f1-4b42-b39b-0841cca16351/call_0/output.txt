@@ -1,0 +1,15 @@
+Under the essay's reading of A-FDT, the result is to submit the letter.
+
+**Selecting the node.** My observation history (Rowan, holding the lead about Sasha's receipt in locker 17) selects the decision node fdt(…, x_Rowan). The other copy runs the same function but on a different input, with a different name and lead. Its act is therefore a child of a different node, fdt(…, x_Sasha).
+
+**Wiring the graph.** By the essay's edge criterion (§5.1), my node has an edge only to mechanisms that evaluate the function on *my* input. Sasha's mechanism evaluates it on a different input, so there is no edge from my node to Sasha's act. Following §5.2, I hold Sasha's node at a self-consistent prior.
+
+**Evaluating.** With Sasha's choice held fixed, sending the letter is better whatever Sasha does:
+- If Sasha keeps quiet: 0 years by sending, versus 2 by keeping quiet.
+- If Sasha sends: 4 years by sending, versus 5 by keeping quiet.
+
+**Checking the fixed point.** Since sending is best against either choice, the only self-consistent assignment is that both copies send. The verdict does not depend on the prior over Sasha's node. Policy FDT might instead pick mutual silence (2 years each), but A-FDT, as specified, does not.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

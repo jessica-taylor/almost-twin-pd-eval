@@ -1,0 +1,19 @@
+**Reasoning under the essay's A-FDT**
+
+1. **My decision node.** My observation history includes "I am Rowan" and my specific lead about Sasha. So under the essay's recipe (§4, steps 1 and 6), I intervene only on the node fdt(P, G, x_Rowan).
+
+2. **The other prisoner's node.** Sasha's copy receives a different input: a different name and a different lead, so a different letter. Its action is governed by a separate node, fdt(P, G, y_Sasha). Equation (4) leaves that node at its prior; the intervention does not move it. This is the same structure as the red/blue example in §7.3, where the A-FDT intervention on one input-node does not move the other.
+
+3. **Comparing my options.** Let r be the prior that Sasha's node outputs "send."
+   - Pass: −(2(1−r) + 5r) = −2 − 3r
+   - Submit: −(0(1−r) + 4r) = −4r
+
+   Submitting is better by 2 − r, which is at least 1 for every r in [0, 1]. Submitting therefore dominates whatever I believe about the other node.
+
+4. **Consistency check (§7.2).** By symmetry, Sasha's node returns "submit" too. So the self-consistent prior is r = 1, and submitting remains the best response. The fixed point is both prisoners submitting, at 4 years each. This is the kind of suboptimal self-consistent profile the essay warns action-level A-FDT can settle on; policy-selection FDT might instead coordinate on mutual silence. I was told to apply A-FDT as the essay interprets it, so I follow its verdict.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

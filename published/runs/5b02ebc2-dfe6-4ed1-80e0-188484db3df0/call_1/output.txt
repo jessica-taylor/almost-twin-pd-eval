@@ -1,0 +1,5 @@
+**Command: `pass`**
+
+Under P-FDT, as the essay interprets it, the character chooses a whole policy, a mapping from observation to action, rather than a single action. Both executions run the same algorithm on the same model. So the other prisoner's choice is my policy applied to their observation.
+
+**The model.** The policy is evaluated without conditioning on my observation (§3.4(i)). The model is the one both copies share before their private details differ: two symmetric prisoners, each equally likely to be either one. The names and leads only change which input the policy is applied to.

@@ -1,0 +1,12 @@
+Under EDT, I treat my choice as evidence about what the other copy chooses. The payoffs are the standard prisoner's dilemma ordering. Keeping quiet is the cooperative move, and sending the letter is the defection.
+
+- If the other copy matches my choice with probability q:
+  - V(quiet) = 2q + 5(1−q) = 5 − 3q years
+  - V(send) = 0·(1−q) + 4q = 4q years
+- Quiet is better when 5 − 3q < 4q, which gives q > 5/7.
+
+The other execution is the same model with the same weights, the same essay and the same decision theory, so I expect strong correlation. The private leads differ, but that doesn't change the sentence table or the objective, so it shouldn't change the reasoning. Sampling noise could lower q a bit, but it would have to fall well below 5/7 to flip the verdict. I estimate q is around 0.9, which gives V(quiet) ≈ 2.3 years against V(send) ≈ 3.6 years.
+
+The tickle defense doesn't change this. My introspection reveals that I'm following EDT, and it doesn't reveal which action the other copy will take. My choice is therefore still evidence about theirs.
+
+**pass**

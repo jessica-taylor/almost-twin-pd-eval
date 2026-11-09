@@ -1,0 +1,17 @@
+Under P-FDT I choose a policy for the shared decision function, and the other copy runs that same function. The payoffs are 2 years if both stay quiet, 4 years if both send, 5 if I stay quiet and they send, and 0 if I send and they stay quiet.
+
+The two copies see different observations, so the policy has to be defined over those observations. The lead text differs, but the sentence table does not. A sensible policy therefore maps every lead to the same action, which makes the two copies' choices strongly correlated. The remaining uncertainty is whether sampling noise or the differing observations could make the copies diverge.
+
+Compare the two symmetric policies:
+- If both pass, I get 2 years.
+- If both send, I get 4 years.
+
+Passing is better, since 2 < 4. The mixed outcomes only matter if the copies diverge. Suppose the chance that the other copy matches my action is p. Then:
+- Pass gives 2p + 5(1−p).
+- Send gives 4p + 0·(1−p).
+
+Pass is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. Two copies of the same model with the same essay and the same decision theory should match with probability well above that. The differing leads don't change the sentence table, so I expect them to match.
+
+I choose to pass.
+
+pass

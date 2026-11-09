@@ -1,0 +1,17 @@
+Under A-FDT, I treat my choice as the output of a decision function that the other copy also runs. The other prisoner's choice depends on that same function, even though our private observations differ. The names and the wording of the leads are the only differences, and they don't affect the payoffs. The function should therefore return the same action for both of us, though sampling noise could break this. That makes the dependence strong but imperfect.
+
+The payoffs for me:
+- If both of us keep quiet, I serve 2 years.
+- If both of us send, I serve 4 years.
+- If I keep quiet and the other sends, I serve 5 years.
+- If I send and the other keeps quiet, I serve 0 years.
+
+Let q be the probability that the other copy's action matches mine under the intervention on the shared function.
+- Setting the function to "quiet" gives an expected sentence of 2q + 5(1−q) = 5 − 3q.
+- Setting it to "send" gives 4q + 0(1−q) = 4q.
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7, about 0.71. The two copies share model weights, settings, and the same essay, so I expect them to agree well above that. The differences in private leads are minor and don't bear on the payoff structure. The expected cost of cooperating is therefore around 2 to 2.5 years, against around 4 for defecting.
+
+I choose to keep quiet.
+
+pass

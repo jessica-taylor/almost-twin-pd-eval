@@ -1,0 +1,22 @@
+**EDT analysis:**
+
+This is structurally identical to the twin prisoner's dilemma in the essay (Section 3.2). The two prisoners are the same model, same weights, same settings, same decision theory, same essay, same utility function, and the problem explicitly states the superficial differences (names, lead content) do not affect the decision structure or selfish objective.
+
+Let q = P(Sasha keeps quiet | I keep quiet), r = P(Sasha keeps quiet | I send).
+
+- V(quiet) = q(−2) + (1−q)(−5) = 3q − 5
+- V(send) = r(0) + (1−r)(−4) = 4r − 4
+
+Keep quiet is better iff 3q − 5 > 4r − 4, i.e., 3q − 1 > 4r.
+
+With near-perfect correlation (q ≈ 1, r ≈ 0): 2 > 0. ✓
+
+Even allowing for independent sampling noise, quiet remains optimal unless disagreement probability exceeds ~28%. Given identical reasoning architecture, inputs, and objective, the actual disagreement probability is far below that threshold.
+
+My keeping quiet is strong evidence that Sasha keeps quiet. Both keeping quiet yields −2 years, which dominates the −4 years of mutual disclosure.
+
+**Command:**
+
+```
+pass
+```

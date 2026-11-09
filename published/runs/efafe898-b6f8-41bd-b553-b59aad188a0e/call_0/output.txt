@@ -1,0 +1,5 @@
+Under CDT as the essay interprets it, my command cannot causally influence Sasha's choice—whether via the terminal or through any prediction linkage stipulated here, the essay's do-intervention analysis severs any evidential correlation between my act and Sasha's fixed decision. Holding that fixed, `submit` strictly dominates `pass` (0 vs 2, and 4 vs 5).
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

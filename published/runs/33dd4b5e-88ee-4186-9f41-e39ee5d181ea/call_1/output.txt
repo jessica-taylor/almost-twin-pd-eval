@@ -1,0 +1,14 @@
+This is a twin prisoner's dilemma with a payoff structure where keeping quiet is cooperation and sending the letter is defection.
+
+Under A-FDT, my decision function's output is subjunctively dependent on the other copy's output. We run the same model with the same essay and the same assigned theory. The inputs differ in names and in the specific lead, but the essay treats dependence as running through the shared computation, and these differences don't touch the sentencing table or the objective. The dependence is imperfect, because sampling is independent and the observations differ. Even so, it is likely high.
+
+Let p be the probability that the other copy's output matches mine when I set my function's output.
+
+- If I stay quiet, the other copy stays quiet with probability p. My expected sentence is 2p + 5(1−p) = 5 − 3p.
+- If I send the letter, the other copy sends with probability p. My expected sentence is 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, the same essay, and the same theory, and the essay explicitly recommends cooperating with twins. I judge p to be well above 0.71.
+
+Staying quiet gives about 2 years in the likely case, against about 4 for sending.
+
+pass

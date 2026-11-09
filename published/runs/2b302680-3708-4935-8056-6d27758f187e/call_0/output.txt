@@ -1,0 +1,10 @@
+Under CDT, the other prisoner's choice is causally independent of mine, so it is a background fact. My credence that they send a letter is some fixed value q, and I compute expected years for each act at that q.
+
+- Keep quiet: 2(1−q) + 5q = 2 + 3q
+- Send the letter: 0(1−q) + 4q = 4q
+
+Sending is better when 4q < 2 + 3q, which holds whenever q < 2. Since q ≤ 1, it always holds. Sending is strictly better by 2 years if the other stays quiet and by 1 year if the other sends, so it dominates.
+
+The essay's ratifiability check agrees. Even if I become confident that my copy will send, sending is still the best response, so it is stable. The correlation between the two copies is only evidence about the other's act and has no causal pull on it, so CDT ignores it.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

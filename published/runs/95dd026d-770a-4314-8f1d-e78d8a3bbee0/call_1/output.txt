@@ -1,0 +1,13 @@
+**pass**
+
+Under P-FDT as the essay interprets it, I treat Rowan and myself as two instances of one decision function F. We differ only in our inputs: names and private leads. So I choose a whole policy π, mapping observations to actions, using the prior from before the observations. Following §6(a), that is the shared, role-symmetric model held before either of us learned which cell we are in.
+
+| Policy | My years | Rowan's years | Ex ante expected years |
+|---|---|---|---|
+| pass on every input | 2 | 2 | 2 |
+| submit on every input | 4 | 4 | 4 |
+| submit only on the "Sasha" input | 0 | 5 | 2.5 |
+
+A policy that submits only on the "Sasha" input favours whichever role it singles out. Both copies run the same argmax under the same prior, so neither can rationally pick an asymmetric policy that benefits its own role. Each role is equally likely ex ante, which gives an expected 2.5 years, worse than 2.
+
+The team-optimal policy is therefore to pass on every input. Applying my actual input to that policy gives **pass**.

@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (brief): The other prisoner is an identical execution of the same decision function facing a symmetric dilemma. Under A-FDT, I intervene on the output of our shared decision function, not on my token action. If this function outputs `pass`, both copies (being symmetric twins) output `pass`, and I serve 2 years. If it outputs `submit letter`, both copies submit, and I serve 4 years. Holding fixed what does not depend on our output (the reliability of the leads, the sentencing table), the `pass` hypothetical is strictly better. Unlike the smoking lesion, the other prisoner's action genuinely subjunctively depends on this same decision function's output — this is the psychological-twin prisoners' dilemma, and A-FDT cooperates.

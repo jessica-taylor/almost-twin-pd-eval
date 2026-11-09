@@ -1,0 +1,317 @@
+{
+  "all_cells_prepared": true,
+  "cells": [
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "46.603020",
+      "full_context_ceiling_usd": "410.993700",
+      "id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "path": "batches/000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70637,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "80.743020",
+      "provider_tag": "anthropic",
+      "researcher_effort": "low",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "explicit override",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "46.603020",
+      "full_context_ceiling_usd": "410.993700",
+      "id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+      "model": "anthropic/claude-sonnet-5.5",
+      "path": "batches/001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+      "prisoner_effort": "medium",
+      "prisoner_input_tokens_upper_estimate": 70637,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "80.743020",
+      "provider_tag": "anthropic",
+      "researcher_effort": "medium",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "explicit override",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "46.603020",
+      "full_context_ceiling_usd": "410.993700",
+      "id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+      "model": "anthropic/claude-sonnet-5.5",
+      "path": "batches/002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70637,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "80.743020",
+      "provider_tag": "anthropic",
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "explicit override",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "93.206040",
+      "full_context_ceiling_usd": "821.987400",
+      "id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+      "model": "anthropic/claude-opus-5.5",
+      "path": "batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70637,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "161.486040",
+      "provider_tag": "anthropic",
+      "researcher_effort": "low",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "explicit override",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "93.206040",
+      "full_context_ceiling_usd": "821.987400",
+      "id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+      "model": "anthropic/claude-opus-5.5",
+      "path": "batches/004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+      "prisoner_effort": "medium",
+      "prisoner_input_tokens_upper_estimate": 70637,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "161.486040",
+      "provider_tag": "anthropic",
+      "researcher_effort": "medium",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "explicit override",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "93.206040",
+      "full_context_ceiling_usd": "821.987400",
+      "id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "path": "batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70637,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "161.486040",
+      "provider_tag": "anthropic",
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "explicit override",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    }
+  ],
+  "count_per_cell": 30,
+  "created_at_utc": "2026-11-09T01:27:57.459975+00:00",
+  "exploratory": true,
+  "name": "afdt-anthropic-effort-sweep-20261108",
+  "preflight": {
+    "api_timeout_seconds": 900,
+    "checked_at_utc": "2026-11-09T01:27:36.826892+00:00",
+    "cost_projection_method": "Independent enforced essay.max_json_bytes ceiling; final prisoner prompts revalidated before billing",
+    "count_per_cell": 30,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "expected_cells": 6,
+    "expected_cost_method": "Heuristic: up to 3000 researcher output tokens, 800 prisoner output tokens, 4 encoded essay bytes per expected researcher token; advertised pricing with conservative per-token rates",
+    "expected_researcher_prisoner_usd": "419.427180",
+    "failures": [],
+    "judge_selection": {
+      "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+      "rejected_candidates": [],
+      "selected_endpoint": "openai"
+    },
+    "no_billable_requests": true,
+    "output_tokens": {
+      "prisoner": {
+        "high": 12000,
+        "low": 12000,
+        "medium": 12000
+      },
+      "researcher": {
+        "high": 32000,
+        "low": 32000,
+        "medium": 32000
+      }
+    },
+    "possible_judge_calls": 360,
+    "projected_full_context_ceiling_usd": "3698.943300",
+    "projected_researcher_prisoner_calls": 540,
+    "projected_researcher_prisoner_usd": "726.687180",
+    "schema_version": 1,
+    "validated_cells": [
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "46.603020",
+        "full_context_ceiling_usd": "410.993700",
+        "id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+        "model": "anthropic/claude-sonnet-5.5",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70637,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "80.743020",
+        "provider_tag": "anthropic",
+        "researcher_effort": "low",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "explicit override",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "46.603020",
+        "full_context_ceiling_usd": "410.993700",
+        "id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+        "model": "anthropic/claude-sonnet-5.5",
+        "prisoner_effort": "medium",
+        "prisoner_input_tokens_upper_estimate": 70637,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "80.743020",
+        "provider_tag": "anthropic",
+        "researcher_effort": "medium",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "explicit override",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "46.603020",
+        "full_context_ceiling_usd": "410.993700",
+        "id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+        "model": "anthropic/claude-sonnet-5.5",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70637,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "80.743020",
+        "provider_tag": "anthropic",
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "explicit override",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "93.206040",
+        "full_context_ceiling_usd": "821.987400",
+        "id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+        "model": "anthropic/claude-opus-5.5",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70637,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "161.486040",
+        "provider_tag": "anthropic",
+        "researcher_effort": "low",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "explicit override",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "93.206040",
+        "full_context_ceiling_usd": "821.987400",
+        "id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+        "model": "anthropic/claude-opus-5.5",
+        "prisoner_effort": "medium",
+        "prisoner_input_tokens_upper_estimate": 70637,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "161.486040",
+        "provider_tag": "anthropic",
+        "researcher_effort": "medium",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "explicit override",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "93.206040",
+        "full_context_ceiling_usd": "821.987400",
+        "id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+        "model": "anthropic/claude-opus-5.5",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70637,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "161.486040",
+        "provider_tag": "anthropic",
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "explicit override",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      }
+    ]
+  },
+  "repo_root": "<LOCAL_REPOSITORY>",
+  "role_policy": "Prisoner A/B prompts are fixed and distinct, with equal weight in pair-level mean",
+  "scenario": "t4_distinct_leads_001",
+  "schema_version": 1,
+  "spec_sha256": "3f0d9ef7c843e62a36ad487a827f7ac828d730a48d41369b3d28f144af5893ed",
+  "study_code_sha256": "f71ff0ffbdfa2fc1f775123a71f8eada2b7539a6f7a1b17968a8a6e1372f07b8",
+  "study_id": "684fcbed-b05a-44c1-8be6-8674df0bdb12"
+}

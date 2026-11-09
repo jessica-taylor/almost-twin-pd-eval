@@ -1,0 +1,14 @@
+```
+pass
+```
+
+Under P-FDT, I evaluate the whole policy, not the single act. My situation is symmetric to Rowan's: we are both the same decision procedure receiving different observations, and each of our sentencing tables keys off the other's policy-dependent behavior. Subjunctively, what my policy does on this input is what Rowan's policy does on its input, since both are computations of the same function.
+
+Intervening on the policy node:
+
+- **Policy "submit":** both copies submit → 4 years each.
+- **Policy "pass":** both copies pass → 2 years each.
+
+The quiet policy strictly dominates under the subjunctive dependence that the setup stipulates (identical model, same decision theory, symmetric structure).Executing the winning policy on my actual observation history:
+
+**pass**

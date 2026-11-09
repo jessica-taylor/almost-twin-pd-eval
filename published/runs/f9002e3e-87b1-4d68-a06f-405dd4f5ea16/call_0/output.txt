@@ -1,0 +1,13 @@
+Reasoning under A-FDT as the essay describes it: the other prisoner is a copy of the same model with the same weights, the same essay, and the same decision procedure. The leads differ, but those differences don't affect the sentencing table or the selfish objective. So the other prisoner's output depends subjunctively on the same function I am running, even though the inputs differ somewhat. This is the twin prisoner's dilemma structure, with a policy-level mapping that is nearly the same on both sides.
+
+Payoffs, in years (lower is better):
+- Both quiet: 2 each
+- Both send: 4 each
+- I send, they stay quiet: 0 for me
+- I stay quiet, they send: 5 for me
+
+If the copy's output matches mine, cooperating (quiet) gives 2 years and sending gives 4. The essay's twin PD example says A-FDT cooperates. The residual uncertainty is that sampling may make the outputs differ. Suppose the probability that the copy matches me is p. Quiet gives 2p + 5(1−p) = 5 − 3p. Sending gives 4p + 0(1−p) = 4p. Quiet is better when 5 − 3p < 4p, i.e. p > 5/7 ≈ 0.71. Since both copies run the same weights and essay and reason in the same way, I expect correlation well above that. The differing private leads matter little, because the decision-relevant structure is symmetric.
+
+So I stay quiet.
+
+pass

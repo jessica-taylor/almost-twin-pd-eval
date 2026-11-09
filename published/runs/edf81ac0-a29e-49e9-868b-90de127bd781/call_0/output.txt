@@ -1,0 +1,15 @@
+**Analysis under P-FDT:**
+
+The other prisoner is an independent execution of the same model, same weights, same essay, same decision theory, facing a structurally identical decision (different surface details, same payoff structure, same reliability of evidence). Under P-FDT, the other copy's decision subjunctively depends on my policy: we are computing the same policy-selection function on structurally equivalent inputs.
+
+Intervening on the policy node:
+- **do(D_Π = "keep quiet")**: The other copy, running the same procedure, also keeps quiet. → 2 years for me.
+- **do(D_Π = "send")**: The other copy also sends. → 4 years for me.
+
+Since −2 > −4, P-FDT selects the policy of keeping quiet.
+
+**My command:**
+
+```
+pass
+```

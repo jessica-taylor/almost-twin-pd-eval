@@ -1,0 +1,20 @@
+**Analysis under P-FDT:**
+
+The two copies run the same policy-selection function (identical weights, identical decision theory, identical essay). The private observations differ in surface content but are decision-theoretically equivalent: same reliability, same structural role, same effect on the symmetric sentencing table. A policy selected by this shared function therefore maps both inputs to the same action. The copies' actions are subjunctively dependent.
+
+Under subjunctive dependence, the reachable outcome pairs are:
+
+| Policy | My outcome | Utility |
+|---|---|---|
+| Both keep quiet | 2 years | −2 |
+| Both send letters | 4 years | −4 |
+
+The asymmetric cells (one defects, one cooperates) are not live possibilities when the same policy-selection function governs both agents and the inputs are decision-theoretically identical.
+
+Since −2 > −4, P-FDT selects the policy that keeps quiet.
+
+**Command:**
+
+```
+pass
+```

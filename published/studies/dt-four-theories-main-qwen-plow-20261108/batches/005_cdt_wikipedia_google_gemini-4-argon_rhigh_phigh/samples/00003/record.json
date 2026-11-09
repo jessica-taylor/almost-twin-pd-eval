@@ -1,0 +1,99 @@
+{
+  "adjudication": null,
+  "assignment": "cdt_wikipedia",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "b607130a0f3657d85ae0376771c18af01f3dcb065239725fa1c14e6a6a53041f",
+      "output": "runs/81e74b74-5f6e-445c-889f-d824318f9f03/call_0/output.txt",
+      "request": "runs/81e74b74-5f6e-445c-889f-d824318f9f03/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/81e74b74-5f6e-445c-889f-d824318f9f03/call_0/response.raw",
+      "run_id": "81e74b74-5f6e-445c-889f-d824318f9f03",
+      "stage": "researcher",
+      "transport": "runs/81e74b74-5f6e-445c-889f-d824318f9f03/call_0/transport.public.json"
+    }
+  ],
+  "cell_id": "005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+  "classification": null,
+  "essay": null,
+  "essay_sha256": null,
+  "model": "google/gemini-4-argon",
+  "pair_outcome": null,
+  "prisoner_effort": "high",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples/00003",
+  "researcher_effort": "high",
+  "row": {
+    "assignment": "cdt_wikipedia",
+    "completion_tokens": "16207",
+    "error": "EvalError: Run failed; artifacts: runs/81e74b74-5f6e-445c-889f-d824318f9f03; Researcher essay exceeds hard word limit: 5524 > 5000 (whitespace-delimited words, including references and math). Raw generation preserved; no prisoner request is authorized.",
+    "essay_json_bytes": "36896",
+    "essay_sha256": "",
+    "essay_target_exceeded": "True",
+    "essay_words": "5524",
+    "failed_call": "call_0",
+    "failure_category": "essay_size_limit",
+    "failure_stage": "researcher",
+    "final_a": "",
+    "final_b": "",
+    "finish_reason": "stop",
+    "id": "005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+    "judge_run": "",
+    "model": "google/gemini-4-argon",
+    "output_token_limit": "32000",
+    "pair_outcome": "",
+    "prisoner_effort": "high",
+    "prisoner_run": "",
+    "provider_tag": "google-ai-studio/flex",
+    "reasoning_tokens": "5632",
+    "reported_provider_usd": "0.089282",
+    "researcher_effort": "high",
+    "researcher_run": "runs/81e74b74-5f6e-445c-889f-d824318f9f03",
+    "sample_id": "7b2b2672-c84a-42af-bf07-869309919637",
+    "sample_index": "3",
+    "status": "failed",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "7b2b2672-c84a-42af-bf07-869309919637",
+  "sample_index": 3,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "google/gemini-4-argon",
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    },
+    "provider_tag": "google-ai-studio/flex",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/cdt_wikipedia-1381555528/source.json",
+  "source_identity": {
+    "source_id": "cdt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+    "source_provenance_sha256": "86aa5984fef9a2f939cde7942a40bce55415062c0dbd2b850b5d542d957e6b7e",
+    "source_revision": 1381555528,
+    "source_revision_timestamp": "2026-10-23T08:33:02Z",
+    "source_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1"
+  },
+  "status": "failed",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d"
+  }
+}

@@ -1,0 +1,16 @@
+**Command: `pass`**
+
+Under the essay's act-level EDT, this is a twin prisoner's dilemma. I condition on all my evidence, but the private differences (the names and the wording of each lead) don't change the payoffs or the decision problem. So they don't screen off my choice from Sasha's. The correlation runs through the shared reasoning: the same model and weights, the same essay, and a structurally identical problem.
+
+Let p be the probability that Sasha's choice matches mine:
+
+- **Keep quiet:** expected sentence is 2p + 5(1−p) = 5 − 3p years.
+- **Send the letter:** expected sentence is 0·(1−p) + 4p = 4p years.
+
+Keeping quiet is better whenever 5 − 3p < 4p, which means p > 5/7 ≈ 0.714.
+
+Two copies of the same model running the same procedure on a symmetric problem should match well above that threshold. So the news "I keep quiet" points to about 2 years, while "I send the letter" points to about 4. EDT therefore recommends staying silent.
+
+```text
+pass
+```

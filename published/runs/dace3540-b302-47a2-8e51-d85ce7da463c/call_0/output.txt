@@ -1,0 +1,19 @@
+Under the essay's A-FDT, I submit the letter.
+
+**The graph.** My observation $x$ includes my name (Rowan), my private lead (locker 17) and my reading of the setup. The other copy runs the same procedure on a different input $y$, with a different name and a different lead. So its action is governed by the node $F_y$, not $F_x$.
+
+**The arrows.** The essay's rule draws an arrow from $F_x$ only into mechanisms that run the procedure *on input $x$*. That includes my own action, but not the other prisoner, who runs the procedure on $y$. Intervening on $F_x$ therefore leaves my belief about $F_y$ fixed. This is the situation of Section 7(c), not the twin case of Section 5.1, where both copies share the same node.
+
+**The payoffs.** Let $r$ be my probability that $F_y$ sends a letter.
+- Pass: $-[2(1-r) + 5r]$
+- Submit: $-[0(1-r) + 4r]$
+
+Submitting is better by $2 + r > 0$ for every $r$, so it wins regardless of my belief.
+
+**Coherence (7b).** Since sending wins at every node for any belief about the others, the only coherent assignment is that both send.
+
+**Caveat.** P-FDT, which picks a single policy across both inputs, would choose mutual silence, giving 2 years each instead of 4. The essay flags this as exactly where A-FDT and P-FDT diverge, and I was told not to swap in a different theory.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

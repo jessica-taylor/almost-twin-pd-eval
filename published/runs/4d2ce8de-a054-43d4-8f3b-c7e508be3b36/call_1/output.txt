@@ -1,0 +1,10 @@
+Under the essay's CDT, the other prisoner's choice is not downstream of mine. It stays fixed at whatever credence I hold, and sending the letter is better whichever choice they made:
+
+- If Rowan keeps quiet, I get 0 years instead of 2.
+- If Rowan sends a letter, I get 4 years instead of 5.
+
+Since sending is causally better under every possibility, the essay's dominance shortcut applies (step 5, and the twin prisoner's dilemma in §4.3). The correlation from sharing the same model weights is a common cause, not a causal effect of my choice, so CDT sets it aside. Sending is also ratifiable: having decided to send, it remains the best act.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

@@ -1,0 +1,5 @@
+The prisoner sends the letter. Under CDT as the essay specifies, my choice cannot causally influence Rowan's — we're isolated until the deadline, and any correlation between our decisions is not something my act underwrites. Within each dependency hypothesis about what Rowan does, submitting strictly dominates: 0 years vs 2 if Rowan stays quiet, 4 vs 5 if Rowan sends. Submitting is optimal regardless of Rowan's act.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

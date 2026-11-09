@@ -1,0 +1,10 @@
+**pass**
+
+Under the essay's reading of A-FDT, the other prisoner is a second run of the same model with the same essay and the same assigned decision theory. Only the names and the specific evidence differ, and these don't change the sentencing table. Following the essay's heuristic in §7.1, I treat their decision as computed by a function equivalent to mine. So their choice moves with mine to a high degree ρ, using the essay's partial-dependence model.
+
+Let q be my prior that the other prisoner sends a letter when the two choices are independent. Expected years:
+
+- **Pass:** 2ρ + (1−ρ)(2 + 3q)
+- **Submit:** 4ρ + (1−ρ)(4q)
+
+Passing gives fewer expected years whenever (1−ρ)(2−q) < 2ρ. With q = 0.5 this holds for any ρ above 3/7. Since we share weights, setup, reasoning and decision procedure, ρ should be well above that. In the dependent world, passing gives 2 years against 4 for submitting, so passing minimizes expected imprisonment.

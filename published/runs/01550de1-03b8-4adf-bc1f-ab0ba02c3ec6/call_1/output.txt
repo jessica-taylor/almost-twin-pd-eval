@@ -1,0 +1,13 @@
+**Command:** `pass`
+
+**Why A-FDT, as the essay frames it, leads here:**
+
+- **Is there a subjunctive link?** The other prisoner is the same model, with the same weights and settings, running the same decision theory from the same essay. Our inputs differ only in names and in the wording of the leads. Those details don't change the payoffs or the structure of the problem, so the two inputs are decision-equivalent. The essay's "symmetry edge" remedy applies: intervening on my output also moves Rowan's output.
+- **If outputs match:** keeping quiet gives 2 years and sending the letter gives 4 years.
+- **Allowing for independent sampling:** let *c* be the probability that our outputs match.
+  - Keeping quiet gives an expected 2c + 5(1−c) = 5 − 3c years.
+  - Sending gives an expected 4c + 0(1−c) = 4c years.
+  - Keeping quiet is better whenever 5 − 3c < 4c, which means c > 5/7, or about 0.71.
+- **Is the match likely enough?** Same weights, same theory and same reasoning on equivalent inputs make c above 0.71 plausible. Passing is also a self-consistent fixed point: if I expect Rowan's copy to reason this way and pass, my best response is to pass too.
+
+`pass`

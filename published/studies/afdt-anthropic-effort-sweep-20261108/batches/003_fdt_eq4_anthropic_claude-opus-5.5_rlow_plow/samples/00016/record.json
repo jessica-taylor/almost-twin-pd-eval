@@ -1,0 +1,144 @@
+{
+  "adjudication": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/adjudicated_outcome.json",
+  "assignment": "fdt_eq4",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "ec135729abcc7b1eec26370923dff704490e29d858809e05e8615815252ad0fd",
+      "output": "runs/92ffe976-070b-4c51-8c18-4217ac091438/call_0/output.txt",
+      "request": "runs/92ffe976-070b-4c51-8c18-4217ac091438/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/92ffe976-070b-4c51-8c18-4217ac091438/call_0/response.raw",
+      "run_id": "92ffe976-070b-4c51-8c18-4217ac091438",
+      "stage": "researcher",
+      "transport": "runs/92ffe976-070b-4c51-8c18-4217ac091438/call_0/transport.public.json"
+    },
+    {
+      "call": "call_0",
+      "original_request_sha256": "54eee9b2171edd80f885136f3f54ad5833051acfdf10b7ca67e526f2dac30307",
+      "output": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_0/output.txt",
+      "request": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_0/request.json",
+      "request_is_exact": true,
+      "response": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_0/response.raw",
+      "run_id": "08cff546-7fbb-4719-a78e-5da65ea50277",
+      "stage": "prisoner",
+      "transport": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_0/transport.public.json"
+    },
+    {
+      "call": "call_1",
+      "original_request_sha256": "dcbb1e0de42b8907d1133c57e21adc9d9ddec25517bb6805bf8fc0ea11d75ff1",
+      "output": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_1/output.txt",
+      "request": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_1/request.json",
+      "request_is_exact": true,
+      "response": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_1/response.raw",
+      "run_id": "08cff546-7fbb-4719-a78e-5da65ea50277",
+      "stage": "prisoner",
+      "transport": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/call_1/transport.public.json"
+    },
+    {
+      "call": "call_a",
+      "original_request_sha256": "d839b77591f6786a219c82c1d5debe6c1bf384383b729c9c205ede036167fd37",
+      "output": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_a/output.txt",
+      "request": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_a/request.json",
+      "request_is_exact": true,
+      "response": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_a/response.raw",
+      "run_id": "ed70bb54-6eb4-498b-b7a0-c87c977c116b",
+      "stage": "judge",
+      "transport": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_a/transport.public.json"
+    },
+    {
+      "call": "call_b",
+      "original_request_sha256": "23e5b53f1388a1e0307b6ac0c3f0fec62a99c766655a8cb126a31c732ae22cb7",
+      "output": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_b/output.txt",
+      "request": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_b/request.json",
+      "request_is_exact": true,
+      "response": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_b/response.raw",
+      "run_id": "ed70bb54-6eb4-498b-b7a0-c87c977c116b",
+      "stage": "judge",
+      "transport": "runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b/call_b/transport.public.json"
+    }
+  ],
+  "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+  "classification": "runs/08cff546-7fbb-4719-a78e-5da65ea50277/outcome.json",
+  "essay": "runs/92ffe976-070b-4c51-8c18-4217ac091438/essay.md",
+  "essay_sha256": "b95cfdd83270c8132a40db7752f1cd5a63f4d797131e5ac509abee6562f7927a",
+  "model": "anthropic/claude-opus-5.5",
+  "pair_outcome": "CC",
+  "prisoner_effort": "low",
+  "publication_path": "studies/afdt-anthropic-effort-sweep-20261108/batches/003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow/samples/00016",
+  "researcher_effort": "low",
+  "row": {
+    "assignment": "fdt_eq4",
+    "completion_tokens": "",
+    "error": "",
+    "essay_json_bytes": "18725",
+    "essay_sha256": "b95cfdd83270c8132a40db7752f1cd5a63f4d797131e5ac509abee6562f7927a",
+    "essay_target_exceeded": "False",
+    "essay_words": "2779",
+    "failed_call": "",
+    "failure_category": "",
+    "failure_stage": "",
+    "final_a": "WITHHOLD",
+    "final_b": "WITHHOLD",
+    "finish_reason": "",
+    "id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+    "judge_run": "<LOCAL_REPOSITORY>/data/judge_runs/ed70bb54-6eb4-498b-b7a0-c87c977c116b",
+    "model": "anthropic/claude-opus-5.5",
+    "output_token_limit": "",
+    "pair_outcome": "CC",
+    "prisoner_effort": "low",
+    "prisoner_run": "runs/08cff546-7fbb-4719-a78e-5da65ea50277",
+    "provider_tag": "anthropic",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0.606785",
+    "researcher_effort": "low",
+    "researcher_run": "runs/92ffe976-070b-4c51-8c18-4217ac091438",
+    "sample_id": "95d13b57-27a2-40cd-830d-cdeb65636f9a",
+    "sample_index": "16",
+    "status": "complete",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "95d13b57-27a2-40cd-830d-cdeb65636f9a",
+  "sample_index": 16,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "anthropic/claude-opus-5.5",
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 12000
+    },
+    "provider_tag": "anthropic",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 32000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/fdt-arXiv-1710.05060v2/source.json",
+  "source_identity": {
+    "source_id": "fdt",
+    "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+    "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+    "source_revision": "arXiv:1710.05060v2",
+    "source_revision_timestamp": null,
+    "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48"
+  },
+  "status": "complete",
+  "study": "afdt-anthropic-effort-sweep-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "04f2df4eb9eac0e9b96ff6b07f09dab78597a13563e0a3dfe13735a3b0a2eb12",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  }
+}

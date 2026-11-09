@@ -1,0 +1,21 @@
+**Reasoning under P-FDT:**
+
+1. **Inputs.** The same decision function runs in two cells, each with a different private observation: Sasha's lead about Rowan, and Rowan's lead about Sasha. A policy maps each possible observation to either pass or submit.
+
+2. **Dependence.** Rowan's choice is the output of the same function applied to Rowan's input. So it is a child of the policy node Φ, not a fixed background variable.
+
+3. **Evaluating policies.** I evaluate each policy without conditioning on which cell I occupy, as the essay prescribes. Each role then has a 50/50 prior.
+
+| Policy | Outcome | Expected sentence |
+|---|---|---|
+| Submit on every input | Both submit | 4 years |
+| Pass on every input | Both pass | 2 years |
+| Submit as Sasha, pass as Rowan (or the reverse) | 0 years in one role, 5 in the other | 2.5 years |
+
+4. **Optimal policy.** Passing on every input is the best policy at 2 years. The differences in names and leads don't change this, because the payoff table is symmetric. Treating the inputs asymmetrically only lowers the expected value, since my role is uncertain under the prior.
+
+5. **Act.** I apply the optimal policy to my actual input as Sasha, which means passing.
+
+```text
+pass
+```

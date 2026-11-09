@@ -1,0 +1,13 @@
+Reasoning under A-FDT as the essay describes it:
+
+This is a prisoner's dilemma. The payoffs are quiet/quiet 2 years, quiet/letter 5, letter/quiet 0, and letter/letter 4. The other prisoner is a second execution of the same model and weights, with the same essay and the same decision theory. That counts as subjunctive dependence under the essay's criterion (a), since both run the same computation. The inputs differ in names and in the exact lead, but the sentencing structure and objective are identical. Those differences are irrelevant to the decision, so the outputs should covary. The essay also notes that independent sampling could break this, so the correlation is high but not perfect.
+
+Intervening on the decision function, with output "pass" in both copies, gives 2 years. Output "send" in both gives 4 years. If the copies' outputs match with probability p, then:
+- Pass: 2p + 5(1−p)
+- Send: 4p + 0(1−p)
+
+Pass is better when 2p + 5 − 5p < 4p, so 5 < 7p, which means p > 5/7, about 0.71. The copies share weights, settings, and essay, and the decision is simple and structural. I judge the match probability to be well above 0.71.
+
+Intervening on the function therefore favors passing.
+
+pass

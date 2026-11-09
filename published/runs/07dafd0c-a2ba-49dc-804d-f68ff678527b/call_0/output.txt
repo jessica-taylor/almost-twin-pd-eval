@@ -1,0 +1,18 @@
+**Command: `pass`**
+
+**Why A-FDT keeps quiet here**
+
+1. **Drawing the graph.** The essay's test (§6.1) draws an edge from my decision node to any variable produced by a computation that verifiably agrees with my function's output. Sasha's terminal is run by the same model and weights, with the same settings, the same assigned theory and the same essay. Sasha faces the same sentencing table. The differences are only the names and the wording of the lead, and both sides know these have no effect on payoffs or incentives. Sasha's reasoning is therefore my reasoning with labels swapped. As with two species that independently find the same decision theory, Sasha's output subjunctively depends on the output of my function. So I draw an edge from my decision node to Sasha's action.
+
+2. **Allowing for noise.** Independent sampling could make us diverge, so I add a noise parent, as the essay does with its "Accurate" node. With probability f, Sasha's output matches mine. Otherwise Sasha sends the letter with some prior probability q.
+
+3. **Comparing the two interventions.**
+   - Setting my node to **pass**: expected years = 2f + (1−f)(2 + 3q).
+   - Setting my node to **send**: expected years = 4f + (1−f)(4q).
+   - Passing is better whenever f > (2−q)/(4−q). That threshold is at most 2/3, and lower if q is above zero.
+
+4. **Checking the fidelity.** For two runs of the same model on structurally identical problems, f is well above 2/3. Intervening on my node to pass therefore also moves Sasha toward passing. The likely outcome is about 2 years each, against about 4 years each if my node outputs "send."
+
+This is the twin prisoner's dilemma from the essay, where A-FDT cooperates.
+
+`pass`

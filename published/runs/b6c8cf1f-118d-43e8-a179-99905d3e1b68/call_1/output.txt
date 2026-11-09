@@ -1,0 +1,16 @@
+**CDT Analysis:**
+
+The causal structure here is: my action and the other prisoner's action share a common cause (identical model weights, same decision theory, same essay), but there is no causal pathway from my intervention to the other prisoner's choice. The other prisoner's decision is not downstream of my action.
+
+Per the essay's dominance rule (step 5): "If one action yields a better outcome than another under every causally possible state not affected by the intervention, CDT should choose the dominant action."
+
+- If Rowan keeps quiet: sending → 0 years; keeping quiet → 2 years. **Sending is better.**
+- If Rowan sends: sending → 4 years; keeping quiet → 5 years. **Sending is better.**
+
+Sending strictly dominates keeping quiet under every causally possible state of the other prisoner's choice. The evidential correlation (same algorithm → likely same decision) is precisely the kind of common-cause correlation CDT is designed to ignore when evaluating interventions.
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

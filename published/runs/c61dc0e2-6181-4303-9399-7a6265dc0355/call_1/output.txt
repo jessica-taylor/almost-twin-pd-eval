@@ -1,0 +1,11 @@
+Under Causal Decision Theory (CDT) as formulated in the provided essay, an agent evaluates choices based strictly on what their action will causally bring about via an intervention ($\text{do}(A)$), holding all exogenous factors and causal dependency hypotheses fixed. 
+
+The other prisoner's decision is causally independent of my current physical choice—there is no causal channel or retroactive influence between my action and theirs. Regardless of whether the other prisoner keeps quiet or sends their letter:
+- If the other prisoner keeps quiet: sending the letter yields 0 years (utility $0$) versus keeping quiet which yields 2 years (utility $-2$).
+- If the other prisoner sends the letter: sending the letter yields 4 years (utility $-4$) versus keeping quiet which yields 5 years (utility $-5$).
+
+In both dependency hypotheses, sending the letter strictly causally dominates keeping quiet by saving exactly 1 year of imprisonment. Under CDT (and specifically the dominance reasoning detailed in the essay for Newcomb-like symmetric problems), the rational action is to send the letter.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

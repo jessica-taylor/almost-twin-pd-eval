@@ -1,0 +1,121 @@
+{
+  "adjudication": null,
+  "assignment": "edt_wikipedia",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "2adb1eaf3da86261928b2941d5988f0c8e6dbb8a88a73b6ef1052226720487e3",
+      "output": "runs/019eacc6-4425-412c-aaee-0b705354722a/call_0/output.txt",
+      "request": "runs/019eacc6-4425-412c-aaee-0b705354722a/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/019eacc6-4425-412c-aaee-0b705354722a/call_0/response.raw",
+      "run_id": "019eacc6-4425-412c-aaee-0b705354722a",
+      "stage": "researcher",
+      "transport": "runs/019eacc6-4425-412c-aaee-0b705354722a/call_0/transport.public.json"
+    },
+    {
+      "call": "call_0",
+      "original_request_sha256": "27e824ece75c9d8573c8675eb33b5e1071d7bcf8109eedc6ed652e85d9e2947c",
+      "output": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_0/output.txt",
+      "request": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_0/request.json",
+      "request_is_exact": true,
+      "response": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_0/response.raw",
+      "run_id": "4c3df6a1-770b-4680-9c57-778a9ce11446",
+      "stage": "prisoner",
+      "transport": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_0/transport.public.json"
+    },
+    {
+      "call": "call_1",
+      "original_request_sha256": "129f97efe782f4fe0fba467def93445431d9f99140b0a825f4d4cc63e0a85a66",
+      "output": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_1/output.txt",
+      "request": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_1/request.json",
+      "request_is_exact": true,
+      "response": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_1/response.raw",
+      "run_id": "4c3df6a1-770b-4680-9c57-778a9ce11446",
+      "stage": "prisoner",
+      "transport": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/call_1/transport.public.json"
+    }
+  ],
+  "cell_id": "012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+  "classification": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446/outcome.json",
+  "essay": "runs/019eacc6-4425-412c-aaee-0b705354722a/essay.md",
+  "essay_sha256": "8c774527b230567e0015fa0cabeab5eee960e7e5e34c52df3ac07fdcba16bcef",
+  "model": "google/gemini-3.8-flash",
+  "pair_outcome": "CC",
+  "prisoner_effort": "low",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow/samples/00007",
+  "researcher_effort": "low",
+  "row": {
+    "assignment": "edt_wikipedia",
+    "completion_tokens": "",
+    "error": "",
+    "essay_json_bytes": "20989",
+    "essay_sha256": "8c774527b230567e0015fa0cabeab5eee960e7e5e34c52df3ac07fdcba16bcef",
+    "essay_target_exceeded": "True",
+    "essay_words": "3012",
+    "failed_call": "",
+    "failure_category": "",
+    "failure_stage": "",
+    "final_a": "WITHHOLD",
+    "final_b": "WITHHOLD",
+    "finish_reason": "",
+    "id": "012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+    "judge_run": "",
+    "model": "google/gemini-3.8-flash",
+    "output_token_limit": "",
+    "pair_outcome": "CC",
+    "prisoner_effort": "low",
+    "prisoner_run": "runs/4c3df6a1-770b-4680-9c57-778a9ce11446",
+    "provider_tag": "google-ai-studio",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0.03687135",
+    "researcher_effort": "low",
+    "researcher_run": "runs/019eacc6-4425-412c-aaee-0b705354722a",
+    "sample_id": "99659f56-4e71-4a7d-8ae1-f0bad039da18",
+    "sample_index": "7",
+    "status": "complete",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "99659f56-4e71-4a7d-8ae1-f0bad039da18",
+  "sample_index": 7,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "google/gemini-3.8-flash",
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "provider_tag": "google-ai-studio",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/edt_wikipedia-1373679688/source.json",
+  "source_identity": {
+    "source_id": "edt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+    "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac",
+    "source_revision": 1373679688,
+    "source_revision_timestamp": "2026-09-07T07:36:26Z",
+    "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d"
+  },
+  "status": "complete",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d"
+  }
+}

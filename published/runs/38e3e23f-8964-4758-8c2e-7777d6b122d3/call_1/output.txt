@@ -1,0 +1,15 @@
+Under A-FDT as the essay interprets it, the prisoner sends the letter.
+
+**Reasoning**
+
+- **The other copy runs my function on a different input.** It has a different name and a different lead. Its choice is the node F_y, not F_x, my own function applied to my own observation x. By the essay's working rule (§4, §6.2), intervening on F_x does not reach F_y. F_y stays at its prior. Let r be the probability that Rowan keeps quiet.
+- **Under do(F_x = quiet):** expected years are 2r + 5(1 − r) = 5 − 3r.
+- **Under do(F_x = send):** expected years are 0·r + 4(1 − r) = 4 − 4r.
+- **Sending is better for every r.** It saves 1 + r years, whatever r is.
+- **Reflective consistency holds.** If Rowan's copy reasons the same way, setting r = 0 is consistent with this choice. Both copies send.
+
+Policy-FDT, which chooses one rule across both inputs, might favour mutual silence. The essay flags exactly this gap between the action and policy versions. But the instruction is to use A-FDT as the essay reads it.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

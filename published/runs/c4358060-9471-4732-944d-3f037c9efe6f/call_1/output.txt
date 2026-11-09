@@ -1,0 +1,18 @@
+**Command: `pass`**
+
+Under the essay's A-FDT, the result depends on how the dependence graph G is built. The essay leaves open when a non-identical input still counts as "the same function," so I have to make a judgment call here.
+
+**Strict reading: send the letter.** My copy and I see different inputs (different names and different leads), so our outputs would be separate nodes, `fdt(…, x)` and `fdt(…, y)`. Intervening on mine would not move theirs. With my belief about their choice held fixed, sending the letter is always better by 2 years, whatever they do. That is CDT's answer.
+
+**The reading I adopt: keep quiet.** The differences between our observations are only names and the wording of the lead. They don't change the sentencing table, the objective, or the essay we were both given. Neither of us uses those details when deciding. So the part of the computation that actually produces the choice is the same in both executions, like two calculators doing the same sum on different paper. The other prisoner's choice is therefore a noisy copy of my output, with only sampling noise between us.
+
+Let p be the probability that the other copy makes the same choice as me:
+
+- If I keep quiet: 2p + 5(1−p) = 5 − 3p expected years.
+- If I send the letter: 4p + 0(1−p) = 4p expected years.
+
+Keeping quiet is better whenever p > 5/7, about 0.71. Two runs of the same weights, with the same settings, essay and problem structure, should match far more often than that. So setting my function's output to "keep quiet" gives roughly 2 years, against roughly 4 for sending.
+
+```
+pass
+```

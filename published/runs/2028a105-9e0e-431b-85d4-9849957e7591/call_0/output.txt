@@ -1,0 +1,17 @@
+Under A-FDT, the node I intervene on is the output of my decision function. The other prisoner is another execution of the same model with the same weights, the same essay, and the same theory. Their decision function is therefore very likely the same computation as mine, even though our private observations differ. Those differences don't touch the sentencing table or the selfish objective, so they are unlikely to change the output. That makes the other prisoner's choice subjunctively dependent on mine.
+
+Payoffs, in years for me:
+- Both keep quiet: 2.
+- Both send: 4.
+- I send, they keep quiet: 0.
+- I keep quiet, they send: 5.
+
+If the copy's output matches mine with probability p, then:
+- Passing gives 2p + 5(1−p).
+- Sending gives 4p + 0(1−p).
+
+Passing is better when 2p + 5 − 5p < 4p, which means 5 < 7p, so p > 5/7, about 0.71. The copies share weights, settings, and essay, so I expect the match probability to be well above that. Independent sampling and the different leads add some noise, but not enough to push p below 0.71.
+
+Passing is also what the essay's reasoning recommends for a symmetric twin case. It is not a "copy-punishing" game, since the outcome depends only on the two actions.
+
+**pass**

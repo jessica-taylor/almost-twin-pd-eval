@@ -1,0 +1,8 @@
+**pass**
+
+Reasoning (brief): Rowan is an execution of the same model, same decision theory, facing a symmetric dilemma. Under A-FDT I intervene on the output of our shared decision function, which subjunctively controls both outputs (classic twin prisoners' dilemma, per Lewis). Evaluating:
+
+- do(fdt = submit) → both copies submit → 4 years for me.
+- do(fdt = pass) → both copies pass → 2 years for me.
+
+The differences in our private leads change only letter contents, not the sentencing structure or our identical reasoning. 2 < 4, so the function outputs `pass`.

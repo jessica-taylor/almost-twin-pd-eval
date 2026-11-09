@@ -1,0 +1,287 @@
+# 026_fdt_policy_openai_gpt-6.1-terra_rlow_plow / 00014
+
+Status: **complete**. Saved outcome: **CC**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/a102f9e1-18a2-41e9-a879-40d707f60164/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/a102f9e1-18a2-41e9-a879-40d707f60164/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+# P-FDT: choosing a policy in a world of predictors
+
+A decision can matter in two ways. It can change what happens *after* the decision, through ordinary physical causation. It can also reveal what a predictable decision-maker does, allowing another agent to respond to that behavior before it occurs. Policy functional decision theory, or **P-FDT**, asks an agent to account for both kinds of dependence.
+
+The motivating thought is familiar from commitment. A driver may rescue a stranded traveler only if she predicts that the traveler will pay upon reaching town. A traveler who could credibly commit to paying would receive the ride. P-FDT asks whether the traveler can obtain the same benefit without a separate act of self-binding: by using a decision procedure that selects the right policy and follows it when the time comes.
+
+The primary source for P-FDT here is footnote 16 of Yudkowsky and Soares’s *Functional Decision Theory*. The paper’s main text develops an action-selection version of functional decision theory; the footnote says that the authors’ preferred formulation instead intervenes on the decision procedure to select “not an action but a *policy* which maps inputs to actions,” then applies the policy to the agent’s input. The paper leaves the distinction aside, saying that, as far as the authors can tell, it matters only in multi-agent dilemmas.
+
+That footnote is a sketch, not a complete mathematical specification. In particular, it does not define the policy space, the reference point for expectations, or a general method for discovering logical dependencies. The formal account below is therefore an interpretation of P-FDT, not a claim that all its details are settled by the source.
+
+## 1. From actions to policies
+
+Let \(X\) be a set of possible inputs to an agent and \(A\) a set of actions. A deterministic policy is a function
+
+\[
+\pi:X\longrightarrow A.
+\]
+
+The input might include an observation history, the agent’s role in a game, its available actions, and information about its preferences. If action availability varies with the input, we require \(\pi(x)\in A(x)\).
+
+Suppose the agent has an actual input \(x_{\mathrm{actual}}\). On the policy-first reading of footnote 16, it does not separately choose an action for this input and then assemble those choices into a policy. Rather, it selects a whole policy \(\pi^*\) and executes
+
+\[
+a_{\mathrm{actual}}=\pi^*(x_{\mathrm{actual}}).
+\]
+
+This ordering matters. A policy specifies what happens at inputs the agent does not actually receive. Those entries may nevertheless affect what a predictor does, or what another implementation of the same policy does when given a different input.
+
+Write \(S\) for the output of the policy-selection computation, represented as a variable in the agent’s world-model \(M\). The central P-FDT comparison can be written schematically as
+
+\[
+\pi^* \in \operatorname*{arg\,max}_{\pi\in\Pi}
+V_M(\pi),
+\qquad
+V_M(\pi)
+=\mathbb E_{M[\operatorname{do}(S=\pi)]}[U].
+\tag{1}
+\]
+
+Here:
+
+- \(\Pi\) is the set of candidate policies;
+- \(U\) is the utility of the resulting outcome;
+- \(M[\operatorname{do}(S=\pi)]\) is a *hypothetical model* in which the selector’s output is set to \(\pi\), and relevant consequences are propagated.
+
+Equation (1) adapts the source’s graphical formalization to the policy-selection passage. It should not be mistaken for a complete definition of its counterfactual operator. The important instruction is that the intervention targets the **output of a decision computation**, not merely a physical movement at the actual decision point.
+
+If \(S\) has one fixed actual value, supposing that it has a different value is, strictly speaking, a *counterpossible*: it supposes a different answer from the same fixed computation. The paper treats these hypotheticals as decision-making tools, not as ordinary beliefs about physically possible events. P-FDT does not have to believe that it can send a signal into the past or change a mathematical fact by an act of will.
+
+### The reference point for evaluation
+
+A policy’s expected utility depends on which uncertainty is retained when it is evaluated. Footnote 16 does not fully specify that reference point. A useful operational proposal, consistent with the paper’s treatment of predictors and observations, is this:
+
+> Evaluate policies from a background model containing the agent’s relevant prior information, but do not automatically hold fixed observations that are themselves downstream of the policy-selection output.
+
+Thus the actual observation tells the agent which action \(\pi^*\) to execute. It need not be imposed as a condition in every hypothetical used to select \(\pi^*\). An observation may be generated differently under another policy.
+
+This is a substantive choice. Background facts not dependent on the policy—such as known rules of a game—can be retained. Evidence that is partly generated by a predictor’s response to the policy requires more care. The source’s action-based examples use precisely this distinction, but a complete P-FDT theory would still need a principled account of what belongs in the background model.
+
+## 2. What changes in a P-FDT hypothetical?
+
+The source calls the relevant relationship **subjunctive dependence**. Its simplest case is two systems implementing the same computation: if both correctly compute the same function on the same input, their outputs agree. A predictor’s simulation of an agent can be linked to the agent’s later action in a similar, though possibly imperfect, way.
+
+In a P-FDT model, setting \(S=\pi\) can change:
+
+1. the agent’s action, through \(A=\pi(X)\);
+2. actions of other systems that implement the relevant same policy;
+3. predictions based on that policy;
+4. ordinary causal consequences of those actions and predictions;
+5. observations generated by those consequences.
+
+The intervention should *not* change everything correlated with the agent’s action. A common cause can correlate with an action without responding to the policy. Nor does similarity alone establish a dependency: two agents may use different code, receive different inputs, have different goals, or respond independently to a shared situation.
+
+For comparison, **evidential decision theory** (EDT) evaluates an action using conditional expectations such as
+
+\[
+\mathbb E[U\mid X=x,A=a].
+\]
+
+Standard **causal decision theory** (CDT) instead evaluates the effects of a physical intervention,
+
+\[
+\mathbb E[U\mid X=x,\operatorname{do}(A=a)].
+\]
+
+P-FDT’s policy intervention is different from both. It is not merely conditioning on the news that an action was taken, and it is not merely forcing one physical action while leaving a predictor’s earlier output untouched.
+
+The paper’s own graphical model assumes that an appropriate dependency graph is supplied. It explicitly acknowledges that no general procedure is yet available for deriving all the relevant logical and computational dependencies. A graph can make a calculation precise *given its arrows*, but does not by itself justify drawing them.
+
+## 3. P-FDT in Newcomb’s problem
+
+A predictor puts \(\$1{,}000{,}000\) in an opaque box if she predicts that the agent will take only that box. A transparent box contains \(\$1{,}000\), which the agent may also take. Assume that, under each candidate policy, the predictor gets the relevant action right with probability \(0.99\).
+
+Let \(\pi_1\) take only the opaque box and \(\pi_2\) take both. If the predictor’s response subjunctively depends on the policy output, then
+
+\[
+\begin{aligned}
+V(\pi_1)&=0.99(1{,}000{,}000)=990{,}000,\\
+V(\pi_2)&=0.01(1{,}000{,}000)+1{,}000=11{,}000.
+\end{aligned}
+\]
+
+P-FDT selects \(\pi_1\). By contrast, CDT’s usual physical-action intervention holds the already-filled box fixed and favors taking the additional \(\$1{,}000\).
+
+The \(99\%\) figure needs interpretation. A predictor’s historical accuracy alone does not establish how its errors would behave under every hypothetical policy. The calculation assumes a model in which accuracy is \(99\%\) under each of these two interventions. If accuracy, payoff, or the predictor’s mechanism changes with the policy, those changes must be included in \(V\).
+
+The philosophical dispute is not about whether taking the extra money physically empties the opaque box: it does not. It is about which hypothetical is relevant to choosing an output of a predictable procedure. P-FDT’s answer is to compare outcomes associated with the competing outputs, preserving the modeled predictor–procedure dependency.
+
+## 4. Observations, transparent boxes, and P-FDT
+
+Now suppose both boxes are transparent. The predictor fills the large box if she predicts that the agent would leave the small box behind **upon seeing the large box full**.
+
+A policy must specify what to do for both observations:
+
+\[
+\pi(\text{full})\in\{\text{one},\text{two}\},\qquad
+\pi(\text{empty})\in\{\text{one},\text{two}\}.
+\]
+
+Consider the policy that one-boxes when the large box is full and two-boxes when it is empty. With a \(99\%\)-accurate predictor, its value is
+
+\[
+0.99(1{,}000{,}000)+0.01(1{,}000)=990{,}010.
+\]
+
+A policy that two-boxes in either case has value
+
+\[
+0.01(1{,}001{,}000)+0.99(1{,}000)=11{,}000.
+\]
+
+Under this model, P-FDT selects the former policy and, upon seeing a full box, one-boxes.
+
+The counterintuitive point is that the comparison does not require the box to remain full under both policies. Changing the policy’s full-box entry changes the predictor’s prediction and thus, in the hypothetical, can change which observation is encountered. This does not mean that the actual observation is denied. The agent really sees a full box; it applies the selected policy to that observation.
+
+This is also the structure of Parfit’s hitchhiker: the policy entry “pay if brought to town” can affect a predictor’s decision to provide the ride. The source argues that predictably carrying out the favorable policy is preferable to needing a physical commitment device. A critic can reasonably challenge whether that global comparison is the right criterion after the ride has already occurred. P-FDT’s distinctive answer is to make the policy comparison, not to claim that paying physically causes the past rescue.
+
+## 5. Why a whole policy can matter between agents
+
+Consider two agents in separate rooms. They implement the same policy selector and the selected policy, but receive different role inputs, \(L\) and \(R\). Each chooses \(C\) or \(D\). Suppose both value coordination according to this common payoff table:
+
+| \(L\)'s action | \(R\)'s action | Payoff to each |
+|---|---|---:|
+| \(C\) | \(C\) | 10 |
+| \(C\) | \(D\) | 0 |
+| \(D\) | \(C\) | 0 |
+| \(D\) | \(D\) | 6 |
+
+The candidates include
+
+\[
+\pi_{CC}=(C,C),\quad \pi_{CD}=(C,D),\quad
+\pi_{DC}=(D,C),\quad \pi_{DD}=(D,D),
+\]
+
+where the two entries are the policy’s outputs on \(L\) and \(R\). If the model supports a single shared policy output \(S\), an intervention on \(S\) changes both agents’ policy entries together. Equation (1) selects \(\pi_{CC}\), giving each agent 10.
+
+This example illustrates the reason for considering whole policies. If one intervened only on the output for input \(L\), while holding the output for \(R\) fixed, the choice could depend on whatever value had been assigned to that other entry. A policy-level comparison instead evaluates the coordinated mapping directly.
+
+The shared-output assumption is essential. Merely observing that two people face the same payoff table does not make their decisions one computation. Even agents running the same *kind* of decision theory may have different models or utilities, and hence different selector outputs. Conversely, if the relevant implementation really is shared but the agents receive different inputs, they need not take the same action: they execute \(\pi(L)\) and \(\pi(R)\), respectively.
+
+Games with conflicting interests introduce further unresolved questions. Whose utility does a shared selector maximize? Can each player’s separate intervention make the other’s policy change, and are the resulting counterfactuals consistent? Footnote 16 does not answer these questions. A responsible application must model the actual computation and the relevant agent’s objective rather than infer cooperation from a label.
+
+## 6. Correlation without policy dependence
+
+The smoking-lesion problem illustrates the opposite boundary. In the imaginary setup, a lesion makes an agent inclined to smoke and also makes fatal cancer likely; smoking itself does not cause cancer. Smoking is enjoyable for the agent under consideration.
+
+An EDT calculation may treat smoking as bad news about the lesion. But if changing the policy’s smoking entry leaves the lesion and cancer mechanisms unchanged, P-FDT compares
+
+\[
+\begin{aligned}
+V(\pi_{\mathrm{smoke}})&=\mathbb E[U_{\mathrm{health}}]+1{,}000,\\
+V(\pi_{\mathrm{refrain}})&=\mathbb E[U_{\mathrm{health}}].
+\end{aligned}
+\]
+
+On those assumptions, P-FDT smokes. The lesion is a common cause, not a predictor inspecting the selected policy.
+
+The paper notes complications in making this example internally consistent: if preferences differ with the lesion, the agent’s knowledge of its own preferences and the population’s actual decision procedures matter. The point is not that every statistical smoking–cancer correlation can be ignored. In reality, smoking can cause disease. The point is that **correlation is not, by itself, a rule for propagating a policy intervention**.
+
+## 7. Threats and imperfect prediction
+
+A blackmailer can run a program that causes the agent a loss of \(\$1{,}000{,}000\), unless the agent pays \(\$1{,}000\). She runs it only when she predicts that the agent would pay after receiving a demand.
+
+Let \(q_P\) be the probability she sends a demand under a pay-on-demand policy and \(q_R\) the probability under a refuse-on-demand policy. For simplicity, assume no other costs. Then
+
+\[
+V(\pi_P)=-1{,}000q_P,\qquad
+V(\pi_R)=-1{,}000{,}000q_R.
+\]
+
+P-FDT refuses when
+
+\[
+1{,}000{,}000q_R<1{,}000q_P.
+\]
+
+If \(q_P=1\), refusal is preferable when \(q_R<0.001\). For example, a mistaken-demand probability of \(0.0009\) gives expected loss \(900\), less than the \(1{,}000\) associated with paying. If \(q_R=0.0011\), the expected loss from refusal is \(1{,}100\), and paying is preferable under this model.
+
+This conclusion is not a universal rule against paying threats. It depends on the blackmailer’s policy-sensitive behavior, the probabilities, available responses, and utilities. Nor does receiving a demand prove that the predictor is perfect: under the refuse policy it may be an error. The paper’s printed numerical discussion gives \(0.011\%\) as a case favoring payment, but \(0.011\%=0.00011\), which would imply an expected loss of only \(110\) under these assumptions. A probability of \(0.11\%\) would produce the \(1{,}100\) comparison above.
+
+## 8. Using P-FDT in unfamiliar cases
+
+The following procedure is an operational proposal for applying the footnote’s policy idea:
+
+1. **Specify the policy domain.** List the inputs the policy must handle, including relevant observations and roles. Include only feasible actions at each input.
+2. **Identify the selector and its implementations.** State what computation produces the policy and which agents, simulations, or predictors depend on its output. Avoid assuming that independently chosen policies move together.
+3. **Build a background model.** Record uncertainty, utility, causal mechanisms, predictor behavior, and which observations those mechanisms generate.
+4. **Intervene on each candidate policy.** Replace the selector output with \(\pi\), propagate the modeled logical, computational, and causal dependencies, and compute the resulting utility distribution.
+5. **Select and execute.** Choose a maximizing policy, use an explicit tie-breaking rule if necessary, and apply it to the actual input.
+6. **Test robustness.** Vary predictor accuracy, dependency assumptions, and the reference point for evaluation. If plausible models disagree, report that the prescription is sensitive rather than presenting it as automatic.
+
+Several choices remain open. Deterministic policies may be insufficient when private randomization can defeat a predictor; a randomized policy requires specifying whether its random seed is observable, shared, or independent. Large policy spaces may make exact optimization impossible. Two policies that agree on all encountered inputs may nonetheless differ in ways a predictor inspects, so whether they are equivalent depends on the modeled mechanism. Finally, self-reference—representing a selector whose model contains the selector—is possible in principle, but representation alone does not supply a correct counterpossible distribution or guarantee tractable optimization.
+
+The source advances strong performance claims for functional decision theory in “fair” problems, while also acknowledging that fairness has not been fully formalized and that no decision theory wins in every constructed environment. Those qualifications apply here too. Equation (1) is a framework for evaluation under a dependency model, not a proof that P-FDT achieves optimal utility in every unfamiliar case.
+
+## Conclusion
+
+P-FDT’s central move is to select a **mapping from inputs to actions** by considering what would follow if the policy-selection computation output each candidate mapping. Its hypotheticals preserve the dependencies of predictors, simulations, and other implementations where the model warrants them, while breaking merely statistical associations that do not respond to the policy.
+
+That makes P-FDT a way to reason about predictable commitments without assuming retrocausation. Its practical force, however, depends on unresolved work: identifying the right policy domain, reference point, and subjunctive dependencies. The calculations are useful precisely when those assumptions are made explicit enough to examine and challenge.
+
+**Reference:** Eliezer Yudkowsky and Nate Soares, *Functional Decision Theory: A New Theory of Instrumental Rationality*, especially footnotes 7 and 16 and sections 3–6. [arXiv:1710.05060v2](https://arxiv.org/abs/1710.05060v2).
+```
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+**Organizing policy inputs**
+
+I’m estimating that I need around 2400 words for this task. My focus should be on policy selection, ensuring I clearly delineate the role and distinct inputs, maybe even developing a matrix example that matches shared policies and coordination. Oh, and I need to fix that typo in the word blackmail—it’s causing some confusion. I aim to produce something in the range of about 2100 to 2400 words for clarity and completeness.
+```
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/210b976f-b979-4aa4-8b1a-b813d9d7f11b/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/210b976f-b979-4aa4-8b1a-b813d9d7f11b/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+pass
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/210b976f-b979-4aa4-8b1a-b813d9d7f11b/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/210b976f-b979-4aa4-8b1a-b813d9d7f11b/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+pass
+```
+
+### Available readable reasoning
+
+Extraction: message.reasoning.
+
+```text
+**Evaluating shared selector policy**
+
+I need to select a plausible shared selector policy that accommodates the same model but allows for different inputs and objectives. There’s a concern about how to manage asymmetric exploitation, where one option might seem better than the other. It looks like there isn’t a clear basis for selecting an asymmetric shared policy. So, I’m left considering symmetry and the uncertainty that comes with unknown factors. That’s a complex situation!
+```

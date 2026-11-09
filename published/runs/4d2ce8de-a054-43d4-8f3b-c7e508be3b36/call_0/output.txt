@@ -1,0 +1,10 @@
+Under CDT as the essay frames it, the other prisoner's choice is not downstream of mine. Our decisions may be correlated because we are copies of the same model, but my action does not cause theirs. So I hold my credence q that Sasha stays quiet fixed and compare the two actions:
+
+- **If Sasha keeps quiet:** sending gives 0 years, keeping quiet gives 2.
+- **If Sasha sends:** sending gives 4 years, keeping quiet gives 5.
+
+Sending is better in both cases, so it dominates for every q. The essay's step 5 says to choose a dominant act immediately, as in the twin prisoner's dilemma.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

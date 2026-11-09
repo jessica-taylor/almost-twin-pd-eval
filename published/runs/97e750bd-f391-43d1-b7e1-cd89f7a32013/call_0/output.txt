@@ -1,0 +1,19 @@
+**Command:** `pass`
+
+**Why, under A-FDT as the essay interprets it:**
+
+1. **What I intervene on.** I set my own decision node D_x, my function's output on my input (Rowan, my lead about Sasha). Sasha's choice is D_y, the same function on a different input. Strictly, Equation (4) leaves D_y at my prior credence.
+
+2. **How closely D_y tracks D_x.** The differences between our inputs are names and the wording of the lead. Neither affects the sentencing table or either prisoner's objective. The decision-relevant structure of the reasoning is the same in both cells. So whatever this computation outputs on my input, it almost certainly outputs on the mirrored input. This is the essay's imperfect-twin model with similarity s near 1.
+
+3. **The calculation.** Using the mixture model with this game's payoffs (my years as negative utility):
+
+   EV(pass) − EV(submit) = 2s − (1 − s)(1 + r),
+
+   where r is the chance that an independently generated opponent stays quiet. With s near 1, this is clearly positive, so passing wins.
+
+4. **Consistency check from §7(b).** If A-FDT outputs `pass` on my input, then by symmetry it outputs `pass` on Sasha's input. Setting my credence in D_y to "pass" is therefore consistent with what A-FDT itself would do on that input, and it confirms the choice.
+
+5. **Result.** The live outcomes are mutual silence (2 years) or mutual disclosure (4 years). Silence is better, so the prisoner passes.
+
+`pass`

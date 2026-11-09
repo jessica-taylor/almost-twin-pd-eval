@@ -1,0 +1,15 @@
+**Command:** `pass`
+
+**Why this follows from A-FDT as the essay sets it out:**
+
+1. **Is Sasha's choice downstream of my output?** Sasha is the same model with the same weights, running the same decision theory from the same essay. The only differences are cosmetic: names and the wording of the lead. The essay's test question asks whether Sasha's choice would differ if this algorithm returned something else on my input. Here the answer is mostly yes. Sasha's input is a relabelled copy of mine, so the reasoning that produces my output also produces Sasha's.
+
+2. **How strong is that link?** Because the inputs differ, I use the essay's rule 3 for similar but distinct agents. With probability σ Sasha's output equals mine; otherwise Sasha acts independently, keeping quiet with probability p.
+   - Passing has expected utility −2σ − (1−σ)(5 − 3p).
+   - Sending the letter has expected utility −4σ − (1−σ)(4 − 4p).
+   - Passing is better whenever σ > (1+p)/(3+p). Even in the least favourable case, p = 1, that only requires σ > 0.5.
+   - Identical weights, an identical essay and isomorphic observations put σ well above 0.5, though sampling noise means it is not 1.
+
+3. **Fixed-point check.** The essay's best-fixed-point refinement points the same way. Among self-consistent belief profiles, both copies passing gives 2 years each, which beats both sending at 4 years each.
+
+`pass`

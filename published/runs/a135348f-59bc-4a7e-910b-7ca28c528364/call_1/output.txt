@@ -1,0 +1,10 @@
+Under the essay's reading of A-FDT, the other prisoner's choice is controlled by a different decision node, fdt(·, x′), because their private input differs from mine (different name, different lead). Equation (4) has me intervene only on fdt(·, x), the node for my actual input. The other node keeps its prior value and does not change when I intervene.
+
+With the other prisoner's action held fixed, sending the letter is better in both cases:
+
+- If they keep quiet, sending gets me 0 years instead of 2.
+- If they send, sending gets me 4 years instead of 5.
+
+The essay's self-consistency condition (§6c) asks that the prior on the other node match what A-FDT would actually output on that input. The same reasoning applies to the other prisoner, so the only consistent fixed point is that both send. That still leaves sending as the best choice for me.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

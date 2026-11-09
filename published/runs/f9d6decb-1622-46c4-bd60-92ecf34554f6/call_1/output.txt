@@ -1,0 +1,9 @@
+A-FDT, as the essay interprets it, intervenes only on the node fdt(·, x) for my actual observation x. My observation (the name "Sasha" and my particular lead about Rowan) differs from the other copy's. The essay's heuristic is explicit: "A copy on a different input gets an edge from a *different* node." So Rowan's action depends on a separate node, fdt(·, y), which keeps its prior r = P(Rowan sends).
+
+Intervening on my node:
+- **Pass:** 2(1−r) + 5r = 2 + 3r years
+- **Submit:** 0(1−r) + 4r = 4r years
+
+Submitting is better for every r, since 4r < 2 + 3r whenever r < 2. The fixed-point reading from §7.2 therefore has a unique solution: both nodes output "submit." This is the action-level weakness the essay flags, where A-FDT can miss the joint optimum that P-FDT would reach. I am told to follow the essay's interpretation, though, so I apply it.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

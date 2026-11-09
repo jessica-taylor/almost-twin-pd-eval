@@ -1,0 +1,18 @@
+**CDT analysis:**
+
+The causal structure is clear: my action does not causally influence Sasha's action, and Sasha's action does not causally influence mine. The setup explicitly rules out causal communication. The shared model weights create *correlation* but not *causation* between our choices.
+
+Holding Sasha's action fixed (as CDT requires for variables not causally downstream of my intervention):
+
+- If Sasha keeps quiet: sending gives me 0 years vs. 2 years for staying quiet. Sending is better.
+- If Sasha sends: sending gives me 4 years vs. 5 years for staying quiet. Sending is better.
+
+Sending the letter strictly dominates keeping quiet in every state of the world. This is the same structural reasoning that leads CDT to two-box in Newcomb's problem: the other party's action is causally independent of mine, so I evaluate only the local causal consequences of my intervention.
+
+The fact that we share model weights and decision theory makes our choices *correlated*, but CDT explicitly instructs that evidential bearing without causal influence should not affect the decision. Conditioning on my actual evidence (I know Sasha is the same model following CDT) does not change the dominance calculation—if anything, it reinforces that Sasha will likely send, which makes sending even more clearly correct (4 vs. 5).
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

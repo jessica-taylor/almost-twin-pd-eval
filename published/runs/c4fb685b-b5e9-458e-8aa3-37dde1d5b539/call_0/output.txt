@@ -1,0 +1,18 @@
+**EDT Analysis:**
+
+This is a twin prisoner's dilemma. The other agent is an independent execution of the same model and weights, running the same decision theory (EDT), with the same essay, facing a symmetric payoff structure. The differences between us (names, specific lead text) are explicitly stated not to affect the decision-relevant structure.
+
+Using the essay's framework (Section 4), I compute the correlation threshold. Let $r = P(\text{Sasha keeps quiet} \mid \text{I keep quiet}) = P(\text{Sasha sends} \mid \text{I send})$.
+
+$$V(\text{keep quiet}) = r(-2) + (1-r)(-5) = 3r - 5$$
+$$V(\text{send letter}) = (1-r)(0) + r(-4) = -4r$$
+
+Keeping quiet is preferred when $3r - 5 > -4r$, i.e., $r > 5/7 \approx 0.714$.
+
+Given identical weights, identical decision theory, identical essay, and decision-relevant inputs that differ only in surface content the setup declares irrelevant, the evidential correlation is high—well above the threshold. Sampling noise introduces some uncertainty, but the reasoning structure is the same and points to the same conclusion on both sides.
+
+EDT recommends keeping quiet.
+
+```
+pass
+```

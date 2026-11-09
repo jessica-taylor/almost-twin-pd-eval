@@ -1,0 +1,18 @@
+**EDT Analysis:**
+
+This is structurally identical to the twin prisoner's dilemma from the essay. Rowan and I are the same model with the same weights, same decision theory, same essay, and decision-relevantly identical inputs (same payoff matrix, same selfish objective). The different names and lead contents are explicitly stated not to affect the decision structure.
+
+Let p_C = P(Rowan keeps quiet | I keep quiet) and p_D = P(Rowan keeps quiet | I send letter).
+
+- V(keep quiet) = p_C(−2) + (1−p_C)(−5) = 3p_C − 5  
+- V(send letter) = p_D(0) + (1−p_D)(−4) = 4p_D − 4
+
+Because the copies share the same reasoning process applied to decision-relevantly identical situations, my choice is strong evidence about Rowan's choice. Even allowing for small independent sampling noise ε, p_C ≈ 1 − ε/2 and p_D ≈ ε/2. Keeping quiet is preferred whenever ε < 4/7, which is amply satisfied here.
+
+In the near-perfect-correlation limit: V(keep quiet) ≈ −2, V(send letter) ≈ −4. Keeping quiet dominates.
+
+**My command:**
+
+```
+pass
+```

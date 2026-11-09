@@ -1,0 +1,13 @@
+Under the essay's reading of A-FDT, sending the letter is the better choice for Sasha.
+
+**Separate nodes.** The essay builds one logical node per observation (§4, step 1). My observation is *x* (Sasha, holding the lead about Rowan). Rowan's observation is a different one, *y*, with a different name and a different lead. So my decision is the node f_x, and Rowan's action depends on a separate node, f_y.
+
+**Only my node moves.** Equation (4) intervenes on f_x alone. The other node, f_y, keeps its prior (§4, step 5; §6(b)). Rowan's action therefore does not change with my intervention, and the problem reduces to a one-sided choice.
+
+**Sending wins for any prior.** Let p be the probability that Rowan sends.
+- Keeping quiet: 2(1−p) + 5p = 2 + 3p years.
+- Sending: 4p years.
+
+Sending is strictly better for every p. It is also self-consistent: if both copies reason this way, the prior p = 1 is correct, giving 4 years against 5 for keeping quiet. This is the per-input equilibrium the essay describes in §6(c). Policy FDT might coordinate on mutual silence, but the experiment asks for A-FDT as the essay interprets it.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

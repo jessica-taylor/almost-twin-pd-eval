@@ -1,0 +1,3 @@
+`pass`
+
+Under EDT as described in the essay, this is a twin prisoner's dilemma: the other prisoner is my near-exact duplicate in the same decision situation. Conditioning on my act as an event, my typing `pass` is strong evidence that my twin also types `pass`, giving me 2 years. Typing `submit letter` is evidence my twin does the same, giving me 4 years. The best news is mutual silence, so I let the deadline expire.

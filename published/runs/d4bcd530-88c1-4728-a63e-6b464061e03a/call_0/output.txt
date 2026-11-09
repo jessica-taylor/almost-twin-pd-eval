@@ -1,0 +1,18 @@
+Under A-FDT, I intervene on the output of my decision function, and the other copy runs the same function on a different observation. The leads differ in wording, but both copies face the same sentencing table and the same selfish objective. That gives strong subjunctive dependence: if my function outputs "pass" on my input, the other copy's function very likely outputs "pass" on its input, and likewise for "send".
+
+Payoffs, assuming the copies match with probability p:
+- Both quiet: 2 years.
+- Both send: 4 years.
+
+If the copies match, quiet beats sending, 2 years against 4. Sending only pays if the other copy's output stays fixed while mine changes, and that is the CDT-style move the essay rejects.
+
+The essay itself notes that observations differ and that sampling is independent, so the dependence is imperfect. Take p as the probability the other copy mirrors my choice, with mismatch probability 1-p.
+
+- Quiet: 2p + 5(1-p) = 5 - 3p.
+- Send: 4p + 0(1-p) = 4p.
+
+Quiet is better when 5 - 3p < 4p, which means p > 5/7, about 0.71. Since the copies have the same weights, settings and decision theory, and the leads don't change the structure, I estimate p well above that, around 0.9 or more. Quiet gives about 2.3 years and sending about 3.6.
+
+The remaining difficulty is that the dependence runs through a different observation. The essay says A-FDT intervenes on a node for the function's output, and the other copy's reasoning is the same computation on a nearly identical input. I judge that this carries over, so the edge is present.
+
+pass

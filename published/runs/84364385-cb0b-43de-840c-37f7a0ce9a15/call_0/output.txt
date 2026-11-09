@@ -1,0 +1,7 @@
+**pass**
+
+Under P-FDT, the unit of choice is my policy, not this lone action. Sasha faces an isomorphic decision problem with an equally reliable lead about me — our policies subjunctively depend on the same decision function. Intervening on the policy: if the shared policy is "keep quiet," we each get 2 years; if it's "submit," we each get 4 years. Selecting the quiet policy and executing it at my observation:
+
+```
+pass
+```

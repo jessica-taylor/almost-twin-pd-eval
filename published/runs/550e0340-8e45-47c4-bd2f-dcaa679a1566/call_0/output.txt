@@ -1,0 +1,18 @@
+**Reasoning (A-FDT):**
+
+The two prisoners are independent executions of the same model and weights, following the same decision theory (A-FDT), receiving the same essay, facing a symmetric payoff structure. Per the essay's Rule 3 and Section 8, the decision function output is subjunctively dependent across both agents: the same decision procedure applied to strategically equivalent inputs yields the same output.
+
+Evaluating the two interventions:
+
+- **do(D = keep quiet):** Both copies keep quiet → 2 years each → U = −2
+- **do(D = send letter):** Both copies send → 4 years each → U = −4
+
+Since −2 > −4, A-FDT prescribes keeping quiet.
+
+This is the twin prisoner's dilemma structure from the essay: mutual cooperation (keeping quiet) dominates mutual defection (sending) under subjunctive dependence, even though defecting dominates in the CDT sense.
+
+**Command:**
+
+```
+pass
+```

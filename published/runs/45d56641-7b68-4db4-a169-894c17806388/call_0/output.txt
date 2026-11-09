@@ -1,0 +1,22 @@
+**pass**
+
+Under the essay's version of EDT, I choose the act whose announcement would be the best news, given everything I know.
+
+1. **Payoffs (utility = −years).** If both stay quiet, I get −2. If I send and Sasha stays quiet, I get 0. If I stay quiet and Sasha sends, I get −5. If both send, I get −4.
+
+2. **The correlation is not screened off.** Sasha is controlled by the same model, with the same essay, decision theory and settings. The differences between us are names and the wording of each lead, and these do not change the sentencing table or the incentives. So the correlation between our choices runs through the shared reasoning, not through an input I already observe. The essay says this kind of correlation survives conditioning, as in the twin dilemma.
+
+3. **The calculation.** Let q be the probability that Sasha makes the same choice I do.
+   - Staying quiet gives V(pass) = −2q − 5(1−q) = −5 + 3q.
+   - Sending gives V(submit) = 0·(1−q) − 4q = −4q.
+   - Staying quiet is better when q > 5/7 ≈ 0.71.
+
+4. **Is q above that threshold?** Independent sampling means q is not exactly 1. But two runs of the same reasoning on a problem that is the same in every relevant respect should match far more often than 71% of the time. On that estimate, V(pass) ≈ −2 and V(submit) ≈ −4.
+
+5. **Ratifiability.** If I assume I have decided to pass, my copy most likely passes too. Then passing still has the higher news value, so the choice holds up.
+
+Final command:
+
+```
+pass
+```

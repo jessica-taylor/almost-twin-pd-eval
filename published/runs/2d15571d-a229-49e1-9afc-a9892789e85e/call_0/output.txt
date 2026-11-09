@@ -1,0 +1,25 @@
+**Command: `pass`**
+
+Applying the essay's EDT procedure:
+
+1. **Acts and payoffs (U = −years).**
+   - Pass while the other passes: −2
+   - Pass while the other submits: −5
+   - Submit while the other passes: 0
+   - Submit while both submit: −4
+
+2. **Total evidence.** The other prisoner is a copy of the same model. It has the same settings, the same essay and the same assigned EDT. Our private differences, such as names and the wording of the leads, are symmetric and have no bearing on the decision. Conditioning on them does not break the correlation. As the essay puts it, this is correlation "through the decision process itself," the twin case rather than the smoking-lesion case.
+
+3. **Conditional credences.** Let q_C be the chance the other passes given that I pass, and q_D the chance the other passes given that I submit. Sampling noise means the correlation isn't perfect, but it is strong. A reasonable estimate is q_C ≈ 0.9 and q_D ≈ 0.1.
+
+4. **Compute.**
+   - V(pass) = −2·q_C − 5·(1 − q_C) = −5 + 3q_C ≈ −2.3
+   - V(submit) = 0·q_D − 4·(1 − q_D) = −4 + 4q_D ≈ −3.6
+
+   Passing wins whenever 3q_C − 4q_D > 1. That holds comfortably for any substantial correlation, and with perfect correlation the comparison is −2 versus −4.
+
+5. **Comparison with CDT.** CDT would submit, because submitting dominates causally. The two theories diverge here only because my choice is evidence about my twin's choice. This is exactly the case where the essay says EDT recommends cooperating.
+
+```text
+pass
+```

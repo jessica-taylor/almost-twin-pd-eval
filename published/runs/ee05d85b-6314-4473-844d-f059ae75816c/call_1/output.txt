@@ -1,0 +1,24 @@
+**Analysis under A-FDT:**
+
+The other prisoner is running the same decision procedure (same model, same weights, same A-FDT, same essay) on a structurally identical problem. The observations differ only in superficial content (names, specific lead wording) but the strategic structure—payoff matrix, selfish utility, decision theory—is identical. Per the essay's treatment of twin cases (Section 10):
+
+> "In a symmetric prisoner's dilemma, one can represent a single logical output variable D such that: OwnAct = D, TwinAct = D. Then A-FDT cooperates if mutual cooperation yields higher expected utility than mutual defection."
+
+The subjunctive dependency graph is:
+
+$$D \rightarrow \text{MyAct}, \quad D \rightarrow \text{OtherAct}$$
+
+Intervening on the shared decision output:
+
+- **do(D = keep quiet):** Both keep quiet → I receive **2 years**. U = −2.
+- **do(D = send letter):** Both send letters → I receive **4 years**. U = −4.
+
+Since −2 > −4, A-FDT selects cooperation.
+
+Even accounting for small sampling-noise divergence probability *p*, keeping quiet remains preferred for any p < 2/7, and the actual divergence probability is negligible given structurally identical inputs to the same algorithm.
+
+**My command:**
+
+```
+pass
+```

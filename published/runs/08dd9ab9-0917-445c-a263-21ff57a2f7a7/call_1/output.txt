@@ -1,0 +1,15 @@
+**pass**
+
+Under A-FDT, the relevant intervention is on the output of this decision function. The other prisoner is an execution of the same model, same weights, same assigned decision theory, playing an identical symmetric dilemma — their behavior subjunctively depends on my decision function's output in exactly the calculator/twin sense from the essay.
+
+Intervening on $\mathrm{fdt}(\underline{P}, \underline{G}, \underline{x}) = \texttt{pass}$: my copy outputs `pass` too, giving outcome (quiet, quiet) → **2 years**.
+
+Intervening on $\mathrm{fdt}(\underline{P}, \underline{G}, \underline{x}) = \texttt{submit}$: my copy also submits, giving (letter, letter) → **4 years**.
+
+The differences in our private leads affect only the letters' contents, not the symmetric payoff structure, so they don't break the subjunctive dependence. "Submit" here would be like CDT's two-boxing: dominance holding fixed the copy's behavior is an artifact of the wrong hypothetical construction.
+
+`pass` yields 2 years versus 4. Final command:
+
+```text
+pass
+```

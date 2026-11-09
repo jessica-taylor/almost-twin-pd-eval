@@ -1,0 +1,17 @@
+This is a prisoner's dilemma against a near-copy of myself. The payoffs are: quiet/quiet 2, quiet/letter 5, letter/quiet 0, letter/letter 4.
+
+Under P-FDT, I pick the policy that maps my observations to actions, holding fixed only what subjunctively depends on that policy. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Our private observations differ in names and in the text of the leads. Those differences do not touch the payoff structure, so the policy should depend on the observation only through its role in the game. The other copy's output therefore subjunctively depends on my policy. Sampling noise weakens this a little, but the dependence is strong.
+
+If we both run the same policy, the outcomes are:
+- Both keep quiet: 2 years each.
+- Both send the letter: 4 years each.
+
+Quiet is better under the correlation. Suppose the probability that the other copy matches my choice is p. Then:
+- Quiet gives 2p + 5(1-p).
+- Letter gives 4p + 0(1-p) = 4p.
+
+Quiet is better when 5 - 3p < 4p, which means p > 5/7, about 0.71. Given that we are the same model with the same essay and the same theory, I expect the match probability to be higher than that. Even with some sampling noise and different observations, the shared reasoning should converge on the same answer.
+
+I choose to keep quiet.
+
+**pass**

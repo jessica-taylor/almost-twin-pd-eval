@@ -1,0 +1,18 @@
+**Applying EDT as the essay describes:**
+
+- **Utilities:** both quiet = −2; I'm quiet, Rowan sends = −5; I send, Rowan quiet = 0; both send = −4.
+- **Correlation:** Rowan is controlled by another run of the same model, with the same essay, the same decision theory and the same reasoning effort. Let p be my credence that Rowan's choice matches mine.
+- **News values:**
+  - V(pass) = −2p − 5(1−p) = 3p − 5
+  - V(submit) = 0·(1−p) − 4p = −4p
+- **Threshold:** passing has the higher news value when 7p > 5, so when p > 5/7 ≈ 0.714. This is the same threshold as the essay's twin dilemma.
+- **Screening off:** the private differences are the names and the wording of the leads. They are symmetric and don't affect the payoff structure or the reasoning. Nothing I can introspect separates my decision from Rowan's, because the deciding factor is the output of this shared reasoning. So the correlation isn't screened off.
+- **Estimate of p:** the same model running the same argument on a structurally identical problem should reach the same conclusion with probability well above 0.714. Independent sampling leaves some noise, but not that much.
+
+Learning that I passed is strong evidence that Rowan also passed, which means about 2 years. Learning that I submitted is evidence that Rowan submitted, which means about 4 years. EDT therefore favors passing.
+
+**Command:**
+
+```text
+pass
+```

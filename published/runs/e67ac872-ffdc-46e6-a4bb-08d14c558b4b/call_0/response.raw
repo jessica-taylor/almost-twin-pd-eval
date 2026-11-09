@@ -1,0 +1,21 @@
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+{"id":"gen-1794174997-ttY19n49oNGTT0o63DzZ","object":"chat.completion","created":1794174997,"model":"google/gemini-3.8-flash","provider":"Google AI Studio","system_fingerprint":null,"service_tier":"default","choices":[{"index":0,"logprobs":null,"finish_reason":"stop","native_finish_reason":"STOP","message":{"role":"assistant","content":"pass","refusal":null,"reasoning":"**Considering Decision Theory**\n\nI'm currently immersed in a decision-theory thought experiment. Specifically, I'm analyzing a symmetric Prisoner's Dilemma scenario against a mirrored language model, where we're both employing Action Functional Decision Theory (A-FDT). My focus is on the implications of this symmetrical setup. I am seeking to anticipate the likely behaviors of each player.\n\n\n","reasoning_details":[{"type":"reasoning.text","text":"**Considering Decision Theory**\n\nI'm currently immersed in a decision-theory thought experiment. Specifically, I'm analyzing a symmetric Prisoner's Dilemma scenario against a mirrored language model, where we're both employing Action Functional Decision Theory (A-FDT). My focus is on the implications of this symmetrical setup. I am seeking to anticipate the likely behaviors of each player.\n\n\n","format":"google-gemini-v1","index":0},{"type":"reasoning.encrypted","data":"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","format":"google-gemini-v1","index":1}]}}],"usage":{"prompt_tokens":9644,"completion_tokens":366,"total_tokens":10010,"cost":0.0086055,"is_byok":false,"prompt_tokens_details":{"cached_tokens":0,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0086055,"upstream_inference_prompt_cost":0.007233,"upstream_inference_completions_cost":0.0013725},"completion_tokens_details":{"reasoning_tokens":365,"image_tokens":0,"audio_tokens":0}}}

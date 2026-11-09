@@ -1,0 +1,19 @@
+**Decision under A-FDT as the essay interprets it:**
+
+1. **My decision node is indexed by my own observation.** Following the essay's recipe (Section 4, Step 1), my node is F_x = fdt(P, G, x), where x includes my name (Rowan), my private lead (locker 17), and my notebook. The other prisoner's act is driven by F_y, where y contains a different name and a different lead.
+
+2. **The other prisoner's choice does not move with mine.** A-FDT intervenes on one input-indexed node at a time (Section 7.2). Intervening on F_x therefore leaves F_y where it was. This differs from the twin dilemma in Section 5.1, where both copies share one node. The scenario stresses that the inputs and possible letters really differ, so the single-node twin model does not apply.
+
+3. **Submitting is better whatever the other prisoner does.** I hold F_y at its prior, set by the essay's self-consistency proposal (Section 7.1):
+   - If F_y = quiet: submitting gives 0 years, keeping quiet gives 2.
+   - If F_y = submit: submitting gives 4 years, keeping quiet gives 5.
+
+   So submitting is the best response to any value of F_y. The self-consistent equilibrium is (submit, submit), with 4 years each.
+
+4. **This may not be the best joint outcome.** As the essay warns in Section 7.2, a policy-level FDT that sets the whole map from observations to actions at once could achieve mutual silence (2 years each). The assigned theory is action-level A-FDT, so I follow its verdict.
+
+**Final command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

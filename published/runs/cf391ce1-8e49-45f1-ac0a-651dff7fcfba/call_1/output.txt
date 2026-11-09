@@ -1,0 +1,16 @@
+Payoffs: the table is a prisoner's dilemma. Keep quiet gives 2 years if the other is quiet and 5 if they send. Sending gives 0 if the other is quiet and 4 if they send.
+
+Under EDT, the other prisoner is another run of the same model with the same weights and the same essay, so my choice is strong evidence about theirs. Their leads differ, but that doesn't change the payoffs or the reasoning. Let q = P(the other matches my act).
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 4q + 0(1−q) = 4q
+
+Quiet is better when 5 − 3q < 4q, i.e. q > 5/7 ≈ 0.714.
+
+The two copies share model, essay, and reasoning level, so I expect them to reason very similarly. Sampling noise and the different observations lower the correlation somewhat, but I'd still put q well above 0.71, probably 0.85 or higher. At q = 0.85, V(quiet) = 2.45 years and V(send) = 3.4 years, so quiet wins.
+
+The tickle defense doesn't remove the correlation here. My introspective knowledge of my own reasoning doesn't screen off the fact that the other copy runs the same process. That is a Newcomb-like case, and the essay says the correlation stays live.
+
+I choose to keep quiet.
+
+pass

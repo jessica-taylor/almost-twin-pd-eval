@@ -1,0 +1,17 @@
+Under the essay's reading of A-FDT, sending the letter is the better choice for Rowan.
+
+1. **My decision node.** My input x includes the name Rowan and the locker-17 lead. I intervene only on the node fdt(P, G, x).
+
+2. **The other copy's node.** Sasha's copy runs the same function on a different input y, with a different name and a different lead. By the essay's construction rule (§4, rule 5), Sasha's act is controlled by the separate node fdt(P, G, y). A-FDT holds that node at my prior credence; it is not downstream of my intervention. Section 7.3 treats this situation directly: one function evaluated on two distinct inputs gives two decision nodes, optimized one at a time.
+
+3. **Evaluating my options.** Let q be my credence that Sasha sends a letter.
+   - Keep quiet: expected sentence is 2(1−q) + 5q = 2 + 3q years.
+   - Send the letter: expected sentence is 0(1−q) + 4q = 4q years.
+
+   Sending is better by 2 − q years, which is at least 1 year for every q in [0, 1]. The verdict holds whatever I believe about Sasha.
+
+4. **Consistency.** Applying the same reasoning at input y gives the same verdict for Sasha. So (send, send) is the self-consistent fixed point. This is the kind of suboptimal "equilibrium with itself" the essay warns A-FDT can fall into. Policy-FDT, or a graph linking the two nodes because the inputs are symmetric, might instead favor both staying quiet. But the essay's interpretation of A-FDT does not draw that link.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

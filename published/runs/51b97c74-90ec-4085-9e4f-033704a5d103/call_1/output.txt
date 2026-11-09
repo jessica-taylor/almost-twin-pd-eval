@@ -1,0 +1,10 @@
+**Command:** `submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."`
+
+**Why A-FDT, as the essay interprets it, gives this answer:**
+
+- **The two decision nodes are separate.** My observation history (name Sasha, the lead about Rowan) differs from the other copy's history. So my decision node is F_x, and the other copy's act is driven by a different node, F_y. Equation (4) intervenes only on F_x. F_y stays at its prior, and the essay recommends making that prior self-consistent (§6.2).
+- **Sending the letter wins whatever the other copy does.** Let q be the probability that F_y outputs "send."
+  - If I submit, my expected sentence is 4q + 0(1−q) = 4q years.
+  - If I pass, it is 5q + 2(1−q) = 2 + 3q years.
+  - Since 4q is less than 2 + 3q for every q between 0 and 1, submitting is better by 2 − q years.
+- **The fixed point is stable.** Because submitting is strictly better for every q, the self-consistent prior puts q = 1. Both copies submit, and each gets 4 years. This matches the essay's note that A-FDT, acting on a single input, can split from policy-FDT in multi-agent dilemmas like this one, where choosing a joint policy might favor mutual silence.

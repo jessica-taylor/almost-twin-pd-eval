@@ -1,0 +1,15 @@
+**Command: `pass`**
+
+Under P-FDT as the essay interprets it, I choose a policy, meaning a map from private observations to actions. Both copies of the decision function evaluate that policy before conditioning on which observation they actually received. Here the inputs are the Rowan-observation and the Sasha-observation. Both copies run the same function and read the policy entry for their own input.
+
+Viewed from before the problem-specific input arrives, each prisoner is equally likely to be in either role:
+
+| Policy (Rowan-input, Sasha-input) | Expected years per prisoner |
+|---|---|
+| (pass, pass) | 2 |
+| (submit, submit) | 4 |
+| (submit, pass) or (pass, submit) | (0 + 5)/2 = 2.5 |
+
+The optimal policy is (pass, pass). The other copy computes the same argmax over the same symmetric schedule, so it reaches the same policy. Applying it to my actual input gives:
+
+`pass`

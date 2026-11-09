@@ -1,0 +1,18 @@
+**Analysis under A-FDT:**
+
+The two copies are running the same model, same weights, same decision theory (A-FDT), and received the same essay. Although our private observations differ in surface content (different names, different specific leads), the observations are **structurally equivalent**: each prisoner holds an equally reliable lead about the other, and the sentencing table is perfectly symmetric.
+
+Using the **policy formulation** from the essay (Section 5), I evaluate the policy π that maps observations to actions. Since both copies instantiate the same policy and the observations are strategically identical, the policy maps both to the same action. This establishes subjunctive dependence at the policy level — exactly the structure the essay identifies in the psychological twin prisoner's dilemma.
+
+**Evaluating the two policy outputs:**
+
+- If π maps both observations to **"keep quiet"**: both cooperate → **2 years** each.
+- If π maps both observations to **"send letter"**: both defect → **4 years** each.
+
+Since −2 > −4, A-FDT selects the policy that outputs "keep quiet."
+
+---
+
+```
+pass
+```

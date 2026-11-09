@@ -1,0 +1,13 @@
+Under A-FDT, the question is which output of my decision function gives the best outcome, counting everything that depends on that output. The other prisoner is a second execution of the same model with the same weights, the same essay and the same theory. Their observations differ, but the reasoning that decides the choice does not. So their output is strongly subjunctively dependent on mine, though not perfectly, since sampling is independent and the leads differ.
+
+The payoffs are: quiet/quiet 2 years, quiet/letter 5, letter/quiet 0, letter/letter 4.
+
+If my decision function outputs "pass," the copy very likely outputs "pass" too, giving 2 years. If it outputs "submit," the copy very likely submits too, giving 4 years. Let p be the probability the copy matches my output:
+- Pass: 2p + 5(1−p) = 5 − 3p
+- Submit: 4p + 0(1−p) = 4p
+
+Pass is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. Two executions of the same model with the same essay and the same stipulated theory should match with much higher probability than that. The differing leads are stipulated not to affect the payoffs or the objective, so they should barely change the reasoning. I estimate p well above 0.9.
+
+Passing costs about 2.3 years at p = 0.9, against 3.6 for submitting. The edge from my computation to the copy's is a real one, since the copy runs the same reasoning, and it passes the essay's edge test.
+
+**pass**

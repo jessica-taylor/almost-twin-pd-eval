@@ -1,0 +1,14 @@
+Under the essay's A-FDT, the right command is to send the letter.
+
+1. **Which node I control.** My observation history is x: I am Sasha, with my specific lead about Rowan. A-FDT intervenes only on F_x, the output of my decision function on exactly this input.
+
+2. **The other prisoner's node.** The other copy runs the same function on a different input, x′, with a different name and a different lead. The essay's rule (§4, §9 step 3) draws an arrow from F_x only to systems computing the same function on the same input. So the other prisoner's act depends on F_{x′}, not on F_x. Under do(F_x = a), F_{x′} stays at its prior.
+
+3. **Expected sentence.** Let r be the prior probability that the other prisoner keeps quiet.
+   * Keep quiet: 2r + 5(1−r) = 5 − 3r years.
+   * Send the letter: 0·r + 4(1−r) = 4 − 4r years.
+   * Sending is better by 1 + r years, which is positive for every r in [0,1].
+
+4. **Robustness check (§8.3).** The verdict holds for every prior on F_{x′}, so A-FDT's answer is clear. P-FDT, which picks a whole policy across both observations, might instead coordinate on mutual silence. The essay flags this as the known gap between A-FDT and the policy version, but I was told to apply A-FDT as the essay interprets it.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

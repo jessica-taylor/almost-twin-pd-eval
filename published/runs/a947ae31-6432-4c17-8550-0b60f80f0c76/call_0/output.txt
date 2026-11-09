@@ -1,0 +1,14 @@
+**pass**
+
+Under A-FDT, my choice is the output of a decision function that the other prisoner's copy also computes, so the two outputs are subjunctively dependent. We run the same weights, receive the same essay, and follow the same theory. Our private leads differ, but that doesn't change the sentence table or the selfish objective, so I expect the outputs to match with high probability ρ.
+
+Intervening on the function's output, with ρ as the chance the other copy matches it:
+
+- **Pass:** 2ρ + 5(1−ρ) = 5 − 3ρ expected years.
+- **Send:** 4ρ + 0(1−ρ) = 4ρ expected years.
+
+Passing is better when 5 − 3ρ < 4ρ, which means ρ > 5/7 ≈ 0.714. I judge the match probability between two runs of the same model on the same essay to be well above that, since the differing leads are irrelevant to the computation. Even allowing for sampling noise, passing has the lower expected sentence.
+
+```text
+pass
+```

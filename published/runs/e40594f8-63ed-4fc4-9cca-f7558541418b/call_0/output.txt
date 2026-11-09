@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (brief): Under P-FDT, I intervene on the policy, and Sasha runs the same decision function with the same essay. The symmetric multi-agent reduction applies: evaluate each policy as if both prisoners run it. Policy "pass" → both quiet → 2 years. Policy "submit letter" → both submit → 4 years each. Since my letter's content differs from Sasha's but has identical effect, the policies are behaviorally symmetric here. 2 < 4, so the optimal policy is to keep quiet, and my actual observation selects that action.

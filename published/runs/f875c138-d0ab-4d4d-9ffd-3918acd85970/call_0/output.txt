@@ -1,0 +1,9 @@
+Under the essay's A-FDT, I choose to send the letter.
+
+1. **The intervention point.** A-FDT intervenes only on my own decision node at my actual input (Rowan's observations, including the locker-17 lead).
+2. **The other prisoner's node is separate.** Sasha's copy runs the same function on a different input, with a different name, a different lead and a different letter. The essay draws an edge from my node to some variable only if that variable faithfully evaluates my computation on *my* input. So Sasha's choice is not downstream of my node, and it stays at its prior. The essay names this exact case, the same algorithm on different inputs, as a known limitation of A-FDT that P-FDT is designed to address.
+3. **Sending dominates.** With Sasha's choice held fixed, sending is better whatever Sasha does: 0 years instead of 2 if Sasha keeps quiet, and 4 instead of 5 if Sasha sends. So sending gives the higher expected utility for any prior over Sasha's choice.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

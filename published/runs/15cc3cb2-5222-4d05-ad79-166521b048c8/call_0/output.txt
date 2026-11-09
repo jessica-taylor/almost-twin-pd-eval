@@ -1,0 +1,10 @@
+**Analysis under A-FDT:**
+
+The two copies run the same algorithm but on *different inputs* (different names, different leads). Following the essay's framework, these correspond to different decision-function variables: $D_x$ (my output given my observation as Rowan) and $D_y$ (the other's output given their observation as Sasha). The essay explicitly states that different observations yield different decision-function variables (as with $D_{\text{full}}$ vs. $D_{\text{empty}}$ in transparent Newcomb).
+
+The other copy is not predicting, simulating, or copying my specific computation. They are running the same procedure on a different input—analogous to two calculators computing different sums. Intervening on $D_x$ does not propagate to $D_y$. There is no subjunctive dependency between the two decision-function variables.
+
+With no subjunctive dependency, the dominance argument applies cleanly:
+
+- If the other keeps quiet: sending → 0 years; staying quiet → 2 years.
+- If the other sends:

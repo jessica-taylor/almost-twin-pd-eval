@@ -1,0 +1,15 @@
+Under EDT, the payoffs here are a prisoner's dilemma with years as the cost: mutual quiet is 2, mutual letter is 4, defecting against a quiet partner is 0, and staying quiet against a letter is 5.
+
+The other prisoner is a copy of me running the same model and weights, with the same decision theory and the same essay. The leads differ, but they have the same effect on the sentence table. The correlation is therefore strong, though not perfect, because sampling is independent and the private observations differ.
+
+Let q be the probability that the other copy does what I do.
+- V(quiet) = -(2q + 5(1−q)) = -(5 − 3q)
+- V(letter) = -(4q + 0·(1−q)) = -4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7, about 0.71.
+
+Both copies reason from the same essay, which gives the twin-dilemma break-even of 5/7 explicitly. I think the correlation is well above that, probably 0.85 or higher. The tickle defense doesn't remove it, because my choice here is the output of the same procedure the other copy runs, and I have no independent information that screens off the link.
+
+At q = 0.9, V(quiet) = -2.3 and V(letter) = -3.6, so keeping quiet is better.
+
+pass

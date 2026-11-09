@@ -1,0 +1,15 @@
+Under P-FDT, as the essay interprets it, I choose a whole policy (a mapping from private observations to actions) under the shared prior. Both executions read their actions off that same policy node. The role labels (Rowan or Sasha) and the specific leads are just different inputs to it.
+
+Scoring the candidate policies, with my role unknown under the shared prior:
+
+| Policy | Outcome | Expected years |
+|---|---|---|
+| Pass on every input | Both keep quiet, 2 years each | **2** |
+| Submit on every input | Both send letters, 4 years each | 4 |
+| Submit as Rowan, pass as Sasha (or the reverse) | Equal chance of 0 or 5 years | 2.5 |
+
+"Pass on all inputs" is the unique optimum. That holds whether I fix the prior before learning my role, as the essay proposes in §6(b), or simply note that the policy must be symmetric. My actual observation is the Rowan input, so I apply the policy to it.
+
+```text
+pass
+```

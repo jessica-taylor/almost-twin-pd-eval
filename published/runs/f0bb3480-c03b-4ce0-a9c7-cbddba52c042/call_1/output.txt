@@ -1,0 +1,10 @@
+`pass`
+
+Reasoning (briefly, per EDT as the essay interprets it): My choice is made by the same procedure that determines the other copy's choice in this symmetric situation. Conditioning on my action is therefore strong evidence about Rowan's action, as in the twin prisoner's dilemma — introspection cannot decouple the correlation, since our decision procedures are identical and the case is symmetric.
+
+- \(V(\text{pass})\): Rowan also passes with high probability → 2 years.
+- \(V(\text{submit})\): Rowan also submits with high probability → 4 years.
+
+The differences in our private leads do not break the symmetry of the procedure or the payoff table, so the twin-case reasoning from the essay applies. Submitting is bad news: it betokens mutual defection and 4 years. Keeping quiet betokens mutual cooperation and 2 years.
+
+Final command: `pass`

@@ -1,0 +1,9 @@
+Under the essay's reading of A-FDT, the intervention targets only my own decision node, F_x: this procedure's output on my exact observation history (named Sasha, holding the lead about Rowan's inventory sheet). The other copy is running the same procedure on a different input y, with a different name and a different lead. By edge rule G1, a mechanism depends subjunctively on F_x only if it evaluates my decision function on input x. So the other prisoner's choice comes from a separate node, F_y, and is held fixed when I intervene on F_x.
+
+With F_y held fixed, sending the letter is better whatever the other prisoner does:
+- **If F_y = keep quiet:** sending gives 0 years, staying quiet gives 2 years.
+- **If F_y = send:** sending gives 4 years, staying quiet gives 5 years.
+
+Applying the essay's self-consistency check, the other copy runs the same reasoning at y and also sends. That makes (send, send) the unique self-consistent profile. Mutual silence (2 years each) would be better, but reaching it requires selecting a policy across both information states. That is policy-selecting FDT, which the essay explicitly distinguishes from A-FDT as the cost of choosing actions rather than policies.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

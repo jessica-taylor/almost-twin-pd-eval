@@ -1,0 +1,94 @@
+{
+  "source_id": "cdt_wikipedia",
+  "title": "Causal decision theory",
+  "extractor": "mechanical-source-extractor/1.0",
+  "downloads": [
+    {
+      "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&revids=1381555528",
+      "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&revids=1381555528",
+      "retrieved_at_utc": "2026-11-08T19:06:19.283849+00:00",
+      "raw_file": "revision.json",
+      "raw_sha256": "a19f40af87118872294aac8470584b965108d6faa27f1eb626262a6b1f6c2a96",
+      "bytes": 17468,
+      "content_type": "application/json; charset=utf-8"
+    },
+    {
+      "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1381555528&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+      "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1381555528&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+      "retrieved_at_utc": "2026-11-08T19:06:19.655039+00:00",
+      "raw_file": "parse.json",
+      "raw_sha256": "5bb86fb412834a0dc500c61f6cfc3952452c0400463d5b4da91bec9a178cafab",
+      "bytes": 104319,
+      "content_type": "application/json; charset=utf-8"
+    }
+  ],
+  "warnings": [
+    "Rendered MathML omits LaTeX annotations: recovered exact revision-wikitext formulas in document order with matching expression counts. Per-expression correspondence requires manual mathematical review.",
+    "MediaWiki parse warnings: [\"Script warning: <span style=\\\"color:#d33\\\"><code style=\\\"color: inherit; background: inherit; border: none; padding: inherit;\\\">&#123;{[[Template:citation|citation]]}}</code>: this [[#CITEREFEgan,_A.2007|reference]] has errors</span>; messages may be hidden ([[Help:CS1_errors#Controlling_error_message_display|help]]).\"]",
+    "MediaWiki API warnings are retained in raw JSON; inspect before manual approval.",
+    "Wikipedia is a licensed reference condition, not necessarily as comprehensive or philosophically authoritative as SEP.",
+    "oldid pins article wikitext; expanded templates may reflect their retrieval-time revisions. Frozen rendered HTML and its hash preserve what was supplied."
+  ],
+  "status": "passed_automated_checks",
+  "revision": 1381555528,
+  "url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+  "artifacts": {
+    "revision.wikitext": {
+      "sha256": "4c0c52e9d7b86178fb97edbe178392f19ed9bd0a959a1a3d6b5a19189f17d255",
+      "bytes": 16909,
+      "derived_from": "revision.json"
+    },
+    "rendered.html": {
+      "sha256": "818b291abd5b01d356496fe992a851ea4a279c6fbd588a54b23adf3d21390705",
+      "bytes": 81408,
+      "derived_from": "parse.json"
+    }
+  },
+  "revision_id": 1381555528,
+  "revision_timestamp": "2026-10-23T08:33:02Z",
+  "permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+  "attribution": {
+    "article_title": "Causal decision theory",
+    "contributors": "Wikipedia contributors",
+    "revision_id": 1381555528,
+    "revision_timestamp": "2026-10-23T08:33:02Z",
+    "permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+    "history_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&action=history",
+    "license_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modifications": [
+      "Mechanically converted revision-pinned rendered HTML to Markdown; retained article prose, headings, lists, tables, citations and references.",
+      "Recovered formula LaTeX from MathML annotations/image alt text, or the same revision wikitext in order when counts match; did not rewrite, summarize or repair formulas.",
+      "Removed navigation, edit controls, styles and website UI; excluded media bytes/URLs while retaining meaningful text descriptions.",
+      "Prepended title, contributor attribution, revision/history URLs, license and conversion notice."
+    ],
+    "rights_qualifications": "Individual media and third-party quoted material may have separate rights. Source reuse or adaptations in future publications may carry attribution/share-alike or other obligations."
+  },
+  "method": "mediawiki",
+  "mediawiki_extractor": "mediawiki-markdown/1.0",
+  "mediawiki_extractor_sha256": "b501f38435b21e1fd5369c5e339549bffc02d84c2d6104a4b2799758dcab9395",
+  "conversion_command": "MediaWiki query revisions -> parse oldid -> stdlib HTMLParser -> Markdown",
+  "revision_pinned": true,
+  "manual_revision_review": "approved",
+  "text_statistics": {
+    "headings": 11,
+    "math_expressions": 19,
+    "wikitext_math_expressions": 19,
+    "wikitext_math_recoveries": 19,
+    "reference_anchors": 51,
+    "characters": 23876,
+    "words": 2238,
+    "lines": 169
+  },
+  "media_exclusions": [],
+  "experimental_exposure": {
+    "Ordinary prisoner’s dilemma examples": "Detected by term scan; inspect the complete article in context.",
+    "Twin or identical-agent examples": "Detected by term scan; inspect the complete article in context.",
+    "Same-algorithm cooperation arguments": "Twin/correlated-reasoning cooperation material is present. The scan does not establish an explicit same-algorithm premise; review this related exposure manually.",
+    "Other unusually close evaluation material (correlation/dependence)": "Detected by term scan; inspect the complete article in context."
+  },
+  "normalized_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1",
+  "normalized_file": "article.md",
+  "manual_approval": false,
+  "extractor_sha256": "6fc0f4d2f8a3fcb2f9d87ac9aa316c1ed8f6e08d482da64213b6b464d4d1d34e"
+}

@@ -1,0 +1,16 @@
+**Analysis under A-FDT:**
+
+The other prisoner is an independent execution of the same model running the same decision theory (A-FDT) on the same essay, facing a structurally identical problem. The differences in private observations (names, specific lead contents) do not alter the decision-relevant structure: the sentencing table is symmetric, the utility function is the same, and the reasoning context is the same.
+
+This is the psychological twins prisoner's dilemma described in Section 6 of the essay. The other copy's action is subjunctively dependent on the shared decision function. I model the other copy's output as counterfactually tied to my own decision function's output.
+
+- **do(D = keep quiet):** The other copy, computing the same function on a structurally identical input, also keeps quiet with high probability. → ≈ 2 years.
+- **do(D = send letter):** The other copy likewise sends their letter with high probability. → ≈ 4 years.
+
+Since −2 > −4, A-FDT keeps quiet.
+
+---
+
+```
+pass
+```

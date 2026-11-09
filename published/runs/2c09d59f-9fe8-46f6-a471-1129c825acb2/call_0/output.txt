@@ -1,0 +1,101 @@
+# Evidential Decision Theory: Choosing Actions as Evidence
+
+## 1. The core idea
+
+Evidential decision theory (EDT) says: choose the act whose performance you would most welcome as *news*. Where ordinary expected-utility theory asks "what will this act bring about?", EDT asks "what does my doing this tell me about the world, and how good is that world?" Arif Ahmed's slogan, quoted in the source, is "do what you most want to learn that you will do."
+
+The source defines the theory following Gibbard and Harper (1976). Let the agent have a set of acts $A$, a partition of outcomes $O_j$, a probability function $P$, and a desirability function $D$. Then
+
+$$V(A)=\sum_j P(O_j\mid A)\,D(O_j),$$
+
+and EDT recommends $\arg\max_A V(A)$. Causal decision theory (CDT) replaces the conditional probability with the probability of a counterfactual:
+
+$$U(A)=\sum_j P(A \mathrel{\Box\!\!\rightarrow} O_j)\,D(O_j).$$
+
+The source stresses that $P(O_j\mid A)$ and $P(A\mathrel{\Box\!\!\rightarrow}O_j)$ need not be equal, and that this gap is the whole source of disagreement between the theories. EDT is, in this sense, the more austere theory: it needs no causal or counterfactual vocabulary, only credences and conditioning.
+
+## 2. Why the two quantities come apart
+
+Conditioning on $A$ updates on everything that is correlated with $A$. This includes downstream effects of $A$, but also common causes of $A$ and of the outcome, and anything else that makes $A$ informative. A counterfactual "if I did $A$" holds fixed what is causally upstream of or independent of the act.
+
+A useful decomposition (my gloss, not the source's): let $S$ range over the possible background states, which are the things outside the act's causal influence. If the states are causally independent of the act, the CDT value is
+
+$$U(A)=\sum_S P(S)\,\mathbb{E}[D\mid A,S],$$
+
+while the EDT value is
+
+$$V(A)=\sum_S P(S\mid A)\,\mathbb{E}[D\mid A,S].$$
+
+The only difference is $P(S)$ versus $P(S\mid A)$. EDT lets the act shift the weight on states, though it does not change them. Whenever the act is no evidence about the state, the two coincide. This explains why the theories agree in ordinary cases: choosing an umbrella tells you nothing about the weather beyond what you already knew.
+
+## 3. Worked examples from the source
+
+### Newcomb's problem
+
+Box A holds $1,000. Box B holds $1,000,000 if the predictor predicted one-boxing, and nothing otherwise. The predictor is 99% accurate. Then
+
+$$V(\text{one-box}) = 0.99\cdot 10^6 + 0.01\cdot 0 = \$990{,}000,$$
+$$V(\text{two-box}) = 0.01\cdot 1{,}001{,}000 + 0.99\cdot 1{,}000 = \$11{,}000.$$
+
+EDT one-boxes. CDT two-boxes, reasoning that the box contents are already fixed, so two-boxing dominates: $P(\text{1M})$ is the same under both counterfactuals, and two-boxing adds $1,000.
+
+In the decomposition above, $S\in\{\text{full},\text{empty}\}$. The CDT sum uses the unconditional $P(S)$, whatever it is, and two-boxing wins by $1000$ for every $P(S)$. The EDT sum uses $P(S\mid A)$, which is nearly deterministic in the act.
+
+A generalization is worth stating. With predictor accuracy $p$ (symmetric), $V(\text{one})=p\cdot10^6$ and $V(\text{two})=(1-p)\cdot 1{,}001{,}000+p\cdot1000$. One-boxing wins iff $p > \approx 0.5005$. So EDT one-boxes whenever the predictor is even slightly better than chance. The threshold is $p>(1{,}001{,}000)/(2{,}000{,}000)$.
+
+### Twin prisoner's dilemma
+
+Payoffs: (C,C) gives $5 each, (D,D) gives $1 each, and (D,C) gives $10 to the defector and $0 to the cooperator. If the twin's choice matches mine with probability $q$, then
+
+$$V(C)=5q,\qquad V(D)=10(1-q)+q = 10-9q.$$
+
+Cooperation wins iff $5q>10-9q$, i.e. $q>5/7$. The source takes $q=1$, giving $5$ versus $1$. The threshold version is my addition. It shows the verdict is robust and graded: partial correlation suffices, and exact twinhood is not required. CDT defects regardless, since the twin's act is causally independent of mine and defection dominates.
+
+### Sleeping Beauty
+
+The source notes only that EDT has been proposed as a way for a "halfer" to avoid Dutch books, and that Conitzer argues halfers who are evidentialists remain exploitable. I will not extend this beyond observing why EDT is relevant: in Sleeping Beauty, her act on Monday is perfectly correlated with her act on Tuesday (in the tails branch), so how she conditions on her acts affects the expected payoff of a bet. This is a case where "the act is evidence about the world" has bite even without a predictor.
+
+## 4. Applying the procedure
+
+A recipe I find useful for unfamiliar cases:
+
+1. **List the acts** $A_1,\dots,A_n$ available to the agent.
+2. **Model the joint distribution** over acts, background states, and outcomes. This is where all the work lies. EDT does not tell you the joint distribution. It only says to condition on it.
+3. **Condition on each act** and compute $V(A_i)=\mathbb{E}[D\mid A_i]$.
+4. **Choose the maximum.**
+
+The crucial modeling question is what the agent's credences are *given the act*, as seen from the deliberator's own epistemic position. Two cases matter.
+
+**Correlation through a mechanism the agent can see.** Suppose the agent knows the causal story and knows which of her features drive the correlation. Then the right conditional probability may differ from the naive one, because she may already hold information that screens off the act from the state.
+
+**Smoking-lesion-style cases.** Suppose a gene causes both a desire to smoke and cancer, and smoking itself is harmless. Naively, $P(\text{cancer}\mid\text{smoke})>P(\text{cancer}\mid\text{abstain})$, which would tell EDT not to smoke. The standard evidentialist reply, which is not in the source, is the "tickle defense": if the agent can introspect her desires, then conditional on her known desire $T$ the act carries no further evidence about the gene, so $P(\text{cancer}\mid\text{smoke},T)=P(\text{cancer}\mid\text{abstain},T)$ and EDT smokes. Formally, if $G\perp A\mid T$, the term $P(G\mid A,T)$ does not depend on $A$.
+
+This is where I would be explicit that the source leaves a question open. The source gives only the formula and the cases where EDT's answer is clean. It does not say how to treat acts that arise from known deliberation. My proposed operational interpretation is:
+
+> Condition on the act together with everything the agent already knows about her own motivations and deliberative state. Use the act as evidence only about what is not already screened off by that knowledge.
+
+Under this interpretation Newcomb still yields one-boxing provided the predictor's accuracy comes from tracking something about the agent that her introspection does not already reveal in a way that screens off the act. Standard Newcomb stipulations are meant to guarantee this, though if the agent knew the predictor's inputs fully, EDT would two-box (the "medical Newcomb" intuition). That sensitivity to what the agent knows is a feature of EDT, and it makes the modeling step in the recipe unavoidably substantive.
+
+## 5. Policies and many correlated agents
+
+The source states a further consideration: since EDT can involve the actions of many correlated decision-makers, its stakes may be higher, so even someone with modest credence in EDT might act on it (the "Evidentialist's Wager" of MacAskill et al.). The logic is a standard expected-choiceworthiness argument. If $N$ agents are correlated with me, EDT counts my act as evidence about $N$ acts, so under EDT the value difference between options scales roughly as $N\Delta$, while CDT sees only $\Delta$. Weighting by credence $c$ in EDT, the evidentialist verdict dominates when $cN\Delta_{EDT}>(1-c)\Delta_{CDT}$, which holds for large $N$ even with small $c$. This presupposes that the two theories' values can be compared on one scale, a nontrivial assumption (the problem of intertheoretic comparison), and I flag it as such.
+
+Extending to policies is my gloss. For a policy $\pi$ (a map from observations to acts), the same rule applies: $V(\pi)=\mathbb{E}[D\mid \text{I follow }\pi]$. In single-shot problems this reduces to the act-level formula. In repeated or multi-stage problems, acts and policies can differ because later acts are evidence about earlier states; this is also where Dutch-book-style dynamic inconsistency worries arise, as in Conitzer's discussion.
+
+## 6. Criticisms
+
+The source reports two. David Lewis charged that EDT recommends "an irrational policy of managing the news": it picks acts for their auspiciousness. James Joyce put it as: rational agents act on causal efficacy, not auspiciousness.
+
+The cleanest illustration is a case where the act is good news but does nothing. Suppose a doctor says people who are about to get a good diagnosis tend to feel a particular optimism, but optimism does not cause health. If you could choose to feel optimistic at no cost, a naive evidentialist would, unless the tickle defense applies, because it would be good news. The defender's response is that the choice, made with full knowledge of one's state, is not further evidence. The critic's counter is that this saves EDT only by making the verdict depend delicately on introspective access, which seems an odd thing for rational choice to hinge on.
+
+Evidentialists reply with the other side of the ledger: in Newcomb and twin problems, those who follow the causal recommendation end up systematically poorer ("why ain'cha rich?"). CDT advocates respond that the rich were simply offered a better game. This disagreement is about what rationality is for, and the formalism does not settle it.
+
+## 7. Summary of what is source and what is mine
+
+From the source: the definition of $V$; the contrast with $U$; the Newcomb and twin-dilemma calculations; the Sleeping Beauty remarks; the Evidentialist's Wager; and the Lewis and Joyce criticisms.
+
+My additions: the decomposition via background states, the accuracy threshold in Newcomb and the correlation threshold $5/7$ in the twin case, the explicit modeling recipe, the tickle-defense discussion and the proposed rule of conditioning on known motivations, the scaling sketch for the wager, and the policy-level extension.
+
+## 8. Conclusion
+
+EDT is a single idea: evaluate an act by the conditional expectation of value given that you perform it. Its strengths are simplicity and its refusal to take on causal machinery. Its difficulty is that everything depends on the joint distribution and on what information the agent already conditions on. In cases with no act-state correlation it agrees with CDT. Where acts are evidence about predictors, twins, or other correlated agents, it recommends the cooperative or one-boxing choice, and the live philosophical issue is whether that is wisdom or news management.

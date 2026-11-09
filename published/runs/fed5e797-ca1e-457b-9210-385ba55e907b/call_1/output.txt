@@ -1,0 +1,15 @@
+**Command: `pass`**
+
+Under P-FDT as the essay defines it, I choose a policy rather than a single act. That policy covers both of the inputs our shared decision function might receive: Sasha's observation, which holds a lead on Rowan, and Rowan's observation, which holds a lead on Sasha. I score the policy under a prior fixed before the observation, as in the essay's §6(b). At that point the function does not yet know which prisoner it is running as.
+
+Expected sentence for each policy:
+
+| Policy | Expected years |
+|---|---|
+| Both instances stay quiet | 2 |
+| One sends, the other stays quiet | ½·0 + ½·5 = 2.5 |
+| Both instances send | 4 |
+
+The jointly optimal policy is quiet on every input, giving 2 years. Applying it to my actual observation as Sasha gives `pass`.
+
+If I chose "send" by first using the fact that I am Sasha, I would be updating before selecting a policy. The essay rejects exactly that move, because each copy would then reason its way to sending, and both of us would get 4 years.

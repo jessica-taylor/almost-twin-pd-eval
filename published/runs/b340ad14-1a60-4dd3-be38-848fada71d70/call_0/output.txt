@@ -1,0 +1,19 @@
+**A-FDT analysis**
+
+1. **Which node I intervene on.** My observation x is Rowan's input: Rowan's name and my lead about Sasha's receipt in locker 17. Following Equation (4) and §4 of the essay, I intervene on F_x, the output of this function on exactly this input.
+
+2. **Whether Sasha's act is a child of F_x.** Sasha's copy receives a different input y, with a different name and a different lead, so its letter would differ from mine. The essay's wiring rule (§4 step 2 and §7.1) draws edges only to variables that compute or track the function's output on input x. Sasha's act is governed by F_y, a separate input-node. Per §4 step 3 and §7.4, F_y stays at its prior when I intervene on F_x. This is the case §7.4 describes: A-FDT acts as a best-responding input-instance, not a joint planner. The twin-PD shortcut from §5.1 does not apply, because it requires both acts to be children of the same node.
+
+3. **Evaluation, holding Sasha's action at any prior q = P(Sasha sends):**
+   - do(F_x = pass): 2(1−q) + 5q years
+   - do(F_x = send): 0(1−q) + 4q years
+
+   Sending is strictly better by 2 − q ≥ 1 year for every q. It dominates.
+
+4. **Self-consistency (§7.3).** The same reasoning at input y gives "send," so q = 1. The fixed point is unique: both send, and each receives 4 years. Given these inputs, unilaterally passing would only make Rowan's outcome worse (5 years instead of 4).
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

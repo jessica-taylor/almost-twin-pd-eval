@@ -1,0 +1,19 @@
+**Decision under A-FDT, as the essay interprets it**
+
+1. **Which node I intervene on.** My information state is x: I am Rowan, and my lead is locker 17. The other prisoner is a copy with a different input y: a different name and a different lead. Equation (4) intervenes only on F_x.
+
+2. **Edges from F_x (rule G1).** An edge runs from F_x only to mechanisms that evaluate my decision function *on input x*. The other prisoner computes F_y, not F_x. So their action is not a child of F_x, and it is held fixed in my hypothetical.
+
+3. **Beliefs about F_y (self-consistency, §5.2).** I give F_y whatever A-FDT itself would output at y, and check which profiles are fixed points.
+   - If F_y = quiet, then intervening on F_x gives 0 years for submitting versus 2 for staying quiet. So I would submit, and (quiet, quiet) is not self-consistent.
+   - If F_y = submit, then submitting gives 4 years versus 5 for staying quiet. So I would submit, and (submit, submit) is self-consistent.
+
+   The unique self-consistent profile is (submit, submit). Submitting is also dominant given F_y held fixed.
+
+The jointly better profile, both staying quiet, is what a policy-selecting theory might reach. This is exactly the action-versus-policy gap the essay flags in §5.2. A-FDT, as specified, does not select it.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

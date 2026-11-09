@@ -1,0 +1,21 @@
+**Reasoning under A-FDT, as the essay interprets it:**
+
+1. **The nodes are separate.** A-FDT intervenes on the node for my exact observation history, F_x. The other copy has a different history y′ (different name, different lead, different letter), so its act depends on a different node, F_y′. Equation (4) sets only F_x. F_y′ stays at its prior, just as off-path nodes do in §4.3–4.4 and §5.4.
+
+2. **There is no edge from F_x to the other prisoner's act.** Under the essay's edge rule (§5.1), an edge exists only if a mechanism evaluates my function on *my* input x. The other copy evaluates the function on y′. The shared weights and shared essay are common upstream causes, not a computation of F_x. The essay's §5.4 also says plainly that A-FDT, unlike P-FDT, best-responds at each information set and can fail to coordinate across different observations.
+
+3. **Best response for any prior.** Let q be the probability that the other prisoner stays quiet.
+   - Pass: expected sentence is 2q + 5(1−q) = 5 − 3q years.
+   - Submit: expected sentence is 0q + 4(1−q) = 4 − 4q years.
+   
+   Submitting is better by 1 + q years for every q in [0, 1].
+
+4. **Fixed point (§5.3).** The other copy reasons the same way, so its prior should be q = 0. Submitting is still optimal at q = 0 (4 years versus 5). Both submitting is the self-consistent fixed point.
+
+This is the coordination failure the essay attributes to the action-level rule. P-FDT, or a graph that treated the two inputs as the same node, might cooperate instead. The assigned theory, as interpreted, gives defection.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

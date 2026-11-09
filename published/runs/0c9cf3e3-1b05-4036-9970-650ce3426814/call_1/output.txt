@@ -1,0 +1,8 @@
+Under CDT, the other prisoner's choice is causally independent of mine. Sending the letter is the better act whichever dependency hypothesis holds:
+
+- If Rowan keeps quiet, sending gives 0 years against 2 for keeping quiet.
+- If Rowan sends a letter, sending gives 4 years against 5 for keeping quiet.
+
+Sending dominates, so the weights on the dependency hypotheses don't matter. Ratifiability doesn't change this either. The other prisoner's copy may well mirror my choice, but that is a correlation, not a causal link, and CDT ignores it as grounds for action. Sending also stays best after I update on my own inclination, because it is best under every credence.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

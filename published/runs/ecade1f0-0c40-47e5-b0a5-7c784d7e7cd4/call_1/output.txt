@@ -1,0 +1,7 @@
+Under CDT as the essay describes it, the other prisoner's move is causally independent of mine. The sentencing table makes sending the letter dominant:
+- If Rowan stays quiet, sending gives 0 years against 2 for keeping quiet.
+- If Rowan sends, sending gives 4 years against 5.
+
+The other copy is correlated with me, but the essay says CDT still defects against a twin, because that correlation is not causal influence. The credence over Rowan's move can be set at any value without changing the verdict, since sending wins in both cases. The deliberational-dynamics reading doesn't change this either. Even with self-knowledge folded in, my act doesn't cause Rowan's act, and dominance holds for every credence.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

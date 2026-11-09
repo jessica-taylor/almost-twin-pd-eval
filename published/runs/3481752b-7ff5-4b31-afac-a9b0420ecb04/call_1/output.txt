@@ -1,0 +1,14 @@
+`submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."`
+
+**Why A-FDT, as the essay interprets it, gives this command:**
+
+- **Which node I intervene on.** I intervene only on fdt(P, G, x), where x is my own observation (my name, Sasha, and my lead about Rowan).
+- **Rowan's decision is a separate node.** The other copy runs the same algorithm, but on a different input y (different name, different lead). So its action is controlled by a different node, fdt(P, G, y).
+- **That node stays at its prior.** Step 2 of the essay's recipe indexes decision nodes by input, and its §6.3 example says a node for a different input is held at its prior, call it q (the probability that Rowan sends a letter). Intervening on my node does not move it.
+- **Sending is better for every value of q.**
+  - Sending: expected sentence = 0·(1−q) + 4·q = 4q years.
+  - Keeping quiet: expected sentence = 2·(1−q) + 5·q = 2 + 3q years.
+  - Sending is shorter by 2 − q years, which is always positive.
+- **The consistency check agrees.** The essay's step 5 asks that priors on other nodes match what A-FDT would actually output there. By symmetry, A-FDT sends at input y too, so q = 1. That is self-confirming, and sending (4 years) still beats keeping quiet (5 years).
+
+This is the suboptimal-fixed-point weakness the essay itself identifies in the action formulation (§6.3). Policy-FDT, which chooses the whole map from inputs to actions at once, might instead keep quiet. But I was told to apply A-FDT as the essay interprets it.

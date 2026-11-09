@@ -1,0 +1,8 @@
+Under CDT, my choice has no causal influence on the other prisoner's choice. Each of the other prisoner's possible actions is held fixed:
+
+- If the other keeps quiet: sending gives 0 years, staying quiet gives 2 years.
+- If the other sends: sending gives 4 years, staying quiet gives 5 years.
+
+Sending the letter is better in both cases, so it dominates. The twin correlation doesn't change this under the essay's CDT, as section 4.4 says explicitly. The leads differ between the copies, but that doesn't affect the payoff structure. There's no instability to resolve here either, because sending is strictly dominant whatever credence I hold about the other's action.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

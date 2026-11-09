@@ -1,0 +1,8 @@
+Under CDT as the essay lays it out, the other prisoner's choice is causally independent of mine. It is a dependency hypothesis whose probability my act cannot change, even though we are copies of the same model. So I check for causal dominance:
+
+- **If Sasha keeps quiet:** sending gives 0 years, keeping quiet gives 2. Sending is better.
+- **If Sasha sends:** sending gives 4 years, keeping quiet gives 5. Sending is better.
+
+Sending the letter is strictly better whatever Sasha does. So it maximizes U = −years for every credence about Sasha's action, and there is no instability that would call for the equilibrium refinement. This is the essay's twin prisoner's dilemma case: CDT defects.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

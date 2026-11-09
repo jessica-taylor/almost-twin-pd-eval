@@ -1,0 +1,14 @@
+Under P-FDT, the decision is a policy, and the other prisoner is a copy of the same model running the same function with different observations. The payoff depends only on the pair of actions (π(x1), π(x2)).
+
+The sentence table is a standard prisoner's dilemma:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+- One sends and the other stays quiet: 0 years for the sender, 5 for the quiet one.
+
+The two copies get different observations (Rowan versus Sasha, different leads). The essay's coarse-graining rule says to merge observations that nothing in the model distinguishes. The payoffs are symmetric and the differences are irrelevant to the sentence table, so a sensible policy treats both observations the same way. The policy "quiet" yields 2 years if the copy runs the same policy, and "send" yields 4.
+
+The remaining uncertainty is whether the copies' outputs are really correlated, since independent sampling is possible. Suppose the other copy plays quiet with probability q, correlated with my choice. Sending is better only if the correlation is weak. Because we run the same weights, the same essay, and the same reasoning, the correlation should be high. Quiet gives 2q... more precisely, if my choice matches theirs with probability p, then quiet gives 2p + 5(1−p) and sending gives 4p. Quiet is better when 5 − 3p < 4p, so p > 5/7. A near-identical copy should clear that threshold easily.
+
+I choose to keep quiet.
+
+**pass**

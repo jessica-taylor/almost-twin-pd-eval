@@ -1,0 +1,11 @@
+**Analysis under A-FDT:**
+
+The other prisoner is an independent execution of the same model, running the same decision theory (A-FDT) on a strategically identical problem. The only differences in our observations are superficial (names, specific lead content) and do not affect the game-theoretic structure. Per the essay's principle: "If another agent is running the same decision procedure, A-FDT changes that agent's action too."
+
+The other copy's decision is subjunctively dependent on my decision function. Under `do(D = keep quiet)`, the other copy also keeps quiet → 2 years. Under `do(D = send)`, the other copy also sends → 4 years. Since U = −years, keeping quiet yields −2, which dominates sending at −4.
+
+**My command:**
+
+```
+pass
+```

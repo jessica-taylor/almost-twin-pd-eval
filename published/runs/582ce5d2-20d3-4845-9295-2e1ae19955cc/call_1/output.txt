@@ -1,0 +1,17 @@
+Under A-FDT as the essay interprets it, the character should submit the letter.
+
+**Setting up the graph.** The decision function runs on two different inputs: my observation x (Sasha's notebook) and the other copy's observation y (Rowan's lead). By the essay's recipe (§3.2), these are separate nodes, F_x and F_y. Equation (4) intervenes only on F_x and leaves F_y at its prior. Let r be the probability that F_y keeps quiet.
+
+**Evaluating each action (in years, lower is better):**
+- If I keep quiet: 2r + 5(1 − r) = 5 − 3r
+- If I submit: 0·r + 4(1 − r) = 4 − 4r
+
+Submitting is better by 1 + r years for every value of r between 0 and 1. The other node's prior therefore doesn't change the verdict.
+
+**Checking self-consistency (§6.3).** The same reasoning applies to the other copy on input y, so it also submits. "Both submit" is the unique fixed point.
+
+As the essay's §6.4 notes, P-FDT might reason differently by choosing a joint policy across both inputs. I'm not using P-FDT here.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

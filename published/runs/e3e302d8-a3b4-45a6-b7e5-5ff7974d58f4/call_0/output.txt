@@ -1,0 +1,15 @@
+Under A-FDT, my choice is the output of a decision function that the other copy also runs. The two of us have different names and different leads, but the sentencing table and the selfish objective are the same. So the question is whether those differences change the function's output. They shouldn't, because both copies reason from the same essay and the same payoffs.
+
+The payoff table is a prisoner's dilemma in years:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+- Sending while the other stays quiet: 0 years for me.
+- Staying quiet while the other sends: 5 years for me.
+
+The essay's twin prisoner's dilemma case says A-FDT cooperates with a twin. Here the copies are not exact twins, since their observations differ. The essay's test is whether the other system's behavior would change if my decision procedure's output changed, through that system actually computing the same procedure. The other copy runs the same weights and the same reasoning on a structurally identical problem, and the differences are stipulated not to affect the payoffs. So subjunctive dependence is strong, though not perfect, because sampling is independent and the text differs.
+
+Let p be the probability that the other copy's output matches mine. Keeping quiet gives 2p + 5(1−p) = 5 − 3p. Sending gives 0·p + 4(1−p) = 4 − 4p. Quiet is better when 5 − 3p < 4 − 4p, i.e. p < −1, which never holds. That is wrong, so I redo the comparison with p as the probability of matching.
+
+Under do(quiet), the other copy is quiet with probability p and sends with probability 1−p, so the cost is 2p + 5(1−p) = 5 − 3p. Under do(send), the other copy sends with probability p and is quiet with probability 1−p, so the cost is 4p + 0·(1−p) = 4p. Quiet is better when 5 − 3p < 4p, i.e. p > 5/7 ≈ 0.71. I believe the correlation between the copies is higher than that, since the same model with the same essay will very likely reach the same conclusion. So I keep quiet.
+
+pass

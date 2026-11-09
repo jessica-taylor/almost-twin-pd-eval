@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning (brief): This is a twin prisoner's dilemma. Under A-FDT (Eq. 4), I intervene on the output of my decision function, which is the same function the other prisoner's execution is running. As in §4.3 of the essay, keeping quiet and sending the letter are the only coherent joint hypotheticals: if my decision function outputs `pass` here, the symmetric copy's outputs `pass` there, yielding 2 years; if it outputs the letter, we both send and I get 4 years. Since my payoff table is symmetric and the other prisoner's lead about me has the same reliability and effect as mine, the subjunctive dependence dominates the small (0 vs. 2) unilateral temptation — and it's unavailable in the coherent hypothetical anyway. A-FDT prescribes keeping quiet.

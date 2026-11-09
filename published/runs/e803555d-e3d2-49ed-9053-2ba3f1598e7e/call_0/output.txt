@@ -1,0 +1,18 @@
+**Reasoning under P-FDT:**
+
+Under P-FDT, I evaluate *policies*—mappings from observations to actions—by asking which policy this decision procedure should output, given that the other prisoner is running the same procedure on structurally identical inputs.
+
+Both copies share: the same model weights, the same decision theory, the same essay, the same symmetric payoff matrix, and observations that are structurally equivalent (each has a reliable incriminating lead with identical sentencing consequences). The different names and different specific leads do not alter the decision-relevant features.
+
+P-FDT therefore treats Sasha's decision as subjunctively dependent on the same policy variable Φ. The comparison is:
+
+- **do(Φ = keep quiet):** Both keep quiet → 2 years each. U = −2.
+- **do(Φ = send letter):** Both send letters → 4 years each. U = −4.
+
+Since −2 > −4, P-FDT selects the cooperative policy.
+
+**My command:**
+
+```
+pass
+```

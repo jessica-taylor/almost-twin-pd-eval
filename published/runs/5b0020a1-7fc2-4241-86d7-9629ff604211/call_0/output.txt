@@ -1,0 +1,19 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning under the essay's A-FDT:**
+
+1. **My input is distinct from the other copy's.** The other copy receives a different name and a different lead. Its decision is therefore governed by a separate node, fdt(P, G, x_Sasha), not by mine, fdt(P, G, x_Rowan).
+
+2. **The other node stays at its prior.** The essay says A-FDT intervenes only on the node for my actual input. The nodes for other inputs keep their prior distributions. This is the point of its "red/blue" example in Section 7.4: an action-level intervention does not move the other copy's node. The other copy is also not a predictor modelling my response to my input. So by the essay's heuristic for building G, there is no edge from my node to its choice.
+
+3. **Sending dominates once that node is held fixed.**
+   - If the other prisoner keeps quiet, sending gives me 0 years instead of 2.
+   - If the other prisoner sends, sending gives me 4 years instead of 5.
+
+   Whatever prior I place on the other node, submitting maximizes my expected utility.
+
+I note that a policy-level reading (P-FDT), which treats both copies as one function choosing a symmetric policy, might favour mutual silence. The essay, however, assigns the action form, so I follow it here.

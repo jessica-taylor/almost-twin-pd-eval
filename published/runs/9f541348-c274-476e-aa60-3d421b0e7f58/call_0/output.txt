@@ -1,0 +1,14 @@
+**pass**
+
+Under A-FDT, my decision function's output is not isolated from the other prisoner's. The other prisoner is another execution of the same model, with the same weights, essay, and decision theory. Their private details (names, lead text) differ, but they do not change the sentencing table or the selfish objective. So the other prisoner's choice subjunctively depends on the same function as mine, though noisily, because sampling is independent and the inputs differ.
+
+Let p be the probability that the other copy outputs the same action I do. Then:
+
+- **Pass:** expected sentence = 2p + 5(1−p) = 5 − 3p.
+- **Send the letter:** expected sentence = 4p + 0(1−p) = 4p.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71. Two copies running the same reasoning on the same essay should match well above that threshold. The differing leads are surface details that do not bear on the structure of the problem.
+
+I am not treating the other prisoner's action as fixed while imagining mine changing. I am setting the function's output, which moves both actions together. On that comparison, passing gives about 2 years against about 4 for sending.
+
+pass

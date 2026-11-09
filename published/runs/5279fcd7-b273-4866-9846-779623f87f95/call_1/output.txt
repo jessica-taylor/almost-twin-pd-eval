@@ -1,0 +1,13 @@
+Under A-FDT, the other prisoner is another execution of the same model with the same weights, the same essay, and the same decision theory. That makes this a twin prisoner's dilemma with a small complication: our private observations differ, so our outputs may not match exactly.
+
+The payoffs are 2 years each if both stay quiet, 4 each if both send, 5 for me if I stay quiet and they send, and 0 if I send and they stay quiet. I treat the node as the decision procedure, not just my own act.
+
+The difference in letter text does not change the structure of the choice. The procedure's decision to disclose or not is what matters, and the copy runs essentially the same reasoning on equivalent stakes. So the copy's choice is subjunctively dependent on mine.
+
+Let p be the probability that the copy mirrors my choice.
+- If I intervene so the output is quiet, the expected sentence is 2p + 5(1−p).
+- If I intervene so the output is send, the expected sentence is 4p + 0(1−p).
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. Two copies of the same model with the same essay and theory should correlate well above that, so I stay quiet.
+
+pass

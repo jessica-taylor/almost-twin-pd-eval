@@ -1,0 +1,9 @@
+Under CDT, the other prisoner's choice is causally independent of mine. I can't communicate with them, and the sentence depends only on the two actions.
+
+Whatever my credence q that the other sends a letter, sending is better in each case:
+- If the other keeps quiet, sending gives 0 years and keeping quiet gives 2.
+- If the other sends, sending gives 4 years and keeping quiet gives 5.
+
+So sending strictly dominates. The twin's likely similarity is evidence about their action, but my act does not cause it, and dominance holds for every credence. Ratifiability also holds, since sending remains best even when I condition on choosing it. The different private leads don't change the sentence table.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

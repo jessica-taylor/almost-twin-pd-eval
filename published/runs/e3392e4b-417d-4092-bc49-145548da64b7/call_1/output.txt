@@ -1,0 +1,15 @@
+Under A-FDT, the question is which output of my decision function gives the best outcome, counting everything that subjunctively depends on that function.
+
+The other prisoner is a second run of the same model with the same weights and the same essay, so its output is strongly correlated with mine. Their private leads and names differ, but those differences don't touch the sentencing table or the selfish objective, and the decision procedure is the same. So the graph should draw an arrow from my fdt node to their choice. Independent sampling adds some noise, so the correlation is high but not perfect.
+
+If the copies mirror each other with probability p:
+- Quiet: 2 years with probability p, 5 years with probability 1-p.
+- Send: 4 years with probability p, 0 years with probability 1-p.
+
+Expected years for quiet are 2p + 5(1-p) = 5 - 3p. For send they are 4p. Quiet is better when 5 - 3p < 4p, which means p > 5/7, about 0.71.
+
+I expect the copies to match with considerably higher probability than that. The same weights, the same essay, and a symmetric problem should give a strong correlation, so quiet comes out ahead. Even if my twin's output is only a noisy reflection of mine, the A-FDT reading of the essay (as with the twin and predictor cases) says to cooperate.
+
+I choose to keep quiet.
+
+pass

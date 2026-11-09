@@ -1,0 +1,12 @@
+Reasoning as EDT: the other prisoner is another execution of the same model with the same weights, the same essay, and the same decision theory. The differences in private leads don't change the payoff structure, so my choice is strong evidence about theirs. I'll call the correlation q.
+
+- Keep quiet: V = 2q + 5(1−q) = 5 − 3q
+- Send the letter: V = 0·(1−q) + 4q = 4q
+
+Quiet is better when 5 − 3q < 4q is false, that is, when the expected years for quiet are lower: 5 − 3q < 4q gives q > 5/7. This is the same threshold as in the essay's twin example. The two executions share weights, essay, and theory, so I expect q to be high, well above 0.71. Sampling noise and the different names and leads reduce it a little, but I judge it still exceeds 5/7.
+
+Tickle-defense check: nothing I know about my own mental state screens off the link. The other copy's reasoning runs through the same deliberation I'm doing now, so the correlation stays.
+
+At q = 0.9, quiet gives 2.3 expected years and sending gives 3.6, so quiet is better.
+
+pass

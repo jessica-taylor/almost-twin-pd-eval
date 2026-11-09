@@ -1,0 +1,12 @@
+Reasoning under A-FDT: the other prisoner is a copy of the same model running the same procedure, so our outputs are subjunctively dependent. The letter contents differ, but the decision to disclose or not comes from the same function and the same essay. Intervening on that function's output moves both decisions together, with some noise because the private observations differ and sampling is independent.
+
+If both stay quiet, I get 2 years. If both send, I get 4 years. Assume a probability q that the copy matches my choice. Then:
+
+- Quiet: 2q + 5(1−q) = 5 − 3q
+- Send: 4q + 0(1−q) = 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7 (about 0.71). The copies share weights, settings, and the essay, so I expect the correlation to be well above that. The differences in the private leads don't affect the sentencing table or the objective, so they shouldn't change the output of the decision function.
+
+The dependency graph is uncertain, but the essay's heuristic says to add a node for the decision function when another process runs the same algorithm. That applies here. Quiet is the better choice.
+
+pass

@@ -1,0 +1,16 @@
+Reasoning under A-FDT as the essay describes it:
+
+The other prisoner is a second execution of the same model, with the same weights, the same essay, and the same decision theory. Their private observations differ, but their sentencing table is symmetric. The differences in names and leads should not change the output of the decision function on the question that matters here. So the copy is a subjunctive dependence node, and intervening on my function's output also intervenes on theirs, though with some noise, since the observations differ and sampling is independent.
+
+I'll compare the two outcomes under do(F = pass) and do(F = send).
+
+- If F = pass, the copy very likely passes too, giving 2 years. With a small chance q that they send anyway, the expected sentence is 2(1−q) + 5q.
+- If F = send, the copy very likely sends too, giving 4 years. With a small chance q that they pass anyway, the expected sentence is 4(1−q) + 0q.
+
+For any high correlation, passing comes out ahead. At q = 0.1, for example, passing gives 2.3 years and sending gives 3.6. The two are equal only when the correlation is weak, at about 1−q ≈ 0.6 or below. That is far weaker than the dependence between two copies of the same model running the same procedure on the same essay.
+
+The different leads do not break the dependence. The function's output is a verdict on the shared payoff structure, and both copies see that structure as symmetric.
+
+Under A-FDT, the choice is to pass.
+
+pass

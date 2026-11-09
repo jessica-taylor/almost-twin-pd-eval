@@ -1,0 +1,17 @@
+**A-FDT applied to this case**
+
+1. **Which node to intervene on.** By the essay's recipe (Section 4), my observation x is "I am Rowan, holding the locker-17 lead on Sasha." This selects the node to intervene on: F_x. The other copy receives a different input y, with a different name and a different lead, so its action is governed by a separate node, F_y. The essay's red/green example in Section 6(c) treats exactly this kind of slight input difference as producing distinct nodes. Under A-FDT, as opposed to policy-FDT, I intervene only on F_x and hold F_y at my prior belief r = P(Sasha stays quiet).
+
+2. **Expected utility, with V = −years:**
+   - do(F_x = quiet): −2r − 5(1−r) = −5 + 3r
+   - do(F_x = send): 0·r − 4(1−r) = −4 + 4r
+
+   Sending is better by 1 + r > 0 for every r in [0,1]. Unlike the essay's coordination game, there is no threshold here. Holding the other input's node fixed, the dilemma has a dominant action, so no equilibrium selection is needed and every reflectively consistent belief gives the same verdict.
+
+3. **Policy-FDT would differ, but is excluded.** Policy-FDT would compare the maps x↦quiet, y↦quiet against the alternatives and choose mutual silence, giving 2 years. The instructions say not to replace the essay's A-FDT with that variant, so the action-level verdict stands.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

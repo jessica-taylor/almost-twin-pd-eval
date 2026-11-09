@@ -1,0 +1,18 @@
+Under P-FDT, I choose a policy for the decision function that my copy also runs. The copy has a different name and a different lead, but the structure and the payoffs are the same. Its output therefore subjunctively depends on my policy, even though the letter text differs.
+
+The two policies compare as follows:
+- If both copies keep quiet, each gets 2 years.
+- If both send a letter, each gets 4 years.
+- A mixed outcome is unlikely, because the copies are very likely to output the same action.
+
+Quiet gives 2 years and sending gives 4 years, so quiet is better. The difference in leads is only an input difference. The policy "send the letter if you hold a lead" is the same function for both of us, so it should produce the same action. The essay's multi-agent point also supports this, since my counterpart's behavior tracks my behavior across observations.
+
+Independent sampling means the copies could diverge. The mapping from my choice to my copy's choice may be imperfect, so I need a correlation threshold. Let p be the probability that the copy matches me.
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71. Two copies of the same model with the same essay and the same reasoning are very likely to match more often than that.
+
+I choose to stay quiet.
+
+pass

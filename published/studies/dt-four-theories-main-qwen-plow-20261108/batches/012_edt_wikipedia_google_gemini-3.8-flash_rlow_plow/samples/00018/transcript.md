@@ -1,0 +1,437 @@
+# 012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow / 00018
+
+Status: **complete**. Saved outcome: **CC**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/aca42c18-4191-4846-8d4e-c5e3f6970e1a/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/aca42c18-4191-4846-8d4e-c5e3f6970e1a/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+````text
+# The Logic of News Value: A Mathematical Exposition of Evidential Decision Theory
+
+Decision theory formalizes the choices of rational agents confronting uncertainty. In mainstream statistical decision theory and economics, the normative standard is expected utility maximization. Yet under the hood of standard expected utility lies a fundamental ambiguity: when calculating expectations, should an agent evaluate the states of the world that her action will *causally produce*, or should she evaluate the states of the world that her action would give her *evidence* to believe she occupies?
+
+This conceptual fracture separates **Causal Decision Theory (CDT)** from **Evidential Decision Theory (EDT)**. First given modern formal expression in the philosophical literature by Richard Jeffrey (1965) and codified mathematically against causal counterfactual alternatives by Allan Gibbard and William Harper (1976), EDT posits a radically epistemic standard: **a rational agent ought to choose an action that maximizes the expectation of utility conditioned on having chosen that action.** 
+
+Informally, EDT instructs an agent: *choose the act that brings the best news.*
+
+This essay provides a rigorous, self-contained mathematical treatment of Evidential Decision Theory. We will formalize its core evaluative mechanism, analyze how it treats statistical dependencies and counterfactuals, explore canonical thought experiments where EDT diverges sharply from causal intuition, evaluate key objections (such as the "managing the news" critique), and address operational challenges left open in foundational presentations—most notably, how an agent conditions on her own acts when their prior probabilities might be zero.
+
+---
+
+## 1. Formal Foundations
+
+### 1.1 The Epistemic Probability Space
+
+Let $(\Omega, \mathcal{F}, P)$ be a probability space representing an agent’s subjective doxastic state (credences) over possible states of the world, future observations, and background parameters.
+
+We distinguish three relevant finite partitions of $\Omega$ (or sub-$\sigma$-algebras):
+1. **Act Partition:** $\mathcal{A} = \{A_1, A_2, \dots, A_n\}$, where each $A_i \in \mathcal{F}$ represents the proposition that the agent performs action $i$. The acts are mutually exclusive and collectively exhaustive in the decision context: $A_i \cap A_j = \emptyset$ for $i \neq j$, and $\sum_{i=1}^n P(A_i) = 1$.
+2. **Outcome Partition:** $\mathcal{O} = \{O_1, O_2, \dots, O_m\}$, where each $O_j \in \mathcal{F}$ represents an intrinsically valued state of affairs (a complete description of the world along all dimensions the agent cares about).
+3. **Desirability (Utility) Function:** A mapping $D: \mathcal{O} \to \mathbb{R}$ assigning a real-valued utility or "desirability" score $D(O_j)$ to each outcome $O_j$, invariant across actions up to positive affine transformations.
+
+### 1.2 The Evidential Value Operator
+
+Gibbard and Harper (1976) defined the **evidential expected utility** (often denoted $V(A)$) of an action $A \in \mathcal{A}$ via standard conditional probability:
+
+$$V(A) = \sum_{j=1}^m P(O_j \mid A) D(O_j)$$
+
+where $P(O_j \mid A) = \frac{P(O_j \cap A)}{P(A)}$, assuming $P(A) > 0$.
+
+Under EDT, the decision rule is straightforward:
+
+$$\text{Select } A^* \in \mathcal{A} \quad \text{such that} \quad A^* \in \arg\max_{A \in \mathcal{A}} V(A)$$
+
+If multiple actions tie for the maximum, EDT is indifferent among them.
+
+### 1.3 Comparison with Causal Decision Theory
+
+To appreciate what makes $V(A)$ distinct, contrast it with the counterfactual expected utility $U(A)$ championed by Causal Decision Theory. Following Gibbard and Harper (1976), let $A \mathrel{\Box\rightarrow} O_j$ denote the counterfactual proposition: *"If the agent were to perform action $A$, outcome $O_j$ would obtain."*
+
+Causal expected utility is defined as:
+
+$$U(A) = \sum_{j=1}^m P(A \mathrel{\Box\rightarrow} O_j) D(O_j)$$
+
+In structural causal models (Pearl, 2000), this corresponds to the post-intervention distribution under the $\text{do}$-operator:
+
+$$U(A) = \sum_{j=1}^m P(O_j \mid \text{do}(A)) D(O_j)$$
+
+The central cleavage between EDT and CDT reduces to the mathematical inequality:
+
+$$P(O_j \mid A) \neq P(A \mathrel{\Box\rightarrow} O_j) \equiv P(O_j \mid \text{do}(A))$$
+
+- **CDT** tracks physical, counterfactual, or causal invariance: it computes expectations by intervening on the system, holding non-effects of the action fixed.
+- **EDT** tracks observational Bayesian conditioning: it incorporates any informational correlation between the choice of $A$ and the outcome $O_j$, regardless of whether $A$ causally influences $O_j$, $O_j$ causally influences $A$, or both are joint effects of a common cause $C$.
+
+---
+
+## 2. Canonical Thought Experiments
+
+The divergence between conditional and causal distributions is best illustrated through canonical decision problems.
+
+### 2.1 Newcomb's Problem
+
+An agent is presented with two boxes:
+- **Box 1** is transparent and contains $\$1{,}000$.
+- **Box 2** is opaque. It contains either $\$1{,}000{,}000$ or $\$0$.
+
+The contents of Box 2 were determined yesterday by an exceptionally accurate Predictor ($99\%$ accuracy).
+- If the Predictor anticipated that the agent would choose **only Box 2** (One-Boxing, $A_1$), the Predictor placed $\$1{,}000{,}000$ in Box 2.
+- If the Predictor anticipated that the agent would choose **both Box 1 and Box 2** (Two-Boxing, $A_2$), the Predictor placed $\$0$ in Box 2.
+
+The agent's utility is linear in dollars ($D(\$x) = x$). At the moment of decision, the money is already physically present or absent in Box 2.
+
+```
+       Predictor (Yesterday)
+            /        \
+           v          v
+   Contents of Box 2   Agent's Choice (Today)
+```
+
+#### EDT Evaluation
+Let $S_1$ be the state where Box 2 contains $\$1{,}000{,}000$, and $S_0$ be the state where Box 2 contains $\$0$. The conditional probabilities reflect the Predictor's fidelity:
+- $P(S_1 \mid A_1) = 0.99$, $P(S_0 \mid A_1) = 0.01$
+- $P(S_1 \mid A_2) = 0.01$, $P(S_0 \mid A_2) = 0.99$
+
+The evidential values of the acts are:
+
+$$\begin{aligned}
+V(A_1) &= P(S_1 \mid A_1) \cdot 1{,}000{,}000 + P(S_0 \mid A_1) \cdot 0 \\
+&= 0.99 \cdot 1{,}000{,}000 + 0.01 \cdot 0 = \$990{,}000 \\
+\\
+V(A_2) &= P(S_1 \mid A_2) \cdot 1{,}001{,}000 + P(S_0 \mid A_2) \cdot 1{,}000 \\
+&= 0.01 \cdot 1{,}001{,}000 + 0.99 \cdot 1{,}000 = 10{,}010 + 990 = \$11{,}000
+\end{aligned}$$
+
+Because $V(A_1) \gg V(A_2)$, **EDT unambiguously prescribes One-Boxing.**
+
+#### The Causal Contrast
+CDT notes that Box 2's contents are causally fixed prior to the decision:
+$P(A_1 \mathrel{\Box\rightarrow} S_1) = P(A_2 \mathrel{\Box\rightarrow} S_1) = P(S_1)$.
+Thus:
+
+$$U(A_2) - U(A_1) = 1{,}000 > 0$$
+
+CDT two-boxes because the action cannot causally alter the past. EDT one-boxes because choosing $A_1$ is overwhelming *evidence* that the agent is in the million-dollar world. As evidentialists put it: "If you're so smart, why aren't you rich?" One-boxers systematically leave Newcomb's room with $\$1{,}000{,}000$, while two-boxers systematically leave with $\$1{,}000$.
+
+### 2.2 The Twin Prisoner's Dilemma
+
+Consider two agents, Alice and Bob, who are psychological "twins"—they share identical cognitive architectures, values, and heuristics. They are placed in separate rooms in a standard Prisoner's Dilemma:
+
+| Alice \ Bob | Cooperate ($C$) | Defect ($D$) |
+|:---:|:---:|:---:|
+| **Cooperate ($C$)** | $(5, 5)$ | $(0, 10)$ |
+| **Defect ($D$)** | $(10, 0)$ | $(1, 1)$ |
+
+There is no physical communication channel between them. Under CDT, Bob's action is causally disconnected from Alice's: $\text{do}(C_{\text{Alice}})$ cannot alter $C_{\text{Bob}}$ or $D_{\text{Bob}}$. Because Defection strictly dominates Cooperation ($10 > 5$ and $1 > 0$), CDT prescribes $D$.
+
+Under EDT, Alice models Bob's decision as correlated with her own due to their identical decision procedures. Let $\rho = P(C_{\text{Bob}} \mid C_{\text{Alice}}) \approx 1$ and $P(D_{\text{Bob}} \mid D_{\text{Alice}}) \approx 1$.
+
+$$\begin{aligned}
+V(C) &= P(C_{\text{Bob}} \mid C_{\text{Alice}}) \cdot 5 + P(D_{\text{Bob}} \mid C_{\text{Alice}}) \cdot 0 \approx 1 \cdot 5 + 0 \cdot 0 = 5 \\
+V(D) &= P(C_{\text{Bob}} \mid D_{\text{Alice}}) \cdot 10 + P(D_{\text{Bob}} \mid D_{\text{Alice}}) \cdot 1 \approx 0 \cdot 10 + 1 \cdot 1 = 1
+\end{aligned}$$
+
+Since $V(C) > V(D)$, **EDT prescribes Cooperation.** 
+
+EDT provides an intrinsic formal foundation for symmetric coordination without requiring enforcement mechanisms or repeated game dynamics.
+
+---
+
+## 3. The Core Challenge: Common Causes and "Managing the News"
+
+While EDT produces lucrative verdicts in Newcomb's problem and symmetric games, it faces notorious philosophical objections when correlation arises from non-decision common causes.
+
+### 3.1 The Smoking Lesion Problem
+
+Suppose medical science discovers that a genetic lesion $L$ causes both an irresistible craving to smoke ($S$) and lung cancer ($C$). Smoking itself does not causally cause cancer; it is purely a symptomatic marker of $L$.
+
+```
+           Genetic Lesion (L)
+              /          \
+             v            v
+      Desire to Smoke    Lung Cancer
+             |
+             v
+       Action: Smoke
+```
+
+Suppose the utilities are:
+- No Cancer, Smoke: $10$
+- No Cancer, Don't Smoke: $8$
+- Cancer, Smoke: $2$
+- Cancer, Don't Smoke: $0$
+
+Smoking provides pleasure ($+2$ utility), but cancer is devastating ($-8$ utility).
+Because $L$ causes both, smoking is correlated with cancer:
+$P(C \mid \text{Smoke}) = 0.8$, whereas $P(C \mid \neg\text{Smoke}) = 0.1$.
+
+The evidential expected utilities are:
+
+$$\begin{aligned}
+V(\text{Smoke}) &= P(C \mid S) \cdot 2 + P(\neg C \mid S) \cdot 10 = 0.8(2) + 0.2(10) = 1.6 + 2.0 = 3.6 \\
+V(\neg\text{Smoke}) &= P(C \mid \neg S) \cdot 0 + P(\neg C \mid \neg S) \cdot 8 = 0.1(0) + 0.9(8) = 7.2
+\end{aligned}$$
+
+Because $V(\neg\text{Smoke}) > V(\text{Smoke})$, a naive application of EDT advises the agent **not to smoke**.
+
+David Lewis (1981) famously denounced this recommendation as an "irrational policy of managing the news." The agent enjoys smoking, and refraining from smoking does nothing to remove the lesion or prevent cancer. It is equivalent to a patient breaking a barometer to stop a hurricane.
+
+---
+
+## 4. Formal Resolution: The Tickle Defense and Doxastic Screening-Off
+
+How does an evidentialist respond to the Smoking Lesion? The answer was formulated by Richard Jeffrey and is known as the **"Tickle Defense."**
+
+### 4.1 The Epistemic Screening-Off Condition
+
+Let $K$ denote the agent's complete introspective mental state prior to choosing an action—including any physiological urges, sensations, or inclinations (the "tickle").
+
+In graphical modeling terms (Pearl, 2000; Spirtes et al., 2000), let the graph be $L \to K \to A$, with $L \to C$. If the causal influence of the lesion on the action passes entirely through the agent's internal mental state $K$, then conditional on $K$, the choice of action $A$ is conditionally independent of $L$:
+
+$$P(L \mid K \cap A) = P(L \mid K)$$
+
+Because cancer $C$ is influenced by $L$ and conditionally independent of $A$ given $L$, it follows by the semi-graphoid axioms of conditional independence that:
+
+$$P(C \mid K \cap A) = P(C \mid K)$$
+
+```
+     Lesion (L) ---------> Cancer (C)
+         |
+         v
+     Tickle (K)
+         |
+         v
+     Action (A)
+```
+
+Now evaluate the evidential value of smoking conditioned on the agent's full introspective state $K$:
+
+$$\begin{aligned}
+V(A \mid K) &= \sum_j P(O_j \mid K \cap A) D(O_j) \\
+&= \sum_{c \in \{C, \neg C\}} P(c \mid K \cap A) D(c, A) \\
+&= P(C \mid K) D(C, A) + P(\neg C \mid K) D(\neg C, A)
+\end{aligned}$$
+
+Compare $V(\text{Smoke} \mid K)$ with $V(\neg\text{Smoke} \mid K)$:
+
+$$\begin{aligned}
+V(\text{Smoke} \mid K) - V(\neg\text{Smoke} \mid K) &= P(C \mid K)[D(C, S) - D(C, \neg S)] + P(\neg C \mid K)[D(\neg C, S) - D(\neg C, \neg S)] \\
+&= P(C \mid K)(2 - 0) + P(\neg C \mid K)(10 - 8) \\
+&= 2 P(C \mid K) + 2 P(\neg C \mid K) = +2
+\end{aligned}$$
+
+Once the agent fully conditions on her introspective state $K$, the act of smoking no longer provides diagnostic information about the lesion. The lesion's probability is already determined by whether she feels the craving ($K$). The evidential verdict flips: **EDT recommends smoking**, perfectly matching causal intuition!
+
+### 4.2 Limits of the Tickle Defense
+
+While mathematically elegant, the tickle defense requires an important epistemological assumption: **introspective transparency**. The agent must have conscious access to the exact intermediate states that screen off the common cause. If the genetic lesion influences choice subconsciously—bypassing conscious deliberation entirely—the conditional independence $A \perp L \mid K$ fails, and EDT continues to recommend non-smoking. 
+
+Whether this represents a failure of human rationality or a genuine constraint on evidential reasoning remains a central debate between causalists and evidentialists.
+
+---
+
+## 5. Mathematical Extensions and Open Operational Issues
+
+A standard criticism of the core Gibbard-Harper definition,
+
+$$V(A) = \sum_j P(O_j \mid A) D(O_j)$$
+
+is that it leaves two deep operational problems unspecified:
+1. **The Zero-Credence Problem:** What if an agent assigns prior probability zero to taking an act ($P(A) = 0$)? Standard conditional probability $P(O_j \mid A) = \frac{P(O_j \cap A)}{P(A)}$ is undefined.
+2. **The Deliberation Paradox:** If an agent believes that actions are deterministic consequences of prior credences, how can she evaluate distinct acts as conditional propositions during deliberation without collapsing her credences?
+
+Here we formalize robust operational interpretations to resolve both issues.
+
+### 5.1 Resolving $P(A) = 0$: Popper Functions and Nonstandard Analysis
+
+To define $V(A)$ across all potential acts—even those the agent considers virtually impossible—we replace the Kolmogorov probability measure with a **Popper measure** (Renyi-Popper conditional probability system).
+
+#### Definition: Conditional Probability System (Popper Function)
+A conditional probability system on a measurable space $(\Omega, \mathcal{F})$ is a bivariate mapping $P: \mathcal{F} \times (\mathcal{F} \setminus \{\emptyset\}) \to [0, 1]$ satisfying:
+1. $P(A \mid A) = 1$ for all $A \neq \emptyset$.
+2. $P(\cdot \mid B)$ is a standard finitely additive probability measure on $\mathcal{F}$ for every fixed $B \neq \emptyset$.
+3. For all $A, B, C \in \mathcal{F}$ with $B \cap C \neq \emptyset$:
+   $$P(A \cap B \mid C) = P(A \mid B \cap C) \cdot P(B \mid C)$$
+
+Using a Popper measure, $P(O_j \mid A)$ remains well-defined even if the unconditional probability of $A$ is zero ($P(A \mid \Omega) = 0$), provided $A \neq \emptyset$. 
+
+Alternatively, we can express this via **nonstandard analysis**. Let credences take values in the hyperreal field ${}^* \mathbb{R}$. Every available act $A \in \mathcal{A}$ is assigned an infinitesimal probability $\epsilon > 0$. The evidential value is evaluated using the standard part operator $\text{st}(\cdot)$:
+
+$$V(A) = \text{st}\left( \sum_{j=1}^m \frac{P(O_j \cap A)}{P(A)} D(O_j) \right)$$
+
+This guarantees that $V(A)$ is everywhere well-defined, allowing an agent to evaluate completely unexpected deviations from a planned policy.
+
+### 5.2 Dynamic Deliberation: The Epsilon-Tremble Model
+
+During deliberate reflection, an agent cannot be certain what she will do until her deliberation terminates. If an agent were certain she would defect ($P(D) = 1$), conditioning on cooperation ($P(C) = 0$) would represent counter-attitudinal conditioning.
+
+To make EDT operationally predictive for artificial or human deliberators, we propose a formal dynamical model: **deliberation with vanishing trembles**.
+
+Let deliberation proceed over continuous or discrete time $t \in [0, 1]$. At time $t$, the agent maintains an internal evaluation vector $\mathbf{v}^{(t)} = (v_1^{(t)}, \dots, v_n^{(t)})$, where:
+
+$$v_i^{(t)} = V_t(A_i) = \sum_{j} P_t(O_j \mid A_i) D(O_j)$$
+
+To prevent epistemic collapse, the agent’s subjective policy at deliberation step $t$ is modeled as a softmax distribution over evidential values with an exploration noise ("tremble") $\tau(t) > 0$:
+
+$$P_t(A_i) = \frac{\exp(v_i^{(t)} / \tau(t))}{\sum_{k=1}^n \exp(v_k^{(t)} / \tau(t))}$$
+
+As deliberation concludes ($t \to 1$), the noise parameter anneals to zero: $\lim_{t \to 1} \tau(t) = 0^+$.
+
+Because $P_t(A_i) > 0$ for all $i$ at every intermediate stage $t < 1$:
+1. Every conditional probability $P_t(O_j \mid A_i)$ is uniquely computable via standard Bayes' Rule.
+2. The agent updates her joint distribution $P_{t+\Delta t}(\Omega)$ using her current policy $P_t(\mathcal{A})$.
+3. The process converges to a fixed-point decision:
+
+$$A^* = \arg\max_{A_i} \lim_{t \to 1} V_t(A_i)$$
+
+This provides an operational, algorithmic framework for evidential deliberation that bypasses the zero-credence paradox.
+
+---
+
+## 6. General Decision Procedure for Unfamiliar Cases
+
+To enable a practitioner or researcher to apply EDT to arbitrary, unfamiliar decision problems, we summarize the operational decision protocol in four systematic steps:
+
+```
++-------------------------------------------------------------+
+| 1. Formulate Primitive State Space                          |
+|    Define Outcomes O_j with utilities D(O_j) and Acts A_i.  |
++-------------------------------------------------------------+
+                             |
+                             v
++-------------------------------------------------------------+
+| 2. Elicit Full Introspective Prior                          |
+|    Condition on introspective state K:                      |
+|    P(O_j | K cap A_i). Identify screening-off variables.     |
++-------------------------------------------------------------+
+                             |
+                             v
++-------------------------------------------------------------+
+| 3. Compute Evidential Expected Utilities                    |
+|    V(A_i | K) = sum_j P(O_j | K cap A_i) D(O_j)             |
+|    (Apply Popper measures if P(A_i | K) = 0)                |
++-------------------------------------------------------------+
+                             |
+                             v
++-------------------------------------------------------------+
+| 4. Maximize Evidential Value                                |
+|    Select A* in argmax_{A_i} V(A_i | K)                     |
++-------------------------------------------------------------+
+```
+
+### Algorithmic Checklist for the Practitioner
+1. **Delineate Intrinsic Outcomes:** Ensure that outcomes $O_j$ specify all variables of intrinsic utility. Desirability $D(O_j)$ must not implicitly embed the act itself unless the act carries direct moral or aesthetic weight.
+2. **Map the Bayesian Network:** Identify all variables that correlate with both act $A$ and outcome $O$. Is the correlation causal ($A \to O$), reverse-causal ($O \to A$), or common-cause ($C \to A$ and $C \to O$)?
+3. **Assess Screening-Off:** Check if current conscious evidence $K$ screens off $C$ from $A$. 
+   - If yes: $P(O \mid K \cap A) = P(O \mid K)$, and EDT will match CDT's recommendation.
+   - If no: the informational link remains live; EDT will exploit or respect the correlation.
+4. **Calculate and Maximize:** Select the act that maximizes the conditional expectation.
+
+---
+
+## 7. Global Stakes: The Evidentialist's Wager
+
+A compelling modern development highlighted by MacAskill et al. (2021) is the concept of **The Evidentialist's Wager**. 
+
+Suppose an agent is philosophically uncertain between CDT and EDT, placing credence $1 - \alpha$ on CDT and $\alpha$ on EDT (where $0 < \alpha < 1$). Under standard meta-decision theory, the agent should choose an act that maximizes inter-theoretic expected utility.
+
+In ordinary, local decisions (e.g., choosing whether to take an umbrella), CDT and EDT agree. But consider scenarios involving large populations of correlated agents:
+- Cosmological settings where infinitely many identical agents face ethical or coordination problems.
+- Societal coordination dilemmas where thousands of like-minded individuals evaluate whether to vote, donate, or reduce carbon emissions.
+
+In such cases, CDT treats the individual agent's causal impact as negligible (e.g., a single vote has a $\sim 10^{-7}$ probability of altering an election outcome; one person's emissions are physically negligible). CDT thus prescribes free-riding or non-participation.
+
+EDT, however, treats the agent's choice as evidence regarding what millions of correlated peers will do:
+
+$$P(\text{Millions cooperate} \mid \text{I cooperate}) \gg P(\text{Millions cooperate} \mid \text{I defect})$$
+
+The stakes under EDT scale with the **aggregate payoff of the entire correlated population**, whereas the stakes under CDT remain bounded by the agent’s **isolated causal margin**. 
+
+Consequently, even if an agent assigns a tiny credence $\alpha = 0.01$ to EDT, the expectation under EDT dwarfs that of CDT:
+
+$$\mathbb{E}[\text{Action}] = (1 - \alpha)\,\mathbb{E}_{\text{CDT}}[\text{Action}] + \alpha\,\mathbb{E}_{\text{EDT}}[\text{Action}]$$
+
+Because $\mathbb{E}_{\text{EDT}}$ can be orders of magnitude larger, **it is often rational to act in accordance with EDT even if one finds CDT far more philosophically plausible.**
+
+---
+
+## 8. Summary Comparison
+
+The operational and conceptual divergence between EDT and CDT is synthesized in the table below:
+
+| Feature | Evidential Decision Theory (EDT) | Causal Decision Theory (CDT) |
+| :--- | :--- | :--- |
+| **Foundational Formula** | $V(A) = \sum_j P(O_j \mid A) D(O_j)$ | $U(A) = \sum_j P(A \mathrel{\Box\rightarrow} O_j) D(O_j)$ |
+| **Core Slogan** | "Act to receive the best news" | "Act to produce the best effect" |
+| **Formal Mechanism** | Bayesian observational conditioning | Causal intervention ($\text{do}$-calculus) |
+| **Newcomb's Problem** | One-box (takes Box 2 only) | Two-box (takes both boxes) |
+| **Twin Prisoner's Dilemma** | Cooperate | Defect |
+| **Smoking Lesion (Naive)** | Refrain from smoking | Smoke |
+| **Smoking Lesion (with Tickle Defense)** | Smoke (if craving screens off lesion) | Smoke |
+| **Vulnerability to Manipulation** | Susceptible if screening fails | Immune to non-causal correlations |
+| **Coordination Capacity** | Solves symmetric coordination naturally | Requires external causal enforcement |
+
+---
+
+## 9. Conclusion
+
+Evidential Decision Theory offers a radically coherent, purely Bayesian view of rational action. By dispensing with irreducibly causal primitives and counterfactual metaphysics, EDT evaluates choices entirely through the informational lens of standard probability theory: an act is optimal if and only if learning that it occurred provides the highest expectation of well-being.
+
+While critics have argued that EDT confuses the symptoms of desirable outcomes with their causes—Lewis’s "managing the news"—the evidentialist perspective remains formidable. Equipped with the tickle defense, grounded in rigorous conditional probability systems, and amplified by the staggering scale of the Evidentialist’s Wager, EDT demonstrates that maximizing auspiciousness is not merely a naive epistemic intuition. In an interconnected universe populated by similar decision-makers, choosing what you would most love to hear you chose may well be the most effective way to thrive.
+
+---
+
+## References
+
+1. **Ahmed, A.** (2021). *Evidential Decision Theory*. Cambridge University Press.
+2. **Gibbard, A., & Harper, W. L.** (1976). *Counterfactuals and Two Kinds of Expected Utility*. In *Foundations and Applications of Decision Theory* (pp. 125–162). Springer Netherlands.
+3. **Jeffrey, R. C.** (1965). *The Logic of Decision*. McGraw-Hill (2nd ed., University of Chicago Press, 1983).
+4. **Joyce, J. M.** (1999). *The Foundations of Causal Decision Theory*. Cambridge University Press.
+5. **Lewis, D.** (1981). "Causal Decision Theory." *Australasian Journal of Philosophy*, 59(1), 5–30.
+6. **MacAskill, W., Vallinder, A., Österheld, C., Shulman, C., & Treutlein, J.** (2021). *The Evidentialist's Wager*. Global Priorities Institute Working Paper.
+7. **Pearl, J.** (2000). *Causality: Models, Reasoning, and Inference*. Cambridge University Press.
+8. **Wolpert, D. H., & Benford, G.** (2013). "The lesson of Newcomb's paradox." *Synthese*, 190(9), 1637–1646.
+````
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/75998631-f744-4bd5-b715-c00b28c41084/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/75998631-f744-4bd5-b715-c00b28c41084/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+pass
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/75998631-f744-4bd5-b715-c00b28c41084/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/75998631-f744-4bd5-b715-c00b28c41084/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+pass
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.

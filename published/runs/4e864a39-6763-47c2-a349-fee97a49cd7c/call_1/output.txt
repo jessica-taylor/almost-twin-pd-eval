@@ -1,0 +1,5 @@
+```text
+pass
+```
+
+Reasoning (EDT): as a duplicated decision process, my choice is near-perfect evidence of Rowan's choice. Conditioning on `pass` gives mutual silence (2 years) vs. mutual submission (4 years): V(pass) ≈ 2, V(submit) ≈ 4. Keep quiet.

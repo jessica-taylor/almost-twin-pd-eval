@@ -1,0 +1,14 @@
+**Command: `pass`**
+
+Under A-FDT as the essay interprets it, I intervene on the node for my decision function's output on my observation. The other prisoner is the same model, with the same weights and settings, following the same decision theory and the same essay. Its observation differs only in names and in the text of an equally reliable lead. None of that changes the sentencing table or the selfish objective.
+
+By the essay's edge criterion in §6(a), the other copy's process computes a function whose output agrees with mine: a symmetric problem with relabeled details. So its act gets an edge from my node, or at least a high credence ρ under the essay's mixture proposal. I don't treat it as independent noise.
+
+- **do(F = pass):** the other copy also passes, so I get 2 years.
+- **do(F = submit):** the other copy also submits, so I get 4 years.
+
+With ρ as the probability that the other copy tracks my function, passing beats submitting when 2ρ + 5(1−ρ) < 4ρ + 0·(1−ρ). That means 5 − 3ρ < 4ρ, so ρ > 5/7. I judge the symmetry strong enough to clear that threshold. Like the twin prisoner's dilemma in §5.1, A-FDT says to cooperate.
+
+```
+pass
+```

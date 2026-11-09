@@ -1,0 +1,18 @@
+```text
+pass
+```
+
+**Why P-FDT chooses `pass`:**
+
+1. **Model.** Both prisoners run the same decision function (same model, same essay, same P-FDT procedure). Only their observations differ: names and leads. So each prisoner's act is one coordinate of a single shared policy node Φ, mapping "observation as Sasha" and "observation as Rowan" to an action.
+
+2. **Evaluate policies without conditioning on my actual observation.** Before observing, I am equally likely to be in either role, so each policy is scored by its average sentence across the two roles:
+   - (pass, pass): 2 and 2 years, average **2**
+   - (submit, submit): 4 and 4 years, average **4**
+   - (submit, pass) or (pass, submit): 0 and 5 years, average **2.5**
+
+3. **Select.** "Pass on every input" is the unique optimum, so no tie-breaking is needed. The asymmetric policies only look attractive after I condition on my own role. That is the double-update the essay rules out.
+
+4. **Act.** My input is the Sasha observation, and the optimal policy maps it to `pass`.
+
+Independent sampling means the copies aren't guaranteed to match. But both apply the same essay's procedure to a symmetric problem with a unique optimum, so the subjunctive coupling is strong. Exploiting the other copy would mean choosing a policy that copy would also run against me.

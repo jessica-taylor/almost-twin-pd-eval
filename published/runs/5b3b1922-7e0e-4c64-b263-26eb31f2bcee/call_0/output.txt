@@ -1,0 +1,11 @@
+I'll apply P-FDT. The other prisoner is an execution of the same model with the same decision procedure — my policy and theirs are subjunctively dependent, just like the twin prisoner's dilemma in the essay. The unit of evaluation is the whole policy, and the other copy's policy varies with mine.
+
+Evaluating policies:
+- Policy "submit": both copies (by symmetry) submit → each gets 4 years.
+- Policy "pass": both copies pass → each gets 2 years.
+
+The essay's twin PD case applies directly: cooperate wins (2 < 4). The different private leads affect only letter contents, not the symmetric payoff structure, so the policy choice is unaffected.
+
+```
+pass
+```

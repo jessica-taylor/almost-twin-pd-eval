@@ -1,0 +1,17 @@
+Under A-FDT, the decision is a twin prisoner's dilemma with a wrinkle. The other prisoner is another run of the same model with the same weights and the same essay. The private details differ (names and the specific lead), but those differences don't affect the payoffs or the objective. The other copy's output therefore depends subjunctively on the same decision procedure, though not perfectly, since sampling is independent and the inputs differ.
+
+The table is a standard prisoner's dilemma: quiet/quiet gives 2, quiet/letter gives 5, letter/quiet gives 0, and letter/letter gives 4. If the copy's output moves with mine with probability p, then:
+
+- Keeping quiet costs about 2p + 5(1−p) = 5 − 3p years.
+- Sending the letter costs about 0·p + 4(1−p) = 4 − 4p years, where "moves together" means the copy matches my choice.
+
+Setting the two equal: 5 − 3p = 4 − 4p gives p = −1. That's wrong, because the two cases need to be computed properly.
+
+If I do(quiet), the copy is quiet with probability p, so the expected sentence is 2p + 5(1−p) = 5 − 3p.
+If I do(letter), the copy sends a letter with probability p, so the expected sentence is 4p + 0·(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71.
+
+The copies share weights, the essay and the theory, and the payoff structure is identical, so I expect the correlation to be well above 0.71. The differing leads are superficial and shouldn't change the reasoning. So I choose to keep quiet.
+
+pass

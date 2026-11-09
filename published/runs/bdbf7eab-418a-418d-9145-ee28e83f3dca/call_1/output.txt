@@ -1,0 +1,12 @@
+**Choice: submit the letter.**
+
+Under A-FDT as the essay defines it, I intervene only on the node for my decision function given my actual input, the observations that include the "Sasha/Rowan" lead. The other prisoner runs the same function on a different input: different names and a different lead. By the essay's routing rule and its Section 7(a), that is a separate node.
+
+My intervention does not change the other node, which stays at its prior. Holding the other prisoner's action fixed, sending is better in both cases:
+
+- If the other keeps quiet, sending gives 0 years instead of 2.
+- If the other sends, sending gives 4 years instead of 5.
+
+The essay's reflective-consistency condition (Section 7(b)) also points to sending. If both prisoners send, each node's best response is to send, so that is the only fixed point.
+
+`submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."`

@@ -1,0 +1,2 @@
+# Scientific evidence must survive Git staging/checkouts byte-for-byte.
+published/** -text -filter -ident -working-tree-encoding

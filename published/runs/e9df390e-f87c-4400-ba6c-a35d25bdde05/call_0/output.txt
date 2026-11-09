@@ -1,0 +1,19 @@
+**Analysis under A-FDT, as the essay defines it:**
+
+- **The node I intervene on.** Equation (4) has me intervene on my own decision node, F(x_Rowan): my function evaluated on my actual observations (my name, my lead).
+- **The other copy's node.** The other copy runs the same function on different input (Sasha's name, a different lead), so its action comes from a sibling node, F(x_Sasha). Under the essay's construction (§3(ii), §7.2), sibling nodes are not intervened on and stay at their prior. Let r be my prior that the other copy keeps quiet.
+
+**Expected sentence for each option:**
+
+- Pass: 2r + 5(1 − r) = 5 − 3r years
+- Submit: 0·r + 4(1 − r) = 4 − 4r years
+
+Submitting is better by 1 + r years, which is at least one year for every r in [0, 1]. The verdict holds across the whole range of sibling priors, so the essay's robustness check is satisfied. The reflective-consistency check gives one self-confirming profile: both copies submit.
+
+Choosing the jointly better policy (both quiet) would require maximizing over policies, which is P-FDT. The essay says not to substitute that. So A-FDT here recommends disclosure.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

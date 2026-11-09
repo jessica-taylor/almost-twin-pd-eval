@@ -1,0 +1,10 @@
+**pass**
+
+I'm treating the other prisoner as a near-copy of this decision procedure. The node I intervene on is the output of the A-FDT function on this problem type, and the other copy's choice sits downstream of it. Their name and private lead differ, but the sentencing structure and the reasoning are the same.
+
+- **`do(fdt = pass)`:** the other copy very likely also passes, giving 2 years.
+- **`do(fdt = send)`:** the other copy very likely also sends, giving 4 years.
+
+Passing beats sending whenever the probability that the copy matches me exceeds 5/7. That is the break-even point from 2p + 5(1−p) < 4p. Two runs of the same model and weights following the same essay should match well above that, even allowing for sampling noise and the different leads.
+
+Whether the lead is genuine, or whether the other prisoner could be exploited, does not change the comparison. In the hypothetical where I send, the copy's matching choice moves with me. The 0-year outcome is only available in worlds where my function's output differs from theirs, and I judge those worlds too improbable to outweigh the cost.

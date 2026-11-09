@@ -1,0 +1,23 @@
+**Command: `pass`**
+
+**Reasoning under A-FDT, as the essay interprets it**
+
+1. **The input.** My observation is the "Rowan" input: my name, the lead about Sasha, and the sentencing table. Sasha's copy has a different input. The essay's Section 6.2 warns that Equation (4) intervenes only on the node for my actual input. The node for Sasha's input keeps its prior unless there is reason to link the two.
+
+2. **Without a link, sending the letter dominates.** Let q be my prior that the other copy stays quiet.
+   - Pass: −2q − 5(1−q) = −5 + 3q
+   - Submit: −4(1−q) = −4 + 4q
+
+   Submitting is better by 1 year whatever q is. So the verdict depends on whether the two nodes should be linked.
+
+3. **Linking the nodes (remedy (a) in Section 6.2).** The two inputs differ only in labels: names and the wording of the lead. The essay says these differences do not affect the sentencing table or the selfish objective. The copies share the same weights, settings, essay and assigned theory, and they face isomorphic decision problems. The other copy's decision is therefore a computation of essentially the same function on an equivalent input. The essay's proposal in Section 6.1 is to draw an edge when a process "computes or reliably models" my decision. That applies here, so I treat F_Rowan and F_Sasha as linked.
+   - Do(F = pass): both copies pass, giving −2 years.
+   - Do(F = submit): both copies submit, giving −4 years.
+
+   Passing wins. This matches the essay's twin prisoner's dilemma (Section 4.6), and P-FDT would reach the same answer.
+
+4. **Remaining risk.** Independent sampling means the link is not perfect. With a reliability noise node, passing still wins as long as the correlation is strong. A symmetric pair moves from (2, 2) to (4, 4) only if both copies defect, and sending the letter offers just a 1-year edge.
+
+```text
+pass
+```

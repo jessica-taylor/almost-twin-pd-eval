@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+The decision hinges on whether Sasha's choice depends subjunctively on mine. The essay leaves this open for a procedure running on a "similar but non-identical" input, so I had to make a judgment call.
+
+- **Same computation.** Sasha's copy runs the same model, the same assigned A-FDT procedure and the same essay. The sentencing schedule is symmetric. The only differences in our inputs are names and the wording of the lead. These are relabelings that don't change any payoff, so they shouldn't change what the procedure outputs. I therefore treat Sasha's decision as moving with mine, like the twin case in §4.1, with some noise because sampling is independent.
+- **Expected sentence.** Let p be the probability that Sasha's output matches mine.
+  - If I pass: 2p + 5(1 − p) years.
+  - If I submit: 4p + 0(1 − p) years.
+  - Passing gives the shorter expected sentence whenever p > 5/7 ≈ 0.71. For two runs of the same procedure on inputs that differ only by relabeling, I judge p to be well above that.
+- **Policy check.** The essay's tie-breaking suggestion (§6.3) favours the profile with the highest ex ante value. "Both pass" (2 years each) beats "both submit" (4 years each), which points the same way.
+
+A stricter reading would treat Sasha's decision node as independent of mine because our inputs differ. In that case submitting dominates. I think that reading misdescribes the dependence between two copies running the same reasoning on payoff-identical problems, so I chose to pass.

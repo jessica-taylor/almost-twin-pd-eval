@@ -1,0 +1,11 @@
+Under A-FDT, the other prisoner is a copy of the same model running the same procedure. That makes their output subjunctively dependent on mine, even though their private lead differs from mine. The difference in leads doesn't change the sentence table or the objective, so the decision function is effectively the same. The one open point is that independent sampling could make the outputs diverge.
+
+Payoffs if the copy's output matches mine with probability p:
+- Pass: I get 2 years if the copy also passes, 5 if it sends. Expected = 2p + 5(1−p) = 5 − 3p.
+- Send: I get 4 years if the copy also sends, 0 if it passes. Expected = 4p + 0(1−p) = 4p.
+
+Pass is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The two copies share weights, settings, essay and objective, and the lead differences are stipulated as irrelevant. I expect their correlation to be well above 0.71, so under the essay's rule of linking any variable that contains a computation of my decision procedure, I link the copy's output to mine and pass.
+
+Pass is the option that holds up if the copy runs the same reasoning I just did.
+
+pass

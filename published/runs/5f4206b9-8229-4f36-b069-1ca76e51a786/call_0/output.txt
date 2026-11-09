@@ -1,0 +1,3 @@
+`pass`
+
+Under P-FDT, the intervention is on the policy shared by both copies: the other prisoner, as an execution of the same model following the same decision theory, subjunctively depends on the same policy variable. Evaluating policies across the symmetric game: policy pass → both keep quiet → 2 years each; policy submit → both send → 4 years each. So the policy that maximizes expected utility (−years imprisoned) is to keep quiet.

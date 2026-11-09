@@ -1,0 +1,8 @@
+Under the essay's CDT, the other prisoner's choice is not causally downstream of mine. We are separate executions with no communication, and our private leads differ. So their choice is a dependency hypothesis I hold fixed. Sending the letter is better in every case:
+
+- If Rowan keeps quiet, sending gives 0 years instead of 2.
+- If Rowan sends, sending gives 4 years instead of 5.
+
+Sending is causally dominant, so the procedure stops at step 4. It is also ratifiable, since dominance holds under any credence.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

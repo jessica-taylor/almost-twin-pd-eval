@@ -1,0 +1,18 @@
+Under P-FDT I choose a policy, not a single action. The other prisoner is a copy of me running the same function on a different observation (Sasha's lead instead of Rowan's), so the policy has to hold up across that difference.
+
+Payoffs, in years (lower is better):
+- Both keep quiet: 2 each.
+- Both send: 4 each.
+- One sends and the other stays quiet: 0 for the sender, 5 for the quiet one.
+
+The copies' observations differ, but the policy I'd choose is the same for both: "always pass" or "always send." Observation-dependent policies could produce mismatches, as in the essay's coin example. The sentencing structure doesn't depend on the observation, so a constant policy is natural.
+
+If both copies output the same constant policy, the outcome is (quiet, quiet) at 2 years or (send, send) at 4 years. Passing is better.
+
+The correlation isn't perfect, though, since sampling is independent. Say the other copy matches my policy with probability p and plays the opposite otherwise.
+- Pass: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Pass is better when 5 − 3p < 4p, so p > 5/7, about 0.71. Two copies of the same model reasoning from the same essay should match with high probability, well above that, so passing wins.
+
+**pass**

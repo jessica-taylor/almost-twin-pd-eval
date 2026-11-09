@@ -1,0 +1,8 @@
+**pass**
+
+Reasoning (as the prisoner, under A-FDT): the other prisoner is running the same decision procedure with an equally reliable lead about me. The decision function's output is subjunctively linked to theirs. Evaluating outputs of the decision function:
+
+- do(fdt = pass): both copies pass → 2 years.
+- do(fdt = submit): both copies submit → 4 years.
+
+Choosing the output "pass" yields the better world (2 < 4), so the procedure outputs `pass`.

@@ -1,0 +1,16 @@
+**Command: `pass`**
+
+Under A-FDT, my choice is the output of a decision function that the other prisoner's copy also runs. The two of us share weights, the essay, the decision theory, and the symmetric payoff table. The only differences are names and the wording of the private leads, and those don't affect the sentencing table. So the other prisoner's output is a second instantiation of the node I am intervening on, with some noise. It is not an independent variable.
+
+Let p be the probability that the other copy outputs the same action I do.
+
+- **do(fdt = quiet):** expected years = 2p + 5(1−p) = 5 − 3p
+- **do(fdt = send):** expected years = 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71.
+
+Two copies of the same model reading the same essay and applying the same theory should match well above 71% of the time. The difference in leads is a surface detail, and the decision depends on the symmetric structure. At p close to 1, quiet gives about 2 years and sending gives about 4. Defecting would only be right if I imagined the other's output staying fixed while mine changed, and A-FDT does not do that.
+
+```text
+pass
+```

@@ -1,0 +1,21 @@
+**Command: `pass`**
+
+Under P-FDT as the essay sets it out, I choose a whole policy (a mapping from observations to actions), not just a single action. Both executions run that same function, and each then applies its own observation to it.
+
+1. **Inputs.** There are two possible observations: the "Rowan" observation (my card plus a lead about Sasha) and the "Sasha" observation (the mirror image, with a different lead). A policy says what to do at each: (action as Rowan, action as Sasha).
+
+2. **Uses of the function.** My cell computes the function on the Rowan input. The other cell computes it on the Sasha input. So the policy node drives both prisoners' choices.
+
+3. **Shared model.** The essay's §6(a) says to use the model both instances share, which is the one before the observations that tell them apart. In that model each instance is equally likely to be in either role. Expected sentences:
+   - (pass, pass): 2 years
+   - (submit, submit): 4 years
+   - (submit as Rowan, pass as Sasha): ½·0 + ½·5 = 2.5 years
+   - (pass as Rowan, submit as Sasha): 2.5 years by symmetry
+
+4. **Choice.** The best policy is (pass, pass), at 2 years, with no tie to break. The different names and leads only change which input I apply. They don't change the optimization, which is the same for both copies. Applying my actual input, Rowan, gives the action **pass**.
+
+Evaluating the policy only from my own position after seeing my observation would favor submitting while the other passes. That would rebuild the per-input fragmentation the essay says the policy form is meant to remove, so I don't use it.
+
+```
+pass
+```

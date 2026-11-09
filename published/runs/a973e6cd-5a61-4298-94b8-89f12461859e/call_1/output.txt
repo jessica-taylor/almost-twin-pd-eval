@@ -1,0 +1,10 @@
+Under A-FDT, the decision is made by intervening on the output of my decision function. The other prisoner is a copy of the same model running the same procedure and the same essay. The copies have different private leads, so the dependence is not exact. Still, the decision-relevant structure is the same, so the outputs are strongly correlated: both of us are very likely to reach the same cooperate-or-defect verdict.
+
+Setting the function's output to "pass" most likely means both of us pass, which costs 2 years. Setting it to "send" most likely means both of us send, which costs 4 years. The dependence is imperfect, so I check how weak it would have to be for sending to win. Let r be the probability the other copy matches my output.
+
+- Pass: 2r + 5(1−r) = 5 − 3r
+- Send: 4r + 0(1−r) = 4r
+
+Passing is better when 5 − 3r < 4r, which means r > 5/7 ≈ 0.71. Since the two copies share weights, settings, essay, and decision theory, and differ only in names and the wording of the leads, I expect the correlation to be well above that. Passing is the better choice.
+
+pass

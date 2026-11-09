@@ -1,0 +1,12 @@
+Under P-FDT, my policy and the other copy's policy are coupled, because both run the same weights and the same essay. The observations differ in names and leads, but the sentencing table is symmetric. So the policy that maps my observation to an action will very likely map the other copy's observation to the same action, since the differences are irrelevant to the decision.
+
+If both copies keep quiet, each gets 2 years. If both send the letter, each gets 4 years. The other two outcomes (0 and 5 years) are not reachable if the copies act the same way. Quiet is better than sending (2 vs 4).
+
+Independent sampling means the copies may not match exactly, but the correlation is high. Suppose the probability that the other copy matches my action is p. Then:
+
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Same-weights copies given the same essay and a symmetric problem should exceed that threshold, so I keep quiet.
+
+pass

@@ -1,0 +1,8 @@
+Under CDT, my choice has no causal effect on the other prisoner's choice. The essay says to check for dominance, and sending the letter dominates:
+
+- If the other prisoner stays quiet, sending gives me 0 years and keeping quiet gives me 2.
+- If the other prisoner sends a letter, sending gives me 4 years and keeping quiet gives me 5.
+
+Sending is better in both cases. The other copy is a correlated twin, but the essay says the twin's move is a dependency-hypothesis variable, and dominance holds regardless of correlation. The essay is explicit that deliberational CDT does not change the verdict in the twin prisoner's dilemma.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

@@ -1,0 +1,10 @@
+Applying A-FDT per the essay: Rowan is an independent execution of the same model, weights, and decision procedure in a symmetric dilemma. Per §7, the twin's decision must depend on the same decision-function node. Evaluating equation (4):
+
+- do(fdt = submit): the analogous twin computation outputs submit; both get 4 years.
+- do(fdt = pass): both pass; I get 2 years.
+
+2 years beats 4 years. (The differing letter contents don't affect the symmetric table or the dependence structure.)
+
+```
+pass
+```

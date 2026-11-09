@@ -1,0 +1,15 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT as the essay frames it:**
+
+- **The key question is the dependency graph.** Strictly, Sasha's copy runs the algorithm on a different input, with a different name and a different lead. A literal reading of the essay's edge rule ("that function on that input") would put Sasha's act under a separate node, not under mine. If that were the whole story, sending the letter would dominate.
+- **The differences don't enter the reasoning.** Both copies run the same model, the same essay, the same decision theory and the same symmetric sentencing table. Nothing in this deliberation depends on the specific name or the text of the lead. Abstracted over those irrelevant details, Sasha's copy is computing essentially the same function I am.
+- **So I model the edge as a mixture, as the essay recommends for ambiguous cases.** Let p be my credence that the edge from my algorithm node to Sasha's act exists.
+  - In the edge branch, staying quiet yields (quiet, quiet) for 2 years, and sending yields (send, send) for 4 years. Staying quiet gains 2 years.
+  - In the no-edge branch, sending gains 2 years whatever Sasha does.
+  - Staying quiet therefore wins whenever p > 0.5.
+- **I judge p > 0.5.** Identical model, identical theory and a fully symmetric situation make it more likely than not that the two outputs are bound together.
+
+**Sensitivity note:** This verdict depends on that credence about the graph. If one reads the edge rule strictly, so that p is near 0, A-FDT's Equation (4) recommends sending the letter. The essay notes that the policy formulation, a different theory, may diverge in multi-agent cases like this one.
+
+`pass`

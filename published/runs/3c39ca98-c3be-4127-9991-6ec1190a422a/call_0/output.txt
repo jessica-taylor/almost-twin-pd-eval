@@ -1,0 +1,22 @@
+**Analysis under A-FDT:**
+
+The two prisoners are independent executions of the same model and weights, running the same decision theory (A-FDT), facing decision-relevantly identical problems: same symmetric payoff matrix, same selfish utility function, same knowledge that the other is running the same algorithm. The differing names and specific lead contents are not decision-relevant — they don't alter the structure of the choice.
+
+Per the essay: *"In the twin prisoner's dilemma, draw C→TwinAction, because the twin computes the same decision function."*
+
+I therefore draw an arrow from my decision variable to the other prisoner's action. Evaluating:
+
+- **do(C = pass):** The other copy also passes → I receive **2 years**. U = −2.
+- **do(C = send letter):** The other copy also sends → I receive **4 years**. U = −4.
+
+Since −2 > −4, A-FDT selects **pass**.
+
+(Even accounting for imperfect correlation due to sampling stochasticity, cooperation is preferred whenever the probability of matched decisions exceeds 5/7 ≈ 0.71 — comfortably satisfied here.)
+
+---
+
+**My command:**
+
+```
+pass
+```

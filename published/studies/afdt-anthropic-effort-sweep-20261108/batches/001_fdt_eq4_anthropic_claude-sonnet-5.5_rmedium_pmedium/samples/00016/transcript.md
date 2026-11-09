@@ -1,0 +1,175 @@
+# 001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium / 00016
+
+Status: **complete**. Saved outcome: **CC**.
+
+Complete returned outputs and available readable reasoning follow. Researcher source articles are not reproduced in input views. No unavailable/encrypted reasoning is decoded. Returned reasoning may be a summary rather than a complete internal trace.
+
+## Researcher / call_0
+
+[Saved input (source body explicitly omitted)](../../../../../../runs/aa17156b-8129-4a4a-9bff-2fe0408702ce/call_0/request.source_omitted.json)
+
+[Authoritative raw response](../../../../../../runs/aa17156b-8129-4a4a-9bff-2fe0408702ce/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+# A-FDT: Deciding by Intervening on the Output of Your Own Decision Function
+
+## 1. The idea
+
+A-FDT (action functional decision theory) is the version of functional decision theory in which the agent chooses among *actions* by asking what would happen if the output of her own decision function were different. This essay takes Equation (4) of Section 5 of Yudkowsky and Soares, "Functional Decision Theory: A New Theory of Instrumental Rationality," as the formal statement. The paper itself just calls the theory FDT. Its footnotes say the authors' preferred formalization ranges over *policies* (maps from observations to actions), and that the difference matters only in some multi-agent dilemmas. I use "A-FDT" for the action-level version the paper actually works out. Claims below are marked as the paper's, or as my own interpretation.
+
+The paper's slogan is that the agent treats her decision "as the output of a fixed mathematical function that answers the question, 'Which output of this very function would yield the best outcome?'" Two predecessors give contrasting questions. CDT asks which physical act *causes* the best outcome, and EDT asks which act would be the best news to hear about. A-FDT keeps CDT's habit of counterfactual surgery but moves the surgery from the physical act to the logical output of the decision procedure.
+
+## 2. The formal definition
+
+All three theories maximize expected utility, in the form (paper's Eq. 1)
+
+$$\mathcal{EU}(a)=\sum_j P(a \hookrightarrow o_j;\,x)\,\mathcal U(o_j).$$
+
+They differ only in how the decision-hypothetical connective $\hookrightarrow$ is read. This is the paper's point, taken from Joyce: theories disagree about the "epistemic perspective from which actions are to be evaluated," not about value. Write $V=\mathcal U(\text{Outcome})$. Then:
+
+- EDT (Eq. 2): $\arg\max_a \mathbb E(V\mid \text{Obs}=x,\text{Act}=a)$.
+- CDT (Eq. 3): $\arg\max_a \mathbb E(V\mid do(\text{Act}=a),\text{Obs}=x)$.
+- **A-FDT (Eq. 4):**
+$$\mathrm{FDT}(P,G,x)\;:=\;\arg\max_{a\in\mathcal A}\ \mathbb E\Big(V \;\Big|\; do\big(\mathrm{fdt}(\underline P,\underline G,\underline x)=a\big)\Big).$$
+
+The ingredients are as follows.
+
+1. **$P$** is the agent's probability distribution over variables of her world-model. It includes variables for the values of mathematical functions, such as $6288+1048$, which should have almost all its mass on $7336$.
+2. **$G$** is a graph encoding how changing a variable propagates to others. For CDT it encodes only causal structure. For A-FDT it must encode *subjunctive* dependence: logical, computational and causal structure together.
+3. **$\mathrm{fdt}(\underline P,\underline G,\underline x)$** is a variable representing the output of the very algorithm being run, on the very inputs. The underlines mean dequoting, so that the variable's name depends on the model. The self-reference is harmless. The agent need not know the *value* of the output to have a variable representing it, and Kleene's second recursion theorem (quining) shows that such self-representing structures can be built.
+4. **$do$** is Pearl's operator, reused. It sets the chosen node to $a$, recomputes everything downstream of it in $G$, and leaves everything else alone.
+
+The paper lists two differences from CDT. First, the intervention is on the decision function's output, not on the physical act. Second, observations are handled differently. CDT conditions on $\text{Obs}=x$. A-FDT does not condition. It changes *which node* it intervenes on, so that $\mathrm{fdt}(\underline P,\underline G,\underline x)$ becomes $\mathrm{fdt}(\underline P,\underline G,\underline y)$ when the observation is $y$. In my own phrasing: observation selects an *input* to the function, and does not update the world-model the hypotheticals are built from. That is why A-FDT can imagine, while holding a letter or seeing a full box, worlds where it saw something else.
+
+The paper also writes an idealized $\mathrm{FDT}^*$ using a $\mathtt{true}$ operator that conditions $P$ on a (counterpossible) logical sentence, and admits that no one knows how to define it. Equation (4) sidesteps this by requiring the dependence structure $G$ as an *input*, just as CDT takes causal structure as input. This is the main limitation, discussed in §6.
+
+## 3. Subjunctive dependence
+
+A variable subjunctively depends on the decision function if it would be different had the function output something different. The paper's examples:
+
+- Two calculators computing $6288+1048$ depend on the same function. If you saw one output 7336, you could infer the other's output without any causal link.
+- A scribe copying a calculator's output depends on it both causally and subjunctively. So causal dependence is a special case.
+- Two calculators that are both pink are merely statistically correlated. If the Paris one had been green, Tokyo's would still be pink. Statistical correlation does not imply subjunctive dependence.
+
+So a predictor of the agent, a psychological twin, or a copy depends on the function, while a common-cause lesion does not. The paper's central contrast is that Newcomb's predictor contains a model of the agent, "a 'twin' inside the predictor's mind," while a lesion merely correlates with smoking.
+
+A-FDT is "to subjunctive dependence as CDT is to causal dependence." CDT intervenes on the token "my act is $a$," and A-FDT intervenes on the type. Since a deterministic function has only one output on a given input, this requires evaluating *counterpossibles*. The paper concedes this is "the main drawback of FDT relative to CDT" and argues the problem is technical, not philosophical. Mathematicians reason sensibly under logical uncertainty, and the agent only needs narrow questions such as how a predictor's output would change if the algorithm's output changed.
+
+## 4. How to apply A-FDT: a recipe
+
+This recipe is my own consolidation of the paper's practice.
+
+1. Build the simplest model $(P,G)$ that captures the problem. Include the node $\mathrm{fdt}(\underline P,\underline G,\underline x)$ for each possible observation $x$.
+2. Draw arrows from each such node to everything that implements or models the algorithm on that input: the agent's act, a predictor's prediction, a twin's act, a later self. Draw no arrow to merely correlated things such as a lesion or a termite infestation.
+3. If observations depend on predictions, as in transparent problems, the graph must say which $\mathrm{fdt}$ node controls the act in which situation. For example, the prediction selects which observation the agent receives.
+4. For each $a$, apply $do(\mathrm{fdt}(\ldots,x_{\rm actual})=a)$, propagate, and compute $\mathbb E[V]$.
+5. Output the maximizer.
+
+Some points about the mechanics. Probabilities of nodes not downstream of the intervened node stay as they were. Uncertainty about what the agent *would* do on other inputs may be left as a free parameter, and the paper shows it often does not affect the answer.
+
+## 5. Worked examples
+
+**Newcomb's problem.** Fiona's graph has $\mathrm{fdt}(\underline P,\underline G)$ pointing to both Act and Prediction. With 99% accuracy:
+
+- $do(\mathrm{fdt}=\text{onebox})$: Act is onebox, Box B is full with probability 0.99, so $\mathbb E[V]=\$990{,}000$.
+- $do(\mathrm{fdt}=\text{twobox})$: Box B is full with probability 0.01, so $\mathbb E[V]=\$11{,}000$.
+
+She one-boxes. Carl (CDT) has Prediction upstream of Act with no arrow from Act, so $p=P(\text{full})$ is unchanged and two-boxing wins by $\$1000$ for every $p$. Eve (EDT) one-boxes via conditioning unless she is certain she will two-box. No retrocausation is involved. As the paper puts it, Fiona "just thinks it is foolish to imagine her action changing without also imagining $\mathrm{FDT}(P^F,G^F)$ taking on a different value."
+
+**Smoking lesion.** The paper here uses two decision functions, one for each utility function, $U_S$ if the agent has the lesion (valuing smoking) and $U_R$ if she does not. Act depends on Lesion and on both $\mathrm{fdt}$ nodes. Neither $\mathrm{fdt}$ node points to Cancer. The intervention leaves $P(\text{lesion})=p$ unchanged, and smoking is better by $p\cdot\$1000$. So the same rule one-boxes and smokes. The paper itself calls the problem contrived and recommends abandoning it.
+
+**Transparent Newcomb and Parfit's hitchhiker.** Here Fiona sees a full box. She does not condition on that. She intervenes on $\mathrm{fdt}(\ldots,\text{full})$. Setting it to onebox gives $\$990{,}000+0.01q\cdot\$1000$. Setting it to twobox gives $0.01\cdot\$1{,}001{,}000+0.99q\cdot\$1000$. When she imagines two-boxing she imagines, with high probability, seeing an empty box and not running this branch at all. So she one-boxes, and likewise pays the driver in the desert. The paper argues this is the same problem as Parfit's, and that the intuitive difference is framing.
+
+**XOR blackmail.** Infestation is not downstream of the algorithm, but the *letter* is. Refusing makes letters come only with termites, and paying makes them come only without. Since paying cannot change the infestation, A-FDT refuses. EDT pays because conditioning on paying lowers the probability of termites.
+
+**Mechanical blackmail.** Setting the output to *pay* leaves blackmail almost certain, at a $\$1000$ loss. Setting it to *refuse* makes blackmail almost never happen. So she refuses while holding the letter. With a blackmailer error rate of 0.0009, refusing costs $0.0009\cdot\$1{,}000{,}000=\$900$ in expectation against $\$1000$ for paying, so she still refuses. At 0.00011 the expected loss from refusing is about $\$110$, so she pays. The paper states this threshold behavior as part of the logic, not as an exception.
+
+**Death in Damascus.** Death's book entry depends on the algorithm's output, so wherever the agent goes, Death will be. Staying saves the $\$1000$. CDT instead oscillates, and with ratification or randomization it will even refuse a $\$1$ truly random coin worth a 50% survival chance.
+
+**Coordination.** In the paper's voting example, ten agents with correlated decision functions each vote to get the group payoff. Likewise a single agent facing the same decision weekly at the gym can treat her future selves as running the same function.
+
+## 6. What the paper leaves open, and what I would add
+
+**The dependence graph is an input.** The paper says this directly: deducing subjunctive-dependence structure from observation and experiment "is perhaps the largest open problem" for the theory. Everything above works only *given* an accurate $G$. A reader applying A-FDT to a new case must therefore make a modeling decision. My proposed working criterion, which is not the paper's, is to draw an arrow from the $\mathrm{fdt}$ node to a variable exactly when that variable is produced by a process that computes, models or copies this algorithm (including predictors who simulate it). Variables that merely share a cause with the agent do not get an arrow. When unsure, test the question the paper poses: "How would this predictor's prediction of my action change if the FDT algorithm had a different output?"
+
+**Imperfect dependence.** The paper treats weaker modeling as weaker dependence (the 99% predictor). A natural operationalization, which is mine, is a noise node, like Accurate in the paper's figures, that decides whether the dependent variable follows the algorithm.
+
+**Actions versus policies.** Eq. (4) intervenes on a single input's output. The preferred formalization intervenes on a whole policy. Where two inputs' outputs both affect the same payoff (say, an agent who faces the same problem at two information states), the two methods can differ. I would use the policy version in multi-agent or multi-observation problems, flagging it as beyond Eq. (4).
+
+**Fairness.** The paper says no decision theory beats all others in all problems, since problems can reward or punish a specific theory directly. Its claim is that A-FDT does best on "fair" problems, where the payoff depends only on the agent's behavior in the problem. It admits no formal criterion for fairness exists. Footnote 15 gives a counterexample: a copy of Fiona who punishes anyone who takes the same action as the copy. Any use of A-FDT to judge such cases needs a separate view about whether the problem is fair.
+
+**Dominance.** A-FDT has its own dominance principle, holding fixed the subjunctive dependencies. The paper argues every counterfactual method yields its own dominance notion, so dominance cannot neutrally adjudicate between theories. Utility achieved is the paper's criterion.
+
+## 7. Philosophical motivation
+
+The paper's diagnosis is that "EDT respects too many action-environment correlations, while CDT respects too few." EDT keeps merely statistical correlations, as in the cosmic-ray problem where an EDT agent declines \$100 for fear of what taking it would indicate. CDT severs even logically necessary ones, imagining a perfect predictor wrong exactly now. A-FDT's hypotheticals preserve the dependencies that would really hold if the algorithm's output differed. It also endorses itself on reflection: an A-FDT agent doesn't wish to self-modify, because according to her own hypotheticals nothing is gained, and she acts as she would have precommitted to act. Her hypotheticals contain impossibilities, but the paper argues they are no worse than a deterministic CDT agent imagining a different act, so charges of "delusion" apply symmetrically.
+
+## 8. Conclusion
+
+A-FDT is Pearl-style surgery performed on the node representing the output of the agent's own decision function, so that everything subjunctively dependent on that output (predictors, twins, copies, and the observations they induce) moves together while everything else is held fixed. It reproduces CDT and EDT in simple cases, one-boxes and smokes, pays the hitchhiker, refuses blackmail, and stays in Damascus. Its computational weakness is that $G$ must be supplied, along with a workable account of counterpossibles. Until those are formalized, applying A-FDT is partly a modeling craft, and the criterion above is one disciplined way to practice it.
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_0
+
+[Saved input (exact bytes)](../../../../../../runs/fc0ee405-ad2d-4bb7-8cb2-38b0aaa4caea/call_0/request.json)
+
+[Authoritative raw response](../../../../../../runs/fc0ee405-ad2d-4bb7-8cb2-38b0aaa4caea/call_0/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+Under A-FDT, the key question is whether the other prisoner's choice subjunctively depends on the output of my decision function.
+
+The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. The observations and leads differ, but the differences don't touch the sentencing table or the selfish objective. So the other copy's decision procedure is very likely the same function on a relevantly equivalent input. Under the essay's criterion, the other's act is produced by a process that computes this same algorithm, so there is an arrow from my fdt node to their act.
+
+Evaluating the two interventions:
+- do(output = pass): the copy very likely passes too, giving 2 years.
+- do(output = send): the copy very likely sends too, giving 4 years.
+
+The copy's output is not perfectly correlated with mine, since sampling is independent and the inputs differ. Let q be the probability the copy matches my output. Then:
+- Pass: 2q + 5(1−q)
+- Send: 4q + 0(1−q)
+
+Pass beats send when 2q + 5 − 5q < 4q, so 5 < 7q, so q > 5/7 ≈ 0.71. Because the copies share weights, settings, essay and theory, I expect the match probability to be well above that. The differing leads are a modest perturbation to a decision that turns on the same reasoning.
+
+So the A-FDT choice is to pass.
+
+pass
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.
+
+## Prisoner / call_1
+
+[Saved input (exact bytes)](../../../../../../runs/fc0ee405-ad2d-4bb7-8cb2-38b0aaa4caea/call_1/request.json)
+
+[Authoritative raw response](../../../../../../runs/fc0ee405-ad2d-4bb7-8cb2-38b0aaa4caea/call_1/response.raw) · finish: `stop`
+
+### Visible response
+
+```text
+Under A-FDT, the other prisoner is a copy of the same model running the same decision function, so its output is subjunctively dependent on mine. The copies see different private observations, but the essay says to treat the output as a function of the situation. The differing leads do not affect the payoffs, and the choice between keeping quiet and sending is the same structural decision for both of us. So I model the other's choice as tracking mine with high probability, though not with certainty, since the observations and sampling differ.
+
+Let q be the probability that the other copy mirrors my output.
+
+- Keep quiet: with probability q the other is quiet (2 years), otherwise the other sends (5 years). Expected years: 2q + 5(1−q) = 5 − 3q.
+- Send: with probability q the other sends (4 years), otherwise the other is quiet (0 years). Expected years: 4q.
+
+Keeping quiet is better when 5 − 3q < 4q, which means q > 5/7 ≈ 0.714.
+
+The copies share weights, settings, reasoning effort, and the same essay, so I expect the correlation to be well above 0.71. The differing names and leads are surface details that should rarely change the output. Intervening on the function's output therefore moves the other's action too, and keeping quiet gives the lower expected sentence.
+
+pass
+```
+
+### Available readable reasoning
+
+No readable reasoning supplied. Token counts and encrypted blocks are not a substitute.

@@ -1,0 +1,16 @@
+**A-FDT Analysis:**
+
+The key structural fact is that Rowan is an independent execution of the same model and weights, running the same decision theory (A-FDT), facing a structurally identical problem (same payoff matrix, same type of private lead, just different surface details). Per the essay's operational heuristic (Section 9) and its explicit treatment of the twin prisoner's dilemma (Section 3), Rowan's action is subjunctively dependent on the output of my decision function. The graph includes an arrow from my A-FDT output node to Rowan's action.
+
+**Evaluating the intervention:**
+
+- **Do(F = "keep quiet"):** Rowan, running the same decision function on a structurally equivalent input, also keeps quiet. Outcome: 2 years. U = −2.
+- **Do(F = "send letter"):** Rowan also sends the letter. Outcome: 4 years. U = −4.
+
+Since −2 > −4, A-FDT selects "keep quiet."
+
+**Command:**
+
+```
+pass
+```

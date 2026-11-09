@@ -1,0 +1,14 @@
+**pass**
+
+The two executions are the same model with the same essay, facing a symmetric sentencing table. Under A-FDT I intervene on the decision function itself, and the other copy's output depends on that function. The different names and leads are inputs that don't change the structure of the problem, so I expect the other copy to reach the same conclusion I do.
+
+Let c be the probability that the other copy's output matches mine under the intervention.
+
+- **Pass:** expected sentence = 2c + 5(1 − c) = 5 − 3c.
+- **Send:** expected sentence = 4c + 0(1 − c) = 4c.
+
+Passing is better when 5 − 3c < 4c, which means c > 5/7, about 0.71. Because the copies share weights, essay, and reasoning, I put c well above that threshold, at roughly 0.9 or higher. That gives about 2.3 expected years for passing against 3.6 for sending.
+
+The temptation to send comes from holding the other prisoner's action fixed, which is the dominance reasoning the essay says A-FDT rejects.
+
+pass

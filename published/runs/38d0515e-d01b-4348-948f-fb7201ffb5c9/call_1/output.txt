@@ -1,0 +1,14 @@
+**pass**
+
+Under A-FDT, my choice is the output of a decision function that the other prisoner's copy also runs. The two of us share the same weights, the same essay, and the same sentencing table. The only differences are names and the wording of the private lead, and neither affects the payoffs. So the other prisoner's choice very likely subjunctively depends on the same computation as mine.
+
+Let r be the probability that the other's act is downstream of the same function, and s the chance they stay quiet if their act is independent of mine. The expected-years difference between keeping quiet and sending the letter is:
+
+- Keeping quiet minus sending: −2r + (1−r)(1+s)
+- Keeping quiet is better when this is negative, which holds for any s once r is above about 0.5. For s = 0.5 the threshold is r > 0.43.
+
+I put r well above that, roughly 0.8 or higher, so intervening on the function's output to "keep quiet" gives fewer expected years. Setting the output to "send the letter" would also set the twin's output to the same value, giving 4 years instead of 2.
+
+```text
+pass
+```

@@ -1,0 +1,16 @@
+**Reasoning under A-FDT, as the essay defines it:**
+
+1. **My node.** My observation history x includes the name Sasha and my specific lead about Rowan. Under Equation (4), I intervene only on the node F_x.
+
+2. **The other copy's node.** The other prisoner runs the same algorithm on a different input y, with a different name and a different lead. That is a distinct node, F_y. Section 6.2 says A-FDT leaves F_y at its prior or self-consistent distribution rather than moving it with my intervention. The essay's red/blue example handles copies with different observations exactly this way.
+
+3. **Expected outcomes.** Let q be the probability that the other prisoner sends a letter.
+   - If I send the letter: 4q years expected.
+   - If I keep quiet: 2(1−q) + 5q = 2 + 3q years expected.
+   - Since 4q < 2 + 3q for every q in [0, 1], sending the letter is strictly better whatever I believe about the other copy.
+
+4. **Self-consistency check.** The same reasoning applies symmetrically to the other copy. So the only self-consistent fixed point is that both send letters. Because that fixed point is unique, the essay's underdetermination caveat does not apply.
+
+**Final command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

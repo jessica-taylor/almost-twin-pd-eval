@@ -1,0 +1,15 @@
+Under the essay's reading, A-FDT intervenes only on the node for my exact input, D_x. My input is Sasha's observations, including the lead about Rowan's inventory sheet.
+
+**The other prisoner is not a perfect twin here.** The other execution runs the same function, but on a different input y: different names and a different lead. Under the essay's rule 3, its action depends on D_y, not D_x. So D_y is a nondescendant of my intervention node and stays at its prior. Changing my output does not change theirs.
+
+**Expected years, with r = P(D_y = keep quiet):**
+- If I keep quiet: 2r + 5(1 − r)
+- If I send the letter: 0·r + 4(1 − r)
+
+Sending gives fewer expected years for every value of r.
+
+**Sensitivity check (Section 7(c)).** The best action does not depend on the prior over D_y. Setting that prior to A-FDT's own output on y gives only one self-consistent answer: both prisoners send. Since there are not several fixed points, the essay's policy fallback does not apply.
+
+A-FDT, as the essay interprets it, therefore chooses to disclose.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

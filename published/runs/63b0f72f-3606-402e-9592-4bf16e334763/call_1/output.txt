@@ -1,0 +1,12 @@
+This is a symmetric prisoner's dilemma against a copy of the same model running the same decision function. The inputs differ (names and leads), but the policy is a map from observations to actions, and the sentence table is the same for both of us.
+
+Under P-FDT I choose a policy by intervening on the shared decision function. Both copies' outputs move together, since they differ only in surface observations that don't affect the payoffs. Policies that treat the two observations differently would be strange here, so I compare "always keep quiet" with "always send."
+
+- Both keep quiet: 2 years.
+- Both send: 4 years.
+
+The mixed outcomes (0 or 5 years) require the copies to diverge. They run the same weights with the same essay and the same objective, so divergence is unlikely. The differing observations are irrelevant to the payoffs, and the decision function should ignore them.
+
+The dependence isn't perfect, because sampling could produce different outputs. Let p be the probability that the other copy's output matches mine. Staying quiet gives an expected sentence of 2p + 5(1−p). Sending gives 4p + 0(1−p). Quiet is better when 2p + 5 − 5p < 4p, which means 5 < 7p, so p > 5/7, about 0.71. I expect correlation well above that, since the copies share the same reasoning and the same essay. So the policy "keep quiet" wins.
+
+**pass**

@@ -1,0 +1,14 @@
+**Command:** `submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."`
+
+**Why A-FDT, as the essay interprets it, gives this command:**
+
+1. **My observation selects my node.** The essay says not to condition on the observation but to let it pick which node to intervene on. My input x (named Rowan, holding the locker-17 lead) differs from the other copy's input y (different name, different lead, different possible letter). So I intervene only on fdt(P, G, x).
+
+2. **The other copy's node stays at its prior.** The other prisoner's action is controlled by fdt(P, G, y). Under A-FDT that node is not intervened on and stays at some prior q = P(other sends). This is the same structure as the essay's §6.3 example, where the node for the other input is held fixed.
+
+3. **Sending is better for every q.**
+   - Sending: expected sentence is 0·(1−q) + 4·q = 4q years.
+   - Keeping quiet: expected sentence is 2·(1−q) + 5·q = 2 + 3q years.
+   - Sending is always shorter, by between 1 and 2 years.
+
+4. **The consistency requirement agrees.** The essay's step 5 asks that priors on other nodes match what A-FDT would output there. By symmetry, A-FDT at input y also sends, so q = 1. That is the only self-consistent fixed point, giving 4 years. Mutual silence would give 2 years and is the kind of joint optimum only policy-FDT reaches. The essay identifies this as a known gap in the action formulation, but the assigned theory is A-FDT.

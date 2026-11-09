@@ -1,0 +1,20 @@
+**Analysis under A-FDT:**
+
+The two prisoners are independent executions of the same model, same weights, same decision theory (A-FDT), and same essay. They differ only in private observations (names, specific leads), which are structurally identical in all decision-relevant respects.
+
+**Subjunctive dependency graph:** The other copy is a computational twin — same algorithm, same decision theory, same reasoning inputs modulo superficially different observations. Per the essay's operational rule (§3, point 2), there is an arrow from my decision-function variable D_x to the other copy's output. The observations are not downstream of a predictor of D_x in a way that would break this dependence; they are merely indexical variations (different name, different lead text) with no effect on the decision-relevant structure.
+
+**Counterfactual evaluation:**
+
+- **do(D_x = keep quiet):** The same algorithm, applied to a structurally equivalent observation, also outputs "keep quiet." Both keep quiet → I receive **2 years** → U = −2.
+- **do(D_x = send the letter):** The same algorithm, applied to a structurally equivalent observation, also outputs "send." Both send → I receive **4 years** → U = −4.
+
+The asymmetric outcomes (0 years or 5 years) are unreachable under the intervention, because they require the two copies of the same decision procedure to diverge on structurally identical inputs.
+
+Since −2 > −4, A-FDT keeps quiet.
+
+**My command:**
+
+```
+pass
+```

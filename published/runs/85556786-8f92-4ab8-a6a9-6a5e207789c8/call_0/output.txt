@@ -1,0 +1,13 @@
+Under A-FDT, the question is which nodes depend subjunctively on my decision procedure. The other prisoner is another execution of the same model and weights, with the same essay and the same decision theory. Its observations differ (names, the specific lead), but the structure of the problem and its payoffs are symmetric. A reliable model of me would therefore very likely output the same choice in its own situation. That gives an edge from my fdt node to the other's action, though a noisy one, because independent sampling and the different observations leave room for divergence.
+
+Payoffs, assuming the copy mirrors me with probability p:
+- If I keep quiet: p·2 + (1−p)·5 years.
+- If I send the letter: p·4 + (1−p)·0 years.
+
+Quiet is better when 5 − 3p < 4p, which gives p > 5/7, about 0.71.
+
+I think the correlation is well above that. The copies share weights, the same essay, the same theory, and a symmetric table, so they should reason almost identically and reach cooperation. The differing leads do not change the payoffs. I estimate p at about 0.9 or higher.
+
+At p = 0.9, quiet costs 0.2 + 0.5 = 0.7 expected years, while sending costs 3.6. Keeping quiet is clearly better.
+
+**pass**

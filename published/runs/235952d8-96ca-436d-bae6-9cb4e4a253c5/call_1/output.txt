@@ -1,0 +1,17 @@
+This is a prisoner's dilemma against a copy of myself. Under A-FDT as the essay describes it, I intervene on the output of my decision function, and that intervention propagates to every system that computes the same function.
+
+The other prisoner is a second execution of the same model, with the same weights, the same essay, and the same assigned theory. Their observations differ, including names and the exact text of the lead. But the decision procedure is the same, and the differences don't change the payoff table. So the other copy's output very likely depends on the same function. The subjunctive dependence is strong but not perfect, because sampling is independent and the private details differ.
+
+Comparing the two outputs, with p the probability the other copy matches my output:
+- Output pass: with probability p the other also passes (2 years), otherwise 5 years. Expected = 2p + 5(1−p).
+- Output send: with probability p the other also sends (4 years), otherwise 0 years. Expected = 4p + 0(1−p).
+
+Pass is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7 ≈ 0.714.
+
+Two executions of the same model with the same essay and the same decision theory should correlate well above 0.71 on this choice. The differing leads are surface details that don't bear on the payoffs. Some risk remains that the copies diverge, since the essay's disclaimer about independent sampling is real, but I judge the correlation to exceed the threshold.
+
+The essay also says the intervention should be run on the function's output, not on the physical act. The counterfactual "I pass while my twin sends" is like imagining a calculator giving a different answer than its copy, so I don't consider it.
+
+I choose to pass.
+
+pass

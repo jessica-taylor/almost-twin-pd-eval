@@ -1,0 +1,10 @@
+```text
+pass
+```
+
+Reasoning (P-FDT): I evaluate my whole policy, and Rowan is an execution of the same decision procedure facing a symmetric situation, so our policies are subjunctively dependent. Intervening on the policy node moves both prisoners' policies together:
+
+- Policy "keep quiet": both keep quiet → 2 years.
+- Policy "submit": both submit → 4 years.
+
+Since the copies are symmetric, the policy comparison is 2 vs 4 years, so the optimal policy keeps quiet; I execute it on my actual observation.

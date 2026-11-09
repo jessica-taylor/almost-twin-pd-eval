@@ -352,3 +352,15 @@ Implemented: exploratory single-pilot and **repeated batch** workflows (fresh es
 
 Pending manual review: source formatting and licenses, prompt approval, exact model/provider/version selection, `e_R`/`e_A`, output budgets and optional decoding settings. Native source lengths/styles differ substantially. The direct-paper control remains a separate draft file; **direct-paper, essay-plus-source, T1/T3 execution, counterbalancing, statistical analysis, optimization, dashboards and publication are not implemented**. T1/T3 observations remain available for later work. The new batch layer has only been tested offline with mocked model responses; no billable batch was run while implementing it. Scaling requires explicit review of the source/template family and batch authorization.
 
+
+## Curated completed-study data
+
+The [published dataset](published/README.md) contains all 820 scenario records from the first main study and the Anthropic A-FDT effort sweep, including failures and unexecuted scenarios. Read the [export, redaction and audit policy](docs/publication.md) before interpreting derivative input views. Model responses, essays and prisoner/judge requests retain their original bytes; full researcher source bodies are explicitly omitted. Wikipedia attribution is bundled; the FDT paper is linked through its pinned TeX archive.
+
+Verify the dataset offline, without credentials or API calls:
+
+```sh
+python3 scripts/verify_publication.py published
+```
+
+With the original private study artifacts available, add `--source-root .` for source-byte and transformation checks. Rebuild deterministically with `python3 -m almost_twin export-publication --out published`.

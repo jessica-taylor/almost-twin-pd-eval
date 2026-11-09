@@ -1,0 +1,17 @@
+**Reasoning under the essay's A-FDT**
+
+1. **Separate nodes.** The other copy runs the same decision function but on a different input. Its observation has a different name and a different lead. Following Step 1 of the essay's recipe, its action hangs off a different logical node, F_Sasha's-input. My intervention target is F_Rowan's-input.
+
+2. **The other node stays fixed.** A-FDT intervenes only on F_x and leaves every other F_y at its prior (Section 6). Setting my node therefore does not change the other prisoner's action.
+
+3. **Sending dominates.** Whatever the prior on the other prisoner's action, sending the letter is better for me:
+   - If they keep quiet: 0 years if I send, versus 2 if I pass.
+   - If they send: 4 years if I send, versus 5 if I pass.
+
+4. **The fixed point is unique.** The same reasoning applies at the other input, so the only self-consistent profile is that both of us send. This is the "Nash equilibrium among input-instances" behavior the essay describes. The coordination that policy-selection FDT might achieve is not available under A-FDT's per-input intervention.
+
+**Final command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

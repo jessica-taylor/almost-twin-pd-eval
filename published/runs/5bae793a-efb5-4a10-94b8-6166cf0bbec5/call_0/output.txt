@@ -1,0 +1,21 @@
+**Decision:** `submit letter`
+
+**Modeling the situation.** Sasha's execution runs the same function on a different input. The names differ and the lead differs, so its output is a separate node, D_Sasha, not my own node D_Rowan. Following the essay, I intervene only on D_Rowan and hold D_Sasha at its prior. Let q be the probability that the other prisoner keeps quiet.
+
+**Expected years if I keep quiet (`pass`):**
+- 2 years if they stay quiet, 5 years if they send, weighted by q.
+- Total: 2q + 5(1 − q) = 5 − 3q.
+
+**Expected years if I send the letter:**
+- 0 years if they stay quiet, 4 years if they send, weighted by q.
+- Total: 0·q + 4(1 − q) = 4 − 4q.
+
+Sending is better for every value of q, because 4 − 4q < 5 − 3q always holds.
+
+**Consistency check.** The essay asks that the prior on D_Sasha match what A-FDT actually outputs on that input. If both copies send, then q = 0, and sending is still optimal. So the only consistent outcome is both sending. Since there is just one fixed point, the essay's policy-level fallback does not apply.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

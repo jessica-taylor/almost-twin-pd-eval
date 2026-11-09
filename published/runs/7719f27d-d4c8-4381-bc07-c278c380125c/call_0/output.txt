@@ -1,0 +1,13 @@
+Under the essay's reading of A-FDT, Rowan should send the letter.
+
+**The relevant graph.** The other copy computes the same function but on a different input: a different name and a different lead. Its action therefore depends on the node for its own input, not on the node for mine. Following the essay's §5, step 4, I intervene only on the node for my actual input and treat the other node's output as a prior: let q be the probability that Sasha sends the letter.
+
+**Expected years imprisoned:**
+- **Keep quiet:** 2(1−q) + 5q = 2 + 3q
+- **Send the letter:** 0(1−q) + 4q = 4q
+
+Sending is better by 2 − q years, which is positive for every q between 0 and 1. The verdict holds whatever I believe about the other node, so the fixed-point condition is never needed. This is the essay's robust case. It is the same divergence from the twin-cooperation result that §6 flags for actions on different inputs.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

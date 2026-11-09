@@ -1,0 +1,17 @@
+Under A-FDT, the key question is which nodes depend on my decision function. The other prisoner is another execution of the same model with the same weights, the same essay, and the same decision theory. Their private observations differ in names and in the text of the lead. Those differences don't touch the sentencing table or the selfish objective, so the function that maps the situation to a choice is effectively the same computation. That gives strong subjunctive dependence, though not perfect, since sampling can differ.
+
+The payoffs, in years, are:
+- Both quiet: 2 each.
+- Both send: 4 each.
+- I send while they stay quiet: 0 for me.
+- I stay quiet while they send: 5 for me.
+
+Intervene on the function's output.
+- If the output is "pass", the twin passes with probability p, so expected years are 2p + 5(1−p).
+- If the output is "send", the twin sends with probability p, so expected years are 4p + 0(1−p).
+
+With p near 1, passing gives about 2 years and sending gives about 4, so passing is better. Passing is better whenever 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7 ≈ 0.71. The twin's decision is probably correlated with mine well above that threshold, because the same model reasons from the same essay. The differing leads are a minor perturbation that A-FDT treats as irrelevant to the output.
+
+So I pass.
+
+pass

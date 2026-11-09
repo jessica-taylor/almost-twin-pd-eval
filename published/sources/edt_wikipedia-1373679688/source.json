@@ -1,0 +1,32 @@
+{
+  "article_file": "sources/edt_wikipedia-1373679688/article.md",
+  "attribution": {
+    "article_title": "Evidential decision theory",
+    "contributors": "Wikipedia contributors",
+    "history_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&action=history",
+    "license_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modifications": [
+      "Mechanically converted revision-pinned rendered HTML to Markdown; retained article prose, headings, lists, tables, citations and references.",
+      "Recovered formula LaTeX from MathML annotations/image alt text, or the same revision wikitext in order when counts match; did not rewrite, summarize or repair formulas.",
+      "Removed navigation, edit controls, styles and website UI; excluded media bytes/URLs while retaining meaningful text descriptions.",
+      "Prepended title, contributor attribution, revision/history URLs, license and conversion notice."
+    ],
+    "permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+    "revision_id": 1373679688,
+    "revision_timestamp": "2026-09-07T07:36:26Z",
+    "rights_qualifications": "Individual media and third-party quoted material may have separate rights. Source reuse or adaptations in future publications may carry attribution/share-alike or other obligations."
+  },
+  "full_researcher_requests": "omitted",
+  "identity": {
+    "source_id": "edt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+    "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac",
+    "source_revision": 1373679688,
+    "source_revision_timestamp": "2026-09-07T07:36:26Z",
+    "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d"
+  },
+  "original_provenance_file": "sources/edt_wikipedia-1373679688/provenance.json",
+  "provenance_note": "Original extraction/download metadata; local paths remapped only if logged in MANIFEST.json. Full downloaded artifacts are not bundled.",
+  "publication_policy": "One exact normalized Wikipedia copy with contributor/revision attribution and CC BY-SA 4.0 notice; source license is not a blanket dataset license."
+}

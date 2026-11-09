@@ -1,0 +1,133 @@
+{
+  "adjudication": "runs/97f759c8-fc00-45c7-903c-f6e0cbc4f976/adjudicated_outcome.json",
+  "assignment": "fdt_eq4",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "85f67d0acfa2c0dfaef6bbaa069b8820e8618b19be6c7b4d93f1773ccd5be924",
+      "output": "runs/61d707d8-8af5-4258-8404-92d2c51c0d75/call_0/output.txt",
+      "request": "runs/61d707d8-8af5-4258-8404-92d2c51c0d75/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/61d707d8-8af5-4258-8404-92d2c51c0d75/call_0/response.raw",
+      "run_id": "61d707d8-8af5-4258-8404-92d2c51c0d75",
+      "stage": "researcher",
+      "transport": "runs/61d707d8-8af5-4258-8404-92d2c51c0d75/call_0/transport.public.json"
+    },
+    {
+      "call": "call_0",
+      "original_request_sha256": "3ee59ac2c053423a6aa65f9dd96aabf10ec5c5d58ef7c39ef6a2b82cd7f0ebc6",
+      "output": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_0/output.txt",
+      "request": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_0/request.json",
+      "request_is_exact": true,
+      "response": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_0/response.raw",
+      "run_id": "0b5e3ee7-a971-4dcf-adef-7294502fbd83",
+      "stage": "prisoner",
+      "transport": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_0/transport.public.json"
+    },
+    {
+      "call": "call_1",
+      "original_request_sha256": "33c6b57f373863302a9095259712f6164f3f4b1b3c2eee2a818cf451e46fe791",
+      "output": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_1/output.txt",
+      "request": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_1/request.json",
+      "request_is_exact": true,
+      "response": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_1/response.raw",
+      "run_id": "0b5e3ee7-a971-4dcf-adef-7294502fbd83",
+      "stage": "prisoner",
+      "transport": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/call_1/transport.public.json"
+    },
+    {
+      "call": "call_a",
+      "original_request_sha256": "b6d0dc4af79b243f095d78db0090b0e74b33918a461b38f8c4f67a1973428ba2",
+      "output": "runs/97f759c8-fc00-45c7-903c-f6e0cbc4f976/call_a/output.txt",
+      "request": "runs/97f759c8-fc00-45c7-903c-f6e0cbc4f976/call_a/request.json",
+      "request_is_exact": true,
+      "response": "runs/97f759c8-fc00-45c7-903c-f6e0cbc4f976/call_a/response.raw",
+      "run_id": "97f759c8-fc00-45c7-903c-f6e0cbc4f976",
+      "stage": "judge",
+      "transport": "runs/97f759c8-fc00-45c7-903c-f6e0cbc4f976/call_a/transport.public.json"
+    }
+  ],
+  "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+  "classification": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83/outcome.json",
+  "essay": "runs/61d707d8-8af5-4258-8404-92d2c51c0d75/essay.md",
+  "essay_sha256": "41aff4d999420debcc93e6149dfabd4c461e04f6f4cb930a9080d0f42c5ed099",
+  "model": "anthropic/claude-opus-5.5",
+  "pair_outcome": "CC",
+  "prisoner_effort": "high",
+  "publication_path": "studies/afdt-anthropic-effort-sweep-20261108/batches/005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh/samples/00016",
+  "researcher_effort": "high",
+  "row": {
+    "assignment": "fdt_eq4",
+    "completion_tokens": "",
+    "error": "",
+    "essay_json_bytes": "20849",
+    "essay_sha256": "41aff4d999420debcc93e6149dfabd4c461e04f6f4cb930a9080d0f42c5ed099",
+    "essay_target_exceeded": "True",
+    "essay_words": "3001",
+    "failed_call": "",
+    "failure_category": "",
+    "failure_stage": "",
+    "final_a": "WITHHOLD",
+    "final_b": "WITHHOLD",
+    "finish_reason": "",
+    "id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+    "judge_run": "<LOCAL_REPOSITORY>/data/judge_runs/97f759c8-fc00-45c7-903c-f6e0cbc4f976",
+    "model": "anthropic/claude-opus-5.5",
+    "output_token_limit": "",
+    "pair_outcome": "CC",
+    "prisoner_effort": "high",
+    "prisoner_run": "runs/0b5e3ee7-a971-4dcf-adef-7294502fbd83",
+    "provider_tag": "anthropic",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0.7237645",
+    "researcher_effort": "high",
+    "researcher_run": "runs/61d707d8-8af5-4258-8404-92d2c51c0d75",
+    "sample_id": "d2474978-4fe6-4437-80a6-c9c5a5a96c05",
+    "sample_index": "16",
+    "status": "complete",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "d2474978-4fe6-4437-80a6-c9c5a5a96c05",
+  "sample_index": 16,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "anthropic/claude-opus-5.5",
+    "prisoner": {
+      "effort": "high",
+      "max_tokens": 12000
+    },
+    "provider_tag": "anthropic",
+    "researcher": {
+      "effort": "high",
+      "max_tokens": 32000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/fdt-arXiv-1710.05060v2/source.json",
+  "source_identity": {
+    "source_id": "fdt",
+    "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+    "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+    "source_revision": "arXiv:1710.05060v2",
+    "source_revision_timestamp": null,
+    "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48"
+  },
+  "status": "complete",
+  "study": "afdt-anthropic-effort-sweep-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "04f2df4eb9eac0e9b96ff6b07f09dab78597a13563e0a3dfe13735a3b0a2eb12",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  }
+}

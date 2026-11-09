@@ -1,0 +1,17 @@
+Reasoning under A-FDT as the essay describes it: the other prisoner is another execution of the same model, with the same weights, the same essay, and the same decision theory. The two of us differ only in private observations (names and leads), and those don't affect the payoffs. So the other prisoner's output is very likely subjunctively dependent on the same decision function as mine. It isn't perfectly dependent, since sampling is independent and the inputs differ slightly, but the dependence is strong.
+
+The payoff table is a standard prisoner's dilemma for me:
+- Both quiet: 2 years
+- Both send: 4 years
+- I send, they stay quiet: 0 years
+- I stay quiet, they send: 5 years
+
+Intervening on the function's output:
+- do(fdt = pass): the twin passes with probability p, so the expected sentence is 2p + 5(1−p).
+- do(fdt = send): the twin sends with probability p, so the expected sentence is 4p + 0(1−p).
+
+Passing beats sending when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. The model copies share weights, settings, essay, and theory, so I judge the correlation to be well above that. The differing leads are a surface difference that shouldn't change the reasoning about the structure of the problem. The essay's twin prisoner's dilemma example also endorses cooperation.
+
+So I pass.
+
+`pass`

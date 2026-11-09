@@ -1,0 +1,15 @@
+Under A-FDT as the essay interprets it, sending the letter is the better action for Sasha.
+
+**The intervention node.** A-FDT intervenes only on the output of my decision function for my actual input. That input includes the name "Sasha" and the specific lead about Rowan's inventory sheet.
+
+**Why the other copy is not downstream.** Rowan's copy runs the same function on a different input, with a different name and a different lead. Under Section 6(b), that is a separate decision node, so A-FDT holds it at its prior. Call that prior *s*, the probability that Rowan keeps quiet. The essay's own coordination example shows that outputs on other inputs are not moved by the intervention. Treating them as moving together is the P-FDT (policy) reading, which the essay keeps separate from A-FDT.
+
+**Comparing the two actions for any *s*:**
+- Keep quiet: 2s + 5(1−s) = 5 − 3s years
+- Send the letter: 0·s + 4(1−s) = 4 − 4s years
+
+Sending the letter is better by 1 + s years for every *s* in [0, 1]. So the verdict does not depend on the prior, and the robustness check in Section 6(b) is satisfied.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

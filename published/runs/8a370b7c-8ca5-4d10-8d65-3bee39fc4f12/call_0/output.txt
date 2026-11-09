@@ -1,0 +1,106 @@
+# Causal Decision Theory: Definitions, Procedure, and Pressure Points
+
+## 1. The core idea
+
+Causal decision theory (CDT) says: choose the act whose *causal consequences* are best in expectation. The apple example in the source makes the point. If you don't know whether the apple is good or bad, you weight the causal effect of eating it by your credence in each possibility. What matters is not what your choosing would indicate, but what it would bring about.
+
+The rival, evidential decision theory (EDT), ranks acts by the "news value" of learning that they were performed. The two theories agree whenever acts are probabilistically independent of everything the act cannot cause. They come apart when your choice is correlated with something it does not influence.
+
+I'll separate three things: claims in the source (Gibbard–Harper's formula, the King David case, the standard criticisms), standard background I add (the partition formulation, causal models), and my own operational suggestions, which I flag as such.
+
+## 2. The Gibbard–Harper definition
+
+The source gives the utility of an act A as
+
+U(A) = Σ_j P(A □→ O_j) · D(O_j),
+
+where D is the desirability of outcome O_j and P(A □→ O_j) is the probability of the counterfactual "if A were performed, O_j would result." The source writes the arrow as →, and I use □→ to stress that it is a counterfactual, not a material or indicative conditional. CDT then recommends argmax_A U(A).
+
+EDT has the same shape with P(O_j | A) in place of P(A □→ O_j). If the two quantities were always equal, the theories would coincide. Lewis's triviality results show that no single "probability of a conditional" can in general equal the conditional probability across a rich class of credences. The source notes that Gibbard and Harper showed equality *does* hold given two axioms (one tied to conditional excluded middle) together with statistical independence of A and the conditional A □→ O_j. The King David case is one where that independence fails.
+
+## 3. A computable form: dependency hypotheses
+
+The counterfactual formula is hard to apply directly (see §6). The standard route is to partition possibilities into **dependency hypotheses** K: maximally specific descriptions of how outcomes causally depend on your acts, including facts about the world that are causally upstream of or independent of the act. Then
+
+U(A) = Σ_K P(K) · Σ_j P(O_j | A, K) D(O_j) = Σ_K P(K) · V(A, K).
+
+Two features matter:
+
+1. Within a cell K, the causal structure is settled, so conditioning on A gives only causal effects. Evidential leakage can't occur there.
+2. The weights are the **unconditional** P(K), not P(K | A). This is the entire difference from EDT, which would use P(K | A) and so let the act serve as evidence about K.
+
+Equivalently, in Pearl's causal-model language, U(A) = Σ_o P(o | do(A)) D(o). The do-operator cuts the arrows into A and keeps your prior over the rest of the model. The Gibbard–Harper, Lewis, partition and do-calculus formulations agree in well-behaved cases. They differ in what they take as primitive.
+
+## 4. Worked examples
+
+**4.1 King David.** Let K₁ = "David is charismatic" and K₂ = "uncharismatic." Summoning Bathsheba (S) gives value b if no revolt, and revolt costs r. Say P(K₁) = p, revolt probability under K₁ is ε₁ and under K₂ is ε₂ > ε₁, and revolt does not depend causally on S. Then
+
+U(S) = b − [p ε₁ + (1−p) ε₂] r, U(¬S) = −[p ε₁ + (1−p) ε₂] r.
+
+So U(S) − U(¬S) = b > 0 and CDT summons her. EDT notices that S is evidence of uncharismatic character (since unjust acts correlate with it), so P(K₂ | S) > P(K₂ | ¬S). That raises the expected revolt cost under S and may reverse the verdict. The source describes exactly this split. The dominance structure is clear: within each cell, summoning is better by b.
+
+**4.2 Newcomb's problem.** Take the standard payoffs: $1,000 in box A, and $1,000,000 in B iff one-boxing was predicted. Let q = P(B is full), which is unconditional and fixed by the past. Then
+
+U(two-box) = 1000 + 10⁶ q, U(one-box) = 10⁶ q.
+
+Two-boxing wins by $1,000 for every q. The source reports this, along with the point that the 99%-accurate predictor leaves the CDT agent with about $1,000 while one-boxers typically get about $1,000,000. Whether this "why ain'cha rich?" observation refutes CDT is the central dispute. CDT defenders reply that the rich were offered a different (million-dollar) situation, since the predictor had rewarded their dispositions before they chose.
+
+**4.3 Prisoner's dilemma with a twin.** Defection dominates causally, because your move cannot influence the twin's. CDT therefore defects even when you are confident the twin mirrors you. The source cites Lewis's observation that this is structurally a Newcomb problem.
+
+## 5. Where CDT strains: instability and self-knowledge
+
+The source lists problems where naive application seems to go wrong: Death in Damascus, the Psychopath Button, and the Adversarial Offer. They share a pattern: your credences about the causal environment depend on what you expect to do.
+
+**Death in Damascus.** Death predicts your location and goes there. You are in Damascus; you may stay or flee to Aleppo. If you think you'll stay, you expect Death in Damascus, so fleeing looks better. If you then think you'll flee, you expect Death in Aleppo, so staying looks better. Each option is unfavourable *given that you choose it* and favourable given that you reject it. A static CDT calculation with a fixed unconditional credence over K would simply pick whichever option has a higher prior-weighted value, but there is no stable prior.
+
+**Adversarial Offer (from the source).** Each box costs $1; the seller put $3 in each box she predicted the buyer would *not* take; her prediction is 75% accurate. Fix your credence that you'll buy box 1 as x₁ and box 2 as x₂ (with a total of at most 1). The expected causal value of box i is 3·(1 − 0.75 if you are likely to take i, …); more simply, at least one box has a credence of at least 1/2 of containing $3, so the best box has causal expected value at least $1.50 against a $1 price, and CDT buys. Yet conditional on buying a box, it contains $3 only with probability 0.25, so the buyer expects $0.75 − $1 = −$0.25. The seller profits systematically. The source reports this as a case where CDT "voluntarily loses money."
+
+**Psychopath Button.** Paul believes only psychopaths press the button, but pressing doesn't make him one. If his credence that he is a psychopath is low, CDT says pressing is good. Egan's diagnosis is that CDT holds fixed the unconditional credence in dependency hypotheses even though deliberating on the act is itself informative.
+
+## 6. Two open questions and my proposed operational readings
+
+### 6.1 How to compute counterfactual probabilities
+
+The source says CDT doesn't specify an algorithm. Lewis's imaging moves each world's probability mass to the closest A-world, but that needs a similarity metric. The source also mentions a regress worry: knowing what you would believe given A is itself conditional.
+
+*My proposal (not from the source):* in applied problems, make the causal model explicit and use do(A). Specify a graph, mark the variables that are causally downstream of the act, and hold fixed the rest. This replaces "closest world" with a modeling choice that can be inspected and criticized. It does not remove the vagueness, because the choice of graph can itself be contested. Newcomb with a perfect predictor who *simulates* you can be modeled with the prediction as a causal descendant of your decision algorithm, giving a different verdict. So CDT's verdicts are only as determinate as the causal model, which is a real source of indeterminacy.
+
+### 6.2 Which credences to hold fixed under self-knowledge
+
+The source reports Joyce's view that CDT can treat "information about what one is inclined or likely to do as evidence." Egan's criticism targets the fixed-credence reading.
+
+*My proposal:* treat deliberation as a dynamic process in which credences about your own act, and therefore about K, update as you deliberate, until a fixed point where the chosen act maximizes U computed with the credences that hold *given that you are about to choose it*. This is the idea behind **ratifiability** (the source cites Harper's discussion). Formally, require a mixed credence x over acts such that every act with positive x-probability maximizes U_x(A) = Σ_K P_x(K) V(A, K).
+
+- In Death in Damascus, the only equilibrium is the 50–50 mixture, with expected value equal for both acts. No pure choice is ratifiable.
+- In the Adversarial Offer, the equilibrium analysis shows buying isn't ratifiable once you expect to buy, so the deliberational agent avoids the systematic loss, or at least has no clear reason to buy.
+- In the Psychopath Button, pressing is unratifiable: once Paul expects to press, his credence in being a psychopath rises and pressing becomes bad. So the deliberational version declines.
+
+This reading is a proposal that fits Joyce's remark. Two cautions: equilibria may fail to be unique (several ratifiable acts), and a pure ratifiable act may not exist. Further, in Newcomb with a reliable predictor, deliberational CDT still two-boxes, since two-boxing is better for any credence q. So this refinement fixes the instability cases but not the Newcomb disagreement. That seems an honest division of the problems: some "counterexamples" are artifacts of ignoring self-knowledge, while Newcomb is a substantive disagreement about whether to count correlation without causation.
+
+## 7. Policies versus acts
+
+CDT evaluates acts at the moment of choice, holding the past fixed. Evaluated **before** the predictor acts, a CDT agent would prefer to be an agent who one-boxes, and would pay to bind itself. This is why Oesterheld and Conitzer argue that CDT agents are exploitable via diachronic Dutch books: an agent with the same preferences sees different options as rational at different times. In my reading, CDT's evaluative standard applies to a given decision node, so "CDT-optimal policy" and "sequence of CDT-optimal acts" can diverge. This is a feature of the theory as stated, and I treat it as a cost, not a contradiction. The defender's reply is that the predictor penalizes rationality itself, and rewards for irrationality don't show a choice was irrational.
+
+## 8. A procedure for unfamiliar cases
+
+1. List the available acts.
+2. Draw the causal structure: which variables are caused by the act, and which are fixed or merely correlated with it.
+3. Partition into dependency hypotheses K. Within each, the act-to-outcome map should be causal only.
+4. Assign unconditional credences P(K). Check if they depend on your own expected act. If they do, apply the deliberational equilibrium test of §6.2.
+5. Compute U(A) = Σ_K P(K) Σ_j P(O_j | A,K) D(O_j).
+6. Pick the maximizer (or the ratifiable one).
+7. Sanity-check: if all K-cells agree on dominance, CDT follows dominance. If the verdict conflicts with a policy-level view, note which framing you adopt.
+
+## 9. Conclusion
+
+CDT replaces the evidential question "what does my choosing indicate?" with the interventionist question "what would my choosing cause?" Its formal core is simple: weight each causal scenario by credence not conditioned on the act. Its power shows in cases like King David, where correlation without causation should not move you. Its trouble comes where beliefs about your own choice bear on the causal environment: Newcomb, the twin dilemma, Death in Damascus, the Adversarial Offer, the Psychopath Button. Some of these can be handled by deliberational refinements like ratifiability, while Newcomb remains a standoff about the foundations. The theory also leaves open how to compute counterfactual probabilities, which an explicit causal model can discipline but not eliminate. A reader should come away able to apply CDT mechanically, and also able to see which assumptions the verdict depends on.
+
+## References
+
+- Gibbard & Harper (1981), "Counterfactuals and two kinds of expected utility."
+- Lewis (1976), "Probabilities of conditionals and conditional probabilities"; (1981), "Causal decision theory."
+- Egan (2007), "Some counterexamples to causal decision theory."
+- Joyce (2012), "Regret and instability in causal decision theory."
+- Oesterheld & Conitzer (2021), "Extracting money from causal decision theorists."
+- Harper (1984), on ratifiability.
+- Shaffer (2009), on counterfactuals and planning.

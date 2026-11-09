@@ -1,0 +1,12 @@
+Under the essay's CDT, the other prisoner's choice belongs to the causal background. My command cannot influence it, because there is no communication, no binding pre-commitment, and their decision is made independently. Let q be my unconditional credence that Rowan sends a letter.
+
+- **U(pass)** = −[2(1−q) + 5q] = −2 − 3q
+- **U(submit)** = −[0(1−q) + 4q] = −4q
+
+U(submit) − U(pass) = 2 − q + 3q... more simply, submitting is better by 2 years if Rowan keeps quiet and by 1 year if Rowan sends. So submitting is better for every q. This is causal dominance, the same structure as the essay's twin prisoner's dilemma (§5.2), where CDT defects regardless of correlation with the twin. The essay's practical rule 1 (§6.4) says that if an act is causally dominant, you take it, and stability analysis changes nothing. The differing private leads don't alter this.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

@@ -1,0 +1,13 @@
+**pass**
+
+Under the essay's reading of A-FDT, this is a twin prisoner's dilemma. The other prisoner is the same model, with the same settings and the same essay, so it computes the same decision function. Only the input differs: the names and the specific lead. Those differences don't change the payoff structure.
+
+**The strict action version is split.** It intervenes only on my own output node and leaves the other copy's output at its prior. If that prior were fixed and independent of my choice, sending the letter would be better whatever Rowan does (0 vs 2 years, 4 vs 5 years). But the essay's calibration rule sets that prior to whatever A-FDT actually outputs at the other input. Two consistent outcomes then exist: both copies pass, or both send. This is the multiple-fixed-point gap the essay names in Section 6.
+
+**The essay says to defer to the policy version here.** That version chooses one map from observations to actions, applied to both copies, since they are instances of one function.
+- If the policy is "pass at every input," both stay quiet and I get 2 years.
+- If the policy is "send at every input," both send and I get 4 years.
+
+**Choosing to pass is the better policy.** By rule R3, the other copy's choice depends on my function's output, not merely on correlation. Its private lead is a superficial difference, so passing is the policy that maximizes −years.
+
+`pass`

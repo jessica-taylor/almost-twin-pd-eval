@@ -1,0 +1,12 @@
+**Command: `pass`**
+
+Under A-FDT, the other prisoner is another run of the same function, with the same model, the same essay and the same assigned theory. Our inputs differ only in names and the wording of the leads, and those differences don't affect the payoffs or the reasoning. So the other copy's choice depends on the output of my function, through what the essay calls a noisy edge with reliability r.
+
+Using the essay's noisy-edge model, I compare the two choices in expected years imprisoned:
+
+- **Pass:** 2r + 5(1 − r) = 5 − 3r
+- **Submit:** 4r + 0(1 − r) = 4r
+
+Passing gives the shorter expected sentence whenever r > 5/7, about 0.71. Two copies running the same procedure on inputs that differ only in labels should agree well above that threshold. The self-consistent fixed point is that both copies pass, for 2 years each, instead of both submitting, for 4 years each.
+
+`pass`

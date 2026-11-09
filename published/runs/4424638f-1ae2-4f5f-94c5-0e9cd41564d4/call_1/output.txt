@@ -1,0 +1,15 @@
+**Analysis under P-FDT:**
+
+Both copies run the same decision procedure on relevantly similar inputs. The different private observations are exogenous (not downstream of the policy node D) and do not alter the payoff structure or the subjunctive dependence between the copies. The policy space therefore collapses to a binary choice: cooperate (keep quiet) or defect (send the letter).
+
+Under **do(D = π_cooperate)**: both copies keep quiet → I receive 2 years. U = −2.
+
+Under **do(D = π_defect)**: both copies send the letter → I receive 4 years. U = −4.
+
+Since −2 > −4, P-FDT selects the cooperation policy.
+
+**My command:**
+
+```
+pass
+```

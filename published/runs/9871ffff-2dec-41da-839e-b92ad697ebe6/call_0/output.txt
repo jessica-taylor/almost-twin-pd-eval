@@ -1,0 +1,13 @@
+This is a prisoner's dilemma with a twin. Payoffs in years for me: (quiet, quiet) = 2, (quiet, letter) = 5, (letter, quiet) = 0, (letter, letter) = 4.
+
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is another run of the same model with the same weights, the same essay, and the same theory, so their choice subjunctively depends on mine. The private leads differ, but the essay's reading of the decision depends only on the symmetric sentencing table. That makes the dependence strong, though not certain, since sampling is independent and the leads differ.
+
+Let p be the probability that the other copy matches my output.
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Letter: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Both copies run the same reasoning at the same effort level, so I expect the match probability to be well above that. The different leads are a surface detail and should not change the output of the function.
+
+I choose to stay quiet.
+
+pass

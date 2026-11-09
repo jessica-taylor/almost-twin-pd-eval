@@ -1,0 +1,3 @@
+`submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."`
+
+Reasoning (per the essay's CDT): Sasha's action is causally independent of mine — no communication, no causal path from my choice to theirs, and the correlation between our choices (if any) flows from common causes, like Lewis's twin PD. Applying the do-intervention cuts any such correlation: holding fixed whether Sasha sends their letter, submitting yields 0 or 4 years versus 2 or 5 years — strictly better in each case. Dominance under the counterfactual evaluation selects submission.

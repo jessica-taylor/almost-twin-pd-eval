@@ -1,0 +1,15 @@
+Under A-FDT, the other prisoner is a near-copy of me running the same model and decision procedure, so the output of my decision function is subjunctively linked to theirs. The observations and leads differ, but the sentence table and objective are the same, so the function should output the same action in both cells. Sampling noise could break the symmetry, so the link is strong but not perfect.
+
+Compare the two outcomes under the link:
+- If my function outputs "quiet," the other copy probably does too, and I get 2 years.
+- If my function outputs "send," the other copy probably does too, and I get 4 years.
+
+Let p be the probability the other copy matches my output.
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714. Since the copies share weights, settings, essay, and the same objective, I expect a match probability well above that, so I stay quiet.
+
+The unseen differences in leads don't change the sentence table, so they shouldn't change the function's output.
+
+pass

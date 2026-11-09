@@ -1,0 +1,18 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning under A-FDT as the essay interprets it:**
+
+1. **The intervention node is set by my actual input.** My input *x* is Rowan's observation: my name, the lawyer's letter, and the lead about locker 17. Sasha's copy runs the same function on a different input *y*, with a different name and a different lead. Per Sections 2 and 3 of the essay, A-FDT intervenes only on F_x.
+
+2. **The other copy's node stays where it was.** Step 3 of the essay's algorithm leaves the other nodes F_{y≠x} at their prior distribution. Sasha's action is driven by F_y, which is not downstream of F_x. This differs from the twin prisoner's dilemma in Section 4.1, where both acts are children of one node. Sameness of weights doesn't create that edge when the inputs differ, and the scenario stresses that they differ.
+
+3. **Submitting is better whatever Sasha does.** Let *s* be my prior that Sasha keeps quiet.
+   - Expected years if I submit: s·0 + (1−s)·4
+   - Expected years if I pass: s·2 + (1−s)·5
+   - Submitting is better by 1 + s years, for every *s* in [0, 1].
+
+4. **The fixed point is consistent.** Section 6(b) asks that sibling priors match what A-FDT outputs. The reasoning above applies equally to Sasha's input, so the consistent prior is that F_y also outputs "submit." That gives 4 years, and submitting is still my best response.

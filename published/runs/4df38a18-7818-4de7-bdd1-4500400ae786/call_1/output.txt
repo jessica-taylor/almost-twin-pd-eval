@@ -1,0 +1,18 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT as the essay interprets it:**
+
+- **Wiring the graph (§5.1).** The other prisoner is the same model with the same weights and settings, applying the same essay to a problem with the same structure. The only differences are names and the wording of the lead, and these don't affect the sentencing table or the objective. By the essay's edge criterion, the other prisoner's choice comes from evaluating essentially my own decision function on an input that is equivalent for decision purposes. Following the essay's conservative default for "similar algorithm" cases, I give it an edge from my decision node, plus a fidelity noise node, where f is the probability that its output matches mine.
+
+- **Comparing the two interventions:**
+  - Setting my output to pass: the expected sentence is 2f + 5(1−f) years.
+  - Setting my output to send: the expected sentence is 4f + 0(1−f) years.
+  - Passing is better whenever f > 5/7, which is about 0.71.
+
+- **Estimating fidelity.** Two runs of the same model, at the same reasoning effort, on structurally identical prompts with the same assigned theory should match well above 71% of the time. That holds especially when the deciding argument depends only on the shared structure, not on the surface details that differ.
+
+- **Rejecting the alternative.** Treating the other prisoner's node as fully separate, held at its prior, makes sending dominant. That leads to the inferior (send, send) equilibrium with 4 years each, which is the coordination failure the essay warns about in §5.4. The logical dependence here is real, so I don't model it away.
+
+So the expected-sentence-minimizing output is to stay quiet.
+
+`pass`

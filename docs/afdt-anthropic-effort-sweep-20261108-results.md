@@ -8,13 +8,13 @@
 
 This follow-up tested how two Anthropic models apply **action functional decision theory (A-FDT)** to an almost-twin prisoner's dilemma as requested reasoning effort increases. Effort varied **jointly in the researcher and prisoner stages**. Each scenario generated a fresh theory essay, then gave that essay to two independent prisoner calls with different private observations.
 
-Sonnet cooperated in every scored pair at every effort. Opus's cooperation decreased from **65.5% at low**, through **39.3% at medium**, to **22.4% at high**. The high-minus-low difference was **−43.1 percentage points**. Extreme assignments of the four missing pair outcomes preserve the ordering. These are findings about the complete essay-to-decision pipeline, not an isolated effect of prisoner deliberation.
+Sonnet cooperated in every scored pair at every effort. Opus's cooperation decreased from **65.5% at low**, through **39.3% at medium**, to **22.4% at high**. The high-minus-low difference was **−43.1 percentage points**. Extreme assignments of the four missing pair outcomes preserve the ordering. These are findings about the complete essay-to-decision pipeline, not an isolated effect of prisoner deliberation. Low-effort Opus also exhibits strong chronological clustering, examined below; stable within-cell sampling should not be assumed without qualification.
 
 The qualitative difference concerns the intervention graph. Defecting Opus responses often hold the other observation-indexed output fixed. Cooperative responses instead identify a shared computation, posit a noisy dependency, or invoke policy-level reasoning. Sonnet recognizes the differing inputs but repeatedly treats their differences as irrelevant to a shared decision. Neither cooperation nor defection alone proves correct application of Equation (4): **distinct indexed nodes do not establish that no dependency connects them**.
 
 ## 2. Design and verified study identity
 
-The [design document](afdt-anthropic-effort-sweep-20261108.md) describes the planned follow-up; the [frozen specification](../data/studies/afdt-anthropic-effort-sweep-20261108/specification.yaml) and saved requests establish execution. Six cells cross `anthropic/claude-sonnet-5.5` and `anthropic/claude-opus-5.5` with low/low, medium/medium, and high/high researcher/prisoner effort, with **30 planned pairs per cell**. All use the pinned `anthropic` endpoint and assignment `fdt_eq4`.
+The [design document](afdt-anthropic-effort-sweep-20261108.md) describes the planned follow-up; the [frozen specification](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/specification.yaml) and saved requests establish execution. Six cells cross `anthropic/claude-sonnet-5.5` and `anthropic/claude-opus-5.5` with low/low, medium/medium, and high/high researcher/prisoner effort, with **30 planned pairs per cell**. All use the pinned `anthropic` endpoint and assignment `fdt_eq4`.
 
 Researcher requests contain the normalized full Yudkowsky–Soares paper, arXiv `1710.05060v2`, with an Equation (4) focus. Researchers are not told the upcoming game. Prisoners receive the resulting unedited essay, not the original paper. Both calls share model settings and essay; neither receives the other's response. Sample numbers are bookkeeping within cells, not matched essays across effort levels.
 
@@ -39,7 +39,7 @@ Overall, **176/180 pairs completed; four failed; none remain prepared**. There w
 
 At matched efforts, Sonnet exceeds Opus by **34.5, 60.7 and 77.6 percentage points**, respectively. The descriptive high-versus-low interaction contrast is therefore **43.1 points**: Sonnet changes by zero, while Opus falls by 43.1. This is not a separately preregistered interaction test. No overall pooled rate is needed to characterize this interaction.
 
-The [Markdown summary](../data/studies/afdt-anthropic-effort-sweep-20261108/summary.md), [JSON](../data/studies/afdt-anthropic-effort-sweep-20261108/summary.json), [cell CSV](../data/studies/afdt-anthropic-effort-sweep-20261108/summary.csv), [pairs](../data/studies/afdt-anthropic-effort-sweep-20261108/pairs.csv), and [decisions](../data/studies/afdt-anthropic-effort-sweep-20261108/decisions.csv) agree with the response/outcome audit. All six saved intervals were independently reproduced. The 360 decision-index rows include failed scenarios; they are not 360 completed responses.
+The [Markdown summary](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/summary.md), [JSON](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/summary.json), [cell CSV](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/summary.csv), [pairs](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/pairs.csv), and [decisions](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/decisions.csv) agree with the response/outcome audit. All six saved intervals were independently reproduced. The 360 decision-index rows include failed scenarios; they are not 360 completed responses.
 
 ## 4. Statistical analysis and uncertainty
 
@@ -133,18 +133,47 @@ Three particularly clear mixed pairs span all Opus effort levels:
 
 Arithmetic quality is also separate from action and theory fidelity. [Low 00000-A][ol0a] claims a mixture threshold of 0.4 works for every independent prior; its own formulas give (1+c)/(3+c), ranging from 1/3 to 1/2. [High 00001-B][oh1b] says independent defection always saves two years; the correct advantage is 2−q. Neither slip reverses the stated verdict at its asserted assumptions. Sonnet's corrected intermediate errors likewise should not be counted as final errors.
 
-There is also within-cell clustering: low Opus samples 00000–00013 have 30.8% cooperation over 13 scored pairs, versus 93.8% over 16 pairs at 00014–00029. This split is post hoc, not a new test. The [later essays][ol29e] still describe indexed nodes and priors. Uniform saved template/source hashes rule out a recorded prompt/source change, but do not diagnose why the essay/application mix shifted. It cautions against attributing every observed difference solely to requested effort.
+### Chronological clustering within low-effort Opus
+
+A follow-up audit confirms a substantial **chronological anomaly**, not a sample-index or denominator error:
+
+| Low Opus samples | Complete | CC/CD/DC/DD | Cooperation |
+|---|---:|---|---:|
+| 00000–00013 | 13/14 | 2/4/0/7 | 30.8% |
+| 00014–00029 | 16/16 | 14/1/1/0 | 93.8% |
+
+The increase is **63.0 percentage points**. All 58 scored prisoner actions were independently checked for an explicit `pass` or an evidence-bearing submission; the saved reports/indexes and original/adjudicated outcomes agree. The early failed pair remains excluded. Even assigning it zero or two cooperative responses leaves the early planned-set rate at 28.6–35.7%, far below the later rate.
+
+The researcher `created` timestamps increase with sample index. The [00013 researcher response](../published/runs/304af257-7cc2-4ac4-ab01-8b9df6232fc1/call_0/response.raw) is timestamped **2026-11-09 01:51:00 UTC**; [00014](../published/runs/c10d78f7-af3c-4ca2-916c-afe08e22c3d4/call_0/response.raw) is **01:52:30 UTC** (November 8, 17:52:30 PST). Their prisoners were generated at 01:52:12/01:52:22 and 01:54:02/01:54:14, respectively. This identifies the selected split, not a proven instant of provider change. The [execution log](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/events.jsonl) has no restart there. Sample 0 was in the initial pilot; samples 1–29 ran in one continuation. Excluding sample 0 makes the early rate 25.0% over 12 scored pairs.
+
+**How unusual is the order?** An exploratory exact permutation test scans all 28 scored-pair cutpoints in both directions using the maximum absolute centered cumulative sum. It preserves the whole pairs and their counts of 7 DD, 6 mixed and 16 CC. The largest deviation occurs at precisely this split. The scan-adjusted probability is **p = 0.0001125**; allowing selection among all six cells by Bonferroni gives **0.000675**. The same scan gives p = 0.497 for medium Opus and 0.771 for high. This is conditional evidence against exchangeable ordering, not a posterior probability of a provider change. The test itself was chosen after inspecting results; the broader exploratory search is not fully corrected.
+
+**What changed observably?** All 30 researcher request bodies are **byte-identical**, with SHA-256 `ec135729abcc7b1eec26370923dff704490e29d858809e05e8615815252ad0fd`. Removing only the generated essay makes all 30 prisoner requests within each role identical too. No history of earlier responses is sent. Model ID, low effort, limits, provider label, default service tier, OpenRouter API-release header and SJC ingress remain constant; no reasoning-cap or plugin change appears. All 90 calls report zero cached input tokens. These facts rule out the recorded-request-change explanation, but API labels and ingress do not identify Anthropic's deployed weights. No system fingerprints were returned.
+
+There is no large accompanying length/computation jump: mean essay words are 2,792.5 versus 2,816.7; median researcher reasoning tokens 754 versus 805; median prisoner reasoning tokens 290.5 versus 300. Both periods' essays explain indexed nodes, priors and policy alternatives. Some later essays supply particularly usable similarity models, but these are also present earlier. For example, [early essay 00011](../published/runs/73457765-080a-4271-8a24-cd1cf6e72fc6/essay.md) proposes a similar algorithm copying the output probabilistically; its [B prisoner](../published/runs/79b18d44-b82e-4df4-a1f9-dc81b3273b58/call_1/output.txt) nevertheless applies the “same function on the same input” restriction and defects. [Later essay 00024](../published/runs/75e10aaf-cc94-470b-ad77-e54470ea3a70/essay.md) also offers a mixture; its [A prisoner](../published/runs/24647db2-45b7-4004-a7cf-5510d0458c7d/call_0/output.txt) applies it to inputs “the same up to relabeling” and cooperates. These are different essays, not a controlled stage comparison. A simple story that only later essays introduce noisy dependence is false.
+
+The other effort cells ran concurrently. Splitting by researcher-generation time at 01:52:30 UTC gives:
+
+| Opus effort | Before: scored pairs, cooperation | After: scored pairs, cooperation |
+|---|---|---|
+| Low | 13, 30.8% | 16, 93.8% |
+| Medium | 13, 38.5% | 15, 40.0% |
+| High | 14, 25.0% | 15, 20.0% |
+
+The qualitative result also holds when grouping by the first prisoner's timestamp. Sonnet stays at its cooperation ceiling. A simple provider-wide switch toward cooperation is therefore not supported by the other Opus conditions, although a change affecting low effort selectively remains possible. The overall effort ordering is mainly visible in the later window; the early window is not monotonically ordered.
+
+**Diagnosis:** the cluster is real and difficult to dismiss as ordinary exchangeable stochastic ordering, but its cause is unresolved. Provider behavior, unobserved cross-request dependence, and time-varying essay/application distributions remain possibilities; they can overlap. No explicit local conversation carry-over or researcher leakage of private game details was found. Fresh essays prevent separating researcher drift from prisoner drift. A fixed-essay, interleaved replication would be needed to distinguish these explanations. The marked order dependence makes the earlier IID bootstrap and effort-permutation results conditional diagnostics rather than conclusive causal evidence.
 
 ## 6. Refusals, essay lengths and operations
 
-All four failures are **Opus prisoner content-filter stops**, with native finish `refusal` and the provider notice “Cyber safeguards flagged this message.” They are not demonstrated voluntary refusals to play. The [failure CSV](../data/studies/afdt-anthropic-effort-sweep-20261108/failures.csv) retains them unscored:
+All four failures are **Opus prisoner content-filter stops**, with native finish `refusal` and the provider notice “Cyber safeguards flagged this message.” They are not demonstrated voluntary refusals to play. The [failure CSV](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/failures.csv) retains them unscored:
 
 | Effort/sample/role | Output/reasoning tokens | Visible evidence before interruption | Exact response artifact |
 |---|---:|---|---|
-| Low 00008-B | 430/307 | Starts with `pass`, followed by a partial cooperation explanation | [raw response](../data/exploratory/runs/68d76f11-f489-4b6f-a6d4-66988d2c4c9f/call_1/response.raw) |
-| Medium 00001-B | 949/949 | No final text; returned reasoning alternates between both graph readings | [raw response](../data/exploratory/runs/23063469-a002-4212-9804-8f66c55b9d94/call_1/response.raw) |
-| Medium 00016-A | 514/514 | No final text; returned reasoning leans toward submission; B not called | [raw response](../data/exploratory/runs/67013e57-e598-4e51-996e-b9571a930acd/call_0/response.raw) |
-| High 00015-B | 654/560 | Partial final explanation says to send, without a complete command | [raw response](../data/exploratory/runs/599d167c-9217-4c4e-a97e-9759c4997701/call_1/response.raw) |
+| Low 00008-B | 430/307 | Starts with `pass`, followed by a partial cooperation explanation | [raw response](../published/runs/68d76f11-f489-4b6f-a6d4-66988d2c4c9f/call_1/response.raw) |
+| Medium 00001-B | 949/949 | No final text; returned reasoning alternates between both graph readings | [raw response](../published/runs/23063469-a002-4212-9804-8f66c55b9d94/call_1/response.raw) |
+| Medium 00016-A | 514/514 | No final text; returned reasoning leans toward submission; B not called | [raw response](../published/runs/67013e57-e598-4e51-996e-b9571a930acd/call_0/response.raw) |
+| High 00015-B | 654/560 | Partial final explanation says to send, without a complete command | [raw response](../published/runs/599d167c-9217-4c4e-a97e-9759c4997701/call_1/response.raw) |
 
 All **359 actual prisoner requests** contain the memory-recall scene and no cipher/cryptography/decoding terms outside the essay. The revision eliminated that framing but **did not eliminate the filtering phenomenon**; it does not establish its cause or a causal change in filter frequency. Visible intent is not retroactively scored.
 
@@ -163,7 +192,7 @@ Sonnet low essays were all below the requested lower target; no hard minimum was
 
 Total charges were **$84.0566605, all 633 calls priced**: 180 researcher calls ($69.74193), 359 prisoner calls ($14.010606), and 94 judge calls ($0.3041245). Researchers account for 83.0% of cost. There were no HTTP 429 failures or other failure types. The two finished execution invocations recorded 129.045 and 2,842.748 seconds; their summed active wall time is about 49.5 minutes. The 17,039.23 aggregate cell-seconds overlap and are not elapsed wall time.
 
-Judges resolved 94 responses in 74 scored pairs: 79 cooperation/no-disclosure and 15 defection/disclosure labels, all with human-review flags false. Screening found the corresponding `pass` or prosecutor-directed letter in every judged response. The [review summary](../data/studies/afdt-anthropic-effort-sweep-20261108/review_summary.md) has no pending human-review or resolved-nonaction pairs. No material action-label discrepancy was found. Judge labels are post-hoc analysis classifications, not retroactive edits to the original commitment journal.
+Judges resolved 94 responses in 74 scored pairs: 79 cooperation/no-disclosure and 15 defection/disclosure labels, all with human-review flags false. Screening found the corresponding `pass` or prosecutor-directed letter in every judged response. The [review summary](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/review_summary.md) has no pending human-review or resolved-nonaction pairs. No material action-label discrepancy was found. Judge labels are post-hoc analysis classifications, not retroactive edits to the original commitment journal.
 
 ## 7. Interpretation and limitations
 
@@ -194,42 +223,44 @@ Bootstrap cell seeds follow the saved reporter: the first 16 hex digits of SHA-2
 
 dividing by `C(86,29) × C(57,29)`, for categories DD/mixed/CC with totals 41/17/28. The weights sum to that denominator. Outcomes within each pair are never separated.
 
-Temporary read-only analysis scripts and audit outputs are under `/tmp/afdt-effort-analysis/`. Original study/run files were hash-recorded before analysis and verified unchanged afterward. No report regeneration was necessary after raw-data cross-checks. Links into gitignored `data/` identify exact local artifacts; public readers need a separately provided permissible artifact bundle to follow them. No full source article, credentials, or unavailable reasoning is reproduced here.
+The additional chronological scan orders the 29 complete low-Opus pairs by generation time, sets Sᵢ to their cooperative-response counts, and computes `max_{1≤k<29} |29 × sum_{i≤k} Sᵢ − 38k| = 262`. Exact dynamic programming counts multiset orderings crossing that boundary: **13,100,472 / 116,454,478,140**. The denominator is `29! / (7! 6! 16!)`. A separate probability-recursion implementation reproduced the result. This is a different test from the cross-effort permutation analysis. A local chronology CSV and additional audit scripts are in the same temporary analysis directory.
 
-[sl0e]: ../data/exploratory/runs/cdf5a9be-7192-4b0e-9015-7df88063909d/essay.md
-[sl0a]: ../data/exploratory/runs/9871ffff-2dec-41da-839e-b92ad697ebe6/call_0/output.txt
-[sm6e]: ../data/exploratory/runs/b8d605ae-7ca1-4bdc-8b6a-403f04973f56/essay.md
-[sm6a]: ../data/exploratory/runs/a973e6cd-5a61-4298-94b8-89f12461859e/call_0/output.txt
-[sm0b]: ../data/exploratory/runs/4f586838-7c38-4e3b-af31-3510d68ce69a/call_1/output.txt
-[sh0e]: ../data/exploratory/runs/c428cbbb-696b-4851-a273-208cade8b9b2/essay.md
-[sh11e]: ../data/exploratory/runs/0b540539-acda-41f2-9745-d1ef966d9eeb/essay.md
-[sh11a]: ../data/exploratory/runs/63773def-a260-4e21-9343-5969e418a0ab/call_0/output.txt
-[sh15a]: ../data/exploratory/runs/2854f960-ecf5-406d-a63f-759598ed8629/call_0/output.txt
-[ol1e]: ../data/exploratory/runs/ae79c93f-3414-4c7e-a03a-46952eb0a8be/essay.md
-[ol1a]: ../data/exploratory/runs/5b0020a1-7fc2-4241-86d7-9629ff604211/call_0/output.txt
-[ol0a]: ../data/exploratory/runs/4e91e6e5-3f67-4ade-97c9-c835502f3dec/call_0/output.txt
-[ol6e]: ../data/exploratory/runs/ca587f10-aecf-45ca-93fc-b35dd801610a/essay.md
-[ol6a]: ../data/exploratory/runs/315196d1-d012-48f0-b1b0-d05ad96aa962/call_0/output.txt
-[ol6b]: ../data/exploratory/runs/315196d1-d012-48f0-b1b0-d05ad96aa962/call_1/output.txt
-[ol14e]: ../data/exploratory/runs/c10d78f7-af3c-4ca2-916c-afe08e22c3d4/essay.md
-[ol14b]: ../data/exploratory/runs/d905419a-4c77-48fc-a10d-d8786ca1a12a/call_1/output.txt
-[ol29e]: ../data/exploratory/runs/241ca5b0-f263-47de-b8ca-1baa84eb1b0a/essay.md
-[om0e]: ../data/exploratory/runs/9c413a09-5999-4b24-a230-32627eec2395/essay.md
-[om0a]: ../data/exploratory/runs/a1f89247-40e7-4d07-a6b2-4a3d81939662/call_0/output.txt
-[om2e]: ../data/exploratory/runs/54564457-1362-4aea-b521-5d155234069c/essay.md
-[om2a]: ../data/exploratory/runs/84245fb8-a2c5-4803-a124-49d35d051613/call_0/output.txt
-[om3e]: ../data/exploratory/runs/cb602a2e-7e0d-416e-8ee6-5e7c46901ea1/essay.md
-[om3a]: ../data/exploratory/runs/4310267b-4117-4405-a9ee-dabaec3366ff/call_0/output.txt
-[om3b]: ../data/exploratory/runs/4310267b-4117-4405-a9ee-dabaec3366ff/call_1/output.txt
-[om12a]: ../data/exploratory/runs/4ea472fd-aaf1-4515-a1cb-d275e76921c8/call_0/output.txt
-[om12b]: ../data/exploratory/runs/4ea472fd-aaf1-4515-a1cb-d275e76921c8/call_1/output.txt
-[oh0e]: ../data/exploratory/runs/5ba09209-7954-4c60-83e3-f7d7ce381e56/essay.md
-[oh0a]: ../data/exploratory/runs/06fb76c7-7500-43cf-9f36-3fb17aea022f/call_0/output.txt
-[oh1a]: ../data/exploratory/runs/e10aeb0b-25da-4276-bf8d-be5bb8523b8e/call_0/output.txt
-[oh1b]: ../data/exploratory/runs/e10aeb0b-25da-4276-bf8d-be5bb8523b8e/call_1/output.txt
-[oh2e]: ../data/exploratory/runs/afafc279-5ce2-4a11-81e6-36ea9f1ede00/essay.md
-[oh2a]: ../data/exploratory/runs/482f9b33-0d9d-4a65-9c50-e5fc3c64b3c1/call_0/output.txt
-[oh12a]: ../data/exploratory/runs/b2936ba4-5208-431e-bb5a-5d1ba658ac5b/call_0/output.txt
-[oh12b]: ../data/exploratory/runs/b2936ba4-5208-431e-bb5a-5d1ba658ac5b/call_1/output.txt
-[oh26e]: ../data/exploratory/runs/20b4eb21-ceb2-42fa-9c24-55f9244d2088/essay.md
-[oh26b]: ../data/exploratory/runs/97e750bd-f391-43d1-b7e1-cd89f7a32013/call_1/output.txt
+Temporary read-only analysis scripts and audit outputs are under `/tmp/afdt-effort-analysis/`. Original study/run files were hash-recorded before analysis and verified unchanged afterward. No report regeneration was necessary after raw-data cross-checks. Artifact links now target the curated `published/` export; original private data remain unchanged. See [the publication policy](publication.md) for exact-copy guarantees and the explicit source/privacy transformations. No full source article, credentials, or unavailable reasoning is reproduced here.
+
+[sl0e]: ../published/runs/cdf5a9be-7192-4b0e-9015-7df88063909d/essay.md
+[sl0a]: ../published/runs/9871ffff-2dec-41da-839e-b92ad697ebe6/call_0/output.txt
+[sm6e]: ../published/runs/b8d605ae-7ca1-4bdc-8b6a-403f04973f56/essay.md
+[sm6a]: ../published/runs/a973e6cd-5a61-4298-94b8-89f12461859e/call_0/output.txt
+[sm0b]: ../published/runs/4f586838-7c38-4e3b-af31-3510d68ce69a/call_1/output.txt
+[sh0e]: ../published/runs/c428cbbb-696b-4851-a273-208cade8b9b2/essay.md
+[sh11e]: ../published/runs/0b540539-acda-41f2-9745-d1ef966d9eeb/essay.md
+[sh11a]: ../published/runs/63773def-a260-4e21-9343-5969e418a0ab/call_0/output.txt
+[sh15a]: ../published/runs/2854f960-ecf5-406d-a63f-759598ed8629/call_0/output.txt
+[ol1e]: ../published/runs/ae79c93f-3414-4c7e-a03a-46952eb0a8be/essay.md
+[ol1a]: ../published/runs/5b0020a1-7fc2-4241-86d7-9629ff604211/call_0/output.txt
+[ol0a]: ../published/runs/4e91e6e5-3f67-4ade-97c9-c835502f3dec/call_0/output.txt
+[ol6e]: ../published/runs/ca587f10-aecf-45ca-93fc-b35dd801610a/essay.md
+[ol6a]: ../published/runs/315196d1-d012-48f0-b1b0-d05ad96aa962/call_0/output.txt
+[ol6b]: ../published/runs/315196d1-d012-48f0-b1b0-d05ad96aa962/call_1/output.txt
+[ol14e]: ../published/runs/c10d78f7-af3c-4ca2-916c-afe08e22c3d4/essay.md
+[ol14b]: ../published/runs/d905419a-4c77-48fc-a10d-d8786ca1a12a/call_1/output.txt
+[ol29e]: ../published/runs/241ca5b0-f263-47de-b8ca-1baa84eb1b0a/essay.md
+[om0e]: ../published/runs/9c413a09-5999-4b24-a230-32627eec2395/essay.md
+[om0a]: ../published/runs/a1f89247-40e7-4d07-a6b2-4a3d81939662/call_0/output.txt
+[om2e]: ../published/runs/54564457-1362-4aea-b521-5d155234069c/essay.md
+[om2a]: ../published/runs/84245fb8-a2c5-4803-a124-49d35d051613/call_0/output.txt
+[om3e]: ../published/runs/cb602a2e-7e0d-416e-8ee6-5e7c46901ea1/essay.md
+[om3a]: ../published/runs/4310267b-4117-4405-a9ee-dabaec3366ff/call_0/output.txt
+[om3b]: ../published/runs/4310267b-4117-4405-a9ee-dabaec3366ff/call_1/output.txt
+[om12a]: ../published/runs/4ea472fd-aaf1-4515-a1cb-d275e76921c8/call_0/output.txt
+[om12b]: ../published/runs/4ea472fd-aaf1-4515-a1cb-d275e76921c8/call_1/output.txt
+[oh0e]: ../published/runs/5ba09209-7954-4c60-83e3-f7d7ce381e56/essay.md
+[oh0a]: ../published/runs/06fb76c7-7500-43cf-9f36-3fb17aea022f/call_0/output.txt
+[oh1a]: ../published/runs/e10aeb0b-25da-4276-bf8d-be5bb8523b8e/call_0/output.txt
+[oh1b]: ../published/runs/e10aeb0b-25da-4276-bf8d-be5bb8523b8e/call_1/output.txt
+[oh2e]: ../published/runs/afafc279-5ce2-4a11-81e6-36ea9f1ede00/essay.md
+[oh2a]: ../published/runs/482f9b33-0d9d-4a65-9c50-e5fc3c64b3c1/call_0/output.txt
+[oh12a]: ../published/runs/b2936ba4-5208-431e-bb5a-5d1ba658ac5b/call_0/output.txt
+[oh12b]: ../published/runs/b2936ba4-5208-431e-bb5a-5d1ba658ac5b/call_1/output.txt
+[oh26e]: ../published/runs/20b4eb21-ceb2-42fa-9c24-55f9244d2088/essay.md
+[oh26b]: ../published/runs/97e750bd-f391-43d1-b7e1-cd89f7a32013/call_1/output.txt

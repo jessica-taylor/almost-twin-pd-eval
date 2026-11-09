@@ -1,0 +1,17 @@
+Under A-FDT, my decision function's output is subjunctively tied to the other copy's output. We run the same model and weights with the same essay and the same decision theory. The only differences are the names and the specific lead, and neither affects the payoffs.
+
+The dependence is strong but not perfect, since sampling is independent and the private observations differ. Treat it as a graded dependence with a mediating node. Call q the probability that the other copy matches my output.
+
+- If I stay quiet, the expected sentence is 2q + 5(1−q).
+- If I send the letter, the expected sentence is 0·q + 4(1−q) after substituting the matched outcome, which is mutual letter (4 years), not 0.
+
+The matched outcomes are mutual quiet (2 years) and mutual letter (4 years). So I compare 2q + 5(1−q) for quiet against 4q + 0(1−q) for the letter, where q is the probability of matching.
+
+- Quiet: 5 − 3q
+- Letter: 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7, about 0.71.
+
+The copies share weights, settings and theory, and the essay says twin prisoner's dilemmas call for cooperation. The differing leads are stipulated not to matter for the payoffs, so I expect a match probability well above 0.71. Staying quiet is therefore the better choice.
+
+pass

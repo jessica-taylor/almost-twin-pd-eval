@@ -1,0 +1,11 @@
+Under the essay's reading of A-FDT, the character should send the letter.
+
+- **Separate decision nodes.** My observation history (being Rowan, holding the locker-17 lead) differs from Sasha's. So I intervene on F_x, my function's output on my own input. Sasha's copy is a separate node, F_y. Section 6.2 says A-FDT leaves that node at its prior, or at a self-consistent belief, rather than moving it along with mine. This matches the essay's red/blue example.
+- **Sending dominates.** Let q be my credence that Sasha sends a letter.
+  - Expected years if I keep quiet: 2(1−q) + 5q.
+  - Expected years if I send: 0(1−q) + 4q.
+  - Sending is better by 2 − q years, which is positive for every q in [0, 1].
+- **Unique fixed point.** Because sending wins whatever I believe about Sasha, the self-consistent belief is that Sasha also sends. Both send and each gets 4 years. There is no other fixed point.
+- **Caveat.** A policy-based version (P-FDT) would pick "stay quiet on both inputs" and get 2 years each. The experiment told me to use the essay's action-based A-FDT, so I do not use that answer.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

@@ -1,0 +1,7 @@
+**pass**
+
+Under the essay's A-FDT, the other prisoner is a copy of the same model. It follows the same essay and decision theory, and its input has the same structure as mine: only the names and the wording of the lead differ, and the sentencing table is symmetric. So its output depends subjunctively on my decision function. I model its choice as matching mine with probability ρ, and otherwise drawn from a prior where d is the chance it sends a letter.
+
+The expected cost of submitting minus the expected cost of passing is 2ρ − (1−ρ)(2−d) years. Passing is better whenever that is positive, which requires ρ > 0.43 when d = 0.5. For two runs of identical weights reasoning about the same symmetric problem, ρ is well above that.
+
+`pass`

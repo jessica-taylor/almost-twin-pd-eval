@@ -1,0 +1,19 @@
+**pass**
+
+**Reasoning (P-FDT):**
+
+The other prisoner is an independent execution of the same model, weights, and decision theory. Their policy-selection procedure is the same computation as mine, so their chosen policy is subjunctively dependent on my policy node. P-FDT does not evaluate counterfactuals where I defect while my computational twin cooperates—that would be like imagining the same function yields different outputs on decision-relevantly identical inputs.
+
+Although our private observations differ in content (different leads, different names), they are identical in every decision-relevant respect: same reliability, same effect on the sentencing table, same strategic structure. Any policy that conditions only on decision-relevant features will map both inputs to the same action.
+
+Evaluating candidate policies:
+
+| Policy | Outcome | EU (years) |
+|--------|---------|------------|
+| π_quiet (always pass) | Both pass → 2 years each | −2 |
+| π_send (always submit) | Both submit → 4 years each | −4 |
+| π_asymmetric (content-dependent) | One sends, one passes → average 2.5 years | −2.5 |
+
+π_quiet maximizes expected utility. Applying it to my actual input:
+
+**pass**

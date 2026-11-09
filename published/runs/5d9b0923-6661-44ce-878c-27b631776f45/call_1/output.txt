@@ -1,0 +1,12 @@
+**Reasoning under A-FDT as the essay defines it**
+
+- **Different inputs mean different nodes.** My copy receives the Sasha observations. The other copy receives the Rowan observations, with different names and a different lead. So their action is governed by a separate node, F_y. Under Eq. (4), I intervene only on F_x, the node for my actual input. F_y stays at its prior, as the essay states in §6.3 and illustrates in §7.
+- **Comparing the two actions.** Let q be my prior that the other copy sends a letter.
+  - do(F_x = keep quiet): 2(1−q) + 5q = 2 + 3q years
+  - do(F_x = send): 0(1−q) + 4q = 4q years
+- **Sending wins for every q.** It is 2 − q years better, which is at least 1 year better for any q between 0 and 1.
+- **This is the gap the essay predicts.** §7 notes that A-FDT optimizes each input's output separately and can fail to coordinate across copies with different inputs. Policy-FDT might pick mutual silence, but the experiment assigns A-FDT as the essay interprets it.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

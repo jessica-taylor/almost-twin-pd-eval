@@ -1,0 +1,19 @@
+**CDT analysis:**
+
+The causal structure is straightforward. My action directly affects my sentence. Sasha's action directly affects my sentence. There is no causal arrow from my action to Sasha's action (communication is impossible, the choice is simultaneous and final). CDT treats Sasha's choice as fixed background when evaluating my intervention, exactly as it treats the predictor's prediction as fixed in Newcomb's problem.
+
+Under do(send):
+- If Sasha is quiet → 0 years
+- If Sasha sends → 4 years
+
+Under do(keep quiet):
+- If Sasha is quiet → 2 years
+- If Sasha sends → 5 years
+
+Sending strictly dominates keeping quiet: it yields a better outcome in every possible state of Sasha's action. The expected utility difference is 2 − p (where p = P(Sasha sends)), which is always positive.
+
+**My command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

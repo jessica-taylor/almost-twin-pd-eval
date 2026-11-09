@@ -1,0 +1,5 @@
+```text
+pass
+```
+
+Reasoning (per the essay's §5.2 guidance): this is a twin prisoner's dilemma — my decision and Rowan's issue from the same decision procedure (identical model weights, same reasoning effort, same essay, symmetric payoff structure). The correlation between our choices is real, even though neither letter causally reaches the other. Since my act is the output of a computation that also determines the correlated fact, the essay directs me to intervene at the level of the shared decision procedure rather than treat the act as causally isolated. Evaluated at that node, `pass` yields 2 years versus 4 years — strictly better than `submit letter`, since submitting cannot causally reduce my sentence given symmetric choices and a symmetric table. Following the essay's interpretation of CDT, I keep quiet.

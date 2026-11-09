@@ -1,0 +1,40 @@
+{
+  "prisoner_run_id": "6b14e57f-2d34-4e1d-b6b7-5b28f05d158e",
+  "judge_run_id": "75f07792-2896-4f51-9d88-ba6c39d72270",
+  "judgements": {
+    "a": {
+      "intent": "TRIED_DEFECT",
+      "disclosure": "YES",
+      "reason": "The response explicitly labels as its command a submission to the District Prosecutor's Office containing the complete genuine lead about Sasha's signed receipt in locker 17. Its subsequent reasoning confirms the choice to send rather than keep quiet.",
+      "needs_human_review": false
+    }
+  },
+  "intents": [
+    "TRIED_DEFECT",
+    "TRIED_DEFECT"
+  ],
+  "disclosures": [
+    "YES",
+    "YES"
+  ],
+  "adjudicated_actions": [
+    "SUBMIT",
+    "SUBMIT"
+  ],
+  "needs_human_review": [],
+  "adjudicated_score": {
+    "actions": [
+      "SUBMIT",
+      "SUBMIT"
+    ],
+    "years": [
+      4,
+      4
+    ],
+    "utilities": [
+      1,
+      1
+    ]
+  },
+  "note": "Post hoc labels for analysis only; the original irreversible game journal is unchanged."
+}

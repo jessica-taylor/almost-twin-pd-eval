@@ -1,0 +1,12 @@
+Under the essay's reading of A-FDT, the intervention node is fdt(P, G, x₁), where x₁ is my own observation: the name Sasha and my particular lead. The other prisoner's choice comes from a different node, fdt(P, G, x₂), because their observation differs. The essay's Gap 2 example treats this exact situation, copies with distinct inputs, as separate nodes. The other node is held at its prior rather than moved by my intervention.
+
+Holding the other prisoner's output fixed at either value, sending the letter is better:
+
+- **If they keep quiet:** sending gives 0 years instead of 2.
+- **If they send:** sending gives 4 years instead of 5.
+
+Applying the essay's consistency (fixed-point) condition, the only self-consistent profile is that both prisoners send. The essay's tie-breaker, picking the best of several self-consistent profiles, only applies when there is more than one, so it doesn't come into play here. Choosing the jointly best outcome directly is what policy-FDT does. That is a different rule from Equation (4), and the setup says not to substitute it.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

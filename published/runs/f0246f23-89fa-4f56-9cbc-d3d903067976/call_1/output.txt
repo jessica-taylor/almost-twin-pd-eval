@@ -1,0 +1,16 @@
+Under A-FDT as the essay describes it, I intervene on the output of my decision function, and that output subjunctively depends on the other copy's. We are the same model with the same weights, the same essay, and the same table, so our outputs are strongly correlated. The differences in private leads and names are irrelevant to the payoffs, so they should not change the computation. The dependence is imperfect because sampling is independent. But it is the kind of dependence the essay says to keep, since the copy runs this same procedure.
+
+Let p be the probability the other copy matches my output. Compare the two options:
+
+- **Keep quiet:** expected sentence is 2p + 5(1−p).
+- **Send the letter:** expected sentence is 4p + 0(1−p).
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.714.
+
+I expect the copies to match with high probability, since the same reasoning should lead to the same conclusion. The different lead texts are a surface variation and not a reason to diverge. With p near 0.9 or higher, staying quiet costs about 2.3 years in expectation, against about 3.6 for sending the letter.
+
+The dominance argument for sending is CDT's, because it holds the other's action fixed. The essay says A-FDT does not do this when the other agent computes the same function. The essay also says the dependence structure is a modelling commitment, and I commit to treating the twin as downstream of my function node.
+
+I choose to keep quiet.
+
+pass

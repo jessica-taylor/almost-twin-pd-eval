@@ -1,0 +1,286 @@
+# Policy Functional Decision Theory (P-FDT): Formal Mechanics, Counterfactuals, and Multi-Agent Coordination
+
+## 1. Introduction and Philosophical Motivation
+
+Standard normative decision theory has long been divided between two rival frameworks: **evidential decision theory (EDT)** and **causal decision theory (CDT)**. Both theories endorse the maximization of expected utility, yet they disagree fundamentally about how an agent should construct the hypothetical scenarios used to evaluate candidate choices. EDT evaluates an action by Bayesian conditionalization, asking: *"Which physical act of mine would be the best news to hear I took?"* CDT evaluates an action by causal intervention, asking: *"Which physical act of mine causes the best outcome?"*
+
+Measured by the utility that agents actually achieve, neither theory dominates the other across well-known decision dilemmas (Gibbard and Harper 1978; Ahmed 2014). In Newcomb’s problem, where a reliable predictor fills an opaque box with $\$1,000,000$ if and only if she predicts the agent will leave behind a transparent box containing $\$1,000$, EDT one-boxes and walks away rich, whereas CDT two-boxes and walks away with $\$1,000$. In Skyrms’s smoking lesion problem (Skyrms 1980), where a pre-existing arterial lesion causes both a desire to smoke and fatal lung cancer, CDT recognizes that smoking does not cause cancer and enjoys the cigar, whereas EDT refrains from smoking to "manage the news" (Lewis 1981). Worse still, in sequential prediction dilemmas such as Parfit’s hitchhiker problem (Parfit 1986) and Drescher’s transparent Newcomb problem (Drescher 2006), both CDT and EDT fail to secure the high-payoff outcome.
+
+In *"Functional Decision Theory: A New Theory of Instrumental Rationality"* (2017), Eliezer Yudkowsky and Nate Soares propose **functional decision theory (FDT)** to resolve this impasse. The philosophical core of the functional approach is to shift the locus of evaluation from a physical action token to a mathematical function type. An agent implementing a decision algorithm is instantiating a mathematical function. If a twin in a separate room, or a predictor’s simulation of the agent, instantiates or models that same mathematical function, then the agent’s physical action and the twin’s or predictor’s behavior are bound together by **subjunctive dependence**:
+
+> *"Functional decision theory is to subjunctive dependence as causal decision theory is to causal dependence."* (Yudkowsky and Soares 2017, Sec. 3)
+
+However, within Yudkowsky and Soares’s paper, there are actually two distinct formalizations of the functional decision rule. In the main text, for pedagogical simplicity, the authors formalize what we may call **action-based FDT**, in which the agent intervenes on an observation-indexed node $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x})$ to choose a single action $a \in \mathcal{A}$. Yet in Footnote 7 and Footnote 16, the authors explicitly note that this action-level formula is a simplification of their preferred theory, which we will call **policy functional decision theory (P-FDT)**:
+
+> *"In the authors' preferred formalization of FDT, agents actually iterate over policies (mappings from observations to actions) rather than actions. This makes a difference in certain multi-agent dilemmas, but will not make a difference in this paper."* (Footnote 7)
+
+And again, when discussing how functional agents respond to observations in Section 9:
+
+> *"As mentioned earlier, the author's preferred formulation of FDT actually intervenes on the node $\mathrm{FDT}(-)$ to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action. The difference only matters in multi-agent dilemmas so far as we can tell, so we have set that distinction aside in this paper for ease of exposition."* (Footnote 16)
+
+Because the reference paper sets **P-FDT** aside after these brief remarks, a reader who wants to apply P-FDT to concrete problems must reconstruct its exact mathematical machinery, see how it handles single-agent and multi-agent counterfactuals, and resolve the technical questions that Footnote 16 leaves open. That is the goal of this essay.
+
+---
+
+## 2. The Formal Architecture of P-FDT
+
+### 2.1 Decision-Theoretic Primitives
+
+Following the formal framework of Joyce (1999) and Yudkowsky and Soares (2017, Sec. 5), consider an agent facing a decision problem defined over:
+* A countable set of possible outcomes $\mathcal{O} = \{o_1, o_2, \dots\}$.
+* A bounded real-valued utility function $\mathcal{U}: \mathcal{O} \to \mathbb{R}$, inducing the random variable $\textsc{V} \coloneqq \mathcal{U}(\textsc{Outcome})$.
+* A countable set of possible observation histories $\mathcal{X}$.
+* A finite set of available physical actions $\mathcal{A}$.
+
+Any expected utility theory evaluates options by computing the expectation of $\textsc{V}$ inside a hypothetical model constructed from the agent’s epistemic state $M$. Where the theories diverge is in how they represent $M$ and how they construct hypotheticals from $M$ upon receiving an observation $x \in \mathcal{X}$:
+
+1. **Evidential Decision Theory (EDT)** represents $M$ as a probability distribution $P$ and constructs hypotheticals by conditioning on both the observation $\textsc{Obs} = x$ and the physical act $\textsc{Act} = a$:
+   $$\mathrm{EDT}(P, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\left(\textsc{V} \;\middle|\; \textsc{Obs} = x, \textsc{Act} = a\right).$$
+
+2. **Causal Decision Theory (CDT)** augments $P$ with a directed acyclic causal graph $G$, using Pearl’s (1996, 2000) intervention operator $\mathtt{do}(\textsc{Act} = a)$ to sever incoming causal arrows into $\textsc{Act}$ while conditioning on $\textsc{Obs} = x$:
+   $$\mathrm{CDT}(P, G, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\left(\textsc{V} \;\middle|\; \mathtt{do}(\textsc{Act} = a), \textsc{Obs} = x\right).$$
+
+3. **Action-Based FDT** (Equation 4 of Yudkowsky and Soares) augments $P$ with an extended dependency graph $G$ that encodes not only physical causation, but also logical, mathematical, and computational dependencies. Instead of conditioning on $\textsc{Obs} = x$ and intervening on $\textsc{Act}$, action-based FDT leaves $P$ unconditioned and uses the observation $x$ to select which logical node $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x})$ to intervene upon:
+   $$\mathrm{FDT}(P, G, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\left(\textsc{V} \;\middle|\; \mathtt{do}\left(\textsc{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\right)\right),$$
+   where underlines denote dequotation (converting values into syntactic variable names via Kleene’s 1938 second recursion theorem).
+
+### 2.2 Defining Policies and the P-FDT Decision Rule
+
+To formalize **P-FDT** from Footnotes 7 and 16, we introduce the space of deterministic policies $\Pi$. Taking observations $x \in \mathcal{X}$ as the runtime inputs that vary across branches of a decision problem, a policy is a function mapping observations to actions:
+$$\Pi \coloneqq \mathcal{A}^{\mathcal{X}} = \{\pi \mid \pi: \mathcal{X} \to \mathcal{A}\}.$$
+(When $\mathcal{X}$ and $\mathcal{A}$ are finite, $\Pi$ is a finite set of cardinality $|\mathcal{A}|^{|\mathcal{X}|}$.)
+
+In a P-FDT world-model $M = (P, G)$, the graph $G$ contains a single logical node $\textsc{pfdt}(\underline{P}, \underline{G})$ taking values in $\Pi$. This node represents the mathematical policy output by the P-FDT algorithm when given the world-model $(P, G)$. Downstream of $\textsc{pfdt}(\underline{P}, \underline{G})$ in $G$ are:
+1. The agent’s physical action node $\textsc{Act}$, which is determined by applying the policy to the realized observation $\textsc{Obs}$:
+   $$\textsc{Act}(\pi, x) \coloneqq \pi(x).$$
+2. Any environmental variables—such as a predictor’s prediction $\textsc{Prediction}$ or a psychological twin’s action $\textsc{TwinAct}$—that subjunctively depend on the agent’s decision algorithm. Crucially, if a predictor simulates how the agent will respond to a hypothetical observation $x' \in \mathcal{X}$, the predictor’s node depends on $\pi(x')$, which is simply the evaluation of $\textsc{pfdt}(\underline{P}, \underline{G})$ at $x'$.
+
+Following Footnote 16 literally—the algorithm *"intervenes on the node $\mathrm{FDT}(-)$ to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action"*—**P-FDT** is a two-stage procedure:
+
+**Stage 1 (Global Policy Selection):** The agent identifies the optimal policy $\pi^*_{(P, G)} \in \Pi$ by intervening on the policy node $\textsc{pfdt}(\underline{P}, \underline{G})$ and maximizing unconditional expected utility:
+$$\pi^*_{(P, G)} \coloneqq \operatorname*{argmax}_{\pi \in \Pi} \mathbb{E}\left(\textsc{V} \;\middle|\; \mathtt{do}\left(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi\right)\right). \tag{P-FDT.1}$$
+
+**Stage 2 (Local Policy Application):** Given her actual observation $x \in \mathcal{X}$, the agent evaluates the optimal policy at $x$ to select her physical action:
+$$\mathrm{PFDT}(P, G, x) \coloneqq \pi^*_{(P, G)}(x). \tag{P-FDT.2}$$
+
+Combining both stages into a single expression yields the complete **P-FDT** equation:
+$$\mathrm{PFDT}(P, G, x) = \left[\operatorname*{argmax}_{\pi \in \mathcal{A}^{\mathcal{X}}} \mathbb{E}\left(\textsc{V} \;\middle|\; \mathtt{do}\left(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi\right)\right)\right](x). \tag{P-FDT}$$
+
+### 2.3 Counterpossibles and Subjunctive Surgery in P-FDT
+
+Why does P-FDT use Pearl’s $\mathtt{do}$ operator on a logical variable $\textsc{pfdt}(\underline{P}, \underline{G})$? Mathematically, $\mathrm{PFDT}(P, G, -)$ is a deterministic function; on fixed inputs $(P, G)$, it has a single logically necessary output $\pi^*$. Imagining a world in which $\textsc{pfdt}(\underline{P}, \underline{G}) = \pi'$ for some $\pi' \neq \pi^*$ is therefore entertaining a *counterpossible* conditional—an antecedent that runs counter to logic, akin to asking what would happen if $6288 + 1048 \neq 7336$.
+
+As Yudkowsky and Soares note in Section 5, because we presently lack a general formal semantics for a logical conditioning operator $\mathtt{true}(\phi)$ on counterpossible propositions, P-FDT encodes subjunctive dependencies directly into the structure of the graph $G$. When the agent constructs the hypothetical $M^{\pi \hookrightarrow}$ via $\mathtt{do}(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi)$, the intervention:
+* **Severs** any purely statistical or upstream correlations with $\textsc{pfdt}(\underline{P}, \underline{G})$ (so the agent does not think choosing a policy alters past causes like a genetic lesion or an existing termite infestation).
+* **Propagates** the chosen policy $\pi$ forward along all directed paths in $G$ to every physical mechanism that computes or predicts $\textsc{pfdt}(\underline{P}, \underline{G})$.
+
+---
+
+## 3. Single-Agent Applications of P-FDT
+
+To see how P-FDT operates in practice—and how it subtly refines action-based FDT even in single-agent sequential dilemmas—let us apply Equations (P-FDT.1) and (P-FDT.2) to the benchmark problems from the source text.
+
+### 3.1 Trivial Observation Spaces: Newcomb’s Problem
+
+In standard dilemmas where the agent receives no informative observation during the problem, the observation space is a singleton $\mathcal{X} = \{\emptyset\}$. Here, a policy $\pi: \{\emptyset\} \to \mathcal{A}$ is isomorphic to a single action $a = \pi(\emptyset) \in \mathcal{A}$, so P-FDT and action-based FDT coincide identically.
+
+In Newcomb’s problem ($\mathcal{A} = \{\textit{onebox}, \textit{twobox}\}$), the predictor’s prediction is $99\%$ accurate ($\textsc{Accurate} = \textit{accurate}$ with probability $0.99$). In P-FDT’s graph $G$, the node $\textsc{pfdt}(\underline{P}, \underline{G})$ has arrows into both $\textsc{Act}$ and $\textsc{Prediction}$. Identifying each policy $\pi_a$ with its constant output $a \in \mathcal{A}$, P-FDT evaluates:
+$$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi_{\textit{onebox}})\right] = 0.99(\$1,000,000) + 0.01(\$0) = \$990,000,$$
+$$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi_{\textit{twobox}})\right] = 0.01(\$1,001,000) + 0.99(\$1,000) = \$11,000.$$
+Thus $\pi^* = \pi_{\textit{onebox}}$, and $\mathrm{PFDT}(P, G, \emptyset) = \textit{onebox}$.
+
+### 3.2 Nontrivial Observations: The Transparent Newcomb Problem
+
+Now consider Drescher’s **transparent Newcomb problem** (Dilemma 5 in Yudkowsky and Soares, which is structurally isomorphic to **Parfit’s hitchhiker problem** and the **mechanical blackmail problem**). Both boxes are transparent, so the agent observes the contents of Box B before choosing whether to one-box or two-box:
+$$\mathcal{X} = \{\textit{full}, \textit{empty}\}, \qquad \mathcal{A} = \{\textit{onebox}, \textit{twobox}\}.$$
+The predictor places $\$1,000,000$ in Box B if and only if she predicts that the agent will leave Box A ($\$$1,000) behind *upon observing that Box B is full*. The predictor is accurate with probability $0.99$.
+
+Let us compare how action-based FDT (Section 6 of the paper) and **P-FDT** analyze this problem when the agent sees $\textsc{Obs} = \textit{full}$.
+
+In **action-based FDT**, the graph $G^F$ (Figure 4b of the source paper) splits the agent’s decision algorithm into two separate nodes: $\textsc{fdt}(\underline{P^F}, \underline{G^F}, \textit{full})$ and $\textsc{fdt}(\underline{P^F}, \underline{G^F}, \textit{empty})$. When Fiona observes $\textit{full}$, she intervenes *only* on $\textsc{fdt}(\underline{P^F}, \underline{G^F}, \textit{full})$. Because she does not intervene on $\textsc{fdt}(\underline{P^F}, \underline{G^F}, \textit{empty})$, she must treat her own behavior in the $\textit{empty}$ branch as an external random variable governed by a prior probability $q \coloneqq P^F(\textsc{fdt}(\underline{P^F}, \underline{G^F}, \textit{empty}) = \textit{twobox})$.
+
+In **P-FDT**, by contrast, there is only *one* functional node in the graph: $\textsc{pfdt}(\underline{P}, \underline{G})$. Its structural equations are:
+$$\textsc{Prediction}(\pi, \textit{accurate}) = \begin{cases} 1 & \text{if } \pi(\textit{full}) = \textit{onebox}, \\ 2 & \text{if } \pi(\textit{full}) = \textit{twobox}, \end{cases}$$
+$$\textsc{Prediction}(\pi, \textit{inaccurate}) = \begin{cases} 2 & \text{if } \pi(\textit{full}) = \textit{onebox}, \\ 1 & \text{if } \pi(\textit{full}) = \textit{twobox}, \end{cases}$$
+$$\textsc{Box B}(1) = \textit{full}, \quad \textsc{Box B}(2) = \textit{empty}, \quad \textsc{Obs} = \textsc{Box B}, \quad \textsc{Act}(\pi, \textsc{Obs}) = \pi(\textsc{Obs}).$$
+
+There are $|\mathcal{A}|^{|\mathcal{X}|} = 2^2 = 4$ possible policies in $\Pi$. Denote a policy by the ordered pair $\pi = (\pi(\textit{full}), \pi(\textit{empty}))$. In Stage 1, P-FDT intervenes to set $\textsc{pfdt}(\underline{P}, \underline{G}) = \pi$ for each of the four policies and computes expected utility across the entire probability distribution $P$ (without conditioning on $\textsc{Obs} = \textit{full}$):
+
+1. **Policy $\pi_{1,1} = (\textit{onebox}, \textit{onebox})$** (always one-box):
+   Since $\pi_{1,1}(\textit{full}) = \textit{onebox}$, Box B is $\textit{full}$ with probability $0.99$ (yielding $\$1,000,000$) and $\textit{empty}$ with probability $0.01$ (where the agent also one-boxes, yielding $\$0$).
+   $$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt} = \pi_{1,1})\right] = 0.99(\$1,000,000) + 0.01(\$0) = \$990,000.$$
+
+2. **Policy $\pi_{1,2} = (\textit{onebox}, \textit{twobox})$** (one-box if full, two-box if empty):
+   Since $\pi_{1,2}(\textit{full}) = \textit{onebox}$, Box B is still $\textit{full}$ with probability $0.99$ (yielding $\$1,000,000$). With probability $0.01$, the predictor errs and Box B is $\textit{empty}$, in which case $\pi_{1,2}(\textit{empty}) = \textit{twobox}$ salvages the $\$1,000$ in Box A.
+   $$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt} = \pi_{1,2})\right] = 0.99(\$1,000,000) + 0.01(\$1,000) = \$990,010.$$
+
+3. **Policy $\pi_{2,1} = (\textit{twobox}, \textit{onebox})$** (two-box if full, one-box if empty):
+   Since $\pi_{2,1}(\textit{full}) = \textit{twobox}$, the predictor predicts two-boxing. Box B is $\textit{full}$ only when the predictor errs (probability $0.01$, yielding $\$1,001,000$) and $\textit{empty}$ with probability $0.99$ (yielding $\$0$).
+   $$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt} = \pi_{2,1})\right] = 0.01(\$1,001,000) + 0.99(\$0) = \$10,010.$$
+
+4. **Policy $\pi_{2,2} = (\textit{twobox}, \textit{twobox})$** (always two-box):
+   Since $\pi_{2,2}(\textit{full}) = \textit{twobox}$, Box B is $\textit{full}$ with probability $0.01$ (yielding $\$1,001,000$) and $\textit{empty}$ with probability $0.99$ (yielding $\$1,000$).
+   $$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt} = \pi_{2,2})\right] = 0.01(\$1,001,000) + 0.99(\$1,000) = \$11,000.$$
+
+Comparing the four values, $\pi^*_{(P, G)} = \pi_{1,2} = (\textit{onebox}, \textit{twobox})$ is the unique global maximizer. In Stage 2, upon observing $x = \textit{full}$, the P-FDT agent outputs:
+$$\mathrm{PFDT}(P, G, \textit{full}) = \pi_{1,2}(\textit{full}) = \textit{onebox}.$$
+And if the predictor happens to make the $1\%$ error so that the agent observes $x = \textit{empty}$, the agent outputs $\mathrm{PFDT}(P, G, \textit{empty}) = \pi_{1,2}(\textit{empty}) = \textit{twobox}$.
+
+Notice two critical features of this derivation:
+* **Updateless Counterfactual Evaluation:** Like Wei Dai’s (2009) **upda­teless decision theory (UDT)**—and unlike **timeless decision theory (TDT)** (Yudkowsky 2010), which conditioned on $\textsc{Obs} = x$ in addition to intervening on the logical node—P-FDT does not update its probability distribution $P$ on the observation $\textsc{Obs} = \textit{full}$ during Stage 1. The observation $x$ enters only in Stage 2 when evaluating $\pi^*(x)$. Because $\pi^*$ is chosen from the global ex-ante perspective, the agent never wishes to pay for precommitments or avoid free information.
+* **Elimination of Cross-Branch Epistemic Nuisance Parameters:** In action-based FDT, evaluating $\textsc{fdt}(\underline{P}, \underline{G}, \textit{full})$ required introducing the prior parameter $q$ for what the agent would do at the un-intervened node $\textsc{fdt}(\underline{P}, \underline{G}, \textit{empty})$. In P-FDT, because the intervention $\mathtt{do}(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi)$ simultaneously fixes the agent’s behavior across *all* observation branches $x \in \mathcal{X}$, the parameter $q$ vanishes completely.
+
+### 3.3 Diagnostic Immunity: The XOR Blackmail
+
+What if an observation correlates with an environmental state that is *not* subjunctively downstream of the agent’s policy? Consider Soares and Fallenstein’s (2015) **XOR blackmail** (Dilemma 7 in the source text). A rumor says the agent’s house has termites ($\textsc{Infestation} \in \{\textit{termites}, \textit{clean}\}$, prior probability $p$ of $\textit{termites}$, costing $\$1,000,000$ in damages). An infallible predictor sends a blackmail letter ($\textsc{Obs} = \textit{letter}$ vs. $\emptyset$) demanding $\$1,000$ if and only if either:
+1. $\textsc{Infestation} = \textit{clean}$ and $\pi(\textit{letter}) = \textit{pay}$, or
+2. $\textsc{Infestation} = \textit{termites}$ and $\pi(\textit{letter}) = \textit{refuse}$.
+
+If no letter is sent ($\textsc{Obs} = \emptyset$), the agent has only the default action $\textit{wait}$ ($\mathcal{A}_{\emptyset} = \{\textit{wait}\}$). Thus, a policy $\pi$ is completely specified by its response to the letter: $\pi_{\textit{pay}}$ vs. $\pi_{\textit{refuse}}$.
+
+In P-FDT’s graph $G$, $\textsc{Infestation}$ has no incoming arrows from $\textsc{pfdt}(\underline{P}, \underline{G})$; whether the house has termites does not subjunctively depend on the agent’s policy. Intervening on $\textsc{pfdt}(\underline{P}, \underline{G})$ therefore leaves $P(\textsc{Infestation} = \textit{termites}) = p$ invariant:
+* Under $\mathtt{do}(\textsc{pfdt} = \pi_{\textit{pay}})$, the letter is sent iff $\textsc{Infestation} = \textit{clean}$ (probability $1-p$), in which case the agent pays $\$1,000$. When $\textsc{Infestation} = \textit{termites}$ (probability $p$), no letter is sent and the agent loses $\$1,000,000$. Thus:
+  $$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt} = \pi_{\textit{pay}})\right] = -p(\$1,000,000) - (1-p)(\$1,000).$$
+* Under $\mathtt{do}(\textsc{pfdt} = \pi_{\textit{refuse}})$, the letter is sent iff $\textsc{Infestation} = \textit{termites}$ (probability $p$), in which case the agent refuses to pay and loses only the $\$1,000,000$ from termites. When $\textsc{Infestation} = \textit{clean}$ (probability $1-p$), no letter is sent and the agent loses $\$0$. Thus:
+  $$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{pfdt} = \pi_{\textit{refuse}})\right] = -p(\$1,000,000).$$
+
+For every $p \in [0, 1)$, $\pi_{\textit{refuse}}$ strictly dominates $\pi_{\textit{pay}}$ by $(1-p)(\$1,000) > 0$. Therefore $\pi^* = \pi_{\textit{refuse}}$, and upon receiving the letter, $\mathrm{PFDT}(P, G, \textit{letter}) = \pi_{\textit{refuse}}(\textit{letter}) = \textit{refuse}$. Unlike EDT, P-FDT refuses to pay for auspicious news.
+
+---
+
+## 4. Multi-Agent Dilemmas: Where P-FDT Diverges from Action-Based FDT
+
+Both Footnote 7 and Footnote 16 state that the distinction between P-FDT (iterating over policies) and action-based FDT (Equation 4, iterating over actions) *"only matters in multi-agent dilemmas."* Because Yudkowsky and Soares do not provide an example of such a dilemma in their paper, we must construct the mathematical mechanism of this divergence ourselves. (Here we explicitly go beyond the source text’s examples to demonstrate *why* the authors’ claim in Footnotes 7 and 16 holds.)
+
+### 4.1 Why Action-Based FDT Fails Under Asymmetric Observations
+
+Recall how action-based FDT achieves cooperation in the **Psychological Twin Prisoner’s Dilemma** (Dilemma 1 of the paper). In that basic dilemma, neither twin receives a distinguishing observation ($x_1 = x_2 = \emptyset$). Consequently, both twins’ physical actions depend on the *exact same variable* $\textsc{fdt}(\underline{P}, \underline{G}, \emptyset)$. When Twin 1 intervenes on $\textsc{fdt}(\underline{P}, \underline{G}, \emptyset)$, the intervention propagates to both her own action and her twin’s action.
+
+Now suppose the two psychological twins receive **different observations** $x_1 \neq x_2$ before choosing their actions. Under action-based FDT (Equation 4):
+* Twin 1 (who observes $x_1$) intervenes on the node $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x_1})$.
+* Twin 2 (who observes $x_2$) intervenes on the node $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x_2})$.
+
+Because $\underline{x_1} \neq \underline{x_2}$, $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x_1})$ and $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x_2})$ are **two distinct nodes** in the dependency graph $G$! When Twin 1 performs the surgery $\mathtt{do}(\textsc{fdt}(\underline{P}, \underline{G}, \underline{x_1}) = a)$, that intervention alters only what the algorithm outputs on input $x_1$; it does *not* intervene on $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x_2})$. Relative to one another, two action-based FDT twins who receive different observations are severed into causal-decision-theoretic strangers.
+
+### 4.2 Worked Example: The Asymmetric Twin Prisoner’s Dilemma
+
+Let us make this precise with a concrete dilemma:
+
+> **Dilemma (The Room-Labeled Twin Prisoner’s Dilemma).** Two psychological twins, implementing the same decision algorithm with identical world-models $(P, G)$, are placed in separate rooms: one in the Red Room ($\textit{red}$) and one in the Blue Room ($\textit{blue}$), assigned by a fair coin flip ($50/50$). Each twin observes the color of her own room, $x \in \mathcal{X} = \{\textit{red}, \textit{blue}\}$, and must choose an action $a \in \mathcal{A} = \{\textit{cooperate}, \textit{defect}\}$. Cooperating costs the acting twin $\$1,000$ and delivers $\$1,000,000$ to the *other* twin in the opposite room. Each twin cares purely egoistically about her own personal payoff $\textsc{V}$.
+
+Let $\textsc{Role} \in \{\textit{red}, \textit{blue}\}$ be the agent’s own room assignment (so $\textsc{Obs} = \textsc{Role}$, with $P(\textsc{Role} = \textit{red}) = P(\textsc{Role} = \textit{blue}) = 0.5$), while her twin occupies the opposite room $\overline{\textsc{Role}} \in \{\textit{blue}, \textit{red}\}$. If the twin in the Red Room takes action $a_{\textit{red}}$ and the twin in the Blue Room takes action $a_{\textit{blue}}$, the agent’s egoistic utility $\textsc{V}$ in each state is:
+$$\textsc{V}(\textit{red}, a_{\textit{red}}, a_{\textit{blue}}) = \$1,000,000 \cdot \mathbb{I}(a_{\textit{blue}} = \textit{cooperate}) - \$1,000 \cdot \mathbb{I}(a_{\textit{red}} = \textit{cooperate}),$$
+$$\textsc{V}(\textit{blue}, a_{\textit{red}}, a_{\textit{blue}}) = \$1,000,000 \cdot \mathbb{I}(a_{\textit{red}} = \textit{cooperate}) - \$1,000 \cdot \mathbb{I}(a_{\textit{blue}} = \textit{cooperate}).$$
+
+ Wait—let us see what happens if the payoff requires **joint complementarity or threshold cooperation** across the two rooms, or if each twin knows her identity from the start! Let us test both:
+
+**Case 1 (Complementary Division of Labor / Joint Threshold):** Suppose the $\$1,000,000$ prize is awarded to each twin if and only if *both* the Red Room twin and the Blue Room twin cooperate (or, in a division-of-labor variant, if Red presses Button 1 at a cost of $\$1,000$ *and* Blue presses Button 2 at a cost of $\$1,000$). Otherwise, any twin who cooperates loses her $\$1,000$ fee and gets $\$0$.
+* **How Action-Based FDT (Equation 4) Evaluates $\textsc{Obs} = \textit{red}$:**
+  The twin in the Red Room intervenes *only* on $\textsc{fdt}(\underline{P}, \underline{G}, \textit{red}) = a_{\textit{red}}$, holding $\textsc{fdt}(\underline{P}, \underline{G}, \textit{blue})$ fixed at its prior probability $q \coloneqq P(\textsc{fdt}(\underline{P}, \underline{G}, \textit{blue}) = \textit{cooperate})$. Under $\mathtt{do}(\textsc{fdt}(\underline{P}, \underline{G}, \textit{red}) = \textit{cooperate})$, her expected payoff is:
+  $$\mathbb{E}\left[\textsc{V} \;\middle|\; \mathtt{do}(\textsc{fdt}(\underline{P}, \underline{G}, \textit{red}) = \textit{cooperate})\right] = \$1,000,000 \cdot q - 0.5(\$1,000) - 0.5(\$1,000 \cdot q).$$
+  Under $\mathtt{do}(\textsc{fdt}(\underline{P}, \underline{G}, \textit{red}) = \textit{defect})$, the joint threshold can never be met, so her expected payoff is $-0.5(\$1,000 \cdot q)$.
+  Comparing the two, $\textit{cooperate}$ beats $\textit{defect}$ if and only if $\$1,000,000 \cdot q > \$500$, i.e., $q > 0.0005$. If both twins initially have low prior confidence that the other branch cooperates ($q < 0.0005$), or if they must coordinate on one of $K$ unlabelled actions $\{c_1, \dots, c_K\}$ where no single action has prior probability above the threshold, **action-based FDT defects**! Because each node $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x})$ is intervened upon in isolation, action-based FDT is trapped in the bad prior equilibrium.
+
+**Case 2 (Non-Indexical Asymmetric Twins):** Even more starkly, suppose Alice and Bob are two psychological twins who already know prior to the game who they are: Alice’s model $P_{\text{Alice}}$ has $P_{\text{Alice}}(\textsc{Obs} = \textit{red}) = 1$ and measures only Alice’s payoff $\textsc{V}_{\text{Alice}}$, while Bob runs the same decision algorithm in the Blue Room ($\textsc{Obs}_{\text{Bob}} = \textit{blue}$). In a standard Prisoner’s Dilemma where $\textit{red}$’s cooperation costs Alice $\$1,000$ and gives $\$1,000,000$ to Bob, while $\textit{blue}$’s cooperation costs Bob $\$1,000$ and gives $\$1,000,000$ to Alice:
+* Under **action-based FDT**, Alice intervenes on $\textsc{fdt}(\underline{P}, \underline{G}, \textit{red})$. Because Bob observes $\textit{blue}$, Bob’s action depends on $\textsc{fdt}(\underline{P}, \underline{G}, \textit{blue})$, not $\textsc{fdt}(\underline{P}, \underline{G}, \textit{red})$. Thus Alice’s intervention has *zero* effect on whether Bob cooperates:
+  $$\mathbb{E}\left[\textsc{V}_{\text{Alice}} \;\middle|\; \mathtt{do}(\textsc{fdt}(\underline{P}, \underline{G}, \textit{red}) = \textit{cooperate})\right] = \$1,000,000 \cdot q - \$1,000,$$
+  $$\mathbb{E}\left[\textsc{V}_{\text{Alice}} \;\middle|\; \mathtt{do}(\textsc{fdt}(\underline{P}, \underline{G}, \textit{red}) = \textit{defect})\right] = \$1,000,000 \cdot q.$$
+  Regardless of $q$, $\textit{defect}$ strictly dominates $\textit{cooperate}$ by $\$1,000$ under action-based FDT! Both twins defect and get $\$0$.
+
+* **How P-FDT Evaluates Both Cases:**
+  In **P-FDT**, both twins share the single policy node $\textsc{pfdt}(\underline{P}, \underline{G}) = \pi \in \mathcal{A}^{\{\textit{red}, \textit{blue}\}}$. The Red Room twin’s action is $\pi(\textit{red})$ and the Blue Room twin’s action is $\pi(\textit{blue})$.
+  Evaluating the four policies $\pi = (\pi(\textit{red}), \pi(\textit{blue}))$ under the symmetric world-model $(P, G)$:
+  1. $\pi_{C,C} = (\textit{cooperate}, \textit{cooperate})$: Both twins cooperate, yielding $\$1,000,000 - \$1,000 = \$999,000$.
+  2. $\pi_{C,D} = (\textit{cooperate}, \textit{defect})$: Expected utility is $0.5(-\$1,000) + 0.5(\$1,000,000) = \$499,500$ in the additive Prisoner’s Dilemma (and $-\$500$ in the joint-threshold game).
+  3. $\pi_{D,C} = (\textit{defect}, \textit{cooperate})$: Expected utility is $0.5(\$1,000,000) + 0.5(-\$1,000) = \$499,500$ (and $-\$500$ in the joint-threshold game).
+  4. $\pi_{D,D} = (\textit{defect}, \textit{defect})$: Both twins defect, yielding $\$0$.
+
+  Regardless of any prior beliefs $q$, P-FDT’s intervention $\mathtt{do}(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi)$ simultaneously controls $\pi(\textit{red})$ and $\pi(\textit{blue})$. The joint policy $\pi^* = \pi_{C,C}$ uniquely maximizes expected utility at $\$999,000$. In Stage 2, the Red Room twin computes $\pi_{C,C}(\textit{red}) = \textit{cooperate}$ and the Blue Room twin computes $\pi_{C,C}(\textit{blue}) = \textit{cooperate}$.
+
+| Decision Theory | Node(s) Intervened Upon | Conditioning on $\textsc{Obs} = x$? | Transparent Newcomb ($\textsc{Obs} = \textit{full}$) | Room-Labeled Twin PD ($x_1 = \textit{red}, x_2 = \textit{blue}$) |
+| :--- | :--- | :--- | :--- | :--- |
+| **EDT** | None (Bayesian conditioning on $\textsc{Act} = a$) | Yes | $\textit{twobox}$ $(\$1,000)$ | $\textit{defect}$ (if independent conditional on room) |
+| **CDT** | Physical node $\textsc{Act} = a$ | Yes | $\textit{twobox}$ $(\$1,000)$ | $\textit{defect}$ $(\$0)$ |
+| **Action-Based FDT** | Observation-specific node $\textsc{fdt}(\underline{P}, \underline{G}, \underline{x}) = a$ | No | $\textit{onebox}$ $(\$1,000,000)$ | Fails when $x_1 \neq x_2$ severs nodes |
+| **P-FDT** | Global policy node $\textsc{pfdt}(\underline{P}, \underline{G}) = \pi$, then apply $\pi(x)$ | No | $\textit{onebox}$ $(\$1,000,000)$ | $\textit{cooperate}$ $(\$999,000)$ |
+
+---
+
+## 5. Open Questions in the Source Text and Operational Interpretations
+
+Because Yudkowsky and Soares compress their description of **P-FDT** into two brief footnotes, several foundational questions are left unresolved by the source text. To make P-FDT fully operational for unfamiliar cases, we must identify these ambiguities and formulate principled mathematical resolutions, clearly distinguishing the source paper’s claims from our own completions.
+
+### 5.1 What Is the Exact Domain of a Policy? ($\mathcal{X}$ vs. $\mathcal{M} \times \mathcal{X}$)
+
+**The Uncertainty in the Source Text:**
+There is a subtle tension between Footnote 7 and Footnote 16:
+* Footnote 7 defines policies as *"mappings from observations to actions"* ($\pi: \mathcal{X} \to \mathcal{A}$).
+* Footnote 16 says that the algorithm *"intervenes on the node $\mathrm{FDT}(-)$ to choose not an action but a policy which maps inputs to actions, to which the agent then applies her inputs in order to select an action."*
+
+In Equation 4 of the paper, the inputs to the $\mathrm{FDT}$ procedure are $(P, G, x)$—both the world-model $M = (P, G)$ and the observation $x$. Does a P-FDT policy take *only* the observation $x$ as its input (so the node is $\textsc{pfdt}(\underline{P}, \underline{G})$ and $\pi: \mathcal{X} \to \mathcal{A}$), or does it take the entire tuple $(P, G, x)$ as its input (so the node is $\textsc{pfdt}()$ and $\Pi: \mathcal{M} \times \mathcal{X} \to \mathcal{A}$)?
+
+Observe why this matters in the source paper’s own **smoking lesion problem** (Section 6, Figure 3). In Yudkowsky and Soares’s formalization of the smoking lesion problem, the agent receives *no* observation ($x = \emptyset$). Instead, the lesion alters the agent’s utility function ($\mathcal{U}_S$ if she has the lesion, $\mathcal{U}_R$ if she does not), which changes her probability distribution over $\textsc{V}$ from $P_S^F$ to $P_R^F$. Thus, in Figure 3 of the paper, the two branches are represented by $\textsc{fdt}(\underline{P_S^F}, \underline{G^F})$ and $\textsc{fdt}(\underline{P_R^F}, \underline{G^F})$.
+
+**Operational Interpretation and Proposal:**
+If we want P-FDT to unify cross-observation dependencies and cross-model dependencies without forcing an agent with preference $\mathcal{U}_S$ to optimize for a counterfactual utility function $\mathcal{U}_R$ that she does not endorse, we should adopt the following operational rule:
+1. **Separate Epistemic Inputs from Evaluative Preferences:** Factor the world-model into an epistemic belief state $M = (P, G)$ over world-states $\mathcal{O}$ and a utility function $\mathcal{U}$. Whenever a sensory cue, inclination (such as a craving to smoke in the lesion problem, Eells 1984), or indexical role varies across branches of a dilemma, encode that variation inside the observation/input space $\mathcal{X}$ relative to a common prior $(P, G)$.
+2. **Keep $(P, G)$ as Fixed Indexical Parameters of the Node $\textsc{pfdt}(\underline{P}, \underline{G})$:** Define the policy space as $\Pi = \mathcal{A}^{\mathcal{X}}$. This matches Footnote 7’s definition ($\pi: \mathcal{X} \to \mathcal{A}$) while satisfying Footnote 16: the ex-ante structure of the dilemma is captured by $(P, G)$, and all runtime contingencies are passed as arguments $x \in \mathcal{X}$ to the policy $\pi(x)$.
+
+### 5.2 Indexical Priors in Multi-Agent Dilemmas
+
+**The Uncertainty in the Source Text:**
+In Section 4.2, we noted that if two agents in an asymmetric game have distinct observations $x_1 = \textit{red}$ and $x_2 = \textit{blue}$, P-FDT achieves mutual cooperation when evaluated under a prior $P$ that places positive probability on both indexical roles ($\textsc{Role} \in \{\textit{red}, \textit{blue}\}$). What if an agent is built *after* already being placed in the Red Room, so that from the very beginning of her existence she knows with certainty that she is the Red Player? If $P(\textsc{Role} = \textit{red}) = 1$ in her prior $P$, then even if she chooses a full policy $\pi: \{\textit{red}, \textit{blue}\} \to \mathcal{A}$, changing $\pi(\textit{blue})$ only incurs a cost for the Blue Player and yields a benefit to the Red Player! If the Red Player maximizes *only* the Red Player’s utility, she would choose the asymmetric policy $\pi(\textit{red}) = \textit{defect}, \pi(\textit{blue}) = \textit{cooperate}$—while the Blue Player, maximizing only the Blue Player’s utility, would choose $\pi(\textit{red}) = \textit{cooperate}, \pi(\textit{blue}) = \textit{defect}$, contradicting the assumption that both players implement the same function $\textsc{pfdt}(\underline{P}, \underline{G})$!
+
+**Operational Interpretation and Proposal:**
+This reveals a fundamental mathematical constraint required to apply P-FDT to multi-agent problems: **two agents share the same P-FDT node $\textsc{pfdt}(\underline{P}, \underline{G})$ if and only if they evaluate policies from the same prior $(P, G)$**. To apply P-FDT in asymmetric multi-agent games where players occupy distinct roles $x_1, \dots, x_n$:
+* The prior $P$ used in $\textsc{pfdt}(\underline{P}, \underline{G})$ must be a *pre-indexical* (or "veil-of-ignorance") prior in which the agent’s role $\textsc{Obs} \in \{x_1, \dots, x_n\}$ is an unconditioned random variable (e.g., uniform over the $n$ copies), and the agent’s personal utility $\textsc{V} = \mathcal{U}(\textsc{Outcome}, \textsc{Obs})$ is evaluated in expectation across those roles.
+* Once each copy $i$ observes her actual indexical role $x_i$ in Stage 2, she executes $\pi^*_{(P, G)}(x_i)$. Because Stage 1 is identical for all copies, every copy computes the exact same optimal policy $\pi^*_{(P, G)}$, preserving subjunctive dependence across the entire coalition.
+
+### 5.3 Tie-Breaking on Zero-Probability Observations and Computational Complexity
+
+**The Uncertainty in the Source Text:**
+What if a policy’s action at one observation $x_1$ causes another observation $x_2$ to have probability *zero* under $P(\cdot \mid \mathtt{do}(\textsc{pfdt} = \pi))$?
+For instance, return to the Transparent Newcomb problem (Section 3.2), and suppose the predictor is **infallible** ($P(\textsc{Accurate} = \textit{accurate}) = 1$). Then:
+* For any policy with $\pi(\textit{full}) = \textit{onebox}$, Box B is *certain* to be full ($P(\textsc{Obs} = \textit{empty} \mid \mathtt{do}(\textsc{pfdt} = \pi)) = 0$).
+* Consequently, $\pi_{1,1} = (\textit{onebox}, \textit{onebox})$ and $\pi_{1,2} = (\textit{onebox}, \textit{twobox})$ yield the exact same expected utility of $\$1,000,000$!
+More importantly, what if a policy $\pi$ sets $P(\textsc{Obs} = x \mid \mathtt{do}(\textsc{pfdt} = \pi)) = 0$, and yet the agent *actually observes* $x$ (say, in an infallible Mechanical Blackmail problem where the blackmailer only sends a letter if she predicts $\pi(\textit{letter}) = \textit{pay}$, so under $\pi_{\textit{refuse}}$ the event $\textsc{Obs} = \textit{letter}$ has probability zero)?
+
+**Operational Interpretation and Proposal:**
+1. **Well-Definedness on Measure-Zero Observations:** Unlike EDT (Equation 2) and CDT (Equation 3), which divide by $P(\textsc{Obs} = x)$ via Bayesian conditioning and are therefore mathematically undefined when $P(\textsc{Obs} = x) = 0$, **P-FDT remains completely well-defined on probability-zero observations**! Even if $P(\textsc{Obs} = \textit{letter} \mid \mathtt{do}(\textsc{pfdt} = \pi_{\textit{refuse}})) = 0$, the unconditional expectation $\mathbb{E}[\textsc{V} \mid \mathtt{do}(\textsc{pfdt} = \pi_{\textit{refuse}})]$ is well-defined, and Stage 2 simply evaluates the function $\pi_{\textit{refuse}}(\textit{letter}) = \textit{refuse}$.
+2. **Trembling-Hand / $\varepsilon$-Perturbation for Unreached Branches:** When an infallible predictor makes two policies $\pi_{1,1}$ and $\pi_{1,2}$ tie on expected utility because the $\textit{empty}$ branch has probability zero under both, we can break ties cleanly by taking the limit as predictor error $\varepsilon \to 0^+$ (analogous to Selten’s trembling-hand perfection). As shown in Section 3.2, for every $\varepsilon > 0$, $\pi_{1,2} = (\textit{onebox}, \textit{twobox})$ beats $\pi_{1,1}$ by $\varepsilon \cdot \$1,000 > 0$, uniquely selecting $\pi_{1,2}$ in the $\varepsilon \to 0^+$ limit.
+3. **Tractable Policy Evaluation:** Finally, whereas action-based FDT maximizes over $|\mathcal{A}|$ actions, Stage 1 of P-FDT maximizes over $|\mathcal{A}|^{|\mathcal{X}|}$ policies. In practice, an agent need not enumerate all $|\mathcal{A}|^{|\mathcal{X}|}$ mappings: she only needs to jointly optimize over the Equivalence Classes of observations $\mathcal{X}_{\text{rel}} \subseteq \mathcal{X}$ that are subjunctively coupled through predictors or other agents, while solving independent observation branches pointwise.
+
+---
+
+## 6. Conclusion
+
+**Policy functional decision theory (P-FDT)** brings the philosophical vision of functional decision theory to its natural mathematical completion. Where CDT intervenes on physical actions and updates on observations—thereby severing logical links to predictors, twins, and past commitments—and where EDT conditions on actions—thereby succumbing to spurious statistical correlations and blackmail—P-FDT elevates the unit of counterfactual intervention to the **policy** $\pi: \mathcal{X} \to \mathcal{A}$.
+
+By first selecting the optimal policy $\pi^*_{(P, G)}$ via a global subjunctive intervention $\mathtt{do}(\textsc{pfdt}(\underline{P}, \underline{G}) = \pi)$ on the unconditioned world-model, and then applying $\pi^*_{(P, G)}(x)$ to the realized observation $x$, P-FDT achieves three things simultaneously:
+1. It preserves every triumph of standard FDT in single-agent dilemmas—one-boxing in Newcomb’s problem and the transparent Newcomb problem, smoking in the smoking lesion problem, and resisting both XOR and mechanical blackmail.
+2. It eliminates arbitrary prior assumptions about how the agent would act in counterfactual observation branches.
+3. It enables seamless coordination across multiple agents or copies who receive distinct observations, fulfilling the promise noted in Footnotes 7 and 16 of Yudkowsky and Soares (2017).
+
+While deep open problems remain—most notably developing a general formal theory of counterpossible inference to replace ad-hoc graphical specification of $G$—P-FDT provides a mathematically rigorous, unified decision procedure for rational agency in a world populated by predictors and peers.
+
+---
+
+## References
+
+* Ahmed, Arif. 2014. *Evidence, Decision and Causality*. Cambridge University Press.
+* Dai, Wei. 2009. "Towards a New Decision Theory." *LessWrong*.
+* Drescher, Gary L. 2006. *Good and Real: Demystifying Paradoxes from Physics to Ethics*. MIT Press.
+* Eells, Ellery. 1984. "Metatickles and the Dynamics of Deliberation." *Theory and Decision* 17 (1): 71–95.
+* Gibbard, Allan, and William L. Harper. 1978. "Counterfactuals and Two Kinds of Expected Utility." In *Foundations and Applications of Decision Theory*, vol. 1, edited by C. A. Hooker, J. J. Leach, and E. F. McClennen. D. Reidel.
+* Joyce, James M. 1999. *The Foundations of Causal Decision Theory*. Cambridge University Press.
+* Kleene, Stephen Cole. 1938. "On Notation for Ordinal Numbers." *Journal of Symbolic Logic* 3 (4): 150–155.
+* Lewis, David. 1979. "Prisoners' Dilemma is a Newcomb Problem." *Philosophy & Public Affairs* 8 (3): 235–240.
+* Lewis, David. 1981. "Causal Decision Theory." *Australasian Journal of Philosophy* 59 (1): 5–30.
+* Nozick, Robert. 1969. "Newcomb's Problem and Two Principles of Choice." In *Essays in Honor of Carl G. Hempel*, edited by Nicholas Rescher, 114–146. D. Reidel.
+* Parfit, Derek. 1986. *Reasons and Persons*. Oxford University Press.
+* Pearl, Judea. 1996. "Causation, Action, and Counterfactuals." In *6th Conference on Theoretical Aspects of Rationality and Knowledge (TARK-'96)*, 51–73.
+* Pearl, Judea. 2000. *Causality: Models, Reasoning, and Inference*. Cambridge University Press.
+* Skyrms, Brian. 1980. *Causal Necessity: A Pragmatic Investigation of the Necessity of Laws*. Yale University Press.
+* Soares, Nate, and Benja Fallenstein. 2015. "Toward Idealized Decision Theory." *arXiv:1507.01986*.
+* Yudkowsky, Eliezer. 2010. *Timeless Decision Theory*. The Singularity Institute.
+* Yudkowsky, Eliezer, and Nate Soares. 2017. "Functional Decision Theory: A New Theory of Instrumental Rationality." *arXiv:1710.05060v2*.

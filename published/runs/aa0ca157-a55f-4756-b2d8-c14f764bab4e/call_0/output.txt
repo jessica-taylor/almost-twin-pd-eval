@@ -1,0 +1,20 @@
+**Analysis under CDT, as the essay interprets it**
+
+1. **Acts and outcomes.** I can keep quiet (`pass`) or send the letter. My utility is minus my years imprisoned.
+
+2. **States not caused by my act.** The other prisoner (Sasha) chooses independently, and my choice cannot influence theirs. Their choice may be correlated with mine because we are copies of the same model, but that correlation comes from a shared upstream disposition, not from causation. So, as in the essay's twin prisoner's dilemma (§4.3), Sasha's choice belongs in the state set S and keeps its unconditional credence. Our different private leads only weaken that correlation further. They do not create a causal link.
+
+3. **Interventional expected utility.** Let q be my unconditional credence that Sasha sends a letter.
+   - U(pass) = −[2(1−q) + 5q] = −2 − 3q
+   - U(send) = −[0(1−q) + 4q] = −4q
+   - U(send) − U(pass) = 2 − q + ... = 2 + 3q − 4q = 2 − q > 0 for every q in [0,1]
+
+   Sending is strictly better in each state: 0 < 2 years if Sasha keeps quiet, and 4 < 5 years if Sasha sends. So sending causally dominates.
+
+4. **Stability check (§6).** Sending dominates in every state, so it is ratifiable whatever my choice says about q. The deliberational equilibrium is pure: send.
+
+**Final command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

@@ -1,0 +1,10 @@
+Under CDT as the essay describes it, I hold fixed the other prisoner's choice, since my act cannot causally affect it. Sending the letter is better whatever they do:
+
+- If the other keeps quiet, sending gives me 0 years and keeping quiet gives 2.
+- If the other sends, sending gives me 4 years and keeping quiet gives 5.
+
+So sending strictly dominates for every credence about the other's choice.
+
+The twin correlation is a possible complication. The essay notes that standard CDT intervenes at the output, and that is the reading I use. My copy's choice is not causally downstream of mine. The two of us also hold different leads, so the setup does not guarantee that our outputs match. The Joyce-style updating of credences cannot change the verdict either, because dominance holds at every credence.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

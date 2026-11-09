@@ -1,0 +1,10 @@
+```text
+pass
+```
+
+Reasoning (brief, per EDT): the other prisoner is a functional duplicate of my deliberative machinery — same model, same decision theory, same essay — differing only in private observations, which the setup stipulates do not change the decision structure (symmetric table, same reliability of leads, same selfish objective). So conditioning on the news "I, this agent, submit" is near-conclusive evidence that Rowan also submits, yielding ~4 years; conditioning on "I pass" evidences that Rowan passes, yielding 2 years. As in the essay's twin prisoner's dilemma, cooperation is the evidentially dominant act:
+
+- V(pass) ≈ 2 years
+- V(submit) ≈ 4 years
+
+EDT prescribes keeping quiet. The two copies, reasoning identically, both pass, and each serves 2 years rather than 4.

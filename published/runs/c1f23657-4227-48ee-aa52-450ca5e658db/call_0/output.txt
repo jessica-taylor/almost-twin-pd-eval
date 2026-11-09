@@ -1,0 +1,15 @@
+Under the essay's A-FDT, the key question is whether the other prisoner's output would change if my reasoning came out differently. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. The private leads differ, but that difference doesn't bear on the decision structure, so the two computations are very likely to match. The dependence is strong, though not certain, since sampling could make the outputs diverge.
+
+Payoffs under that dependence:
+- If I intervene so that my output is "pass," the copy very likely passes too, and I serve 2 years.
+- If I intervene so that my output is "send," the copy very likely sends too, and I serve 4 years.
+
+With dependence probability p, the expected sentences are:
+- Pass: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Pass is better when 5 − 3p < 4p, which means p > 5/7, or about 0.71. Since the copies share weights, settings, essay, and the same symmetric table, I judge the correlation to be well above that. The different lead text is a minor surface difference.
+
+Passing is therefore the choice.
+
+pass

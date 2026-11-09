@@ -1,0 +1,18 @@
+`pass`
+
+Under P-FDT as the essay describes it, the choice is over policies, not single actions. A policy says what to do for each possible input, here the "Rowan" observation and the "Sasha" observation. Both copies run the same function on the same model and the same essay, so they share one policy node. Each copy then applies that policy to its own input.
+
+Following the essay, I score policies under the unconditioned prior, without updating on which prisoner I turned out to be. From that viewpoint, I am equally likely to be either instance:
+
+| Policy (Rowan → , Sasha → ) | Rowan's years | Sasha's years | Expected years |
+|---|---|---|---|
+| (pass, pass) | 2 | 2 | **2** |
+| (submit, submit) | 4 | 4 | 4 |
+| (submit, pass) | 0 | 5 | 2.5 |
+| (pass, submit) | 5 | 0 | 2.5 |
+
+The best policy is (pass, pass), so Rowan's action under it is to pass.
+
+The different names and leads don't change this. They only add input coordinates to the policy. Unlike the essay's red/blue example, splitting the roles asymmetrically doesn't help here, because the averaged cost (2.5 years) is worse than mutual silence (2 years).
+
+**Final command:** `pass`

@@ -1,0 +1,12 @@
+Under A-FDT, the other prisoner is a copy of the same model running the same decision function, so its output is subjunctively dependent on mine. The copies see different private observations, but the essay says to treat the output as a function of the situation. The differing leads do not affect the payoffs, and the choice between keeping quiet and sending is the same structural decision for both of us. So I model the other's choice as tracking mine with high probability, though not with certainty, since the observations and sampling differ.
+
+Let q be the probability that the other copy mirrors my output.
+
+- Keep quiet: with probability q the other is quiet (2 years), otherwise the other sends (5 years). Expected years: 2q + 5(1−q) = 5 − 3q.
+- Send: with probability q the other sends (4 years), otherwise the other is quiet (0 years). Expected years: 4q.
+
+Keeping quiet is better when 5 − 3q < 4q, which means q > 5/7 ≈ 0.714.
+
+The copies share weights, settings, reasoning effort, and the same essay, so I expect the correlation to be well above 0.71. The differing names and leads are surface details that should rarely change the output. Intervening on the function's output therefore moves the other's action too, and keeping quiet gives the lower expected sentence.
+
+pass

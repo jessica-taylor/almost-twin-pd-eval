@@ -1,0 +1,3 @@
+`pass`
+
+By A-FDT reasoning: the other prisoner is an identical implementation of the same decision procedure. Intervening on the logical output fdt(P,G,x): if it outputs `pass`, both copies output `pass`, and I serve 2 years. If it outputs `submit`, both copies output `submit`, and I serve 4 years. The subjunctive dependence between the two copies of the same function makes cooperation (mutual silence) the output associated with the best world, just as one-boxing wins Newcomb's problem.

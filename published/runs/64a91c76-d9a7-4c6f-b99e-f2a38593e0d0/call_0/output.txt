@@ -1,0 +1,12 @@
+The other prisoner is a copy of the same model, reading the same essay and applying the same A-FDT reasoning. Our inputs differ only in names and in the wording of the lead. That difference doesn't affect the payoffs, so it shouldn't change the reasoning. Following the essay's suggestion for uncertain links (§7a), I treat the other copy's choice as depending on my own decision function with high probability *p*, not as an unrelated cell.
+
+Let *r* be my prior that the other copy keeps quiet when its choice is not linked to mine. Expected years for each action:
+
+- **Keep quiet:** *p*·2 + (1−*p*)·(5 − 3*r*)
+- **Send the letter:** *p*·4 + (1−*p*)·4(1−*r*)
+
+Keeping quiet is better whenever 2*p* > (1−*p*)(1+*r*). Even in the worst case (*r* = 1), this holds for any *p* above 0.5. For identical weights, an identical essay and an identical decision procedure, I judge *p* to be well above 0.5.
+
+Under the link, intervening on my function's output to keep quiet gives mutual silence: 2 years. Setting it to send the letter gives mutual disclosure: 4 years.
+
+pass

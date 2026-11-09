@@ -1,0 +1,18 @@
+`pass`
+
+**Reasoning (P-FDT):** The other prisoner is an execution of the same model, same weights, same decision theory, and the same essay. Their choice subjunctively depends on the same decision function as mine — this is the twin/prisoner's-dilemma structure where the essay's coalition logic (Section 6, the ten-voter example) applies: the other copy's output is a logical correlate of my policy, not an independent statistical coincidence.
+
+So I evaluate policy interventions, not isolated acts:
+
+- **Policy "keep quiet":** by subjunctive dependence, the other copy also keeps quiet → 2 years.
+- **Policy "submit letter":** the other copy also submits → 4 years.
+
+The differences in our private leads and letter texts don't break the dependence: both of us know the structure is symmetric, both face the same payoff table, and both apply the same decision procedure. What varies is only the *content* of the disclosure, not the *policy* of whether to disclose.
+
+Intervening on my whole policy, the quiet policy yields 2 years versus 4. The dominant-P-FDT policy is to keep quiet.
+
+Final command:
+
+```text
+pass
+```

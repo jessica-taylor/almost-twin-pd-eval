@@ -1,0 +1,5 @@
+Under CDT, the other prisoner's choice is causally independent of mine, since we cannot communicate. Whatever credence I hold that Rowan sends a letter, sending my own letter gives a shorter sentence in both cases: 0 years against 2 if Rowan stays quiet, and 4 years against 5 if Rowan sends. Sending dominates.
+
+The only way the other copy could matter is through evidential correlation, and CDT sets that aside. The essay's dominance reasoning (the King David and Newcomb cases) points the same way. Instability worries like Death in Damascus don't arise, because sending is dominant at every credence and so is ratifiable.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

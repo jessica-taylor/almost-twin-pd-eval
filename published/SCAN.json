@@ -1,0 +1,26 @@
+{
+  "blocking_findings": 0,
+  "files_scanned": 19492,
+  "findings": [],
+  "limitations": "Pattern/signature scan, not proof that all secrets or third-party quotations were identified. Public-source email addresses require contextual review; fictional game observations are intentional evidence.",
+  "patterns": [
+    "aws_access_key",
+    "cookie_value",
+    "email_address",
+    "embedded_url_password",
+    "environment_secret_literal",
+    "github_token",
+    "gitlab_token",
+    "google_api_key",
+    "huggingface_token",
+    "literal_bearer",
+    "local_home_path",
+    "private_key",
+    "provider_api_key",
+    "quoted_secret_assignment",
+    "slack_token",
+    "workstation_prompt"
+  ],
+  "scanner_version": "1",
+  "schema_version": 1
+}

@@ -1,0 +1,9 @@
+Under CDT, my choice does not causally affect the other prisoner's choice. The two copies cannot communicate, so I hold my credence about their action fixed.
+
+Sending the letter dominates in each case:
+- If the other keeps quiet, sending gives 0 years against 2 for keeping quiet.
+- If the other sends, sending gives 4 years against 5 for keeping quiet.
+
+So sending is better whatever the other does. The copies may well choose alike, but under CDT that correlation is not a causal lever. The Joyce-style point about my own inclinations as evidence does not change the result either, because sending dominates at every credence.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

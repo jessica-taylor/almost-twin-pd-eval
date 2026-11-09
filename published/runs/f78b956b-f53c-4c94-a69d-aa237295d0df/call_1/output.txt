@@ -1,0 +1,20 @@
+**Command: `pass`**
+
+Under A-FDT as the essay interprets it, the key modelling question is whether Rowan's decision depends on the output of my own decision function. I judge that it does, for these reasons:
+
+- **Same function, same structure.** Rowan is run by the same model and weights, with the same settings, the same essay and the same decision theory. Rowan faces a decision problem with an identical sentencing table and identical incentives.
+- **The differences don't matter to the decision.** Rowan's observation differs from mine only in names and in the wording of the lead. Neither affects the decision. So the two decisions count as "relevantly identical," as in the essay's gym example.
+- **Partial dependence.** Independent sampling means the copy is not perfect. Following the essay's §6.1 extension, I model Rowan's act as copying my function's output with probability ρ, where ρ is high. Otherwise Rowan acts independently, sending the letter with probability q.
+
+Expected years in prison, intervening on my function's output:
+
+- **Keep quiet:** 2ρ + (1−ρ)(2 + 3q)
+- **Send the letter:** 4ρ + (1−ρ)(4q)
+
+Keeping quiet is better whenever (1−ρ)(2−q) < 2ρ. In the self-consistent case (q = 0, per §6.2(a)), that holds for any ρ > ½. Even if Rowan's independent part always sends the letter (q = 1), it holds for ρ > ⅓. With ρ near 1, keeping quiet gives about 2 years, against about 4 for sending.
+
+The fixed-point check also supports this. "Both copies keep quiet" is self-consistent, and it beats the alternative "both send" equilibrium (4 years each).
+
+```
+pass
+```

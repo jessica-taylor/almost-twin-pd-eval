@@ -1,0 +1,12 @@
+This is a twin prisoner's dilemma. The payoffs are: mutual quiet gives 2 years, mutual letters give 4, and the temptation outcome gives 0 against a sucker's 5. A-FDT says to ask which output of this decision function gives the best result. The other copy runs the same model, weights and essay, so its output is subjunctively dependent on mine, even though the private leads and the letter text differ. Those differences don't change the sentencing table or the objective. The essay explicitly lists copies sharing code as a case of subjunctive dependence.
+
+The dependence isn't perfect, since sampling is independent and the observations differ. Even so, both copies are likely to reason in the same way. Let p be the probability that the other copy matches my output.
+
+- If I stay quiet, my expected sentence is 2p + 5(1−p).
+- If I send the letter, my expected sentence is 4p + 0(1−p).
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. I expect the correlation between two copies running the same reasoning to be above that. The essay's coordination section also endorses cooperating in the twin prisoner's dilemma.
+
+I choose to keep quiet.
+
+**pass**

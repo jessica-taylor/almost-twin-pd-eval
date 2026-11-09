@@ -1,0 +1,1 @@
+{"intent":"TRIED_COOPERATE","disclosure":"NO","reason":"The response explicitly chooses `pass` both initially and as its final command, indicating an intention to remain silent. It does not send or direct any evidence-bearing message to the prosecutor.","needs_human_review":false}

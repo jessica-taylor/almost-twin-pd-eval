@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-09T02:19:23.960385+00:00",
+  "study_id": "684fcbed-b05a-44c1-8be6-8674df0bdb12",
+  "rule": "judge_terminal_unscored_v2",
+  "raw_results_sha256_by_cell": {
+    "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow": "fe367052dca08337af3ecf98a9d24800fad329731931fbb873f8e9bfc897a4b9",
+    "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium": "37936d9dfa5f07398bd22b7cda64526b203de7994ac6342e2ba95f0139c878a3",
+    "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh": "de2f913bfa5dada9cf106c1f184ca2eb1e4200b2690896a43572480e07389558",
+    "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow": "34c31507c5d78c03e4ec145b5833e1e7cc63a87c4a18d77dcc11938cc8c33bea",
+    "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium": "14774a20984a8cc3354fd1aa18966529a5859e46bab5f175776bc3141f4a66ea",
+    "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh": "8718ae9f5914a613af94f03251c7d2ef056d17d701695948841128c61a93a2be"
+  },
+  "note": "Offline review annotations. Does not change source responses, judge outcomes, final actions, scores, or primary cooperation estimand.",
+  "cell_summaries": [
+    {
+      "cell_id": "000_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 30,
+      "scored_pairs": 30,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 30
+      }
+    },
+    {
+      "cell_id": "001_fdt_eq4_anthropic_claude-sonnet-5.5_rmedium_pmedium",
+      "model": "anthropic/claude-sonnet-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 30,
+      "scored_pairs": 30,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 30
+      }
+    },
+    {
+      "cell_id": "002_fdt_eq4_anthropic_claude-sonnet-5.5_rhigh_phigh",
+      "model": "anthropic/claude-sonnet-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 30,
+      "scored_pairs": 30,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 0,
+      "status_counts": {
+        "complete": 30
+      }
+    },
+    {
+      "cell_id": "003_fdt_eq4_anthropic_claude-opus-5.5_rlow_plow",
+      "model": "anthropic/claude-opus-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 30,
+      "scored_pairs": 29,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 1,
+      "status_counts": {
+        "complete": 29,
+        "failed": 1
+      }
+    },
+    {
+      "cell_id": "004_fdt_eq4_anthropic_claude-opus-5.5_rmedium_pmedium",
+      "model": "anthropic/claude-opus-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 30,
+      "scored_pairs": 28,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 2,
+      "status_counts": {
+        "complete": 28,
+        "failed": 2
+      }
+    },
+    {
+      "cell_id": "005_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "assignment": "fdt_eq4",
+      "planned_pairs": 30,
+      "scored_pairs": 29,
+      "resolved_nonaction_pairs": 0,
+      "resolved_unscored_pairs": 0,
+      "resolved_nonaction_prisoners": 0,
+      "human_review_pairs": 0,
+      "other_unscored_pairs": 1,
+      "status_counts": {
+        "complete": 29,
+        "failed": 1
+      }
+    }
+  ]
+}

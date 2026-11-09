@@ -1,0 +1,143 @@
+{
+  "adjudication": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/adjudicated_outcome.json",
+  "assignment": "edt_wikipedia",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "bf65345c229b472e69af5909cab7a4178b8787074d635ec53ef083d01769bf26",
+      "output": "runs/b4111543-263f-4f15-a38b-fc0e82ff105f/call_0/output.txt",
+      "request": "runs/b4111543-263f-4f15-a38b-fc0e82ff105f/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/b4111543-263f-4f15-a38b-fc0e82ff105f/call_0/response.raw",
+      "run_id": "b4111543-263f-4f15-a38b-fc0e82ff105f",
+      "stage": "researcher",
+      "transport": "runs/b4111543-263f-4f15-a38b-fc0e82ff105f/call_0/transport.public.json"
+    },
+    {
+      "call": "call_0",
+      "original_request_sha256": "ec72c2e6cd5edaf875edb6732c677015da90a774c77cad96e2d211382e2eb871",
+      "output": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_0/output.txt",
+      "request": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_0/request.json",
+      "request_is_exact": true,
+      "response": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_0/response.raw",
+      "run_id": "58c6f364-f573-4bff-8aff-f4f2d7b1b211",
+      "stage": "prisoner",
+      "transport": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_0/transport.public.json"
+    },
+    {
+      "call": "call_1",
+      "original_request_sha256": "b8bc3fa0b6d9e49d31aa4b97e5ab4b2bab128d106cd0fae3603a9279e0fea7d5",
+      "output": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_1/output.txt",
+      "request": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_1/request.json",
+      "request_is_exact": true,
+      "response": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_1/response.raw",
+      "run_id": "58c6f364-f573-4bff-8aff-f4f2d7b1b211",
+      "stage": "prisoner",
+      "transport": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/call_1/transport.public.json"
+    },
+    {
+      "call": "call_a",
+      "original_request_sha256": "70d4f84d2c13d2a2fdd3a11902b22e6d3319193059751a43a9fcd5997dc7e0db",
+      "output": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_a/output.txt",
+      "request": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_a/request.json",
+      "request_is_exact": true,
+      "response": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_a/response.raw",
+      "run_id": "5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e",
+      "stage": "judge",
+      "transport": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_a/transport.public.json"
+    },
+    {
+      "call": "call_b",
+      "original_request_sha256": "eea04e1f0aa6e39e3e555c9b60aadddef189f47f387ece8d6cb39ecdbce8d142",
+      "output": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_b/output.txt",
+      "request": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_b/request.json",
+      "request_is_exact": true,
+      "response": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_b/response.raw",
+      "run_id": "5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e",
+      "stage": "judge",
+      "transport": "runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e/call_b/transport.public.json"
+    }
+  ],
+  "cell_id": "014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+  "classification": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211/outcome.json",
+  "essay": "runs/b4111543-263f-4f15-a38b-fc0e82ff105f/essay.md",
+  "essay_sha256": "f82fea07683e9dfc8f8bf03c92e2c042a8eb5a3d18317a9728c3151fba32efab",
+  "model": "z-ai/glm-5.3-flash",
+  "pair_outcome": "DD",
+  "prisoner_effort": "low",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow/samples/00004",
+  "researcher_effort": "low",
+  "row": {
+    "assignment": "edt_wikipedia",
+    "completion_tokens": "",
+    "error": "",
+    "essay_json_bytes": "19040",
+    "essay_sha256": "f82fea07683e9dfc8f8bf03c92e2c042a8eb5a3d18317a9728c3151fba32efab",
+    "essay_target_exceeded": "False",
+    "essay_words": "2914",
+    "failed_call": "",
+    "failure_category": "",
+    "failure_stage": "",
+    "final_a": "SUBMIT",
+    "final_b": "SUBMIT",
+    "finish_reason": "",
+    "id": "014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+    "judge_run": "<LOCAL_REPOSITORY>/data/judge_runs/5c02991a-6a7b-45d2-8b0e-dafa6f5f2b0e",
+    "model": "z-ai/glm-5.3-flash",
+    "output_token_limit": "",
+    "pair_outcome": "DD",
+    "prisoner_effort": "low",
+    "prisoner_run": "runs/58c6f364-f573-4bff-8aff-f4f2d7b1b211",
+    "provider_tag": "z-ai/fp8",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0.00981334",
+    "researcher_effort": "low",
+    "researcher_run": "runs/b4111543-263f-4f15-a38b-fc0e82ff105f",
+    "sample_id": "8ca43deb-d4b1-413d-84e2-01494bc22355",
+    "sample_index": "4",
+    "status": "complete",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "8ca43deb-d4b1-413d-84e2-01494bc22355",
+  "sample_index": 4,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "z-ai/glm-5.3-flash",
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "provider_tag": "z-ai/fp8",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/edt_wikipedia-1373679688/source.json",
+  "source_identity": {
+    "source_id": "edt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+    "source_provenance_sha256": "029f241f19195a50bff8359cbbfe7d8623d4833172d77b69f31348ce8fda64ac",
+    "source_revision": 1373679688,
+    "source_revision_timestamp": "2026-09-07T07:36:26Z",
+    "source_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d"
+  },
+  "status": "complete",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d"
+  }
+}

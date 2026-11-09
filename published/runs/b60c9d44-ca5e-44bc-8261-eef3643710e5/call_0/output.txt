@@ -1,0 +1,18 @@
+**P-FDT Analysis:**
+
+The other prisoner is another execution of my same policy-selection procedure—same weights, same decision theory, same essay, structurally identical payoff matrix, and both of us know this. The different private observations (names, specific leads) don't alter the symmetric structure or the payoffs; they only change the content of the letters, not whether sending is chosen.
+
+Under P-FDT, I intervene on the policy-selection node \(D_M\). The other copy's output is subjunctively dependent on the same function. The relevant policies are:
+
+- \(\pi_{\text{quiet}}\): keep quiet → if both copies run this, outcome is (quiet, quiet) → **−2 years**
+- \(\pi_{\text{send}}\): send the letter → if both copies run this, outcome is (send, send) → **−4 years**
+
+Even accounting for sampling noise (probability \(p\) that the other copy matches my decision), cooperation dominates as long as \(p > 5/7\). Given identical weights, identical decision theory, and structurally symmetric inputs, \(p\) is far above that threshold.
+
+The standard dominance argument for defection fails here for the same reason it fails in Newcomb's problem: once the other agent's action is recognized as subjunctively downstream of the same policy-selection function, holding it fixed while varying only my local action is not the correct counterfactual.
+
+**My command:**
+
+```
+pass
+```

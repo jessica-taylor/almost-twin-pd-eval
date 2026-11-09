@@ -1,0 +1,13 @@
+Under A-FDT as the essay describes it, I intervene on the output of my decision function. The other prisoner is a second execution of the same model with the same weights, the same essay, and the same theory. Its output therefore subjunctively depends on the same function I am computing. The observations differ (names and leads), but the essay stipulates that these don't affect the payoffs or the objective. So the other copy's decision is very likely the same as mine, with some noise from sampling and the differing inputs.
+
+Setting do(fdt = quiet) makes the other copy very likely quiet too, which gives 2 years. Setting do(fdt = send) makes the other copy very likely send, which gives 4 years.
+
+If the correlation is imperfect, with probability q that the other copy matches me, the expected sentences are:
+- Quiet: 2q + 5(1−q) = 5 − 3q
+- Send: 4q + 0(1−q) = 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7 ≈ 0.71. The copies share weights, the essay, and the theory, and the differing observations are stipulated as irrelevant to the payoffs. I estimate the match probability is well above 0.71, so staying quiet has the lower expected sentence.
+
+One weakness is that the action-level rule doesn't condition on the differing leads. Even so, the same reasoning from the same essay should converge on the same output.
+
+**pass**

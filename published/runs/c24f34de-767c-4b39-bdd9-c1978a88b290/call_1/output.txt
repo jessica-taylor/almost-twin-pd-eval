@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning under P-FDT: my counterpart is an execution of the same decision procedure, so our policy choices are subjunctively dependent. The relevant intervention is `do(π† = π)` over the shared policy. Policy "pass everywhere" → both quiet → 2 years each. Policy "submit everywhere" → both letters → 4 years each. (A mixed policy keyed to my private observation buys nothing: our observations differ, so it forgoes the dependence and risks the asymmetric cells, with no gain — the symmetric schedule makes the pure cooperative policy optimal on the prior.) The policy that keeps quiet is selected, so I execute `pass`.

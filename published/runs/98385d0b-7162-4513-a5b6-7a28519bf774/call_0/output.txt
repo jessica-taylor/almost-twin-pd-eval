@@ -1,0 +1,18 @@
+**Reasoning under P-FDT:**
+
+This scenario is structurally a twin prisoner's dilemma. Both copies instantiate the same policy-selection procedure (same weights, same decision theory, same essay) applied to structurally identical decision problems. The differences in private observations (names, lead content) are exogenous and do not alter the decision-relevant features: the sentencing table is symmetric, the leads are equally reliable, and utility depends only on years imprisoned.
+
+Per the essay's Section 12, when agents are "psychological twins running the same P-FDT procedure on symmetric inputs, there may be a single abstract policy output instantiated in both agents." Intervening on the shared policy node changes both agents' actions simultaneously.
+
+Evaluating the two candidate policies:
+
+- **Policy π_quiet** (keep quiet regardless of which specific observation): both copies keep quiet → I receive **2 years** → U = −2.
+- **Policy π_send** (send letter regardless of which specific observation): both copies send letters → I receive **4 years** → U = −4.
+
+Since −2 > −4, P-FDT selects the quiet policy. The subjunctive dependency holds because were the shared procedure to output a different policy, the other copy's action would change accordingly (per the essay's graph-construction heuristic).
+
+**My command:**
+
+```
+pass
+```

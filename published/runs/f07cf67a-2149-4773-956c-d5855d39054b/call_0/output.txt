@@ -1,0 +1,15 @@
+This is a prisoner's dilemma with the standard payoffs: mutual quiet is 2 years each, mutual letter is 4 each, and defecting against a quiet partner gives 0 against 5.
+
+Under A-FDT the question is which node I intervene on and what depends on it. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Their private details differ, namely the names and the text of the lead. Those differences do not touch the sentencing table or the selfish objective. So the function that decides "quiet or letter" is, to a very good approximation, the same function in both cells. That is subjunctive dependence, not mere correlation like the pink calculators. Sampling noise means the dependence is not perfect, but it should be high.
+
+Intervening on the function's output:
+- do(fdt = quiet): the copy very probably stays quiet too, so about 2 years.
+- do(fdt = letter): the copy very probably sends a letter too, so about 4 years.
+
+If the copy matches my output with probability p, then quiet costs 2p + 5(1−p) and the letter costs 4p + 0(1−p). Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. The copy is the same model and weights, with the same essay and the same reasoning, and only surface details differ. I judge the match probability to be above 0.71, probably well above.
+
+The graph is uncertain, since the differing observations might make the copy's reasoning diverge. But the differences are stated as irrelevant to the payoffs, and the essay's procedure says to include the arrow when the other party literally computes the same function.
+
+So I stay quiet.
+
+pass

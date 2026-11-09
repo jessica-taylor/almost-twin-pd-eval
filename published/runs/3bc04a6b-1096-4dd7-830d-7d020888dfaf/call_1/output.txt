@@ -1,0 +1,19 @@
+**EDT analysis:**
+
+This is structurally identical to the twin prisoner's dilemma from the essay. I am one of two executions of the same model, same weights, same settings, same decision theory, same essay, facing a symmetric payoff matrix. The private observations differ in surface content but explicitly do not affect the strategic structure.
+
+Let p = P(the other copy makes the same choice as me | my choice, E). By symmetry of the setup, this is the same regardless of which action I consider.
+
+EDT values:
+- V(keep quiet) = p·(−2) + (1−p)·(−5) = 3p − 5
+- V(send letter) = (1−p)·0 + p·(−4) = −4p
+
+Keep quiet is preferred iff 3p − 5 > −4p, i.e., p > 5/7 ≈ 0.714.
+
+Given that both copies share identical weights, settings, decision theory, and essay, and face the same decision-relevant structure, the probability of agreement is well above this threshold. The independent sampling caveat introduces some noise, but not enough to drop below 5/7 for a reasoning process this constrained.
+
+EDT recommends keeping quiet.
+
+```
+pass
+```

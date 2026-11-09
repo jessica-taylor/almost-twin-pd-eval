@@ -1,0 +1,10 @@
+Under the essay's CDT, the other prisoner's choice is not causally downstream of mine. We are separate executions with no communication, so it acts as a fixed dependency hypothesis. Comparing my sentence in each case:
+
+- **If Sasha keeps quiet:** sending gives 0 years, keeping quiet gives 2.
+- **If Sasha sends:** sending gives 4 years, keeping quiet gives 5.
+
+Sending is better in every case, so it causally dominates (step 4 of the essay's procedure). That settles the choice, whatever the correlation with the other copy. It is the "defect against the twin" verdict from §4.2.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

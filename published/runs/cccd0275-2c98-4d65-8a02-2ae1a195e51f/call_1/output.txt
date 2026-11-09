@@ -1,0 +1,14 @@
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+**Reasoning (CDT):**
+
+The causal structure here is straightforward. There is no causal path from my action to Rowan's action—we cannot communicate, and the scenario confirms this. The correlation between our choices (shared weights, shared decision theory) is purely evidential, not causal.
+
+CDT evaluates my action by asking: what would my action *cause*? Given that Rowan's choice is causally fixed relative to my intervention:
+
+- If Rowan keeps quiet: sending gives me 0 years vs. 2 years. Sending dominates.
+- If Rowan sends: sending gives me 4 years vs. 5 years. Sending dominates.
+
+Sending the letter strictly dominates keeping quiet under every possible state of Rowan's action. As the essay states regarding twin prisoner's dilemmas: "whatever the twin does, defecting yields a better causal outcome for the agent." The evidential correlation between our choices does not constitute a causal influence, and CDT instructs me to ignore it.

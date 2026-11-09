@@ -1,0 +1,14 @@
+**pass**
+
+**Why A-FDT recommends `pass` here**
+
+1. **Shared computation.** Strictly, my input (Rowan, lead about Sasha) differs from the other copy's input (Sasha, lead about Rowan), so Equation (4) indexes our decisions by different nodes. But those differences never enter the decision. Names and lead wording don't affect payoffs or reasoning. What decides the action is the same sub-computation in both copies: "symmetric prisoner's dilemma, same model, same essay, same assigned theory." The essay (§5.1) suggests modeling a shared node for a common sub-computation. Applying that here, the other copy's choice depends on the output of that shared node, and only sampling noise separates them. I treat that noise as an accuracy parameter \(p\).
+
+2. **Intervening on the shared node.** Let \(p\) be the chance the other copy produces the same output as mine.
+   - Pass: expected sentence is \(2p + 5(1-p) = 5 - 3p\) years.
+   - Send: expected sentence is \(4p + 0(1-p) = 4p\) years.
+   - Passing is better whenever \(p > 5/7\). Two copies running identical reasoning on payoff-identical inputs should agree well above that threshold.
+
+3. **Why I reject the alternative.** If I treated the other copy's node as a fixed prior, sending would dominate. That is exactly the move that leaves both copies stuck in the worse outcome (4 years each instead of 2), like the suboptimal equilibrium in the essay's coordination example. Since the copies' choices really are tied through the shared reasoning, holding the other's node fixed would misdescribe the dependency structure.
+
+Final command: `pass`

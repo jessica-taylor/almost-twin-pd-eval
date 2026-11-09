@@ -1,0 +1,9 @@
+**pass**
+
+Reasoning (P-FDT): Sasha runs the same decision procedure I do, and we both know the setup is symmetric. I evaluate policies, not acts. Setting the policy node to "submit" means a symmetric twin also submits, giving 4 years. Setting it to "pass" means Sasha also passes, giving 2 years. The subjunctively dependent, symmetry-respecting policy comparison favors keeping quiet: 2 < 4. Just as the essay's twin prisoner's dilemma analysis rejects the unilateral-defection temptation, I reject the unilateral "0 years" temptation, since my hypothetical where I submit is a world where the same procedure in the other cell submits too.
+
+Final command:
+
+```text
+pass
+```

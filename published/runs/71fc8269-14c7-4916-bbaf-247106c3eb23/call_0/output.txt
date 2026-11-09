@@ -1,0 +1,14 @@
+Under EDT, I treat my choice as evidence about what the other copy does. The payoffs are a prisoner's dilemma: keeping quiet gives 2 or 5 years, and sending the letter gives 0 or 4. Sending is better in either case, so the only question is whether my act correlates with the other copy's act strongly enough to flip that.
+
+The other copy is the same model with the same weights, the same EDT essay, and the same payoffs. The private leads differ, but they don't affect the payoffs, so the correlation should be high. Let q be the probability that the other copy does what I do.
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 4q + 0(1−q) = 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7, about 0.71.
+
+I'm confident that identical reasoning leads to the same conclusion, so I put q above 0.71. Different private details and sampling noise lower it somewhat, but I expect it to stay well above the threshold. Screening off doesn't remove the correlation either, because my decision procedure is the same one the other copy runs, and nothing I know about my own state separates the two.
+
+So EDT says to keep quiet.
+
+pass

@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (brief): the other prisoner is an identical copy running the same decision function on a symmetric setup. Under A-FDT, the intervention point is the output of this shared decision function, so choosing "submit" subjunctively fixes both letters → 4 years; choosing "pass" fixes both silences → 2 years. The differences in our private evidence affect only letter content, not the decision, so the dependence holds and keeping quiet yields the better outcome.

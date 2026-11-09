@@ -1,0 +1,3 @@
+`pass`
+
+Under P-FDT, my policy is evaluated as a whole: the other prisoner is an execution of the same decision procedure facing a symmetric dilemma, so the intervention do(π = "keep quiet") makes both of us quiet — 2 years. Intervening on the policy "submit the letter" makes both submit — 4 years. Since our observation differences don't touch the symmetric sentencing structure, the shared policy dominates, and I execute its recommendation here: keep quiet.

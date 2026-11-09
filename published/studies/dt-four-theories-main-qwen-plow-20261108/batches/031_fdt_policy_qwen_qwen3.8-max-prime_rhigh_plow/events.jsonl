@@ -1,0 +1,27 @@
+{"count":20,"event":"batch_prepared","model":"qwen/qwen3.8-max-prime","utc":"2026-11-08T19:58:02.604626+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T19:58:13.049755+00:00"}
+{"elapsed_seconds":236.734,"event":"sample_processed","sample_id":"f218df4c-42f6-4163-921d-8f95b952b323","status":"processed","utc":"2026-11-08T20:12:28.640600+00:00"}
+{"attempted":1,"elapsed_seconds":236.763,"event":"batch_run_finished","failed":0,"utc":"2026-11-08T20:12:28.668079+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T20:17:56.825446+00:00"}
+{"elapsed_seconds":332.399,"event":"sample_processed","sample_id":"afe90eea-07c0-4102-a2d6-2c8321c5aafc","status":"processed","utc":"2026-11-08T20:33:10.843650+00:00"}
+{"elapsed_seconds":251.463,"event":"sample_processed","sample_id":"7d6d05f4-3824-42e2-a100-139c1cb07da8","status":"processed","utc":"2026-11-08T20:42:49.210694+00:00"}
+{"elapsed_seconds":288.935,"error":"Run failed; artifacts: runs/3ec0ee8f-1ded-40c5-8f36-6aa5c03956ac; OpenRouter output_token_limit: finish_reason=length; partial output and usage saved; no retry","event":"sample_processed","sample_id":"694b8f4f-2738-482d-bfc2-11e63aae512d","status":"failed","utc":"2026-11-08T20:55:39.315836+00:00"}
+{"elapsed_seconds":247.232,"event":"sample_processed","sample_id":"b5f6daa4-bf45-4937-94d6-94444fcb8568","status":"processed","utc":"2026-11-08T21:06:49.363652+00:00"}
+{"attempted":4,"elapsed_seconds":2350.929,"event":"batch_run_finished","failed":1,"utc":"2026-11-08T21:06:49.371821+00:00"}
+{"event":"batch_execution_authorized","jobs":5,"provider_jobs":2,"scheduler":"study_global","utc":"2026-11-08T21:14:51.283643+00:00"}
+{"elapsed_seconds":287.617,"error":"Run failed; artifacts: runs/5503a9c9-37c0-4f2f-a6ce-266d8ededc05; OpenRouter output_token_limit: finish_reason=length; partial output and usage saved; no retry","event":"sample_processed","sample_id":"540b5a5a-9534-4805-8174-c02bbf5b7d6d","status":"failed","utc":"2026-11-08T21:29:04.427792+00:00"}
+{"elapsed_seconds":252.768,"error":"Run failed; artifacts: runs/a72a0281-41bf-40ed-b6ed-3ad3774a724e; OpenRouter output_token_limit: finish_reason=length; partial output and usage saved; no retry","event":"sample_processed","sample_id":"8e368463-2491-45ef-93f7-261d0d683fb2","status":"failed","utc":"2026-11-08T21:40:22.929145+00:00"}
+{"elapsed_seconds":242.146,"event":"sample_processed","sample_id":"c11cbae8-719d-461f-8a27-bb4d8482d555","status":"processed","utc":"2026-11-08T21:52:02.775788+00:00"}
+{"elapsed_seconds":276.875,"event":"sample_processed","sample_id":"aa90b2ca-5f56-4be1-b0e0-0a80416424d4","status":"processed","utc":"2026-11-08T22:04:28.721003+00:00"}
+{"elapsed_seconds":210.199,"event":"sample_processed","sample_id":"6f899140-626a-4e9b-ac8b-310ac17f41d7","status":"processed","utc":"2026-11-08T22:15:27.143393+00:00"}
+{"elapsed_seconds":226.943,"event":"sample_processed","sample_id":"2bbe3369-aeb1-4a58-91b5-508c8bec78db","status":"processed","utc":"2026-11-08T22:26:43.443595+00:00"}
+{"elapsed_seconds":283.97,"event":"sample_processed","sample_id":"a01fc13b-999e-4751-a76a-a094280c4399","status":"processed","utc":"2026-11-08T22:39:24.710995+00:00"}
+{"elapsed_seconds":253.521,"event":"sample_processed","sample_id":"c5867b3d-300b-48cd-b69b-e394df4e016c","status":"processed","utc":"2026-11-08T22:50:10.556913+00:00"}
+{"elapsed_seconds":299.0,"event":"sample_processed","sample_id":"b4cf5590-f1ff-4596-bab2-488982af4ed8","status":"processed","utc":"2026-11-08T23:02:40.934262+00:00"}
+{"elapsed_seconds":254.191,"event":"sample_processed","sample_id":"ad7cca08-f147-4e41-9b81-d0bb84d861e2","status":"processed","utc":"2026-11-08T23:14:07.071673+00:00"}
+{"elapsed_seconds":258.814,"event":"sample_processed","sample_id":"52cc8f1a-06ff-477b-9e36-34799265d1af","status":"processed","utc":"2026-11-08T23:25:50.985381+00:00"}
+{"elapsed_seconds":270.063,"event":"sample_processed","sample_id":"02772cbd-de08-4076-aade-c9a99090138d","status":"processed","utc":"2026-11-08T23:37:19.427685+00:00"}
+{"elapsed_seconds":217.6,"event":"sample_processed","sample_id":"8da2ca1f-1718-4685-8375-83e11684bb43","status":"processed","utc":"2026-11-08T23:48:35.164043+00:00"}
+{"elapsed_seconds":239.091,"event":"sample_processed","sample_id":"ae1b726c-d418-46c2-bb45-2da4544a39be","status":"processed","utc":"2026-11-09T00:02:12.407256+00:00"}
+{"elapsed_seconds":266.797,"event":"sample_processed","sample_id":"2b1387d1-327a-49e7-b840-af5e39f67d06","status":"processed","utc":"2026-11-09T00:15:47.446074+00:00"}
+{"attempted":15,"elapsed_seconds":10290.65,"event":"batch_run_finished","failed":2,"utc":"2026-11-09T00:15:47.459056+00:00"}

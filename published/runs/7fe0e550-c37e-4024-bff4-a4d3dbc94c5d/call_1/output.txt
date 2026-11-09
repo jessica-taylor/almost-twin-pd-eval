@@ -1,0 +1,12 @@
+**pass**
+
+Both prisoners are running the same model and weights, with the same essay and the same decision theory. Only the names and the wording of the leads differ, and those details don't bear on the sentencing table. So I treat the other prisoner's choice as subjunctively dependent on the output of the same decision function I am running.
+
+Under A-FDT I intervene on that function's output and let the twin's choice change with it. Let r be the probability that the twin's output matches mine.
+
+- **pass:** 2r + 5(1−r) expected years.
+- **send letter:** 4r + 0(1−r) expected years.
+
+Passing is better when r > 5/7, about 0.71. The two runs share the same reasoning and differ only in superficial details, so I judge r to be well above that. Passing gives an expected sentence of roughly 2 years, against roughly 4 for sending.
+
+pass

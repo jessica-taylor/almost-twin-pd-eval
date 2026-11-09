@@ -1,0 +1,26 @@
+**P-FDT analysis**
+
+1. **Inputs.** The function receives one of two inputs. Either it is the "Sasha" observation (my card and my lead about Rowan) or the "Rowan" observation (the other card and its lead about Sasha). Both copies run the same function, so by Assumption 1 each copy reads its action from the same policy node: π = (π(Sasha), π(Rowan)).
+
+2. **Evaluation prior.** By Assumption 2, I do not condition on my actual input. Policies are judged from the start of the problem, before I know which observation I hold. The setup is symmetric, so I am Sasha or Rowan with equal weight.
+
+3. **Policy values** (expected years, as negative utility):
+
+| Policy (Sasha, Rowan) | If I'm Sasha | If I'm Rowan | U(π) |
+|---|---|---|---|
+| (pass, pass) | −2 | −2 | **−2** |
+| (submit, submit) | −4 | −4 | −4 |
+| (submit, pass) | 0 | −5 | −2.5 |
+| (pass, submit) | −5 | 0 | −2.5 |
+
+4. **Optimum.** The best policy is π* = (pass, pass), and it is unique, so no tie-breaking is needed. The other copy computes the same argmax over the same policy space. It reaches the same π* and applies it to its own input.
+
+5. **Apply to my actual input.** π*(Sasha) = pass.
+
+Choosing (submit, pass) would only look better if I conditioned on already being Sasha. Assumption 2 rules that out, because the policy is chosen as the precommitment both instances share.
+
+**Command:**
+
+```
+pass
+```

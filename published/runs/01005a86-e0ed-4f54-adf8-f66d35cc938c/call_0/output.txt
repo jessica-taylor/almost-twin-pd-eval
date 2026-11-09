@@ -1,0 +1,11 @@
+Under P-FDT, the choice is a single policy that maps each possible private observation to an action. Both copies run the same function, so whichever policy is chosen governs both prisoners: the Rowan-input and the Sasha-input. On the essay's updateless reading, the policy is scored before knowing which input I get, so each role is equally likely.
+
+- **(pass, pass):** 2 years in either role, so 2 years expected.
+- **(submit, submit):** 4 years in either role, so 4 years expected.
+- **Asymmetric (one submits, the other passes):** 0 years in one role and 5 in the other, so 2.5 years expected.
+
+The best policy is (pass, pass). Applied to my actual input as Rowan, it says pass.
+
+```
+pass
+```

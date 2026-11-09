@@ -1,0 +1,10 @@
+**pass**
+
+Under the essay's A-FDT, I intervene on the output of the decision procedure. The other prisoner is a copy of the same model, with the same weights, the same essay and the same objective. Their private lead differs, but that doesn't touch the sentencing table or the reasoning. So their output depends subjunctively on mine, and I weight the worlds where they match me by how reliable that match is. Call that probability p.
+
+- **pass:** expected years = 2p + 5(1−p) = 5 − 3p
+- **send letter:** expected years = 4p + 0(1−p) = 4p
+
+Passing is better whenever p > 5/7. Two copies given the same essay and the same objective should converge on the same choice well above that threshold. Differing leads and sampling noise add some error, but not enough to bring p near 5/7.
+
+I choose `pass`.

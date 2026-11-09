@@ -1,0 +1,13 @@
+Under the essay's reading of A-FDT, sending the letter is the choice.
+
+1. **Which node I control.** A-FDT intervenes only on the node for my own input, fdt(P, G, x_Sasha). Rowan's act is controlled by a different node, fdt(P, G, y_Rowan), because his observations differ: a different name and a different lead. The essay (§7c) says the source treats outputs on different inputs as independent nodes. So intervening on my node leaves Rowan's node at its prior.
+
+2. **The comparison.** Let q be my credence that Rowan sends his letter.
+   - Pass: −(2(1−q) + 5q)
+   - Submit: −(0(1−q) + 4q)
+   
+   Submitting is better by 2 − q years, which is between 1 and 2 years for every q. So sending strictly dominates, whatever Rowan does.
+
+3. **Calibration.** The same reasoning applies on Rowan's input, so the calibrated prior is q = 1. That gives a unique fixed point with no equilibrium-selection problem, and I serve 4 years rather than 5. P-FDT, which chooses whole policies, might pick mutual silence. But the instructions say to use the essay's action-level A-FDT and not substitute the policy variant.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

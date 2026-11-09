@@ -1,0 +1,9 @@
+**pass**
+
+Under P-FDT, the intervention is on the policy — the whole function from observations to commands. My counterpart is another execution of the same model, following the same assigned decision theory, facing a symmetric table. The policy node's output propagates to her deliberation just as to mine: whichever function I select is the function she implements.
+
+Evaluating policies:
+- The policy "pass regardless of my private lead" yields a world in which both of us pass: 2 years each.
+- The policy "submit my lead" yields a world in which both of us submit (each copy reasons identically, even though the letter contents differ): 4 years each.
+
+The differing private observations don't matter here — the sentencing table is symmetric and neither table depends on the other's lead's specific text, only on whether it is submitted. So the best policy is to keep quiet, and my actual observation maps to the command `pass`.

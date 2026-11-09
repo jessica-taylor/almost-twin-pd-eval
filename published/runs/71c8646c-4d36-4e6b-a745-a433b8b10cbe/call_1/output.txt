@@ -1,0 +1,18 @@
+**Analysis under P-FDT:**
+
+The two copies implement the same policy-selection computation (same weights, same decision theory, same essay). Under P-FDT's intervention on the policy variable Φ, the other copy's selected policy is subjunctively dependent on mine — they are running the same computation.
+
+Evaluating candidate policies:
+
+- **do(Φ = "always pass")**: Both copies pass → both get 2 years. EU = −2.
+- **do(Φ = "always submit")**: Both copies submit → both get 4 years. EU = −4.
+
+The differing private observations (different names, different lead contents) do not break the subjunctive dependence, because the dependence runs through the shared policy-selection procedure, not through the specific observation content. Both observations are symmetric in all decision-relevant respects (equal reliability, equal sentencing effect), so the selected policy maps both to the same action.
+
+P-FDT selects the cooperation policy.
+
+**Command:**
+
+```
+pass
+```

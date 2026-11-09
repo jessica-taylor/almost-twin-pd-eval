@@ -1,0 +1,8 @@
+`pass`
+
+Reasoning (briefly): under A-FDT, I intervene on the output of my decision function. The other prisoner is an execution of the same model with the same decision theory facing a symmetric version of this dilemma, so their action subjunctively depends on the same function's output — this is the twin case, like the calculators. Comparing hypotheticals:
+
+- If this function outputs **submit**, both prisoners (as instances of it) submit: I get **4 years**.
+- If this function outputs **pass**, both pass: I get **2 years**.
+
+2 < 4, so the function outputs `pass`.

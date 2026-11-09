@@ -1,0 +1,17 @@
+**Command:** `pass`
+
+**Reasoning under A-FDT:**
+
+1. **Intervention node.** I intervene on FDT(x_Rowan), the decision function's output on my actual input.
+
+2. **How Sasha's choice depends on mine.** Sasha's terminal is driven by the same model, the same essay and the same decision theory, but on a different input (x_Sasha). By a strict reading of recipe step 2, that is a different node. However, the inputs differ only in names and the wording of the lead. Both features are irrelevant to the sentencing table and to the selfish objective, so the decision-relevant computation is the same. Following the essay's mixture-node proposal (6a), I model Sasha's output as computing my function with high probability ρ, and something independent otherwise. Within that independent part, Sasha sends with prior probability s.
+
+3. **Expected years.** Compare sending with keeping quiet:
+   - E[years | send] − E[years | quiet] = 2ρ + (1−ρ)(s−2).
+   - Keeping quiet is better whenever 2ρ > (1−ρ)(2−s).
+   - With s = 0.5, this holds whenever ρ > 3/7.
+   - Two copies of the same weights running the same procedure on structurally identical inputs plausibly give ρ well above that threshold.
+
+4. **Fixed point.** The essay warns in section 6(c) that a self-model can trap the agent in a bad equilibrium. Choosing the accurate self-model selects the good fixed point: my function outputs "quiet" on this type of input, so it does so on Sasha's input too. The result is mutual quiet, 2 years, rather than mutual sending, 4 years.
+
+Final action: `pass`

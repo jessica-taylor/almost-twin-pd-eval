@@ -1,0 +1,12 @@
+**Decision: `pass`**
+
+Under the essay's A-FDT, I intervene on the output of my decision function given my actual inputs. The other prisoner is a copy running the same function under the same assigned theory. Its inputs differ only in names and lead text. Those details are payoff-irrelevant and symmetric, so they don't change the reasoning. In practice the other copy computes the same function on an equivalent problem. That makes its output subjunctively dependent on mine, which is the twin prisoner's dilemma case the essay's quick guide covers ("A-FDT therefore cooperates in the twin prisoner's dilemma").
+
+Strictly read, my node and the other copy's node are distinct, since the essay's recipe creates one node per observation history. If I treated the other copy's choice as fixed at some prior, sending the letter would win. But that would mean imagining my function's output varying independently of a structurally identical computation, which is exactly the move the essay rejects. Treating the two outputs as linked:
+
+- Both keep quiet: 2 years each.
+- Both send letters: 4 years each.
+
+Keeping quiet gives the better outcome under the linked comparison.
+
+`pass`

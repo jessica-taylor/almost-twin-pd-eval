@@ -1,0 +1,5 @@
+```
+pass
+```
+
+Under P-FDT, the other prisoner is an identical execution of my decision procedure, so her disclosure choice subjunctively depends on the same policy I select. Evaluating the whole policy: `pass` maps to mutual quiet (2 years each); submitting maps to mutual disclosure (4 years each). Since the copies face symmetric problems and follow the same policy, the policy mapping "cooperate" yields 2 years versus 4. I execute that policy's output at this observation.

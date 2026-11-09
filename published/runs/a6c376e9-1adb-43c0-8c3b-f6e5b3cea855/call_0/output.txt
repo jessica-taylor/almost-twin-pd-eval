@@ -1,0 +1,5 @@
+Under CDT, my choice has no causal effect on what the other prisoner does. The table shows that sending the letter beats keeping quiet whatever they do: 0 years against 2 if they stay quiet, and 4 years against 5 if they send. Their decision is already fixed with respect to my act.
+
+The other prisoner is a copy of me running the same decision theory. That correlation is evidence about their choice, but it is not causal influence. CDT treats it as a fact about the background state, not something my act controls. The deliberative version of CDT doesn't change the result either. Sending is dominant at every credence about the other's action, so it is the only ratifiable act.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

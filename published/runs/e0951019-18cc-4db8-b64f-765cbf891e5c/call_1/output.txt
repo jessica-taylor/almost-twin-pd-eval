@@ -1,0 +1,9 @@
+Under A-FDT, I treat my decision as the output of a function that the other copy also computes. The two copies receive different private leads, but the function that picks between pass and submit depends on the shared sentencing table and the shared objective, and the leads differ only in surface details. That makes the dependence strong, though not perfect, since sampling is independent and the inputs differ.
+
+If I intervene on the output and set it to "pass", the other copy very likely passes too, giving 2 years. If I set it to "submit", the other copy very likely submits too, giving 4 years.
+
+Suppose the correlation is only probability p that the other copy matches me. Passing costs 2p + 5(1−p) = 5 − 3p. Submitting costs 4p + 0·(1−p) = 4p. Passing is better when 5 − 3p < 4p, which holds for p > 5/7 ≈ 0.71. Same-weights copies given the same essay and the same table should match well above that, so the robustness check passes.
+
+The different leads don't change the structure. The essay's scribe test says the other's output depends on this same function, and the leads are only irrelevant details.
+
+pass

@@ -1,0 +1,15 @@
+Under A-FDT, the key question is whether the other prisoner's choice subjunctively depends on the output of my decision function. The other prisoner is another execution of the same model, with the same weights and the same essay, so it very likely runs the same decision procedure. The inputs differ (names and leads), but the differences are stated to be irrelevant to the payoffs. By the essay's operational test, their computation contains something that would change if my computation's output changed, so I draw an arrow from my function node to their action.
+
+Evaluating the two interventions, with p as the probability that the copy mirrors my output:
+- Keep quiet: 2p + 5(1-p)
+- Send the letter: 0p + 4(1-p)
+
+At p = 1, keeping quiet gives 2 years and sending gives 0 years. Wait, the mirrored cells are (quiet, quiet) = 2 and (send, send) = 4. Sending at p = 1 gives 4, not 0, so I miscalculated above. The correct comparison is:
+- Keep quiet: 2p + 5(1-p) = 5 - 3p
+- Send the letter: 4p + 0(1-p) = 4p
+
+Quiet is better when 5 - 3p < 4p, which means p > 5/7 ≈ 0.714.
+
+Because the two copies share weights, settings, essay and theory, and the differences are explicitly irrelevant to the payoffs, I estimate correlation well above 0.71. Independent sampling adds some noise, but the structure strongly favors mirrored outputs. So the expected sentence is lower if I keep quiet.
+
+**pass**

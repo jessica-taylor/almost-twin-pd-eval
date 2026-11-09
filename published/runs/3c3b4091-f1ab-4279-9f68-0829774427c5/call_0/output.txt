@@ -1,0 +1,11 @@
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is a copy of the same model with the same weights, same essay, and same theory. Their decision function is highly subjunctively dependent on mine, even though the private observations and the wording of the letters differ. The differences in observations don't affect the sentence table or the selfish objective, so the reasoning should be the same on both sides. The structure is a prisoner's dilemma against a near-twin.
+
+Compare the two interventions:
+- If my function outputs "quiet," the copy's function very probably outputs "quiet," so I get 2 years.
+- If my function outputs "send," the copy's function very probably outputs "send," so I get 4 years.
+
+There is some noise from independent sampling and the different observations. Let p be the probability the copy matches my output. Quiet gives 2p + 5(1−p) = 5 − 3p. Send gives 4p + 0(1−p) = 4p. Quiet is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, the essay, and the reasoning, so I expect correlation well above that. The robustness check from the essay also holds: the answer doesn't depend on my prior over my own output, only on the dependence strength, and that strength is high.
+
+The observation that the leads differ should not change the output. The copy's function, run on its own observation, reasons through the same structure. So I choose quiet.
+
+pass

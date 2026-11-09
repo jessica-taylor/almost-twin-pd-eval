@@ -1,0 +1,27 @@
+**Applying EDT as the essay describes**
+
+1. **Options:** `pass` (cooperate) or `submit letter` (defect). I evaluate the act itself, not a policy.
+
+2. **Desirabilities:** U = −years imprisoned.
+   - Both pass: −2
+   - I submit, Sasha passes: 0
+   - I pass, Sasha submits: −5
+   - Both submit: −4
+
+3. **Agreement check:** Sasha's act is not independent of mine. Sasha is the same model with the same weights, settings, essay and assigned decision theory, facing a symmetric sentencing table.
+
+4. **Screening off:** The differences between us are only the names and the wording of each lead. These are decision-irrelevant surface features, and the table and incentives are identical. The correlation runs through the deliberation itself, which is the essay's twin and AI-copy case. No tickle or extra self-knowledge breaks it. Independent sampling adds some noise, but the reasoning that moves me is the same reasoning that will move Sasha.
+
+5. **Computation:** Let a = P(Sasha passes | I pass), and assume symmetric reliability, so P(Sasha passes | I submit) = 1 − a.
+   - V(pass) = −2a − 5(1 − a) = 3a − 5
+   - V(submit) = −4(1 − (1 − a)) = −4a
+
+   Passing is better iff 7a > 5, which means a > 5/7 ≈ 0.714. For two copies running identical reasoning on a structurally identical problem, a is well above that threshold. If a ≈ 0.95, V(pass) ≈ −2.15 years and V(submit) ≈ −3.8 years.
+
+6. **Verdict:** EDT recommends keeping quiet. Learning that I pass is good news that Sasha also passes.
+
+**Final command:**
+
+```
+pass
+```

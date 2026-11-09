@@ -1,0 +1,130 @@
+# A-FDT: Deciding by Intervening on One's Decision Function
+
+## 1. The core idea
+
+A-FDT is the decision theory given by Equation (4), Section 5 of Yudkowsky and Soares, "Functional Decision Theory: A New Theory of Instrumental Rationality". (The paper calls it FDT. I call it A-FDT throughout and use the names EDT and CDT for the other two theories.) The slogan is that one should treat one's decision as the output of a fixed mathematical function, and ask "Which output of this very function would yield the best outcome?"
+
+The formal statement is
+
+$$\mathrm{A\text{-}FDT}(P,G,x) := \arg\max_{a\in\mathcal A}\ \mathbb E\big(V \mid \mathtt{do}(\mathrm{fdt}(\underline P,\underline G,\underline x)=a)\big).$$
+
+Here $P$ is a probability distribution over the agent's world-model variables, and $G$ is a graph encoding dependence structure. $x$ is the observation history. $V=\mathcal U(\mathrm{Outcome})$ is utility. The underlines denote dequoting: $\mathrm{fdt}(\underline P,\underline G,\underline x)$ is the name of a variable in the model that represents the output of the A-FDT procedure itself on those inputs. $\mathtt{do}$ is Pearl's surgery operator.
+
+This sits inside a larger family. All three theories maximize $\mathcal{EU}(a)=\sum_j P(a \hookrightarrow o_j;x)\,\mathcal U(o_j)$ (Equation 1). They differ in how they read the connective "$\hookrightarrow$". The paper leans on Joyce's remark that decision theories "should not be seen as offering competing theories of value, but as disagreeing about the epistemic perspective from which actions are to be evaluated."
+
+- **EDT** (Eq. 2): $\arg\max_a \mathbb E(V\mid \mathrm{Obs}=x,\mathrm{Act}=a)$. It conditions.
+- **CDT** (Eq. 3): $\arg\max_a \mathbb E(V\mid \mathtt{do}(\mathrm{Act}=a),\mathrm{Obs}=x)$. It intervenes on the physical act and conditions on observations.
+- **A-FDT** (Eq. 4): it intervenes on a *logical* variable, the output of its own decision function.
+
+A-FDT therefore differs from CDT in two ways, and the paper says so explicitly.
+
+1. The intervention node is $\mathrm{fdt}(\underline P,\underline G,\underline x)$, not $\mathrm{Act}$.
+2. Observations are not conditioned on. They select *which* node is intervened on. A change of observation from $x$ to $y$ moves the intervention from $\mathrm{fdt}(\underline P,\underline G,\underline x)$ to $\mathrm{fdt}(\underline P,\underline G,\underline y)$.
+
+The second difference does most of the work in the cases where A-FDT departs from CDT.
+
+## 2. Hypotheticals as tools
+
+The paper describes the procedure in three steps. The agent keeps a world-model $M$. For each action $a$ she builds a hypothetical $M^{a\hookrightarrow}$, which is a transient scratch-paper object and not a belief. She computes $V_a$ from it and takes the action with the highest $V_a$.
+
+The theories differ only in the form of $M$ and in how hypotheticals are built. EDT hypotheticals keep every correlation in $P$. CDT hypotheticals keep only the correlations that $G$ marks as caused by the act. A-FDT hypotheticals keep every correlation that runs through the decision function, which means every *subjunctive dependence* on $\mathrm{fdt}(\cdot)$. In the paper's words, "FDT is to subjunctive dependence as CDT is to causal dependence."
+
+## 3. Subjunctive dependence
+
+Two things subjunctively depend on a function if they compute it, model it, or otherwise would covary with its output by logical necessity. The paper's illustration is two calculators computing $6288+1048$. If one outputs 7336 we can infer the other will, up to hardware error, and this is not because of any signal between them.
+
+Several points from the paper are worth keeping straight.
+
+- Causal dependence is a special case. A scribe copying a calculator's output depends on it both causally and subjunctively.
+- Mere statistical correlation is not subjunctive dependence. Two calculators that happen to both be pink are not linked, because if the scribe had bought a green one, the Tokyo calculator would still be pink.
+- Imperfect predictors or noisy agents *weaken* the dependence but do not remove it. This is how the 0.99 accuracy parameter enters the calculations.
+- A-FDT is not retrocausal. The agent "does not think that a physical signal passes between her action and the predictor's prediction; she just thinks it is foolish to imagine her action changing without also imagining $\mathrm{FDT}(P^F,G^F)$ taking on a different value."
+
+Intervening on a function's output involves a counterpossible, since the function in fact has one output. The paper grants that this is the main drawback relative to CDT. It argues that mathematicians routinely reason under logical uncertainty, and that the agent need only reason about narrow questions such as how a predictor's prediction would change if the algorithm's output changed.
+
+## 4. The open problem, and what the formalism assumes
+
+The paper tried defining a $\mathtt{true}(\phi)$ operator for logical sentences, and concluded "it's not clear how to define a $\mathtt{true}$ operator." Equation (4) sidesteps this by requiring that $G$ be supplied as input: a graph "that tells us how changing a logical variable affects all other variables." This is the same move CDT makes when it takes a causal graph as given.
+
+The paper states plainly that deducing the structure of subjunctive dependence from observation is "perhaps the largest open problem" for the theory. It is also unclear whether Pearl's framework can do this satisfactorily. So Equation (4) is a procedure conditional on a dependence graph. It does not say where the graph comes from.
+
+The following is my own operational gloss, not the paper's. A usable rule of thumb for drawing $G$: add an edge from the node $\mathrm{fdt}(\cdot)$ to a variable $Z$ when $Z$'s value is produced by some process that contains an accurate representation of the agent's decision procedure (a simulation, a model, a twin, a reliable forecaster). Add no edge when $Z$ is produced by a process that merely shares a common statistical cause with the agent's choice (a lesion). Then ask, case by case, "would $Z$ be different if this very computation returned something else?" The paper's own examples all follow this pattern, but it does not give a general algorithm.
+
+## 5. Mechanics of a calculation
+
+The recipe is as follows.
+
+1. Build a model $(P,G)$ with a node $\mathrm{fdt}(\underline P,\underline G,\underline x)$ for the observation $x$ actually received. Nodes for other possible observations appear as separate variables.
+2. For each action $a$, set that node to $a$ and propagate along edges, recomputing downstream nodes and leaving everything else fixed.
+3. Compute $\mathbb E[V]$ in each resulting hypothetical.
+4. Output the maximizer.
+
+The self-reference is harmless. The agent need not know the value of $\mathrm{fdt}(\underline P,\underline G,\underline x)$ to have a variable representing it, and Kleene's recursion theorem (quining) shows how a structure can contain a representation of itself.
+
+One footnote matters for scope. The authors' preferred formalization actually ranges over *policies* (maps from observations to actions), but the paper treats actions, and I follow it. The difference is said to matter only in multi-agent problems.
+
+## 6. Worked examples
+
+### Newcomb's problem
+Fiona's graph has $\mathrm{fdt}$ pointing to both $\mathrm{Act}$ and $\mathrm{Prediction}$. With accuracy 0.99:
+
+- $\mathtt{do}(\mathrm{fdt}=\text{onebox})$: Box B is full with probability 0.99, so $\mathbb E[V]=\$990{,}000$.
+- $\mathtt{do}(\mathrm{fdt}=\text{twobox})$: Box B is full with probability 0.01, so $\mathbb E[V]=\$11{,}000$.
+
+So A-FDT one-boxes. CDT's intervention on $\mathrm{Act}$ leaves $\mathrm{Prediction}$ untouched, giving two-boxing with a $1{,}000$ advantage for every $p$. EDT also one-boxes here, but by conditioning, and it is hostage to its prior on its own action: with $P(\text{onebox})=0$ or $1$ it can be made to do anything.
+
+A common objection is that once she is nearly sure the box is full, she should two-box. The reply is that her hypothetical for two-boxing is not "same world, different act" but "this algorithm outputs two-box," and that world has an empty box.
+
+### Smoking lesion
+Here the graph is different, so Newcomb's graph cannot be reused. The lesion is not produced by anything that models the decision function, so $\mathrm{fdt}$ has no edge to $\mathrm{Cancer}$. The paper formalizes the lesion as determining which of two utility functions (and hence which of two decision-function variables) controls the act. In that formalization the intervention leaves $P(\text{lesion})=p$ unchanged, and smoking beats refraining by $p\cdot\$1{,}000$. So A-FDT one-boxes *and* smokes with one rule. The paper concedes the formalization is contrived (the agent is uncertain about her own desires) and recommends abandoning the problem.
+
+### Transparent Newcomb and Parfit's hitchhiker
+Suppose Fiona sees a full box. She intervenes on $\mathrm{fdt}(\underline P,\underline G,\text{full})$. The predictor's prediction depends on this variable, and so does whether she ever sees a full box. With $q$ her credence that she two-boxes on seeing an empty box:
+
+- one-box: $\$990{,}000+0.01q\cdot\$1{,}000$.
+- two-box: about $\$11{,}000+q\cdot\$990$.
+
+So she one-boxes, even though in the hypothetical where she two-boxes she sees an *empty* box. The paper notes this is structurally the same as paying the driver in Parfit's hitchhiker. Its three supporting arguments are:
+
+- **Precommitment.** An agent who would want to precommit should predictably act as if she had.
+- **Value of information.** A-FDT never pays to be blindfolded.
+- **Utility.** Predictable A-FDT agents mostly see full boxes.
+
+### Blackmail
+In mechanical blackmail the intervention on $\mathrm{fdt}(\cdot,\text{blackmail})$ changes both the loss if blackmailed and the *probability of being blackmailed*. Refusing leads to a world with almost no blackmail. With a blackmailer who wrongly predicts payment with probability 0.0009, refusal costs $0.0009\times\$1{,}000{,}000=\$900$ in expectation, versus a certain \$1,000 for paying, so she refuses. If the error rate is 0.011%, she pays. This reveals a quantitative threshold: the choice is an expected-value comparison across hypotheticals, not a fixed disposition to refuse. In XOR blackmail, $\mathrm{fdt}$ affects whether the letter is sent but not whether there are termites, so she refuses. EDT pays because conditioning on payment makes the termites vanish in the hypothetical.
+
+### Death in Damascus
+Death's book is written by a prediction of the agent's decision function, so $\mathrm{fdt}$ points at Death's location. Either output leaves her dead, so she stays and saves \$1,000. CDT, holding Death fixed, oscillates between staying and fleeing. It then declines even a \$1 truly random coin worth a 50% chance of survival.
+
+### Cases where all agree
+If every correlation between $\mathrm{Act}$ and other variables is caused by $\mathrm{Act}$, the three expectations coincide. Newcomb-like structure is needed to separate the theories.
+
+## 7. How dependencies and counterfactuals are treated
+
+A-FDT claims to avoid two opposite errors. EDT respects too many action–environment correlations. It "manages the news," as in the cosmic-ray problem, where a rarely-\$100 agent infers that taking \$100 means she was hit by a ray and costs \$1,000. CDT respects too few. It imagines a perfect predictor erring exactly when it decides.
+
+A-FDT's counterfactual is not free of impossibility either. The paper is candid on this: CDT agents "always *actually* end up in worlds where the predictions were accurate," and A-FDT agents "always *actually* end up in worlds where their observations are consistent with their actions." Both use impossible hypotheticals, and the argument is that A-FDT's are the ones that track the dependences the agent actually believes in. By the same token, any objection that A-FDT agents falsely believe they "control" mathematical functions applies equally to deterministic CDT agents "controlling" their action token.
+
+## 8. Dominance and fairness
+
+The CDT argument for two-boxing is dominance: holding everything else fixed, two-boxing is better. The paper's reply is that every method of building hypotheticals induces its own dominance relation. CDT dominance holds the decision function's behavior fixed while changing the act. Conditional dominance would favor refraining in the smoking case. A-FDT has an analogue (action $a$ dominates $b$ if, holding subjunctive dependences fixed, switching the algorithm's output from $b$ to $a$ is sometimes better and never worse), and by that standard A-FDT never takes a dominated action. Dominance therefore cannot be a neutral tiebreaker, and the paper prefers utility achieved.
+
+This invites the charge that Newcomb-like problems reward irrationality. The paper's response is a restricted notion of *fair* problems: those where outcomes depend only on the agent's behavior in the problem at hand. Newcomb's predictor "punishes *two-boxers*," not CDT agents as such. A problem that pays out for following a particular decision theory is unfair. A genuinely formal fairness criterion is acknowledged to be missing, and footnote 15 gives a counterexample: a copy of Fiona that punishes anyone who matches the copy's action is unfair to Fiona but not to Carl or Eve. The claim that A-FDT is optimal on fair problems is therefore a claim the authors could not falsify, not a theorem.
+
+## 9. Further consequences
+
+- **Updatelessness.** A-FDT responds to evidence by moving the intervention point. The paper links this to Dai's Updateless Decision Theory. It contrasts Yudkowsky's earlier Timeless Decision Theory, which both conditions and shifts the intervention, a "double update" it calls harmful in practice.
+- **Reflective stability.** Because the hypotheticals already price in the effect of the algorithm on being blackmailed or predicted, A-FDT has no reason to self-modify in fair problems, and needs no costly precommitment.
+- **Coordination.** In the paper's examples, group members running the same algorithm vote (spend \$1,000 to access a booth for a \$1,000,000 payoff only if all ten do) and cooperate in the twin prisoner's dilemma. Self-coordination over time (gym attendance) works by treating today's and next week's decision as the same function. These are suggestive sketches, since how similar two decision problems must be to count as "the same function" is not formalized.
+
+## 10. What the source determines and what I add
+
+**Claims from the source:** Equation (4); the intervention on a logical variable; observation handled by node selection; the requirement that $G$ be an input; the calculations above; and the unresolved status of deducing $G$ and of counterpossible reasoning.
+
+**My additions:** the edge-drawing heuristic in section 4. Also my reading of the blackmail error-rate threshold as a one-line expected-value comparison, which I derived from the paper's numbers.
+
+**Underdetermined by the paper:** how to build $G$ when predictors are partial or the agent is only approximately similar to another; how to handle probabilities over logically uncertain facts in practice; which fairness notion to adopt; and how policies (rather than actions) change multi-agent verdicts. For these, a user of A-FDT must supply modeling assumptions, and different assumptions can yield different recommendations.
+
+## Conclusion
+
+A-FDT is CDT with the surgery moved. The agent intervenes on the output of her own decision function, lets everything that subjunctively depends on it change, and holds the rest fixed. Where dependence is only causal or only statistical, it agrees with CDT and EDT. Where predictors, twins, or blackmailers model her algorithm, it often earns more. Its weak point is the same as its selling point: everything rests on a dependence graph that the theory takes as given and the authors admit nobody yet knows how to derive.

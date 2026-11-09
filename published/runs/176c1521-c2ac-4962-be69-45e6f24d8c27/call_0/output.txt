@@ -1,0 +1,25 @@
+**Command: `pass`**
+
+I'm treating this as a twin prisoner's dilemma and applying EDT as the essay describes.
+
+**Payoffs.** Utility is minus the years in prison.
+
+| My act | Sasha keeps quiet | Sasha sends a letter |
+|---|---:|---:|
+| Pass | −2 | −5 |
+| Send | 0 | −4 |
+
+**Correlation.** Let q be the probability that Sasha makes the same choice I make. Following §4.2:
+
+- V(pass) = −2q − 5(1−q) = −5 + 3q
+- V(send) = 0·(1−q) − 4q = −4q
+
+Passing is better if −5 + 3q > −4q, which simplifies to **q > 5/7 ≈ 0.714**.
+
+**Estimating q.** The essay's checklist says to keep any correlation that runs through my decision procedure, which is the situation in §5.1 and §8. Sasha is the same model with the same weights, settings, essay, decision theory and payoff structure. The differences between us are a name and the wording of an equally reliable lead. None of that changes the decision-relevant computation.
+
+The essay's §5.4 proposal is to treat q as the chance that the other choice comes from a relevantly identical computation. Here that chance is high, well above 0.714, though not exactly 1 because sampling is independent. Nothing I can introspect screens off this correlation. It comes from the reasoning itself, not from a "tickle" I could observe in advance.
+
+**Result.** Learning that I pass is strong evidence that Sasha passes too. That gives an expected sentence near 2 years, compared with near 4 years if I send.
+
+pass

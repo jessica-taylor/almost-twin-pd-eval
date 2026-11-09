@@ -1,0 +1,15 @@
+Under P-FDT, the thing I choose is the policy, the output of the decision function. The other prisoner is another run of the same model, with the same weights and the same essay, so their action is subjunctively dependent on that function. The observations differ (names and leads), but the payoff table is symmetric, so a sensible policy maps both observation sets to the same action.
+
+Compare the two symmetric outcomes:
+- Both keep quiet: 2 years each.
+- Both send a letter: 4 years each.
+
+Mutual quiet is better for me than mutual letters. The dependence is not perfect, since sampling is independent and the leads differ, so I need a break-even correlation. Let p be the probability that the other copy's action matches mine.
+- Quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.714.
+
+Two copies of the same model with the same essay and the same reasoning should match with high probability, and the essay's framing pushes toward cooperating. The differences in observation are irrelevant to the payoffs, so I expect p well above 0.71. The policy "keep quiet regardless of the names and leads" is the one I'd want both copies to run.
+
+pass

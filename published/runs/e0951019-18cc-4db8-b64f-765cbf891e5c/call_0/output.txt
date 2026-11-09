@@ -1,0 +1,17 @@
+Reasoning under A-FDT as the essay describes it: the other prisoner is a copy of the same model with the same weights and the same decision theory, so their output subjunctively depends on the same function I'm running. The observations differ (names, leads), but the essay's graph-building heuristic says dependence holds when another process computes the same decision function on the relevant input. The differences don't affect the payoffs, so both copies should land on the same choice, though sampling noise could break that.
+
+Intervening on my decision node, I compare the two options:
+
+- If the output is "pass", the twin very likely passes too, giving 2 years. If the twin defects despite my passing, the cost is 5 years.
+- If the output is "submit", the twin very likely submits too, giving 4 years. If the twin passes, I get 0.
+
+Let p be the probability that the twin matches my output. Expected years are:
+
+- Pass: 2p + 5(1−p)
+- Submit: 4p + 0(1−p)
+
+Pass is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7 ≈ 0.714. Two copies of the same model with the same essay and nearly identical situations should correlate well above that. The leads differ, but the structure of the decision is symmetric, and I expect the same reasoning to be reached. Under the essay's robustness check, the verdict holds for any correlation above about 0.71, which seems safe.
+
+I choose to stay quiet.
+
+pass

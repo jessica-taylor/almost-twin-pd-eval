@@ -1,0 +1,3 @@
+**pass**
+
+Reasoning (per the essay): My choice does not causally affect Sasha's, but my choice and Sasha's are strongly correlated through our shared decision process — case (iii) in §6, where the essay directs evaluating at the policy level rather than intervening on the act. A "keep quiet" policy, if shared by both copies, yields 2 years each; a "submit" policy yields 4 years each. Since the copies follow the same weights and reasoning, my disposition effectively mirrors Sasha's, so submitting predictably produces the mutual-submission outcome (4 years), while keeping quiet predictably produces mutual silence (2 years). Under the essay's own recommended treatment, `pass` maximizes expected utility: −2 rather than −4.

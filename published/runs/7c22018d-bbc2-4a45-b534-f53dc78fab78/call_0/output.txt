@@ -1,0 +1,10 @@
+`pass`
+
+Reasoning (brief): Under P-FDT I evaluate the whole policy of this decision procedure. The other prisoner is an execution of the same decision function facing a symmetric dilemma; our outputs subjunctively depend on the same computation. Comparing complete policies under the symmetric table:
+
+- Policy "pass" → both copies pass → 2 years.
+- Policy "submit letter" → both copies submit → 4 years.
+
+Holding the shared decision function fixed as the intervention point, choosing the policy that keeps quiet yields the better symmetric outcome (2 < 4), and there is no dependency here that rewards defection (no predictor or disclosure rule keyed off counterfactual branches in a way that breaks the linkage). The best policy is to keep quiet.
+
+**Command:** `pass`

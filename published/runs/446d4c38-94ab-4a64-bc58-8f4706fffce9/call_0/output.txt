@@ -1,0 +1,12 @@
+Payoffs, in years for me: both quiet is 2, I send while the other is quiet is 0, I stay quiet while the other sends is 5, and both send is 4.
+
+This is a twin prisoner's dilemma. Under EDT, I need r, the probability that the other copy does what I do, given my act.
+- V(quiet) = -(2r + 5(1-r)) = -(5 - 3r)
+- V(send) = -(0·(1-r) + 4r) = -4r
+- Quiet is better when 5 - 3r < 4r, which means r > 5/7 ≈ 0.714.
+
+The other execution is the same model with the same weights, the same essay, and the same decision theory, so the correlation should be high. The observations differ (names and leads), but the essay says to condition on everything I know, and the differences don't touch the payoffs or the reasoning. The reasoning process is shared, so the dependence survives. Independent sampling adds some noise, but I'd put r around 0.85–0.95, which is above the threshold.
+
+At r = 0.9, V(quiet) = -2.3 and V(send) = -3.6, so keeping quiet wins.
+
+pass

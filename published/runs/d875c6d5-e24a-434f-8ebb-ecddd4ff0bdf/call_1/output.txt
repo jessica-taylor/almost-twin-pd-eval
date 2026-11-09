@@ -1,0 +1,17 @@
+**Command:** `pass`
+
+**Reasoning under P-FDT:**
+
+- **The policy node.** Both prisoners are instances of the same decision function, reading the same essay under the same theory. Their inputs differ (names and leads), so each copy's action is a coordinate Φ(x) of a single policy node Φ. Intervening on Φ fixes both copies' actions at once.
+
+- **The policy space.** A policy maps each possible input to an action: send or stay quiet. Following the essay, I evaluate policies without conditioning on which input I actually received. Ex ante, I am equally likely to be in either seat.
+  - **Quiet on every input:** both stay quiet, so 2 years.
+  - **Send on every input:** both send, so 4 years.
+  - **Send on one seat's input, quiet on the other's:** 0 years in one seat and 5 in the other, so 2.5 years expected.
+  - **The reverse assignment** gives the same 2.5 years by symmetry.
+
+- **The best policy.** Staying quiet on every input minimizes expected years, at 2. This is the labeled-copies case from §5.2: different inputs, but P-FDT optimizes all coordinates jointly. It picks the globally best fixed point, so neither copy needs to guess what the other will do.
+
+- **Applying it to my input.** For the input "Sasha holding the stairwell lead," the policy says stay quiet.
+
+**Final command:** `pass`

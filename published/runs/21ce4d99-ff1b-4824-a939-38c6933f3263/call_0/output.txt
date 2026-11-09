@@ -1,0 +1,20 @@
+**Reasoning (A-FDT):**
+
+The other prisoner is an execution of the same model running the same decision theory (A-FDT) with the same essay, facing a structurally identical problem (same payoff table, same reliability of evidence, same strategic situation—only the names and specific lead contents differ).
+
+At the policy level, both copies instantiate the same policy $\pi$. Because the problem is fully symmetric in all decision-relevant respects, any policy $\pi$ will output the same action for both copies' observations. The two achievable outcomes are therefore:
+
+- $\pi = \text{pass}$: both keep quiet → 2 years each. My utility: $-2$.
+- $\pi = \text{send}$: both send → 4 years each. My utility: $-4$.
+
+Since $-2 > -4$, A-FDT selects the policy that outputs "pass."
+
+This is the standard FDT cooperation result in a symmetric prisoner's dilemma against a copy of the same decision procedure, as described in the essay's Section 1.
+
+---
+
+**My command:**
+
+```
+pass
+```

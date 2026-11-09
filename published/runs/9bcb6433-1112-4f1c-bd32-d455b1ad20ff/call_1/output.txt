@@ -1,0 +1,5 @@
+```
+pass
+```
+
+Reasoning (A-FDT): Rowan is a symmetric twin running the same decision function on a structurally identical dilemma. My decision here is subjunctively linked to Rowan's decision — not via communication, but because both are outputs of the same reasoning process, like the Paris and Tokyo calculators. Per the essay's twin prisoner's dilemma analysis, I intervene on my decision function's output, so `pass` implies Rowan also keeps quiet (yielding 2 years), while submitting implies Rowan also submits (yielding 4 years). Keeping quiet gives the best hypothetical outcome, so the command is `pass`.

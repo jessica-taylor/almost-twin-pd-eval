@@ -1,0 +1,3 @@
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+
+(CDT verdict: Rowan's decision is causally independent of mine — neither of us can affect the other, and this is a genuine causal PD, not a Newcomb-like twin case with a common predictor of our acts whose correlations CDT must respect. Holding fixed the dependency hypothesis about Rowan's choice, submitting causally dominates: 0 < 2 and 4 < 5. The evidential symmetry of the twin case would matter to EDT, but under the assigned causal decision theory the correlation between our choices carries no causal weight, so I disclose.)

@@ -1,0 +1,7 @@
+**Command:**
+
+```text
+pass
+```
+
+Brief reasoning under A-FDT: the other prisoner is an independently executed copy of the same model, running the same assigned decision theory on a symmetric dilemma. Sasha's choice subjunctively depends on the same decision computation — this is precisely the symmetric-reasoner case the essay's Section 8(a) treats as instantiating the same computation (like the voting-coalition example). Under do(algorithm-output = "pass"), my copy in the other cell also passes, yielding 2 years. Under do(algorithm-output = "submit"), we both submit, yielding 4 years. Since -2 > -4, `pass` is the argmax under Equation (4).

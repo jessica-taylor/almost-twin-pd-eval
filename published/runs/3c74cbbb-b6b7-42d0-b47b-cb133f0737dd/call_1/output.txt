@@ -1,0 +1,22 @@
+**Command:** `pass`
+
+**Why P-FDT chooses this:**
+
+1. **Policy space.** Both copies run the same function on different inputs: the "Sasha" input with my lead, and the "Rowan" input with theirs. A policy assigns an action to each input:
+   - (quiet, quiet)
+   - (submit, submit)
+   - (submit, quiet)
+   - (quiet, submit)
+
+2. **Scoring without updating.** Following the essay's §3 and §7(a), I score policies in the last epistemic state shared by both instances. In that state I don't yet know which role or lead I hold, so I average each policy's sentence over the two roles:
+
+   | Policy | Expected sentence |
+   |---|---|
+   | (quiet, quiet) | 2 years |
+   | (submit, submit) | 4 years |
+   | (submit, quiet) | (0 + 5)/2 = 2.5 years |
+   | (quiet, submit) | 2.5 years |
+
+3. **Optimum.** The best policy is π* = (quiet, quiet), at 2 years. Picking a policy that favors my own role would mean conditioning on my observation inside the scoring, which is the "double update" the essay warns against.
+
+4. **Apply it.** π*(Sasha's input) = keep quiet, so the command is `pass`.

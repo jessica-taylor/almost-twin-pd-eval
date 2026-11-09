@@ -1,0 +1,7 @@
+Under CDT, the other prisoner's choice is causally independent of mine, so I hold my credence about it fixed. Sending the letter gives 0 years instead of 2 if the other keeps quiet, and 4 years instead of 5 if the other sends. Sending is better in both cases, so it dominates.
+
+The essay does allow a Joyce-style refinement, where I update on my own inclinations as evidence about the other copy. That does not change anything here. Whatever credence I end up with, sending still beats keeping quiet in each state. It is also ratifiable: if I expect the other to send, sending is still better, and if I expect the other to stay quiet, sending is still better.
+
+The other copy's lead differs from mine, but that does not affect the sentence table or the dominance argument.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

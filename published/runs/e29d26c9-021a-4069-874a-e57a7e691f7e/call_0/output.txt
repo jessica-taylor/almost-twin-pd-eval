@@ -1,0 +1,20 @@
+**Analysis under P-FDT:**
+
+The other prisoner is an independent execution of the same model, same weights, same decision theory, same researcher essay. Their behavior is **subjunctively dependent** on the same policy-selection function Φ_M that I am evaluating. This is not a mere statistical correlation (as in the smoking lesion); it is a computational dependency of exactly the kind P-FDT is designed to handle—analogous to the predictor in Newcomb's problem or the twin in a twin prisoner's dilemma.
+
+When I evaluate do(Φ_M = π), I must propagate that intervention to the other copy's behavior:
+
+- **do(Φ_M = "stay quiet"):** Both copies stay quiet → **2 years** for me.
+- **do(Φ_M = "send letter"):** Both copies send letters → **4 years** for me.
+
+Since −2 > −4, P-FDT selects the policy of staying quiet.
+
+The different private observations (different names, different leads) do not break the subjunctive dependence: they are structurally equivalent, the sentencing table is symmetric, and the policy maps both observations to the same action.
+
+---
+
+**My command:**
+
+```
+pass
+```

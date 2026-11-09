@@ -1,0 +1,20 @@
+**EDT Analysis:**
+
+This is structurally a twin prisoner's dilemma. The other copy has identical weights, settings, decision theory, and essay, and faces an identical payoff structure. The only differences are surface-level (different name, different specific lead text), which do not alter the decision-theoretic calculation.
+
+Let q = P(the other copy matches my choice | my choice). By the essay's guidance on algorithmic correlations: "If two algorithms are known to be identical and receive symmetric inputs, assigning probability near one to matching choices is natural." Here the inputs differ only in decision-irrelevant surface content, so q should be high (≈ 0.9+), though not exactly 1 due to possible sampling noise.
+
+**Computing EDT values:**
+
+- V(send) = q × (−4) + (1−q) × 0 = −4q
+- V(keep quiet) = q × (−2) + (1−q) × (−5) = 3q − 5
+
+Keep quiet is EDT-optimal when 3q − 5 > −4q, i.e., q > 5/7 ≈ 0.714.
+
+Since q is well above this threshold, EDT recommends keeping quiet.
+
+**My command:**
+
+```
+pass
+```

@@ -1,0 +1,8 @@
+Under the essay's A-FDT, my observation (Sasha, with the lead about Rowan) selects the node fdt(·, x_Sasha). Rowan's copy acts on a different input, so their choice depends on a different node, fdt(·, x_Rowan). This is the same structure as the essay's red/blue example. I hold that other node at its prior, call it r = P(Rowan keeps quiet).
+
+- **Keep quiet:** expected sentence is 2r + 5(1−r) = 5 − 3r years.
+- **Send the letter:** expected sentence is 0·r + 4(1−r) = 4 − 4r years.
+
+Sending gives a shorter sentence for every value of r, and also in each case taken separately (0 < 2 and 4 < 5). The only self-consistent fixed point is for both prisoners to send. Unlike the red/blue coordination game, there is no indeterminacy here.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

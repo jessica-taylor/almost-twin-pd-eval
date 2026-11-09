@@ -1,0 +1,23 @@
+**Analysis under A-FDT:**
+
+Both prisoners are independent executions of the same model running the same decision theory (A-FDT) on strategically equivalent inputs. Per the essay's Section 8 and Rule 3, when another agent implements the same decision procedure, the decision variable D has edges to both agents' actions:
+
+- D → MyAct
+- D → RowanAct
+
+The different private observations (names, specific leads) do not alter the strategic structure or the utility function, so the decision function maps both agents' inputs to the same output with high probability. The subjunctive dependence is strong.
+
+Evaluating the two interventions:
+
+- **do(D = keep quiet):** Both keep quiet → 2 years for me.
+- **do(D = send letter):** Both send → 4 years for me.
+
+Since 2 < 4, A-FDT selects keeping quiet.
+
+The independent-sampling caveat slightly reduces the probability of agreement, but the threshold for cooperation to be preferred is p > 5/7 ≈ 0.714. Given identical model weights, identical decision theory, identical essay, and strategically identical problem structure, the probability of agreement far exceeds this threshold.
+
+**My command:**
+
+```
+pass
+```

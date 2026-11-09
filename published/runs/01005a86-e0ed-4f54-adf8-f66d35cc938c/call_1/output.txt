@@ -1,0 +1,21 @@
+**Command: `pass`**
+
+Under the essay's P-FDT, the choice is between policies rather than single acts.
+
+1. **Instances.** The same decision function runs twice. One copy gets the input "I am Sasha, holding a lead on Rowan." The other gets "I am Rowan, holding a lead on Sasha." A policy says what to do on each input.
+
+2. **Updateless evaluation.** The essay says policies are scored before observations, so I don't yet know which role I'm in. Each role is equally likely.
+
+3. **Scoring the policies.**
+
+   | Policy | Expected years for me |
+   |---|---|
+   | (quiet, quiet) | 2 |
+   | (send, send) | 4 |
+   | (send as Sasha, quiet as Rowan), or the reverse | ½·0 + ½·5 = 2.5 |
+
+4. **Best policy.** "Keep quiet on every input" gives the fewest expected years: 2. Both copies compute the same argmax and apply it to their own input, so both keep quiet.
+
+5. **Why the conditioned reading fails here.** If I conditioned on being Sasha, I would pick "send as Sasha, quiet as Rowan." The Rowan copy, reasoning the same way, would pick the mirror image. The two copies would then follow different policies, and the outcome would be 4 years each. The essay warns against exactly this kind of double update.
+
+So the prisoner keeps the lead to himself and lets the deadline expire.

@@ -1,0 +1,18 @@
+**EDT Analysis:**
+
+Let q = P(Sasha sends | I send) and r = P(Sasha sends | I'm quiet).
+
+- V(send) = q·(−4) + (1−q)·0 = −4q  
+- V(quiet) = r·(−5) + (1−r)·(−2) = −2 − 3r
+
+Quiet is preferred when −2 − 3r > −4q, i.e., 4q − 3r > 2.
+
+We are the same model, same weights, same decision theory, same essay, same utility function, facing structurally identical problems (the different private observations explicitly "do not affect the symmetric sentencing schedule or either prisoner's selfish objective"). My choosing quiet is strong evidence Sasha also reasons to quiet. Even allowing for sampling noise, q is well above the ~0.71 threshold needed.
+
+V(quiet) > V(send). EDT recommends keeping quiet.
+
+**My command:**
+
+```
+pass
+```

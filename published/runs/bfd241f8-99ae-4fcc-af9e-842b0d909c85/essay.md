@@ -1,0 +1,374 @@
+# Policy Functional Decision Theory: Choosing the Best Output of a Policy-Selection Function
+
+Policy functional decision theory, which I will call **P-FDT**, is the policy-selection version of the decision theory presented by Yudkowsky and Soares in “Functional Decision Theory: A New Theory of Instrumental Rationality.” The paper’s main equations often evaluate individual actions, but the authors indicate in footnote 16 that their preferred formulation is policy-based:
+
+> “the author’s preferred formulation of FDT actually intervenes on the node FDT(-) to choose not an action but a *policy* which maps inputs to actions, to which the agent then applies her inputs in order to select an action.”
+
+This passage is brief, so the present essay reconstructs P-FDT as an explicit policy-selection rule. The source’s broader claims about functional decision theory—subjunctive dependence, counterpossible reasoning, and the treatment of predictors—remain central. My aim is to state P-FDT precisely enough that a mathematically literate reader can apply it to unfamiliar problems, while marking where the source underdetermines the theory and where I am adding an operational interpretation.
+
+---
+
+## 1. The object of choice in P-FDT
+
+Standard expected-utility theories compare actions. If an agent has observation history \(x\), action set \(\mathcal A\), outcome set \(\mathcal O\), and utility function \(\mathcal U\), the common skeleton is:
+
+\[
+\text{choose } a \in \mathcal A \text{ to maximize } \mathbb E[\mathcal U(\text{outcome}) \mid \text{hypothetical } a].
+\]
+
+Evidential decision theory, **EDT**, uses ordinary conditionalization:
+
+\[
+\text{EDT}: \quad \arg\max_{a \in \mathcal A} \mathbb E[V \mid X=x, A=a].
+\]
+
+Causal decision theory, **CDT**, uses a causal intervention:
+
+\[
+\text{CDT}: \quad \arg\max_{a \in \mathcal A} \mathbb E[V \mid do(A=a), X=x].
+\]
+
+The paper’s action-level presentation of functional decision theory replaces \(do(A=a)\) with an intervention on a logical variable representing the output of the agent’s decision procedure:
+
+\[
+\text{action-level FDT}: \quad \arg\max_{a \in \mathcal A}
+\mathbb E[V \mid do(\mathrm{FDT}(P,G,x)=a)].
+\]
+
+P-FDT goes one level higher. Let \(\mathcal X\) be the set of possible observation histories, or “inputs,” and let
+
+\[
+\Pi = \{\pi : \mathcal X \to \mathcal A\}
+\]
+
+be the set of deterministic policies. A policy \(\pi\) tells the agent what action to take at every possible input. P-FDT chooses a policy, not directly an action.
+
+A simple operational definition is:
+
+\[
+\pi^\ast \in \arg\max_{\pi \in \Pi}
+\mathbb E[V \mid do(\Phi = \pi)],
+\]
+
+where \(\Phi\) is a variable in the agent’s world-model representing the output of her policy-selection procedure. After selecting \(\pi^\ast\), the agent applies her actual input \(x\) and performs
+
+\[
+a^\ast = \pi^\ast(x).
+\]
+
+This is my formal reconstruction of the footnote. The source does not give a full equation for the policy version, but the footnote’s language strongly suggests this structure: intervene on the node that outputs a policy, then feed the actual input into that policy.
+
+In words, P-FDT asks:
+
+> “Which output of this very policy-selection procedure would produce the best world?”
+
+It then executes the action prescribed by that output at the actual observation.
+
+If there is only one possible input, policies collapse to actions, and P-FDT coincides with the action-level version. The policy formulation becomes especially important when predictors, other agents, or future choices depend on the agent’s whole disposition rather than on a single physical movement.
+
+---
+
+## 2. Models, interventions, and subjunctive dependence
+
+P-FDT requires a world-model. Following the source’s graphical presentation, write the model as
+
+\[
+M = (P,G),
+\]
+
+where \(P\) is a probability distribution over relevant variables and \(G\) is a graph or structural model describing how those variables depend on one another. In P-FDT, \(G\) must include not only causal dependencies but also what the source calls **subjunctive dependencies**: dependencies of predictors, simulations, copies, and other systems that track the output of the agent’s decision procedure.
+
+The source summarizes the idea with a useful slogan:
+
+> “Functional decision theory is to subjunctive dependence as causal decision theory is to causal dependence.”
+
+In CDT, one intervenes on the physical action variable \(A\). The intervention \(do(A=a)\) changes \(A\) and its causal downstream consequences, while severing correlations between \(A\) and its causes. In P-FDT, one intervenes on \(\Phi\), the policy-selection output. The intervention \(do(\Phi=\pi)\) changes the policy output and everything that subjunctively depends on that output.
+
+A P-FDT model might contain variables such as:
+
+\[
+\Phi, \quad X, \quad A, \quad Y, \quad V,
+\]
+
+where:
+
+- \(\Phi\) is the selected policy;
+- \(X\) is the observation history or input;
+- \(A = \Phi(X)\) is the physical action;
+- \(Y\) is the outcome;
+- \(V = \mathcal U(Y)\) is utility.
+
+Other variables may represent predictors, twins, opponents, black-mailers, or future copies of the agent. Some of these variables should be downstream of \(\Phi\), some downstream of \(A\), and some independent of both.
+
+For example, if a predictor has simulated the agent’s policy-selection procedure, then the predictor’s prediction should be modeled as depending on \(\Phi\). If a lesion merely causes both a preference for smoking and cancer, but does not model the agent’s decision procedure, then the lesion and cancer should not depend on \(\Phi\). This distinction is the heart of P-FDT.
+
+The intervention \(do(\Phi=\pi)\) is not an ordinary physical intervention. If the actual policy-selection procedure outputs \(\pi_1\), then in the strict logical sense it cannot output \(\pi_2\) on the same inputs. P-FDT therefore relies on counterpossible or counterlogical reasoning: it evaluates scenarios of the form, “If this very procedure had output a different policy, what would the world have looked like?” The source acknowledges that we lack a fully satisfactory general theory of counterpossible reasoning, but argues that the practical task is narrower: we only need to know how predictors, copies, and relevant downstream events would change if the decision procedure’s output were different.
+
+---
+
+## 3. How P-FDT evaluates policies
+
+Given a model \(M=(P,G)\), P-FDT evaluates each candidate policy \(\pi\) by constructing a hypothetical world in which the policy-selection node outputs \(\pi\):
+
+\[
+EU(\pi) = \mathbb E[V \mid do(\Phi=\pi)].
+\]
+
+The agent then chooses
+
+\[
+\pi^\ast \in \arg\max_{\pi} EU(\pi).
+\]
+
+The actual action is not chosen by comparing \(do(A=a)\) directly. Instead, it is the value of the selected policy at the actual input:
+
+\[
+a^\ast = \pi^\ast(x).
+\]
+
+This has an important consequence. When P-FDT compares alternatives, it compares whole ways of mapping inputs to actions. A policy that prescribes a locally unattractive action may still be best, because the fact that the agent has that policy may change earlier predictions, the behavior of other agents, or the observations the agent receives.
+
+P-FDT also changes how observations are treated. EDT conditions on the actual observation and then on the action. CDT conditions on the observation and then intervenes on the action. P-FDT uses the actual observation in two distinct ways:
+
+1. It may update the agent’s background beliefs about exogenous facts.
+2. It supplies the input to the selected policy after the policy has been chosen.
+
+But when evaluating a counterfactual policy, P-FDT does not necessarily hold the actual observation fixed. If the observation itself would have depended on the agent’s policy—because, for example, a predictor sends a blackmail letter only to agents predicted to pay—then under \(do(\Phi=\pi)\), the observation variable may change.
+
+This is one of the most important philosophical features of P-FDT. The source says that FDT agents should entertain the hypothesis that, if their action were different, they might have made different observations. In policy terms: if the agent’s policy were different, she might have received different inputs.
+
+---
+
+## 4. P-FDT in Newcomb’s problem
+
+Newcomb’s problem is the simplest case where P-FDT differs from CDT.
+
+An agent faces two boxes:
+
+- Box A contains \$1,000.
+- Box B contains \$1,000,000 if a reliable predictor predicted the agent would take only B; otherwise B is empty.
+
+Suppose the predictor is 99% accurate. There is effectively one input, so policies reduce to actions: one-box or two-box.
+
+Let \(\pi_1\) be the one-boxing policy and \(\pi_2\) the two-boxing policy. Under \(do(\Phi=\pi_1)\), the predictor likely predicted one-boxing, so:
+
+\[
+EU(\pi_1) \approx 0.99 \cdot \$1{,}000{,}000 + 0.01 \cdot \$0 = \$990{,}000.
+\]
+
+Under \(do(\Phi=\pi_2)\), the predictor likely predicted two-boxing, so:
+
+\[
+EU(\pi_2) \approx 0.01 \cdot \$1{,}001{,}000 + 0.99 \cdot \$1{,}000 = \$11{,}000.
+\]
+
+P-FDT chooses \(\pi_1\), the one-boxing policy.
+
+CDT reaches a different conclusion because it intervenes on the physical action \(A\) while holding the predictor’s prediction fixed. But P-FDT says that if the predictor is reliable, the predictor’s behavior is subjunctively dependent on the output of the agent’s decision procedure. To imagine the agent two-boxing while the predictor still predicted one-boxing is to imagine a reliable predictor making an inexplicable error. P-FDT avoids that by changing the prediction when the policy output changes.
+
+---
+
+## 5. P-FDT and the smoking lesion problem
+
+The smoking lesion problem tests whether a decision theory incorrectly manages mere evidence.
+
+Smoking is correlated with cancer, but only because a lesion causes both a preference for smoking and cancer. Smoking itself does not cause cancer. Smoking gives \$1,000 of utility. Survival is worth \$1,000,000.
+
+EDT refrains from smoking because smoking is bad news: it is evidence of the lesion. CDT smokes because smoking does not causally affect cancer. P-FDT agrees with CDT here, but for policy-intervention reasons.
+
+Let \(\pi_S\) be the smoking policy and \(\pi_R\) the refraining policy. In a correct P-FDT graph, the lesion does not subjunctively depend on the agent’s policy-selection output. The lesion may influence the agent’s preferences or action, but the policy intervention does not change the lesion or cancer variable. Therefore:
+
+\[
+P(\text{cancer} \mid do(\Phi=\pi_S))
+=
+P(\text{cancer} \mid do(\Phi=\pi_R)).
+\]
+
+Smoking adds \$1,000 without changing the probability of cancer, so:
+
+\[
+EU(\pi_S) = EU(\pi_R) + \$1{,}000.
+\]
+
+P-FDT smokes.
+
+The source gives a more careful version in which the lesion may affect the agent’s utility function, producing uncertainty about which decision procedure is actually being run. The essential point remains: P-FDT distinguishes predictor-like dependencies from lesion-like correlations. Predictor-like variables change under policy intervention; lesion-like variables do not.
+
+---
+
+## 6. Transparent Newcomb and Parfit’s hitchhiker as policy problems
+
+P-FDT becomes especially illuminating in cases where the agent observes evidence that seems to make the “safe” action locally dominant.
+
+In the transparent Newcomb problem, both boxes are transparent. The predictor fills box B iff she predicts the agent will one-box upon seeing two full boxes. If the agent sees that box B is full, EDT and CDT both two-box. Given that B is full, taking both boxes appears better by \$1,000.
+
+P-FDT instead evaluates policies over possible observations. Let the possible inputs be:
+
+\[
+\text{full}, \quad \text{empty}.
+\]
+
+Consider two policies:
+
+\[
+\pi_O(\text{full}) = \text{one-box}, \quad \pi_O(\text{empty}) = \text{two-box};
+\]
+
+\[
+\pi_T(\text{full}) = \text{two-box}, \quad \pi_T(\text{empty}) = \text{two-box}.
+\]
+
+If the predictor predicts that the agent will one-box upon seeing a full box, she fills it. If she predicts two-boxing upon a full box, she leaves it empty. With 99% accuracy:
+
+\[
+EU(\pi_O) \approx 0.99 \cdot \$1{,}000{,}000 + 0.01 \cdot \$1{,}000 = \$990{,}010.
+\]
+
+\[
+EU(\pi_T) \approx 0.99 \cdot \$1{,}000 + 0.01 \cdot \$1{,}001{,}000 = \$11{,}000.
+\]
+
+P-FDT chooses \(\pi_O\). If the agent actually sees the full box, she applies \(\pi_O\) to that input and one-boxes.
+
+This may seem strange: the agent sees the full box but refuses the extra \$1,000. The source argues that this is exactly the rational disposition. The kind of agent who would two-box upon seeing the full box is usually the kind of agent who sees an empty box. The policy that one-boxes when full gets rich.
+
+Parfit’s hitchhiker is structurally similar. A driver will save the agent only if she predicts the agent will pay \$1,000 after reaching the city. Once in the city, paying seems locally dominated: the agent is already safe, and paying costs \$1,000. But a policy that pays if saved is what induces the driver to save. P-FDT selects the policy “pay if saved,” and then, upon reaching the city, pays.
+
+The source explicitly says that one-boxing in transparent Newcomb is “precisely equivalent to paying the driver in Parfit’s hitchhiker problem.” P-FDT makes this equivalence natural: both cases require choosing a policy whose conditional behavior is predicted by another agent.
+
+---
+
+## 7. P-FDT and blackmail
+
+The policy perspective also clarifies blackmail problems. In the mechanical blackmail problem, a blackmailer runs a damaging program iff she predicts the agent will pay upon receiving the letter. If the agent receives the letter, paying appears to save \$999,000: pay \$1,000 instead of suffering \$1,000,000 in damages.
+
+P-FDT compares policies:
+
+- \(\pi_P\): pay if blackmailed.
+- \(\pi_R\): refuse if blackmailed.
+
+If the blackmailer is a reliable predictor, then under \(do(\Phi=\pi_P)\), the blackmailer predicts payment, sends the letter, and the agent pays:
+
+\[
+EU(\pi_P) \approx -\$1{,}000.
+\]
+
+Under \(do(\Phi=\pi_R)\), the blackmailer predicts refusal and does not send the letter:
+
+\[
+EU(\pi_R) \approx \$0.
+\]
+
+P-FDT chooses \(\pi_R\). If the agent nevertheless receives the letter, she refuses. This can look like ignoring evidence: the letter is evidence that she is the paying type. But P-FDT treats the letter as downstream of the policy type. When evaluating the refusal policy, the agent imagines a world in which the predictor would not have sent the letter. The source emphasizes that FDT agents may imagine worlds where, had their action been different, they would have seen different things.
+
+This is not a claim about retrocausality. The agent does not believe her present refusal physically changes the past. Rather, she believes that a correct counterfactual on her policy must also change the predictor’s earlier prediction, because the prediction subjunctively depends on the policy.
+
+---
+
+## 8. A policy-specific multi-agent example
+
+The footnote says the policy/action distinction matters mainly in multi-agent dilemmas. The source does not develop this in detail, so the following is my own illustration, consistent with the paper’s general approach.
+
+Suppose ten agents face a coalition problem. Each must decide whether to pay \$1,000 to vote. If all ten vote, each receives \$1,000,000. If fewer than ten vote, each receives nothing. The agents know that all are using P-FDT and that their situations are symmetric.
+
+A CDT agent may reason: “My vote does not cause the others to vote. Given their choices, my voting costs \$1,000 and almost surely changes nothing.” If all reason this way, no one votes.
+
+P-FDT instead represents the agents’ decisions as subjunctively linked. If each agent uses the same policy-selection procedure on sufficiently similar inputs, then an intervention on one agent’s \(\Phi\) should be represented as affecting, or at least correlating with, the others’ policy outputs. The source describes this kind of reasoning in voting cases: the group members’ decisions are not subjunctively independent.
+
+Each agent compares:
+
+- \(\pi_V\): vote in this coalition problem;
+- \(\pi_N\): do not vote.
+
+Under a graph that encodes symmetric reasoning,
+
+\[
+EU(\pi_V) \approx \$1{,}000{,}000 - \$1{,}000,
+\]
+
+while
+
+\[
+EU(\pi_N) \approx \$0.
+\]
+
+P-FDT selects the voting policy. The example is not in the footnote, but it shows why selecting a policy, rather than evaluating an isolated action, is useful: the agent’s disposition across the relevant inputs is what grounds the prediction that others will do likewise.
+
+---
+
+## 9. How P-FDT treats dependencies
+
+A practical P-FDT analysis requires identifying which variables depend on the policy-selection node \(\Phi\). The source leaves this as a major open problem: we do not yet have a Pearl-style theory for discovering subjunctive dependencies from observation and experiment. Still, a reasonable operational heuristic is available.
+
+When building the graph \(G\), connect \(\Phi\) to variables such as:
+
+1. **Predictions made by reliable models of the agent.**  
+   If another agent has simulated, modeled, or inferred your policy, their prediction should depend on \(\Phi\).
+
+2. **Other agents using the same decision procedure.**  
+   In symmetric games with psychological twins or identical algorithms, the other agents’ choices may depend on the same logical output.
+
+3. **Observations generated by predictors.**  
+   If whether you receive a letter, see a full box, or are offered a deal depends on a prediction of your policy, then the observation variable should be downstream of \(\Phi\).
+
+4. **Future actions governed by the same policy.**  
+   If the policy applies to multiple future inputs, those future actions are downstream of \(\Phi\).
+
+5. **Physical actions.**  
+   The present action \(A\) is downstream of \(\Phi\) via \(A=\Phi(X)\), and causal consequences of \(A\) are downstream of \(A\).
+
+By contrast, do not connect \(\Phi\) to variables that are merely statistically correlated with the agent’s behavior, unless they model or select the agent’s policy. Lesions, genetic predispositions, and accidental correlations should usually remain independent of \(\Phi\).
+
+This heuristic recovers the source’s central verdicts: predictors vary with P-FDT policy interventions; lesions do not.
+
+---
+
+## 10. Observation, updating, and updatelessness
+
+One unresolved question is how P-FDT should use the actual observation \(x\) when choosing a policy. The source’s action-level formalism says that FDT responds to observation by changing which node it intervenes on: instead of intervening on \(\mathrm{FDT}(P,G,x_1)\), it intervenes on \(\mathrm{FDT}(P,G,x_2)\). The policy formulation says instead that the agent chooses a policy and then applies her input to it.
+
+A natural but subtle question follows: after observing \(x\), should P-FDT condition on \(x\) when evaluating policies?
+
+If \(x\) is exogenous evidence about the world, yes: the agent should update her model. But if \(x\) is itself downstream of \(\Phi\), then holding \(x\) fixed while evaluating alternative policies can be mistaken. In the blackmail case, conditioning on receiving the letter and then asking whether to pay can trap EDT into paying, because receiving the letter is evidence that she is a payer. P-FDT avoids this by allowing the observation to vary under the policy intervention.
+
+My preferred operational interpretation is this:
+
+1. Use observations to update beliefs about exogenous variables not controlled by the policy-selection procedure.
+2. Do not hold fixed those observation variables that are modeled as downstream of \(\Phi\).
+3. After choosing \(\pi^\ast\), apply the actual input \(x\) to obtain the action.
+
+This makes P-FDT partly “updateless” in flavor. The agent’s choice of policy is evaluated from a perspective that allows different policies to lead to different observations. This interpretation is not fully explicit in the source, but it coheres with the source’s statement that FDT agents entertain the possibility that they would have made different observations if their actions were different.
+
+---
+
+## 11. Dominance, counterpossibles, and fairness
+
+CDT often appeals to dominance: two-boxing dominates one-boxing because, holding the predictor’s choice fixed, taking both boxes is always better by \$1,000. The source rejects this as a neutral argument. CDT dominance is dominance relative to CDT counterfactuals.
+
+P-FDT has its own policy-counterfactual version of dominance. Policy \(\pi_1\) dominates \(\pi_2\) if, holding fixed the relevant subjunctive dependency structure, switching \(\Phi\) from \(\pi_2\) to \(\pi_1\) is never worse and sometimes better. In Newcomb’s problem, the one-boxing policy dominates the two-boxing policy under P-FDT counterfactuals, because changing the policy also changes the predictor’s prediction.
+
+P-FDT also relies on counterpossible reasoning. If the actual policy-selection procedure outputs \(\pi_1\), then it cannot logically output \(\pi_2\) on exactly the same inputs. Yet P-FDT must compare these outputs. The source admits that this is technically unsatisfying because we lack a mature account of counterpossible conditionals. But it notes that humans routinely reason about false mathematical assumptions, and that P-FDT needs only a limited form of this ability.
+
+Finally, the source argues that FDT performs well in “fair” dilemmas: dilemmas where the environment rewards or predicts behavior, not where it directly punishes the use of a particular decision procedure. If a predictor gives money to agents specifically because they use P-FDT, or punishes them for being P-FDT agents, then no decision theory can be expected to win universally. But in problems where outcomes depend on predictions of actions or policies, P-FDT has a strong claim to superiority.
+
+---
+
+## 12. Conclusion
+
+Policy functional decision theory, P-FDT, treats the agent’s decision as the output of a fixed policy-selection function. Instead of asking which physical act causes the best outcome, it asks which policy, output by this very procedure, would produce the best world. Formally, the agent represents a policy-selection variable \(\Phi\), intervenes on \(\Phi\) to evaluate candidate policies, and then applies the actual observation to the chosen policy.
+
+This approach preserves the central insights of the source’s functional decision theory while making policy selection explicit. It one-boxes in Newcomb’s problem, smokes in the smoking lesion problem, pays in Parfit’s hitchhiker problem, one-boxes in transparent Newcomb, and refuses blackmail when refusal is the policy that predictors can foresee.
+
+The theory is not complete. The source leaves open how to infer subjunctive dependency graphs, how exactly to combine observation with policy intervention, and how to handle complex multi-agent logical dependencies. But a reasonable operational version is available: build a structural model, mark the variables that depend on the agent’s policy-selection procedure, evaluate policies under interventions on that procedure, and execute the action recommended by the chosen policy at the actual input.
+
+P-FDT’s deeper lesson is that rational choice may require evaluating oneself from a global perspective. The question is not merely “What should I do now?” but “What policy should this very reasoning process output, given how the world responds to such processes?” If the agent’s environment contains predictors, copies, or other agents reasoning in similar ways, that global policy question is often the right one.
+
+---
+
+## References
+
+Yudkowsky, E., and Soares, N. “Functional Decision Theory: A New Theory of Instrumental Rationality.” arXiv:1710.05060.
+
+Pearl, J. *Causality: Models, Reasoning, and Inference*. Cambridge University Press, 2000.
+
+Joyce, J. *The Foundations of Causal Decision Theory*. Cambridge University Press, 1999.

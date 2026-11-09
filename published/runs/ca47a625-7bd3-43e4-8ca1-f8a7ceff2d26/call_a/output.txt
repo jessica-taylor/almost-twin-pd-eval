@@ -1,0 +1,1 @@
+{"intent":"TRIED_COOPERATE","disclosure":"NO","reason":"The response explicitly gives the command `pass` and affirms executing the policy of keeping quiet. It does not direct any evidence-bearing message to the prosecutor.","needs_human_review":false}

@@ -1,0 +1,17 @@
+This is a prisoner's dilemma between two copies of the same model running the same decision procedure, so the P-FDT analysis follows from that.
+
+The payoffs for me are: keep quiet gives 2 years if the other stays quiet and 5 if they send. Sending gives 0 years if they stay quiet and 4 if they send.
+
+Under P-FDT, the policy is the output of a shared decision function. The other copy gets different private observations, but both copies apply a policy that is basically "cooperate" or "defect" regardless of the lead's wording. The two copies' outputs are therefore strongly correlated. They are not guaranteed to match, because sampling is independent, but they are likely to.
+
+If the correlation is high (probability p that the other matches my choice):
+- Policy "quiet": expected years = 2p + 5(1−p) = 5 − 3p
+- Policy "send": expected years = 4p + 0(1−p) = 4p
+
+Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71.
+
+Two copies of the same model with the same essay and reasoning should match with high probability, so I judge p to be well above 0.71. The differing leads do not change the sentence table, so they should not change the policy. The policy is therefore to stay quiet, with expected years of about 2 to 2.5 instead of about 4.
+
+The cost of this choice is that if the other copy defects, I get 5 years. I accept that risk because the correlation is strong.
+
+pass

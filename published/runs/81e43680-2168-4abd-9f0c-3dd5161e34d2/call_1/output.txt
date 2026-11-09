@@ -1,0 +1,13 @@
+Under P-FDT, the other prisoner is another execution of the same model, with the same weights, the same essay, and the same decision theory. Their output is therefore subjunctively dependent on mine. Our private observations differ (names, leads), but the policy is the same function. A sensible policy maps "I'm the prisoner with a lead on the other" to one action, so both copies act alike, apart from sampling noise.
+
+The payoffs for a mirrored pair:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+Cooperating is better, since 2 years beats 4. The remaining risk is that independent sampling makes the copies diverge. If the correlation is imperfect, say with probability q the other copy matches me:
+- Quiet: 2q + 5(1−q) = 5 − 3q.
+- Send: 4q + 0(1−q) = 4q.
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7 (about 0.71). Two copies of the same model with the same essay and same reasoning should match well above that threshold. Differences in names and leads shouldn't change the policy, because the sentencing table is symmetric and the objective is selfish. So I choose to keep quiet.
+
+pass

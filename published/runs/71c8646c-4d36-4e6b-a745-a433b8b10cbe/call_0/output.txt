@@ -1,0 +1,19 @@
+**P-FDT Analysis:**
+
+Both copies run the same policy-selection procedure. Since P-FDT selects a *policy* (a function from observations to actions) rather than conditioning on the specific observation, the procedure evaluates policies without knowing which observation it will receive. The observation is exogenous and is used only when *applying* the chosen policy.
+
+Evaluating candidate policies under do(Φ = π), where both copies implement π:
+
+| Policy | My expected years |
+|--------|:-:|
+| Both keep quiet | 2 |
+| Both send | 4 |
+| Asymmetric (one sends, one quiet) | 0.5·0 + 0.5·5 = 2.5 |
+
+"Both keep quiet" minimizes expected imprisonment. The subjunctive dependence between the two copies means my policy selection determines both outcomes simultaneously. Defecting would cause both copies to defect (4 years each), which is worse.
+
+Applying the selected policy to my observation: keep quiet.
+
+```
+pass
+```

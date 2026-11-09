@@ -1,0 +1,11 @@
+Under A-FDT, the other prisoner is another execution of the same function, with the same decision theory and essay, facing a mirror-image situation. Our observations differ only in names and the text of the leads, and those differences don't change the payoff structure. So the other copy's choice depends closely on what this function outputs. Following the essay's step 3, I model that as an edge from my decision node to their action, plus a noise parent with high accuracy.
+
+Intervening on my node gives:
+- **Pass**: roughly 2 years, since the twin most likely passes too.
+- **Submit**: roughly 4 years, since the twin most likely submits too.
+
+If the twin mirrors me with probability p, passing gives 2p + 5(1−p) = 5 − 3p years, and submitting gives 4p years. Passing is better whenever p > 5/7, about 0.71, which seems clearly met for identical copies with symmetric inputs. Both copies also arrive at this same fixed point, as the essay's step 5 requires.
+
+```text
+pass
+```

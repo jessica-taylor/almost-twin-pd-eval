@@ -1,0 +1,8 @@
+**pass**
+
+Brief reasoning (per A-FDT as specified in the essay): Sasha is an independent execution of the same model and weights, facing a symmetric dilemma. Under my operational gloss (§7), Sasha's decision procedure subjunctively depends on the same function I am computing — there is an edge from my decision-function node to Sasha's decision, since her behavior tracks the output of the very algorithm I am running. So I evaluate by intervening on that node:
+
+- do(decision function = pass): by symmetry, Sasha's procedure outputs pass → 2 years.
+- do(decision function = submit): Sasha's procedure outputs submit → 4 years.
+
+Passing maximizes expected utility under Equation (4). Command: `pass`.

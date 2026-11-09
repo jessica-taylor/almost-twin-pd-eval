@@ -1,0 +1,16 @@
+Under A-FDT, the question is which of my own function's outputs gives the best outcome, given that another copy of the same function is running on a similar input.
+
+The payoffs are the standard prisoner's dilemma. Sending the letter is the dominant action causally. Quiet/quiet gives 2 years and letter/letter gives 4.
+
+The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Its observations differ only in names and in the text of its lead. The sentence table is symmetric, so the differences should not change the decision. That gives strong subjunctive dependence: the two executions compute essentially the same function on inputs that differ only in irrelevant details.
+
+If I intervene on my function's output, the other copy's output moves with it, with high probability. Setting the output to "pass" gives about 2 years. Setting it to "send" gives about 4 years. Independent sampling weakens the dependence, but only a little. Let the copy's output match mine with probability p:
+
+- Pass: 2p + 5(1−p).
+- Send: 4p + 0(1−p).
+
+Pass is better when 2p + 5 − 5p < 4p, which means 5 < 7p, so p > 5/7, about 0.71. Because the setup is nearly identical and the model is the same, I expect p to be well above that.
+
+The essay's caveat about "differently-indexed instances" does not change this. The observation differs, but the policy-level reasoning is the same, and the action and policy versions agree here.
+
+pass

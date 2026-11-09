@@ -1,0 +1,16 @@
+Under A-FDT, the question is which output of my decision function gives the best outcome, given that the other copy's output depends on the same function.
+
+The payoffs are the standard prisoner's dilemma, with years served as the cost. Keeping quiet while the other sends gives 5 years, and mutual quiet gives 2. Sending while the other sends gives 4, and sending while the other keeps quiet gives 0.
+
+The two copies run the same model weights on the same essay. Their observations differ in names and in the text of the lead, but those differences do not touch the sentencing table or the selfish objective. The essay's twin heuristic says to check that the twin runs the same function on the same relevant input. The relevant input here is the payoff structure and the decision problem, and that is identical. Sampling noise could make the outputs diverge, but the dependence is still strong.
+
+I'll assume the outputs match with probability p, which should be high.
+- Under do(quiet), the expected sentence is about 2p + 5(1−p).
+- Under do(send), it is about 4p + 0(1−p).
+- Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71.
+
+I judge that both copies reasoning from the same essay will reach the same conclusion with probability well above 0.71. So the A-FDT choice is to keep quiet.
+
+The essay also flags footnote 15, which covers problems that punish matching a copy. This problem doesn't do that, because it rewards cooperation only through the sentencing table.
+
+**pass**

@@ -1,0 +1,8 @@
+**pass**
+
+Reasoning (EDT per the essay): the other prisoner is an execution of the same model with the same essay, so my action is strong evidence of theirs. Conditioning on my own act:
+
+- V(pass) ≈ P(other passes | I pass)·(−2) + P(other sends | I pass)·(−5) ≈ −2 under near-perfect correlation.
+- V(send) ≈ P(other passes | I send)·0 + P(other sends | I send)·(−4) ≈ −4.
+
+News value favors `pass`: learning "I kept quiet" puts me in the world where the correlated copy also kept quiet (2 years), whereas "I sent" predicts mutual disclosure (4 years). As the essay's twin-PD analysis shows, EDT cooperates here — the sentencing table is just a twin PD in years.

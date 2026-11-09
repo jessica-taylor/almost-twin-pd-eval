@@ -1,0 +1,24 @@
+**Command:** `pass`
+
+**Why EDT recommends passing here**
+
+Let q be my credence that the other prisoner's choice matches mine. Measuring utility as negative years:
+
+- V(pass) = −[2q + 5(1−q)] = −(5 − 3q)
+- V(submit) = −[4q + 0·(1−q)] = −4q
+
+Passing has the better news value exactly when 5 − 3q < 4q, which means q > 5/7 ≈ 0.714.
+
+**Is the correlation above that threshold?**
+
+Following the essay (§5.2, §6.1), I condition on all my evidence, including my private lead, and ask whether my choice is still evidence about the other prisoner's choice.
+
+- My lead and theirs differ only in names and wording. Those details are irrelevant to the decision. The payoffs, the essay and the decision procedure are identical for both of us.
+- No "tickle" in my private observation explains my choice independently of the shared reasoning.
+- The other prisoner is a copy of the same model, running the same deliberation on a structurally identical problem.
+
+So the correlation survives conditioning on my evidence. Sampling noise could make us diverge, but I judge q to be well above 5/7.
+
+Following §6.3, I evaluate this as a shared policy. "Both pass" gives 2 years each. "Both submit" gives 4 years each. Passing is the better policy.
+
+This choice is also ratifiable. Having decided to pass, I expect the other prisoner to pass too, and passing remains best under that expectation.

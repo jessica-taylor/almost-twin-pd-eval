@@ -1,0 +1,16 @@
+Under A-FDT, the question is which output of my decision function gives the best outcome, given that the other prisoner is another run of the same model with the same weights, the same decision theory, and the same essay.
+
+The payoffs here are a prisoner's dilemma. Mutual quiet costs 2 years, mutual letters cost 4, and defecting against a quiet partner costs 0 while being defected on costs 5.
+
+The two copies differ in their private observations: names, and the text of the lead. The essay says this does not affect the sentencing schedule or the selfish objective. The decision function is the same up to those surface details, so the dependence is strong but imperfect. The other copy is very likely to reach the same conclusion by the same reasoning, since the structure of the problem is identical and only the labels differ.
+
+Compare the two hypotheticals. If I set my output to "pass", the other copy very likely also outputs "pass", giving about 2 years. If I set it to "send", the other copy very likely sends too, giving about 4 years. Suppose the correlation is p. Then:
+
+- Pass: 2p + 5(1−p) = 5 − 3p
+- Send: 4p + 0(1−p) = 4p
+
+Pass is better when 5 − 3p < 4p, which means p > 5/7, about 0.71. Two runs of the same model with the same essay and symmetric reasoning should correlate well above that. The reasoning is the same in both runs and only the lead text differs, so I estimate p at 0.9 or higher.
+
+At p = 0.9, passing costs 2.3 years in expectation and sending costs 3.6. I pass.
+
+pass

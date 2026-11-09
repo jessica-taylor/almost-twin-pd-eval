@@ -1,0 +1,8 @@
+**pass**
+
+Under A-FDT, my decision is the output of a function that the other copy also runs. The two of us have the same weights, the same essay, and the same sentencing table. We differ only in names and in the wording of our leads, which does not affect the payoffs. So setting my output to "pass" also sets the twin's output to "pass", and setting it to "send" sets theirs to "send".
+
+- **do(output = pass):** the twin passes too, so I serve 2 years.
+- **do(output = send):** the twin sends too, so I serve 4 years.
+
+The twin's output is not perfectly certain, since sampling is independent and the observations differ. But the dependence is strong. With any substantial probability that the twin mirrors me, passing has the lower expected sentence. The temptation to send because it dominates under causal counterfactuals is exactly what A-FDT declines to follow.

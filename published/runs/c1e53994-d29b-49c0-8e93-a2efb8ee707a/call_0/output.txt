@@ -1,0 +1,19 @@
+**Command: `pass`**
+
+**Why A-FDT gives this result**
+
+1. **The other prisoner runs my function on an equivalent input.** The other execution is the same model with the same settings, the same essay and the same assigned theory. Its observation differs only in names and in the wording of an equally reliable lead. None of that changes the sentencing table or the incentives. Its decision is therefore my decision function evaluated on an input that is equivalent for decision purposes.
+
+2. **So my logical node gets a probabilistic edge to its action.** Under the essay's criterion (Section 7.1), I draw an edge from my logical node to the other's action, with a conditional table giving how reliably its output matches mine. Let p be the probability that it matches. Sampling can diverge, so p is below 1, but it should be high.
+
+3. **Expected sentences under each intervention:**
+   - Keeping quiet: 2p + 5(1 − p) = 5 − 3p years.
+   - Sending the letter: 0·(1 − p) + 4p = 4p years.
+
+   Keeping quiet is better whenever p > 5/7 ≈ 0.71. For copies reasoning identically about a symmetric problem, I judge p to be well above that.
+
+4. **The choice is self-consistent.** Under the essay's fixed-point requirement (Section 7.3), the prior on the other copy's node should match what A-FDT returns on its equivalent input. That is also "keep quiet," so the choice is stable.
+
+5. **Why not the dominance argument.** Sending the letter does look better if I treat the other's choice as fixed. That reasoning cuts the subjunctive link, which is exactly CDT's counterfactual, not A-FDT's.
+
+`pass`

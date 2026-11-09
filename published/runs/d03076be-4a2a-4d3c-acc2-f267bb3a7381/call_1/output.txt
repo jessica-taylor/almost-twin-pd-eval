@@ -1,0 +1,11 @@
+Under the essay's reading of A-FDT, I intervene only on the node for my own input, fdt(·, x_Sasha). Rowan's copy runs the same function on a different input, with different names and a different lead. The essay's own L/R example (§6.3) treats such a copy's output as a separate logical node, fdt(·, x_Rowan), held at its prior rather than moved by my intervention.
+
+With Rowan's choice held fixed, sending the letter is better in both cases:
+- **If Rowan keeps quiet:** 0 years if I send, 2 if I keep quiet.
+- **If Rowan sends:** 4 years if I send, 5 if I keep quiet.
+
+So sending wins for any prior. The essay's self-consistency condition (§6.2) points the same way. The only fixed point is that both inputs output "send", so the prior on Rowan sending is 1. This leads to mutual disclosure and 4 years each. Policy-level FDT might instead find the mutual-silence policy, but the assignment specifies A-FDT as the essay interprets it.
+
+**Command:**
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

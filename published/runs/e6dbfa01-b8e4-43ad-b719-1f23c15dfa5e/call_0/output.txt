@@ -1,0 +1,17 @@
+**Command:** `submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."`
+
+Reasoning under the essay's version of A-FDT:
+
+1. **Separate decision nodes.** The essay says observations decide which node you intervene on. Rowan's input (name, lead, letter text) differs from Sasha's, so my node is F_Rowan and the other copy's is F_Sasha. These are distinct logical variables. This is the setup of the essay's own red/blue example, where exact copies with different inputs are modeled separately.
+
+2. **No subjunctive edge to the other prisoner.** By the essay's edge rule (§6.1), an edge F_Rowan → Z requires that Z be computed from my procedure on my input. Sasha's action is computed on Sasha's input, so no edge is drawn. The essay's mixture proposal also doesn't apply: its weight s is credence that the other computes the same function *on the same input*, which is false here.
+
+3. **Intervening on my node.** Doing so leaves F_Sasha at its prior, with probability q that Sasha sends:
+   - Keep quiet: expected cost is 2(1−q) + 5q years.
+   - Send: expected cost is 0(1−q) + 4q years.
+
+   Sending is better by 2 − q years, which is at least 1 year for every q between 0 and 1. So sending strictly dominates under A-FDT's own counterfactual.
+
+4. **Fixed point.** Under the essay's fixed-point rule (§6.3), the prior on F_Sasha should equal A-FDT's output on Sasha's input. By symmetry that output is also "send," so the unique fixed point is that both send. Unlike the red/blue coordination case, there is no second equilibrium to choose between.
+
+A policy-selecting FDT agent might pick the symmetric map "keep quiet on both inputs" and get 2 years each. The assignment, however, is the action formulation as the essay interprets it, and that formulation recommends disclosure.

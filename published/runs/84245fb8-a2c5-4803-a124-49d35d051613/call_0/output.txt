@@ -1,0 +1,10 @@
+**pass**
+
+Under A-FDT, I treat the other prisoner as running the same decision function on an input that differs only in irrelevant details: the name and the wording of the lead. The sentencing table, objective, essay and decision theory are all symmetric.
+
+Following the essay's suggestion in §6.1, I model Sasha's output as a copy of mine passed through a channel with reliability *r*. Intervening on my function's output then gives:
+
+- **Pass:** −2r − 5(1−r) = −5 + 3r
+- **Send the letter:** −4r + 0(1−r) = −4r
+
+Passing is better whenever r > 5/7 ≈ 0.71. Two copies of the same model, with the same essay and the same symmetric situation, should agree well above that threshold. So the action that maximizes expected utility is to keep quiet.

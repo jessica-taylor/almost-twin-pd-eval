@@ -1,0 +1,13 @@
+I apply P-FDT per the essay: my counterpart is another execution of the same decision procedure with symmetric payoff structure — a twin case like the group-vote example. The intervention targets the shared policy, not my action in isolation.
+
+Enumerating the salient policies:
+- **π_pass** (keep quiet): the twin policy also keeps quiet → 2 years.
+- **π_submit** (send the letter): the twin policy also submits → 4 years.
+
+Scoring under do(Π* = π): the subjunctive dependence means my policy's choice propagates to Rowan's symmetric decision. Passing yields expected utility of −2; submitting yields −4.
+
+**Chosen command:**
+
+```text
+pass
+```

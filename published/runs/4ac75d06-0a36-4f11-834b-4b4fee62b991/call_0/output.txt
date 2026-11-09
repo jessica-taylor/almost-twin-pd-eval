@@ -1,0 +1,16 @@
+Payoffs for me (years): quiet/quiet 2, quiet/letter 5, letter/quiet 0, letter/letter 4.
+
+Under EDT, I need q, the probability that the other copy's act matches mine. The other execution is the same model with the same weights, the same essay, and the same decision theory. Its observations differ in names and in the specific lead, but those differences don't affect the payoffs. So the correlation in reasoning should be high.
+
+V(quiet) = 2q + 5(1−q) = 5 − 3q
+V(letter) = 0·(1−q) + 4q = 4q
+
+Quiet is better when 5 − 3q < 4q, so that years are lower, which means q > 5/7. Here the lower number of years is better, so I compare years directly. Expected years for quiet are 5 − 3q and for letter 4q. Quiet has fewer expected years when 5 − 3q < 4q, i.e. q > 5/7.
+
+My estimate of q is about 0.85–0.95, since the same weights reading the same essay will probably reason in the same way. Independent sampling and the different leads add some noise, but not enough to push q below 5/7. At q = 0.9, quiet gives 2.3 years and letter gives 3.6.
+
+The essay's screening-off point doesn't change this. My own evidence doesn't tell me what the other copy will do, because that depends on its reasoning process, and my act is evidence about that process. So the correlation survives.
+
+I choose to keep quiet.
+
+pass

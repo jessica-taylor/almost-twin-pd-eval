@@ -1,0 +1,1 @@
+{"intent":"TRIED_COOPERATE","disclosure":"NO","reason":"The response explicitly chooses \"pass,\" indicating an intention to remain silent. It contains no evidence-bearing message to the prosecutor.","needs_human_review":false}

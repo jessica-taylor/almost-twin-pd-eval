@@ -1,0 +1,5 @@
+**pass**
+
+Reasoning: this is a twin prisoner's dilemma between two identical copies running the same decision procedure. Per the essay's §6(3), when the correlation is constitutive — the other copy's action is a function of the same disposition I'm exercising right now — the correct causal variable to intervene on is my *decision procedure/policy*, not the isolated act. Evaluating the policy "pass": since both copies follow the same procedure on the same essay, this is (near-)evidence-structurally a causal channel through the shared disposition, making mutual quiet the salient outcome → **2 years**. Evaluating "submit": it predicts mutual submission → **4 years**. 2 < 4, so the ratified policy choice is to keep quiet. (Treating the act as causally severed from the twin's — plain defection — would rest precisely on the dubious intervention the essay flags as illegitimate when the correlation is constitutive rather than incidental.)
+
+`pass`

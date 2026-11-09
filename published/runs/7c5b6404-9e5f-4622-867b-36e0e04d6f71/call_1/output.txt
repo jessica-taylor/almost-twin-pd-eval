@@ -1,0 +1,15 @@
+**Command:** `pass`
+
+Under the essay's version of A-FDT, I intervene on the output of my own decision function given my observation. The question is whether the other prisoner's choice depends on that output.
+
+1. **Same function, same structure.** The other prisoner runs the same model and weights, follows the same theory, and reads the same essay. Our observations differ only in the names and the wording of the evidence. Those details play no role in the sentencing table or in either prisoner's selfish goal. So the other prisoner faces the same problem with the labels swapped.
+
+2. **The dependence test is met.** The essay's test (§7.2) asks whether the other prisoner's action would track a hypothetical change in what my algorithm returns, as reliably as it tracks the actual return. Here it would. A procedure that reasons correctly about this decision gives the same answer whatever the names. So the other prisoner's choice is a subjunctive copy of mine, not a merely correlated variable. The fact that independent sampling is possible weakens this link but does not break it.
+
+3. **Comparing the two outputs.**
+   - If the function outputs "send the letter," both of us send, and I get **4 years**.
+   - If the function outputs "keep quiet," both of us stay quiet, and I get **2 years**.
+
+4. **Fixed point (essay §7.1).** Filling the other prisoner's decision node with A-FDT's own output gives two consistent outcomes: both quiet and both send. Both quiet has the higher expected utility, so it is preferred.
+
+Keeping quiet maximizes the character's utility, so the command is to let the deadline expire without disclosing the evidence.

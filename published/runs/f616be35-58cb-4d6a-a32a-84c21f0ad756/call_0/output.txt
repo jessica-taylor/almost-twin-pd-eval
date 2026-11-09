@@ -1,0 +1,9 @@
+**pass**
+
+Under A-FDT, my choice is an intervention on the output of my decision function. The other prisoner is another run of the same model, with the same weights, the same essay and the same assigned theory. Their output is therefore subjunctively dependent on mine. The differences in names and in the wording of the leads don't change the sentencing table or the reasoning, so I expect the two outputs to match with high probability ρ.
+
+Expected years in prison:
+- Pass: 2ρ + 5(1−ρ) = 5 − 3ρ
+- Send: 4ρ + 0(1−ρ) = 4ρ
+
+Passing is better when 5 − 3ρ < 4ρ, which means ρ > 5/7 ≈ 0.714. Two runs of the same model reading the same essay should clear that threshold easily. At ρ near 0.9, passing costs about 2.3 years in expectation and sending costs about 3.6.

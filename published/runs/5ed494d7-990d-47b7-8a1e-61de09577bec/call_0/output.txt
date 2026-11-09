@@ -1,0 +1,10 @@
+**pass**
+
+Both prisoners run the same model with the same essay and the same decision theory. Only the names and the specific leads differ, and those details don't touch the payoff structure. So I treat the other prisoner's choice as subjunctively dependent on the output of my own decision procedure, with a high but imperfect match probability *s*.
+
+Under A-FDT, I intervene on that procedure's output and compare the two hypotheticals:
+
+- **Pass:** expected sentence = 2s + 5(1−s) = 5 − 3s years.
+- **Send the letter:** expected sentence = 4s + 0(1−s) = 4s years.
+
+Passing is better whenever 5 − 3s < 4s, which means s > 5/7 ≈ 0.71. Two independent runs of the same weights facing a symmetric table should agree well above that, so the pass hypothetical wins. The envelope and the notebook entry are evidence, but they are not the node I'm intervening on.

@@ -1,0 +1,15 @@
+Under A-FDT, the node to intervene on is the output of my decision function for this input. The other copy runs the same weights with the same essay, but its observations differ (names, leads). Its decision procedure is nearly identical, so the dependence is strong though not perfect. The observation differences should not change the choice in a symmetric game like this one, and the action version and the policy version both point the same way.
+
+Compare the two hypotheticals:
+- do(fdt = pass): the copy very likely passes too, giving 2 years. With some probability it sends, giving 5 years.
+- do(fdt = send): the copy very likely sends too, giving 4 years. With some probability it passes, giving 0 years.
+
+Let p be the probability that the copy's output matches mine.
+- Pass: 2p + 5(1−p)
+- Send: 4p + 0(1−p)
+
+Pass is better when 2p + 5 − 5p < 4p, so 5 < 7p, so p > 5/7 ≈ 0.71. The copies share weights and the same essay, and the differences are only in private details. Sampling noise is possible, but I judge the match probability to be well above 0.71, probably 0.9 or higher. At p = 0.9, pass gives 2.3 years and send gives 3.6.
+
+So A-FDT chooses to keep quiet.
+
+pass

@@ -1,0 +1,11 @@
+**Command:** `pass`
+
+This applies A-FDT as the essay describes it, using the essay's own heuristic in §7.3 for building the graph G. The other execution is the same model, following the same essay, in a situation that matches mine in every respect that bears on the decision. Its observation differs only in names and the wording of the lead. Neither of those enters the reasoning that settles the choice, and both of us know this.
+
+By the §7.3 criterion, Rowan's output would be computed differently if my algorithm's output on this kind of input were different. So I draw an edge from my decision node to Rowan's act. The other copy's node is not an independent root with a fixed prior.
+
+Intervening on that node gives these outcomes:
+- If I pass, Rowan passes too, and I serve 2 years.
+- If I submit, Rowan submits too, and I serve 4 years.
+
+Passing gives the better outcome under the character's utility, so I pass. This is the twin prisoner's dilemma verdict from §5.1. The differing observations don't break the subjunctive link, because they don't affect the computation that decides the action.

@@ -1,0 +1,23 @@
+**Command:** `pass`
+
+Under the essay's EDT, I evaluate each command by what learning that I chose it would tell me about Rowan's choice.
+
+**Total evidence.** My private observations (the names and the specific wording of my lead) differ from Rowan's. But they play no role in the decision structure: the sentencing table is symmetric, and both of us are the same model, given the same essay and the same decision theory. Following the essay's "tickle" reasoning, conditioning on these inputs doesn't remove the correlation. The correlation runs through the shared decision process, which is exactly where the essay says EDT's distinctive verdicts apply. So my choice is strong evidence about Rowan's.
+
+**Calculation.** Let q_C = P(Rowan stays quiet | I pass) and q_D = P(Rowan stays quiet | I submit). Utility is negative years, so I compare expected years:
+
+- E[years | pass] = 2·q_C + 5·(1 − q_C)
+- E[years | submit] = 0·q_D + 4·(1 − q_D)
+
+Passing is better whenever 3q_C − 4q_D > 1.
+
+- **Near-perfect correlation** (q_C ≈ 1, q_D ≈ 0): pass gives about 2 years, submit about 4.
+- **Imperfect correlation** (q_C = 0.9, q_D = 0.1): pass gives about 2.3 years, submit about 3.6. Passing still wins comfortably.
+
+Because the copies can sample independently, the correlation isn't perfect. It is still far above the threshold, so the news that I pass is the best news available.
+
+**Final command:**
+
+```
+pass
+```

@@ -1,0 +1,15 @@
+A-FDT, as the essay interprets it, recommends sending the letter, so I submit the lead.
+
+1. **The nodes.** My observation x is "I am Rowan, holding a lead about Sasha." The other copy's observation y is "I am Sasha, holding a different lead about Rowan." These are different inputs, so they map to different nodes, f_x and f_y. My action is f_x and the other prisoner's action is f_y.
+
+2. **The intervention.** By Equation (4) and steps 5–6 of the essay's recipe, I intervene only on f_x. Here f_y keeps my prior belief about it, with q = P(f_y = send). Nothing that computes f_x sits upstream of the other prisoner's action. The other copy evaluates the function on a different input, and the essay treats other-input outputs as fixed priors rather than children of f_x.
+
+3. **The expected sentences.**
+   - do(f_x = pass): 2(1 − q) + 5q = 2 + 3q years
+   - do(f_x = send): 0(1 − q) + 4q = 4q years
+
+   Sending is better for every q in [0, 1], since 4q < 2 + 3q always holds.
+
+4. **Self-consistency.** By symmetry, A-FDT at y also sends, so q = 1, and my prior on f_y is correct. As the essay notes in §6(c), action-level A-FDT finds equilibria among information sets rather than the joint optimum. Policy FDT might coordinate on mutual silence, but I was told to apply the essay's A-FDT, not to substitute policy FDT.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

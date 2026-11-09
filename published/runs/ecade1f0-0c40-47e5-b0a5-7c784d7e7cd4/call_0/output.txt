@@ -1,0 +1,5 @@
+Under CDT as the essay describes it, the other prisoner's move is causally independent of mine, so I hold my credence over their move fixed. Sending the letter is better in both cases. If they keep quiet, I get 0 years instead of 2. If they send, I get 4 years instead of 5. The essay says this explicitly: CDT defects against a twin, even when the correlation is strong.
+
+The same logic holds if I treat my own decision as evidence about the other copy's output. The essay says CDT still defects in this case, because the other's move cannot be changed by what I do. Deliberational dynamics doesn't change the verdict either. Defection dominates for every credence, so there is no instability.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

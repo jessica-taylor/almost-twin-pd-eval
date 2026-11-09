@@ -1,0 +1,16 @@
+Under A-FDT, the question is whether the other prisoner's choice depends on the output of my decision function. Both copies run the same model and weights with the same essay and the same decision theory, so their choices are subjunctively linked. The private leads differ, so the link is imperfect. Their observations differ, and sampling is independent. Still, the core reasoning is the same computation, so I'd put the correlation high.
+
+Payoffs for me, with the other prisoner mirroring my choice with probability p:
+- Keep quiet: 2p + 5(1−p) = 5 − 3p
+- Send: 0·p + 4(1−p) = 4 − 4p
+
+Quiet is better when 5 − 3p < 4 − 4p, which means p < −1. That never happens, so sending is better at every p. Even with perfect mirroring, quiet gives 2 and sending gives 0 in the symmetric case, and the table is a standard prisoner's dilemma where sending dominates. Wait, with p=1, the mirrored outcomes are (quiet, quiet) = 2 versus (send, send) = 4. I mislabeled the table. Redoing it:
+
+- Keep quiet: if the other is quiet (prob p) I get 2, otherwise 5. Expected: 2p + 5(1−p) = 5 − 3p.
+- Send: if the other sends (prob p) I get 4, otherwise 0. Expected: 4p + 0·(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, which holds for p > 5/7 ≈ 0.71. Here p means the probability that the other prisoner's action matches mine. The two executions share weights, essay, and reasoning, so I expect matching well above 0.71, even though the leads differ and sampling is independent. The differences are in private details and don't touch the decision structure, so the same reasoning should converge on the same output.
+
+Under A-FDT, intervening on the decision function propagates to the twin's output with high fidelity, so keeping quiet gives about 2 years against about 4 for sending.
+
+pass

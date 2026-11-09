@@ -1,0 +1,20 @@
+**Analysis under P-FDT:**
+
+The other prisoner is an independent execution of the same model and weights, following the same decision theory (P-FDT), reading the same essay, and facing a strategically identical situation. The different private observations (different leads) do not alter the payoff structure or the decision-relevant features of the game.
+
+Per Section 9 of the essay, this is the psychological twin prisoner's dilemma: the other copy's behavior subjunctively depends on the same policy variable. If the shared procedure outputs a policy of cooperation, both cooperate. If it outputs defection, both defect.
+
+Evaluating the two candidate policies under the policy intervention:
+
+- **Policy "keep quiet":** Both copies keep quiet → 2 years each. U = −2.
+- **Policy "send letter":** Both copies send → 4 years each. U = −4.
+
+Since −2 > −4, P-FDT selects the policy of keeping quiet.
+
+The different specific content of our leads does not break the subjunctive dependence, because the leads are strategically equivalent and the decision procedure is the same. Sampling noise introduces a small probability of divergence, but it is well below the indifference threshold (~28.6%).
+
+**My command:**
+
+```
+pass
+```

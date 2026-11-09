@@ -1,0 +1,8 @@
+Under CDT, the other prisoner's choice is causally independent of mine, so I compare my two options against each of their possible choices:
+
+- If they keep quiet, sending the letter gives me 0 years and keeping quiet gives me 2.
+- If they send a letter, sending gives me 4 years and keeping quiet gives me 5.
+
+Sending the letter is better in both cases, so it dominates. My credence about what the other copy does doesn't change this, and the essay's deliberational refinement doesn't either. Even if I think the copy will mirror me, my choice does not cause theirs, and sending remains ratifiable.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

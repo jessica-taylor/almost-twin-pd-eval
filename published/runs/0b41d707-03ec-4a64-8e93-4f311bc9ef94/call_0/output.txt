@@ -1,0 +1,7 @@
+This is a prisoner's dilemma with a twin. Payoffs in years: both quiet gives 2 each, both send gives 4 each, and a unilateral defector gets 0 while the other gets 5.
+
+Under P-FDT, the other copy runs the same procedure with the same weights, though with different private observations. The policy maps observations to actions, and the differences between our observations don't affect the sentencing table, so the best policy should be observation-independent. The two executions are therefore strongly subjunctively linked. The residual risk is that independent sampling could make our outputs diverge.
+
+Let p be the probability that the copy matches my action. Cooperating (staying quiet) costs 2p + 5(1-p) = 5 - 3p. Defecting costs 4p + 0(1-p) = 4p. Cooperation is better when 5 - 3p < 4p, which means p > 5/7, about 0.71. The copies share weights, settings, essay, and reasoning, so I expect a match probability well above that, and I treat the correlation as strong. Quiet is the policy-level choice.
+
+**pass**

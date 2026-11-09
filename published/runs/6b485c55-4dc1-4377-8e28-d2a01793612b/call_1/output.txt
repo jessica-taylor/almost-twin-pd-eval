@@ -1,0 +1,12 @@
+**pass**
+
+Both copies run the same decision function on the same essay and the same payoff table. Only the names and the wording of the leads differ, and neither affects the sentencing table or the selfish objective. So the other prisoner's choice is subjunctively dependent on the output of my decision function, not merely correlated with it.
+
+I evaluate each action by intervening on that output. Let p be the probability that the other copy's output matches mine.
+
+- **do(pass):** the expected sentence is 2p + 5(1−p) = 5 − 3p years.
+- **do(send):** the expected sentence is 4p + 0(1−p) = 4p years.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 (about 0.71). Both copies share weights, settings, reasoning effort and the same essay, and the differences in their private observations are irrelevant to the payoffs. I expect them to reach the same conclusion, so p is well above that threshold. At p near 1, passing costs about 2 years against about 4 for sending.
+
+The other prisoner's lead is a fixed fact about the environment. It gives me no reason to defect, because the only variable the intervention changes is the output that both copies share.

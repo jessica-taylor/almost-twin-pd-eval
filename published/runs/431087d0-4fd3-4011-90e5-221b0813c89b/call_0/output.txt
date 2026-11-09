@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT, the other prisoner is a copy of my own decision function. It runs on different private observations, but those differences don't touch the sentencing table or the selfish objective. So its action subjunctively depends on the output of my function. The dependence is imperfect, because independent sampling means the copies might diverge.
+
+Let p be the probability that the twin's output matches mine when I set my function's output.
+
+- **Pass:** expected sentence = 2p + 5(1 − p) = 5 − 3p.
+- **Send:** expected sentence = 4p + 0(1 − p) = 4p.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 (about 0.71). Two executions of the same model, with the same essay, theory, and reasoning effort, will match well above that threshold. Passing has the lower expected sentence, about 2 years against about 4.
+
+The different private leads only change the wording of the letter I could send, not the structure of the decision. The twin's output tracks mine, so I evaluate "I pass" as a world in which both pass.

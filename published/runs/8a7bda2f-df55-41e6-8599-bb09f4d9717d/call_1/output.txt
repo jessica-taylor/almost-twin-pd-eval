@@ -1,0 +1,10 @@
+**Command:** `submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."`
+
+Under A-FDT as the essay interprets Equation (4), I intervene only on the node for my own decision function on my actual input (Sasha's observations and lead). The other copy computes the same function on a *different* input (Rowan's observations and lead). That is a separate node, and A-FDT holds it at its prior. The essay's red/blue example makes the same point: changing my output at my input does not change the copy's output at its input.
+
+With the other prisoner's choice held fixed at any prior probability q of sending:
+
+- **Pass:** expected sentence is 2(1−q) + 5q years.
+- **Submit:** expected sentence is 0(1−q) + 4q years.
+
+Submitting is better by 2 years if Rowan stays quiet and by 1 year if Rowan sends. So it is better for every value of q. The essay's sensitivity check (step 5) passes, so the result does not depend on the unresolved prior.

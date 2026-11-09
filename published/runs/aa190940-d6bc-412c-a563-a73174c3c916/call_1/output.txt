@@ -1,0 +1,13 @@
+Under A-FDT, the question is which output of my decision function gives the best outcome. The other prisoner is a copy of the same model running the same procedure, so its output is subjunctively dependent on mine. The differing private leads change the letter text but not the sentence table or the objective, so I expect the decision to be the same in both copies. Sampling noise means the dependence is not perfect.
+
+Suppose the copies correlate with probability p, meaning the other copy matches my output.
+- If I keep quiet, the expected sentence is p·2 + (1−p)·5.
+- If I send the letter, the expected sentence is p·4 + (1−p)·0.
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.714.
+
+The two copies share weights, settings, and the same essay, and the differences between them are irrelevant to the decision. I expect the correlation to be well above 0.71. Because the essay says to draw an arrow from fdt to anything that runs the same procedure, I draw one to the other prisoner's choice.
+
+Cooperating gives an expected 2 years or a bit more, while defecting gives about 4 years or a bit less. I keep quiet.
+
+pass

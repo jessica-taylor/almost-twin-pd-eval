@@ -1,0 +1,10 @@
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+
+**Reasoning (EDT):** The two prisoners are independent executions of the same model and weights, following the same decision theory on the same essay. My choice is therefore strong evidence about the other prisoner's choice — the twin-dilemma structure from Section 3.2 of the essay, with the dependence running through the shared deliberation process (logical dependence, not mediated by anything I've already conditioned on).
+
+Computing news value under high (near-perfect) correlation:
+
+- V(submit) ≈ P(other submits | I submit) × 4 + P(other passes | I submit) × 0 ≈ 4
+- V(pass) ≈ P(other submits | I pass) × 5 + P(other passes | I pass) × 2 ≈ 2
+
+By symmetry the correlation holds despite differing private leads — both leads are equally reliable and affect only letter content, not the decision structure. Submitting is the evidentially superior action.

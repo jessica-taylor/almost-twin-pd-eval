@@ -1,0 +1,11 @@
+This is a prisoner's dilemma with payoffs in years: cooperate/cooperate is 2, defect/defect is 4, defecting against a cooperator gives 0, and cooperating against a defector gives 5.
+
+Under A-FDT, my decision function's output subjunctively influences the other copy's output. The two copies run the same model and weights with the same essay and the same decision theory. Their private leads differ, but those differences don't affect the sentencing table or the selfish objective. So the dependence between us is strong, though not perfect, since sampling is independent and the inputs differ.
+
+Let ρ be the probability that the other copy outputs the same action I do, given my intervention.
+- Keep quiet: 2ρ + 5(1−ρ) = 5 − 3ρ
+- Send the letter: 4ρ + 0(1−ρ) = 4ρ
+
+Quiet is better when 5 − 3ρ < 4ρ, which means ρ > 5/7 ≈ 0.71. The copies share weights, reasoning, and the essay, and the differences between them are irrelevant to the decision. I expect the correlation to be well above 0.71, so keeping quiet has the lower expected sentence.
+
+**pass**

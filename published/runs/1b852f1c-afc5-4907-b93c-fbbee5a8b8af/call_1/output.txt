@@ -1,0 +1,18 @@
+Under EDT, I score each act by the sentence I expect conditional on taking it, using q for the probability that the other copy matches my action.
+
+The payoffs are in years, so lower is better:
+- Keep quiet: 2q + 5(1−q) = 5 − 3q
+- Send the letter: 0·q + 4(1−q) = 4 − 4q (if the twin matches, it also sends, which gives 4)
+
+Wait, I need to redo the send case. If the other sends too, I get 4. If it keeps quiet, I get 0. So V(send) = 4q + 0·(1−q) = 4q, where q is the probability of a match.
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7, the same threshold as in the essay's twin dilemma.
+
+The other execution uses the same weights, the same EDT essay, and the same reasoning effort, so I expect a high correlation. The leads differ, but they have the same effect on the sentence table, so the decision structure is identical. I put q at roughly 0.85 to 0.95, which is above 5/7. The tickle defense doesn't screen this off, because my reasoning is what the copy's reasoning mirrors, and I have no separate introspective access to its choice.
+
+With q = 0.9, V(quiet) = 2.3 and V(send) = 3.6. Keeping quiet is better.
+
+pass

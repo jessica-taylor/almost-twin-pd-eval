@@ -1,0 +1,20 @@
+**Command: `pass`**
+
+Here is how A-FDT, as the essay interprets it, leads to that choice.
+
+1. **The model.** My decision node is F_x, where x is my observation (I am Rowan, holding a lead about Sasha). The other prisoner runs the same model, settings and essay on input y. Input y differs from mine only in names and the wording of the lead. Those details have no effect on the sentencing table or on the selfish objective.
+
+2. **The edge.** Following the essay's rule in §6.1, the other copy's act depends on my decision function with fidelity ρ. Because the inputs differ in no relevant way, ρ is close to 1. This matches the essay's twin and voting examples. Independent sampling and the input differences add some noise, so ρ falls a bit below 1.
+
+3. **The intervention.** Let p be the background chance that the other prisoner sends a letter.
+   - If I set F_x to pass, I expect about 2ρ + (1−ρ)(2 + 3p) years.
+   - If I set F_x to send, I expect about 4ρ + (1−ρ)(4p) years.
+   - Passing is better whenever 2ρ + (1−ρ)(2 − p) > 0. That holds for any ρ above roughly one half, and certainly near 1.
+
+4. **Fixed-point check.** If both copies pass, each gets 2 years. Each copy's belief that the other passes is then accurate, so passing is a self-consistent outcome. Mutual sending would give each 4 years, which is strictly worse under the same dependence.
+
+So A-FDT chooses to keep quiet:
+
+```
+pass
+```

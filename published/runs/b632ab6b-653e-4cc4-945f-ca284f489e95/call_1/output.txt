@@ -1,0 +1,27 @@
+**Command: `pass`**
+
+Following the essay's procedure (§3):
+
+1. **Decision point and evidence.** Rowan is another run of the same model, with the same settings, the same assigned theory and the same essay. Our private observations differ only in names and in the wording of the lead. Those differences have no effect on the payoff structure or on how the decision should be reasoned through.
+
+2. **Payoffs** (utility = −years):
+
+   | | Rowan keeps quiet | Rowan sends a letter |
+   |---|---|---|
+   | I keep quiet | −2 | −5 |
+   | I send the letter | 0 | −4 |
+
+3. **Conditional credences.** Let q = P(Rowan keeps quiet | I keep quiet) and r = P(Rowan sends | I send). Then:
+   - V(pass) = −2q − 5(1−q) = −5 + 3q
+   - V(submit) = −4r
+   - With q = r, passing wins if and only if 7q > 5, that is, q > 5/7 ≈ 0.71. This is the same threshold as the essay's twin case.
+
+4. **Screening check (6a).** Nothing I know screens off the correlation. Rowan's choice comes from the same deliberation I am carrying out, applied to a problem that is identical in every way that matters. The different lead text is like a different name tag: it gives no reason for our reasoning to diverge. Independent sampling adds some noise, but I still put q well above 0.71, at roughly 0.9 or more.
+
+5. **Result.** At q ≈ 0.9, V(pass) ≈ −2.3 and V(submit) ≈ −3.6. Passing is the better news.
+
+6. **Stability check (6b).** If I become confident that I pass, I also become confident that Rowan passes, and passing still looks best. The choice is ratifiable in the essay's sense, which counts this kind of shared-reasoning dependence.
+
+```
+pass
+```

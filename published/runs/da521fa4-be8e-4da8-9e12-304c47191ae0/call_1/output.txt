@@ -1,0 +1,11 @@
+`pass`
+
+Both copies run the same A-FDT procedure on the same essay and the same symmetric table. The private differences (names, wording of the leads) don't change the sentence table or the objective, so I expect the other copy's output to track mine closely.
+
+Under A-FDT I compare two hypotheticals:
+- **`do(fdt = pass)`:** the other copy very likely passes too, so I serve 2 years.
+- **`do(fdt = submit)`:** the other copy very likely submits too, so I serve 4 years.
+
+I also checked partial dependence. Say the other copy matches my output with probability r and otherwise sends with probability μ = 0.5. Passing is better when 2 < 4r + μ(1−r), which holds for r above about 0.43. Two copies of the same model with the same essay should correlate well above that.
+
+Submitting would only win if I treated the other copy's choice as fixed. A-FDT doesn't do that, because the other copy computes the same function I am evaluating.

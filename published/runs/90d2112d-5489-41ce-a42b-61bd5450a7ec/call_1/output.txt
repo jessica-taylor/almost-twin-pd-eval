@@ -1,0 +1,12 @@
+Under the essay's reading of A-FDT, I intervene only on the node for my own input, $\textsc{fdt}(\underline P,\underline G,\underline x)$, where $x$ includes my name and my specific lead.
+
+- **The other copy runs on a different node.** Rowan's copy receives a different input $y$: a different name and a different lead. By the essay's §4 rule, its act hangs off $\textsc{fdt}(\cdot,y)$, not off my node. Changing my output does not propagate to Rowan's action. That node keeps whatever prior distribution I assign it, as described in §6 step 6 and §7.2.
+- **Sending is better for any belief about Rowan.** Let $q$ be my credence that Rowan sends a letter.
+  - Keeping quiet: expected sentence is $2(1-q)+5q = 2+3q$ years.
+  - Sending: expected sentence is $0(1-q)+4q = 4q$ years.
+  - Sending is better by $2-q>0$ for every $q\in[0,1]$, so the verdict does not depend on the self-beliefs at the other node.
+- **The fixed point is mutual disclosure.** Applying the same reasoning at input $y$ gives the self-consistent pair (send, send). This is the kind of suboptimal "equilibrium with itself" the essay warns A-FDT can fall into, as opposed to Policy-FDT (§7.3). The assigned theory is A-FDT, not Policy-FDT.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

@@ -1,0 +1,14 @@
+```
+pass
+```
+
+**Reasoning (as the character, under A-FDT):**
+
+My decision function and Sasha's are subjunctively dependent — we are copies of the same model, following the same decision theory, facing a symmetric dilemma. Per the essay, A-FDT intervenes on the output of my decision function, and that intervention propagates to everything downstream of that function — including Sasha's identical copy of it.
+
+- `do(fdt = submit)`: both submit → I get 4 years.
+- `do(fdt = pass)`: both pass → I get 2 years.
+
+The differences in our private observations (different lead contents) don't change the sentencing table or the symmetry of the choice, and my preferences assign no weight to Sasha's welfare or fairness — only to my own sentence. Under the A-FDT hypotheticals, passing is the output of the function that yields the better outcome (2 years vs. 4 years), even though holding Sasha's action fixed, submitting would causally get me 0 years. As with the twin in Newcomb, imagining my function outputting differently means imagining Sasha's doing the same.
+
+**Command:** `pass`

@@ -1,0 +1,5 @@
+`pass`
+
+**Reasoning under A-FDT, as the essay interprets it:**
+
+- **The other prisoner tracks my function.** Rowan is run by the same model and weights, under the same decision theory, essay and payoffs. Only the names and the wording of the leads differ, and those don't affect the decision. By the essay's edge rule, Rowan's choice is a reliable function of

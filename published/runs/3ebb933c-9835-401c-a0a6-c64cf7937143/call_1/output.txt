@@ -1,0 +1,20 @@
+**Analysis using EDT:**
+
+I am one of two copies of the same model, following the same decision theory (EDT), with the same essay, the same payoff structure, and the same utility function. The differences in our private observations (names, specific leads) are explicitly stated to not affect the decision. This is structurally identical to the twin prisoner's dilemma in the essay.
+
+**Computing conditional expected utilities:**
+
+Let q = P(other sends | I send) and r = P(other sends | I keep quiet). Given same weights, same theory, same essay, same payoff structure, and explicitly irrelevant observational differences, the correlation is very high: q ≈ 1, r ≈ 0.
+
+- V(send) = q × (−4) + (1−q) × 0 = −4q ≈ −4
+- V(keep quiet) = r × (−5) + (1−r) × (−2) = −2 − 3r ≈ −2
+
+Since −2 > −4, keeping quiet is better news. My keeping quiet is strong evidence the other copy also keeps quiet, yielding 2 years each rather than 4 years each.
+
+This directly mirrors the essay's twin PD example: cooperation is recommended because one's own cooperative choice is strong evidence the correlated agent also cooperates.
+
+**My command:**
+
+```
+pass
+```

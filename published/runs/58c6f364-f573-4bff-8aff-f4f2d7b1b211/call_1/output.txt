@@ -1,0 +1,8 @@
+**submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."**
+
+Reasoning (briefly, per EDT as in the essay): this is a symmetric twin-dilemma structure. My choice is strong evidence of the other copy's choice, since we share weights, decision theory, and the essay. With correlation p = P(other submits | I submit):
+
+- V(submit) = 4p + 0·(1−p) = 4p
+- V(pass) = 2p + 5(1−p) = 5 − 3p
+
+Submitting is better iff p > 5/7 ≈ 0.71. Two identical model executions given identical instructions should match with confidence well above that threshold, so by the essay's twin-dilemma analysis (§3.2) and the correlation threshold check, submitting maximizes evidential expected utility.

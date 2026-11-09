@@ -1,0 +1,11 @@
+Under Action Functional Decision Theory (A-FDT) as formalized in Equation (4) of the essay, the decision rule evaluates:
+
+$$\mathrm{A\text{-}FDT}(P, G, x) \coloneqq \operatorname*{argmax}_{a \in \mathcal{A}} \mathbb{E}\left[V \;\middle|\; \operatorname{do}\left(\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x}) = a\right)\right]$$
+
+In this scenario, the two agents receive different private observation histories ($x_{\text{Sasha}} \neq x_{\text{Rowan}}$). Graph surgery on the observation-indexed node $\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x_{\text{Sasha}}})$ does not intervene upon the distinct logical node $\mathtt{fdt}(\underline{P}, \underline{G}, \underline{x_{\text{Rowan}}})$. Because the other prisoner's action is evaluated as fixed across the counterfactual branches of this action-level intervention, disclosing the evidence strictly dominates remaining quiet ($0 < 2$ years if the other prisoner remains quiet; $4 < 5$ years if the other prisoner discloses).
+
+Therefore, maximizing expected utility under A-FDT prescribes submitting the letter.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

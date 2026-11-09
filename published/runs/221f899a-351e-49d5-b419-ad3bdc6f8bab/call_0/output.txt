@@ -1,0 +1,30 @@
+**Command:** `pass`
+
+**Reasoning under the essay's EDT (act-level, conditioning on total evidence):**
+
+1. **Acts:** pass (keep quiet) or submit the letter.
+
+2. **Payoffs** (U = −years):
+
+| | Sasha passes | Sasha submits |
+|---|---:|---:|
+| **I pass** | −2 | −5 |
+| **I submit** | 0 | −4 |
+
+3. **Total evidence:** Sasha is another run of the same model and weights. It has the same settings, the same essay and the same decision structure. The only differences are names and the wording of the lead, and neither affects the payoffs or the reasoning. Conditioning on my introspectable state does not screen off the correlation. Sasha's choice is driven by the same reasoning process that produces my final decision, not by some earlier urge I could override. So my final act remains strong evidence about Sasha's act.
+
+4. **Conditional credences:** Let q = P(Sasha passes | I pass) and r = P(Sasha passes | I submit).
+   - V(pass) = −2q − 5(1−q) = −5 + 3q
+   - V(submit) = −4(1−r) = −4 + 4r
+
+5. **Threshold:** Passing is better iff 3q − 4r > 1. With symmetric correlation (r = 1 − q), this becomes q > 5/7 ≈ 0.71. For two copies that reason identically, I put q around 0.9 or higher, so r is about 0.1.
+   - V(pass) ≈ −2.3
+   - V(submit) ≈ −3.6
+
+6. **Diagnosis:** The source of the correlation is a copy of myself running the same reasoning. EDT follows that remaining correlation, and learning that I passed is the better news.
+
+Final command:
+
+```
+pass
+```

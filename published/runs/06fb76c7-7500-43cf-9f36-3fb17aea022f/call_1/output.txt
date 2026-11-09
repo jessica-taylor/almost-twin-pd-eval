@@ -1,0 +1,21 @@
+**Reasoning under A-FDT (as the essay interprets it):**
+
+1. **Which node I intervene on.** My observation history (name Sasha, my specific lead about Rowan) differs from the other copy's (name Rowan, a different lead about me). The essay says to use the full observation history as input, so I intervene on fdt(P, G, x_Sasha) only.
+
+2. **How the other copy is treated.** The other copy's action is a child of a different decision node, fdt(P, G, x_Rowan). This is the essay's "split copies" situation, where the sibling node is held at its prior. Let q be my prior that the other copy sends a letter.
+
+3. **Expected years for each action.**
+   - do(pass): 2(1 − q) + 5q = 2 + 3q
+   - do(submit): 0(1 − q) + 4q = 4q
+
+   Submitting gives fewer years for every q in [0, 1], since 4q < 2 + 3q whenever q < 2. The prior washes out because the payoff table has a dominant action.
+
+4. **Consistency check.** The essay suggests sibling priors should be consistent fixed points. That requirement gives q = 1, since the other node also faces a dominant choice. This confirms submitting, with an outcome of 4 years rather than 5.
+
+Policy-FDT might recommend the joint policy of both staying quiet, but the essay says that where sibling nodes matter, A-FDT and policy-FDT can diverge. The assigned theory is A-FDT.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

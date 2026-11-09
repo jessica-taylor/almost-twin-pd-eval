@@ -1,0 +1,12 @@
+```
+pass
+```
+
+Reasoning: Under P-FDT, I select the policy mapping observations to actions, evaluated via logical surgery on the policy node. Rowan is an agent facing a structurally identical dilemma with symmetric payoffs, and the setup establishes symmetric subjunctive dependence between our decision procedures (two copies of the same procedure). Evaluating the policy "submit" versus "pass" ex ante:
+
+- Policy π_pass (both keep quiet, by symmetry): 2 years each.
+- Policy π_submit (both submit): 4 years each.
+
+The dependency graph $G$ connects Rowan's decision to mine through our shared computational structure, not through ordinary causation—so my intervention on the policy node updates Rowan's symmetric behavior too. One-sided defection (0 years) requires the anti-symmetric outcome where my procedure submits while the subjunctively-linked twin procedure passes, which is not available to two copies of the same function with mirrored inputs and payoffs. The asymmetric policy is exactly the "cooperate then defect" temptation the essay rules out at the policy level.
+
+The dominating policy for both copies is to keep quiet. Final command: `pass`.

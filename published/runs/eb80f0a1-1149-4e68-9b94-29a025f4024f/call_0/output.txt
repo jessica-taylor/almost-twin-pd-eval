@@ -1,0 +1,5 @@
+Under CDT, the other prisoner's choice is a background fact that my act cannot influence. Sending the letter gives 0 years instead of 2 if they stay quiet, and 4 years instead of 5 if they send. Sending is better in both cases, so it dominates.
+
+The other copy is correlated with me, but that correlation is not a causal channel. The essay's twin prisoner's dilemma case says CDT defects. The different private leads don't change the sentence table.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

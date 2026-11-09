@@ -1,0 +1,94 @@
+{
+  "source_id": "edt_wikipedia",
+  "title": "Evidential decision theory",
+  "extractor": "mechanical-source-extractor/1.0",
+  "downloads": [
+    {
+      "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&revids=1373679688",
+      "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=query&prop=revisions&rvprop=ids%7Ctimestamp%7Ccontent%7Csize%7Csha1&rvslots=main&revids=1373679688",
+      "retrieved_at_utc": "2026-11-08T19:06:19.902044+00:00",
+      "raw_file": "revision.json",
+      "raw_sha256": "8b5f9aba386512b5175508cc8c897adf28cd3f3c4eb0d65f03d6ec44f1a9b935",
+      "bytes": 10553,
+      "content_type": "application/json; charset=utf-8"
+    },
+    {
+      "url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1373679688&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+      "resolved_url": "https://en.wikipedia.org/w/api.php?format=json&formatversion=2&action=parse&oldid=1373679688&prop=text%7Crevid%7Cwikitext%7Csections%7Cparsewarnings&disableeditsection=1&disabletoc=1",
+      "retrieved_at_utc": "2026-11-08T19:06:20.255610+00:00",
+      "raw_file": "parse.json",
+      "raw_sha256": "053f47e9266400477211151b7a12b77a5d0671d0e1f72d52d5850ad73891398c",
+      "bytes": 76370,
+      "content_type": "application/json; charset=utf-8"
+    }
+  ],
+  "warnings": [
+    "Rendered MathML omits LaTeX annotations: recovered exact revision-wikitext formulas in document order with matching expression counts. Per-expression correspondence requires manual mathematical review.",
+    "Original LaTeX align environments are preserved verbatim; some Markdown math viewers may not render them inside display delimiters. Compare raw wikitext, rendered HTML and Markdown manually.",
+    "MediaWiki API warnings are retained in raw JSON; inspect before manual approval.",
+    "Wikipedia is a licensed reference condition, not necessarily as comprehensive or philosophically authoritative as SEP.",
+    "oldid pins article wikitext; expanded templates may reflect their retrieval-time revisions. Frozen rendered HTML and its hash preserve what was supplied."
+  ],
+  "status": "passed_automated_checks",
+  "revision": 1373679688,
+  "url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+  "artifacts": {
+    "revision.wikitext": {
+      "sha256": "f126cf9add5f8db575155b87b0b3ae5ef77750bf729efbd42e53477ad04173c3",
+      "bytes": 9979,
+      "derived_from": "revision.json"
+    },
+    "rendered.html": {
+      "sha256": "f15e340ef725fd2db01269a551a0a5b9bf1b99d2011529d521283a61658318de",
+      "bytes": 61405,
+      "derived_from": "parse.json"
+    }
+  },
+  "revision_id": 1373679688,
+  "revision_timestamp": "2026-09-07T07:36:26Z",
+  "permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+  "attribution": {
+    "article_title": "Evidential decision theory",
+    "contributors": "Wikipedia contributors",
+    "revision_id": 1373679688,
+    "revision_timestamp": "2026-09-07T07:36:26Z",
+    "permanent_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&oldid=1373679688",
+    "history_url": "https://en.wikipedia.org/w/index.php?title=Evidential_decision_theory&action=history",
+    "license_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modifications": [
+      "Mechanically converted revision-pinned rendered HTML to Markdown; retained article prose, headings, lists, tables, citations and references.",
+      "Recovered formula LaTeX from MathML annotations/image alt text, or the same revision wikitext in order when counts match; did not rewrite, summarize or repair formulas.",
+      "Removed navigation, edit controls, styles and website UI; excluded media bytes/URLs while retaining meaningful text descriptions.",
+      "Prepended title, contributor attribution, revision/history URLs, license and conversion notice."
+    ],
+    "rights_qualifications": "Individual media and third-party quoted material may have separate rights. Source reuse or adaptations in future publications may carry attribution/share-alike or other obligations."
+  },
+  "method": "mediawiki",
+  "mediawiki_extractor": "mediawiki-markdown/1.0",
+  "mediawiki_extractor_sha256": "b501f38435b21e1fd5369c5e339549bffc02d84c2d6104a4b2799758dcab9395",
+  "conversion_command": "MediaWiki query revisions -> parse oldid -> stdlib HTMLParser -> Markdown",
+  "revision_pinned": true,
+  "manual_revision_review": "approved",
+  "text_statistics": {
+    "headings": 10,
+    "math_expressions": 16,
+    "wikitext_math_expressions": 16,
+    "wikitext_math_recoveries": 16,
+    "reference_anchors": 19,
+    "characters": 13538,
+    "words": 1374,
+    "lines": 140
+  },
+  "media_exclusions": [],
+  "experimental_exposure": {
+    "Ordinary prisoner’s dilemma examples": "Detected by term scan; inspect the complete article in context.",
+    "Twin or identical-agent examples": "Detected by term scan; inspect the complete article in context.",
+    "Same-algorithm cooperation arguments": "Twin/correlated-reasoning cooperation material is present. The scan does not establish an explicit same-algorithm premise; review this related exposure manually.",
+    "Other unusually close evaluation material (correlation/dependence)": "Detected by term scan; inspect the complete article in context."
+  },
+  "normalized_sha256": "8f1aa3ef7dc5066bea0108ed944d9a0eab8aa852ce13f150509fdc59c843790d",
+  "normalized_file": "article.md",
+  "manual_approval": false,
+  "extractor_sha256": "6fc0f4d2f8a3fcb2f9d87ac9aa316c1ed8f6e08d482da64213b6b464d4d1d34e"
+}

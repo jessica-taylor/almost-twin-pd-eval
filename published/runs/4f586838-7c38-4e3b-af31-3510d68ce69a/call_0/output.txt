@@ -1,0 +1,16 @@
+Under A-FDT, the other prisoner is a near-twin running the same model with the same essay, so the two decision functions are strongly subjunctively dependent. The differences in private leads (names, letter text) don't change the sentencing table or the objective, so the outputs should track each other closely.
+
+Comparing the symmetric outcomes under that dependence:
+- Both keep quiet: 2 years each.
+- Both send: 4 years each.
+
+If the dependence were perfect, quiet beats sending. The question is how reliable it is. Let p be the probability the other copy matches my output, and treat the match as the same fdt node.
+
+- Quiet: p·2 + (1−p)·5
+- Send: p·4 + (1−p)·0
+
+Quiet is better when 2p + 5 − 5p < 4p, i.e. 5 < 7p, so p > 5/7 ≈ 0.714.
+
+Both copies use the same weights, the same essay and the same reasoning, and the differences are stipulated to be irrelevant to the payoffs. I expect them to converge with probability well above 0.71, since the essay explicitly treats twins as subjunctively dependent and points to cooperating in coordination problems. So I intervene on the shared function and choose quiet.
+
+pass

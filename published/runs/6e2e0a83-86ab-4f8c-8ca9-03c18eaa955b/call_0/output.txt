@@ -1,0 +1,21 @@
+Under the essay's A-FDT, the result is to submit.
+
+**Reasoning:**
+
+1. **Which node I intervene on.** The essay says each distinct input gets its own node, and observation works only by selecting which node I intervene on. My input contains my name (Rowan) and the locker-17 lead. Sasha's copy receives a different input, with a different name and a different lead. So Sasha's act is driven by a separate node for Sasha's input.
+
+2. **The other node stays fixed.** When I intervene on my node, Sasha's node keeps its prior. Call it q, the probability that Sasha sends a letter.
+
+3. **Expected years for each choice:**
+   - Pass: 2(1−q) + 5q = 2 + 3q
+   - Submit: 0(1−q) + 4q = 4q
+
+   Submitting is better by 2 − q, which is positive for every q in [0, 1]. The verdict holds across all priors, so §7.1's robustness check passes. The only self-consistent outcome is that both copies submit.
+
+4. **P-FDT would differ.** Choosing a symmetric policy across both inputs could favour mutual silence. The experiment, however, assigns A-FDT as the essay interprets it, which evaluates the action at my own input only.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

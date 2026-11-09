@@ -1,0 +1,10 @@
+Under CDT as the essay interprets it, this is Lewis's twin prisoner's dilemma: the other prisoner is a near-twin (same weights, same decision rule), so our choices are strongly correlated — but correlation is not causation. My submitting the letter does not cause Rowan to submit theirs; whether Rowan stays quiet is already fixed upstream. Holding fixed that state of affairs and evaluating the intervention do(send):
+
+- If Rowan sends: 4 years if I send vs. 5 if I pass — sending better by 1.
+- If Rowan passes: 0 years if I send vs. 2 if I pass — sending better by 2.
+
+Sending strictly dominates causally in each dependency hypothesis, so U(send) > U(pass) regardless of credences about Rowan. The ratifiability check (essay §7 step 6) doesn't change this: conditioning on my own inclination to send would raise the probability Rowan also sends (correlated twin), giving 4 vs. 5 — still favoring sending.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

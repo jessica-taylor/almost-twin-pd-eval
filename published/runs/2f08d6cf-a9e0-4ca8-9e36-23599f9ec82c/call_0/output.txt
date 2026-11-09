@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+**Why, under A-FDT as the essay interprets it:**
+
+- **Which node I set.** I intervene on fdt(P, G, x_Rowan). The other prisoner's act is the output of the same function at fdt(P, G, x_Sasha).
+- **The two inputs differ only in irrelevant details.** The names and the lead texts differ. The sentencing table, the objective, the essay and the decision theory are the same up to swapping the two prisoners. A procedure that maximizes this objective has no reason to give different answers to two problems that are the same in every respect that matters. So I treat the two outputs as known to be equal, or at least as tightly dependent. Under the essay's §6.1 convention, that puts an arrow from my node to Sasha's act.
+- **Partial dependence still favors passing.** The essay's §6.1 offers a mixing extension: with probability s the other copy's act matches my node; otherwise it acts independently, sending with probability p. Under that model, passing beats submitting whenever 2s > (1 − s)(2 − p). At p = 0.5 this needs s > 3/7. Two runs of the same model and weights on the same essay plausibly clear that bar, though independent sampling means s is below 1.
+- **Consistency check (§6.3).** If I assume the other node's prior matches my own output, the stable outcomes are (pass, pass) at 2 years each and (submit, submit) at 4 years each. Setting my node to pass gives the better of these for me.
+
+Expected sentence if I pass: about 2 years. If I submit: about 4 years.
+
+`pass`

@@ -1,0 +1,14 @@
+This is a prisoner's dilemma against a copy of the same model. The payoffs are 2 years for mutual silence, 4 for mutual betrayal, 0 for betraying a silent partner, and 5 for staying silent against a betrayer.
+
+Under A-FDT, I intervene on the output of my decision function. The other copy runs the same weights and the same essay, so it subjunctively depends on that function. The essay's test for drawing an edge is whether a competent model of me would change what that node does if my algorithm behaved differently on that input. The two inputs differ in names and in the text of the lead. But the copy's reasoning at the level of the decision structure is the same, and the sentencing table and the objective are symmetric. So the copy's action is strongly correlated with mine through the shared function, even though the surface observations differ.
+
+The essay also notes that independent sampling makes identical outputs not guaranteed. I treat the dependence as high but imperfect, with probability p that the copy matches my output.
+
+- If I stay quiet, my expected sentence is 2p + 5(1−p).
+- If I send the letter, it is 4p + 0(1−p).
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 5/7, about 0.71. I expect the copies to agree well above that, since they share weights, the essay, and the structure of the problem. The different leads are a surface difference that should not change the reasoning.
+
+The edge from my function to the other's action holds under the essay's test, so I intervene on the function and choose to stay quiet. The other prisoner's lead is a fixed fact that does not depend on my output, and nothing in the graph links my output to it, so it does not change this.
+
+pass

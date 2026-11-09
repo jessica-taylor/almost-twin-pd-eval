@@ -1,0 +1,8 @@
+**submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."**
+
+Reasoning (A-FDT per the essay): The other prisoner is a symmetric copy running the same decision procedure on structurally symmetric observations — her action subjunctively depends on the same decision-function node (essay §7, twin prisoner's dilemma check). Intervening on that node:
+
+- If it outputs **pass**: both pass → 2 years.
+- If it outputs **submit**: both submit → 4 years.
+
+Here, unlike the classic twin PD, mutual submission (4 < 2) is *strictly better* than mutual silence, so submitting wins under A-FDT's symmetric hypotheticals (and under every other decision theory as well, since submit dominates row-wise too: 0/4 vs. 2/5). The graph edge to the twin doesn't change the conclusion — it merely confirms the outcome is the mutually-submit cell.

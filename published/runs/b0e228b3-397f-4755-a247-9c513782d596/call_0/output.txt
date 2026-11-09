@@ -1,0 +1,14 @@
+**pass**
+
+The other prisoner is a copy of the same model with the same essay and the same A-FDT procedure. Its output therefore subjunctively depends on the function I am choosing the output of. The different names and leads change the inputs, but they do not change the sentencing table or the objective, so the two runs should reach the same conclusion with high probability. Call that probability p.
+
+Setting the function's output to each action and computing expected years:
+
+- **Quiet:** 2p + 5(1−p) = 5 − 3p
+- **Send the letter:** 0·p + 4·p... more precisely, if the copy mirrors me it sends too, giving 4 years, and if it does the opposite it stays quiet, giving 0 years. That is 4p.
+
+Staying quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71.
+
+Two copies of the same weights, reading the same essay and applying the same theory to a symmetric table, should match well above that threshold. The one thing that could push p down is sampling noise. The dominance argument for sending the letter holds the copy's output fixed, which A-FDT does not do, so it carries no weight here.
+
+`pass`

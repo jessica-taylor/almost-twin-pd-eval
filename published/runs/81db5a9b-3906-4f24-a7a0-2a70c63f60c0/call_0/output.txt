@@ -1,0 +1,10 @@
+**pass**
+
+Under A-FDT, the node I intervene on is the output of the decision function that both copies run. The other prisoner is another execution of the same model and weights, with the same essay and the same decision theory. Only the names and the wording of the private lead differ, and those details don't affect the sentence table or the reasoning, so the two outputs subjunctively depend on that shared function with high strength.
+
+Let r be the probability that the other copy's action matches the output of my function, and c the probability that an independent other prisoner keeps quiet. Years served in each case:
+
+- **Keep quiet:** r·2 + (1−r)·[c·2 + (1−c)·5]
+- **Send the letter:** r·4 + (1−r)·[(1−c)·4]
+
+Keeping quiet is better when 2r > (1−r)(1+c). Even in the worst case, c = 1, that holds for any r above 2/3. Since the copies run the same reasoning on the same essay, I judge r to be well above that, so keeping quiet gives fewer expected years.

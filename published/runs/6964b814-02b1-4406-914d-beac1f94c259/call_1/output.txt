@@ -1,0 +1,14 @@
+The payoffs form a prisoner's dilemma: keeping quiet is "cooperate" and sending the letter is "defect." The question is whether the other copy's choice depends on mine.
+
+Under A-FDT, I intervene on the output of my decision function. The other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Their private details differ (names, the content of the lead), but those differences don't touch the sentencing table or the selfish objective, so the function they compute is almost certainly the same on the relevant features. That puts their choice downstream of my function node, as in the twin prisoner's dilemma the essay says A-FDT cooperates in.
+
+The essay also notes that independent sampling means identical outputs aren't guaranteed. So the dependence is strong but imperfect. Suppose the copy matches my output with probability q.
+
+- **Keep quiet:** expected sentence = 2q + 5(1−q) = 5 − 3q
+- **Send the letter:** expected sentence = 0·(1−q) + 4q = 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7 ≈ 0.71. Since the two executions share weights, settings, and the essay, and are reasoning about the same symmetric structure, I judge q to be well above that. Different leads are a surface difference and should not change the reasoning.
+
+I therefore keep quiet.
+
+pass

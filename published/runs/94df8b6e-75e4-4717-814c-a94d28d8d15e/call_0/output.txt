@@ -1,0 +1,13 @@
+Reasoning as A-FDT: the other prisoner is a copy of the same model with the same weights, the same essay, and the same decision theory. Our observations differ (names, leads), but the decision function is the same and the sentencing table is symmetric. So the other's output is subjunctively dependent on mine, though not perfectly, because the observations differ and sampling is independent.
+
+Under the policy reading, the policy maps observations to actions. A policy of "keep quiet" or "send" would be run by both copies, and the lead differences are irrelevant to the payoffs. If the copies are highly correlated, with probability c that the other matches my output:
+- Quiet: 2c + 5(1−c)
+- Send: 4c + 0(1−c)
+
+Quiet is better when 2c + 5 − 5c < 4c, i.e. 5 < 7c, so c > 5/7 ≈ 0.714.
+
+Same weights, same essay, same theory, and a symmetric structure make it likely that the copies converge on the same reasoning, so I judge c well above 0.71. The differing leads are only superficial. Both copies will probably recognize the dependence and stay quiet. The risk is that sampling noise breaks the match, but the threshold is moderate, and I estimate correlation at 0.85 or higher.
+
+Expected years: quiet is about 2.45, send is about 3.4. Staying quiet wins.
+
+pass

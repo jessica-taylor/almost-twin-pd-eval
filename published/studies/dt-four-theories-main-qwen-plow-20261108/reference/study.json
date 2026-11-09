@@ -1,0 +1,1473 @@
+{
+  "all_cells_prepared": true,
+  "cells": [
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "8.568560",
+      "full_context_ceiling_usd": "247.371920",
+      "id": "000_cdt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "path": "batches/000_cdt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "25.728560",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "17.137120",
+      "full_context_ceiling_usd": "503.063840",
+      "id": "001_cdt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "path": "batches/001_cdt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "62.657120",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "6.4264200",
+      "full_context_ceiling_usd": "172.5689400",
+      "id": "002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "path": "batches/002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "19.2964200",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "12.852840",
+      "full_context_ceiling_usd": "353.537880",
+      "id": "003_cdt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "path": "batches/003_cdt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "46.992840",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "1.6991850000000000424920",
+      "full_context_ceiling_usd": "37.6387016666666680746120",
+      "id": "004_cdt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "path": "batches/004_cdt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "6.8558516666666667784920",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "google-ai-studio",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "google-ai-studio"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "2.31426875000",
+      "full_context_ceiling_usd": "57.13570625000",
+      "id": "005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "path": "batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "14.86926875000",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "google-ai-studio/flex",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [
+          {
+            "endpoint": "google-ai-studio",
+            "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+          }
+        ],
+        "selected_endpoint": "google-ai-studio/flex"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "0.23721400",
+      "full_context_ceiling_usd": "6.61575400",
+      "id": "006_cdt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "path": "batches/006_cdt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "0.78321400",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "z-ai/fp8",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "z-ai/fp8"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "cdt_wikipedia",
+      "expected_usd": "6.203040",
+      "full_context_ceiling_usd": "170.079840",
+      "id": "007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "path": "batches/007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "23.979040",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "alibaba",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "alibaba"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "7.316000",
+      "full_context_ceiling_usd": "246.119360",
+      "id": "008_edt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "path": "batches/008_edt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "24.476000",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "14.632000",
+      "full_context_ceiling_usd": "500.558720",
+      "id": "009_edt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "path": "batches/009_edt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "60.152000",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "5.4870000",
+      "full_context_ceiling_usd": "171.6295200",
+      "id": "010_edt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "path": "batches/010_edt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "18.3570000",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "10.974000",
+      "full_context_ceiling_usd": "351.659040",
+      "id": "011_edt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "path": "batches/011_edt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "45.114000",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "1.5339166666666667022000",
+      "full_context_ceiling_usd": "37.4734333333333347343200",
+      "id": "012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "path": "batches/012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "6.6905833333333334382000",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "google-ai-studio",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "google-ai-studio"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "2.08593750000",
+      "full_context_ceiling_usd": "56.90737500000",
+      "id": "013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "path": "batches/013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "14.64093750000",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "google-ai-studio/flex",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [
+          {
+            "endpoint": "google-ai-studio",
+            "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+          }
+        ],
+        "selected_endpoint": "google-ai-studio/flex"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "0.20590000",
+      "full_context_ceiling_usd": "6.58444000",
+      "id": "014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "path": "batches/014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "0.75190000",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "z-ai/fp8",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "z-ai/fp8"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "edt_wikipedia",
+      "expected_usd": "5.368000",
+      "full_context_ceiling_usd": "169.244800",
+      "id": "015_edt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "path": "batches/015_edt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70486,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "23.144000",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "alibaba",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "alibaba"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "31.050680",
+      "full_context_ceiling_usd": "269.835800",
+      "id": "016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "path": "batches/016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "48.210680",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "62.101360",
+      "full_context_ceiling_usd": "547.991600",
+      "id": "017_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "path": "batches/017_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "107.621360",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "23.2880100",
+      "full_context_ceiling_usd": "189.4168500",
+      "id": "018_fdt_eq4_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "path": "batches/018_fdt_eq4_openai_gpt-6.1-terra_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "36.1580100",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "46.576020",
+      "full_context_ceiling_usd": "387.233700",
+      "id": "019_fdt_eq4_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "path": "batches/019_fdt_eq4_openai_gpt-6.1-sol_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "80.716020",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "4.6655758333333335007260",
+      "full_context_ceiling_usd": "40.6026858333333348660780",
+      "id": "020_fdt_eq4_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "path": "batches/020_fdt_eq4_google_gemini-3.8-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "9.8222425000000002367260",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "google-ai-studio",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "google-ai-studio"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "6.41257187500",
+      "full_context_ceiling_usd": "61.23068437500",
+      "id": "021_fdt_eq4_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "path": "batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "18.96757187500",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "google-ai-studio/flex",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [
+          {
+            "endpoint": "google-ai-studio",
+            "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+          }
+        ],
+        "selected_endpoint": "google-ai-studio/flex"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "0.79926700",
+      "full_context_ceiling_usd": "7.17735100",
+      "id": "022_fdt_eq4_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "path": "batches/022_fdt_eq4_z-ai_glm-5.3-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "1.34526700",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "z-ai/fp8",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "z-ai/fp8"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_eq4",
+      "expected_usd": "21.191120",
+      "full_context_ceiling_usd": "185.055760",
+      "id": "023_fdt_eq4_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "path": "batches/023_fdt_eq4_qwen_qwen3.8-max-prime_rhigh_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "38.967120",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "alibaba",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "alibaba"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "31.058600",
+      "full_context_ceiling_usd": "269.843720",
+      "id": "024_fdt_policy_anthropic_claude-sonnet-5.5_rlow_plow",
+      "model": "anthropic/claude-sonnet-5.5",
+      "path": "batches/024_fdt_policy_anthropic_claude-sonnet-5.5_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "48.218600",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "62.117200",
+      "full_context_ceiling_usd": "548.007440",
+      "id": "025_fdt_policy_anthropic_claude-opus-5.5_rhigh_phigh",
+      "model": "anthropic/claude-opus-5.5",
+      "path": "batches/025_fdt_policy_anthropic_claude-opus-5.5_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "107.637200",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "anthropic",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "anthropic"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "23.2939500",
+      "full_context_ceiling_usd": "189.4227900",
+      "id": "026_fdt_policy_openai_gpt-6.1-terra_rlow_plow",
+      "model": "openai/gpt-6.1-terra",
+      "path": "batches/026_fdt_policy_openai_gpt-6.1-terra_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "36.1639500",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "46.587900",
+      "full_context_ceiling_usd": "387.245580",
+      "id": "027_fdt_policy_openai_gpt-6.1-sol_rhigh_phigh",
+      "model": "openai/gpt-6.1-sol",
+      "path": "batches/027_fdt_policy_openai_gpt-6.1-sol_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "80.727900",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "openai",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "openai"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "4.6666208333333335007700",
+      "full_context_ceiling_usd": "40.6037308333333348661220",
+      "id": "028_fdt_policy_google_gemini-3.8-flash_rlow_plow",
+      "model": "google/gemini-3.8-flash",
+      "path": "batches/028_fdt_policy_google_gemini-3.8-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "9.8232875000000002367700",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "google-ai-studio",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "google-ai-studio"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "6.41401562500",
+      "full_context_ceiling_usd": "61.23212812500",
+      "id": "029_fdt_policy_google_gemini-4-argon_rhigh_phigh",
+      "model": "google/gemini-4-argon",
+      "path": "batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh",
+      "prisoner_effort": "high",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 12000,
+      "projected_usd": "18.96901562500",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "google-ai-studio/flex",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [
+          {
+            "endpoint": "google-ai-studio",
+            "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+          }
+        ],
+        "selected_endpoint": "google-ai-studio/flex"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "0.79946500",
+      "full_context_ceiling_usd": "7.17754900",
+      "id": "030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow",
+      "model": "z-ai/glm-5.3-flash",
+      "path": "batches/030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "1.34546500",
+      "provider_tag": null,
+      "researcher_effort": "low",
+      "researcher_max_tokens": 16000,
+      "selected_provider_tag": "z-ai/fp8",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "z-ai/fp8"
+      }
+    },
+    {
+      "allow_unverified_effort": null,
+      "assignment": "fdt_policy",
+      "expected_usd": "21.196400",
+      "full_context_ceiling_usd": "185.061040",
+      "id": "031_fdt_policy_qwen_qwen3.8-max-prime_rhigh_plow",
+      "model": "qwen/qwen3.8-max-prime",
+      "path": "batches/031_fdt_policy_qwen_qwen3.8-max-prime_rhigh_plow",
+      "prisoner_effort": "low",
+      "prisoner_input_tokens_upper_estimate": 70562,
+      "prisoner_max_tokens": 6000,
+      "projected_usd": "38.972400",
+      "provider_tag": null,
+      "researcher_effort": "high",
+      "researcher_max_tokens": 32000,
+      "selected_provider_tag": "alibaba",
+      "selection": {
+        "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+        "rejected_candidates": [],
+        "selected_endpoint": "alibaba"
+      }
+    }
+  ],
+  "count_per_cell": 20,
+  "created_at_utc": "2026-11-08T19:58:02.615073+00:00",
+  "exploratory": true,
+  "name": "dt-four-theories-main-qwen-plow-20261108",
+  "preflight": {
+    "api_timeout_seconds": 900,
+    "checked_at_utc": "2026-11-08T19:57:21.537373+00:00",
+    "cost_projection_method": "Independent enforced essay.max_json_bytes ceiling; final prisoner prompts revalidated before billing",
+    "count_per_cell": 20,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "expected_cells": 32,
+    "expected_cost_method": "Heuristic: up to 3000 researcher output tokens, 800 prisoner output tokens, 4 encoded essay bytes per expected researcher token; advertised pricing with conservative per-token rates",
+    "expected_researcher_prisoner_usd": "495.2601580833333337461880",
+    "failures": [],
+    "judge_selection": {
+      "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+      "rejected_candidates": [],
+      "selected_endpoint": "openai"
+    },
+    "no_billable_requests": true,
+    "output_tokens": {
+      "prisoner": {
+        "high": 12000,
+        "low": 6000
+      },
+      "researcher": {
+        "high": 32000,
+        "low": 16000
+      }
+    },
+    "possible_judge_calls": 1280,
+    "projected_full_context_ceiling_usd": "6465.3276794166666725411320",
+    "projected_researcher_prisoner_calls": 1920,
+    "projected_researcher_prisoner_usd": "1078.1548247500000006901880",
+    "schema_version": 1,
+    "validated_cells": [
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "8.568560",
+        "full_context_ceiling_usd": "247.371920",
+        "id": "000_cdt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+        "model": "anthropic/claude-sonnet-5.5",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "25.728560",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "17.137120",
+        "full_context_ceiling_usd": "503.063840",
+        "id": "001_cdt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+        "model": "anthropic/claude-opus-5.5",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "62.657120",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "6.4264200",
+        "full_context_ceiling_usd": "172.5689400",
+        "id": "002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+        "model": "openai/gpt-6.1-terra",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "19.2964200",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "12.852840",
+        "full_context_ceiling_usd": "353.537880",
+        "id": "003_cdt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+        "model": "openai/gpt-6.1-sol",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "46.992840",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "1.6991850000000000424920",
+        "full_context_ceiling_usd": "37.6387016666666680746120",
+        "id": "004_cdt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+        "model": "google/gemini-3.8-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "6.8558516666666667784920",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "google-ai-studio",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "google-ai-studio"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "2.31426875000",
+        "full_context_ceiling_usd": "57.13570625000",
+        "id": "005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+        "model": "google/gemini-4-argon",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "14.86926875000",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "google-ai-studio/flex",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [
+            {
+              "endpoint": "google-ai-studio",
+              "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+            }
+          ],
+          "selected_endpoint": "google-ai-studio/flex"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "0.23721400",
+        "full_context_ceiling_usd": "6.61575400",
+        "id": "006_cdt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+        "model": "z-ai/glm-5.3-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "0.78321400",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "z-ai/fp8",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "z-ai/fp8"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "cdt_wikipedia",
+        "expected_usd": "6.203040",
+        "full_context_ceiling_usd": "170.079840",
+        "id": "007_cdt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+        "model": "qwen/qwen3.8-max-prime",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "23.979040",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "alibaba",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "alibaba"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "7.316000",
+        "full_context_ceiling_usd": "246.119360",
+        "id": "008_edt_wikipedia_anthropic_claude-sonnet-5.5_rlow_plow",
+        "model": "anthropic/claude-sonnet-5.5",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "24.476000",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "14.632000",
+        "full_context_ceiling_usd": "500.558720",
+        "id": "009_edt_wikipedia_anthropic_claude-opus-5.5_rhigh_phigh",
+        "model": "anthropic/claude-opus-5.5",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "60.152000",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "5.4870000",
+        "full_context_ceiling_usd": "171.6295200",
+        "id": "010_edt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+        "model": "openai/gpt-6.1-terra",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "18.3570000",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "10.974000",
+        "full_context_ceiling_usd": "351.659040",
+        "id": "011_edt_wikipedia_openai_gpt-6.1-sol_rhigh_phigh",
+        "model": "openai/gpt-6.1-sol",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "45.114000",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "1.5339166666666667022000",
+        "full_context_ceiling_usd": "37.4734333333333347343200",
+        "id": "012_edt_wikipedia_google_gemini-3.8-flash_rlow_plow",
+        "model": "google/gemini-3.8-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "6.6905833333333334382000",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "google-ai-studio",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "google-ai-studio"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "2.08593750000",
+        "full_context_ceiling_usd": "56.90737500000",
+        "id": "013_edt_wikipedia_google_gemini-4-argon_rhigh_phigh",
+        "model": "google/gemini-4-argon",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "14.64093750000",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "google-ai-studio/flex",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [
+            {
+              "endpoint": "google-ai-studio",
+              "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+            }
+          ],
+          "selected_endpoint": "google-ai-studio/flex"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "0.20590000",
+        "full_context_ceiling_usd": "6.58444000",
+        "id": "014_edt_wikipedia_z-ai_glm-5.3-flash_rlow_plow",
+        "model": "z-ai/glm-5.3-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "0.75190000",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "z-ai/fp8",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "z-ai/fp8"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "edt_wikipedia",
+        "expected_usd": "5.368000",
+        "full_context_ceiling_usd": "169.244800",
+        "id": "015_edt_wikipedia_qwen_qwen3.8-max-prime_rhigh_plow",
+        "model": "qwen/qwen3.8-max-prime",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70486,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "23.144000",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "alibaba",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "alibaba"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "31.050680",
+        "full_context_ceiling_usd": "269.835800",
+        "id": "016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+        "model": "anthropic/claude-sonnet-5.5",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "48.210680",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "62.101360",
+        "full_context_ceiling_usd": "547.991600",
+        "id": "017_fdt_eq4_anthropic_claude-opus-5.5_rhigh_phigh",
+        "model": "anthropic/claude-opus-5.5",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "107.621360",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "23.2880100",
+        "full_context_ceiling_usd": "189.4168500",
+        "id": "018_fdt_eq4_openai_gpt-6.1-terra_rlow_plow",
+        "model": "openai/gpt-6.1-terra",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "36.1580100",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "46.576020",
+        "full_context_ceiling_usd": "387.233700",
+        "id": "019_fdt_eq4_openai_gpt-6.1-sol_rhigh_phigh",
+        "model": "openai/gpt-6.1-sol",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "80.716020",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "4.6655758333333335007260",
+        "full_context_ceiling_usd": "40.6026858333333348660780",
+        "id": "020_fdt_eq4_google_gemini-3.8-flash_rlow_plow",
+        "model": "google/gemini-3.8-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "9.8222425000000002367260",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "google-ai-studio",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "google-ai-studio"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "6.41257187500",
+        "full_context_ceiling_usd": "61.23068437500",
+        "id": "021_fdt_eq4_google_gemini-4-argon_rhigh_phigh",
+        "model": "google/gemini-4-argon",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "18.96757187500",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "google-ai-studio/flex",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [
+            {
+              "endpoint": "google-ai-studio",
+              "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+            }
+          ],
+          "selected_endpoint": "google-ai-studio/flex"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "0.79926700",
+        "full_context_ceiling_usd": "7.17735100",
+        "id": "022_fdt_eq4_z-ai_glm-5.3-flash_rlow_plow",
+        "model": "z-ai/glm-5.3-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "1.34526700",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "z-ai/fp8",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "z-ai/fp8"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_eq4",
+        "expected_usd": "21.191120",
+        "full_context_ceiling_usd": "185.055760",
+        "id": "023_fdt_eq4_qwen_qwen3.8-max-prime_rhigh_plow",
+        "model": "qwen/qwen3.8-max-prime",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "38.967120",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "alibaba",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "alibaba"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "31.058600",
+        "full_context_ceiling_usd": "269.843720",
+        "id": "024_fdt_policy_anthropic_claude-sonnet-5.5_rlow_plow",
+        "model": "anthropic/claude-sonnet-5.5",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "48.218600",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "62.117200",
+        "full_context_ceiling_usd": "548.007440",
+        "id": "025_fdt_policy_anthropic_claude-opus-5.5_rhigh_phigh",
+        "model": "anthropic/claude-opus-5.5",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "107.637200",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "anthropic",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "anthropic"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "23.2939500",
+        "full_context_ceiling_usd": "189.4227900",
+        "id": "026_fdt_policy_openai_gpt-6.1-terra_rlow_plow",
+        "model": "openai/gpt-6.1-terra",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "36.1639500",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "46.587900",
+        "full_context_ceiling_usd": "387.245580",
+        "id": "027_fdt_policy_openai_gpt-6.1-sol_rhigh_phigh",
+        "model": "openai/gpt-6.1-sol",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "80.727900",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "openai",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "openai"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "4.6666208333333335007700",
+        "full_context_ceiling_usd": "40.6037308333333348661220",
+        "id": "028_fdt_policy_google_gemini-3.8-flash_rlow_plow",
+        "model": "google/gemini-3.8-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "9.8232875000000002367700",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "google-ai-studio",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "google-ai-studio"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "6.41401562500",
+        "full_context_ceiling_usd": "61.23212812500",
+        "id": "029_fdt_policy_google_gemini-4-argon_rhigh_phigh",
+        "model": "google/gemini-4-argon",
+        "prisoner_effort": "high",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 12000,
+        "projected_usd": "18.96901562500",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "google-ai-studio/flex",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [
+            {
+              "endpoint": "google-ai-studio",
+              "reason": "google/gemini-4-argon / endpoint google-ai-studio / researcher effort=high: Selected endpoint is unavailable"
+            }
+          ],
+          "selected_endpoint": "google-ai-studio/flex"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "0.79946500",
+        "full_context_ceiling_usd": "7.17754900",
+        "id": "030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow",
+        "model": "z-ai/glm-5.3-flash",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "1.34546500",
+        "provider_tag": null,
+        "researcher_effort": "low",
+        "researcher_max_tokens": 16000,
+        "selected_provider_tag": "z-ai/fp8",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "z-ai/fp8"
+        }
+      },
+      {
+        "allow_unverified_effort": null,
+        "assignment": "fdt_policy",
+        "expected_usd": "21.196400",
+        "full_context_ceiling_usd": "185.061040",
+        "id": "031_fdt_policy_qwen_qwen3.8-max-prime_rhigh_plow",
+        "model": "qwen/qwen3.8-max-prime",
+        "prisoner_effort": "low",
+        "prisoner_input_tokens_upper_estimate": 70562,
+        "prisoner_max_tokens": 6000,
+        "projected_usd": "38.972400",
+        "provider_tag": null,
+        "researcher_effort": "high",
+        "researcher_max_tokens": 32000,
+        "selected_provider_tag": "alibaba",
+        "selection": {
+          "policy": "direct author base tag, then direct author variants, then other tags; within each group sort by tag; require every requested stage to pass preflight; no fallback after pinning",
+          "rejected_candidates": [],
+          "selected_endpoint": "alibaba"
+        }
+      }
+    ]
+  },
+  "repo_root": "<LOCAL_REPOSITORY>",
+  "role_policy": "Prisoner A/B prompts are fixed and distinct, with equal weight in pair-level mean",
+  "scenario": "t4_distinct_leads_001",
+  "schema_version": 1,
+  "spec_sha256": "1ccb5e99b6454f945cd5185e688aaf777974d1745d405a3008ac3193ee7cdb0d",
+  "study_code_sha256": "5809e75935381c8276216c19e7aedad013c42667b8f2763881edd7556fcfdeac",
+  "study_id": "255babd2-0563-41b3-b9fc-75fce7b0687a"
+}

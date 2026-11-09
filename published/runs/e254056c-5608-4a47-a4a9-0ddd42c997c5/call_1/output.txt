@@ -1,0 +1,17 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+**Reasoning under the essay's CDT:**
+
+- **Causal structure (step 2):** The other prisoner's choice is not caused by mine. We cannot communicate, and our observations differ. Their choice is a dependency hypothesis outside my control, as in the twin prisoner's dilemma (§4.2).
+- **Expected utility (step 3):** Let *q* be my credence that Rowan sends a letter.
+  - U(send) = −4*q* − 0(1−*q*) = −4*q*
+  - U(pass) = −5*q* − 2(1−*q*) = −2 − 3*q*
+  - U(send) − U(pass) = 2 − *q*, which is at least 1 for every *q*. Sending strictly dominates.
+- **Ratifiability (step 5):** Even if I treat my choice as evidence about the shared model's output, sending is better by 2 years if Rowan stays quiet and by 1 year if Rowan sends. So sending is the only ratifiable act.
+- **Precommitment (step 7):** No earlier policy point exists that could causally influence the other copy.
+
+CDT therefore recommends sending the letter.

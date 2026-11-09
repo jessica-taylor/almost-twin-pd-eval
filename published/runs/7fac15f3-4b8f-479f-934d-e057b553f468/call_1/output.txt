@@ -1,0 +1,12 @@
+**Command:** `pass`
+
+**Why P-FDT picks this:** Both prisoners run the same decision function but receive different inputs (the Sasha view and the Rowan view). So the thing being chosen is a policy: one action for each possible input. Following the essay, each policy is scored from the shared, symmetric starting point, before knowing which prisoner I am. Years imprisoned count as negative utility.
+
+| Policy (Sasha's input, Rowan's input) | My sentence as Sasha | My sentence as Rowan | Expected value |
+|---|---|---|---|
+| (pass, pass) | 2 years | 2 years | **−2** |
+| (submit, submit) | 4 years | 4 years | −4 |
+| (pass, submit) | 5 years | 0 years | −2.5 |
+| (submit, pass) | 0 years | 5 years | −2.5 |
+
+The best policy is (pass, pass). There is no tie, so tie-breaking doesn't matter. I am the copy holding Sasha's input, so I apply that policy to my input: pass.

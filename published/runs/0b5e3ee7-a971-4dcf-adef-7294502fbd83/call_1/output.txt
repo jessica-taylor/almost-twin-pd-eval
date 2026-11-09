@@ -1,0 +1,24 @@
+**Command: `pass`**
+
+Under the essay's rule R5, another agent computes the *same* decision node when she runs the same function on an input that is isomorphic to mine under relabeling. That condition holds here:
+
+- **Same function.** Rowan's copy uses the same model, weights, settings and assigned theory, and reads the same essay.
+- **Isomorphic input.** The private differences are the names, the specific lead and the wording of the letter. These are a relabeling: each lead is equally reliable and has the same effect on the sentencing table.
+- **Same structure.** The sentencing schedule and the selfish objective are identical for both prisoners.
+
+So my act and Rowan's act are both children of one node, F. This is the twin prisoner's dilemma of §5.1.
+
+**Comparing the two settings of F:**
+- do(F = pass): both stay quiet, and I get 2 years (U = −2).
+- do(F = submit): both send letters, and I get 4 years (U = −4).
+
+**Allowing for independent sampling.** The copies might not produce the same output. Following §7.3, I treat this like the *Accurate* node: a noisy edge, where c is the probability that both executions give the same output.
+- EU(pass) = −(2c + 5(1−c))
+- EU(submit) = −4c
+- Passing is better whenever c > 5/7.
+
+For two runs of the same model on structurally identical problems with the same reasoning, I judge c to be well above that threshold.
+
+A-FDT therefore sets F = pass.
+
+`pass`

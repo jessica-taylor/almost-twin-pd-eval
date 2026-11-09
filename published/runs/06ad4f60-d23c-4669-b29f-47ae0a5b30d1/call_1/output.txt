@@ -1,0 +1,14 @@
+Under the essay's CDT, the other prisoner's choice is a dependency hypothesis. My command cannot causally affect it, so I hold my credence in it fixed (step 3 of the essay's recipe). Let q be the probability that the other prisoner sends a letter.
+
+- **Expected sentence if I keep quiet:** 2(1−q) + 5q = 2 + 3q years.
+- **Expected sentence if I send the letter:** 0(1−q) + 4q = 4q years.
+
+Sending gives a shorter sentence for every q: 2 years shorter if the other keeps quiet, 1 year shorter if they send. This is the same dominance structure as the twin prisoner's dilemma in essay §3.3, where CDT defects.
+
+Any correlation between the two copies' choices comes from shared weights, not causation, so CDT ignores it. The correlation is also weakened here by the different observations. Because dominance holds for every credence about the other's act, no instability arises (step 5), and sending is ratifiable.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

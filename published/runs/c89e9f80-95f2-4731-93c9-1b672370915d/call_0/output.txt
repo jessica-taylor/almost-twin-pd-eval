@@ -1,0 +1,19 @@
+**Analysis under A-FDT, as the essay defines it**
+
+1. **Decision nodes.** My observation history is x₁ (I am Rowan, with the locker-17 lead). Sasha's copy acts on a different history, x₂, with a different name and lead. So the graph has two nodes: F_{x₁}, which drives my action, and F_{x₂}, which drives Sasha's.
+
+2. **Dependents.** The edge rule draws F_x → Z only if Z's mechanism computes my procedure's output *on input x*. Sasha's copy computes the output on x₂, not x₁. The essay's own §6.2 example treats copies with different inputs exactly this way: separate nodes, with the non-intervened sibling left at its prior. So intervening on F_{x₁} moves only my action. Sasha's action stays at its prior, with q = P(F_{x₂} = quiet).
+
+3. **Evaluate**, with V = −years:
+   - do(F_{x₁} = pass): −2q − 5(1−q) = −5 + 3q
+   - do(F_{x₁} = send): −0·q − 4(1−q) = −4 + 4q
+
+   Sending is better by 1 + q > 0 for every q in [0,1].
+
+4. **Check the siblings.** The verdict does not depend on the prior over F_{x₂}, so step 6 raises no flag. Imposing the essay's reflective consistency requirement gives the unique fixed point (send, send). Only policy-FDT, which optimizes jointly over F_{x₁} and F_{x₂}, would pick mutual silence. The instructions say not to substitute that theory for A-FDT.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

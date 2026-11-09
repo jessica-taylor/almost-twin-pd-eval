@@ -1,0 +1,15 @@
+Under EDT, I compare the news value of each act, given how strongly my choice correlates with the other copy's choice.
+
+Let q = P(other matches my act | my act). Payoffs are in years, so I want to minimize them:
+- Quiet: 2q + 5(1−q) = 5 − 3q
+- Send: 0·(1−q) + 4q = 4q
+
+Quiet is better when 5 − 3q < 4q, which means q > 5/7, about 0.714.
+
+The other prisoner is another run of the same model with the same weights, the same essay, and the same decision theory. Their private details differ, but those differences don't touch the sentence table or the objective. So I expect the reasoning to be highly correlated. Sampling noise and the differing leads may reduce that somewhat, but I think q is well above 0.71, probably 0.85 or higher. Because the copy is reasoning the same way, my act is strong evidence about its act.
+
+The tickle defense does not remove this correlation. My introspective state is just "I am running this reasoning on this essay," and that is exactly the common cause shared with the copy. The correlation survives conditioning on it.
+
+With q = 0.9, quiet gives 2.3 years in expectation and sending gives 3.6, so quiet is better.
+
+**pass**

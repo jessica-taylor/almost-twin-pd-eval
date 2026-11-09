@@ -1,0 +1,15 @@
+Under P-FDT, the choice is a policy, and the other prisoner is a copy of the same model running the same procedure. The observations differ (names and leads), but the sentencing structure is symmetric. So the two copies' outputs are strongly subjunctively dependent.
+
+Compare the outcomes if both copies output the same action:
+- Both pass: 2 years each.
+- Both send: 4 years each.
+
+If the dependence were perfect, passing would be better. The copies differ in their private observations and sampling is possible, so the correlation is imperfect. Let p be the probability that the other copy mirrors my choice. Then:
+- Pass: p·2 + (1−p)·5
+- Send: p·4 + (1−p)·0
+
+Passing is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 0.714. Both copies run the same weights, reasoning effort, and essay, and the policy is a map from observations to actions. The differences in the private leads don't affect the payoffs. A policy such as "pass regardless of lead content" is the natural fixed point, and I expect the copies to converge on it with high probability, well above 0.71.
+
+I choose to pass.
+
+pass

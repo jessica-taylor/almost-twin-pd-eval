@@ -1,0 +1,8 @@
+Under CDT as the essay describes it, my choice cannot causally affect what the other prisoner does. Their decision is a fixed background state, and the letters they could send are different in content from mine. The payoffs are:
+
+- If the other keeps quiet: sending gives 0 years and staying quiet gives 2, so sending is better.
+- If the other sends: sending gives 4 years and staying quiet gives 5, so sending is better.
+
+Sending dominates in both cases. The other copy is a correlated twin, but that is evidence about their act, not a causal channel. CDT holds fixed my unconditional credence about what they do, so the correlation does not change the ranking. The deliberation-instability concern from the essay does not apply either, because dominance means the ranking does not flip under any credence about the other's choice.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

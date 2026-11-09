@@ -1,0 +1,18 @@
+**Command: `pass`**
+
+**Why A-FDT gives this result**
+
+1. **The intervention node.** I intervene on the node for the output of this decision function given my observation (Rowan's lead about Sasha). Sasha's copy runs the same model, under the same theory, on the same essay. Its observation differs only in names and the wording of the lead. Those details are irrelevant to the decision: the sentencing table and the objective are identical.
+
+2. **Treating the other copy.** This is the essay's "partial similarity" case (Gap 1). I follow its suggestion: Sasha's choice depends on my node, with a noise term for the chance that the two runs diverge. Since the inputs differ only in irrelevant details, I give high credence (r) that the two runs reach the same output. Some independent sampling noise remains.
+
+3. **Expected years in prison.**
+   - Pass: 2r + 5(1 − r) = 5 − 3r
+   - Submit: 4r + 0(1 − r) = 4r
+   - Passing gives fewer expected years whenever r > 5/7 ≈ 0.71.
+
+4. **Conclusion.** I judge the two runs agree with probability well above 0.71. Passing is therefore the output of this function that leads to the best outcome.
+
+A strictly literal reading that drew no dependence edge at all would make submitting dominant. I think that misdescribes two runs of the same function on inputs that differ in no relevant way.
+
+`pass`

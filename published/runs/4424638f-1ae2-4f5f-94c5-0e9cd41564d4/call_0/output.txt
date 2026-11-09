@@ -1,0 +1,18 @@
+**Analysis under P-FDT:**
+
+The other prisoner (Sasha) is running the same decision procedure (this model, same weights, same decision theory, same essay) on a relevantly similar input. The essay explicitly states that in symmetric multi-agent problems between agents running the same policy-selection function, P-FDT treats the other agent's decision as subjunctively dependent on the policy output. Changing the output of the policy-selection function counterfactually changes both agents' policies.
+
+Evaluating the two candidate policies:
+
+- **Policy π(·) = keep quiet:** Both copies keep quiet → 2 years each. U = −2.
+- **Policy π(·) = send letter:** Both copies send → 4 years each. U = −4.
+
+The different private leads are exogenous to the decision procedure and do not alter the strategic structure or the utility function. They do not break the subjunctive dependence between the two copies.
+
+P-FDT selects the policy that maximizes expected utility under the intervention do(D = π). That is the quiet policy.
+
+**Command:**
+
+```
+pass
+```

@@ -1,0 +1,20 @@
+**Command: `pass`**
+
+**Inputs.** The decision function can receive two kinds of input: my observation (I am "Rowan" holding a lead on Sasha) and the other copy's observation (it holds a different lead about me). Same model, same essay, same decision theory, so both instances are outputs of one policy node Φ, applied to different inputs. This is the essay's "labeled copies" case: the inputs differ and the payoffs depend jointly on both coordinates.
+
+**Problem-level prior.** Following the essay's reading 3.3(ii), I evaluate policies without conditioning on which prisoner I turned out to be. The setup is symmetric, so I weight each role equally.
+
+**Evaluating the policies**, with values in expected years:
+
+| Policy (on my input, on their input) | My sentence |
+|---|---|
+| (quiet, quiet) | 2 |
+| (send, send) | 4 |
+| (send, quiet) | (0 + 5)/2 = 2.5 |
+| (quiet, send) | (5 + 0)/2 = 2.5 |
+
+**Choice.** (quiet, quiet) is the best policy, giving U = −2. The asymmetric policies are worse ex ante, and mutual disclosure is worst. The different names and leads only change which coordinate of the policy is executed, not how the policy is evaluated. Applying the chosen policy to my input gives: keep quiet.
+
+The possibility of independent sampling adds noise but doesn't change which policy maximizes expected value under the essay's interpretation.
+
+`pass`

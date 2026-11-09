@@ -1,0 +1,3 @@
+{
+  "error": "EvalError: Run failed; artifacts: runs/d118c899-541e-46d1-9b00-83ba5d91d180; OpenRouter refusal: finish_reason=content_filter; partial output and usage saved; no retry"
+}

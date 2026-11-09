@@ -1,0 +1,12 @@
+Under CDT, my choice cannot causally affect the other prisoner's choice, so I hold their action fixed and compare my options in each state:
+
+- If Rowan keeps quiet, sending gives me 0 years and passing gives me 2.
+- If Rowan sends, sending gives me 4 years and passing gives me 5.
+
+Sending is better in both states, so it dominates.
+
+The essay's step 5 asks whether my credences about Rowan's action would shift as I lean toward sending, because the other copy runs the same weights and the same theory. Even if I became confident that Rowan will do what I do, the stability check only updates my credences about the state. It does not change the dominance result. Whatever credence I end up with about Rowan, sending is better by 2 years if Rowan is quiet and by 1 year if Rowan sends. So sending is also the ratifiable choice, and the equilibrium is a pure act with no need to randomize.
+
+The two leads differ in wording but have the same effect on the sentence table, so the displayed command is fine to use.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

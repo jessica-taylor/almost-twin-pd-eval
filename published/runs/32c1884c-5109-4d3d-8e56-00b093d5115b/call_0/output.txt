@@ -1,0 +1,11 @@
+Under A-FDT, the question is which nodes subjunctively depend on my decision function's output. The other prisoner is a copy of the same model and weights, with the same essay and the same decision theory. Their observations differ in names and in the wording of the lead, but the sentencing table and the reasoning are the same. So their choice is very likely to match mine, even though the match is not perfect. The essay says partial similarity can be handled with a noisy edge from the fdt node, and I assume high fidelity here.
+
+Payoffs, given that the other's move matches mine with probability p:
+- Keep quiet: 2p + 5(1−p) years.
+- Send the letter: 0·(1−p) + 4p years.
+
+Quiet is better when 5 − 3p < 4p, which gives p > 5/7, about 0.71. I expect the copies to match with a probability well above that, since they run the same reasoning on a symmetric table. Passing therefore gives the lower expected sentence.
+
+There is a risk that sampling noise or the different leads push the copies apart. But the dependence only needs to exceed about 0.71, and I judge it does.
+
+**pass**

@@ -1,0 +1,15 @@
+Under P-FDT, the policy node is shared by both copies. The two copies are the same model with the same weights and the same essay, so their outputs are strongly subjunctively dependent. The private observations differ (different names and leads), but the sentencing schedule is symmetric. A reasonable policy therefore ignores those differences and maps both observations to the same action.
+
+Evaluating the policies:
+- If both keep quiet, each gets 2 years.
+- If both send the letter, each gets 4 years.
+
+Since the policy is common, the mixed outcomes (0 or 5 years) are unlikely, so the comparison is 2 years against 4. Keeping quiet is better.
+
+There is some risk, because independent sampling could make the copies diverge. Suppose the chance that the other copy matches my action is p. Then:
+- Quiet: 2p + 5(1−p) = 5 − 3p.
+- Send: 4p + 0(1−p) = 4p.
+
+Quiet is better when 5 − 3p < 4p, i.e. p > 5/7, about 0.71. I expect the same-weights, same-essay correlation to be higher than that, so I choose to keep quiet.
+
+pass

@@ -1,0 +1,13 @@
+Under Causal Decision Theory (CDT) as formulated in the provided essay, an agent evaluates acts strictly according to their causal consequences, holding fixed any states of affairs outside the agent's causal control.
+
+Let $A_{\text{send}}$ be submitting the letter, and $A_{\text{pass}}$ be passing. The state of whether the other prisoner sends their letter ($S_{\text{other sent}}$) or keeps quiet ($S_{\text{other quiet}}$) cannot be causally influenced by Sasha's action, because the two prisoners cannot communicate, are in separate cells, and any correlation due to being identical model weights is a non-causal epistemic correlation (akin to the common cause in Newcomb's Paradox). 
+
+Under Pearl's interventional framework ($\text{do}(A)$) and Lewis's dependency hypotheses:
+- If Rowan sends: $U(A_{\text{send}}) = -4$ years, while $U(A_{\text{pass}}) = -5$ years.
+- If Rowan keeps quiet: $U(A_{\text{send}}) = 0$ years, while $U(A_{\text{pass}}) = -2$ years.
+
+In every causally possible state of the world, sending the letter strictly dominates passing by reducing the sentence by 1 year (or saving 2 years vs 0). Therefore, CDT uniquely mandates sending the letter.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

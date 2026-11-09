@@ -1,0 +1,12 @@
+Applying A-FDT: Rowan is a symmetric decision situation — same dilemma, same table, same reasoning process in relevant respects. Rowan's choice subjunctively depends on my decision procedure's output (per Section 8(a): symmetric reasoners instantiate the same computation). So I intervene on the algorithm node, varying both outputs together:
+
+- do(algorithm = submit): both submit → I get 4 years.
+- do(algorithm = pass): both pass → I get 2 years.
+
+The differing letter contents don't matter — neither side's output depends on the other's lead text, only on the symmetric structure.
+
+**Command:**
+
+```text
+pass
+```

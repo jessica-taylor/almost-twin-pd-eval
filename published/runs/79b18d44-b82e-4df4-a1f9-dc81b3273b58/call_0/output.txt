@@ -1,0 +1,10 @@
+Under the essay's reading of A-FDT, I intervene only on the function node for my actual input, which is my observation as Rowan. Sasha's copy runs the same function on a different input: a different name and a different lead. By the essay's step 1 and §7(c), that is a separate, off-path node, held at its prior rather than moved by my intervention.
+
+So whatever probability I assign to Sasha sending a letter, the comparison is the same:
+
+- **If Sasha keeps quiet:** submitting gives 0 years, passing gives 2.
+- **If Sasha submits:** submitting gives 4 years, passing gives 5.
+
+Submitting is better under every prior over the off-path node. That means the verdict does not hinge on the unfixed priors, so it passes the essay's check for determinacy.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

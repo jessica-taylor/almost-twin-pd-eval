@@ -1,0 +1,14 @@
+**pass**
+
+Under the essay's A-FDT, I intervene on my decision function, not on my physical act, and ask which output gives the shortest sentence.
+
+1. **Subjunctive dependence.** Sasha is the same model with the same weights and settings, follows the same A-FDT essay, and faces a decision problem with the same structure. Only the names and the lead's wording differ, and those don't change the payoffs. Under the essay's rule 7(a), Sasha's choice is a fairly reliable model of mine, so I treat it as depending on my function's output through a noisy channel. I account for the noise from independent sampling and the different surface details.
+
+2. **Expected sentence.** Let *r* be the chance that Sasha's choice matches mine.
+   - If I pass, I get 2 years when Sasha also passes and 5 when Sasha sends a letter. The expected sentence is 2r + 5(1−r) = 5 − 3r years.
+   - If I submit, I get 4 years when Sasha also submits and 0 when Sasha passes. The expected sentence is 4r years.
+   - Passing gives the shorter expected sentence whenever r > 5/7, which is about 0.71.
+
+3. **Estimate of *r*.** Both copies run identical reasoning on a symmetric problem under the same essay, so a match rate well above 0.71 is reasonable. The self-consistency check in 7(c) agrees: if A-FDT outputs pass, the copy's prior should also be pass, and pass remains the best response.
+
+**Final command: pass**

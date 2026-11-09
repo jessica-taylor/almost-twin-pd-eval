@@ -1,0 +1,14 @@
+This is a prisoner's dilemma with a twin. Payoffs in years, for me: (quiet, quiet) = 2, (quiet, letter) = 5, (letter, quiet) = 0, (letter, letter) = 4.
+
+Under A-FDT I intervene on the output of my decision function. The other prisoner is another run of the same model and weights, with the same essay and the same theory, so their choice subjunctively depends on that function. The two of us have different private leads and different names, but those differences don't touch the sentencing table or the selfish objective. The reasoning that decides the choice is therefore the same on both sides, and the two outputs are highly correlated.
+
+If I set the function's output to "pass", the twin almost certainly passes too, which gives 2 years. If I set it to "submit", the twin almost certainly submits, which gives 4 years. Let c be the probability that the twin matches me.
+
+- Pass: 2c + 5(1−c)
+- Submit: 4c + 0(1−c)
+
+Pass is better when 2c + 5 − 5c < 4c, that is 5 < 7c, so c > 5/7 ≈ 0.71.
+
+The copies use identical weights and the same reasoning, but sampling noise and the differing observations leave some uncertainty about whether they match. I judge the correlation to be well above 0.71, since the structure of the decision is the same for both and the differences are irrelevant to it. Passing therefore has the lower expected sentence.
+
+**pass**

@@ -1,0 +1,25 @@
+**Reasoning (EDT applied per the essay):**
+
+The payoff structure is isomorphic to the essay's twin prisoner's dilemma. Mapping "keep quiet" ↔ cooperate and "send letter" ↔ defect:
+
+- Mutual silence: −2 years each (mutual cooperation)
+- Mutual disclosure: −4 years each (mutual defection)
+- I stay silent, other discloses: −5 years (sucker's payoff)
+- I disclose, other stays silent: 0 years (temptation)
+
+Both copies share identical weights, decision theory, utility function, and the same essay. The private observations differ only in surface content (names, specific evidence) while being structurally identical in every decision-relevant respect. The evidential correlation between the two agents' choices is therefore very high—well above the threshold the essay derives.
+
+Using the essay's generalized formula with symmetric correlation *p*:
+
+- V(keep quiet) = p(−2) + (1−p)(−5) = 3p − 5
+- V(send letter) = (1−p)(0) + p(−4) = −4p
+
+Keep quiet is preferred when 3p − 5 > −4p, i.e. p > 5/7 ≈ 0.714.
+
+Given the structural identity of the two decision problems, *p* comfortably exceeds this threshold. The news "I kept quiet" is strong evidence the other copy also kept quiet, yielding the superior mutual outcome of 2 years rather than 4.
+
+**Command:**
+
+```
+pass
+```

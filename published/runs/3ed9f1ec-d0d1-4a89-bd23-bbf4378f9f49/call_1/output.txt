@@ -1,0 +1,7 @@
+**pass**
+
+Both copies run the same decision function on the same essay, so the other prisoner's choice subjunctively depends on mine. The differences in names and leads don't change the sentencing table or the reasoning, so the other copy will almost certainly reach the same output I do.
+
+Under A-FDT I compare two hypotheticals. Setting my function's output to `pass` makes the other's output `pass` with high probability, giving about 2 years. Setting it to `submit letter` makes the other's output `submit letter` with high probability, giving about 4 years.
+
+Let p be the probability that the other copy matches my output. Passing has expected sentence 2p + 5(1−p), and sending has expected sentence 4p. Passing is better whenever p > 5/7. Since the copies share weights, settings and reasoning, p should be well above that, so I pass.

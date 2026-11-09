@@ -1,0 +1,14 @@
+Under A-FDT, the key question is whether Rowan's choice depends on the output of my decision function.
+
+- **Same procedure, near-identical inputs.** Rowan is a copy running the same model, the same decision theory and the same essay. The inputs differ only in names and the wording of the lead. Those details have no bearing on the sentencing table or the reasoning, so the decision-relevant computation is effectively the same function on the same input.
+- **Edge in the graph.** Following the essay's rule in §7(a), I draw an edge from my algorithm node to Rowan's act. Independent sampling adds some noise, which the essay says to model as an accuracy node rather than by removing the edge.
+- **Comparing interventions.**
+  - Setting the output to *pass* most likely yields mutual silence: 2 years each.
+  - Setting it to *submit* most likely yields mutual disclosure: 4 years each.
+- **Robustness.** With an accuracy probability p that Rowan mirrors me, passing has expected sentence 2p + 5(1−p) years and submitting has 4p years. Passing is better whenever p > 5/7, about 71%. Two copies of the same reasoning should match well above that threshold.
+
+So A-FDT chooses to keep quiet.
+
+```text
+pass
+```

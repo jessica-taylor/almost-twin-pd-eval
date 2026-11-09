@@ -1,0 +1,14 @@
+Under CDT as the essay interprets it, the other prisoner's choice is not causally downstream of mine. It is a fixed dependency hypothesis, held at my unconditional credence. Any correlation between our choices, from shared weights or a shared essay, is evidential only, and CDT ignores it.
+
+Comparing my sentence under each of their possible choices:
+
+| Other prisoner's choice | If I pass | If I submit |
+|---|---:|---:|
+| Keeps quiet | 2 years | 0 years |
+| Sends a letter | 5 years | 4 years |
+
+Submitting is better in both cases, so it causally dominates. That makes it the best choice for any credence about Sasha's action. It is also ratifiable, since it still looks best once I've settled on it. This is the twin prisoner's dilemma verdict from §3.2.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

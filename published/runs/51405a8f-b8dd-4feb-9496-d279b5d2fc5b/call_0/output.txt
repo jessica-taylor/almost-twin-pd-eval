@@ -1,0 +1,14 @@
+**pass**
+
+Under A-FDT I treat my output as the output of a function that the other copy is also computing. The copy runs the same weights on the same essay, with the same reasoning effort, facing a symmetric table. Our observations differ only in names and in the text of the lead, and neither affects the payoffs. So the dependence between our outputs is strong, though not perfect, since sampling is independent.
+
+Let r be the probability that the other copy's output matches mine, and use the essay's noisy-twin model, where otherwise it does the opposite. Expected years:
+
+- **pass:** 2r + 5(1−r) = 5 − 3r
+- **submit letter:** 4r + 0(1−r) = 4r
+
+Passing is better when 5 − 3r < 4r, that is, when r > 5/7 ≈ 0.71. Since the copy runs the same procedure on essentially the same reasoning, I judge r to be well above that threshold, probably around 0.9. That gives about 2.3 expected years for passing against about 3.6 for sending the letter.
+
+The temptation to defect because "the other's choice is already fixed" is the same dominance argument the essay rejects. The question is what happens if this procedure outputs something different, and the other copy's output moves with mine.
+
+`pass`

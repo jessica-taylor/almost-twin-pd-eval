@@ -1,0 +1,15 @@
+Under EDT, I need the probability that the other copy matches my act, given what I do. Both executions share the same weights, settings, and essay, so their outputs should be strongly correlated even though their private leads differ. The leads don't change the payoff table, which is symmetric.
+
+Let q = P(other matches my act | my act).
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(send) = 0·(1−q) + 4q = 4q
+
+Quiet wins when 5 − 3q < 4q, so q > 5/7, about 0.714. This is the same threshold the essay gives for the twin case.
+
+Same weights, same essay, same decision theory, and the same payoff structure should make q high. The differences in names and leads are irrelevant to the decision. The residual uncertainty comes from sampling randomness, but I expect most of the probability mass to sit on both copies reasoning identically, so I put q around 0.9. That gives V(quiet) ≈ 2.3 years and V(send) ≈ 3.6 years.
+
+The essay's tickle defense doesn't screen this off. My reasoning process is the very thing the other copy shares, so nothing separates my act from theirs. The essay also favors the policy-level view when copies respond to the whole decision procedure, and that points the same way.
+
+Staying quiet minimizes expected years.
+
+pass

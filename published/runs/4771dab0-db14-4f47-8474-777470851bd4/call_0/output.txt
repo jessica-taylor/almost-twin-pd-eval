@@ -1,0 +1,3 @@
+`pass`
+
+Reasoning (brief): P-FDT intervenes on the whole policy. My counterpart is a copy running the same deliberation, so choosing the policy "keep quiet" subjunctively fixes her policy too: both quiet → 2 years each. The policy "submit" symmetrically yields both submitting → 4 years each. The differing lead contents don't touch the symmetric payoff table, so the optimal policy is to keep quiet.

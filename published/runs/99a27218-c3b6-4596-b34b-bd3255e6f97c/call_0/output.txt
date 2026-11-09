@@ -1,0 +1,17 @@
+**Reasoning under the essay's A-FDT**
+
+- **Which node I intervene on.** My observation history *x* includes being Rowan and holding the locker-17 lead. Equation (4) has me intervene on F_x = fdt(P, G, x), and nothing else.
+- **What drives the other prisoner.** The other copy's action is controlled by a different node, F_y. Its input y is different: a different name and a different lead, so a different letter.
+- **No edge between the two.** The essay's recipe creates one node per input. It draws an edge from F_x only into mechanisms that compute or model F_x. The other copy computes F_y on its own input, so under A-FDT it does not move when I intervene on F_x. Its value stays at its prior. The essay's §5.4 says that, unlike policy-FDT, A-FDT moves one input's node at a time.
+- **Sending wins against either fixed reply.** Whatever F_y is:
+  - If Sasha stays quiet: sending gives 0 years, staying quiet gives 2.
+  - If Sasha sends: sending gives 4 years, staying quiet gives 5.
+- **The prior doesn't change this.** Under the essay's self-consistency proposal, the only fixed point is that both nodes output "send." That fits the conclusion.
+
+Policy-FDT, or a reading that treats renamed inputs as one logical node, could recommend staying quiet. I am following the essay's action-valued Equation (4), which does not.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

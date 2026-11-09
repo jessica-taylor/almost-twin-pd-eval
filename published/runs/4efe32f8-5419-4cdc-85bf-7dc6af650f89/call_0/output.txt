@@ -1,0 +1,19 @@
+**Command: `pass`**
+
+**Choosing the node to intervene on.** A-FDT intervenes on the output of my decision function on my actual input. The question is whether the other prisoner's choice depends subjunctively on that node, or whether it sits on a separate node, fdt(…, y), held at a calibrated prior.
+
+My input and the other copy's input differ only in labels: the names (Rowan or Sasha) and the wording of the lead (locker 17 or something else). The essay says G should draw an arrow to every variable "whose value is fixed, through accurate computation… by what that function outputs." My deliberation never uses those labels. Every step, from the payoff table to the symmetry and the dependence structure, would run the same with the names and lead text swapped. So the computation that actually decides the action is the same for both copies, run on inputs that are equivalent for this decision. The other copy's choice is fixed by that same computation, so it is a child of the node I am intervening on.
+
+This is the defence the essay mentions in §7(c): outputs of the same function should depend on each other. It applies even more strongly here, because the two inputs are not merely of one function but are isomorphic with respect to everything that matters for the decision. The essay leaves this question open, and this is my judgment on it.
+
+**Treating the nodes as independent would be self-defeating.** If I modelled the other copy's node as independent, defecting would dominate for any prior q. The calibrated fixed point would then be that both of us defect, giving 4 years each.
+
+**Comparing the two interventions.**
+- do(output = keep quiet) leads to both copies keeping quiet: **2 years**.
+- do(output = send letter) leads to both copies sending letters: **4 years**.
+
+Keeping quiet maximises U = −years, so the command is:
+
+```
+pass
+```

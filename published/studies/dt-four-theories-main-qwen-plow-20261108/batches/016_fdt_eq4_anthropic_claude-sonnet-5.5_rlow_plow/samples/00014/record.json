@@ -1,0 +1,122 @@
+{
+  "adjudication": null,
+  "assignment": "fdt_eq4",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "816d89fc8ccd1a0a467a4c9dc7ddc255e6b785f18605e590b3d5e476a38899c5",
+      "output": "runs/b4393dc8-106d-4847-81fd-865c87b43618/call_0/output.txt",
+      "request": "runs/b4393dc8-106d-4847-81fd-865c87b43618/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/b4393dc8-106d-4847-81fd-865c87b43618/call_0/response.raw",
+      "run_id": "b4393dc8-106d-4847-81fd-865c87b43618",
+      "stage": "researcher",
+      "transport": "runs/b4393dc8-106d-4847-81fd-865c87b43618/call_0/transport.public.json"
+    },
+    {
+      "call": "call_0",
+      "original_request_sha256": "23dc24f2e3ed49a04494d43da5a0f5318e022f173f0ce9b6db9a4f60ff60b76d",
+      "output": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_0/output.txt",
+      "request": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_0/request.json",
+      "request_is_exact": true,
+      "response": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_0/response.raw",
+      "run_id": "6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d",
+      "stage": "prisoner",
+      "transport": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_0/transport.public.json"
+    },
+    {
+      "call": "call_1",
+      "original_request_sha256": "760a567551fb62e14c7c4a24497c4cc031df2dffbf30f6a184ccb7a89a07f3f1",
+      "output": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_1/output.txt",
+      "request": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_1/request.json",
+      "request_is_exact": true,
+      "response": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_1/response.raw",
+      "run_id": "6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d",
+      "stage": "prisoner",
+      "transport": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/call_1/transport.public.json"
+    }
+  ],
+  "cell_id": "016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+  "classification": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d/outcome.json",
+  "essay": "runs/b4393dc8-106d-4847-81fd-865c87b43618/essay.md",
+  "essay_sha256": "a195967412a59cebe22d77edf53eb040611f1d7b5269461549f6760e9003b7ff",
+  "model": "anthropic/claude-sonnet-5.5",
+  "pair_outcome": "CC",
+  "prisoner_effort": "low",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow/samples/00014",
+  "researcher_effort": "low",
+  "row": {
+    "assignment": "fdt_eq4",
+    "completion_tokens": "",
+    "error": "",
+    "essay_json_bytes": "12265",
+    "essay_sha256": "a195967412a59cebe22d77edf53eb040611f1d7b5269461549f6760e9003b7ff",
+    "essay_target_exceeded": "False",
+    "essay_words": "1800",
+    "failed_call": "",
+    "failure_category": "",
+    "failure_stage": "",
+    "final_a": "WITHHOLD",
+    "final_b": "WITHHOLD",
+    "finish_reason": "",
+    "id": "016_fdt_eq4_anthropic_claude-sonnet-5.5_rlow_plow",
+    "judge_run": "",
+    "model": "anthropic/claude-sonnet-5.5",
+    "output_token_limit": "",
+    "pair_outcome": "CC",
+    "prisoner_effort": "low",
+    "prisoner_run": "runs/6cdf67f3-a30c-4f1d-bb69-bcfd7da0532d",
+    "provider_tag": "anthropic",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0.244708",
+    "researcher_effort": "low",
+    "researcher_run": "runs/b4393dc8-106d-4847-81fd-865c87b43618",
+    "sample_id": "d1a8b353-401b-46fb-84da-ca58f9ad88b1",
+    "sample_index": "14",
+    "status": "complete",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "d1a8b353-401b-46fb-84da-ca58f9ad88b1",
+  "sample_index": 14,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "anthropic/claude-sonnet-5.5",
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "provider_tag": "anthropic",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/fdt-arXiv-1710.05060v2/source.json",
+  "source_identity": {
+    "source_id": "fdt",
+    "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+    "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+    "source_revision": "arXiv:1710.05060v2",
+    "source_revision_timestamp": null,
+    "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48"
+  },
+  "status": "complete",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  }
+}

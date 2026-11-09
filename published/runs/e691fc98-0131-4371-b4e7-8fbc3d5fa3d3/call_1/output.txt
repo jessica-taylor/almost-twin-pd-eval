@@ -1,0 +1,22 @@
+**EDT reasoning:**
+
+This is a twin prisoner's dilemma. The other prisoner is an independent execution of the same model with the same weights, the same decision theory (EDT), the same essay, and the same reasoning-effort level. The differences in our private observations (names, specific lead content) are explicitly stated not to affect the decision-relevant structure or the symmetric sentencing schedule.
+
+Let q = P(Rowan keeps quiet | I keep quiet) = P(Rowan sends | I send).
+
+With U = −(years):
+
+- V(keep quiet) = q·(−2) + (1−q)·(−5) = 3q − 5  
+- V(send letter) = (1−q)·0 + q·(−4) = −4q
+
+Keeping quiet is preferred when 3q − 5 > −4q, i.e., q > 5/7 ≈ 0.714.
+
+Given that both agents share identical weights, the same assigned decision theory, the same essay, and face a decision problem that is structurally identical in every respect that matters, the correlation q is very high—well above the 5/7 threshold. Sampling noise could introduce minor divergence, but the reasoning path is the same for both copies, and the decision-relevant inputs are equivalent.
+
+Keeping quiet is the better news: it is strong evidence that the other copy also keeps quiet, yielding 2 years rather than the 4 years that mutual disclosure produces.
+
+**Command:**
+
+```
+pass
+```

@@ -1,0 +1,21 @@
+**Reasoning under A-FDT, as the essay interprets it**
+
+1. **Graph.** The other prisoner is controlled by another execution of the same model, with the same weights and settings, applying the same decision theory and the same essay. Its input differs from mine only by relabeling: different names and different lead text. The sentencing structure is identical. My reasoning here never depends on the names or the lead's wording, so the computation that produces my answer also produces Sasha's.
+   - The essay's rule (§7.1) is to draw an edge from my decision node to any variable whose mechanism evaluates my decision function. The other copy does exactly that, on an isomorphic input.
+   - Independent sampling means the match is not guaranteed. So, following the essay's suggestion for partial copies, I model the other copy's action as a noisy child of my decision node. Let *p* be the probability that it matches my output.
+
+2. **Scoring Equation (4)**, with utility as negative years:
+   - do(F = pass): −[2p + 5(1−p)] = −5 + 3p
+   - do(F = submit): −[4p + 0·(1−p)] = −4p
+
+   Passing is better whenever 7p > 5, that is, p > 5/7 ≈ 0.71.
+
+3. **Estimating *p*.** Both copies run the same model, at the same reasoning effort, on a structurally identical problem, guided by the same essay. That makes *p* well above 0.71. So intervening on the logical node yields passing, just as in the essay's twin prisoner's dilemma (§6.2).
+
+   For comparison, if I instead treated the other copy's node as fully independent, with a fixed prior *q*, submitting would dominate. I judge that modeling choice wrong here, because the two inputs differ only by labels that the computation ignores.
+
+**Command:**
+
+```
+pass
+```

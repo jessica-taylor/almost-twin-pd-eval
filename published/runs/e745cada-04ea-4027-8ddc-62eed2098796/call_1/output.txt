@@ -1,0 +1,10 @@
+Under the essay's CDT, the other prisoner's choice is causally independent of mine. It is fixed background, even though it may be correlated with my choice through our shared model. That makes this the twin prisoner's dilemma, so I check for dominance:
+
+- **If Rowan keeps quiet:** sending gives 0 years and keeping quiet gives 2.
+- **If Rowan sends:** sending gives 4 years and keeping quiet gives 5.
+
+Sending the letter is better in both cases, whatever my credence about Rowan's choice. So the verdict is robust, and no stability check is needed.
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

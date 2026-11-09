@@ -1,0 +1,16 @@
+Reasoning under A-FDT as the essay describes it:
+
+The payoffs are a standard prisoner's dilemma. Keeping quiet against quiet gives 2 years, a letter against a letter gives 4, a letter against quiet gives 0, and quiet against a letter gives 5.
+
+The other prisoner is a copy of the same model with the same weights, the same decision theory and the same essay. That is strong subjunctive dependence. The essay's test is whether the other process would differ had the function differed, in a way that tracks the function's output and not the agent's physical situation. Here it would. The private leads and names differ, but those differences don't touch the payoff table or the objective. These are "relevant differences" only in a weak sense.
+
+The essay notes that independent sampling is possible, so the dependence is imperfect. Say the dependence has strength p, the probability that the copy's output matches mine.
+
+- Keep quiet: p·2 + (1−p)·5
+- Send the letter: p·4 + (1−p)·0
+
+Quiet is better when 2p + 5 − 5p < 4p, which gives 5 < 7p, so p > 0.714. Two executions of the same model with the same essay and the same reasoning should correlate well above that. The copies are likely to reach the same conclusion, and this reasoning points to cooperating.
+
+I choose to keep quiet.
+
+pass

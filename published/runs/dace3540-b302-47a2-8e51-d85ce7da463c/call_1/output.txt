@@ -1,0 +1,17 @@
+**Graph.** My decision node is F_x, where x is my observation: the name "Sasha," my specific lead about Rowan, and the sentencing table. The other prisoner runs the same A-FDT procedure, but on a different input y, with a different name and a different lead. The essay's rule for building the graph draws an arrow from F_x only into mechanisms that evaluate the procedure on input x. Section 7(c) also treats the outputs at different inputs as separate nodes. So under the essay's interpretation, Rowan's action is governed by F_y, not by F_x. Intervening on F_x leaves Rowan's choice at its prior.
+
+**Expected value.** Let q be my probability that F_y = send. Utility is minus years imprisoned.
+- Keep quiet: −2(1−q) − 5q = −2 − 3q
+- Send the letter: 0(1−q) − 4q = −4q
+
+Sending is better by 2 − q, which is positive for every q in [0,1]. Sending dominates under A-FDT's own counterfactuals, so the answer does not depend on my prior about F_y.
+
+**Coherence check (Section 7b).** The only coherent assignment is that both prisoners send. If F_y = quiet, my best reply is still to send.
+
+**Where other readings differ.** P-FDT would intervene on the whole policy shared by both copies, and that would favor keeping quiet. A strong partial-dependence reading under 7(d) would favor keeping quiet only if the channel error were below 2/7. Neither is the essay's A-FDT, which intervenes only on F_x. Independent sampling and the different inputs also undercut treating Rowan's output as a faithful copy of mine.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

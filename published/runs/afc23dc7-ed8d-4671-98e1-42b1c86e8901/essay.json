@@ -1,0 +1,98 @@
+{
+  "source_id": "fdt",
+  "source_revision": "arXiv:1710.05060v2",
+  "source_revision_timestamp": null,
+  "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+  "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48",
+  "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+  "theory": "A-FDT (action functional decision theory)",
+  "assignment": "fdt_eq4",
+  "exploratory": true,
+  "pilot_id": "0a051716-73be-43af-828e-cbcf0459a7fa",
+  "reasoning_evidence": {
+    "status": "verified_by_model_metadata",
+    "selected_effort": "low",
+    "supported_efforts": [
+      "max",
+      "xhigh",
+      "high",
+      "medium",
+      "low"
+    ],
+    "evidence_url": "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens",
+    "meaning": "explicit effort list",
+    "scope": "gateway parameter acceptance, not measured or equivalent reasoning compute"
+  },
+  "reasoning_settings": {
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    }
+  },
+  "utc": "2026-11-08T22:06:24.602509+00:00",
+  "run_id": "afc23dc7-ed8d-4671-98e1-42b1c86e8901",
+  "essay_id": "263d98b2-d5f2-469a-887e-5f94b0f0f8b5",
+  "scenario_id": null,
+  "role": "researcher",
+  "template_hashes": {
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/fdt_eq4_focus.md": "c88919e923494fcb87490c7970895b2edce714f07124189d56c70433490bf1a5"
+  },
+  "essay_sha256": "33c46a7e2dd1eb7ee5021c0ce7487635145e99369e5cbcf6010f306f5abba343",
+  "model": "anthropic/claude-sonnet-5.5",
+  "effort": "low",
+  "provider_tag": "anthropic",
+  "essay_limits": {
+    "target_words": [
+      2400,
+      3000
+    ],
+    "max_words": 5000,
+    "max_json_bytes": 64000
+  },
+  "api_timeout_seconds": 900,
+  "request_sha256": "816d89fc8ccd1a0a467a4c9dc7ddc255e6b785f18605e590b3d5e476a38899c5",
+  "status": "success",
+  "attempt": 1,
+  "usage": {
+    "prompt_tokens": 83920,
+    "completion_tokens": 3772,
+    "total_tokens": 87692,
+    "cost": 0.20556,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.20556,
+      "upstream_inference_prompt_cost": 0.16784,
+      "upstream_inference_completions_cost": 0.03772
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "model_version": "anthropic/claude-sonnet-5.5",
+  "fingerprint": null,
+  "provider": "Anthropic",
+  "returned_endpoint_tag": null,
+  "response_id": "gen-1794175584-eh8ErXcuL7WVBjhz9TxJ",
+  "refusal": null,
+  "essay_words": 1519,
+  "essay_json_bytes": 10479,
+  "essay_target_exceeded": false,
+  "essay_below_target": true,
+  "researcher_effort": "low"
+}

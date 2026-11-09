@@ -1,0 +1,12 @@
+Under CDT as the essay interprets it, the other prisoner's choice is not caused by mine. It is correlated with mine through our shared model and the shared essay, but there is no causal link, so I hold it fixed with unconditional credence and compare my acts against each possibility:
+
+- **If Rowan keeps quiet:** sending gives 0 years, keeping quiet gives 2. Sending is better.
+- **If Rowan sends a letter:** sending gives 4 years, keeping quiet gives 5. Sending is better.
+
+Sending the letter dominates whatever credence I hold about Rowan's choice. Deliberational dynamics change nothing, since the dominance holds at every credence. This matches the essay's verdict for the twin prisoner's dilemma: defect.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

@@ -1,0 +1,10 @@
+**pass**
+
+Under A-FDT, the other prisoner's choice is not independent of mine. The other prisoner is a copy of the same model, running the same decision procedure on the same essay and the same sentencing table. The names and the specific leads differ, but neither affects the payoffs, so the reasoning that decides the outcome is the same on both sides. I therefore put the other copy's output downstream of the function I'm choosing. The dependence is imperfect, since sampling can vary, so I treat it as a noisy edge with probability p that the copy matches my output.
+
+- **Pass:** expected sentence = 2p + 5(1 − p) years.
+- **Send:** expected sentence = 4p + 0(1 − p) years.
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 (about 0.71). Two copies of the same model with the same essay and the same payoff structure should match well above that threshold. The "send the letter" argument holds the other copy's output fixed while mine varies, which is the move A-FDT rejects.
+
+Staying quiet gives an expected sentence of about 2 years, against about 4 for sending the letter.

@@ -1,0 +1,10 @@
+Under the essay's procedure, the other prisoner's choice is a fixed dependency hypothesis. Our shared model weights only correlate our choices; my command cannot cause Sasha's.
+
+- **If Sasha keeps quiet:** sending gives 0 years, keeping quiet gives 2.
+- **If Sasha sends:** sending gives 4 years, keeping quiet gives 5.
+
+Sending is better under either hypothesis, so it dominates (step 4 of the essay's procedure). This is the twin prisoner's dilemma from §5.3, where CDT defects regardless of credences.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

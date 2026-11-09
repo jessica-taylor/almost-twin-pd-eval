@@ -1,0 +1,8 @@
+**Command:** `pass`
+
+My reasoning under A-FDT as the essay interprets it:
+
+- **The two nodes are distinct but nearly identical.** Strictly, my output node is fdt(P, G, x_Sasha), and the other prisoner's choice comes from fdt(P, G, x_Rowan). But both copies run the same model and weights, with the same essay and decision theory, on inputs that differ only in names and in the wording of an equally weighted lead. The table is identical. So the other copy is essentially computing the same function on a relabelled input.
+- **Using the essay's mixture proposal (§5.1).** I model the other copy as following my node with weight ρ, and otherwise acting independently, keeping quiet with probability q.
+- **Comparing the two choices.** Expected utility from passing minus expected utility from sending equals 2ρ − (1 − ρ)(1 + q). Even in the worst case (q = 1), passing is better whenever ρ > 0.5. A copy that differs only by labels plausibly gives ρ well above 0.5.
+- **Consistency check (§5.3).** If both copies keep quiet, each copy's prior about the other matches what A-FDT outputs there, so the profile is self-consistent. That gives 2 years instead of the 4 years from mutual disclosure.

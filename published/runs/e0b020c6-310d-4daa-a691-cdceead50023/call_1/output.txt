@@ -1,0 +1,14 @@
+Under EDT, the question is how strongly my act correlates with the other copy's act.
+
+The payoffs are an ordinary prisoner's dilemma. Quiet/quiet gives 2 years, letter/letter gives 4, a lone letter gives 0, and a lone quiet gives 5. Let q be the probability that the other copy matches my act.
+
+- V(quiet) = 2q + 5(1−q) = 5 − 3q
+- V(letter) = 0·(1−q) + 4q = 4q
+
+Expected years are lower for quiet when 5 − 3q < 4q, which means q > 5/7, about 0.714.
+
+The other execution is the same model with the same weights, the same EDT essay, and the same setup. Only the names and the text of the private lead differ, and those details don't affect the payoffs or the objective. The shared decision procedure is what drives the choice, so my act is strong evidence about theirs. The essay's rule says to condition on everything I know, and nothing I know screens off that correlation. The differing leads are not a channel that separates our decisions. Sampling noise could reduce the correlation, but I expect q to be well above 0.714, since the reasoning is highly convergent.
+
+Quiet therefore has the lower expected sentence.
+
+pass

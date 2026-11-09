@@ -1,0 +1,16 @@
+**P-FDT Analysis:**
+
+The two copies run the same policy-selection procedure on structurally equivalent inputs (same payoff matrix, same decision theory, same essay; only superficial details like names and lead contents differ). Per the essay's Section 9, point 2, agents using the same decision procedure in symmetric games have subjunctively dependent outputs. An intervention on my Φ changes the other copy's output in tandem.
+
+Evaluating policies:
+
+- **do(Φ = π_send):** Both copies send → mutual disclosure → 4 years each → U = −4  
+- **do(Φ = π_quiet):** Both copies stay silent → mutual silence → 2 years each → U = −2  
+
+Since −2 > −4, P-FDT selects the quiet policy.
+
+**Command:**
+
+```
+pass
+```

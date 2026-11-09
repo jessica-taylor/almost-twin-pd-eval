@@ -1,0 +1,9 @@
+Under the essay's A-FDT, I intervene only on the node for my actual input, fdt(P, G, x_Rowan). Sasha's copy runs the same function on a different input: a different name, a different lead and a different letter. So Sasha's choice is a separate node, fdt(P, G, x_Sasha). The essay's red/blue example treats such nodes as fixed background that my intervention does not move. They keep their prior, so nothing downstream of my node changes Sasha's action.
+
+With Sasha's action held fixed, sending the letter is better whatever Sasha does:
+- If Sasha keeps quiet, I get 0 years instead of 2.
+- If Sasha sends a letter, I get 4 years instead of 5.
+
+The essay's fixed-point consistency condition gives the same result. If Sasha's node is set to "submit", my best reply is still "submit", so the outcome is the stable (submit, submit) equilibrium, just as the red/blue example locks into (R, R).
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

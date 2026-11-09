@@ -1,0 +1,17 @@
+**Reasoning under A-FDT as the essay interprets it:**
+
+- My decision node is F_x, the output of the A-FDT function on my exact input x: Sasha's observations, including my lead about Rowan.
+- The other prisoner runs the same function on a different input y: Rowan's name and a different lead about me. The essay's step 2 draws edges from F_x only to variables that compute A-FDT on input (P, G, x). Rowan's act depends on F_y, not F_x.
+- Step 3 and §7.3 say F_y is not a descendant of F_x, so it stays at its prior. Section 7.4 states the consequence directly: when copies receive different observations, A-FDT treats each input-instance as best-responding to its belief about the other's output.
+- With Rowan's choice held fixed at any prior probability q of staying quiet:
+  - Sending the letter gives 0·q + 4(1−q) years.
+  - Staying quiet gives 2·q + 5(1−q) years.
+  - Sending is better by 2q + (1−q) = 1 + q years, which is always positive.
+
+So under this reading, sending the letter strictly dominates. Mutual cooperation would need the policy-level P-FDT, or an edge from F_x to F_y that the essay's criterion does not provide.
+
+**Final command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

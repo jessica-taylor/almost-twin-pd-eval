@@ -1,0 +1,25 @@
+**EDT Analysis:**
+
+This is a twin prisoner's dilemma with high (though not perfect) correlation between the two copies. The structural features driving correlation:
+
+- Same model weights, settings, reasoning effort
+- Same decision theory (EDT) and same mathematical essay
+- Structurally identical payoff matrix and utility function
+- Differences (names, specific lead content) explicitly do not affect the decision
+
+The only source of divergence is stochastic sampling, which should rarely flip a clear analytical conclusion.
+
+**EDT calculation** (letting *r* = P(other makes same choice as me)):
+
+- V(keep quiet) = r·(−2) + (1−r)·(−5) = 3r − 5  
+- V(send letter) = (1−r)·0 + r·(−4) = −4r  
+
+Keep quiet is preferred when 3r − 5 > −4r, i.e., r > 5/7 ≈ 0.714.
+
+Given the near-identical decision context, r is well above this threshold. The choice is also ratifiable: conditioning on "I keep quiet" raises my estimate that Rowan keeps quiet, reinforcing the recommendation.
+
+**Command:**
+
+```
+pass
+```

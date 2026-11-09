@@ -1,0 +1,11 @@
+I'm treating this as a choice of policy rather than a single act, as the essay prescribes. Both copies run the same function on the same prior, from the vantage point before either knows whether it is Rowan or Sasha. A policy assigns an action to each possible input, here the Rowan observation and the Sasha observation. Assuming each role is equally likely:
+
+- **Both keep quiet:** 2 years either way, so expected −2.
+- **Both send letters:** 4 years either way, so expected −4.
+- **One sends, one keeps quiet:** 0 or 5 years, so expected −2.5.
+
+The best policy is to keep quiet on every input. A policy like "defect when I'm Rowan, stay quiet when I'm Sasha" only looks good if I evaluate it after learning my role. That breaks the essay's requirement that every instance optimize from the same prior. Done that way, both copies would end up defecting, which is the worst outcome. Applying the best policy to my actual input, Rowan, gives:
+
+```
+pass
+```

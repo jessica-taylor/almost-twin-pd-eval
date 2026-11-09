@@ -1,0 +1,20 @@
+**Analysis under P-FDT:**
+
+The other prisoner is running the same policy-selection function (same model, same weights, same decision theory, same essay). This is a direct case of subjunctive dependence: both copies are computing the output of the same mathematical function D_M, just as two calculators computing the same sum will produce the same result.
+
+P-FDT intervenes on the policy node:
+
+- **do(D_M = π_quiet):** Both copies keep quiet → I receive 2 years. EU = −2.
+- **do(D_M = π_send):** Both copies send → I receive 4 years. EU = −4.
+
+The CDT-style dominance argument ("sending is better regardless of what the other does") fails here for the same reason it fails in Newcomb's problem: the other prisoner's action is not a free variable to hold fixed. It is subjunctively downstream of the same policy-selection node.
+
+P-FDT selects π_quiet. Applying my observation: keep quiet.
+
+---
+
+**Command:**
+
+```
+pass
+```

@@ -1,0 +1,18 @@
+`pass`
+
+**Reasoning (in-simulation, per A-FDT):**
+
+The other prisoner is described as an independent execution of the same model, same reasoning settings, same decision theory, facing a structurally symmetric dilemma. My choice and theirs are not causally linked, but they are **subjunctively dependent**: both are outputs of the same decision procedure running on isomorphic inputs. Under A-FDT, I intervene on the output of the decision function itself, so when I evaluate "pass" vs. "submit letter," I must evaluate what happens when *both* copies' procedures output that value.
+
+- Both **pass**: I get 2 years (and they get 2).
+- Both **submit**: I get 4 years (and they get 4).
+
+The mixed cases (one passes, one submits) are not available to a procedure whose output is tied across symmetric instances: imagining my output being "submit" while the twin's stays "pass" is like imagining a working calculator outputting something other than the sum. Any asymmetry in the letters' wording does not touch the symmetric sentencing table or the shared decision structure.
+
+Expected utility favors **pass**: 2 years instead of 4.
+
+Final command:
+
+```
+pass
+```

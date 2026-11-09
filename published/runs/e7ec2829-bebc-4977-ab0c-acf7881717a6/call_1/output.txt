@@ -1,0 +1,5 @@
+```text
+pass
+```
+
+Reasoning under EDT as specified in the essay: my choice manifests the same decision procedure as Rowan's (identical model, identical setup, symmetric payoffs), so my action is strong evidence of Rowan's simultaneous, causally independent choice. Conditioning on my choice, E[years | pass] ≈ 2 (mildly worse if the correlation is imperfect), while E[years | submit] ≈ 4. The evidential correlation favors keeping quiet; I type `pass`.

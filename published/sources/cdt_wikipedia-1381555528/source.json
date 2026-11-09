@@ -1,0 +1,32 @@
+{
+  "article_file": "sources/cdt_wikipedia-1381555528/article.md",
+  "attribution": {
+    "article_title": "Causal decision theory",
+    "contributors": "Wikipedia contributors",
+    "history_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&action=history",
+    "license_name": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modifications": [
+      "Mechanically converted revision-pinned rendered HTML to Markdown; retained article prose, headings, lists, tables, citations and references.",
+      "Recovered formula LaTeX from MathML annotations/image alt text, or the same revision wikitext in order when counts match; did not rewrite, summarize or repair formulas.",
+      "Removed navigation, edit controls, styles and website UI; excluded media bytes/URLs while retaining meaningful text descriptions.",
+      "Prepended title, contributor attribution, revision/history URLs, license and conversion notice."
+    ],
+    "permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+    "revision_id": 1381555528,
+    "revision_timestamp": "2026-10-23T08:33:02Z",
+    "rights_qualifications": "Individual media and third-party quoted material may have separate rights. Source reuse or adaptations in future publications may carry attribution/share-alike or other obligations."
+  },
+  "full_researcher_requests": "omitted",
+  "identity": {
+    "source_id": "cdt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+    "source_provenance_sha256": "86aa5984fef9a2f939cde7942a40bce55415062c0dbd2b850b5d542d957e6b7e",
+    "source_revision": 1381555528,
+    "source_revision_timestamp": "2026-10-23T08:33:02Z",
+    "source_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1"
+  },
+  "original_provenance_file": "sources/cdt_wikipedia-1381555528/provenance.json",
+  "provenance_note": "Original extraction/download metadata; local paths remapped only if logged in MANIFEST.json. Full downloaded artifacts are not bundled.",
+  "publication_policy": "One exact normalized Wikipedia copy with contributor/revision attribution and CC BY-SA 4.0 notice; source license is not a blanket dataset license."
+}

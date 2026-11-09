@@ -1,0 +1,10 @@
+```text
+pass
+```
+
+**Reasoning (brief):** Let *p* = probability the twin copy also stays quiet. Given we are the same model with the same essay and instructions, our choices are strongly correlated (near-twin case from §4).
+
+- V(pass) = p·2 + (1−p)·5 = 5 − 3p
+- V(submit) = p·0 + (1−p)·4 = 4 − 4p
+
+V(pass) − V(submit) = 1 + p > 0 for any p ≥ 0, so keeping quiet maximizes conditional expected utility even at zero correlation — and the twin correlation only reinforces it. Under the essay's EDT, the command is `pass`.

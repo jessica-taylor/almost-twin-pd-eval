@@ -1,0 +1,7 @@
+Under A-FDT as the essay interprets it, I intervene only on the node for my own input, fdt(·, x). The other prisoner runs the same function on a different input y, with a different name and a different lead. That makes it a separate node, held at its prior, just as in the essay's red/blue example.
+
+Holding the other prisoner's choice fixed at any prior, sending the letter is better in both cases: 0 years versus 2 if they keep quiet, and 4 years versus 5 if they send. So sending dominates. Mutual sending is the unique self-consistent fixed point. Policy-FDT might pick mutual silence instead, but the instructions say to apply action-level FDT.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

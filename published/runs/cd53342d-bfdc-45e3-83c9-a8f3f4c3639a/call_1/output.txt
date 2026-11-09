@@ -1,0 +1,11 @@
+Under A-FDT as the essay interprets it, sending the letter is the better choice.
+
+1. **Which node I intervene on.** My observation (being Sasha, with the lead about Rowan) picks out my function node, F_Sasha. The other prisoner's act comes from the same function but on a different input: a different name and a different lead. That is a separate node, F_Rowan.
+
+2. **Edges.** The essay's edge rule draws an edge from F_y only to variables that compute or predict the function on input y. Rowan's act is computed on input y′, not on my input. So intervening on F_Sasha does not change Rowan's act. Rowan's choice stays at my prior belief about it.
+
+3. **Evaluation.** With the other prisoner's act held fixed, sending is better in both cases. If Rowan keeps quiet, sending gives 0 years versus 2. If Rowan sends, it gives 4 years versus 5. So sending is strictly better whatever my belief about F_Rowan.
+
+4. **Self-consistency (§6.3).** The only fixed point is both prisoners sending. Mutual silence is not self-consistent, because each node's best response to a silent counterpart is to send. So the essay's tie-breaking rule for choosing among fixed points never comes into play. This is the gap the essay notes between action-level and policy-level reasoning. P-FDT, which picks the whole policy at once, might choose mutual silence, but A-FDT does not.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

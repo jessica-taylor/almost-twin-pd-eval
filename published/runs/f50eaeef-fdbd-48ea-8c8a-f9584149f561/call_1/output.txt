@@ -1,0 +1,14 @@
+Under EDT, the payoffs are years in prison for me. Staying quiet (pass) gives 2 if the other stays quiet and 5 if they send. Sending gives 0 if they stay quiet and 4 if they send.
+
+The other prisoner is a copy of the same model with the same weights, the same decision theory, and the same essay. Our private details differ, but those differences don't touch the payoffs. So my choice is strong evidence about theirs. The essay says that in twin cases the correlation survives conditioning on everything I can introspect, because both of us run the same decision procedure. Independent sampling weakens the correlation somewhat, so I'll call it q, the probability the other copy does what I do.
+
+- V(pass) = -(2q + 5(1−q)) = -(5 − 3q)
+- V(send) = -(0·(1−q) + 4q) = -4q
+
+Passing is better when 5 − 3q < 4q, which means q > 5/7 ≈ 0.714.
+
+The two copies share weights, settings, essay, and theory, so I expect q to be well above 0.714, probably around 0.9 or higher. At q = 0.9, V(pass) = -2.3 and V(send) = -3.6, so passing wins. The differing leads are the main source of divergence. They are equally reliable and have the same effect on the table, so they shouldn't change the reasoning that leads each copy to the same conclusion.
+
+Passing is the EDT choice.
+
+pass

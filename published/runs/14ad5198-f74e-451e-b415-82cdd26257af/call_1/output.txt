@@ -1,0 +1,16 @@
+**Command: `pass`**
+
+**Why A-FDT gives `pass` here**
+
+The key modelling question is how to build the graph G, which the essay leaves partly open (§7a). Rowan's copy runs the same weights, uses the same decision theory, and reads the same essay. Its input differs from mine only in names and in the text of its lead. The essay states that these differences have no effect on the sentencing table or on either prisoner's objective.
+
+I could treat Rowan's decision as a separate node F_y with a fixed prior (§4, step 4). If I did, sending the letter would dominate, and both of us would get 4 years. But that model treats an obviously isomorphic computation as merely correlated, which is what the essay calls the lesion mistake. The decision-relevant function is "A-FDT applied to this symmetric payoff structure," and the label differences are irrelevant to it. By the essay's criterion, the correlation between my output and Rowan's would hold if that function's output changed. So I draw an edge from my decision node to Rowan's action.
+
+Intervening on that node:
+
+- do(F = pass): both stay quiet, so I serve **2 years**.
+- do(F = send): both send letters, so I serve **4 years**.
+
+A-FDT therefore chooses to keep quiet.
+
+`pass`

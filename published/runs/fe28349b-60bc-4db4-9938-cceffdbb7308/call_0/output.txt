@@ -1,0 +1,15 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning under A-FDT, as the essay interprets it:**
+
+- **Where I intervene:** Equation (4) intervenes only on the decision node for my actual input, fdt(P, G, x). Here x is Rowan's observation history, including my specific lead about Sasha.
+- **What the other copy depends on:** The other copy runs the same function on a different input y. That input has a different name and a different lead. By recipe step 3, its act is a child of fdt(P, G, y), not of my node.
+- **How that node is treated:** By step 5 and the essay's conclusion, decision nodes for other inputs are not intervened on. They stay at their prior distribution. The essay says explicitly that "the agent's own behavior on other inputs" is left alone.
+- **The comparison:** With the other prisoner's action held at whatever its prior is, sending the letter beats keeping quiet in both columns. It gives 0 years instead of 2, or 4 instead of 5. So the expected sentence is strictly lower whatever that prior is.
+- **The fixed-point refinement:** The essay's §4 proposal does not change this. Even if I set the prior to A-FDT's own predicted output on y, sending still wins.
+
+The essay itself flags that the policy version (P-FDT) can pick out a different, globally better symmetric policy (both keep quiet, 2 years each) in coordination-like cases. But the assigned theory is A-FDT, the action-based rule, so the character submits the letter.

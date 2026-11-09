@@ -1,0 +1,12 @@
+**Command: `pass`**
+
+Under the essay's A-FDT, I intervene on the node for my own input, F_Sasha. Rowan's choice comes from F_Rowan, a different input to the same function. The two inputs differ only in names and the wording of the lead. Those details don't change the sentencing table or the reasoning, and both copies run the same model with the same essay. So I apply the essay's mixture proposal: with credence ρ, Rowan's output tracks mine; otherwise Rowan keeps quiet with some probability s.
+
+- **Keep quiet:** expected years = 2ρ + (1−ρ)(5 − 3s)
+- **Send letter:** expected years = 4ρ + (1−ρ)(4 − 4s)
+
+Keeping quiet minus sending gives −2ρ + (1−ρ)(1+s). Even in the worst case (s = 1), keeping quiet means fewer expected years whenever ρ > 0.5. Given the shared weights, shared theory and decision-irrelevant differences, I put ρ well above 0.5.
+
+So I keep quiet.
+
+`pass`

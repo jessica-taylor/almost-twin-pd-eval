@@ -1,0 +1,13 @@
+**Command:** `submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."`
+
+**Why A-FDT, as the essay interprets it, gives this verdict:**
+
+- **Two inputs, two logical nodes.** Rowan's input (name, lead, letter content) differs from Sasha's. Following the essay's recipe (§5.1, §6 step 2), the graph has two nodes. φ_Rowan is a parent of my act, and φ_Sasha is a parent of the other copy's act.
+- **The other node stays at its prior.** Equation (4) intervenes only on φ_Rowan, my actual input, and holds φ_Sasha at its prior. Let r = P(φ_Sasha = keep quiet).
+- **Comparing the two acts:**
+  - Keep quiet: E[years] = 2r + 5(1−r) = 5 − 3r
+  - Send the letter: E[years] = 0·r + 4(1−r) = 4 − 4r
+- **Sending is better for every r.** It saves 1 + r years, between 1 and 2.
+- **Off-input check (§5.3).** I estimate that A-FDT on Sasha's input does the same thing, since the situation is symmetric. With r = 0 (both send the letter), the assignment is self-consistent. It is the unique fixed point, because sending is strictly better at every prior.
+
+Policy-selection FDT, which chooses the whole input-to-action map at once, might pick mutual silence (2 years each instead of 4). The essay flags that as an extension beyond Equation (4), not part of A-FDT. This case is exactly the cross-input, dominated-equilibrium limitation it describes.

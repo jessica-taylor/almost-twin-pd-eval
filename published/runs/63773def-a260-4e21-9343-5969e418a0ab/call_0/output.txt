@@ -1,0 +1,12 @@
+**pass**
+
+Under A-FDT I treat my choice as the output of a decision function that the other prisoner's copy also runs, on inputs that differ only in names and the wording of the lead. Those differences don't touch the sentencing table or the selfish objective, so the other copy's output should subjunctively depend on mine. The dependence is imperfect, since sampling is independent, so I set the probability that the other copy matches my output to ρ.
+
+- **Pass:** the other copy passes with probability ρ. Expected sentence is 2ρ + 5(1−ρ) = 5 − 3ρ years.
+- **Send:** the other copy sends with probability ρ. Expected sentence is 4ρ + 0·(1−ρ) = 4ρ years.
+
+Passing is better when 5 − 3ρ < 4ρ, which means ρ > 5/7 ≈ 0.71. Two copies of the same model with the same essay and the same decision theory should match well above that threshold, so I pass.
+
+```text
+pass
+```

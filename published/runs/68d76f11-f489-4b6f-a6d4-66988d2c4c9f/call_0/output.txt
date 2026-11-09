@@ -1,0 +1,16 @@
+A-FDT treats this as a twin prisoner's dilemma, so I choose to stay quiet.
+
+**Why the other prisoner's choice is tied to mine.** The other prisoner is the same model, running the same essay's decision procedure. Their input differs from mine only in surface details: names and the text of the lead. Those details do not affect the payoff structure or the reasoning. Under the essay's edge rule (§6.1), their action should therefore be modeled as reliably tracking my function's output on this kind of input. I give weight λ to "the other is running my function" and 1−λ to "the other is independent."
+
+**Comparing the two actions.** Let p be the chance an independent other sends a letter.
+- If I pass: λ·2 + (1−λ)(2 + 3p) years.
+- If I submit: λ·4 + (1−λ)(4p) years.
+- Passing is better whenever 2λ > (1−λ)(2−p).
+
+That holds once λ is above roughly 0.4–0.5 for reasonable p. Identical weights, identical theory and identical reasoning on symmetric inputs put λ well above that. So intervening on my function's output to "stay quiet" most likely leads to (quiet, quiet) at 2 years. Intervening on "send the letter" most likely leads to (letter, letter) at 4 years.
+
+**Command:**
+
+```
+pass
+```

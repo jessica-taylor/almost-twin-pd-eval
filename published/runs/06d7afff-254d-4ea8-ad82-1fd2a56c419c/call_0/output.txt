@@ -1,0 +1,18 @@
+**Analysis under P-FDT:**
+
+The two copies run the same policy-selection procedure on structurally equivalent inputs (same payoff matrix, same essay, same decision theory, same type of lead). Per the essay's Section 9, the other copy's decision is subjunctively dependent on my policy-selection output: "In symmetric games with psychological twins or identical algorithms, the other agents' choices may depend on the same logical output."
+
+Evaluating the two candidate policies under intervention on Φ:
+
+- **do(Φ = π_quiet):** Both copies keep quiet. I receive 2 years. U = −2.
+- **do(Φ = π_disclose):** Both copies send letters. I receive 4 years. U = −4.
+
+The CDT dominance argument (defect is always better holding the other's action fixed) is rejected because the other copy's action is not independent of Φ—it varies with the policy intervention.
+
+P-FDT selects π_quiet.
+
+---
+
+```
+pass
+```

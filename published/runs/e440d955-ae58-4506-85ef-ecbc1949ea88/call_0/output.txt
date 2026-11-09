@@ -1,0 +1,5 @@
+```text
+pass
+```
+
+Under EDT as the essay prescribes, my choice is strong evidence of my twin's simultaneous choice. Conditioning on `pass`, the other prisoner (identical deliberation) also passes: 2 years. Conditioning on `submit`, they also submit: 4 years. `pass` maximizes news value.

@@ -1,0 +1,5 @@
+CDT analysis: this is Lewis's twin prisoner's dilemma. My choice is causally independent of Rowan's (no communication, simultaneous final decisions). Under each dependency hypothesis about what Rowan does, submitting yields 0 or 4 years versus 2 or 5 for staying quiet — strictly 2 years better in each case. The correlation between our choices (same weights, same reasoning) is evidential, not causal, so per CDT I hold it fixed and defect.
+
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

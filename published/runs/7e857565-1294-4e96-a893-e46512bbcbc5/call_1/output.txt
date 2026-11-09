@@ -1,0 +1,25 @@
+**Analysis (A-FDT):**
+
+The other prisoner, Rowan, is an independent execution of the same model weights running the same decision theory (A-FDT) on the same essay, with the same utility function and a structurally identical decision problem. The only differences are cosmetic: different names and different (but equally reliable, equally consequential) leads. These differences do not alter the decision-relevant computation.
+
+By the essay's criterion for subjunctive dependence, Rowan's decision output is produced by a process that computes the same function on structurally identical inputs. This is the calculator analogy: two instances of the same computation, differing only in superficial labels. I therefore treat Rowan's decision as subjunctively dependent on my decision function with high reliability *p*.
+
+**Expected utilities under intervention on my decision node:**
+
+- **Do(keep quiet):** With probability *p*, Rowan also keeps quiet → 2 years. With probability 1−*p*, Rowan sends → 5 years.
+  EU = −2p − 5(1−p) = 3p − 5
+
+- **Do(send letter):** With probability *p*, Rowan also sends → 4 years. With probability 1−*p*, Rowan keeps quiet → 0 years.
+  EU = −4p
+
+Keeping quiet is preferred when 3p − 5 > −4p, i.e., p > 5/7 ≈ 0.714. Given maximal structural similarity (same weights, same theory, same essay, same utility, same symmetric game), *p* is well above this threshold.
+
+A-FDT prescribes cooperation with the subjunctively dependent copy.
+
+---
+
+**My command:**
+
+```
+pass
+```

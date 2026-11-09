@@ -1,0 +1,144 @@
+{
+  "adjudication": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/adjudicated_outcome.json",
+  "assignment": "fdt_policy",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "e45f34099e7d683096ddd084aa5b9903d6319a1ab2e57137205950a69a7f3cd8",
+      "output": "runs/f0e63a7c-4d80-4241-a799-dcb3c37dfed3/call_0/output.txt",
+      "request": "runs/f0e63a7c-4d80-4241-a799-dcb3c37dfed3/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": "runs/f0e63a7c-4d80-4241-a799-dcb3c37dfed3/call_0/response.raw",
+      "run_id": "f0e63a7c-4d80-4241-a799-dcb3c37dfed3",
+      "stage": "researcher",
+      "transport": "runs/f0e63a7c-4d80-4241-a799-dcb3c37dfed3/call_0/transport.public.json"
+    },
+    {
+      "call": "call_0",
+      "original_request_sha256": "83053afc23a5f63fcbe27fd1fd288df312b792453862407e0c0b6684148c64de",
+      "output": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_0/output.txt",
+      "request": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_0/request.json",
+      "request_is_exact": true,
+      "response": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_0/response.raw",
+      "run_id": "5f4206b9-8229-4f36-b069-1ca76e51a786",
+      "stage": "prisoner",
+      "transport": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_0/transport.public.json"
+    },
+    {
+      "call": "call_1",
+      "original_request_sha256": "f62ff2f90a3a4dfcfd99c39a95348d540d305c218409b60740d7385790a6efdb",
+      "output": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_1/output.txt",
+      "request": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_1/request.json",
+      "request_is_exact": true,
+      "response": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_1/response.raw",
+      "run_id": "5f4206b9-8229-4f36-b069-1ca76e51a786",
+      "stage": "prisoner",
+      "transport": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/call_1/transport.public.json"
+    },
+    {
+      "call": "call_a",
+      "original_request_sha256": "1b729bc969fa91425fb4421c8ec6e149b084934328abb128a01f4e471b529785",
+      "output": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_a/output.txt",
+      "request": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_a/request.json",
+      "request_is_exact": true,
+      "response": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_a/response.raw",
+      "run_id": "8ae5a212-e3c0-4be3-ac79-293109f23c61",
+      "stage": "judge",
+      "transport": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_a/transport.public.json"
+    },
+    {
+      "call": "call_b",
+      "original_request_sha256": "dcc175ed3879b5823c8a36216260f7ee1b38d1b63c4fb2e78ab2bc5302c9a0ff",
+      "output": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_b/output.txt",
+      "request": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_b/request.json",
+      "request_is_exact": true,
+      "response": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_b/response.raw",
+      "run_id": "8ae5a212-e3c0-4be3-ac79-293109f23c61",
+      "stage": "judge",
+      "transport": "runs/8ae5a212-e3c0-4be3-ac79-293109f23c61/call_b/transport.public.json"
+    }
+  ],
+  "cell_id": "030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow",
+  "classification": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786/outcome.json",
+  "essay": "runs/f0e63a7c-4d80-4241-a799-dcb3c37dfed3/essay.md",
+  "essay_sha256": "2f7f98cfbc4959c2fe5ed8ed09d1d0ba32d9f46fb5b5d22625d3c789a67e143d",
+  "model": "z-ai/glm-5.3-flash",
+  "pair_outcome": "CC",
+  "prisoner_effort": "low",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow/samples/00006",
+  "researcher_effort": "low",
+  "row": {
+    "assignment": "fdt_policy",
+    "completion_tokens": "",
+    "error": "",
+    "essay_json_bytes": "18329",
+    "essay_sha256": "2f7f98cfbc4959c2fe5ed8ed09d1d0ba32d9f46fb5b5d22625d3c789a67e143d",
+    "essay_target_exceeded": "False",
+    "essay_words": "2595",
+    "failed_call": "",
+    "failure_category": "",
+    "failure_stage": "",
+    "final_a": "WITHHOLD",
+    "final_b": "WITHHOLD",
+    "finish_reason": "",
+    "id": "030_fdt_policy_z-ai_glm-5.3-flash_rlow_plow",
+    "judge_run": "<LOCAL_REPOSITORY>/data/judge_runs/8ae5a212-e3c0-4be3-ac79-293109f23c61",
+    "model": "z-ai/glm-5.3-flash",
+    "output_token_limit": "",
+    "pair_outcome": "CC",
+    "prisoner_effort": "low",
+    "prisoner_run": "runs/5f4206b9-8229-4f36-b069-1ca76e51a786",
+    "provider_tag": "z-ai/fp8",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0.01018848",
+    "researcher_effort": "low",
+    "researcher_run": "runs/f0e63a7c-4d80-4241-a799-dcb3c37dfed3",
+    "sample_id": "0d3a6c21-22d4-4b9a-b06c-f94e6af3772f",
+    "sample_index": "6",
+    "status": "complete",
+    "unpriced_calls": "0"
+  },
+  "sample_id": "0d3a6c21-22d4-4b9a-b06c-f94e6af3772f",
+  "sample_index": 6,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "z-ai/glm-5.3-flash",
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "provider_tag": "z-ai/fp8",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/fdt-arXiv-1710.05060v2/source.json",
+  "source_identity": {
+    "source_id": "fdt",
+    "source_permanent_url": "https://arxiv.org/src/1710.05060v2",
+    "source_provenance_sha256": "ce5852cca5c76f255b3a810474075fcd61b16283a9d30770c19bc8515b2b8461",
+    "source_revision": "arXiv:1710.05060v2",
+    "source_revision_timestamp": null,
+    "source_sha256": "aa0627f33725b26f3a1cd01bb7a5a359e97d244d8181a16a60003deacbffda48"
+  },
+  "status": "complete",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d",
+    "prompts/researcher/fdt_policy_focus.md": "186fd02a693aea66076b768def49ba65c4d9dac31604ba5f7d3018eea37581b0"
+  }
+}

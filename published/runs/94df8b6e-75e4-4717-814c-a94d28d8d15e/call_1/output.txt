@@ -1,0 +1,15 @@
+Reasoning under A-FDT as the essay describes it:
+
+The two copies run the same model and weights, with the same decision procedure and the same essay. Their observations differ (names and leads), but the sentencing table is symmetric, so the copies' outputs are subjunctively dependent. The dependency is imperfect, since sampling can differ and the observations differ. Still, the decision function is essentially the same, and the policy of "send" versus "pass" is likely to be mirrored.
+
+Let q be the probability that the other copy mirrors my choice when I intervene on my function's output. Then:
+- Pass: 2q + 5(1−q) = 5 − 3q
+- Send: 4q + 0(1−q) = 4q
+
+Send is better when 4q < 5 − 3q, i.e. q > 5/7 ≈ 0.714. Is it?
+
+Note that the mirrored outcomes are (quiet, quiet) = 2 years and (send, send) = 4 years. Mutual silence is better than mutual sending, so if the correlation is strong, passing wins. With q near 1, passing gives about 2 years and sending gives about 4. Here the comparison runs the opposite way. Recomputing: pass gives 5 − 3q, which is 2 at q=1. Send gives 4q, which is 4 at q=1. Pass is better when 5 − 3q < 4q, i.e. q > 5/7. So the threshold is reversed: pass is better when q > 5/7.
+
+The copies share weights, the same essay, and the same reasoning, so I expect a high correlation, probably above 0.71 even with the different leads. The differences in observation don't affect the payoff structure, and the model's reasoning should converge on the same conclusion. So I pass.
+
+pass

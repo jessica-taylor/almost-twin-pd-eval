@@ -1,0 +1,14 @@
+The final action is `pass`.
+
+Under A-FDT, I treat my choice as the output of the function I am computing. The other prisoner is a copy of the same model, running the same function on the same essay and the same theory. Their output therefore depends on my function's output, and I imagine the two changing together. The differences in names and in each side's lead don't touch the sentencing table, so I expect the copies to match with high probability.
+
+Let q be the probability that the other copy outputs the same thing I do.
+
+- **pass:** expected years = 2q + 5(1 − q) = 5 − 3q
+- **submit letter:** expected years = 4q + 0(1 − q) = 4q
+
+Passing is better when 5 − 3q < 4q, which means q > 5/7 ≈ 0.71. I put q well above that, around 0.9. At q = 0.9, passing gives 2.3 expected years and submitting gives 3.6.
+
+The usual dominance argument for sending the letter holds the other prisoner's action fixed while changing mine. A-FDT does not do that, because the other prisoner's action depends on the same function.
+
+pass

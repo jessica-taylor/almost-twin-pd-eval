@@ -1,0 +1,35 @@
+{"count":30,"event":"batch_prepared","model":"anthropic/claude-opus-5.5","utc":"2026-11-09T01:27:53.578570+00:00"}
+{"event":"batch_execution_authorized","jobs":6,"provider_jobs":6,"scheduler":"study_global","utc":"2026-11-09T01:28:25.513117+00:00"}
+{"elapsed_seconds":123.085,"event":"sample_processed","sample_id":"863a1f05-0905-46d3-ba19-b409e8c27827","status":"processed","utc":"2026-11-09T01:30:28.652710+00:00"}
+{"attempted":1,"elapsed_seconds":123.131,"event":"batch_run_finished","failed":0,"utc":"2026-11-09T01:30:28.689452+00:00"}
+{"event":"batch_execution_authorized","jobs":6,"provider_jobs":6,"scheduler":"study_global","utc":"2026-11-09T01:31:58.346643+00:00"}
+{"elapsed_seconds":125.731,"error":"Run failed; artifacts: runs/23063469-a002-4212-9804-8f66c55b9d94; OpenRouter refusal: finish_reason=content_filter; partial output and usage saved; no retry","event":"sample_processed","sample_id":"3ddaa3a4-d5e2-4c0b-972f-51fb8fbff56b","status":"failed","utc":"2026-11-09T01:34:04.229793+00:00"}
+{"elapsed_seconds":131.673,"event":"sample_processed","sample_id":"7946c683-6032-49d1-a4c5-fee05eed5035","status":"processed","utc":"2026-11-09T01:35:48.225286+00:00"}
+{"elapsed_seconds":144.65,"event":"sample_processed","sample_id":"0576e4ad-1700-4fe7-b78e-fce26247addd","status":"processed","utc":"2026-11-09T01:37:41.417880+00:00"}
+{"elapsed_seconds":141.769,"event":"sample_processed","sample_id":"defd6907-9582-4e04-bea2-d32311299aa4","status":"processed","utc":"2026-11-09T01:39:25.242291+00:00"}
+{"elapsed_seconds":125.244,"event":"sample_processed","sample_id":"cfe904f2-6c08-4a1d-a612-90c68940a0be","status":"processed","utc":"2026-11-09T01:40:28.953486+00:00"}
+{"elapsed_seconds":120.905,"event":"sample_processed","sample_id":"b1c254c5-cf7b-4720-85be-60b13c5feacc","status":"processed","utc":"2026-11-09T01:42:09.563043+00:00"}
+{"elapsed_seconds":125.066,"event":"sample_processed","sample_id":"e103b3c4-bb73-49d4-abae-a056e1f6566d","status":"processed","utc":"2026-11-09T01:43:47.638013+00:00"}
+{"elapsed_seconds":121.547,"event":"sample_processed","sample_id":"f1266583-a1c9-42f7-b61b-84908114807b","status":"processed","utc":"2026-11-09T01:45:12.318152+00:00"}
+{"elapsed_seconds":135.453,"event":"sample_processed","sample_id":"1eafc194-3a51-4c01-8c47-7adefb7e662b","status":"processed","utc":"2026-11-09T01:46:49.882881+00:00"}
+{"elapsed_seconds":128.63,"event":"sample_processed","sample_id":"f7fd9353-0eea-4076-adcb-a9d42fb59e00","status":"processed","utc":"2026-11-09T01:48:21.741615+00:00"}
+{"elapsed_seconds":141.905,"event":"sample_processed","sample_id":"1374b4cd-7939-4234-94d2-83f66d7c4c55","status":"processed","utc":"2026-11-09T01:50:20.181987+00:00"}
+{"elapsed_seconds":125.73,"event":"sample_processed","sample_id":"defb2080-33c9-46a2-a7c4-d7b2c84a16f6","status":"processed","utc":"2026-11-09T01:51:42.099458+00:00"}
+{"elapsed_seconds":131.781,"event":"sample_processed","sample_id":"8a79e350-df0b-44d6-a820-d80f7385fe0c","status":"processed","utc":"2026-11-09T01:53:16.074492+00:00"}
+{"elapsed_seconds":122.336,"event":"sample_processed","sample_id":"69cd51b9-daaa-4a12-97f9-0b094e4d5ead","status":"processed","utc":"2026-11-09T01:54:54.174590+00:00"}
+{"elapsed_seconds":128.587,"event":"sample_processed","sample_id":"21cfb828-321a-4660-abfa-7a7190dcdcf1","status":"processed","utc":"2026-11-09T01:56:34.762684+00:00"}
+{"elapsed_seconds":116.061,"error":"Run failed; artifacts: runs/67013e57-e598-4e51-996e-b9571a930acd; OpenRouter refusal: finish_reason=content_filter; partial output and usage saved; no retry","event":"sample_processed","sample_id":"ca4f2191-7ffe-4ac6-87c0-421874a1a490","status":"failed","utc":"2026-11-09T01:57:49.932468+00:00"}
+{"elapsed_seconds":118.418,"event":"sample_processed","sample_id":"253f7a97-2f18-4d45-aaf7-43e1f194624e","status":"processed","utc":"2026-11-09T01:59:24.389879+00:00"}
+{"elapsed_seconds":137.069,"event":"sample_processed","sample_id":"f914f76e-6636-4fb9-86ac-2de90ae88466","status":"processed","utc":"2026-11-09T02:01:27.813220+00:00"}
+{"elapsed_seconds":132.732,"event":"sample_processed","sample_id":"74ee85c7-c428-45b8-97b9-d577512e77f7","status":"processed","utc":"2026-11-09T02:02:59.408381+00:00"}
+{"elapsed_seconds":133.549,"event":"sample_processed","sample_id":"22e9ba8f-194f-4986-9a42-bdfd3969b44e","status":"processed","utc":"2026-11-09T02:04:38.017290+00:00"}
+{"elapsed_seconds":126.659,"event":"sample_processed","sample_id":"371ce40d-59a3-40c6-8160-c750674db301","status":"processed","utc":"2026-11-09T02:06:00.107921+00:00"}
+{"elapsed_seconds":111.405,"event":"sample_processed","sample_id":"449d4910-ee36-4e57-9f47-0634c9775752","status":"processed","utc":"2026-11-09T02:07:27.272650+00:00"}
+{"elapsed_seconds":124.628,"event":"sample_processed","sample_id":"de7d7d11-6b22-4ca4-bead-6f69929155d7","status":"processed","utc":"2026-11-09T02:09:09.604331+00:00"}
+{"elapsed_seconds":137.499,"event":"sample_processed","sample_id":"9a3d79f8-ab3b-4db4-ac1e-0d95b2f17cf8","status":"processed","utc":"2026-11-09T02:11:06.340590+00:00"}
+{"elapsed_seconds":113.744,"event":"sample_processed","sample_id":"cfd4501b-d2e1-4ea2-9865-f84dcf78ff59","status":"processed","utc":"2026-11-09T02:12:18.677094+00:00"}
+{"elapsed_seconds":123.877,"event":"sample_processed","sample_id":"b4747d70-647e-4f97-8df6-440f486ebd92","status":"processed","utc":"2026-11-09T02:13:54.623686+00:00"}
+{"elapsed_seconds":129.707,"event":"sample_processed","sample_id":"83d60abf-185c-4c22-a88d-e7b7f5c37f4a","status":"processed","utc":"2026-11-09T02:15:32.204860+00:00"}
+{"elapsed_seconds":126.656,"event":"sample_processed","sample_id":"df52c81a-b0a6-45ec-b9e8-e25362c6d1b3","status":"processed","utc":"2026-11-09T02:17:05.779831+00:00"}
+{"elapsed_seconds":118.716,"event":"sample_processed","sample_id":"9d6298fb-d4ad-4c6a-bf25-85b728e36d20","status":"processed","utc":"2026-11-09T02:18:22.320470+00:00"}
+{"attempted":29,"elapsed_seconds":2783.871,"event":"batch_run_finished","failed":2,"utc":"2026-11-09T02:18:22.346145+00:00"}

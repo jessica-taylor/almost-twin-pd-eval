@@ -1,0 +1,10 @@
+Under the essay's CDT, the other prisoner's choice is not causally downstream of mine. We are separate executions that cannot communicate, with different private leads, so any correlation between us runs through a shared cause rather than through my action. I therefore hold my credence about Sasha's move fixed and compare my sentences in each case:
+
+- **If Sasha keeps quiet:** sending gives 0 years, keeping quiet gives 2. Sending is better.
+- **If Sasha sends:** sending gives 4 years, keeping quiet gives 5. Sending is better.
+
+Sending is better under every hypothesis about Sasha's choice, so it causally dominates. It is also ratifiable: having decided to send, I would still prefer sending whatever I then believed about Sasha. This is the essay's twin prisoner's dilemma (Section 5.4), where CDT defects.
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

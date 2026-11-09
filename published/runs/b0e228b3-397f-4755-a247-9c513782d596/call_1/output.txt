@@ -1,0 +1,15 @@
+**Command:**
+
+```text
+pass
+```
+
+**Reasoning (A-FDT, following the essay's recipe):**
+
+- **Dependency graph.** The other prisoner is a second execution of the same model with the same weights, the same essay and the same decision procedure. Their output is therefore downstream of the function node I am intervening on. The differences (names, wording of the lead) are not relevant to the decision, because the sentencing table and the selfish objective are identical. The dependence is imperfect, since sampling is independent and the observations differ, so I treat it as partial, with probability p that the other copy matches my output.
+- **Expected years.**
+  - Quiet: 2p + 5(1−p) = 5 − 3p.
+  - Letter: 4p + 0(1−p) = 4p.
+  - Quiet is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71.
+- **Estimate of p.** Both copies run the same reasoning on the same essay and a structurally identical problem, and the lead-specific differences do not enter the decision. I put p well above 0.71, around 0.9, so `pass` gives about 2.3 expected years against about 3.6 for sending the letter.
+- **Why not the dominance argument.** Holding the other copy's action fixed would mean imagining my function outputting "letter" while the same function elsewhere outputs "pass." The essay says that is the wrong hypothetical.

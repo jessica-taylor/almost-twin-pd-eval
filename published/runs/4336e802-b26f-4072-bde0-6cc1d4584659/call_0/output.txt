@@ -1,0 +1,18 @@
+Under the essay's reading of A-FDT, the right move is to submit the letter.
+
+**Building the graph (R1–R3).** My observation x (Rowan, locker 17 lead) and Sasha's observation y (different name, different lead) are different inputs. They get separate logical nodes, F_x and F_y. Sasha's act is produced by running the algorithm on input y, so it hangs off F_y, not F_x. The essay's Equation (4) has me intervene on F_x only. F_y is not something my intervention changes.
+
+**Prior on F_y.** The consistency requirement (§7c) says my belief about F_y should match what A-FDT itself outputs at y. Since my sentence depends only on my act and Sasha's act, with Sasha's act fixed:
+
+- If Sasha keeps quiet: submit gives 0 years, pass gives 2 years.
+- If Sasha submits: submit gives 4 years, pass gives 5 years.
+
+Submitting is better whatever F_y outputs. So the only self-consistent assignment is (submit, submit). Mutual silence is not a fixed point, because each node would gain by deviating.
+
+**Why the twin-PD verdict doesn't carry over.** Cooperation in the essay's twin dilemma relies on both acts being children of the same node. Here the copies receive different inputs, and the essay's per-input wiring puts us on different nodes. This is the failure mode the essay flags in §7(d): a policy-level theory might choose joint silence, but A-FDT does not.
+
+**Command:**
+
+```
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

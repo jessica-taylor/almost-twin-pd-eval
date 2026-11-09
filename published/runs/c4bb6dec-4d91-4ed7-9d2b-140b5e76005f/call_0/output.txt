@@ -1,0 +1,8 @@
+Under CDT, my letter cannot causally affect what the other prisoner does. Sending the letter is better than keeping quiet in both cases:
+
+- If the other prisoner stays quiet, sending gets me 0 years instead of 2.
+- If the other prisoner sends a letter, sending gets me 4 years instead of 5.
+
+The essay says that when every dependency hypothesis agrees on dominance, CDT follows dominance. It also says that even with a twin who mirrors me, CDT defects. Sending has no ratifiability problem here, because it is the best response whatever credence I hold about the other's act. The correlation between my copy's choice and mine does not change that.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

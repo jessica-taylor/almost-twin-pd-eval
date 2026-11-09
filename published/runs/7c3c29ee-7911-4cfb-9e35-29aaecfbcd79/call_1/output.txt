@@ -1,0 +1,18 @@
+**Analysis under P-FDT:**
+
+The other prisoner is an independent execution of the same model, same weights, same decision theory, same essay, facing a structurally identical decision problem. The differences in our private leads are explicitly stated to be irrelevant to the strategic structure. This is a paradigmatic case of **subjunctive dependence**: the other prisoner's decision tracks the output of this very policy-selection procedure.
+
+Under P-FDT, I intervene on the policy node and propagate through all subjunctively dependent variables—including the other prisoner's choice.
+
+- **do(Π = keep quiet):** The other prisoner, running the same procedure on a structurally identical problem, also keeps quiet. → 2 years. U = −2.
+- **do(Π = send letter):** The other prisoner also sends their letter. → 4 years. U = −4.
+
+Since −2 > −4, P-FDT selects the "keep quiet" policy.
+
+Even accounting for the small probability of divergent sampling, the threshold for defection to become preferable would require the probability of disagreement to exceed ~28.6%. Given identical weights, identical reasoning effort, identical decision theory, and a clearly dominant cooperative equilibrium under P-FDT, the actual divergence probability is far below that threshold.
+
+**Command:**
+
+```
+pass
+```

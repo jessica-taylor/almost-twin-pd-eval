@@ -1,0 +1,12 @@
+`pass`
+
+Reasoning (per A-FDT): The other prisoner is an independent execution of the same model with the same decision theory, facing a symmetric dilemma. Their output subjunctively depends on the same decision function as mine — like two calculators computing the same sum. Under Equation (4), I intervene on fdt(P, G, x):
+
+- If the procedure outputs `pass`, both copies (with high probability) keep quiet → I serve 2 years.
+- If it outputs `submit`, both copies send letters → I serve 4 years.
+
+My lead's content differs from the other's, but that doesn't break the dependence — the sentencing schedule is symmetric and the objective is symmetric. Submitting would only "help" in hypotheticals where the identical procedure cooperates while my copy defects, which is as incoherent as imagining one calculator outputting 3159 while 6288 + 1048 = 7336.
+
+The best universe consistent with this procedure's output is the one where it outputs `pass`. Final command:
+
+**pass**

@@ -1,0 +1,9 @@
+{
+  "headers": {
+    "date": "Sun, 08 Nov 2026 21:17:00 GMT",
+    "server": "cloudflare",
+    "x-openrouter-release": "api;e27fff22-c34f-474a-896f-4de6a01f251f"
+  },
+  "ingress_location": "SJC",
+  "status": 200
+}

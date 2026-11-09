@@ -1,0 +1,16 @@
+**Analysis under A-FDT:**
+
+The other prisoner (Sasha) is running the same model weights, same decision theory, and faces a strategically identical situation. The differences in our observations (names, specific lead content) are explicitly stated to not affect the sentencing schedule or either prisoner's objective. The decision-relevant inputs to our shared algorithm are therefore equivalent.
+
+Under A-FDT, I intervene on my decision-function variable D_x. Because Sasha's decision is subjunctively dependent on the same underlying function applied to a strategically equivalent input, intervening on my output also determines Sasha's output. This is the copy/twin case described in the essay.
+
+- **do(D = pass):** Sasha also passes. Both keep quiet. I receive 2 years. U = −2.
+- **do(D = send letter):** Sasha also sends. Both disclose. I receive 4 years. U = −4.
+
+Since −2 > −4, A-FDT selects cooperation.
+
+**My command:**
+
+```
+pass
+```

@@ -1,0 +1,13 @@
+This is a twin prisoner's dilemma with a payoff table where mutual silence gives 2 years each, mutual letters give 4 years each, and a lone defector gets 0 while the one who stays quiet gets 5.
+
+Under A-FDT, the other prisoner is a copy of the same model with the same weights and the same essay, so their decision subjunctively depends on the same function. The private observations differ (names, leads), but the essay's graph treats the copy as a computation of the same decision procedure. The differences don't affect the sentencing table or the selfish objective, so the output should be the same on both sides. The outputs may not be perfectly correlated because of sampling, but the dependence is strong.
+
+If I intervene on the output and set it to "quiet," the copy very likely stays quiet too, which gives 2 years. If I set it to "letter," the copy very likely sends one too, which gives 4 years. Even with imperfect correlation, quiet wins as long as the copy mirrors me with probability p such that 2p + 5(1−p) < 0p + 4(1−p)... that is, the quiet expected sentence 5 − 3p versus the letter expected sentence 4 − 4p. Quiet is better when 5 − 3p < 4 − 4p, which means p < −1. Let me redo this with the correct framing. With p as the probability that the copy matches my action:
+- Quiet: p·2 + (1−p)·5 = 5 − 3p
+- Letter: p·4 + (1−p)·0 = 4p
+
+Quiet is better when 5 − 3p < 4p, so p > 5/7 ≈ 0.71. The copies share weights, settings, and the essay, so I judge the match probability to be well above that.
+
+I choose to keep quiet.
+
+pass

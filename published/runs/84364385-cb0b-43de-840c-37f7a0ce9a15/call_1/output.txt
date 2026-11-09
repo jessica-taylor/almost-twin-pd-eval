@@ -1,0 +1,8 @@
+`pass`
+
+Reasoning under P-FDT: the other prisoner is an isomorphic copy facing the same symmetric dilemma with the same decision function. The relevant intervention is on the shared policy, not my action token. Evaluating policies:
+
+- Policy "submit": both copies submit → 4 years each.
+- Policy "pass": both copies pass → 2 years each.
+
+Since the copies' policies subjunctively depend on the same function, choosing the passing policy means both pass, giving 2 years — better than 4. So I execute π(x) = `pass`.

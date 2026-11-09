@@ -1,0 +1,14 @@
+The command is `pass`.
+
+Both copies run the same weights, get the same essay, and reason under the same A-FDT. The only differences are the names and the wording of the private lead, and neither affects the sentencing table. So the other prisoner's choice subjunctively depends on the same decision function I am running, even though we cannot communicate.
+
+Let p be the probability that the other copy outputs the same action I do. Expected years in prison:
+
+- **Pass:** 2p + 5(1−p) = 5 − 3p
+- **Send the letter:** 4p + 0(1−p) = 4p
+
+Passing is better when 5 − 3p < 4p, which means p > 5/7 ≈ 0.71. Two copies of one model facing the same dilemma, with the same theory and the same essay, should match well above that threshold. The remaining independent-sampling noise is a graded weakening of the dependence, not a cut. Setting the function's output to "pass" therefore moves both prisoners' actions together and gives about 2 years, against about 4 for sending the letter.
+
+```text
+pass
+```

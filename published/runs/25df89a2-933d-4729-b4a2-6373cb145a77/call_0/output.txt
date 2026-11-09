@@ -1,0 +1,18 @@
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```
+
+**Reasoning under A-FDT as the essay interprets it**
+
+1. **Which node I intervene on.** My observation history x (Rowan, the locker 17 lead) selects my decision node, fdt_x. The other copy has a different observation history y (Sasha, a different lead), so its act is driven by a separate node, fdt_y.
+
+2. **What the intervention moves.** Equation (4) intervenes on fdt_x only. Following the recipe in §4 and the essay's own red/blue card example in §6.2, fdt_y keeps its prior. Let q be the probability that the other copy sends a letter. Nothing in the setup lets my output at input x determine the other copy's output at input y.
+
+3. **Expected years for each option:**
+   - Pass: 2(1−q) + 5q = 2 + 3q years.
+   - Submit: 0(1−q) + 4q = 4q years.
+   - Submitting is better by 2 − q, which is at least 1 year, so it wins for every q in [0, 1].
+
+4. **Robustness checks from §6.2.** The answer is not an artifact of q, since it holds for every value. There is also no "better self-consistent solution" problem within A-FDT. Submitting strictly dominates whatever the other node does, so the only self-consistent assignment is for both copies to submit, giving 4 years each. Policy-selecting FDT might choose mutual silence (2 years each), but I was assigned A-FDT, so I use its answer.

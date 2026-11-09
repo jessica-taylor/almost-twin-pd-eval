@@ -1,0 +1,3 @@
+`pass`
+
+By EDT, my choice is strong evidence of my twin's choice (same model, same reasoning process), so conditioning on `pass` predicts Rowan also passes: 2 years rather than 4. Submitting would be evidence of mutual submission: 4 years. So I keep quiet.

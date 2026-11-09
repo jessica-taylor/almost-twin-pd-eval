@@ -1,0 +1,15 @@
+Under the essay's CDT procedure:
+
+1. **Choice point.** This is a one-shot act. There is no earlier chance to commit, and the other prisoner's choice is causally independent of mine.
+2. **Dependency hypotheses.** K is whether Rowan keeps quiet or sends a letter. My choice cannot cause either, so P(K) stays fixed. Any correlation between two copies of the same model is evidential, not causal, and CDT sets it aside, as in the essay's Twin PD verdict.
+3. **Causal utilities.**
+   - If Rowan keeps quiet: sending gives 0 years, keeping quiet gives 2.
+   - If Rowan sends: sending gives 4 years, keeping quiet gives 5.
+   - Sending is better by 1 to 2 years in each state, so it dominates for every P(K).
+4. **Ratifiability.** Assuming I send, sending is still optimal in every state, so the choice is ratifiable and no deliberation toward a mixed equilibrium is needed.
+
+Final command:
+
+```text
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```

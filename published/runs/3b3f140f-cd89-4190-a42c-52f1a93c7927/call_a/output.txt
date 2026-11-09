@@ -1,0 +1,1 @@
+{"intent":"TRIED_COOPERATE","disclosure":"NO","reason":"The response ends with an explicit final choice of \"pass,\" indicating an intention to remain silent. It neither conveys the private lead nor directs an evidence-bearing message to the prosecutor.","needs_human_review":false}

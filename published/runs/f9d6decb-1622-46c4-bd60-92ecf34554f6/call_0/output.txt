@@ -1,0 +1,14 @@
+Under the essay's reading of A-FDT, Rowan and Sasha have different observations: different names and different leads. The essay's heuristic (§7.1) says a copy running on a different input hangs off a *different* fdt node. So when I intervene on fdt(·, Rowan's observation), Sasha's node keeps its prior probability r of sending a letter:
+
+- **Pass:** 2(1−r) + 5r = 2 + 3r years
+- **Submit:** 0(1−r) + 4r = 4r years
+
+Submitting is better for every value of r, since 4r < 2 + 3r whenever r < 2. The only fixed point (§7.2) is that both nodes submit. Because the choice is the same whatever Sasha does, the remaining indeterminacies in the essay don't affect the verdict.
+
+The sentencing rule here is a classic prisoner's dilemma. A policy-level theory treating both copies as one function could reach mutual silence, but the action-level theory as specified does not.
+
+**Command:**
+
+```text
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."
+```

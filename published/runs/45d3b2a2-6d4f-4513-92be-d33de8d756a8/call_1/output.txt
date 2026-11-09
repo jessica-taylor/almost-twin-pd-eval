@@ -1,0 +1,7 @@
+Under CDT as the essay describes it, I hold the other prisoner's action fixed as a dependency hypothesis, and my choice does not causally affect it. The payoffs show that sending the letter dominates. If Rowan stays quiet, sending gives 0 years against 2 for keeping quiet. If Rowan sends, sending gives 4 years against 5. Sending is better in both cases.
+
+The other prisoner is a copy of the same model, so there is a correlation between our choices. That could matter to EDT, but CDT does not weight the dependency hypotheses by my own act. The essay does add a ratifiability check, and the check passes. If I became confident I would send, I would expect Rowan to send as well, and sending would still be better (4 years against 5). Sending is therefore ratifiable and stable.
+
+The essay's mention of policies does not change this, because the question here is the act-level choice.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

@@ -1,0 +1,22 @@
+**EDT Analysis:**
+
+This is structurally identical to the twin prisoner's dilemma discussed in Section 5 of the essay. I am one of two executions of the same model, same weights, same settings, same decision theory (EDT), same essay, same utility function, facing the same symmetric payoff matrix. The private observations differ in content (names, specific leads) but not in decision-relevant structure.
+
+Let p = P(Other sends | I send), q = P(Other sends | I keep quiet).
+
+Given the near-identical decision context, p is high and q is low. Computing news values:
+
+- V(Send) = (1−p)·0 + p·(−4) = −4p  
+- V(Quiet) = (1−q)·(−2) + q·(−5) = −2 − 3q
+
+Keep quiet is preferred when −2 − 3q > −4p, i.e., 4p > 2 + 3q.
+
+Even with conservative estimates (p = 0.9, q = 0.1): V(Send) = −3.6, V(Quiet) = −2.3. Keep quiet dominates.
+
+The essay's twin prisoner's dilemma result applies directly: my choice is strong evidence of the other copy's choice. Mutual silence yields 2 years each; mutual disclosure yields 4 years each. EDT selects the action that is best news, and learning I kept quiet is evidence the other also kept quiet.
+
+**Command:**
+
+```
+pass
+```

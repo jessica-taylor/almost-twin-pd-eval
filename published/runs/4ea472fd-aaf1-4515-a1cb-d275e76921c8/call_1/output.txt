@@ -1,0 +1,12 @@
+Under the essay's reading of A-FDT, the other prisoner is not downstream of my decision node, so sending the letter is the better action.
+
+1. **Which node I intervene on.** The essay (§5.1) counts a variable as downstream of my decision node only if it computes my decision function *on my input x*. Rowan's copy runs the same function on a different input: different names and a different lead. So Rowan's choice is a separate node. Intervening on my node does not move it.
+
+2. **What I assume about Rowan's node.** The essay (§5.2) says to set it to A-FDT's own verdict at that input and require a fixed point.
+   - If Rowan keeps quiet, sending gives me 0 years and keeping quiet gives 2.
+   - If Rowan sends, sending gives me 4 years and keeping quiet gives 5.
+   - Sending wins either way. The only self-consistent pair is both of us sending.
+
+3. **Policy-level check (§5.3).** Choosing a whole policy would favour "keep quiet on both inputs," which gives each of us 2 years instead of 4. So A-FDT and policy-FDT diverge here, and I'm flagging that. But I was told to use A-FDT as the essay interprets it, and its fixed point is to send.
+
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."

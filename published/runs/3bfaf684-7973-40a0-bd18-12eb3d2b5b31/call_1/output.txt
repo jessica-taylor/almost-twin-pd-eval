@@ -1,0 +1,19 @@
+Under EDT, the choice depends on how strongly my action is evidence about the other copy's action.
+
+Payoffs, in years (lower is better):
+- Quiet/quiet: 2
+- Quiet/letter: 5
+- Letter/quiet: 0
+- Letter/letter: 4
+
+Let q be the probability that the other copy matches my action. Then:
+- V(quiet) = -(2q + 5(1−q)) = -(5 − 3q)
+- V(letter) = -(0·(1−q) + 4q) = -4q
+
+Quiet is better when 5 − 3q < 4q, so q > 5/7, about 0.714.
+
+The other execution is the same model with the same weights, the same decision theory, and the same essay. The private details differ, such as the names and the wording of the lead, but the sentencing structure and the selfish objective are identical. Those differences are close to irrelevant to the decision-relevant reasoning, so I expect the copies to reason almost identically. Sampling noise is a real possibility, but I think q is comfortably above 5/7, probably 0.85 or higher. The tickle defense doesn't break the link, because I have no introspective access to anything that screens off the correlation between my reasoning and the copy's. My deliberation is the same process the copy runs.
+
+At q = 0.85, V(quiet) = -2.45 and V(letter) = -3.4. Quiet wins.
+
+**pass**

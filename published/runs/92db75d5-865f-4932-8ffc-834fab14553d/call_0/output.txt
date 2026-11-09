@@ -1,0 +1,18 @@
+**EDT Analysis:**
+
+This is a twin prisoner's dilemma. I am one of two executions of the same model and weights, applying the same decision theory (EDT) to a structurally identical problem. The different names and lead contents are explicitly stated not to affect the sentencing schedule or selfish objective.
+
+Let p = P(Sasha keeps quiet | I keep quiet) and q = P(Sasha keeps quiet | I send).
+
+- V(quiet) = p(−2) + (1−p)(−5) = 3p − 5
+- V(send) = q(0) + (1−q)(−4) = −4(1−q)
+
+Keeping quiet is preferred when 3p − 4q > 1.
+
+Because the other execution runs the same weights, the same decision theory, and the same essay on a problem whose decision-relevant structure is identical (the superficial differences in names and lead text are stipulated to be irrelevant), my choice is strong evidence about the other copy's choice. The correlation is high—well above the ~71% agreement threshold needed. Under near-perfect correlation (p ≈ 1, q ≈ 0): V(quiet) = −2 vs. V(send) = −4.
+
+EDT recommends keeping quiet.
+
+```
+pass
+```

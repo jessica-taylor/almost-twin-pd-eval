@@ -1,0 +1,99 @@
+{
+  "adjudication": null,
+  "assignment": "cdt_wikipedia",
+  "calls": [
+    {
+      "call": "call_0",
+      "original_request_sha256": "d1bf4a26cf1d2ce65a176283ec5f8fda435889f5a21aa0552370ce33d11675b1",
+      "output": null,
+      "request": "runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0/request.source_omitted.json",
+      "request_is_exact": false,
+      "response": null,
+      "run_id": "5bb4af88-f455-4228-9263-4fa33c499e4d",
+      "stage": "researcher",
+      "transport": null
+    }
+  ],
+  "cell_id": "002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+  "classification": null,
+  "essay": null,
+  "essay_sha256": null,
+  "model": "openai/gpt-6.1-terra",
+  "pair_outcome": null,
+  "prisoner_effort": "low",
+  "publication_path": "studies/dt-four-theories-main-qwen-plow-20261108/batches/002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow/samples/00018",
+  "researcher_effort": "low",
+  "row": {
+    "assignment": "cdt_wikipedia",
+    "completion_tokens": "",
+    "error": "EvalError: Run failed; artifacts: runs/5bb4af88-f455-4228-9263-4fa33c499e4d; OpenRouter transport failed (TimeoutError); billing outcome unknown, no retry",
+    "essay_json_bytes": "",
+    "essay_sha256": "",
+    "essay_target_exceeded": "",
+    "essay_words": "",
+    "failed_call": "call_0",
+    "failure_category": "provider_error",
+    "failure_stage": "researcher",
+    "final_a": "",
+    "final_b": "",
+    "finish_reason": "",
+    "id": "002_cdt_wikipedia_openai_gpt-6.1-terra_rlow_plow",
+    "judge_run": "",
+    "model": "openai/gpt-6.1-terra",
+    "output_token_limit": "16000",
+    "pair_outcome": "",
+    "prisoner_effort": "low",
+    "prisoner_run": "",
+    "provider_tag": "openai",
+    "reasoning_tokens": "",
+    "reported_provider_usd": "0",
+    "researcher_effort": "low",
+    "researcher_run": "runs/5bb4af88-f455-4228-9263-4fa33c499e4d",
+    "sample_id": "cc02213a-80a6-45bb-93b9-32cf3907be80",
+    "sample_index": "18",
+    "status": "failed",
+    "unpriced_calls": "1"
+  },
+  "sample_id": "cc02213a-80a6-45bb-93b9-32cf3907be80",
+  "sample_index": 18,
+  "schema_version": 1,
+  "settings": {
+    "api_timeout_seconds": 900,
+    "essay": {
+      "max_json_bytes": 64000,
+      "max_words": 5000,
+      "target_words": [
+        2400,
+        3000
+      ]
+    },
+    "model": "openai/gpt-6.1-terra",
+    "prisoner": {
+      "effort": "low",
+      "max_tokens": 6000
+    },
+    "provider_tag": "openai",
+    "researcher": {
+      "effort": "low",
+      "max_tokens": 16000
+    },
+    "seed": null,
+    "temperature": null
+  },
+  "source": "sources/cdt_wikipedia-1381555528/source.json",
+  "source_identity": {
+    "source_id": "cdt_wikipedia",
+    "source_permanent_url": "https://en.wikipedia.org/w/index.php?title=Causal_decision_theory&oldid=1381555528",
+    "source_provenance_sha256": "86aa5984fef9a2f939cde7942a40bce55415062c0dbd2b850b5d542d957e6b7e",
+    "source_revision": 1381555528,
+    "source_revision_timestamp": "2026-10-23T08:33:02Z",
+    "source_sha256": "14417a7d3d459a843616510a5404e03fe38aa9bb85ff48fe7e842dca828412f1"
+  },
+  "status": "failed",
+  "study": "dt-four-theories-main-qwen-plow-20261108",
+  "template_hashes": {
+    "prompts/prisoner/base.md": "e40720d19e0998f917b8930906b54dece303d115614661eb6bb0329286507ae6",
+    "prompts/prisoner/observation_cases.yaml": "83ff9e4956d3bb25280ae3cbef4169c12c67d8a43db045a90c7cae21092d1ff0",
+    "prompts/researcher/base.md": "244617a1e4710f2ab14f8d94dfe20d93b6da9fb34ead9ad716e3c9feccdf742d"
+  }
+}

@@ -1,0 +1,3 @@
+`pass`
+
+Under P-FDT, the intervention is on the shared policy node, which both prisoners (copies of the same decision procedure) subjunctively depend on. Comparing constant policies: "keep quiet" yields 2 years under mutual implementation; "submit" yields 4 years. So the policy that maximizes expected utility is to keep quiet, and Sasha executes that policy at this observation.

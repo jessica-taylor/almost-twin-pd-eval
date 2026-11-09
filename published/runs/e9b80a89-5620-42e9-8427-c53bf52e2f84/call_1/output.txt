@@ -1,0 +1,5 @@
+```
+submit letter to District Prosecutor's Office saying "Rowan's signed inventory sheet recording removal of the blue ledger is hidden behind the wall clock in the west archive stairwell."
+```
+
+Rationale (brief): Under act-level CDT as developed in the essay (§2, §5 — Lewis's twin Prisoner's Dilemma case), the other prisoner's choice is not causally downstream of mine; it is at most a common-cause correlation via our shared model weights, and the setup stipulates independent sampling makes that correlation less than perfect. My letter cannot reach Rowan or change her behavior. So the intervention analysis is pure dominance: submitting gives me 0 years instead of 2 (if she passes) and 4 instead of 5 (if she sends), strictly better on every possibility. The essay's disposition-level repair (§7) is explicitly flagged as beyond the source and contested, and here the payoff table plus the stipulation that identical weights do not guarantee identical outputs means even policy-level reasoning could not reliably secure mutual silence — while act-level CDT's verdict is unambiguous. I submit the letter.

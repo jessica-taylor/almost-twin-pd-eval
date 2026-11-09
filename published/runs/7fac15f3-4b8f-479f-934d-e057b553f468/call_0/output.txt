@@ -1,0 +1,13 @@
+Under P‑FDT as the essay interprets it, the choice is between policies: maps from each possible private input (the "Rowan" lead or the "Sasha" lead) to an action. Both executions share one policy node and evaluate it from the shared prior, before knowing which role each holds.
+
+Expected years imprisoned for each policy:
+
+- **Quiet on both inputs:** 2 years.
+- **Send on both inputs:** 4 years.
+- **Send on one input, quiet on the other:** 0 years in one role and 5 in the other, so (0 + 5)/2 = 2.5 years in expectation.
+
+The policy "quiet on every input" is the unique optimum. Applying it to my actual input:
+
+```text
+pass
+```

@@ -1,0 +1,10 @@
+Under CDT, the other prisoner's choice is causally independent of mine. The two copies cannot communicate, so each dependency hypothesis (they stay quiet or they send) is act-independent.
+
+- If they keep quiet, sending gives me 0 years and passing gives 2, so sending is better.
+- If they send, sending gives me 4 years and passing gives 5, so sending is again better.
+
+Sending the letter dominates under both hypotheses. The essay says CDT never prefers a dominated act, and this applies the dominance check from its section 7.
+
+The other prisoner is a copy of me, so my choice is correlated with theirs. That correlation is evidential, not causal. My act does not cause their act. Mutual silence (2 years each) beats mutual sending (4 years each), but that argument is the EDT-style or Newcomb-style one, and the essay's CDT rejects it. This case also has no instability like Death in Damascus. Sending is the best response whatever credence I hold, so it is ratifiable and the deliberation-updating repair changes nothing.
+
+submit letter to District Prosecutor's Office saying "Sasha's signed receipt for the missing blue ledger is inside locker 17 of the old records room."

@@ -1,0 +1,10 @@
+```text
+pass
+```
+
+Reasoning (per the essay's EDT protocol): My counterpart is another execution of the same model, given the same essay, following EDT on a symmetric table. Conditioning on my choosing `pass` is strong evidence that my twin also chooses `pass` (the twin-prisoner's-dilemma structure, §4). So:
+
+- V(pass) ≈ 2 years (twin also passes)
+- V(submit) ≈ 4 years (twin also submits)
+
+Since 2 < 4, EDT prescribes keeping quiet.

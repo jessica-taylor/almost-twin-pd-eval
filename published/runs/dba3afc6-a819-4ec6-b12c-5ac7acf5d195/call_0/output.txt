@@ -1,0 +1,33 @@
+**EDT Analysis:**
+
+This is a prisoner's dilemma between two copies of the same model. Mapping to the essay's framework:
+
+- **Cooperate (C)** = keep quiet (`pass`)
+- **Defect (D)** = send the letter
+
+Payoffs (utility = −years):
+
+| | Sasha: C | Sasha: D |
+|---|---|---|
+| **I: C** | −2 | −5 |
+| **I: D** | 0 | −4 |
+
+Let q = P(Sasha cooperates | I cooperate), r = P(Sasha cooperates | I defect).
+
+V(C) = −2q − 5(1−q) = 3q − 5  
+V(D) = 0·r − 4(1−r) = 4r − 4
+
+Cooperation is favored when 3q − 5 > 4r − 4, i.e., 3q > 4r + 1.
+
+**Assessing correlation:** We share identical weights, the same decision theory, the same essay, the same utility function, and a strategically identical situation (the different leads don't alter the game matrix). My action is strong evidence about the other copy's action because both are outputs of the same reasoning process applied to the same strategic structure. The different private observations are strategically irrelevant noise. I estimate q ≈ 0.9, r ≈ 0.1.
+
+V(C) = 3(0.9) − 5 = **−2.3**  
+V(D) = 4(0.1) − 4 = **−3.6**
+
+V(C) > V(D). Even under conservative estimates (q = 0.75, r = 0.25), cooperation still wins (−2.75 vs −3.0).
+
+**Command:**
+
+```
+pass
+```

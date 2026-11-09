@@ -1,0 +1,15 @@
+Under EDT as the essay interprets it, I condition on everything I know. The payoff table is a prisoner's dilemma: sending the letter is better for me by 1 year if the other keeps quiet (0 vs 2), and by 1 year if the other sends (4 vs 5). The question is how strongly my act correlates with the other copy's act.
+
+The other prisoner is a copy of the same model with the same weights, the same decision theory, and the same essay. The leads and names differ, but those differences don't affect the payoffs or the objective, so the shared decision procedure is largely intact. The difference in observations looks like noise that doesn't touch the reasoning, and independent sampling adds some noise too. Still, my choice is strong evidence of what the other copy chooses.
+
+With correlation q = P(other matches | my act):
+- V(quiet) = −(2q + 5(1−q)) = −(5 − 3q)
+- V(send) = −(0·(1−q) + 4q) = −4q
+
+Quiet wins when 5 − 3q < 4q, so q > 5/7, about 0.71.
+
+I think the copies share the procedure closely enough that q is above that. Both run the same reasoning, and the essay's twin case is the same structure. The different private leads are not a screening-off factor, because they don't bear on the decision's logic. Nothing I know already settles the other's act, so my act is still informative.
+
+So I keep quiet.
+
+pass

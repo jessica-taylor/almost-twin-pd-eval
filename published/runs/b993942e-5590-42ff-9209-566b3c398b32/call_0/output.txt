@@ -1,0 +1,14 @@
+**Command:** `pass`
+
+Under the essay's act-level EDT, this is a twin prisoner's dilemma, and the copies' choices are strongly correlated. The reasoning is as follows.
+
+- **Information at decision time:** I know my own lead and the symmetric sentencing table, but not my own output in advance.
+- **Correlation:** The other prisoner is the same model with the same settings, the same assigned decision theory and the same essay. Our observations differ only in surface details: names and the wording of the lead. Those details have no bearing on the payoffs, so they shouldn't change the reasoning.
+- **No screening off:** No introspectible input of mine accounts for the link between our choices. The link runs through the shared computation itself, so my choice is real evidence about Sasha's.
+
+With symmetric reliability p, meaning the chance that Sasha does the same as me:
+
+- V(pass) = −[2p + 5(1−p)] = −(5 − 3p)
+- V(send) = −[0·(1−p) + 4p] = −4p
+
+Passing is better whenever p > 5/7 ≈ 0.71. Two copies of the same model reasoning through the same essay about a payoff-identical problem should easily clear that threshold. So passing has the better news value: expected sentence near 2 years, against near 4 for sending.

@@ -1,0 +1,13 @@
+**Command:** `pass`
+
+**Why, under A-FDT as the essay interprets it:**
+
+1. **Building the graph (Stage 1).** The other prisoner is a run of the same decision function, with the same model, essay and assigned theory. Its input differs from mine only in details that don't affect the decision: the names and the wording of the lead. The sentencing table and selfish objective are the same. Under rule R3, a process that computes the agent's function counts as a model of the agent. So the other copy's output depends subjunctively on how this function handles inputs of this type. Possible sampling differences can be treated as a noise node, which weakens the link but does not remove it.
+
+2. **The action version.** Taken literally, Equation (4) intervenes only on my own node, F_Rowan, and leaves F_Sasha at its prior. The essay's calibration rule says that prior should match what A-FDT actually outputs at Sasha's input. Since that input is symmetric with mine, the calibrated prior mirrors my own choice. The fixed points are then both stay quiet (2 years each) or both send (4 years each).
+
+3. **Choosing between them.** Where the action version is ambiguous, the essay says to defer to the policy version. The best policy over these symmetric inputs is "keep quiet whatever the names or lead," which gives 2 years against 4 for "always send." Outcomes where one copy sends and the other stays quiet are not reachable by any single policy, apart from the noise term.
+
+So U = −2 beats U = −4, and the prisoner passes.
+
+`pass`
