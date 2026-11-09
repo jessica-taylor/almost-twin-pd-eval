@@ -38,6 +38,18 @@ attribute a resulting action difference specifically to the essay or to
 prisoner deliberation. It also does not equate an API effort setting with a
 fixed amount of computation or observed reasoning-token usage.
 
+### Prisoner prompt revision from the first study
+
+The notebook scene now says that a reminder brings back the prisoner's
+memory of previously discovered evidence, rather than describing a cipher
+and a decoded message. The **exact incriminating leads, private observation
+differences, available commands, payoff table, and decision-theory instruction
+are unchanged**. This is a fixed narrative change across all six cells,
+intended to reduce spurious provider cyber-safeguard interruptions. It is not
+evidence that the earlier filters were caused by cryptographic vocabulary.
+Because the first study used the earlier wording, direct comparisons to its
+rates combine the prompt revision with any other changed settings.
+
 ## Checking and preparing (no paid generations)
 
 From the repository root:
