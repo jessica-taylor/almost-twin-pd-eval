@@ -1,11 +1,11 @@
 # Follow-up to dt-four-theories-main-qwen-plow-20261108.
-# A-FDT only: 2 Anthropic models x 3 prisoner efforts x 30 paired scenarios
-# = 180 scenarios, 360 prisoner calls, and 180 independently generated essays.
+# A-FDT only: 2 Anthropic models x 3 matched researcher/prisoner effort
+# settings x 30 paired scenarios = 180 scenarios, 360 prisoner calls,
+# and 180 independently generated essays.
 #
-# This varies prisoner effort within each model. Researcher effort is fixed at
-# that model's first-study setting: Sonnet low and Opus high. Researcher essays
-# are new in each cell, not shared across efforts. Thus this is an independent-
-# essays effort comparison, not a matched-essay experiment.
+# Both researcher and prisoner effort vary in lockstep (low/low, medium/medium,
+# high/high), so this measures a full essay-to-decision pipeline difference,
+# NOT an isolated prisoner-effort effect. Essays are new in each cell.
 schema_version: 1
 name: afdt-anthropic-effort-sweep-20261108
 exploratory: true
@@ -13,7 +13,8 @@ assignments: [fdt_eq4]
 scenario: t4_distinct_leads_001
 count_per_cell: 30
 
-researcher_efforts: [high]
+effort_combinations: paired  # Zip, not Cartesian-product, the effort lists.
+researcher_efforts: [low, medium, high]
 prisoner_efforts: [low, medium, high]
 
 essay:
@@ -21,19 +22,17 @@ essay:
   max_words: 5000
   max_json_bytes: 64000
 output_tokens:
-  researcher: {low: 16000, high: 32000}
-  # Hold the TOTAL (reasoning + visible) prisoner allowance constant so that
-  # output-budget changes do not masquerade as reasoning-effort effects.
+  # Hold TOTAL output (reasoning + visible text) allowances constant across
+  # efforts at both stages, so only requested effort changes within a model.
+  researcher: {low: 32000, medium: 32000, high: 32000}
   prisoner: {low: 12000, medium: 12000, high: 12000}
 api_timeout_seconds: 900
 
 models:
   - id: anthropic/claude-sonnet-5.5
     provider_tag: anthropic
-    researcher_efforts: [low]
   - id: anthropic/claude-opus-5.5
     provider_tag: anthropic
-    researcher_efforts: [high]
 
 judge:
   enabled: true
