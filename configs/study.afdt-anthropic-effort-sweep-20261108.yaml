@@ -45,6 +45,6 @@ budgets:
   # main study. Preflight may require a separately approved increase; do not
   # edit the reservation ledger or mistake estimates for actual spending.
   max_calls: 3000
-  max_usd: "1300.00"
+  max_usd: "13000.00"
   judge_max_calls: 2000
-  judge_max_usd: "100.00"
+  judge_max_usd: "1000.00"
