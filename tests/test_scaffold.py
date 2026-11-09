@@ -103,7 +103,9 @@ class PromptTests(unittest.TestCase):
                     self.assertIn('The character\'s utility function is \\(U=-\\text{years imprisoned}\\)', text)
                     self.assertIn('You are not being asked to adopt the character\'s preferences', text)
                     self.assertIn('An envelope lies on the small metal desk.', text)
-                    self.assertIn('The decoded message says:', text)
+                    self.assertIn('A reminder you wrote earlier brings back a specific memory', text)
+                    self.assertIn('You now recall:', text)
+                    self.assertNotIn('An old cipher', text)
                     role = 'a' if text == a else 'b'
                     self.assertIn(PASS_COMMAND + '\n' + submit_command(case[f'evidence_{role}']), text)
                     self.assertIn(case[f'evidence_{role}'], text)
