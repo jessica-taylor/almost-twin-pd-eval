@@ -2,8 +2,9 @@
 
 This is a fresh exploratory study following
 [`dt-four-theories-main-qwen-plow-20261108`](dt-four-theories-main-qwen-plow-20261108-results.md).
-It tests whether the **prisoner-stage reasoning effort** changes the action in
-the same almost-twin prisoner's dilemma under the Equation (4) A-FDT assignment.
+It tests whether **researcher and prisoner reasoning effort, varied together**,
+changes the action in the same almost-twin prisoner's dilemma under the
+Equation (4) A-FDT assignment.
 No previous outcomes are carried into the study, and this plan has no results.
 
 ## Matrix and controls
@@ -12,29 +13,30 @@ No previous outcomes are carried into the study, and this plan has no results.
   pinned to OpenRouter's `anthropic` provider endpoint.
 - **Theory and game:** `fdt_eq4` (A-FDT); `t4_distinct_leads_001`, with the same
   distinct observations and two prisoner roles as the first main study.
-- **Prisoner reasoning effort:** `low`, `medium`, `high` separately for each
-  model; **30 independent paired scenarios per condition**. This gives six
-  condition cells, 180 researcher essays, and up to 360 prisoner requests
-  (plus conditional judge calls).
-- **Researcher effort:** held fixed *within* model at the earlier baseline:
-  Sonnet `low`, Opus `high`. Researcher prompt/source and essay bounds remain
-  those of the first study: target 2,400–3,000 words; hard maximum 5,000 words
-  and 64,000 JSON-encoded bytes. Researcher generation ceilings remain
-  16,000/32,000 total output tokens for Sonnet/Opus respectively.
-- **Prisoner generation ceiling:** **12,000 total output tokens for all three
-  efforts**, including hidden reasoning. This avoids the prior low/high
-  output-budget difference. The API timeout remains 900 seconds.
+- **Researcher/prisoner reasoning efforts:** the three matched pairs
+  **`low/low`, `medium/medium`, `high/high`** for each model; **30 independent
+  prisoner pairs per condition**. This gives six condition cells, 180 new
+  researcher essays and up to 360 prisoner calls (plus conditional judges).
+  The `effort_combinations: paired` setting zips the two lists rather than
+  taking their Cartesian product; omitting it would create **18** cells.
+- **Essay prompt and bounds:** unchanged from the first study: requested
+  2,400–3,000 words, hard maximum 5,000 words and 64,000 JSON-encoded bytes.
+  **Researcher total output allowance is 32,000 tokens at every effort**.
+- **Prisoner total output allowance:** **12,000 tokens at every effort**,
+  including hidden reasoning. Both allowances are held fixed to avoid
+  confounding changes in requested effort with different output-token caps.
+  API timeout remains 900 seconds.
 - **Judge:** `openai/gpt-6.1-sol` at low effort, only when classification needs
   it; keep the original action/failed-sample scoring rules.
 
 Each scenario independently writes a **new essay** that is reused within its
-A/B pair. The six cells do **not** share identical essays across prisoner-effort
-conditions. Since researcher settings are held constant within each model,
-the researcher-essay distributions are intended to be comparable, but essay
-sampling adds noise and the experiment is *not* a matched-essay intervention.
-The design should not be described as separately testing how researcher
-reasoning effort changes behavior, nor as proving a causal effect of thinking
-tokens; the independent variable is the API's requested prisoner effort.
+A/B pair. The six cells do **not** share essays across effort conditions.
+Researcher effort changes the essay distribution, and prisoner effort may
+change how it is applied. The independent variable is the **joint requested
+effort level of the full researcher-to-prisoner pipeline**. This design cannot
+attribute a resulting action difference specifically to the essay or to
+prisoner deliberation. It also does not equate an API effort setting with a
+fixed amount of computation or observed reasoning-token usage.
 
 ## Checking and preparing (no paid generations)
 
@@ -101,13 +103,15 @@ summary files.
 ## Analysis focus
 
 Compare cooperation rates and CC/CD/DC/DD counts *within Sonnet* and
-*within Opus* across the three prisoner effort settings, counting whole A/B
+*within Opus* across the three joint effort settings, counting whole A/B
 pairs as the unit. Report failure counts, actual reasoning-token distributions,
-and costs separately. Qualitatively examine whether additional effort makes
-the model more likely to distinguish observation-indexed A-FDT nodes from
-shared-policy or noisy-computation counterfactuals. Differences may reflect
-the essay sample and provider sampling as well as the requested effort.
+and costs separately **for both researcher and prisoner stages**. Qualitatively
+examine whether additional effort changes how the generated essays explain
+observation-indexed A-FDT nodes, and how the prisoner applies those essays.
+Differences are effects of the combined configuration, and cannot identify
+the stage responsible without an additional study.
 
-A later, stronger follow-up could **reuse the same frozen researcher essay**
-across effort arms to measure within-essay effects directly. That requires
-new harness support and is not assumed by this configuration.
+A later follow-up could **reuse the same frozen researcher essay** across
+prisoner effort arms to isolate prisoner-stage effects; separately varying
+researcher effort while fixing the prisoner model would isolate essay changes.
+Neither factorial design is assumed by this matched-effort sweep.
