@@ -17,6 +17,7 @@ from collections import Counter, deque
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from contextlib import ExitStack
 from decimal import Decimal
+from itertools import product
 from pathlib import Path
 from types import SimpleNamespace
 from time import monotonic
@@ -40,7 +41,8 @@ THEORIES = {'cdt_wikipedia', 'edt_wikipedia', 'fdt_eq4', 'fdt_policy'}
 SPEC_FIELDS = {'schema_version', 'name', 'exploratory', 'assignments', 'models',
                'researcher_efforts', 'prisoner_efforts', 'count_per_cell', 'scenario',
                'researcher_max_tokens', 'prisoner_max_tokens', 'judge', 'budgets',
-               'temperature', 'seed_base', 'essay', 'output_tokens', 'api_timeout_seconds'}
+               'temperature', 'seed_base', 'essay', 'output_tokens', 'api_timeout_seconds',
+               'effort_combinations'}
 MODEL_FIELDS = {'id', 'provider_tag', 'researcher_efforts', 'prisoner_efforts',
                 'allow_unverified_effort'}
 JUDGE_FIELDS = {'enabled', 'model', 'provider_tag', 'effort', 'max_tokens',
@@ -101,6 +103,9 @@ def load_spec(path):
         raise EvalError('Study models must be a nonempty list')
     researcher_efforts = _efforts(spec.get('researcher_efforts', ['low']), 'researcher_efforts')
     prisoner_efforts = _efforts(spec.get('prisoner_efforts', ['low']), 'prisoner_efforts')
+    effort_combinations = spec.get('effort_combinations', 'cartesian')
+    if effort_combinations not in ('cartesian', 'paired'):
+        raise EvalError('effort_combinations must be cartesian or paired')
     models = []
     for entry in spec['models']:
         _keys(entry, MODEL_FIELDS, 'model')
@@ -153,6 +158,7 @@ def load_spec(path):
         raise EvalError('seed_base must be a nonnegative integer when specified')
     spec.update(models=models, judge=judge, budgets=budgets,
                 researcher_efforts=researcher_efforts, prisoner_efforts=prisoner_efforts,
+                effort_combinations=effort_combinations,
                 scenario=spec.get('scenario', 't4_distinct_leads_001'))
     _cells(spec)  # Require an explicit allowance for every requested effort.
     return spec, raw
@@ -162,22 +168,28 @@ def _cells(spec):
     result = []
     for theory in spec['assignments']:
         for model in spec['models']:
-            for researcher_effort in model['researcher_efforts']:
-                for prisoner_effort in model['prisoner_efforts']:
-                    number = len(result)
-                    tag = re.sub(r'[^a-zA-Z0-9._-]+', '_', model['id'])
-                    result.append({'id': f'{number:03d}_{theory}_{tag}_r{researcher_effort}_p{prisoner_effort}',
-                                   'assignment': theory, 'model': model['id'],
-                                   'provider_tag': model.get('provider_tag'),
-                                   'researcher_effort': researcher_effort,
-                                   'prisoner_effort': prisoner_effort,
-                                   'researcher_max_tokens': output_limit('researcher', researcher_effort,
-                                       spec.get('researcher_max_tokens'), spec['output_tokens']),
-                                   'prisoner_max_tokens': output_limit('prisoner', prisoner_effort,
-                                       spec.get('prisoner_max_tokens'), spec['output_tokens']),
-                                   'allow_unverified_effort': model.get('allow_unverified_effort')})
+            researchers = model['researcher_efforts']
+            prisoners = model['prisoner_efforts']
+            if spec.get('effort_combinations', 'cartesian') == 'paired':
+                if len(researchers) != len(prisoners):
+                    raise EvalError(f"{model['id']}: paired effort lists must have equal lengths")
+                efforts = zip(researchers, prisoners)
+            else:
+                efforts = product(researchers, prisoners)
+            for researcher_effort, prisoner_effort in efforts:
+                number = len(result)
+                tag = re.sub(r'[^a-zA-Z0-9._-]+', '_', model['id'])
+                result.append({'id': f'{number:03d}_{theory}_{tag}_r{researcher_effort}_p{prisoner_effort}',
+                               'assignment': theory, 'model': model['id'],
+                               'provider_tag': model.get('provider_tag'),
+                               'researcher_effort': researcher_effort,
+                               'prisoner_effort': prisoner_effort,
+                               'researcher_max_tokens': output_limit('researcher', researcher_effort,
+                                   spec.get('researcher_max_tokens'), spec['output_tokens']),
+                               'prisoner_max_tokens': output_limit('prisoner', prisoner_effort,
+                                   spec.get('prisoner_max_tokens'), spec['output_tokens']),
+                               'allow_unverified_effort': model.get('allow_unverified_effort')})
     return result
-
 
 def check(root, spec):
     """Validate the whole matrix and projected project budget; never POST."""
