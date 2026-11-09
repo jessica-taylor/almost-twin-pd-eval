@@ -1,21 +1,23 @@
 # Curated study export and publication audit
 
-The two frozen studies are exported under [`published/`](../published/README.md). This commit prepares a reviewable local dataset; it does **not** push data, publish a release, or change GitHub visibility.
+The two frozen studies are exported under [`published/`](../published/README.md), with all 820 scenario records. This document describes the export's evidence-preservation rules, omissions, redistribution terms and audit scope. Export and verification do not push data, publish a release, or change GitHub visibility.
 
 ## Reproduce and verify offline
 
-From the repository root:
+Anyone with a public checkout can verify the saved evidence, using Python 3.11+ with no dependencies, credentials or network:
 
 ```sh
-python3 -m almost_twin export-publication --out published
 python3 scripts/verify_publication.py published
 ```
 
-If private originals are available:
+If private originals and the CLI dependencies are available, rebuild into a fresh directory and compare against those originals:
 
 ```sh
-python3 scripts/verify_publication.py published --source-root .
+python3 -m almost_twin export-publication --out /tmp/almost-twin-export
+python3 scripts/verify_publication.py /tmp/almost-twin-export --source-root .
 ```
+
+See [reproducibility instructions](reproducibility.md) for installation, the public/private verification distinction and limits on exact model reruns.
 
 The exporter reads the original frozen study/batch/pilot manifests and saved artifacts. It does not use current model choices, prompts, source-cache `current.json` pointers, approvals or budgets to reconstruct historical conditions. It makes no network or model requests. Optional `--study PATH` flags select explicit study directories; the default is the two completed studies.
 
@@ -48,11 +50,13 @@ Duplicate rendered prompts, cache trees, capability snapshots, locks, local envi
 
 Generated navigation links are checked separately from model-authored text. Mathematical notation, footnotes, model-written URLs and any errors in the essays are retained as evidence, without automatic link repair.
 
-## Wikipedia and the FDT paper
+## Source-text exclusions: Wikipedia, SEP and the FDT paper
 
 The exact normalized Wikipedia articles used in the main study are included **once each**, selected by both article hash and provenance hash, with their original contributor attribution, permanent revision, history link, CC BY-SA 4.0 license link, conversion notice and qualifications for third-party content/media. No external media bytes are included. Extraction/download provenance is included as metadata. The Wikipedia license does not become a blanket license for all experimental artifacts.
 
-The FDT normalized article, original paper, TeX and complete source-bearing researcher requests are **not** included. The source descriptor preserves the exact version and normalized/provenance hashes and points to:
+Complete source-bearing researcher requests are **not** included for any source condition, including Wikipedia. Each is replaced by an explicitly named source-omitted derivative; its exact original hash and omission operation remain in the ledger. This keeps source handling uniform and avoids duplicating full articles in hundreds of requests.
+
+The **FDT normalized article, original paper and TeX are excluded**. Availability on arXiv is not treated as blanket redistribution permission. The source descriptor preserves the exact version and normalized/provenance hashes and points to:
 
 - [Pinned v2 TeX source archive](https://arxiv.org/src/1710.05060v2)
 - [Pinned paper/version page](https://arxiv.org/abs/1710.05060v2)
@@ -60,13 +64,21 @@ The FDT normalized article, original paper, TeX and complete source-bearing rese
 
 The source archive lets readers locate the TeX directly without implying redistribution rights. Original extraction metadata is retained where available. Rebuilding a researcher input requires obtaining the source and reproducing the recorded normalized hash; the public derivative is not a substitute input for a rerun. No permission or license is asserted on behalf of the paper's authors or model providers.
 
+**SEP full-text downloads, normalized articles, and source-cache QA excerpts are excluded**, as are complete cache trees. SEP's personal-download permissions are not treated as permission for electronic redistribution. The two executed studies use Wikipedia for CDT/EDT, rather than SEP; source acquisition code and manifest URLs still support the separate SEP conditions. Model-produced essays and responses may quote their references and are preserved unchanged; these exclusions do not silently redact experimental outputs or clear all third-party quotation rights.
+
+## Code and data licenses
+
+The software, prompt templates, configurations, tests and software documentation are [MIT licensed](../LICENSE). Project-authored methods/results reports and the contributors' rights in the curated research data are offered under **CC BY 4.0**, subject to the explicit scope and third-party exceptions in [DATA_LICENSE.md](../DATA_LICENSE.md). That grant does not assert ownership of every model output or provider field, or relicense third-party quotations/adaptations. Wikipedia material remains under its own **CC BY-SA 4.0** terms, with attribution and conversion notices preserved. A future publication or adaptation must consider the material it actually reuses; inclusion in this collection is not blanket rights clearance.
+
+The publication-readiness update changes only the generated dataset README and manifest to add navigation and redistribution notices. All **13,330 verbatim evidence files** and all other exported files are unchanged. A repeated export matched all **19,493 files**; checks against **57,880 original study/run files** found no changes. Both public-only and private-input numerical verification passed, as did 136 unit tests. The [readiness check record](publication-readiness.json) also records working generated/report navigation links, no links into private `data/`, and no scanner findings in the updated documentation or curated export. The original [export reproducibility record](publication-reproducibility.json) remains a record of the preceding export version.
+
 ## Audit results and limits
 
 The audit at Git HEAD `bcea2cdedfa8668016005ce2c5978def054c58cf` examines the 83 existing tracked worktree files, all 293 historical blobs and 106 commit/tag messages reachable from local refs/reflogs, plus the prospective additions. Results are recorded in [`publication-audit.json`](publication-audit.json), including remote-URL credential checks and nonignored new files. It performs no remote fetch and does not inspect unseen remote refs or server-side records.
 
 No confirmed credentials, local-home/workstation identifiers or full reference-article copies were found in the pre-export tracked contents/history. Broader patterns do flag an explicitly mocked API-key fixture in `tests/test_study.py` (one current occurrence and nine historical blob versions), a fabricated cookie literal in `tests/test_publication.py`, and a URL-expression fixture in that same test. These are individually triaged by location and value hash in the audit report, with no blanket test-directory exemption and no values copied into the report. Raw scanner findings are retained. Authorized, attributed Wikipedia copies in the export are scoped exceptions to the article-copy rule.
 
-Git author/committer metadata contains **two email identities that are not GitHub noreply addresses**. The report records address hashes rather than duplicating those addresses. They remain in Git history as contributor provenance. Before making the repository public, decide whether those identities are acceptable; no identity or history rewrite is authorized or performed by this export.
+Git author/committer metadata contains **two email identities that are not GitHub noreply addresses**. The report records address hashes rather than duplicating those addresses. Ordinary contributor email identities are retained as Git provenance and are not treated as credentials or publication blockers. No identity or history rewrite is performed by this export.
 
 The export also has a deterministic [`SCAN.json`](../published/SCAN.json). It scans known credential formats, private-key markers, literal bearer tokens, local-home paths, workstation prompts, email addresses, cookie values and known full-source signatures. Wikipedia article exceptions apply only within `sources/`. Detected evidence is not automatically sanitized: a blocking match aborts export without changing the original. Findings identify locations and value hashes, never the credential values.
 

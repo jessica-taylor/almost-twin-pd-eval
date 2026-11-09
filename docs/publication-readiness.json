@@ -1,0 +1,153 @@
+{
+  "all_other_exported_files_unchanged": 19491,
+  "baseline_commit": "eee256c5f3a39cfeedd5cb3c276da83aa3ca841a",
+  "broken_links": [],
+  "changed": [
+    "MANIFEST.json",
+    "README.md"
+  ],
+  "deterministic_output_files": 19493,
+  "export_bytes": 200082684,
+  "export_scan_findings": [],
+  "files_checked": 19493,
+  "navigation_links_checked": 6191,
+  "original_data_files_changed": [],
+  "original_data_files_checked": 57880,
+  "private_data_links": [],
+  "private_source_verification": {
+    "payload_files": 19491,
+    "private_input_hashes_checked": 18739,
+    "studies": [
+      {
+        "attempted_calls": 633,
+        "cells": 6,
+        "raw_responses_priced": 633,
+        "reported_provider_usd": "84.0566605",
+        "scenario_records": 180,
+        "stage_calls": {
+          "judge": 94,
+          "prisoner": 359,
+          "researcher": 180
+        },
+        "status_counts": {
+          "complete": 176,
+          "failed": 4
+        },
+        "study": "afdt-anthropic-effort-sweep-20261108",
+        "unknown_prices": 0
+      },
+      {
+        "attempted_calls": 1936,
+        "cells": 32,
+        "raw_responses_priced": 1933,
+        "reported_provider_usd": "104.656218715",
+        "scenario_records": 640,
+        "stage_calls": {
+          "judge": 203,
+          "prisoner": 1103,
+          "researcher": 630
+        },
+        "status_counts": {
+          "complete": 543,
+          "failed": 87,
+          "prepared": 10
+        },
+        "study": "dt-four-theories-main-qwen-plow-20261108",
+        "unknown_prices": 3
+      }
+    ],
+    "verified": true
+  },
+  "public_verification": {
+    "payload_files": 19491,
+    "private_input_hashes_checked": 0,
+    "studies": [
+      {
+        "attempted_calls": 633,
+        "cells": 6,
+        "raw_responses_priced": 633,
+        "reported_provider_usd": "84.0566605",
+        "scenario_records": 180,
+        "stage_calls": {
+          "judge": 94,
+          "prisoner": 359,
+          "researcher": 180
+        },
+        "status_counts": {
+          "complete": 176,
+          "failed": 4
+        },
+        "study": "afdt-anthropic-effort-sweep-20261108",
+        "unknown_prices": 0
+      },
+      {
+        "attempted_calls": 1936,
+        "cells": 32,
+        "raw_responses_priced": 1933,
+        "reported_provider_usd": "104.656218715",
+        "scenario_records": 640,
+        "stage_calls": {
+          "judge": 203,
+          "prisoner": 1103,
+          "researcher": 630
+        },
+        "status_counts": {
+          "complete": 543,
+          "failed": 87,
+          "prepared": 10
+        },
+        "study": "dt-four-theories-main-qwen-plow-20261108",
+        "unknown_prices": 3
+      }
+    ],
+    "verified": true
+  },
+  "scope": "Offline publication-readiness checks. Baseline export differs only in generated navigation/redistribution notice and manifest. No original study data or model evidence changed.",
+  "unit_tests": {
+    "command": "python3 -m unittest discover -s tests",
+    "passed": 136
+  },
+  "updated_documentation_scan": {
+    "paths": [
+      "DATA_LICENSE.md",
+      "LICENSE",
+      "README.md",
+      "almost_twin/publication.py",
+      "docs/afdt-anthropic-effort-sweep-20261108-methods.md",
+      "docs/afdt-anthropic-effort-sweep-20261108-results.md",
+      "docs/dt-four-theories-main-qwen-plow-20261108-results.md",
+      "docs/first_study_design.md",
+      "docs/pilot_workflow.md",
+      "docs/publication-readiness.json",
+      "docs/publication.md",
+      "docs/reproducibility.md"
+    ],
+    "scan": {
+      "blocking_findings": 0,
+      "files_scanned": 12,
+      "findings": [],
+      "limitations": "Pattern/signature scan, not proof that all secrets or third-party quotations were identified. Public-source email addresses require contextual review; fictional game observations are intentional evidence.",
+      "patterns": [
+        "aws_access_key",
+        "cookie_value",
+        "email_address",
+        "embedded_url_password",
+        "environment_secret_literal",
+        "github_token",
+        "gitlab_token",
+        "google_api_key",
+        "huggingface_token",
+        "literal_bearer",
+        "local_home_path",
+        "private_key",
+        "provider_api_key",
+        "quoted_secret_assignment",
+        "slack_token",
+        "workstation_prompt"
+      ],
+      "scanner_version": "1",
+      "schema_version": 1
+    }
+  },
+  "verbatim_files_unchanged": 13330
+}

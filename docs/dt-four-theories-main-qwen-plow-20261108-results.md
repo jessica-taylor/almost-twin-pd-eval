@@ -205,7 +205,7 @@ In addition, **29 accepted researcher essays** were examined through their forma
 
 The last column is a transparent length proxy, not a semantic quality score. The GPT final answers are commands; their extra fields are explicitly provider-generated `reasoning.summary` blocks. Most other GPT reasoning is encrypted. Sonnet instead puts explanations in the visible final answer. Google and Anthropic returned additional text, sometimes summary-like; the field name alone does not establish a complete internal trace. **No encrypted reasoning was decoded, no absent rationale was reconstructed, and token counts are not explanations.** Where an OpenAI summary is quoted below, it is identified as a summary, not verbatim access to hidden deliberation.
 
-All sample numbers below are zero-based and refer only to this executed study. Exact output and essay links identify the original local artifacts; raw-response links are used where the evidence is a provider summary rather than the visible command.
+All sample numbers below are zero-based and refer only to this executed study. Output and essay links lead to byte-preserving copies in the [published dataset](../published/studies/dt-four-theories-main-qwen-plow-20261108/README.md); raw-response links are used where the evidence is a provider summary rather than the visible command. Source-omitted researcher input views and metadata transformations are documented in the [publication policy](publication.md).
 
 ### 4.2 The formal distinction the transcripts expose
 
@@ -543,17 +543,17 @@ The following prepared directories remain untouched. The indices are not a conti
 
 | Exact sample-directory parent | Prepared sample names |
 |---|---|
-| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples/) | `00011`, `00013`, `00014`, `00015`, `00016`, `00017`, `00018` |
-| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples/) | `00012`, `00016` |
-| [data/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples/) | `00011` |
+| [published/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/005_cdt_wikipedia_google_gemini-4-argon_rhigh_phigh/samples/) | `00011`, `00013`, `00014`, `00015`, `00016`, `00017`, `00018` |
+| [published/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/021_fdt_eq4_google_gemini-4-argon_rhigh_phigh/samples/) | `00012`, `00016` |
+| [published/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples](../published/studies/dt-four-theories-main-qwen-plow-20261108/batches/029_fdt_policy_google_gemini-4-argon_rhigh_phigh/samples/) | `00011` |
 
 The three unpriced attempted calls below should be checked against any later provider billing records if complete cost reconciliation is needed. Their saved uncertainty does not require or authorize generation retries or outcome imputation.
 
 | Model / theory / zero-based sample | Saved call directory | What remains unknown |
 |---|---|---|
-| GPT-6.1 Terra / CDT / 00018 | [data/exploratory/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0](../published/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0/) | explicit transport timeout; no raw response or price |
-| Gemini 4 Argon / A-FDT / 00010 | [data/exploratory/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0](../published/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0/) | attempted state without terminal response/failure record; price unknown |
-| Gemini 4 Argon / P-FDT / 00009 | [data/exploratory/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0](../published/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0/) | attempted state without terminal response/failure record; price unknown |
+| GPT-6.1 Terra / CDT / 00018 | [published/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0](../published/runs/5bb4af88-f455-4228-9263-4fa33c499e4d/call_0/) | explicit transport timeout; no raw response or price |
+| Gemini 4 Argon / A-FDT / 00010 | [published/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0](../published/runs/4dcd59b2-b993-4dee-a6cb-60a4955240ce/call_0/) | attempted state without terminal response/failure record; price unknown |
+| Gemini 4 Argon / P-FDT / 00009 | [published/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0](../published/runs/3b94f634-26fb-4c5e-ad0d-b979a0483adb/call_0/) | attempted state without terminal response/failure record; price unknown |
 
 ## Appendix C. Audit and artifact accessibility
 

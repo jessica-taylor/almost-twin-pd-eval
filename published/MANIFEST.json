@@ -1,13 +1,13 @@
 {
   "code_sha256": {
-    "almost_twin/publication.py": "afd28b536b84adac621f5ebe6e3b3ad368c954ca4f0c1277cfe2d72c1533b815",
+    "almost_twin/publication.py": "880e32deb9f33baf15f30891a48bf5f85561b8a1ca7fedbc9d2b0ecec607f1fc",
     "almost_twin/publication_audit.py": "5388e28cb2476e01ada732dbf9c9ccd1f631e7d30bd11677b48322741b2790f4",
     "scripts/verify_publication.py": "2ea3221df8d64004278b69d43277fe9a2e89fc74b6bff9bb2485ab0fb35854c1"
   },
   "exporter_version": "1",
   "files": [
     {
-      "bytes": 3538,
+      "bytes": 4776,
       "evidence": "derived",
       "inputs": [],
       "operations": [
@@ -16,7 +16,7 @@
         }
       ],
       "path": "README.md",
-      "sha256": "5b3451fd093bcc3d973c02ab894184c604590b3f6373fdb5d87e034ea0a4fe18"
+      "sha256": "ea95fe8c171f0f49d2a7f448eeac71b503e43c5571f7c6f75cd74454d3a5bcbb"
     },
     {
       "bytes": 4,

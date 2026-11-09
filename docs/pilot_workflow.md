@@ -2,6 +2,47 @@
 
 The convenience layer prepares one researcher essay and one independent prisoner pair. It reuses the existing `router.run`, rendering, output classification, commitments and outcome code. No theory instructions, observation cases, payoff assumptions, source extraction or judge behavior changed. Pilot metadata explicitly marks artifacts as exploratory; this is separate from future preregistered data.
 
+## CDT Wikipedia / GPT-5 Nano quick start
+
+For a **new exploratory run**, install the CLI as described in the [README](../README.md#use-or-develop-the-harness) and set `OPENROUTER_API_KEY` in your environment or a gitignored `.env`. Use a fresh pilot directory; do not resume or modify the published studies.
+
+Acquire the pinned source (unbilled network download), then read `data/source_cache/report.md` and its article/QA links:
+
+```sh
+python3 -m almost_twin fetch-sources --network --source cdt_wikipedia
+```
+
+Prepare the pilot. This refreshes unbilled model metadata and makes **no generation calls**:
+
+```sh
+python3 -m almost_twin pilot prepare \
+  --assignment cdt_wikipedia --model openai/gpt-5-nano \
+  --researcher-effort low --prisoner-effort low \
+  --scenario t4_distinct_leads_001 --out data/pilots/cdt-nano
+```
+
+Inspect `data/pilots/cdt-nano/plan.md`, the complete researcher prompt and request in `researcher/`, the selected endpoint, and the spending estimate. The following command authorizes **one billable researcher generation**:
+
+```sh
+python3 -m almost_twin pilot researcher --pilot data/pilots/cdt-nano \
+  --execute --confirm-billable --prompts-approved
+```
+
+Read the frozen essay at the printed path, also linked from `plan.md`. Prepare the pair for inspection without generating responses:
+
+```sh
+python3 -m almost_twin pilot prisoners --pilot data/pilots/cdt-nano
+```
+
+Inspect `prisoners/messages_0.md`, `messages_1.md`, their JSON/serialized requests and updated costs. The next command authorizes **two independent billable prisoner calls**:
+
+```sh
+python3 -m almost_twin pilot prisoners --pilot data/pilots/cdt-nano \
+  --execute --confirm-billable --prompts-approved
+```
+
+`plan.md` links the outcome, responses and API records; `events.jsonl` preserves the pilot history. Defaults reserve at most three calls and US$2 estimated spend, subject to shared project reservations; use `--max-calls`/`--max-usd` at preparation to set explicit limits. Adjudication, if needed, is separate. These commands are instructions for new work, not part of offline results verification.
+
 ## Selection and reasoning evidence
 
 Initial endpoint selection is deterministic: prefer the exact model author's base tag (for `openai/gpt-5-nano`, `openai`), then author variants sorted by tag, then other tags sorted by tag. A candidate must pass context, price and parameter checks for both requested efforts. Because OpenRouter base slugs can match descendant regions/variants, the payload explicitly ignores every advertised descendant tag of the selected tag; routing assumptions are recorded. A changed descendant set changes the serialized request and requires a newly reviewed preparation. Provider-returned endpoint tags are also checked when available (responses often expose only the provider name). The plan records the policy, chosen tag and rejected candidates. `--provider-tag` chooses only that endpoint or fails. Once selected, the tag is frozen across researcher and both prisoners. Fresh metadata can stop a run, never trigger endpoint substitution. A changed available canonical model version also stops the pilot.
@@ -44,5 +85,5 @@ The pilot lock prevents concurrent stage execution. A failed preflight that neve
 - `data/exploratory/{researcher_essays,prisoner_decisions,commitments}.jsonl`: append-only trial/commitment journals.
 - `data/{approvals,budget}.jsonl`: exact-request approvals (plus any optional historical source acknowledgements) and shared project reservations.
 
-See the README quick start for copy-pastable CDT Wikipedia / GPT-5 Nano / low-effort / distinct-evidence T4 commands. No model requests were made during this usability sprint; HTTP responses in the tests are mocked.
+The quick start above retains the staged review points. HTTP responses in the unit tests are mocked; running those tests makes no model requests.
 

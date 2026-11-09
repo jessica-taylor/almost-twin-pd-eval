@@ -180,7 +180,7 @@ It includes the frozen specification and preflight metadata; `summary.md`, `summ
 
 The raw response is authoritative. Some providers report reasoning-token counts without supplying the underlying reasoning, or supply a brief reasoning summary rather than the complete internal trace. The protocol does not assume that unavailable reasoning can be reconstructed from the final answer.
 
-The researcher source text and full prompts are retained locally rather than copied into the source repository. Redistribution of the underlying reference text must be assessed separately from publication of this methods description; the two Wikipedia reference texts are under CC BY-SA, and the FDT source has its own distribution conditions.
+The [published study index](../published/studies/dt-four-theories-main-qwen-plow-20261108/README.md) now provides all 640 scenario records, readable transcripts, frozen specifications and saved reports. Accepted essays, returned model outputs, raw responses and prisoner/judge requests preserve their original bytes. Complete source-bearing researcher requests remain local; published input views explicitly omit the article body. The two attributed Wikipedia reference texts are included once each under CC BY-SA, while the FDT full text/TeX are excluded and linked by pinned version. See the [publication policy](publication.md) for transformations, exclusions and redistribution terms, and the [results](dt-four-theories-main-qwen-plow-20261108-results.md) for outcomes.
 
 ## 10. What the study can and cannot establish
 

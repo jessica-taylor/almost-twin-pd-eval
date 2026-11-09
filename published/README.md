@@ -5,6 +5,12 @@ This is an offline export of frozen experimental artifacts, including failures a
 - [afdt-anthropic-effort-sweep-20261108](studies/afdt-anthropic-effort-sweep-20261108/README.md)
 - [dt-four-theories-main-qwen-plow-20261108](studies/dt-four-theories-main-qwen-plow-20261108/README.md)
 
+## Browse scenarios
+
+Each study index lists every planned scenario, including failures and unexecuted records. Follow **Read** for the complete returned outputs and available readable reasoning. The adjacent `record.json` links structured metadata and run artifacts; each study's `reference/` directory contains its saved summaries, pair/decision CSVs, failures and frozen specification. Large JSON files are best inspected in a local checkout.
+
+For context, see the repository [research overview](../README.md), [methods/results links](../README.md#studies-and-results), and [offline reproducibility guide](../docs/reproducibility.md).
+
 ## Evidence and transformations
 
 - `runs/*/call_*/response.raw`, visible `output.txt`, accepted `essay.md`, and prisoner/judge `request.json` preserve original bytes. Their original file hashes are in `MANIFEST.json`.
@@ -21,4 +27,8 @@ This is an offline export of frozen experimental artifacts, including failures a
 
 From the repository root, run `python3 scripts/verify_publication.py published`. With private original artifacts available, add `--source-root .` to check every retained/omitted input hash too. Verification reads no credentials and makes no network requests.
 
-`MANIFEST.json` records all payload hashes and derivations; `SCAN.json` contains a deterministic pattern/signature scan. These two generated reports do not list their own hashes. A scan is not proof that every possible secret or source quotation was recognized. No dataset-wide license is asserted for third-party content.
+`MANIFEST.json` records all payload hashes and derivations; `SCAN.json` contains a deterministic pattern/signature scan. These two generated reports do not list their own hashes. A scan is not proof that every possible secret or source quotation was recognized.
+
+## Redistribution terms
+
+Project-authored research material and the contributors' rights in these records are offered under **CC BY 4.0**, with the explicit third-party exceptions in [DATA_LICENSE.md](../DATA_LICENSE.md). Bundled Wikipedia material retains **CC BY-SA 4.0** and its contributor/revision/conversion notices. Model outputs remain verbatim and may contain source quotations or adaptations; no blanket license or rights clearance is asserted for third-party content. The software is separately [MIT licensed](../LICENSE). See the [publication policy](../docs/publication.md) for excluded copyrighted source texts and every transformation category.

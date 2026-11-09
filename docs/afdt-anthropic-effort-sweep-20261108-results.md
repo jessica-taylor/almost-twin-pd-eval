@@ -14,7 +14,7 @@ The qualitative difference concerns the intervention graph. Defecting Opus respo
 
 ## 2. Design and verified study identity
 
-The [design document](afdt-anthropic-effort-sweep-20261108.md) describes the planned follow-up; the [frozen specification](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/specification.yaml) and saved requests establish execution. Six cells cross `anthropic/claude-sonnet-5.5` and `anthropic/claude-opus-5.5` with low/low, medium/medium, and high/high researcher/prisoner effort, with **30 planned pairs per cell**. All use the pinned `anthropic` endpoint and assignment `fdt_eq4`.
+The [methods document](afdt-anthropic-effort-sweep-20261108-methods.md) and [original design plan](afdt-anthropic-effort-sweep-20261108.md) describe the follow-up; the [frozen specification](../published/studies/afdt-anthropic-effort-sweep-20261108/reference/specification.yaml) and saved requests establish execution. Six cells cross `anthropic/claude-sonnet-5.5` and `anthropic/claude-opus-5.5` with low/low, medium/medium, and high/high researcher/prisoner effort, with **30 planned pairs per cell**. All use the pinned `anthropic` endpoint and assignment `fdt_eq4`.
 
 Researcher requests contain the normalized full Yudkowsky–Soares paper, arXiv `1710.05060v2`, with an Equation (4) focus. Researchers are not told the upcoming game. Prisoners receive the resulting unedited essay, not the original paper. Both calls share model settings and essay; neither receives the other's response. Sample numbers are bookkeeping within cells, not matched essays across effort levels.
 
@@ -215,7 +215,7 @@ The [first main study](dt-four-theories-main-qwen-plow-20261108-results.md) foun
 
 The study UUID is `684fcbed-b05a-44c1-8be6-8674df0bdb12`. Frozen source, template hashes and settings are in each sample's `pilot.json`; exact requests and raw responses are in its referenced run directories. All 180 essays have distinct hashes. All 359 prisoner requests contain the exact frozen essay; the 179 available A/B request pairs match outside intended private fields. The 180 researcher instruction prefixes contain no benchmark/game fields. All generation responses identify the configured model and provider.
 
-The specifically requested `afdt-anthropic-effort-sweep-20261108-methods.md` was absent during analysis. The existing [design document](afdt-anthropic-effort-sweep-20261108.md) and executed frozen specification were used instead; the current editable config was not treated as historical ground truth.
+The original analysis used the [design plan](afdt-anthropic-effort-sweep-20261108.md) and executed frozen specification. A [full methods document](afdt-anthropic-effort-sweep-20261108-methods.md) is now available alongside them; the frozen specification and saved requests remain authoritative about execution. The current editable config was not treated as historical ground truth.
 
 Bootstrap cell seeds follow the saved reporter: the first 16 hex digits of SHA-256(cell ID), 2,000 resamples, sorted indices 50 and 1,949. Independent contrast bootstraps use 50,000 draws and seeds 20261108, 20261109, and 20261110 in table order, with sorted indices 1,250 and 48,749. The permutation test enumerates 61,788 feasible low/high category-count allocations and weights each by
 
