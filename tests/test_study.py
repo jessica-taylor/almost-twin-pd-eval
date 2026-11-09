@@ -22,7 +22,7 @@ from almost_twin.common import EvalError, GenerationError, encoded, load_yaml, r
 from almost_twin.game import submit_command
 from almost_twin.prompts import cases
 from almost_twin.sources import fetch_one
-from almost_twin.study import check, load_spec, prepare, report, run
+from almost_twin.study import _cells, check, load_spec, prepare, report, run
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -121,6 +121,46 @@ class StudyTests(unittest.TestCase):
         args = parser().parse_args(['study', 'run', '--study', str(self.study)])
         self.assertEqual(args.jobs, 5)
         self.assertEqual(args.provider_jobs, 2)
+
+    def test_paired_effort_combinations_zip_instead_of_cartesian(self):
+        self.spec.update(
+            count_per_cell=30,
+            models=[{'id': NANO}, {'id': JUDGE}],
+            effort_combinations='paired',
+            researcher_efforts=['low', 'medium', 'high'],
+            prisoner_efforts=['low', 'medium', 'high'],
+            output_tokens={
+                'researcher': {'low': 32000, 'medium': 32000, 'high': 32000},
+                'prisoner': {'low': 12000, 'medium': 12000, 'high': 12000},
+            },
+        )
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        spec, _ = load_spec(self.config)
+        cells = _cells(spec)
+        self.assertEqual(len(cells), 6)
+        self.assertEqual([(c['researcher_effort'], c['prisoner_effort']) for c in cells],
+                         [('low', 'low'), ('medium', 'medium'), ('high', 'high')] * 2)
+        self.assertEqual([c['researcher_max_tokens'] for c in cells], [32000] * 6)
+        self.assertEqual([c['prisoner_max_tokens'] for c in cells], [12000] * 6)
+        self.assertEqual(len({c['id'] for c in cells}), 6)
+
+        # Existing study configurations still use the original product matrix.
+        del self.spec['effort_combinations']
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        legacy, _ = load_spec(self.config)
+        self.assertEqual(len(_cells(legacy)), 18)
+
+    def test_paired_effort_combinations_reject_mismatched_lists(self):
+        self.spec.update(effort_combinations='paired',
+                         researcher_efforts=['low', 'medium', 'high'],
+                         prisoner_efforts=['low', 'high'])
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        with self.assertRaisesRegex(EvalError, 'equal lengths'):
+            load_spec(self.config)
+        self.spec['effort_combinations'] = 'diagonal-ish'
+        self.config.write_text(yaml.safe_dump(self.spec, sort_keys=False))
+        with self.assertRaisesRegex(EvalError, 'cartesian or paired'):
+            load_spec(self.config)
 
     def test_preflight_and_preparation_are_unbilled(self):
         spec, data = load_spec(self.config)
